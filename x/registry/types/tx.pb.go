@@ -36,8 +36,6 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 type MsgUpdateParams struct {
 	// authority is the address that controls the module (defaults to x/gov unless overwritten).
 	Authority string `protobuf:"bytes,1,opt,name=authority,proto3" json:"authority,omitempty"`
-	// params defines the module parameters to update.
-	//
 	// NOTE: All parameters must be supplied.
 	Params Params `protobuf:"bytes,2,opt,name=params,proto3" json:"params"`
 }
@@ -127,36 +125,366 @@ func (m *MsgUpdateParamsResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgUpdateParamsResponse proto.InternalMessageInfo
 
+type MsgCreateRegion struct {
+	Creator     string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Code        string `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
+	Name        string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	Description string `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+}
+
+func (m *MsgCreateRegion) Reset()         { *m = MsgCreateRegion{} }
+func (m *MsgCreateRegion) String() string { return proto.CompactTextString(m) }
+func (*MsgCreateRegion) ProtoMessage()    {}
+func (*MsgCreateRegion) Descriptor() ([]byte, []int) {
+	return fileDescriptor_e440ca5c365b1c75, []int{2}
+}
+func (m *MsgCreateRegion) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgCreateRegion) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgCreateRegion.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgCreateRegion) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgCreateRegion.Merge(m, src)
+}
+func (m *MsgCreateRegion) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgCreateRegion) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgCreateRegion.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgCreateRegion proto.InternalMessageInfo
+
+func (m *MsgCreateRegion) GetCreator() string {
+	if m != nil {
+		return m.Creator
+	}
+	return ""
+}
+
+func (m *MsgCreateRegion) GetCode() string {
+	if m != nil {
+		return m.Code
+	}
+	return ""
+}
+
+func (m *MsgCreateRegion) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *MsgCreateRegion) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+type MsgCreateRegionResponse struct {
+	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (m *MsgCreateRegionResponse) Reset()         { *m = MsgCreateRegionResponse{} }
+func (m *MsgCreateRegionResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgCreateRegionResponse) ProtoMessage()    {}
+func (*MsgCreateRegionResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_e440ca5c365b1c75, []int{3}
+}
+func (m *MsgCreateRegionResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgCreateRegionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgCreateRegionResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgCreateRegionResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgCreateRegionResponse.Merge(m, src)
+}
+func (m *MsgCreateRegionResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgCreateRegionResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgCreateRegionResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgCreateRegionResponse proto.InternalMessageInfo
+
+func (m *MsgCreateRegionResponse) GetId() uint64 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+type MsgUpdateRegion struct {
+	Creator     string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Id          uint64 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
+	Code        string `protobuf:"bytes,3,opt,name=code,proto3" json:"code,omitempty"`
+	Name        string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
+	Description string `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
+}
+
+func (m *MsgUpdateRegion) Reset()         { *m = MsgUpdateRegion{} }
+func (m *MsgUpdateRegion) String() string { return proto.CompactTextString(m) }
+func (*MsgUpdateRegion) ProtoMessage()    {}
+func (*MsgUpdateRegion) Descriptor() ([]byte, []int) {
+	return fileDescriptor_e440ca5c365b1c75, []int{4}
+}
+func (m *MsgUpdateRegion) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgUpdateRegion) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgUpdateRegion.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgUpdateRegion) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgUpdateRegion.Merge(m, src)
+}
+func (m *MsgUpdateRegion) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgUpdateRegion) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgUpdateRegion.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgUpdateRegion proto.InternalMessageInfo
+
+func (m *MsgUpdateRegion) GetCreator() string {
+	if m != nil {
+		return m.Creator
+	}
+	return ""
+}
+
+func (m *MsgUpdateRegion) GetId() uint64 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *MsgUpdateRegion) GetCode() string {
+	if m != nil {
+		return m.Code
+	}
+	return ""
+}
+
+func (m *MsgUpdateRegion) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *MsgUpdateRegion) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+type MsgUpdateRegionResponse struct {
+}
+
+func (m *MsgUpdateRegionResponse) Reset()         { *m = MsgUpdateRegionResponse{} }
+func (m *MsgUpdateRegionResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgUpdateRegionResponse) ProtoMessage()    {}
+func (*MsgUpdateRegionResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_e440ca5c365b1c75, []int{5}
+}
+func (m *MsgUpdateRegionResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgUpdateRegionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgUpdateRegionResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgUpdateRegionResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgUpdateRegionResponse.Merge(m, src)
+}
+func (m *MsgUpdateRegionResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgUpdateRegionResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgUpdateRegionResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgUpdateRegionResponse proto.InternalMessageInfo
+
+type MsgDeleteRegion struct {
+	Creator string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Id      uint64 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (m *MsgDeleteRegion) Reset()         { *m = MsgDeleteRegion{} }
+func (m *MsgDeleteRegion) String() string { return proto.CompactTextString(m) }
+func (*MsgDeleteRegion) ProtoMessage()    {}
+func (*MsgDeleteRegion) Descriptor() ([]byte, []int) {
+	return fileDescriptor_e440ca5c365b1c75, []int{6}
+}
+func (m *MsgDeleteRegion) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgDeleteRegion) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgDeleteRegion.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgDeleteRegion) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgDeleteRegion.Merge(m, src)
+}
+func (m *MsgDeleteRegion) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgDeleteRegion) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgDeleteRegion.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgDeleteRegion proto.InternalMessageInfo
+
+func (m *MsgDeleteRegion) GetCreator() string {
+	if m != nil {
+		return m.Creator
+	}
+	return ""
+}
+
+func (m *MsgDeleteRegion) GetId() uint64 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+type MsgDeleteRegionResponse struct {
+}
+
+func (m *MsgDeleteRegionResponse) Reset()         { *m = MsgDeleteRegionResponse{} }
+func (m *MsgDeleteRegionResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgDeleteRegionResponse) ProtoMessage()    {}
+func (*MsgDeleteRegionResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_e440ca5c365b1c75, []int{7}
+}
+func (m *MsgDeleteRegionResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgDeleteRegionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgDeleteRegionResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgDeleteRegionResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgDeleteRegionResponse.Merge(m, src)
+}
+func (m *MsgDeleteRegionResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgDeleteRegionResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgDeleteRegionResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgDeleteRegionResponse proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterType((*MsgUpdateParams)(nil), "enreach.registry.MsgUpdateParams")
 	proto.RegisterType((*MsgUpdateParamsResponse)(nil), "enreach.registry.MsgUpdateParamsResponse")
+	proto.RegisterType((*MsgCreateRegion)(nil), "enreach.registry.MsgCreateRegion")
+	proto.RegisterType((*MsgCreateRegionResponse)(nil), "enreach.registry.MsgCreateRegionResponse")
+	proto.RegisterType((*MsgUpdateRegion)(nil), "enreach.registry.MsgUpdateRegion")
+	proto.RegisterType((*MsgUpdateRegionResponse)(nil), "enreach.registry.MsgUpdateRegionResponse")
+	proto.RegisterType((*MsgDeleteRegion)(nil), "enreach.registry.MsgDeleteRegion")
+	proto.RegisterType((*MsgDeleteRegionResponse)(nil), "enreach.registry.MsgDeleteRegionResponse")
 }
 
 func init() { proto.RegisterFile("enreach/registry/tx.proto", fileDescriptor_e440ca5c365b1c75) }
 
 var fileDescriptor_e440ca5c365b1c75 = []byte{
-	// 323 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x4c, 0xcd, 0x2b, 0x4a,
-	0x4d, 0x4c, 0xce, 0xd0, 0x2f, 0x4a, 0x4d, 0xcf, 0x2c, 0x2e, 0x29, 0xaa, 0xd4, 0x2f, 0xa9, 0xd0,
-	0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x12, 0x80, 0x4a, 0xe9, 0xc1, 0xa4, 0xa4, 0x04, 0x13, 0x73,
-	0x33, 0xf3, 0xf2, 0xf5, 0xc1, 0x24, 0x44, 0x91, 0x94, 0x78, 0x72, 0x7e, 0x71, 0x6e, 0x7e, 0xb1,
-	0x7e, 0x6e, 0x71, 0xba, 0x7e, 0x99, 0x21, 0x88, 0x82, 0x4a, 0x48, 0x42, 0x24, 0xe2, 0xc1, 0x3c,
-	0x7d, 0x08, 0x07, 0x2a, 0x25, 0x92, 0x9e, 0x9f, 0x9e, 0x0f, 0x11, 0x07, 0xb1, 0xa0, 0xa2, 0xb2,
-	0x18, 0x2e, 0x29, 0x48, 0x2c, 0x4a, 0xcc, 0x85, 0x6a, 0x52, 0xda, 0xcb, 0xc8, 0xc5, 0xef, 0x5b,
-	0x9c, 0x1e, 0x5a, 0x90, 0x92, 0x58, 0x92, 0x1a, 0x00, 0x96, 0x11, 0x32, 0xe3, 0xe2, 0x4c, 0x2c,
-	0x2d, 0xc9, 0xc8, 0x2f, 0xca, 0x2c, 0xa9, 0x94, 0x60, 0x54, 0x60, 0xd4, 0xe0, 0x74, 0x92, 0xb8,
-	0xb4, 0x45, 0x57, 0x04, 0x6a, 0x9b, 0x63, 0x4a, 0x4a, 0x51, 0x6a, 0x71, 0x71, 0x70, 0x49, 0x51,
-	0x66, 0x5e, 0x7a, 0x10, 0x42, 0xa9, 0x90, 0x35, 0x17, 0x1b, 0xc4, 0x6c, 0x09, 0x26, 0x05, 0x46,
-	0x0d, 0x6e, 0x23, 0x09, 0x3d, 0x74, 0xaf, 0xea, 0x41, 0x6c, 0x70, 0xe2, 0x3c, 0x71, 0x4f, 0x9e,
-	0x61, 0xc5, 0xf3, 0x0d, 0x5a, 0x8c, 0x41, 0x50, 0x2d, 0x56, 0xa6, 0x4d, 0xcf, 0x37, 0x68, 0x21,
-	0x0c, 0xeb, 0x7a, 0xbe, 0x41, 0x4b, 0x09, 0xe6, 0xf4, 0x0a, 0x84, 0xe3, 0xd1, 0xdc, 0xaa, 0x24,
-	0xc9, 0x25, 0x8e, 0x26, 0x14, 0x94, 0x5a, 0x5c, 0x90, 0x9f, 0x57, 0x9c, 0x6a, 0x94, 0xc5, 0xc5,
-	0xec, 0x5b, 0x9c, 0x2e, 0x14, 0xc3, 0xc5, 0x83, 0xe2, 0x3b, 0x45, 0x4c, 0x57, 0xa1, 0x99, 0x20,
-	0xa5, 0x49, 0x50, 0x09, 0xcc, 0x12, 0x29, 0xd6, 0x06, 0x90, 0x2f, 0x9c, 0x8c, 0x4e, 0x3c, 0x92,
-	0x63, 0xbc, 0xf0, 0x48, 0x8e, 0xf1, 0xc1, 0x23, 0x39, 0xc6, 0x09, 0x8f, 0xe5, 0x18, 0x2e, 0x3c,
-	0x96, 0x63, 0xb8, 0xf1, 0x58, 0x8e, 0x21, 0x4a, 0x02, 0x8b, 0x27, 0x4a, 0x2a, 0x0b, 0x52, 0x8b,
-	0x93, 0xd8, 0xc0, 0x31, 0x60, 0x0c, 0x08, 0x00, 0x00, 0xff, 0xff, 0x19, 0x1f, 0x84, 0xfa, 0x2c,
-	0x02, 0x00, 0x00,
+	// 517 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x54, 0xbf, 0x6f, 0x13, 0x31,
+	0x14, 0xce, 0x25, 0x69, 0x51, 0xdc, 0x88, 0x1f, 0x56, 0xa5, 0x3a, 0x91, 0x38, 0xc2, 0x4d, 0x6d,
+	0x24, 0x72, 0x22, 0x08, 0x86, 0x32, 0x11, 0x58, 0x18, 0x2a, 0xa1, 0x43, 0x2c, 0xa8, 0x12, 0x32,
+	0x77, 0xd6, 0xd5, 0x12, 0x77, 0x3e, 0xd9, 0x06, 0x35, 0x1b, 0x02, 0x26, 0x26, 0x24, 0xfe, 0x09,
+	0xc6, 0x0c, 0xac, 0xec, 0x1d, 0x2b, 0x26, 0x26, 0x84, 0x92, 0x21, 0xff, 0x06, 0xb2, 0x7d, 0x97,
+	0x38, 0xc9, 0x25, 0x51, 0x97, 0xc4, 0x7e, 0xdf, 0xf3, 0xf7, 0xbe, 0xcf, 0xef, 0xf9, 0x40, 0x8b,
+	0xa4, 0x9c, 0xe0, 0xf0, 0xcc, 0xe7, 0x24, 0xa6, 0x42, 0xf2, 0xa1, 0x2f, 0xcf, 0x7b, 0x19, 0x67,
+	0x92, 0xc1, 0x9b, 0x39, 0xd4, 0x2b, 0xa0, 0xf6, 0x2d, 0x9c, 0xd0, 0x94, 0xf9, 0xfa, 0xd7, 0x24,
+	0xb5, 0x0f, 0x42, 0x26, 0x12, 0x26, 0xfc, 0x44, 0xc4, 0xfe, 0x87, 0xfb, 0xea, 0x2f, 0x07, 0x5a,
+	0x06, 0x78, 0xa3, 0x77, 0xbe, 0xd9, 0xe4, 0xd0, 0x7e, 0xcc, 0x62, 0x66, 0xe2, 0x6a, 0x95, 0x47,
+	0x6f, 0xaf, 0x28, 0xc9, 0x30, 0xc7, 0x89, 0x58, 0x0b, 0xab, 0x05, 0x4b, 0x0d, 0xec, 0xfd, 0x72,
+	0xc0, 0x8d, 0x13, 0x11, 0xbf, 0xca, 0x22, 0x2c, 0xc9, 0x0b, 0x7d, 0x10, 0x3e, 0x02, 0x0d, 0xfc,
+	0x5e, 0x9e, 0x31, 0x4e, 0xe5, 0x10, 0x39, 0x1d, 0xe7, 0xb0, 0x31, 0x40, 0xbf, 0x7f, 0xde, 0xdb,
+	0xcf, 0xc5, 0x3c, 0x89, 0x22, 0x4e, 0x84, 0x78, 0x29, 0x39, 0x4d, 0xe3, 0x60, 0x9e, 0x0a, 0x1f,
+	0x83, 0x5d, 0x53, 0x1a, 0x55, 0x3b, 0xce, 0xe1, 0x5e, 0x1f, 0xf5, 0x96, 0x6f, 0xa2, 0x67, 0x2a,
+	0x0c, 0x1a, 0x17, 0x7f, 0xef, 0x54, 0x7e, 0x4c, 0x47, 0x5d, 0x27, 0xc8, 0x8f, 0x1c, 0x3f, 0xfc,
+	0x34, 0x1d, 0x75, 0xe7, 0x64, 0x5f, 0xa7, 0xa3, 0xae, 0x57, 0x48, 0x3f, 0x9f, 0x8b, 0x5f, 0xd2,
+	0xea, 0xb5, 0xc0, 0xc1, 0x52, 0x28, 0x20, 0x22, 0x63, 0xa9, 0x20, 0xde, 0x67, 0x63, 0xed, 0x29,
+	0x27, 0x58, 0x92, 0x40, 0x9b, 0x86, 0x08, 0x5c, 0x0b, 0xd5, 0x9e, 0x71, 0x63, 0x2c, 0x28, 0xb6,
+	0x10, 0x82, 0x7a, 0xc8, 0x22, 0xa2, 0xa5, 0x37, 0x02, 0xbd, 0x56, 0xb1, 0x14, 0x27, 0x04, 0xd5,
+	0x4c, 0x4c, 0xad, 0x61, 0x07, 0xec, 0x45, 0x44, 0x84, 0x9c, 0x66, 0x92, 0xb2, 0x14, 0xd5, 0x35,
+	0x64, 0x87, 0x8e, 0x9b, 0xca, 0x49, 0xc1, 0xeb, 0x1d, 0x69, 0x81, 0xb6, 0x88, 0x42, 0x20, 0xbc,
+	0x0e, 0xaa, 0x34, 0xd2, 0x3a, 0xea, 0x41, 0x95, 0x46, 0xde, 0x77, 0xbb, 0x17, 0x5b, 0x05, 0x9b,
+	0xd3, 0xd5, 0xe2, 0xf4, 0xcc, 0x40, 0xad, 0xc4, 0x40, 0x7d, 0xbd, 0x81, 0x9d, 0x6d, 0x06, 0xec,
+	0x1b, 0x5e, 0x34, 0xe0, 0x3d, 0xd7, 0x7a, 0x9f, 0x91, 0x77, 0xe4, 0xea, 0x7a, 0x4b, 0xab, 0xd8,
+	0x54, 0x45, 0x95, 0xfe, 0x97, 0x1a, 0xa8, 0x9d, 0x88, 0x18, 0x9e, 0x82, 0xe6, 0xc2, 0x98, 0xde,
+	0x5d, 0x1d, 0xaf, 0xa5, 0x51, 0x68, 0x1f, 0x6d, 0x4d, 0x99, 0x35, 0xe3, 0x14, 0x34, 0x17, 0x26,
+	0xa5, 0x9c, 0xdd, 0x4e, 0x59, 0xc3, 0x5e, 0xda, 0xea, 0x99, 0xf6, 0x8d, 0xec, 0x76, 0xca, 0x46,
+	0xed, 0xab, 0xec, 0x0b, 0x4d, 0x28, 0x67, 0xb7, 0x53, 0xd6, 0xb0, 0x97, 0xdd, 0x7f, 0x7b, 0xe7,
+	0xa3, 0x7a, 0xa8, 0x83, 0xfe, 0xc5, 0xd8, 0x75, 0x2e, 0xc7, 0xae, 0xf3, 0x6f, 0xec, 0x3a, 0xdf,
+	0x26, 0x6e, 0xe5, 0x72, 0xe2, 0x56, 0xfe, 0x4c, 0xdc, 0xca, 0x6b, 0x54, 0xf2, 0x4e, 0xe5, 0x30,
+	0x23, 0xe2, 0xed, 0xae, 0xfe, 0xc8, 0x3c, 0xf8, 0x1f, 0x00, 0x00, 0xff, 0xff, 0xb7, 0xc8, 0x2e,
+	0x99, 0x2e, 0x05, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -174,6 +502,9 @@ type MsgClient interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
+	CreateRegion(ctx context.Context, in *MsgCreateRegion, opts ...grpc.CallOption) (*MsgCreateRegionResponse, error)
+	UpdateRegion(ctx context.Context, in *MsgUpdateRegion, opts ...grpc.CallOption) (*MsgUpdateRegionResponse, error)
+	DeleteRegion(ctx context.Context, in *MsgDeleteRegion, opts ...grpc.CallOption) (*MsgDeleteRegionResponse, error)
 }
 
 type msgClient struct {
@@ -193,11 +524,41 @@ func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts 
 	return out, nil
 }
 
+func (c *msgClient) CreateRegion(ctx context.Context, in *MsgCreateRegion, opts ...grpc.CallOption) (*MsgCreateRegionResponse, error) {
+	out := new(MsgCreateRegionResponse)
+	err := c.cc.Invoke(ctx, "/enreach.registry.Msg/CreateRegion", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) UpdateRegion(ctx context.Context, in *MsgUpdateRegion, opts ...grpc.CallOption) (*MsgUpdateRegionResponse, error) {
+	out := new(MsgUpdateRegionResponse)
+	err := c.cc.Invoke(ctx, "/enreach.registry.Msg/UpdateRegion", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) DeleteRegion(ctx context.Context, in *MsgDeleteRegion, opts ...grpc.CallOption) (*MsgDeleteRegionResponse, error) {
+	out := new(MsgDeleteRegionResponse)
+	err := c.cc.Invoke(ctx, "/enreach.registry.Msg/DeleteRegion", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
+	CreateRegion(context.Context, *MsgCreateRegion) (*MsgCreateRegionResponse, error)
+	UpdateRegion(context.Context, *MsgUpdateRegion) (*MsgUpdateRegionResponse, error)
+	DeleteRegion(context.Context, *MsgDeleteRegion) (*MsgDeleteRegionResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -206,6 +567,15 @@ type UnimplementedMsgServer struct {
 
 func (*UnimplementedMsgServer) UpdateParams(ctx context.Context, req *MsgUpdateParams) (*MsgUpdateParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateParams not implemented")
+}
+func (*UnimplementedMsgServer) CreateRegion(ctx context.Context, req *MsgCreateRegion) (*MsgCreateRegionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateRegion not implemented")
+}
+func (*UnimplementedMsgServer) UpdateRegion(ctx context.Context, req *MsgUpdateRegion) (*MsgUpdateRegionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateRegion not implemented")
+}
+func (*UnimplementedMsgServer) DeleteRegion(ctx context.Context, req *MsgDeleteRegion) (*MsgDeleteRegionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteRegion not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -230,6 +600,60 @@ func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_CreateRegion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgCreateRegion)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).CreateRegion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/enreach.registry.Msg/CreateRegion",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).CreateRegion(ctx, req.(*MsgCreateRegion))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_UpdateRegion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgUpdateRegion)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).UpdateRegion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/enreach.registry.Msg/UpdateRegion",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).UpdateRegion(ctx, req.(*MsgUpdateRegion))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_DeleteRegion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgDeleteRegion)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).DeleteRegion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/enreach.registry.Msg/DeleteRegion",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).DeleteRegion(ctx, req.(*MsgDeleteRegion))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var Msg_serviceDesc = _Msg_serviceDesc
 var _Msg_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "enreach.registry.Msg",
@@ -238,6 +662,18 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateParams",
 			Handler:    _Msg_UpdateParams_Handler,
+		},
+		{
+			MethodName: "CreateRegion",
+			Handler:    _Msg_CreateRegion_Handler,
+		},
+		{
+			MethodName: "UpdateRegion",
+			Handler:    _Msg_UpdateRegion_Handler,
+		},
+		{
+			MethodName: "DeleteRegion",
+			Handler:    _Msg_DeleteRegion_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -307,6 +743,222 @@ func (m *MsgUpdateParamsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error)
 	return len(dAtA) - i, nil
 }
 
+func (m *MsgCreateRegion) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgCreateRegion) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgCreateRegion) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Description) > 0 {
+		i -= len(m.Description)
+		copy(dAtA[i:], m.Description)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Description)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.Name) > 0 {
+		i -= len(m.Name)
+		copy(dAtA[i:], m.Name)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Name)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.Code) > 0 {
+		i -= len(m.Code)
+		copy(dAtA[i:], m.Code)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Code)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Creator) > 0 {
+		i -= len(m.Creator)
+		copy(dAtA[i:], m.Creator)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Creator)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgCreateRegionResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgCreateRegionResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgCreateRegionResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Id != 0 {
+		i = encodeVarintTx(dAtA, i, uint64(m.Id))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgUpdateRegion) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgUpdateRegion) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgUpdateRegion) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Description) > 0 {
+		i -= len(m.Description)
+		copy(dAtA[i:], m.Description)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Description)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.Name) > 0 {
+		i -= len(m.Name)
+		copy(dAtA[i:], m.Name)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Name)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.Code) > 0 {
+		i -= len(m.Code)
+		copy(dAtA[i:], m.Code)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Code)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if m.Id != 0 {
+		i = encodeVarintTx(dAtA, i, uint64(m.Id))
+		i--
+		dAtA[i] = 0x10
+	}
+	if len(m.Creator) > 0 {
+		i -= len(m.Creator)
+		copy(dAtA[i:], m.Creator)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Creator)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgUpdateRegionResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgUpdateRegionResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgUpdateRegionResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgDeleteRegion) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgDeleteRegion) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgDeleteRegion) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Id != 0 {
+		i = encodeVarintTx(dAtA, i, uint64(m.Id))
+		i--
+		dAtA[i] = 0x10
+	}
+	if len(m.Creator) > 0 {
+		i -= len(m.Creator)
+		copy(dAtA[i:], m.Creator)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Creator)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgDeleteRegionResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgDeleteRegionResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgDeleteRegionResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	offset -= sovTx(v)
 	base := offset
@@ -334,6 +986,105 @@ func (m *MsgUpdateParams) Size() (n int) {
 }
 
 func (m *MsgUpdateParamsResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *MsgCreateRegion) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Creator)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Code)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Name)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Description)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgCreateRegionResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Id != 0 {
+		n += 1 + sovTx(uint64(m.Id))
+	}
+	return n
+}
+
+func (m *MsgUpdateRegion) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Creator)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	if m.Id != 0 {
+		n += 1 + sovTx(uint64(m.Id))
+	}
+	l = len(m.Code)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Name)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Description)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgUpdateRegionResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *MsgDeleteRegion) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Creator)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	if m.Id != 0 {
+		n += 1 + sovTx(uint64(m.Id))
+	}
+	return n
+}
+
+func (m *MsgDeleteRegionResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -490,6 +1241,651 @@ func (m *MsgUpdateParamsResponse) Unmarshal(dAtA []byte) error {
 		}
 		if fieldNum <= 0 {
 			return fmt.Errorf("proto: MsgUpdateParamsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgCreateRegion) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgCreateRegion: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgCreateRegion: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Creator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Code", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Code = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Name = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Description", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Description = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgCreateRegionResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgCreateRegionResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgCreateRegionResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			m.Id = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Id |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgUpdateRegion) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgUpdateRegion: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgUpdateRegion: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Creator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			m.Id = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Id |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Code", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Code = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Name = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Description", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Description = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgUpdateRegionResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgUpdateRegionResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgUpdateRegionResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgDeleteRegion) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgDeleteRegion: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgDeleteRegion: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Creator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			m.Id = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Id |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgDeleteRegionResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgDeleteRegionResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgDeleteRegionResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:

@@ -1,0 +1,12 @@
+syntax = "proto3";
+package enreach.registry;
+
+option go_package = "enreach/x/registry/types";
+
+message Region {
+  uint64 id = 1;
+  string code = 2; 
+  string name = 3; 
+  string description = 4; 
+  string creator = 5;
+}
