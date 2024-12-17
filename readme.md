@@ -49,3 +49,13 @@ curl https://get.ignite.com/username/enreach@latest! | sudo bash
 - [Ignite CLI docs](https://docs.ignite.com)
 - [Cosmos SDK docs](https://docs.cosmos.network)
 - [Developer Chat](https://discord.gg/ignite)
+
+## Dev
+
+ignite scaffold module registry
+
+ignite scaffold list region code:string name:string description:string --module registry
+
+ignite scaffold module miner
+
+ignite scaffold list miner minerId:string evmAddress:string regionCode:string status:string --module miner
