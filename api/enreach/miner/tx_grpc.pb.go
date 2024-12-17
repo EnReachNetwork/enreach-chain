@@ -21,6 +21,9 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	Msg_UpdateParams_FullMethodName = "/enreach.miner.Msg/UpdateParams"
+	Msg_CreateMiner_FullMethodName  = "/enreach.miner.Msg/CreateMiner"
+	Msg_UpdateMiner_FullMethodName  = "/enreach.miner.Msg/UpdateMiner"
+	Msg_DeleteMiner_FullMethodName  = "/enreach.miner.Msg/DeleteMiner"
 )
 
 // MsgClient is the client API for Msg service.
@@ -30,6 +33,9 @@ type MsgClient interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
+	CreateMiner(ctx context.Context, in *MsgCreateMiner, opts ...grpc.CallOption) (*MsgCreateMinerResponse, error)
+	UpdateMiner(ctx context.Context, in *MsgUpdateMiner, opts ...grpc.CallOption) (*MsgUpdateMinerResponse, error)
+	DeleteMiner(ctx context.Context, in *MsgDeleteMiner, opts ...grpc.CallOption) (*MsgDeleteMinerResponse, error)
 }
 
 type msgClient struct {
@@ -49,6 +55,33 @@ func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts 
 	return out, nil
 }
 
+func (c *msgClient) CreateMiner(ctx context.Context, in *MsgCreateMiner, opts ...grpc.CallOption) (*MsgCreateMinerResponse, error) {
+	out := new(MsgCreateMinerResponse)
+	err := c.cc.Invoke(ctx, Msg_CreateMiner_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) UpdateMiner(ctx context.Context, in *MsgUpdateMiner, opts ...grpc.CallOption) (*MsgUpdateMinerResponse, error) {
+	out := new(MsgUpdateMinerResponse)
+	err := c.cc.Invoke(ctx, Msg_UpdateMiner_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) DeleteMiner(ctx context.Context, in *MsgDeleteMiner, opts ...grpc.CallOption) (*MsgDeleteMinerResponse, error) {
+	out := new(MsgDeleteMinerResponse)
+	err := c.cc.Invoke(ctx, Msg_DeleteMiner_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -56,6 +89,9 @@ type MsgServer interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
+	CreateMiner(context.Context, *MsgCreateMiner) (*MsgCreateMinerResponse, error)
+	UpdateMiner(context.Context, *MsgUpdateMiner) (*MsgUpdateMinerResponse, error)
+	DeleteMiner(context.Context, *MsgDeleteMiner) (*MsgDeleteMinerResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -65,6 +101,15 @@ type UnimplementedMsgServer struct {
 
 func (UnimplementedMsgServer) UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateParams not implemented")
+}
+func (UnimplementedMsgServer) CreateMiner(context.Context, *MsgCreateMiner) (*MsgCreateMinerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateMiner not implemented")
+}
+func (UnimplementedMsgServer) UpdateMiner(context.Context, *MsgUpdateMiner) (*MsgUpdateMinerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMiner not implemented")
+}
+func (UnimplementedMsgServer) DeleteMiner(context.Context, *MsgDeleteMiner) (*MsgDeleteMinerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteMiner not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -97,6 +142,60 @@ func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_CreateMiner_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgCreateMiner)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).CreateMiner(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_CreateMiner_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).CreateMiner(ctx, req.(*MsgCreateMiner))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_UpdateMiner_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgUpdateMiner)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).UpdateMiner(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_UpdateMiner_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).UpdateMiner(ctx, req.(*MsgUpdateMiner))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_DeleteMiner_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgDeleteMiner)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).DeleteMiner(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_DeleteMiner_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).DeleteMiner(ctx, req.(*MsgDeleteMiner))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -107,6 +206,18 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateParams",
 			Handler:    _Msg_UpdateParams_Handler,
+		},
+		{
+			MethodName: "CreateMiner",
+			Handler:    _Msg_CreateMiner_Handler,
+		},
+		{
+			MethodName: "UpdateMiner",
+			Handler:    _Msg_UpdateMiner_Handler,
+		},
+		{
+			MethodName: "DeleteMiner",
+			Handler:    _Msg_DeleteMiner_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
