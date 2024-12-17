@@ -54,8 +54,11 @@ import (
 	"google.golang.org/protobuf/types/known/durationpb"
 
 	enreachmodulev1 "enreach/api/enreach/enreach/module"
+	registrymodulev1 "enreach/api/enreach/registry/module"
 	_ "enreach/x/enreach/module" // import for side-effects
 	enreachmoduletypes "enreach/x/enreach/types"
+	_ "enreach/x/registry/module" // import for side-effects
+	registrymoduletypes "enreach/x/registry/types"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 )
 
@@ -94,6 +97,7 @@ var (
 		circuittypes.ModuleName,
 		// chain modules
 		enreachmoduletypes.ModuleName,
+		registrymoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
@@ -119,6 +123,7 @@ var (
 		ibcfeetypes.ModuleName,
 		// chain modules
 		enreachmoduletypes.ModuleName,
+		registrymoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	}
 
@@ -138,6 +143,7 @@ var (
 		ibcfeetypes.ModuleName,
 		// chain modules
 		enreachmoduletypes.ModuleName,
+		registrymoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	}
 
@@ -296,6 +302,10 @@ var (
 			{
 				Name:   enreachmoduletypes.ModuleName,
 				Config: appconfig.WrapAny(&enreachmodulev1.Module{}),
+			},
+			{
+				Name:   registrymoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&registrymodulev1.Module{}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},
