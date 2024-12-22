@@ -1,0 +1,17 @@
+syntax = "proto3";
+package enreach.miner;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "enreach/miner/params.proto";
+
+option go_package = "enreach/x/miner/types";
+
+// GenesisState defines the miner module's genesis state.
+message GenesisState {
+  // params defines all the parameters of the module.
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}
