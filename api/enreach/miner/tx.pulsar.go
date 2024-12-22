@@ -872,6 +872,2990 @@ func (x *fastReflection_MsgUpdateParamsResponse) ProtoMethods() *protoiface.Meth
 	}
 }
 
+var (
+	md_MsgCreateMiner            protoreflect.MessageDescriptor
+	fd_MsgCreateMiner_creator    protoreflect.FieldDescriptor
+	fd_MsgCreateMiner_minerId    protoreflect.FieldDescriptor
+	fd_MsgCreateMiner_evmAddress protoreflect.FieldDescriptor
+	fd_MsgCreateMiner_regionCode protoreflect.FieldDescriptor
+	fd_MsgCreateMiner_status     protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_enreach_miner_tx_proto_init()
+	md_MsgCreateMiner = File_enreach_miner_tx_proto.Messages().ByName("MsgCreateMiner")
+	fd_MsgCreateMiner_creator = md_MsgCreateMiner.Fields().ByName("creator")
+	fd_MsgCreateMiner_minerId = md_MsgCreateMiner.Fields().ByName("minerId")
+	fd_MsgCreateMiner_evmAddress = md_MsgCreateMiner.Fields().ByName("evmAddress")
+	fd_MsgCreateMiner_regionCode = md_MsgCreateMiner.Fields().ByName("regionCode")
+	fd_MsgCreateMiner_status = md_MsgCreateMiner.Fields().ByName("status")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgCreateMiner)(nil)
+
+type fastReflection_MsgCreateMiner MsgCreateMiner
+
+func (x *MsgCreateMiner) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgCreateMiner)(x)
+}
+
+func (x *MsgCreateMiner) slowProtoReflect() protoreflect.Message {
+	mi := &file_enreach_miner_tx_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgCreateMiner_messageType fastReflection_MsgCreateMiner_messageType
+var _ protoreflect.MessageType = fastReflection_MsgCreateMiner_messageType{}
+
+type fastReflection_MsgCreateMiner_messageType struct{}
+
+func (x fastReflection_MsgCreateMiner_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgCreateMiner)(nil)
+}
+func (x fastReflection_MsgCreateMiner_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgCreateMiner)
+}
+func (x fastReflection_MsgCreateMiner_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgCreateMiner
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgCreateMiner) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgCreateMiner
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgCreateMiner) Type() protoreflect.MessageType {
+	return _fastReflection_MsgCreateMiner_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgCreateMiner) New() protoreflect.Message {
+	return new(fastReflection_MsgCreateMiner)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgCreateMiner) Interface() protoreflect.ProtoMessage {
+	return (*MsgCreateMiner)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgCreateMiner) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Creator != "" {
+		value := protoreflect.ValueOfString(x.Creator)
+		if !f(fd_MsgCreateMiner_creator, value) {
+			return
+		}
+	}
+	if x.MinerId != "" {
+		value := protoreflect.ValueOfString(x.MinerId)
+		if !f(fd_MsgCreateMiner_minerId, value) {
+			return
+		}
+	}
+	if x.EvmAddress != "" {
+		value := protoreflect.ValueOfString(x.EvmAddress)
+		if !f(fd_MsgCreateMiner_evmAddress, value) {
+			return
+		}
+	}
+	if x.RegionCode != "" {
+		value := protoreflect.ValueOfString(x.RegionCode)
+		if !f(fd_MsgCreateMiner_regionCode, value) {
+			return
+		}
+	}
+	if x.Status != "" {
+		value := protoreflect.ValueOfString(x.Status)
+		if !f(fd_MsgCreateMiner_status, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgCreateMiner) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "enreach.miner.MsgCreateMiner.creator":
+		return x.Creator != ""
+	case "enreach.miner.MsgCreateMiner.minerId":
+		return x.MinerId != ""
+	case "enreach.miner.MsgCreateMiner.evmAddress":
+		return x.EvmAddress != ""
+	case "enreach.miner.MsgCreateMiner.regionCode":
+		return x.RegionCode != ""
+	case "enreach.miner.MsgCreateMiner.status":
+		return x.Status != ""
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgCreateMiner"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgCreateMiner does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgCreateMiner) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "enreach.miner.MsgCreateMiner.creator":
+		x.Creator = ""
+	case "enreach.miner.MsgCreateMiner.minerId":
+		x.MinerId = ""
+	case "enreach.miner.MsgCreateMiner.evmAddress":
+		x.EvmAddress = ""
+	case "enreach.miner.MsgCreateMiner.regionCode":
+		x.RegionCode = ""
+	case "enreach.miner.MsgCreateMiner.status":
+		x.Status = ""
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgCreateMiner"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgCreateMiner does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgCreateMiner) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "enreach.miner.MsgCreateMiner.creator":
+		value := x.Creator
+		return protoreflect.ValueOfString(value)
+	case "enreach.miner.MsgCreateMiner.minerId":
+		value := x.MinerId
+		return protoreflect.ValueOfString(value)
+	case "enreach.miner.MsgCreateMiner.evmAddress":
+		value := x.EvmAddress
+		return protoreflect.ValueOfString(value)
+	case "enreach.miner.MsgCreateMiner.regionCode":
+		value := x.RegionCode
+		return protoreflect.ValueOfString(value)
+	case "enreach.miner.MsgCreateMiner.status":
+		value := x.Status
+		return protoreflect.ValueOfString(value)
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgCreateMiner"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgCreateMiner does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgCreateMiner) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "enreach.miner.MsgCreateMiner.creator":
+		x.Creator = value.Interface().(string)
+	case "enreach.miner.MsgCreateMiner.minerId":
+		x.MinerId = value.Interface().(string)
+	case "enreach.miner.MsgCreateMiner.evmAddress":
+		x.EvmAddress = value.Interface().(string)
+	case "enreach.miner.MsgCreateMiner.regionCode":
+		x.RegionCode = value.Interface().(string)
+	case "enreach.miner.MsgCreateMiner.status":
+		x.Status = value.Interface().(string)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgCreateMiner"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgCreateMiner does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgCreateMiner) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "enreach.miner.MsgCreateMiner.creator":
+		panic(fmt.Errorf("field creator of message enreach.miner.MsgCreateMiner is not mutable"))
+	case "enreach.miner.MsgCreateMiner.minerId":
+		panic(fmt.Errorf("field minerId of message enreach.miner.MsgCreateMiner is not mutable"))
+	case "enreach.miner.MsgCreateMiner.evmAddress":
+		panic(fmt.Errorf("field evmAddress of message enreach.miner.MsgCreateMiner is not mutable"))
+	case "enreach.miner.MsgCreateMiner.regionCode":
+		panic(fmt.Errorf("field regionCode of message enreach.miner.MsgCreateMiner is not mutable"))
+	case "enreach.miner.MsgCreateMiner.status":
+		panic(fmt.Errorf("field status of message enreach.miner.MsgCreateMiner is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgCreateMiner"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgCreateMiner does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgCreateMiner) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "enreach.miner.MsgCreateMiner.creator":
+		return protoreflect.ValueOfString("")
+	case "enreach.miner.MsgCreateMiner.minerId":
+		return protoreflect.ValueOfString("")
+	case "enreach.miner.MsgCreateMiner.evmAddress":
+		return protoreflect.ValueOfString("")
+	case "enreach.miner.MsgCreateMiner.regionCode":
+		return protoreflect.ValueOfString("")
+	case "enreach.miner.MsgCreateMiner.status":
+		return protoreflect.ValueOfString("")
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgCreateMiner"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgCreateMiner does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgCreateMiner) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in enreach.miner.MsgCreateMiner", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgCreateMiner) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgCreateMiner) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgCreateMiner) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgCreateMiner) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgCreateMiner)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		l = len(x.Creator)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.MinerId)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.EvmAddress)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.RegionCode)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Status)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgCreateMiner)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.Status) > 0 {
+			i -= len(x.Status)
+			copy(dAtA[i:], x.Status)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Status)))
+			i--
+			dAtA[i] = 0x2a
+		}
+		if len(x.RegionCode) > 0 {
+			i -= len(x.RegionCode)
+			copy(dAtA[i:], x.RegionCode)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.RegionCode)))
+			i--
+			dAtA[i] = 0x22
+		}
+		if len(x.EvmAddress) > 0 {
+			i -= len(x.EvmAddress)
+			copy(dAtA[i:], x.EvmAddress)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.EvmAddress)))
+			i--
+			dAtA[i] = 0x1a
+		}
+		if len(x.MinerId) > 0 {
+			i -= len(x.MinerId)
+			copy(dAtA[i:], x.MinerId)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.MinerId)))
+			i--
+			dAtA[i] = 0x12
+		}
+		if len(x.Creator) > 0 {
+			i -= len(x.Creator)
+			copy(dAtA[i:], x.Creator)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Creator)))
+			i--
+			dAtA[i] = 0xa
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgCreateMiner)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateMiner: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateMiner: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Creator = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field MinerId", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.MinerId = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 3:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field EvmAddress", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.EvmAddress = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 4:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field RegionCode", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.RegionCode = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 5:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Status", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Status = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_MsgCreateMinerResponse    protoreflect.MessageDescriptor
+	fd_MsgCreateMinerResponse_id protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_enreach_miner_tx_proto_init()
+	md_MsgCreateMinerResponse = File_enreach_miner_tx_proto.Messages().ByName("MsgCreateMinerResponse")
+	fd_MsgCreateMinerResponse_id = md_MsgCreateMinerResponse.Fields().ByName("id")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgCreateMinerResponse)(nil)
+
+type fastReflection_MsgCreateMinerResponse MsgCreateMinerResponse
+
+func (x *MsgCreateMinerResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgCreateMinerResponse)(x)
+}
+
+func (x *MsgCreateMinerResponse) slowProtoReflect() protoreflect.Message {
+	mi := &file_enreach_miner_tx_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgCreateMinerResponse_messageType fastReflection_MsgCreateMinerResponse_messageType
+var _ protoreflect.MessageType = fastReflection_MsgCreateMinerResponse_messageType{}
+
+type fastReflection_MsgCreateMinerResponse_messageType struct{}
+
+func (x fastReflection_MsgCreateMinerResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgCreateMinerResponse)(nil)
+}
+func (x fastReflection_MsgCreateMinerResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgCreateMinerResponse)
+}
+func (x fastReflection_MsgCreateMinerResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgCreateMinerResponse
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgCreateMinerResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgCreateMinerResponse
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgCreateMinerResponse) Type() protoreflect.MessageType {
+	return _fastReflection_MsgCreateMinerResponse_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgCreateMinerResponse) New() protoreflect.Message {
+	return new(fastReflection_MsgCreateMinerResponse)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgCreateMinerResponse) Interface() protoreflect.ProtoMessage {
+	return (*MsgCreateMinerResponse)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgCreateMinerResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Id != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.Id)
+		if !f(fd_MsgCreateMinerResponse_id, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgCreateMinerResponse) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "enreach.miner.MsgCreateMinerResponse.id":
+		return x.Id != uint64(0)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgCreateMinerResponse"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgCreateMinerResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgCreateMinerResponse) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "enreach.miner.MsgCreateMinerResponse.id":
+		x.Id = uint64(0)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgCreateMinerResponse"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgCreateMinerResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgCreateMinerResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "enreach.miner.MsgCreateMinerResponse.id":
+		value := x.Id
+		return protoreflect.ValueOfUint64(value)
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgCreateMinerResponse"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgCreateMinerResponse does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgCreateMinerResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "enreach.miner.MsgCreateMinerResponse.id":
+		x.Id = value.Uint()
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgCreateMinerResponse"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgCreateMinerResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgCreateMinerResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "enreach.miner.MsgCreateMinerResponse.id":
+		panic(fmt.Errorf("field id of message enreach.miner.MsgCreateMinerResponse is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgCreateMinerResponse"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgCreateMinerResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgCreateMinerResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "enreach.miner.MsgCreateMinerResponse.id":
+		return protoreflect.ValueOfUint64(uint64(0))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgCreateMinerResponse"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgCreateMinerResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgCreateMinerResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in enreach.miner.MsgCreateMinerResponse", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgCreateMinerResponse) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgCreateMinerResponse) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgCreateMinerResponse) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgCreateMinerResponse) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgCreateMinerResponse)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if x.Id != 0 {
+			n += 1 + runtime.Sov(uint64(x.Id))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgCreateMinerResponse)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if x.Id != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.Id))
+			i--
+			dAtA[i] = 0x8
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgCreateMinerResponse)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateMinerResponse: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateMinerResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+				}
+				x.Id = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.Id |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_MsgUpdateMiner            protoreflect.MessageDescriptor
+	fd_MsgUpdateMiner_creator    protoreflect.FieldDescriptor
+	fd_MsgUpdateMiner_id         protoreflect.FieldDescriptor
+	fd_MsgUpdateMiner_minerId    protoreflect.FieldDescriptor
+	fd_MsgUpdateMiner_evmAddress protoreflect.FieldDescriptor
+	fd_MsgUpdateMiner_regionCode protoreflect.FieldDescriptor
+	fd_MsgUpdateMiner_status     protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_enreach_miner_tx_proto_init()
+	md_MsgUpdateMiner = File_enreach_miner_tx_proto.Messages().ByName("MsgUpdateMiner")
+	fd_MsgUpdateMiner_creator = md_MsgUpdateMiner.Fields().ByName("creator")
+	fd_MsgUpdateMiner_id = md_MsgUpdateMiner.Fields().ByName("id")
+	fd_MsgUpdateMiner_minerId = md_MsgUpdateMiner.Fields().ByName("minerId")
+	fd_MsgUpdateMiner_evmAddress = md_MsgUpdateMiner.Fields().ByName("evmAddress")
+	fd_MsgUpdateMiner_regionCode = md_MsgUpdateMiner.Fields().ByName("regionCode")
+	fd_MsgUpdateMiner_status = md_MsgUpdateMiner.Fields().ByName("status")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgUpdateMiner)(nil)
+
+type fastReflection_MsgUpdateMiner MsgUpdateMiner
+
+func (x *MsgUpdateMiner) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgUpdateMiner)(x)
+}
+
+func (x *MsgUpdateMiner) slowProtoReflect() protoreflect.Message {
+	mi := &file_enreach_miner_tx_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgUpdateMiner_messageType fastReflection_MsgUpdateMiner_messageType
+var _ protoreflect.MessageType = fastReflection_MsgUpdateMiner_messageType{}
+
+type fastReflection_MsgUpdateMiner_messageType struct{}
+
+func (x fastReflection_MsgUpdateMiner_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgUpdateMiner)(nil)
+}
+func (x fastReflection_MsgUpdateMiner_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgUpdateMiner)
+}
+func (x fastReflection_MsgUpdateMiner_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgUpdateMiner
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgUpdateMiner) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgUpdateMiner
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgUpdateMiner) Type() protoreflect.MessageType {
+	return _fastReflection_MsgUpdateMiner_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgUpdateMiner) New() protoreflect.Message {
+	return new(fastReflection_MsgUpdateMiner)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgUpdateMiner) Interface() protoreflect.ProtoMessage {
+	return (*MsgUpdateMiner)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgUpdateMiner) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Creator != "" {
+		value := protoreflect.ValueOfString(x.Creator)
+		if !f(fd_MsgUpdateMiner_creator, value) {
+			return
+		}
+	}
+	if x.Id != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.Id)
+		if !f(fd_MsgUpdateMiner_id, value) {
+			return
+		}
+	}
+	if x.MinerId != "" {
+		value := protoreflect.ValueOfString(x.MinerId)
+		if !f(fd_MsgUpdateMiner_minerId, value) {
+			return
+		}
+	}
+	if x.EvmAddress != "" {
+		value := protoreflect.ValueOfString(x.EvmAddress)
+		if !f(fd_MsgUpdateMiner_evmAddress, value) {
+			return
+		}
+	}
+	if x.RegionCode != "" {
+		value := protoreflect.ValueOfString(x.RegionCode)
+		if !f(fd_MsgUpdateMiner_regionCode, value) {
+			return
+		}
+	}
+	if x.Status != "" {
+		value := protoreflect.ValueOfString(x.Status)
+		if !f(fd_MsgUpdateMiner_status, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgUpdateMiner) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "enreach.miner.MsgUpdateMiner.creator":
+		return x.Creator != ""
+	case "enreach.miner.MsgUpdateMiner.id":
+		return x.Id != uint64(0)
+	case "enreach.miner.MsgUpdateMiner.minerId":
+		return x.MinerId != ""
+	case "enreach.miner.MsgUpdateMiner.evmAddress":
+		return x.EvmAddress != ""
+	case "enreach.miner.MsgUpdateMiner.regionCode":
+		return x.RegionCode != ""
+	case "enreach.miner.MsgUpdateMiner.status":
+		return x.Status != ""
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgUpdateMiner"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgUpdateMiner does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgUpdateMiner) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "enreach.miner.MsgUpdateMiner.creator":
+		x.Creator = ""
+	case "enreach.miner.MsgUpdateMiner.id":
+		x.Id = uint64(0)
+	case "enreach.miner.MsgUpdateMiner.minerId":
+		x.MinerId = ""
+	case "enreach.miner.MsgUpdateMiner.evmAddress":
+		x.EvmAddress = ""
+	case "enreach.miner.MsgUpdateMiner.regionCode":
+		x.RegionCode = ""
+	case "enreach.miner.MsgUpdateMiner.status":
+		x.Status = ""
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgUpdateMiner"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgUpdateMiner does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgUpdateMiner) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "enreach.miner.MsgUpdateMiner.creator":
+		value := x.Creator
+		return protoreflect.ValueOfString(value)
+	case "enreach.miner.MsgUpdateMiner.id":
+		value := x.Id
+		return protoreflect.ValueOfUint64(value)
+	case "enreach.miner.MsgUpdateMiner.minerId":
+		value := x.MinerId
+		return protoreflect.ValueOfString(value)
+	case "enreach.miner.MsgUpdateMiner.evmAddress":
+		value := x.EvmAddress
+		return protoreflect.ValueOfString(value)
+	case "enreach.miner.MsgUpdateMiner.regionCode":
+		value := x.RegionCode
+		return protoreflect.ValueOfString(value)
+	case "enreach.miner.MsgUpdateMiner.status":
+		value := x.Status
+		return protoreflect.ValueOfString(value)
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgUpdateMiner"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgUpdateMiner does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgUpdateMiner) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "enreach.miner.MsgUpdateMiner.creator":
+		x.Creator = value.Interface().(string)
+	case "enreach.miner.MsgUpdateMiner.id":
+		x.Id = value.Uint()
+	case "enreach.miner.MsgUpdateMiner.minerId":
+		x.MinerId = value.Interface().(string)
+	case "enreach.miner.MsgUpdateMiner.evmAddress":
+		x.EvmAddress = value.Interface().(string)
+	case "enreach.miner.MsgUpdateMiner.regionCode":
+		x.RegionCode = value.Interface().(string)
+	case "enreach.miner.MsgUpdateMiner.status":
+		x.Status = value.Interface().(string)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgUpdateMiner"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgUpdateMiner does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgUpdateMiner) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "enreach.miner.MsgUpdateMiner.creator":
+		panic(fmt.Errorf("field creator of message enreach.miner.MsgUpdateMiner is not mutable"))
+	case "enreach.miner.MsgUpdateMiner.id":
+		panic(fmt.Errorf("field id of message enreach.miner.MsgUpdateMiner is not mutable"))
+	case "enreach.miner.MsgUpdateMiner.minerId":
+		panic(fmt.Errorf("field minerId of message enreach.miner.MsgUpdateMiner is not mutable"))
+	case "enreach.miner.MsgUpdateMiner.evmAddress":
+		panic(fmt.Errorf("field evmAddress of message enreach.miner.MsgUpdateMiner is not mutable"))
+	case "enreach.miner.MsgUpdateMiner.regionCode":
+		panic(fmt.Errorf("field regionCode of message enreach.miner.MsgUpdateMiner is not mutable"))
+	case "enreach.miner.MsgUpdateMiner.status":
+		panic(fmt.Errorf("field status of message enreach.miner.MsgUpdateMiner is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgUpdateMiner"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgUpdateMiner does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgUpdateMiner) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "enreach.miner.MsgUpdateMiner.creator":
+		return protoreflect.ValueOfString("")
+	case "enreach.miner.MsgUpdateMiner.id":
+		return protoreflect.ValueOfUint64(uint64(0))
+	case "enreach.miner.MsgUpdateMiner.minerId":
+		return protoreflect.ValueOfString("")
+	case "enreach.miner.MsgUpdateMiner.evmAddress":
+		return protoreflect.ValueOfString("")
+	case "enreach.miner.MsgUpdateMiner.regionCode":
+		return protoreflect.ValueOfString("")
+	case "enreach.miner.MsgUpdateMiner.status":
+		return protoreflect.ValueOfString("")
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgUpdateMiner"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgUpdateMiner does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgUpdateMiner) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in enreach.miner.MsgUpdateMiner", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgUpdateMiner) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgUpdateMiner) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgUpdateMiner) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgUpdateMiner) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgUpdateMiner)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		l = len(x.Creator)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.Id != 0 {
+			n += 1 + runtime.Sov(uint64(x.Id))
+		}
+		l = len(x.MinerId)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.EvmAddress)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.RegionCode)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Status)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgUpdateMiner)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.Status) > 0 {
+			i -= len(x.Status)
+			copy(dAtA[i:], x.Status)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Status)))
+			i--
+			dAtA[i] = 0x32
+		}
+		if len(x.RegionCode) > 0 {
+			i -= len(x.RegionCode)
+			copy(dAtA[i:], x.RegionCode)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.RegionCode)))
+			i--
+			dAtA[i] = 0x2a
+		}
+		if len(x.EvmAddress) > 0 {
+			i -= len(x.EvmAddress)
+			copy(dAtA[i:], x.EvmAddress)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.EvmAddress)))
+			i--
+			dAtA[i] = 0x22
+		}
+		if len(x.MinerId) > 0 {
+			i -= len(x.MinerId)
+			copy(dAtA[i:], x.MinerId)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.MinerId)))
+			i--
+			dAtA[i] = 0x1a
+		}
+		if x.Id != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.Id))
+			i--
+			dAtA[i] = 0x10
+		}
+		if len(x.Creator) > 0 {
+			i -= len(x.Creator)
+			copy(dAtA[i:], x.Creator)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Creator)))
+			i--
+			dAtA[i] = 0xa
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgUpdateMiner)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgUpdateMiner: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgUpdateMiner: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Creator = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 2:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+				}
+				x.Id = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.Id |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 3:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field MinerId", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.MinerId = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 4:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field EvmAddress", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.EvmAddress = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 5:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field RegionCode", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.RegionCode = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 6:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Status", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Status = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_MsgUpdateMinerResponse protoreflect.MessageDescriptor
+)
+
+func init() {
+	file_enreach_miner_tx_proto_init()
+	md_MsgUpdateMinerResponse = File_enreach_miner_tx_proto.Messages().ByName("MsgUpdateMinerResponse")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgUpdateMinerResponse)(nil)
+
+type fastReflection_MsgUpdateMinerResponse MsgUpdateMinerResponse
+
+func (x *MsgUpdateMinerResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgUpdateMinerResponse)(x)
+}
+
+func (x *MsgUpdateMinerResponse) slowProtoReflect() protoreflect.Message {
+	mi := &file_enreach_miner_tx_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgUpdateMinerResponse_messageType fastReflection_MsgUpdateMinerResponse_messageType
+var _ protoreflect.MessageType = fastReflection_MsgUpdateMinerResponse_messageType{}
+
+type fastReflection_MsgUpdateMinerResponse_messageType struct{}
+
+func (x fastReflection_MsgUpdateMinerResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgUpdateMinerResponse)(nil)
+}
+func (x fastReflection_MsgUpdateMinerResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgUpdateMinerResponse)
+}
+func (x fastReflection_MsgUpdateMinerResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgUpdateMinerResponse
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgUpdateMinerResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgUpdateMinerResponse
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgUpdateMinerResponse) Type() protoreflect.MessageType {
+	return _fastReflection_MsgUpdateMinerResponse_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgUpdateMinerResponse) New() protoreflect.Message {
+	return new(fastReflection_MsgUpdateMinerResponse)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgUpdateMinerResponse) Interface() protoreflect.ProtoMessage {
+	return (*MsgUpdateMinerResponse)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgUpdateMinerResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgUpdateMinerResponse) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgUpdateMinerResponse"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgUpdateMinerResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgUpdateMinerResponse) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgUpdateMinerResponse"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgUpdateMinerResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgUpdateMinerResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgUpdateMinerResponse"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgUpdateMinerResponse does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgUpdateMinerResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgUpdateMinerResponse"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgUpdateMinerResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgUpdateMinerResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgUpdateMinerResponse"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgUpdateMinerResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgUpdateMinerResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgUpdateMinerResponse"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgUpdateMinerResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgUpdateMinerResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in enreach.miner.MsgUpdateMinerResponse", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgUpdateMinerResponse) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgUpdateMinerResponse) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgUpdateMinerResponse) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgUpdateMinerResponse) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgUpdateMinerResponse)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgUpdateMinerResponse)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgUpdateMinerResponse)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgUpdateMinerResponse: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgUpdateMinerResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_MsgDeleteMiner         protoreflect.MessageDescriptor
+	fd_MsgDeleteMiner_creator protoreflect.FieldDescriptor
+	fd_MsgDeleteMiner_id      protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_enreach_miner_tx_proto_init()
+	md_MsgDeleteMiner = File_enreach_miner_tx_proto.Messages().ByName("MsgDeleteMiner")
+	fd_MsgDeleteMiner_creator = md_MsgDeleteMiner.Fields().ByName("creator")
+	fd_MsgDeleteMiner_id = md_MsgDeleteMiner.Fields().ByName("id")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgDeleteMiner)(nil)
+
+type fastReflection_MsgDeleteMiner MsgDeleteMiner
+
+func (x *MsgDeleteMiner) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgDeleteMiner)(x)
+}
+
+func (x *MsgDeleteMiner) slowProtoReflect() protoreflect.Message {
+	mi := &file_enreach_miner_tx_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgDeleteMiner_messageType fastReflection_MsgDeleteMiner_messageType
+var _ protoreflect.MessageType = fastReflection_MsgDeleteMiner_messageType{}
+
+type fastReflection_MsgDeleteMiner_messageType struct{}
+
+func (x fastReflection_MsgDeleteMiner_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgDeleteMiner)(nil)
+}
+func (x fastReflection_MsgDeleteMiner_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgDeleteMiner)
+}
+func (x fastReflection_MsgDeleteMiner_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgDeleteMiner
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgDeleteMiner) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgDeleteMiner
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgDeleteMiner) Type() protoreflect.MessageType {
+	return _fastReflection_MsgDeleteMiner_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgDeleteMiner) New() protoreflect.Message {
+	return new(fastReflection_MsgDeleteMiner)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgDeleteMiner) Interface() protoreflect.ProtoMessage {
+	return (*MsgDeleteMiner)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgDeleteMiner) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Creator != "" {
+		value := protoreflect.ValueOfString(x.Creator)
+		if !f(fd_MsgDeleteMiner_creator, value) {
+			return
+		}
+	}
+	if x.Id != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.Id)
+		if !f(fd_MsgDeleteMiner_id, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgDeleteMiner) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "enreach.miner.MsgDeleteMiner.creator":
+		return x.Creator != ""
+	case "enreach.miner.MsgDeleteMiner.id":
+		return x.Id != uint64(0)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgDeleteMiner"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgDeleteMiner does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgDeleteMiner) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "enreach.miner.MsgDeleteMiner.creator":
+		x.Creator = ""
+	case "enreach.miner.MsgDeleteMiner.id":
+		x.Id = uint64(0)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgDeleteMiner"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgDeleteMiner does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgDeleteMiner) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "enreach.miner.MsgDeleteMiner.creator":
+		value := x.Creator
+		return protoreflect.ValueOfString(value)
+	case "enreach.miner.MsgDeleteMiner.id":
+		value := x.Id
+		return protoreflect.ValueOfUint64(value)
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgDeleteMiner"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgDeleteMiner does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgDeleteMiner) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "enreach.miner.MsgDeleteMiner.creator":
+		x.Creator = value.Interface().(string)
+	case "enreach.miner.MsgDeleteMiner.id":
+		x.Id = value.Uint()
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgDeleteMiner"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgDeleteMiner does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgDeleteMiner) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "enreach.miner.MsgDeleteMiner.creator":
+		panic(fmt.Errorf("field creator of message enreach.miner.MsgDeleteMiner is not mutable"))
+	case "enreach.miner.MsgDeleteMiner.id":
+		panic(fmt.Errorf("field id of message enreach.miner.MsgDeleteMiner is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgDeleteMiner"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgDeleteMiner does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgDeleteMiner) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "enreach.miner.MsgDeleteMiner.creator":
+		return protoreflect.ValueOfString("")
+	case "enreach.miner.MsgDeleteMiner.id":
+		return protoreflect.ValueOfUint64(uint64(0))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgDeleteMiner"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgDeleteMiner does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgDeleteMiner) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in enreach.miner.MsgDeleteMiner", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgDeleteMiner) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgDeleteMiner) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgDeleteMiner) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgDeleteMiner) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgDeleteMiner)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		l = len(x.Creator)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.Id != 0 {
+			n += 1 + runtime.Sov(uint64(x.Id))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgDeleteMiner)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if x.Id != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.Id))
+			i--
+			dAtA[i] = 0x10
+		}
+		if len(x.Creator) > 0 {
+			i -= len(x.Creator)
+			copy(dAtA[i:], x.Creator)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Creator)))
+			i--
+			dAtA[i] = 0xa
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgDeleteMiner)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgDeleteMiner: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgDeleteMiner: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Creator = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 2:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+				}
+				x.Id = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.Id |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_MsgDeleteMinerResponse protoreflect.MessageDescriptor
+)
+
+func init() {
+	file_enreach_miner_tx_proto_init()
+	md_MsgDeleteMinerResponse = File_enreach_miner_tx_proto.Messages().ByName("MsgDeleteMinerResponse")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgDeleteMinerResponse)(nil)
+
+type fastReflection_MsgDeleteMinerResponse MsgDeleteMinerResponse
+
+func (x *MsgDeleteMinerResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgDeleteMinerResponse)(x)
+}
+
+func (x *MsgDeleteMinerResponse) slowProtoReflect() protoreflect.Message {
+	mi := &file_enreach_miner_tx_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgDeleteMinerResponse_messageType fastReflection_MsgDeleteMinerResponse_messageType
+var _ protoreflect.MessageType = fastReflection_MsgDeleteMinerResponse_messageType{}
+
+type fastReflection_MsgDeleteMinerResponse_messageType struct{}
+
+func (x fastReflection_MsgDeleteMinerResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgDeleteMinerResponse)(nil)
+}
+func (x fastReflection_MsgDeleteMinerResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgDeleteMinerResponse)
+}
+func (x fastReflection_MsgDeleteMinerResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgDeleteMinerResponse
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgDeleteMinerResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgDeleteMinerResponse
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgDeleteMinerResponse) Type() protoreflect.MessageType {
+	return _fastReflection_MsgDeleteMinerResponse_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgDeleteMinerResponse) New() protoreflect.Message {
+	return new(fastReflection_MsgDeleteMinerResponse)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgDeleteMinerResponse) Interface() protoreflect.ProtoMessage {
+	return (*MsgDeleteMinerResponse)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgDeleteMinerResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgDeleteMinerResponse) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgDeleteMinerResponse"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgDeleteMinerResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgDeleteMinerResponse) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgDeleteMinerResponse"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgDeleteMinerResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgDeleteMinerResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgDeleteMinerResponse"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgDeleteMinerResponse does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgDeleteMinerResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgDeleteMinerResponse"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgDeleteMinerResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgDeleteMinerResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgDeleteMinerResponse"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgDeleteMinerResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgDeleteMinerResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.miner.MsgDeleteMinerResponse"))
+		}
+		panic(fmt.Errorf("message enreach.miner.MsgDeleteMinerResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgDeleteMinerResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in enreach.miner.MsgDeleteMinerResponse", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgDeleteMinerResponse) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgDeleteMinerResponse) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgDeleteMinerResponse) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgDeleteMinerResponse) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgDeleteMinerResponse)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgDeleteMinerResponse)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgDeleteMinerResponse)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgDeleteMinerResponse: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgDeleteMinerResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
 // Code generated by protoc-gen-go. DO NOT EDIT.
 // versions:
 // 	protoc-gen-go v1.27.0
@@ -893,8 +3877,6 @@ type MsgUpdateParams struct {
 
 	// authority is the address that controls the module (defaults to x/gov unless overwritten).
 	Authority string `protobuf:"bytes,1,opt,name=authority,proto3" json:"authority,omitempty"`
-	// params defines the module parameters to update.
-	//
 	// NOTE: All parameters must be supplied.
 	Params *Params `protobuf:"bytes,2,opt,name=params,proto3" json:"params,omitempty"`
 }
@@ -961,6 +3943,278 @@ func (*MsgUpdateParamsResponse) Descriptor() ([]byte, []int) {
 	return file_enreach_miner_tx_proto_rawDescGZIP(), []int{1}
 }
 
+type MsgCreateMiner struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Creator    string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	MinerId    string `protobuf:"bytes,2,opt,name=minerId,proto3" json:"minerId,omitempty"`
+	EvmAddress string `protobuf:"bytes,3,opt,name=evmAddress,proto3" json:"evmAddress,omitempty"`
+	RegionCode string `protobuf:"bytes,4,opt,name=regionCode,proto3" json:"regionCode,omitempty"`
+	Status     string `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
+}
+
+func (x *MsgCreateMiner) Reset() {
+	*x = MsgCreateMiner{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_enreach_miner_tx_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgCreateMiner) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgCreateMiner) ProtoMessage() {}
+
+// Deprecated: Use MsgCreateMiner.ProtoReflect.Descriptor instead.
+func (*MsgCreateMiner) Descriptor() ([]byte, []int) {
+	return file_enreach_miner_tx_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *MsgCreateMiner) GetCreator() string {
+	if x != nil {
+		return x.Creator
+	}
+	return ""
+}
+
+func (x *MsgCreateMiner) GetMinerId() string {
+	if x != nil {
+		return x.MinerId
+	}
+	return ""
+}
+
+func (x *MsgCreateMiner) GetEvmAddress() string {
+	if x != nil {
+		return x.EvmAddress
+	}
+	return ""
+}
+
+func (x *MsgCreateMiner) GetRegionCode() string {
+	if x != nil {
+		return x.RegionCode
+	}
+	return ""
+}
+
+func (x *MsgCreateMiner) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+type MsgCreateMinerResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *MsgCreateMinerResponse) Reset() {
+	*x = MsgCreateMinerResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_enreach_miner_tx_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgCreateMinerResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgCreateMinerResponse) ProtoMessage() {}
+
+// Deprecated: Use MsgCreateMinerResponse.ProtoReflect.Descriptor instead.
+func (*MsgCreateMinerResponse) Descriptor() ([]byte, []int) {
+	return file_enreach_miner_tx_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *MsgCreateMinerResponse) GetId() uint64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type MsgUpdateMiner struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Creator    string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Id         uint64 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
+	MinerId    string `protobuf:"bytes,3,opt,name=minerId,proto3" json:"minerId,omitempty"`
+	EvmAddress string `protobuf:"bytes,4,opt,name=evmAddress,proto3" json:"evmAddress,omitempty"`
+	RegionCode string `protobuf:"bytes,5,opt,name=regionCode,proto3" json:"regionCode,omitempty"`
+	Status     string `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
+}
+
+func (x *MsgUpdateMiner) Reset() {
+	*x = MsgUpdateMiner{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_enreach_miner_tx_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgUpdateMiner) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgUpdateMiner) ProtoMessage() {}
+
+// Deprecated: Use MsgUpdateMiner.ProtoReflect.Descriptor instead.
+func (*MsgUpdateMiner) Descriptor() ([]byte, []int) {
+	return file_enreach_miner_tx_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *MsgUpdateMiner) GetCreator() string {
+	if x != nil {
+		return x.Creator
+	}
+	return ""
+}
+
+func (x *MsgUpdateMiner) GetId() uint64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *MsgUpdateMiner) GetMinerId() string {
+	if x != nil {
+		return x.MinerId
+	}
+	return ""
+}
+
+func (x *MsgUpdateMiner) GetEvmAddress() string {
+	if x != nil {
+		return x.EvmAddress
+	}
+	return ""
+}
+
+func (x *MsgUpdateMiner) GetRegionCode() string {
+	if x != nil {
+		return x.RegionCode
+	}
+	return ""
+}
+
+func (x *MsgUpdateMiner) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+type MsgUpdateMinerResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *MsgUpdateMinerResponse) Reset() {
+	*x = MsgUpdateMinerResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_enreach_miner_tx_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgUpdateMinerResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgUpdateMinerResponse) ProtoMessage() {}
+
+// Deprecated: Use MsgUpdateMinerResponse.ProtoReflect.Descriptor instead.
+func (*MsgUpdateMinerResponse) Descriptor() ([]byte, []int) {
+	return file_enreach_miner_tx_proto_rawDescGZIP(), []int{5}
+}
+
+type MsgDeleteMiner struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Creator string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Id      uint64 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *MsgDeleteMiner) Reset() {
+	*x = MsgDeleteMiner{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_enreach_miner_tx_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgDeleteMiner) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgDeleteMiner) ProtoMessage() {}
+
+// Deprecated: Use MsgDeleteMiner.ProtoReflect.Descriptor instead.
+func (*MsgDeleteMiner) Descriptor() ([]byte, []int) {
+	return file_enreach_miner_tx_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *MsgDeleteMiner) GetCreator() string {
+	if x != nil {
+		return x.Creator
+	}
+	return ""
+}
+
+func (x *MsgDeleteMiner) GetId() uint64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type MsgDeleteMinerResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *MsgDeleteMinerResponse) Reset() {
+	*x = MsgDeleteMinerResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_enreach_miner_tx_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgDeleteMinerResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgDeleteMinerResponse) ProtoMessage() {}
+
+// Deprecated: Use MsgDeleteMinerResponse.ProtoReflect.Descriptor instead.
+func (*MsgDeleteMinerResponse) Descriptor() ([]byte, []int) {
+	return file_enreach_miner_tx_proto_rawDescGZIP(), []int{7}
+}
+
 var File_enreach_miner_tx_proto protoreflect.FileDescriptor
 
 var file_enreach_miner_tx_proto_rawDesc = []byte{
@@ -974,36 +4228,87 @@ var file_enreach_miner_tx_proto_rawDesc = []byte{
 	0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70,
 	0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1a, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x6d, 0x69,
 	0x6e, 0x65, 0x72, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x22, 0xb7, 0x01, 0x0a, 0x0f, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61,
-	0x72, 0x61, 0x6d, 0x73, 0x12, 0x36, 0x0a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74,
-	0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73,
-	0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e,
-	0x67, 0x52, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x38, 0x0a, 0x06,
-	0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x65,
-	0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x69, 0x6e, 0x65, 0x72, 0x2e, 0x50, 0x61, 0x72,
-	0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06,
-	0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x3a, 0x32, 0x82, 0xe7, 0xb0, 0x2a, 0x09, 0x61, 0x75, 0x74,
-	0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x8a, 0xe7, 0xb0, 0x2a, 0x1f, 0x65, 0x6e, 0x72, 0x65, 0x61,
-	0x63, 0x68, 0x2f, 0x78, 0x2f, 0x6d, 0x69, 0x6e, 0x65, 0x72, 0x2f, 0x4d, 0x73, 0x67, 0x55, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x22, 0x19, 0x0a, 0x17, 0x4d, 0x73,
-	0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0x64, 0x0a, 0x03, 0x4d, 0x73, 0x67, 0x12, 0x56, 0x0a, 0x0c,
-	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x1e, 0x2e, 0x65,
-	0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x69, 0x6e, 0x65, 0x72, 0x2e, 0x4d, 0x73, 0x67,
-	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x26, 0x2e, 0x65,
-	0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x69, 0x6e, 0x65, 0x72, 0x2e, 0x4d, 0x73, 0x67,
-	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x05, 0x80, 0xe7, 0xb0, 0x2a, 0x01, 0x42, 0x91, 0x01, 0x0a, 0x11,
-	0x63, 0x6f, 0x6d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x69, 0x6e, 0x65,
-	0x72, 0x42, 0x07, 0x54, 0x78, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x1e, 0x63, 0x6f,
-	0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x65,
-	0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x6d, 0x69, 0x6e, 0x65, 0x72, 0xa2, 0x02, 0x03, 0x45,
-	0x4d, 0x58, 0xaa, 0x02, 0x0d, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x4d, 0x69, 0x6e,
-	0x65, 0x72, 0xca, 0x02, 0x0d, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x4d, 0x69, 0x6e,
-	0x65, 0x72, 0xe2, 0x02, 0x19, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x4d, 0x69, 0x6e,
-	0x65, 0x72, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02,
-	0x0e, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x3a, 0x3a, 0x4d, 0x69, 0x6e, 0x65, 0x72, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x1a, 0x19, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x6d, 0x69, 0x6e, 0x65, 0x72, 0x2f,
+	0x6d, 0x69, 0x6e, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xb7, 0x01, 0x0a, 0x0f,
+	0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12,
+	0x36, 0x0a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41,
+	0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x09, 0x61, 0x75,
+	0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x38, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d,
+	0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63,
+	0x68, 0x2e, 0x6d, 0x69, 0x6e, 0x65, 0x72, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x09,
+	0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d,
+	0x73, 0x3a, 0x32, 0x82, 0xe7, 0xb0, 0x2a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74,
+	0x79, 0x8a, 0xe7, 0xb0, 0x2a, 0x1f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x78, 0x2f,
+	0x6d, 0x69, 0x6e, 0x65, 0x72, 0x2f, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50,
+	0x61, 0x72, 0x61, 0x6d, 0x73, 0x22, 0x19, 0x0a, 0x17, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x22, 0xaa, 0x01, 0x0a, 0x0e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4d, 0x69,
+	0x6e, 0x65, 0x72, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x18, 0x0a,
+	0x07, 0x6d, 0x69, 0x6e, 0x65, 0x72, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07,
+	0x6d, 0x69, 0x6e, 0x65, 0x72, 0x49, 0x64, 0x12, 0x1e, 0x0a, 0x0a, 0x65, 0x76, 0x6d, 0x41, 0x64,
+	0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x65, 0x76, 0x6d,
+	0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x1e, 0x0a, 0x0a, 0x72, 0x65, 0x67, 0x69, 0x6f,
+	0x6e, 0x43, 0x6f, 0x64, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x72, 0x65, 0x67,
+	0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x64, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75,
+	0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x3a,
+	0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x28, 0x0a,
+	0x16, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4d, 0x69, 0x6e, 0x65, 0x72, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x22, 0xba, 0x01, 0x0a, 0x0e, 0x4d, 0x73, 0x67, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x69, 0x6e, 0x65, 0x72, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72,
+	0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65,
+	0x61, 0x74, 0x6f, 0x72, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04,
+	0x52, 0x02, 0x69, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x69, 0x6e, 0x65, 0x72, 0x49, 0x64, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x69, 0x6e, 0x65, 0x72, 0x49, 0x64, 0x12, 0x1e,
+	0x0a, 0x0a, 0x65, 0x76, 0x6d, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x04, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x0a, 0x65, 0x76, 0x6d, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x1e,
+	0x0a, 0x0a, 0x72, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x64, 0x65, 0x18, 0x05, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x0a, 0x72, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x64, 0x65, 0x12, 0x16,
+	0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06,
+	0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x3a, 0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65,
+	0x61, 0x74, 0x6f, 0x72, 0x22, 0x18, 0x0a, 0x16, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x4d, 0x69, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x48,
+	0x0a, 0x0e, 0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x69, 0x6e, 0x65, 0x72,
+	0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x3a, 0x0c, 0x82, 0xe7, 0xb0, 0x2a,
+	0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x18, 0x0a, 0x16, 0x4d, 0x73, 0x67, 0x44,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x69, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x32, 0xe3, 0x02, 0x0a, 0x03, 0x4d, 0x73, 0x67, 0x12, 0x56, 0x0a, 0x0c, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x1e, 0x2e, 0x65, 0x6e, 0x72,
+	0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x69, 0x6e, 0x65, 0x72, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x26, 0x2e, 0x65, 0x6e, 0x72,
+	0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x69, 0x6e, 0x65, 0x72, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x53, 0x0a, 0x0b, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4d, 0x69, 0x6e, 0x65,
+	0x72, 0x12, 0x1d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x69, 0x6e, 0x65,
+	0x72, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4d, 0x69, 0x6e, 0x65, 0x72,
+	0x1a, 0x25, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x69, 0x6e, 0x65, 0x72,
+	0x2e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4d, 0x69, 0x6e, 0x65, 0x72, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x53, 0x0a, 0x0b, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x4d, 0x69, 0x6e, 0x65, 0x72, 0x12, 0x1d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68,
+	0x2e, 0x6d, 0x69, 0x6e, 0x65, 0x72, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x4d, 0x69, 0x6e, 0x65, 0x72, 0x1a, 0x25, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e,
+	0x6d, 0x69, 0x6e, 0x65, 0x72, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d,
+	0x69, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x53, 0x0a, 0x0b,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x69, 0x6e, 0x65, 0x72, 0x12, 0x1d, 0x2e, 0x65, 0x6e,
+	0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x69, 0x6e, 0x65, 0x72, 0x2e, 0x4d, 0x73, 0x67, 0x44,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x69, 0x6e, 0x65, 0x72, 0x1a, 0x25, 0x2e, 0x65, 0x6e, 0x72,
+	0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x69, 0x6e, 0x65, 0x72, 0x2e, 0x4d, 0x73, 0x67, 0x44, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x4d, 0x69, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x1a, 0x05, 0x80, 0xe7, 0xb0, 0x2a, 0x01, 0x42, 0x91, 0x01, 0x0a, 0x11, 0x63, 0x6f, 0x6d,
+	0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x69, 0x6e, 0x65, 0x72, 0x42, 0x07,
+	0x54, 0x78, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x1e, 0x63, 0x6f, 0x73, 0x6d, 0x6f,
+	0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x65, 0x6e, 0x72, 0x65,
+	0x61, 0x63, 0x68, 0x2f, 0x6d, 0x69, 0x6e, 0x65, 0x72, 0xa2, 0x02, 0x03, 0x45, 0x4d, 0x58, 0xaa,
+	0x02, 0x0d, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x4d, 0x69, 0x6e, 0x65, 0x72, 0xca,
+	0x02, 0x0d, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x4d, 0x69, 0x6e, 0x65, 0x72, 0xe2,
+	0x02, 0x19, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x4d, 0x69, 0x6e, 0x65, 0x72, 0x5c,
+	0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0e, 0x45, 0x6e,
+	0x72, 0x65, 0x61, 0x63, 0x68, 0x3a, 0x3a, 0x4d, 0x69, 0x6e, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1018,18 +4323,30 @@ func file_enreach_miner_tx_proto_rawDescGZIP() []byte {
 	return file_enreach_miner_tx_proto_rawDescData
 }
 
-var file_enreach_miner_tx_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_enreach_miner_tx_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_enreach_miner_tx_proto_goTypes = []interface{}{
 	(*MsgUpdateParams)(nil),         // 0: enreach.miner.MsgUpdateParams
 	(*MsgUpdateParamsResponse)(nil), // 1: enreach.miner.MsgUpdateParamsResponse
-	(*Params)(nil),                  // 2: enreach.miner.Params
+	(*MsgCreateMiner)(nil),          // 2: enreach.miner.MsgCreateMiner
+	(*MsgCreateMinerResponse)(nil),  // 3: enreach.miner.MsgCreateMinerResponse
+	(*MsgUpdateMiner)(nil),          // 4: enreach.miner.MsgUpdateMiner
+	(*MsgUpdateMinerResponse)(nil),  // 5: enreach.miner.MsgUpdateMinerResponse
+	(*MsgDeleteMiner)(nil),          // 6: enreach.miner.MsgDeleteMiner
+	(*MsgDeleteMinerResponse)(nil),  // 7: enreach.miner.MsgDeleteMinerResponse
+	(*Params)(nil),                  // 8: enreach.miner.Params
 }
 var file_enreach_miner_tx_proto_depIdxs = []int32{
-	2, // 0: enreach.miner.MsgUpdateParams.params:type_name -> enreach.miner.Params
+	8, // 0: enreach.miner.MsgUpdateParams.params:type_name -> enreach.miner.Params
 	0, // 1: enreach.miner.Msg.UpdateParams:input_type -> enreach.miner.MsgUpdateParams
-	1, // 2: enreach.miner.Msg.UpdateParams:output_type -> enreach.miner.MsgUpdateParamsResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
+	2, // 2: enreach.miner.Msg.CreateMiner:input_type -> enreach.miner.MsgCreateMiner
+	4, // 3: enreach.miner.Msg.UpdateMiner:input_type -> enreach.miner.MsgUpdateMiner
+	6, // 4: enreach.miner.Msg.DeleteMiner:input_type -> enreach.miner.MsgDeleteMiner
+	1, // 5: enreach.miner.Msg.UpdateParams:output_type -> enreach.miner.MsgUpdateParamsResponse
+	3, // 6: enreach.miner.Msg.CreateMiner:output_type -> enreach.miner.MsgCreateMinerResponse
+	5, // 7: enreach.miner.Msg.UpdateMiner:output_type -> enreach.miner.MsgUpdateMinerResponse
+	7, // 8: enreach.miner.Msg.DeleteMiner:output_type -> enreach.miner.MsgDeleteMinerResponse
+	5, // [5:9] is the sub-list for method output_type
+	1, // [1:5] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
@@ -1041,6 +4358,7 @@ func file_enreach_miner_tx_proto_init() {
 		return
 	}
 	file_enreach_miner_params_proto_init()
+	file_enreach_miner_miner_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_enreach_miner_tx_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MsgUpdateParams); i {
@@ -1066,6 +4384,78 @@ func file_enreach_miner_tx_proto_init() {
 				return nil
 			}
 		}
+		file_enreach_miner_tx_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgCreateMiner); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_enreach_miner_tx_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgCreateMinerResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_enreach_miner_tx_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgUpdateMiner); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_enreach_miner_tx_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgUpdateMinerResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_enreach_miner_tx_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgDeleteMiner); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_enreach_miner_tx_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgDeleteMinerResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -1073,7 +4463,7 @@ func file_enreach_miner_tx_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_enreach_miner_tx_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
