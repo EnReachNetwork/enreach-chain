@@ -17,6 +17,17 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Use:       "params",
 					Short:     "Shows the parameters of the module",
 				},
+				{
+					RpcMethod: "RegionAll",
+					Use:       "list-region",
+					Short:     "List all region",
+				},
+				{
+					RpcMethod:      "Region",
+					Use:            "show-region [id]",
+					Short:          "Shows a region by id",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}},
+				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},
@@ -27,6 +38,24 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				{
 					RpcMethod: "UpdateParams",
 					Skip:      true, // skipped because authority gated
+				},
+				{
+					RpcMethod:      "CreateRegion",
+					Use:            "create-region [code] [name] [description]",
+					Short:          "Create region",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "code"}, {ProtoField: "name"}, {ProtoField: "description"}},
+				},
+				{
+					RpcMethod:      "UpdateRegion",
+					Use:            "update-region [id] [code] [name] [description]",
+					Short:          "Update region",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}, {ProtoField: "code"}, {ProtoField: "name"}, {ProtoField: "description"}},
+				},
+				{
+					RpcMethod:      "DeleteRegion",
+					Use:            "delete-region [id]",
+					Short:          "Delete region",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}},
 				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},

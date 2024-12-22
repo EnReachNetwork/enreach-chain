@@ -20,12 +20,47 @@ func TestGenesisState_Validate(t *testing.T) {
 			valid:    true,
 		},
 		{
-			desc:     "valid genesis state",
+			desc: "valid genesis state",
 			genState: &types.GenesisState{
 
+				RegionList: []types.Region{
+					{
+						Id: 0,
+					},
+					{
+						Id: 1,
+					},
+				},
+				RegionCount: 2,
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
+		},
+		{
+			desc: "duplicated region",
+			genState: &types.GenesisState{
+				RegionList: []types.Region{
+					{
+						Id: 0,
+					},
+					{
+						Id: 0,
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "invalid region count",
+			genState: &types.GenesisState{
+				RegionList: []types.Region{
+					{
+						Id: 1,
+					},
+				},
+				RegionCount: 0,
+			},
+			valid: false,
 		},
 		// this line is used by starport scaffolding # types/genesis/testcase
 	}

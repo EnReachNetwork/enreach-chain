@@ -21,6 +21,9 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	Msg_UpdateParams_FullMethodName = "/enreach.registry.Msg/UpdateParams"
+	Msg_CreateRegion_FullMethodName = "/enreach.registry.Msg/CreateRegion"
+	Msg_UpdateRegion_FullMethodName = "/enreach.registry.Msg/UpdateRegion"
+	Msg_DeleteRegion_FullMethodName = "/enreach.registry.Msg/DeleteRegion"
 )
 
 // MsgClient is the client API for Msg service.
@@ -30,6 +33,9 @@ type MsgClient interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
+	CreateRegion(ctx context.Context, in *MsgCreateRegion, opts ...grpc.CallOption) (*MsgCreateRegionResponse, error)
+	UpdateRegion(ctx context.Context, in *MsgUpdateRegion, opts ...grpc.CallOption) (*MsgUpdateRegionResponse, error)
+	DeleteRegion(ctx context.Context, in *MsgDeleteRegion, opts ...grpc.CallOption) (*MsgDeleteRegionResponse, error)
 }
 
 type msgClient struct {
@@ -49,6 +55,33 @@ func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts 
 	return out, nil
 }
 
+func (c *msgClient) CreateRegion(ctx context.Context, in *MsgCreateRegion, opts ...grpc.CallOption) (*MsgCreateRegionResponse, error) {
+	out := new(MsgCreateRegionResponse)
+	err := c.cc.Invoke(ctx, Msg_CreateRegion_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) UpdateRegion(ctx context.Context, in *MsgUpdateRegion, opts ...grpc.CallOption) (*MsgUpdateRegionResponse, error) {
+	out := new(MsgUpdateRegionResponse)
+	err := c.cc.Invoke(ctx, Msg_UpdateRegion_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) DeleteRegion(ctx context.Context, in *MsgDeleteRegion, opts ...grpc.CallOption) (*MsgDeleteRegionResponse, error) {
+	out := new(MsgDeleteRegionResponse)
+	err := c.cc.Invoke(ctx, Msg_DeleteRegion_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -56,6 +89,9 @@ type MsgServer interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
+	CreateRegion(context.Context, *MsgCreateRegion) (*MsgCreateRegionResponse, error)
+	UpdateRegion(context.Context, *MsgUpdateRegion) (*MsgUpdateRegionResponse, error)
+	DeleteRegion(context.Context, *MsgDeleteRegion) (*MsgDeleteRegionResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -65,6 +101,15 @@ type UnimplementedMsgServer struct {
 
 func (UnimplementedMsgServer) UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateParams not implemented")
+}
+func (UnimplementedMsgServer) CreateRegion(context.Context, *MsgCreateRegion) (*MsgCreateRegionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateRegion not implemented")
+}
+func (UnimplementedMsgServer) UpdateRegion(context.Context, *MsgUpdateRegion) (*MsgUpdateRegionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateRegion not implemented")
+}
+func (UnimplementedMsgServer) DeleteRegion(context.Context, *MsgDeleteRegion) (*MsgDeleteRegionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteRegion not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -97,6 +142,60 @@ func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_CreateRegion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgCreateRegion)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).CreateRegion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_CreateRegion_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).CreateRegion(ctx, req.(*MsgCreateRegion))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_UpdateRegion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgUpdateRegion)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).UpdateRegion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_UpdateRegion_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).UpdateRegion(ctx, req.(*MsgUpdateRegion))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_DeleteRegion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgDeleteRegion)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).DeleteRegion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_DeleteRegion_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).DeleteRegion(ctx, req.(*MsgDeleteRegion))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -107,6 +206,18 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateParams",
 			Handler:    _Msg_UpdateParams_Handler,
+		},
+		{
+			MethodName: "CreateRegion",
+			Handler:    _Msg_CreateRegion_Handler,
+		},
+		{
+			MethodName: "UpdateRegion",
+			Handler:    _Msg_UpdateRegion_Handler,
+		},
+		{
+			MethodName: "DeleteRegion",
+			Handler:    _Msg_DeleteRegion_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

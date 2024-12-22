@@ -15,6 +15,15 @@ func TestGenesis(t *testing.T) {
 	genesisState := types.GenesisState{
 		Params: types.DefaultParams(),
 
+		RegionList: []types.Region{
+			{
+				Id: 0,
+			},
+			{
+				Id: 1,
+			},
+		},
+		RegionCount: 2,
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -26,5 +35,7 @@ func TestGenesis(t *testing.T) {
 	nullify.Fill(&genesisState)
 	nullify.Fill(got)
 
+	require.ElementsMatch(t, genesisState.RegionList, got.RegionList)
+	require.Equal(t, genesisState.RegionCount, got.RegionCount)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

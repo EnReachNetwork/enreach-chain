@@ -23,7 +23,19 @@ var (
 )
 
 const (
-// this line is used by starport scaffolding # simapp/module/const
+	opWeightMsgCreateRegion = "op_weight_msg_region"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgCreateRegion int = 100
+
+	opWeightMsgUpdateRegion = "op_weight_msg_region"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgUpdateRegion int = 100
+
+	opWeightMsgDeleteRegion = "op_weight_msg_region"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgDeleteRegion int = 100
+
+	// this line is used by starport scaffolding # simapp/module/const
 )
 
 // GenerateGenesisState creates a randomized GenState of the module.
@@ -34,6 +46,17 @@ func (AppModule) GenerateGenesisState(simState *module.SimulationState) {
 	}
 	registryGenesis := types.GenesisState{
 		Params: types.DefaultParams(),
+		RegionList: []types.Region{
+			{
+				Id:      0,
+				Creator: sample.AccAddress(),
+			},
+			{
+				Id:      1,
+				Creator: sample.AccAddress(),
+			},
+		},
+		RegionCount: 2,
 		// this line is used by starport scaffolding # simapp/module/genesisState
 	}
 	simState.GenState[types.ModuleName] = simState.Cdc.MustMarshalJSON(&registryGenesis)
@@ -46,6 +69,39 @@ func (am AppModule) RegisterStoreDecoder(_ simtypes.StoreDecoderRegistry) {}
 func (am AppModule) WeightedOperations(simState module.SimulationState) []simtypes.WeightedOperation {
 	operations := make([]simtypes.WeightedOperation, 0)
 
+	var weightMsgCreateRegion int
+	simState.AppParams.GetOrGenerate(opWeightMsgCreateRegion, &weightMsgCreateRegion, nil,
+		func(_ *rand.Rand) {
+			weightMsgCreateRegion = defaultWeightMsgCreateRegion
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgCreateRegion,
+		registrysimulation.SimulateMsgCreateRegion(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgUpdateRegion int
+	simState.AppParams.GetOrGenerate(opWeightMsgUpdateRegion, &weightMsgUpdateRegion, nil,
+		func(_ *rand.Rand) {
+			weightMsgUpdateRegion = defaultWeightMsgUpdateRegion
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgUpdateRegion,
+		registrysimulation.SimulateMsgUpdateRegion(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgDeleteRegion int
+	simState.AppParams.GetOrGenerate(opWeightMsgDeleteRegion, &weightMsgDeleteRegion, nil,
+		func(_ *rand.Rand) {
+			weightMsgDeleteRegion = defaultWeightMsgDeleteRegion
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgDeleteRegion,
+		registrysimulation.SimulateMsgDeleteRegion(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
 	// this line is used by starport scaffolding # simapp/module/operation
 
 	return operations
@@ -54,6 +110,30 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 // ProposalMsgs returns msgs used for governance proposals for simulations.
 func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.WeightedProposalMsg {
 	return []simtypes.WeightedProposalMsg{
+		simulation.NewWeightedProposalMsg(
+			opWeightMsgCreateRegion,
+			defaultWeightMsgCreateRegion,
+			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
+				registrysimulation.SimulateMsgCreateRegion(am.accountKeeper, am.bankKeeper, am.keeper)
+				return nil
+			},
+		),
+		simulation.NewWeightedProposalMsg(
+			opWeightMsgUpdateRegion,
+			defaultWeightMsgUpdateRegion,
+			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
+				registrysimulation.SimulateMsgUpdateRegion(am.accountKeeper, am.bankKeeper, am.keeper)
+				return nil
+			},
+		),
+		simulation.NewWeightedProposalMsg(
+			opWeightMsgDeleteRegion,
+			defaultWeightMsgDeleteRegion,
+			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
+				registrysimulation.SimulateMsgDeleteRegion(am.accountKeeper, am.bankKeeper, am.keeper)
+				return nil
+			},
+		),
 		// this line is used by starport scaffolding # simapp/module/OpMsg
 	}
 }
