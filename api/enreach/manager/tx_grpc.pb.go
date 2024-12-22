@@ -20,7 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Msg_UpdateParams_FullMethodName = "/enreach.manager.Msg/UpdateParams"
+	Msg_UpdateParams_FullMethodName  = "/enreach.manager.Msg/UpdateParams"
+	Msg_CreateManager_FullMethodName = "/enreach.manager.Msg/CreateManager"
+	Msg_UpdateManager_FullMethodName = "/enreach.manager.Msg/UpdateManager"
+	Msg_DeleteManager_FullMethodName = "/enreach.manager.Msg/DeleteManager"
 )
 
 // MsgClient is the client API for Msg service.
@@ -30,6 +33,9 @@ type MsgClient interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
+	CreateManager(ctx context.Context, in *MsgCreateManager, opts ...grpc.CallOption) (*MsgCreateManagerResponse, error)
+	UpdateManager(ctx context.Context, in *MsgUpdateManager, opts ...grpc.CallOption) (*MsgUpdateManagerResponse, error)
+	DeleteManager(ctx context.Context, in *MsgDeleteManager, opts ...grpc.CallOption) (*MsgDeleteManagerResponse, error)
 }
 
 type msgClient struct {
@@ -49,6 +55,33 @@ func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts 
 	return out, nil
 }
 
+func (c *msgClient) CreateManager(ctx context.Context, in *MsgCreateManager, opts ...grpc.CallOption) (*MsgCreateManagerResponse, error) {
+	out := new(MsgCreateManagerResponse)
+	err := c.cc.Invoke(ctx, Msg_CreateManager_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) UpdateManager(ctx context.Context, in *MsgUpdateManager, opts ...grpc.CallOption) (*MsgUpdateManagerResponse, error) {
+	out := new(MsgUpdateManagerResponse)
+	err := c.cc.Invoke(ctx, Msg_UpdateManager_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) DeleteManager(ctx context.Context, in *MsgDeleteManager, opts ...grpc.CallOption) (*MsgDeleteManagerResponse, error) {
+	out := new(MsgDeleteManagerResponse)
+	err := c.cc.Invoke(ctx, Msg_DeleteManager_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -56,6 +89,9 @@ type MsgServer interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
+	CreateManager(context.Context, *MsgCreateManager) (*MsgCreateManagerResponse, error)
+	UpdateManager(context.Context, *MsgUpdateManager) (*MsgUpdateManagerResponse, error)
+	DeleteManager(context.Context, *MsgDeleteManager) (*MsgDeleteManagerResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -65,6 +101,15 @@ type UnimplementedMsgServer struct {
 
 func (UnimplementedMsgServer) UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateParams not implemented")
+}
+func (UnimplementedMsgServer) CreateManager(context.Context, *MsgCreateManager) (*MsgCreateManagerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateManager not implemented")
+}
+func (UnimplementedMsgServer) UpdateManager(context.Context, *MsgUpdateManager) (*MsgUpdateManagerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateManager not implemented")
+}
+func (UnimplementedMsgServer) DeleteManager(context.Context, *MsgDeleteManager) (*MsgDeleteManagerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteManager not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -97,6 +142,60 @@ func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_CreateManager_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgCreateManager)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).CreateManager(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_CreateManager_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).CreateManager(ctx, req.(*MsgCreateManager))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_UpdateManager_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgUpdateManager)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).UpdateManager(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_UpdateManager_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).UpdateManager(ctx, req.(*MsgUpdateManager))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_DeleteManager_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgDeleteManager)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).DeleteManager(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_DeleteManager_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).DeleteManager(ctx, req.(*MsgDeleteManager))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -107,6 +206,18 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateParams",
 			Handler:    _Msg_UpdateParams_Handler,
+		},
+		{
+			MethodName: "CreateManager",
+			Handler:    _Msg_CreateManager_Handler,
+		},
+		{
+			MethodName: "UpdateManager",
+			Handler:    _Msg_UpdateManager_Handler,
+		},
+		{
+			MethodName: "DeleteManager",
+			Handler:    _Msg_DeleteManager_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

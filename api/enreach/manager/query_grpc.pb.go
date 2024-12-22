@@ -20,7 +20,9 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Query_Params_FullMethodName = "/enreach.manager.Query/Params"
+	Query_Params_FullMethodName     = "/enreach.manager.Query/Params"
+	Query_Manager_FullMethodName    = "/enreach.manager.Query/Manager"
+	Query_ManagerAll_FullMethodName = "/enreach.manager.Query/ManagerAll"
 )
 
 // QueryClient is the client API for Query service.
@@ -29,6 +31,9 @@ const (
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
+	// Queries a list of Manager items.
+	Manager(ctx context.Context, in *QueryGetManagerRequest, opts ...grpc.CallOption) (*QueryGetManagerResponse, error)
+	ManagerAll(ctx context.Context, in *QueryAllManagerRequest, opts ...grpc.CallOption) (*QueryAllManagerResponse, error)
 }
 
 type queryClient struct {
@@ -48,12 +53,33 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
+func (c *queryClient) Manager(ctx context.Context, in *QueryGetManagerRequest, opts ...grpc.CallOption) (*QueryGetManagerResponse, error) {
+	out := new(QueryGetManagerResponse)
+	err := c.cc.Invoke(ctx, Query_Manager_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) ManagerAll(ctx context.Context, in *QueryAllManagerRequest, opts ...grpc.CallOption) (*QueryAllManagerResponse, error) {
+	out := new(QueryAllManagerResponse)
+	err := c.cc.Invoke(ctx, Query_ManagerAll_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
+	// Queries a list of Manager items.
+	Manager(context.Context, *QueryGetManagerRequest) (*QueryGetManagerResponse, error)
+	ManagerAll(context.Context, *QueryAllManagerRequest) (*QueryAllManagerResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -63,6 +89,12 @@ type UnimplementedQueryServer struct {
 
 func (UnimplementedQueryServer) Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
+}
+func (UnimplementedQueryServer) Manager(context.Context, *QueryGetManagerRequest) (*QueryGetManagerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Manager not implemented")
+}
+func (UnimplementedQueryServer) ManagerAll(context.Context, *QueryAllManagerRequest) (*QueryAllManagerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ManagerAll not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -95,6 +127,42 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_Manager_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetManagerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).Manager(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_Manager_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).Manager(ctx, req.(*QueryGetManagerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_ManagerAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllManagerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ManagerAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_ManagerAll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ManagerAll(ctx, req.(*QueryAllManagerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -105,6 +173,14 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Params",
 			Handler:    _Query_Params_Handler,
+		},
+		{
+			MethodName: "Manager",
+			Handler:    _Query_Manager_Handler,
+		},
+		{
+			MethodName: "ManagerAll",
+			Handler:    _Query_ManagerAll_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

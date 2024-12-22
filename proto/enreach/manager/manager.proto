@@ -1,0 +1,13 @@
+syntax = "proto3";
+package enreach.manager;
+
+option go_package = "enreach/x/manager/types";
+
+message Manager {
+  uint64 id = 1;
+  string managerId = 2; 
+  string evmAddress = 3; 
+  string regionCode = 4; 
+  string status = 5; 
+  string creator = 6;
+}

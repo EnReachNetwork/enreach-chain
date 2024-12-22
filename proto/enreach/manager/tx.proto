@@ -1,4 +1,5 @@
 syntax = "proto3";
+
 package enreach.manager;
 
 import "amino/amino.proto";
@@ -6,35 +7,69 @@ import "cosmos/msg/v1/msg.proto";
 import "cosmos_proto/cosmos.proto";
 import "gogoproto/gogo.proto";
 import "enreach/manager/params.proto";
+import "enreach/manager/manager.proto";
 
 option go_package = "enreach/x/manager/types";
 
 // Msg defines the Msg service.
 service Msg {
   option (cosmos.msg.v1.service) = true;
-
+  
   // UpdateParams defines a (governance) operation for updating the module
   // parameters. The authority defaults to the x/gov module account.
-  rpc UpdateParams(MsgUpdateParams) returns (MsgUpdateParamsResponse);
+  rpc UpdateParams  (MsgUpdateParams ) returns (MsgUpdateParamsResponse );
+  rpc CreateManager (MsgCreateManager) returns (MsgCreateManagerResponse);
+  rpc UpdateManager (MsgUpdateManager) returns (MsgUpdateManagerResponse);
+  rpc DeleteManager (MsgDeleteManager) returns (MsgDeleteManagerResponse);
 }
-
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
-  option (cosmos.msg.v1.signer) = "authority";
-  option (amino.name) = "enreach/x/manager/MsgUpdateParams";
-
+  option (cosmos.msg.v1.signer) =                         "authority";
+  option           (amino.name) = "enreach/x/manager/MsgUpdateParams";
+  
   // authority is the address that controls the module (defaults to x/gov unless overwritten).
   string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-
+  
   // params defines the module parameters to update.
-  //
+  
   // NOTE: All parameters must be supplied.
-  Params params = 2 [
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
+  Params params = 2 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
 }
 
 // MsgUpdateParamsResponse defines the response structure for executing a
 // MsgUpdateParams message.
 message MsgUpdateParamsResponse {}
+
+message MsgCreateManager {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator    = 1;
+  string managerId  = 2;
+  string evmAddress = 3;
+  string regionCode = 4;
+  string status     = 5;
+}
+
+message MsgCreateManagerResponse {
+  uint64 id = 1;
+}
+
+message MsgUpdateManager {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator    = 1;
+  uint64 id         = 2;
+  string managerId  = 3;
+  string evmAddress = 4;
+  string regionCode = 5;
+  string status     = 6;
+}
+
+message MsgUpdateManagerResponse {}
+
+message MsgDeleteManager {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  uint64 id      = 2;
+}
+
+message MsgDeleteManagerResponse {}
+

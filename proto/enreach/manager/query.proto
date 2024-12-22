@@ -1,4 +1,5 @@
 syntax = "proto3";
+
 package enreach.manager;
 
 import "amino/amino.proto";
@@ -6,25 +7,53 @@ import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "enreach/manager/params.proto";
+import "enreach/manager/manager.proto";
 
 option go_package = "enreach/x/manager/types";
 
 // Query defines the gRPC querier service.
 service Query {
+  
   // Parameters queries the parameters of the module.
-  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/enreach/manager/params";
+  
+  }
+  
+  // Queries a list of Manager items.
+  rpc Manager    (QueryGetManagerRequest) returns (QueryGetManagerResponse) {
+    option (google.api.http).get = "/enreach/manager/manager/{id}";
+  
+  }
+  rpc ManagerAll (QueryAllManagerRequest) returns (QueryAllManagerResponse) {
+    option (google.api.http).get = "/enreach/manager/manager";
+  
   }
 }
-
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
 
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
+  
   // params holds all the parameters of this module.
-  Params params = 1 [
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
+  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
 }
+
+message QueryGetManagerRequest {
+  uint64 id = 1;
+}
+
+message QueryGetManagerResponse {
+  Manager Manager = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllManagerRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllManagerResponse {
+  repeated Manager                                Manager    = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+

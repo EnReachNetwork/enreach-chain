@@ -1,17 +1,20 @@
 syntax = "proto3";
+
 package enreach.manager;
 
 import "amino/amino.proto";
 import "gogoproto/gogo.proto";
 import "enreach/manager/params.proto";
+import "enreach/manager/manager.proto";
 
 option go_package = "enreach/x/manager/types";
 
 // GenesisState defines the manager module's genesis state.
 message GenesisState {
+  
   // params defines all the parameters of the module.
-  Params params = 1 [
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
+           Params  params       = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  repeated Manager managerList  = 2 [(gogoproto.nullable) = false] ;
+           uint64  managerCount = 3;
 }
+
