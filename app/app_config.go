@@ -7,6 +7,10 @@ import (
 	_ "enreach/x/registry/module" // import for side-effects
 	registrymoduletypes "enreach/x/registry/types"
 
+	managermodulev1 "enreach/api/enreach/manager/module"
+	_ "enreach/x/manager/module" // import for side-effects
+	managermoduletypes "enreach/x/manager/types"
+
 	runtimev1alpha1 "cosmossdk.io/api/cosmos/app/runtime/v1alpha1"
 	appv1alpha1 "cosmossdk.io/api/cosmos/app/v1alpha1"
 	authmodulev1 "cosmossdk.io/api/cosmos/auth/module/v1"
@@ -94,6 +98,7 @@ var (
 		circuittypes.ModuleName,
 		// chain modules
 		registrymoduletypes.ModuleName,
+		managermoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
@@ -119,6 +124,7 @@ var (
 		ibcfeetypes.ModuleName,
 		// chain modules
 		registrymoduletypes.ModuleName,
+		managermoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	}
 
@@ -138,6 +144,7 @@ var (
 		ibcfeetypes.ModuleName,
 		// chain modules
 		registrymoduletypes.ModuleName,
+		managermoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	}
 
@@ -296,6 +303,10 @@ var (
 			{
 				Name:   registrymoduletypes.ModuleName,
 				Config: appconfig.WrapAny(&registrymodulev1.Module{}),
+			},
+			{
+				Name:   managermoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&managermodulev1.Module{}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},

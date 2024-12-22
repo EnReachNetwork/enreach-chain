@@ -1,0 +1,15 @@
+syntax = "proto3";
+package enreach.manager;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "enreach/x/manager/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (amino.name) = "enreach/x/manager/Params";
+  option (gogoproto.equal) = true;
+
+  
+}
