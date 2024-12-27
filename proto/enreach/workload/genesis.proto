@@ -1,17 +1,20 @@
 syntax = "proto3";
+
 package enreach.workload;
 
 import "amino/amino.proto";
 import "gogoproto/gogo.proto";
 import "enreach/workload/params.proto";
+import "enreach/workload/workload.proto";
 
 option go_package = "enreach/x/workload/types";
 
 // GenesisState defines the workload module's genesis state.
 message GenesisState {
+  
   // params defines all the parameters of the module.
-  Params params = 1 [
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
+           Params   params        = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  repeated Workload workloadList  = 2 [(gogoproto.nullable) = false] ;
+           uint64   workloadCount = 3;
 }
+

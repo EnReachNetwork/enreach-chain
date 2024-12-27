@@ -17,6 +17,17 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Use:       "params",
 					Short:     "Shows the parameters of the module",
 				},
+				{
+					RpcMethod: "WorkloadAll",
+					Use:       "list-workload",
+					Short:     "List all workload",
+				},
+				{
+					RpcMethod:      "Workload",
+					Use:            "show-workload [id]",
+					Short:          "Shows a workload by id",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}},
+				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},
@@ -27,6 +38,24 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				{
 					RpcMethod: "UpdateParams",
 					Skip:      true, // skipped because authority gated
+				},
+				{
+					RpcMethod:      "CreateWorkload",
+					Use:            "create-workload [epoch] [minerId] [score] [managerId]",
+					Short:          "Create workload",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "epoch"}, {ProtoField: "minerId"}, {ProtoField: "score"}, {ProtoField: "managerId"}},
+				},
+				{
+					RpcMethod:      "UpdateWorkload",
+					Use:            "update-workload [id] [epoch] [minerId] [score] [managerId]",
+					Short:          "Update workload",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}, {ProtoField: "epoch"}, {ProtoField: "minerId"}, {ProtoField: "score"}, {ProtoField: "managerId"}},
+				},
+				{
+					RpcMethod:      "DeleteWorkload",
+					Use:            "delete-workload [id]",
+					Short:          "Delete workload",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}},
 				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},

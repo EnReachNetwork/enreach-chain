@@ -1,7 +1,7 @@
-import { Params } from "./types/enreach/workload/params"
+import { Workload } from "./types/enreach/workload/workload"
 
 
 export {     
-    Params,
+    Workload,
     
  }
