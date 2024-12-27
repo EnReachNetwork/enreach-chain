@@ -79,6 +79,8 @@ import (
 	registrymodulekeeper "enreach/x/registry/keeper"
 
 	minermodulekeeper "enreach/x/miner/keeper"
+	workloadmodulekeeper "enreach/x/workload/keeper"
+
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
 	"enreach/docs"
@@ -146,6 +148,7 @@ type App struct {
 	RegistryKeeper registrymodulekeeper.Keeper
 	ManagerKeeper  managermodulekeeper.Keeper
 	MinerKeeper    minermodulekeeper.Keeper
+	WorkloadKeeper workloadmodulekeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
 
 	// simulation manager
@@ -287,6 +290,7 @@ func New(
 		&app.RegistryKeeper,
 		&app.ManagerKeeper,
 		&app.MinerKeeper,
+		&app.WorkloadKeeper,
 		// this line is used by starport scaffolding # stargate/app/keeperDefinition
 	); err != nil {
 		panic(err)
