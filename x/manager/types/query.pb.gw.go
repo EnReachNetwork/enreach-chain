@@ -422,7 +422,7 @@ var (
 
 	pattern_Query_Manager_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"enreach", "manager", "id"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_ManagerAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1}, []string{"enreach", "manager"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_ManagerAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"enreach", "manager", "managers"}, "", runtime.AssumeColonVerbOpt(false)))
 
 	pattern_Query_GetManagerByRegion_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"enreach", "manager", "get_manager_by_region", "regionCode"}, "", runtime.AssumeColonVerbOpt(false)))
 )

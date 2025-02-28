@@ -8,24 +8,24 @@ import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
 import { QueryGetMinerRequest } from "./types/enreach/miner/query";
 import { GenesisState } from "./types/enreach/miner/genesis";
+import { Params } from "./types/enreach/miner/params";
+import { MsgUpdateMiner } from "./types/enreach/miner/tx";
+import { MsgUpdateMinerResponse } from "./types/enreach/miner/tx";
 import { MsgDeleteMinerResponse } from "./types/enreach/miner/tx";
 import { QueryParamsRequest } from "./types/enreach/miner/query";
-import { MsgUpdateMiner } from "./types/enreach/miner/tx";
-import { QueryAllMinerResponse } from "./types/enreach/miner/query";
+import { QueryParamsResponse } from "./types/enreach/miner/query";
 import { MsgUpdateParams } from "./types/enreach/miner/tx";
-import { MsgCreateMinerResponse } from "./types/enreach/miner/tx";
-import { MsgCreateMiner } from "./types/enreach/miner/tx";
-import { QueryGetMinerResponse } from "./types/enreach/miner/query";
 import { QueryAllMinerRequest } from "./types/enreach/miner/query";
 import { MsgDeleteMiner } from "./types/enreach/miner/tx";
-import { QueryParamsResponse } from "./types/enreach/miner/query";
-import { Miner } from "./types/enreach/miner/miner";
 import { MsgUpdateParamsResponse } from "./types/enreach/miner/tx";
-import { MsgUpdateMinerResponse } from "./types/enreach/miner/tx";
-import { Params } from "./types/enreach/miner/params";
+import { MsgCreateMiner } from "./types/enreach/miner/tx";
+import { QueryGetMinerResponse } from "./types/enreach/miner/query";
+import { QueryAllMinerResponse } from "./types/enreach/miner/query";
+import { Miner } from "./types/enreach/miner/miner";
+import { MsgCreateMinerResponse } from "./types/enreach/miner/tx";
 
 
-export { QueryGetMinerRequest, GenesisState, MsgDeleteMinerResponse, QueryParamsRequest, MsgUpdateMiner, QueryAllMinerResponse, MsgUpdateParams, MsgCreateMinerResponse, MsgCreateMiner, QueryGetMinerResponse, QueryAllMinerRequest, MsgDeleteMiner, QueryParamsResponse, Miner, MsgUpdateParamsResponse, MsgUpdateMinerResponse, Params };
+export { QueryGetMinerRequest, GenesisState, Params, MsgUpdateMiner, MsgUpdateMinerResponse, MsgDeleteMinerResponse, QueryParamsRequest, QueryParamsResponse, MsgUpdateParams, QueryAllMinerRequest, MsgDeleteMiner, MsgUpdateParamsResponse, MsgCreateMiner, QueryGetMinerResponse, QueryAllMinerResponse, Miner, MsgCreateMinerResponse };
 
 type sendQueryGetMinerRequestParams = {
   value: QueryGetMinerRequest,
@@ -35,6 +35,24 @@ type sendQueryGetMinerRequestParams = {
 
 type sendGenesisStateParams = {
   value: GenesisState,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendParamsParams = {
+  value: Params,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateMinerParams = {
+  value: MsgUpdateMiner,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateMinerResponseParams = {
+  value: MsgUpdateMinerResponse,
   fee?: StdFee,
   memo?: string
 };
@@ -51,38 +69,14 @@ type sendQueryParamsRequestParams = {
   memo?: string
 };
 
-type sendMsgUpdateMinerParams = {
-  value: MsgUpdateMiner,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryAllMinerResponseParams = {
-  value: QueryAllMinerResponse,
+type sendQueryParamsResponseParams = {
+  value: QueryParamsResponse,
   fee?: StdFee,
   memo?: string
 };
 
 type sendMsgUpdateParamsParams = {
   value: MsgUpdateParams,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgCreateMinerResponseParams = {
-  value: MsgCreateMinerResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgCreateMinerParams = {
-  value: MsgCreateMiner,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetMinerResponseParams = {
-  value: QueryGetMinerResponse,
   fee?: StdFee,
   memo?: string
 };
@@ -99,8 +93,26 @@ type sendMsgDeleteMinerParams = {
   memo?: string
 };
 
-type sendQueryParamsResponseParams = {
-  value: QueryParamsResponse,
+type sendMsgUpdateParamsResponseParams = {
+  value: MsgUpdateParamsResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgCreateMinerParams = {
+  value: MsgCreateMiner,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetMinerResponseParams = {
+  value: QueryGetMinerResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryAllMinerResponseParams = {
+  value: QueryAllMinerResponse,
   fee?: StdFee,
   memo?: string
 };
@@ -111,20 +123,8 @@ type sendMinerParams = {
   memo?: string
 };
 
-type sendMsgUpdateParamsResponseParams = {
-  value: MsgUpdateParamsResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateMinerResponseParams = {
-  value: MsgUpdateMinerResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendParamsParams = {
-  value: Params,
+type sendMsgCreateMinerResponseParams = {
+  value: MsgCreateMinerResponse,
   fee?: StdFee,
   memo?: string
 };
@@ -138,6 +138,18 @@ type genesisStateParams = {
   value: GenesisState,
 };
 
+type paramsParams = {
+  value: Params,
+};
+
+type msgUpdateMinerParams = {
+  value: MsgUpdateMiner,
+};
+
+type msgUpdateMinerResponseParams = {
+  value: MsgUpdateMinerResponse,
+};
+
 type msgDeleteMinerResponseParams = {
   value: MsgDeleteMinerResponse,
 };
@@ -146,28 +158,12 @@ type queryParamsRequestParams = {
   value: QueryParamsRequest,
 };
 
-type msgUpdateMinerParams = {
-  value: MsgUpdateMiner,
-};
-
-type queryAllMinerResponseParams = {
-  value: QueryAllMinerResponse,
+type queryParamsResponseParams = {
+  value: QueryParamsResponse,
 };
 
 type msgUpdateParamsParams = {
   value: MsgUpdateParams,
-};
-
-type msgCreateMinerResponseParams = {
-  value: MsgCreateMinerResponse,
-};
-
-type msgCreateMinerParams = {
-  value: MsgCreateMiner,
-};
-
-type queryGetMinerResponseParams = {
-  value: QueryGetMinerResponse,
 };
 
 type queryAllMinerRequestParams = {
@@ -178,24 +174,28 @@ type msgDeleteMinerParams = {
   value: MsgDeleteMiner,
 };
 
-type queryParamsResponseParams = {
-  value: QueryParamsResponse,
+type msgUpdateParamsResponseParams = {
+  value: MsgUpdateParamsResponse,
+};
+
+type msgCreateMinerParams = {
+  value: MsgCreateMiner,
+};
+
+type queryGetMinerResponseParams = {
+  value: QueryGetMinerResponse,
+};
+
+type queryAllMinerResponseParams = {
+  value: QueryAllMinerResponse,
 };
 
 type minerParams = {
   value: Miner,
 };
 
-type msgUpdateParamsResponseParams = {
-  value: MsgUpdateParamsResponse,
-};
-
-type msgUpdateMinerResponseParams = {
-  value: MsgUpdateMinerResponse,
-};
-
-type paramsParams = {
-  value: Params,
+type msgCreateMinerResponseParams = {
+  value: MsgCreateMinerResponse,
 };
 
 
@@ -256,6 +256,48 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		async sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendParams: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.params({ value: Params.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendParams: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateMiner({ value, fee, memo }: sendMsgUpdateMinerParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateMiner: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateMiner({ value: MsgUpdateMiner.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateMiner: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateMinerResponse({ value, fee, memo }: sendMsgUpdateMinerResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateMinerResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateMinerResponse({ value: MsgUpdateMinerResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateMinerResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
 		async sendMsgDeleteMinerResponse({ value, fee, memo }: sendMsgDeleteMinerResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendMsgDeleteMinerResponse: Unable to sign Tx. Signer is not present.')
@@ -284,31 +326,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendMsgUpdateMiner({ value, fee, memo }: sendMsgUpdateMinerParams): Promise<DeliverTxResponse> {
+		async sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateMiner: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryParamsResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateMiner({ value: MsgUpdateMiner.fromPartial(value) })
+				let msg = this.queryParamsResponse({ value: QueryParamsResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateMiner: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryAllMinerResponse({ value, fee, memo }: sendQueryAllMinerResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryAllMinerResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryAllMinerResponse({ value: QueryAllMinerResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryAllMinerResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryParamsResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -323,48 +351,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
 				throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgCreateMinerResponse({ value, fee, memo }: sendMsgCreateMinerResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgCreateMinerResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgCreateMinerResponse({ value: MsgCreateMinerResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgCreateMinerResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgCreateMiner({ value, fee, memo }: sendMsgCreateMinerParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgCreateMiner: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgCreateMiner({ value: MsgCreateMiner.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgCreateMiner: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGetMinerResponse({ value, fee, memo }: sendQueryGetMinerResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetMinerResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetMinerResponse({ value: QueryGetMinerResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetMinerResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -396,17 +382,59 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse> {
+		async sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryParamsResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryParamsResponse({ value: QueryParamsResponse.fromPartial(value) })
+				let msg = this.msgUpdateParamsResponse({ value: MsgUpdateParamsResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryParamsResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgUpdateParamsResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgCreateMiner({ value, fee, memo }: sendMsgCreateMinerParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateMiner: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgCreateMiner({ value: MsgCreateMiner.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgCreateMiner: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetMinerResponse({ value, fee, memo }: sendQueryGetMinerResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetMinerResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetMinerResponse({ value: QueryGetMinerResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetMinerResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryAllMinerResponse({ value, fee, memo }: sendQueryAllMinerResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryAllMinerResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryAllMinerResponse({ value: QueryAllMinerResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryAllMinerResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -424,45 +452,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse> {
+		async sendMsgCreateMinerResponse({ value, fee, memo }: sendMsgCreateMinerResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgCreateMinerResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateParamsResponse({ value: MsgUpdateParamsResponse.fromPartial(value) })
+				let msg = this.msgCreateMinerResponse({ value: MsgCreateMinerResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateParamsResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUpdateMinerResponse({ value, fee, memo }: sendMsgUpdateMinerResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateMinerResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateMinerResponse({ value: MsgUpdateMinerResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateMinerResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendParams: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.params({ value: Params.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendParams: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgCreateMinerResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -483,6 +483,30 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		params({ value }: paramsParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.miner.Params", value: Params.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:Params: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateMiner({ value }: msgUpdateMinerParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.miner.MsgUpdateMiner", value: MsgUpdateMiner.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateMiner: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateMinerResponse({ value }: msgUpdateMinerResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.miner.MsgUpdateMinerResponse", value: MsgUpdateMinerResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateMinerResponse: Could not create message: ' + e.message)
+			}
+		},
+		
 		msgDeleteMinerResponse({ value }: msgDeleteMinerResponseParams): EncodeObject {
 			try {
 				return { typeUrl: "/enreach.miner.MsgDeleteMinerResponse", value: MsgDeleteMinerResponse.fromPartial( value ) }  
@@ -499,19 +523,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		msgUpdateMiner({ value }: msgUpdateMinerParams): EncodeObject {
+		queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/enreach.miner.MsgUpdateMiner", value: MsgUpdateMiner.fromPartial( value ) }  
+				return { typeUrl: "/enreach.miner.QueryParamsResponse", value: QueryParamsResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateMiner: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryAllMinerResponse({ value }: queryAllMinerResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.miner.QueryAllMinerResponse", value: QueryAllMinerResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryAllMinerResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryParamsResponse: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -520,30 +536,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 				return { typeUrl: "/enreach.miner.MsgUpdateParams", value: MsgUpdateParams.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgCreateMinerResponse({ value }: msgCreateMinerResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.miner.MsgCreateMinerResponse", value: MsgCreateMinerResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgCreateMinerResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgCreateMiner({ value }: msgCreateMinerParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.miner.MsgCreateMiner", value: MsgCreateMiner.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgCreateMiner: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetMinerResponse({ value }: queryGetMinerResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.miner.QueryGetMinerResponse", value: QueryGetMinerResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetMinerResponse: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -563,11 +555,35 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject {
+		msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/enreach.miner.QueryParamsResponse", value: QueryParamsResponse.fromPartial( value ) }  
+				return { typeUrl: "/enreach.miner.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryParamsResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgCreateMiner({ value }: msgCreateMinerParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.miner.MsgCreateMiner", value: MsgCreateMiner.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgCreateMiner: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryGetMinerResponse({ value }: queryGetMinerResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.miner.QueryGetMinerResponse", value: QueryGetMinerResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetMinerResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryAllMinerResponse({ value }: queryAllMinerResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.miner.QueryAllMinerResponse", value: QueryAllMinerResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryAllMinerResponse: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -579,27 +595,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject {
+		msgCreateMinerResponse({ value }: msgCreateMinerResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/enreach.miner.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial( value ) }  
+				return { typeUrl: "/enreach.miner.MsgCreateMinerResponse", value: MsgCreateMinerResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateMinerResponse({ value }: msgUpdateMinerResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.miner.MsgUpdateMinerResponse", value: MsgUpdateMinerResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateMinerResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		params({ value }: paramsParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.miner.Params", value: Params.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:Params: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgCreateMinerResponse: Could not create message: ' + e.message)
 			}
 		},
 		

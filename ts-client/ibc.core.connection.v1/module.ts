@@ -6,39 +6,39 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
-import { MsgConnectionOpenTry } from "./types/ibc/core/connection/v1/tx";
-import { MsgConnectionOpenTryResponse } from "./types/ibc/core/connection/v1/tx";
-import { MsgConnectionOpenAck } from "./types/ibc/core/connection/v1/tx";
-import { MsgUpdateParams } from "./types/ibc/core/connection/v1/tx";
-import { QueryConnectionsResponse } from "./types/ibc/core/connection/v1/query";
-import { QueryConnectionClientStateRequest } from "./types/ibc/core/connection/v1/query";
-import { Params } from "./types/ibc/core/connection/v1/connection";
-import { Version } from "./types/ibc/core/connection/v1/connection";
-import { ConnectionPaths } from "./types/ibc/core/connection/v1/connection";
-import { QueryConnectionParamsRequest } from "./types/ibc/core/connection/v1/query";
-import { ConnectionEnd } from "./types/ibc/core/connection/v1/connection";
-import { MsgUpdateParamsResponse } from "./types/ibc/core/connection/v1/tx";
-import { QueryClientConnectionsRequest } from "./types/ibc/core/connection/v1/query";
-import { QueryConnectionConsensusStateRequest } from "./types/ibc/core/connection/v1/query";
-import { Counterparty } from "./types/ibc/core/connection/v1/connection";
-import { QueryConnectionClientStateResponse } from "./types/ibc/core/connection/v1/query";
-import { QueryConnectionResponse } from "./types/ibc/core/connection/v1/query";
-import { MsgConnectionOpenConfirm } from "./types/ibc/core/connection/v1/tx";
-import { QueryClientConnectionsResponse } from "./types/ibc/core/connection/v1/query";
-import { QueryConnectionParamsResponse } from "./types/ibc/core/connection/v1/query";
-import { MsgConnectionOpenConfirmResponse } from "./types/ibc/core/connection/v1/tx";
-import { QueryConnectionRequest } from "./types/ibc/core/connection/v1/query";
-import { QueryConnectionsRequest } from "./types/ibc/core/connection/v1/query";
-import { IdentifiedConnection } from "./types/ibc/core/connection/v1/connection";
-import { ClientPaths } from "./types/ibc/core/connection/v1/connection";
-import { MsgConnectionOpenInit } from "./types/ibc/core/connection/v1/tx";
-import { MsgConnectionOpenInitResponse } from "./types/ibc/core/connection/v1/tx";
-import { MsgConnectionOpenAckResponse } from "./types/ibc/core/connection/v1/tx";
-import { QueryConnectionConsensusStateResponse } from "./types/ibc/core/connection/v1/query";
-import { GenesisState } from "./types/ibc/core/connection/v1/genesis";
+import { MsgConnectionOpenTry } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/tx";
+import { MsgConnectionOpenTryResponse } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/tx";
+import { MsgConnectionOpenConfirmResponse } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/tx";
+import { Params } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/connection";
+import { ClientPaths } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/connection";
+import { Counterparty } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/connection";
+import { MsgConnectionOpenAck } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/tx";
+import { ConnectionPaths } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/connection";
+import { QueryConnectionRequest } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/query";
+import { QueryConnectionConsensusStateResponse } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/query";
+import { MsgConnectionOpenInitResponse } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/tx";
+import { MsgConnectionOpenInit } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/tx";
+import { MsgConnectionOpenConfirm } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/tx";
+import { MsgUpdateParams } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/tx";
+import { QueryClientConnectionsResponse } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/query";
+import { GenesisState } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/genesis";
+import { QueryConnectionsResponse } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/query";
+import { QueryConnectionClientStateResponse } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/query";
+import { Version } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/connection";
+import { QueryClientConnectionsRequest } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/query";
+import { ConnectionEnd } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/connection";
+import { MsgConnectionOpenAckResponse } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/tx";
+import { QueryConnectionsRequest } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/query";
+import { QueryConnectionClientStateRequest } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/query";
+import { QueryConnectionParamsRequest } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/query";
+import { MsgUpdateParamsResponse } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/tx";
+import { IdentifiedConnection } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/connection";
+import { QueryConnectionResponse } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/query";
+import { QueryConnectionConsensusStateRequest } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/query";
+import { QueryConnectionParamsResponse } from "./types/../../../../go/pkg/mod/github.com/cosmos/ibc-go/v8@v8.2.0/proto/ibc/core/connection/v1/query";
 
 
-export { MsgConnectionOpenTry, MsgConnectionOpenTryResponse, MsgConnectionOpenAck, MsgUpdateParams, QueryConnectionsResponse, QueryConnectionClientStateRequest, Params, Version, ConnectionPaths, QueryConnectionParamsRequest, ConnectionEnd, MsgUpdateParamsResponse, QueryClientConnectionsRequest, QueryConnectionConsensusStateRequest, Counterparty, QueryConnectionClientStateResponse, QueryConnectionResponse, MsgConnectionOpenConfirm, QueryClientConnectionsResponse, QueryConnectionParamsResponse, MsgConnectionOpenConfirmResponse, QueryConnectionRequest, QueryConnectionsRequest, IdentifiedConnection, ClientPaths, MsgConnectionOpenInit, MsgConnectionOpenInitResponse, MsgConnectionOpenAckResponse, QueryConnectionConsensusStateResponse, GenesisState };
+export { MsgConnectionOpenTry, MsgConnectionOpenTryResponse, MsgConnectionOpenConfirmResponse, Params, ClientPaths, Counterparty, MsgConnectionOpenAck, ConnectionPaths, QueryConnectionRequest, QueryConnectionConsensusStateResponse, MsgConnectionOpenInitResponse, MsgConnectionOpenInit, MsgConnectionOpenConfirm, MsgUpdateParams, QueryClientConnectionsResponse, GenesisState, QueryConnectionsResponse, QueryConnectionClientStateResponse, Version, QueryClientConnectionsRequest, ConnectionEnd, MsgConnectionOpenAckResponse, QueryConnectionsRequest, QueryConnectionClientStateRequest, QueryConnectionParamsRequest, MsgUpdateParamsResponse, IdentifiedConnection, QueryConnectionResponse, QueryConnectionConsensusStateRequest, QueryConnectionParamsResponse };
 
 type sendMsgConnectionOpenTryParams = {
   value: MsgConnectionOpenTry,
@@ -52,26 +52,8 @@ type sendMsgConnectionOpenTryResponseParams = {
   memo?: string
 };
 
-type sendMsgConnectionOpenAckParams = {
-  value: MsgConnectionOpenAck,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateParamsParams = {
-  value: MsgUpdateParams,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryConnectionsResponseParams = {
-  value: QueryConnectionsResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryConnectionClientStateRequestParams = {
-  value: QueryConnectionClientStateRequest,
+type sendMsgConnectionOpenConfirmResponseParams = {
+  value: MsgConnectionOpenConfirmResponse,
   fee?: StdFee,
   memo?: string
 };
@@ -82,44 +64,8 @@ type sendParamsParams = {
   memo?: string
 };
 
-type sendVersionParams = {
-  value: Version,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendConnectionPathsParams = {
-  value: ConnectionPaths,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryConnectionParamsRequestParams = {
-  value: QueryConnectionParamsRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendConnectionEndParams = {
-  value: ConnectionEnd,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateParamsResponseParams = {
-  value: MsgUpdateParamsResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryClientConnectionsRequestParams = {
-  value: QueryClientConnectionsRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryConnectionConsensusStateRequestParams = {
-  value: QueryConnectionConsensusStateRequest,
+type sendClientPathsParams = {
+  value: ClientPaths,
   fee?: StdFee,
   memo?: string
 };
@@ -130,38 +76,14 @@ type sendCounterpartyParams = {
   memo?: string
 };
 
-type sendQueryConnectionClientStateResponseParams = {
-  value: QueryConnectionClientStateResponse,
+type sendMsgConnectionOpenAckParams = {
+  value: MsgConnectionOpenAck,
   fee?: StdFee,
   memo?: string
 };
 
-type sendQueryConnectionResponseParams = {
-  value: QueryConnectionResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgConnectionOpenConfirmParams = {
-  value: MsgConnectionOpenConfirm,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryClientConnectionsResponseParams = {
-  value: QueryClientConnectionsResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryConnectionParamsResponseParams = {
-  value: QueryConnectionParamsResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgConnectionOpenConfirmResponseParams = {
-  value: MsgConnectionOpenConfirmResponse,
+type sendConnectionPathsParams = {
+  value: ConnectionPaths,
   fee?: StdFee,
   memo?: string
 };
@@ -172,26 +94,8 @@ type sendQueryConnectionRequestParams = {
   memo?: string
 };
 
-type sendQueryConnectionsRequestParams = {
-  value: QueryConnectionsRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendIdentifiedConnectionParams = {
-  value: IdentifiedConnection,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendClientPathsParams = {
-  value: ClientPaths,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgConnectionOpenInitParams = {
-  value: MsgConnectionOpenInit,
+type sendQueryConnectionConsensusStateResponseParams = {
+  value: QueryConnectionConsensusStateResponse,
   fee?: StdFee,
   memo?: string
 };
@@ -202,20 +106,116 @@ type sendMsgConnectionOpenInitResponseParams = {
   memo?: string
 };
 
-type sendMsgConnectionOpenAckResponseParams = {
-  value: MsgConnectionOpenAckResponse,
+type sendMsgConnectionOpenInitParams = {
+  value: MsgConnectionOpenInit,
   fee?: StdFee,
   memo?: string
 };
 
-type sendQueryConnectionConsensusStateResponseParams = {
-  value: QueryConnectionConsensusStateResponse,
+type sendMsgConnectionOpenConfirmParams = {
+  value: MsgConnectionOpenConfirm,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateParamsParams = {
+  value: MsgUpdateParams,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryClientConnectionsResponseParams = {
+  value: QueryClientConnectionsResponse,
   fee?: StdFee,
   memo?: string
 };
 
 type sendGenesisStateParams = {
   value: GenesisState,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryConnectionsResponseParams = {
+  value: QueryConnectionsResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryConnectionClientStateResponseParams = {
+  value: QueryConnectionClientStateResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendVersionParams = {
+  value: Version,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryClientConnectionsRequestParams = {
+  value: QueryClientConnectionsRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendConnectionEndParams = {
+  value: ConnectionEnd,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgConnectionOpenAckResponseParams = {
+  value: MsgConnectionOpenAckResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryConnectionsRequestParams = {
+  value: QueryConnectionsRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryConnectionClientStateRequestParams = {
+  value: QueryConnectionClientStateRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryConnectionParamsRequestParams = {
+  value: QueryConnectionParamsRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateParamsResponseParams = {
+  value: MsgUpdateParamsResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendIdentifiedConnectionParams = {
+  value: IdentifiedConnection,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryConnectionResponseParams = {
+  value: QueryConnectionResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryConnectionConsensusStateRequestParams = {
+  value: QueryConnectionConsensusStateRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryConnectionParamsResponseParams = {
+  value: QueryConnectionParamsResponse,
   fee?: StdFee,
   memo?: string
 };
@@ -229,116 +229,116 @@ type msgConnectionOpenTryResponseParams = {
   value: MsgConnectionOpenTryResponse,
 };
 
-type msgConnectionOpenAckParams = {
-  value: MsgConnectionOpenAck,
-};
-
-type msgUpdateParamsParams = {
-  value: MsgUpdateParams,
-};
-
-type queryConnectionsResponseParams = {
-  value: QueryConnectionsResponse,
-};
-
-type queryConnectionClientStateRequestParams = {
-  value: QueryConnectionClientStateRequest,
+type msgConnectionOpenConfirmResponseParams = {
+  value: MsgConnectionOpenConfirmResponse,
 };
 
 type paramsParams = {
   value: Params,
 };
 
-type versionParams = {
-  value: Version,
-};
-
-type connectionPathsParams = {
-  value: ConnectionPaths,
-};
-
-type queryConnectionParamsRequestParams = {
-  value: QueryConnectionParamsRequest,
-};
-
-type connectionEndParams = {
-  value: ConnectionEnd,
-};
-
-type msgUpdateParamsResponseParams = {
-  value: MsgUpdateParamsResponse,
-};
-
-type queryClientConnectionsRequestParams = {
-  value: QueryClientConnectionsRequest,
-};
-
-type queryConnectionConsensusStateRequestParams = {
-  value: QueryConnectionConsensusStateRequest,
+type clientPathsParams = {
+  value: ClientPaths,
 };
 
 type counterpartyParams = {
   value: Counterparty,
 };
 
-type queryConnectionClientStateResponseParams = {
-  value: QueryConnectionClientStateResponse,
+type msgConnectionOpenAckParams = {
+  value: MsgConnectionOpenAck,
 };
 
-type queryConnectionResponseParams = {
-  value: QueryConnectionResponse,
-};
-
-type msgConnectionOpenConfirmParams = {
-  value: MsgConnectionOpenConfirm,
-};
-
-type queryClientConnectionsResponseParams = {
-  value: QueryClientConnectionsResponse,
-};
-
-type queryConnectionParamsResponseParams = {
-  value: QueryConnectionParamsResponse,
-};
-
-type msgConnectionOpenConfirmResponseParams = {
-  value: MsgConnectionOpenConfirmResponse,
+type connectionPathsParams = {
+  value: ConnectionPaths,
 };
 
 type queryConnectionRequestParams = {
   value: QueryConnectionRequest,
 };
 
-type queryConnectionsRequestParams = {
-  value: QueryConnectionsRequest,
-};
-
-type identifiedConnectionParams = {
-  value: IdentifiedConnection,
-};
-
-type clientPathsParams = {
-  value: ClientPaths,
-};
-
-type msgConnectionOpenInitParams = {
-  value: MsgConnectionOpenInit,
+type queryConnectionConsensusStateResponseParams = {
+  value: QueryConnectionConsensusStateResponse,
 };
 
 type msgConnectionOpenInitResponseParams = {
   value: MsgConnectionOpenInitResponse,
 };
 
-type msgConnectionOpenAckResponseParams = {
-  value: MsgConnectionOpenAckResponse,
+type msgConnectionOpenInitParams = {
+  value: MsgConnectionOpenInit,
 };
 
-type queryConnectionConsensusStateResponseParams = {
-  value: QueryConnectionConsensusStateResponse,
+type msgConnectionOpenConfirmParams = {
+  value: MsgConnectionOpenConfirm,
+};
+
+type msgUpdateParamsParams = {
+  value: MsgUpdateParams,
+};
+
+type queryClientConnectionsResponseParams = {
+  value: QueryClientConnectionsResponse,
 };
 
 type genesisStateParams = {
   value: GenesisState,
+};
+
+type queryConnectionsResponseParams = {
+  value: QueryConnectionsResponse,
+};
+
+type queryConnectionClientStateResponseParams = {
+  value: QueryConnectionClientStateResponse,
+};
+
+type versionParams = {
+  value: Version,
+};
+
+type queryClientConnectionsRequestParams = {
+  value: QueryClientConnectionsRequest,
+};
+
+type connectionEndParams = {
+  value: ConnectionEnd,
+};
+
+type msgConnectionOpenAckResponseParams = {
+  value: MsgConnectionOpenAckResponse,
+};
+
+type queryConnectionsRequestParams = {
+  value: QueryConnectionsRequest,
+};
+
+type queryConnectionClientStateRequestParams = {
+  value: QueryConnectionClientStateRequest,
+};
+
+type queryConnectionParamsRequestParams = {
+  value: QueryConnectionParamsRequest,
+};
+
+type msgUpdateParamsResponseParams = {
+  value: MsgUpdateParamsResponse,
+};
+
+type identifiedConnectionParams = {
+  value: IdentifiedConnection,
+};
+
+type queryConnectionResponseParams = {
+  value: QueryConnectionResponse,
+};
+
+type queryConnectionConsensusStateRequestParams = {
+  value: QueryConnectionConsensusStateRequest,
+};
+
+type queryConnectionParamsResponseParams = {
+  value: QueryConnectionParamsResponse,
 };
 
 
@@ -399,59 +399,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendMsgConnectionOpenAck({ value, fee, memo }: sendMsgConnectionOpenAckParams): Promise<DeliverTxResponse> {
+		async sendMsgConnectionOpenConfirmResponse({ value, fee, memo }: sendMsgConnectionOpenConfirmResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgConnectionOpenAck: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgConnectionOpenConfirmResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgConnectionOpenAck({ value: MsgConnectionOpenAck.fromPartial(value) })
+				let msg = this.msgConnectionOpenConfirmResponse({ value: MsgConnectionOpenConfirmResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgConnectionOpenAck: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateParams({ value: MsgUpdateParams.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryConnectionsResponse({ value, fee, memo }: sendQueryConnectionsResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryConnectionsResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryConnectionsResponse({ value: QueryConnectionsResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryConnectionsResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryConnectionClientStateRequest({ value, fee, memo }: sendQueryConnectionClientStateRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryConnectionClientStateRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryConnectionClientStateRequest({ value: QueryConnectionClientStateRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryConnectionClientStateRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgConnectionOpenConfirmResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -469,101 +427,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendVersion({ value, fee, memo }: sendVersionParams): Promise<DeliverTxResponse> {
+		async sendClientPaths({ value, fee, memo }: sendClientPathsParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendVersion: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendClientPaths: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.version({ value: Version.fromPartial(value) })
+				let msg = this.clientPaths({ value: ClientPaths.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendVersion: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendConnectionPaths({ value, fee, memo }: sendConnectionPathsParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendConnectionPaths: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.connectionPaths({ value: ConnectionPaths.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendConnectionPaths: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryConnectionParamsRequest({ value, fee, memo }: sendQueryConnectionParamsRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryConnectionParamsRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryConnectionParamsRequest({ value: QueryConnectionParamsRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryConnectionParamsRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendConnectionEnd({ value, fee, memo }: sendConnectionEndParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendConnectionEnd: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.connectionEnd({ value: ConnectionEnd.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendConnectionEnd: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateParamsResponse({ value: MsgUpdateParamsResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateParamsResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryClientConnectionsRequest({ value, fee, memo }: sendQueryClientConnectionsRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryClientConnectionsRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryClientConnectionsRequest({ value: QueryClientConnectionsRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryClientConnectionsRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryConnectionConsensusStateRequest({ value, fee, memo }: sendQueryConnectionConsensusStateRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryConnectionConsensusStateRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryConnectionConsensusStateRequest({ value: QueryConnectionConsensusStateRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryConnectionConsensusStateRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendClientPaths: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -581,87 +455,31 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendQueryConnectionClientStateResponse({ value, fee, memo }: sendQueryConnectionClientStateResponseParams): Promise<DeliverTxResponse> {
+		async sendMsgConnectionOpenAck({ value, fee, memo }: sendMsgConnectionOpenAckParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryConnectionClientStateResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgConnectionOpenAck: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryConnectionClientStateResponse({ value: QueryConnectionClientStateResponse.fromPartial(value) })
+				let msg = this.msgConnectionOpenAck({ value: MsgConnectionOpenAck.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryConnectionClientStateResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgConnectionOpenAck: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendQueryConnectionResponse({ value, fee, memo }: sendQueryConnectionResponseParams): Promise<DeliverTxResponse> {
+		async sendConnectionPaths({ value, fee, memo }: sendConnectionPathsParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryConnectionResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendConnectionPaths: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryConnectionResponse({ value: QueryConnectionResponse.fromPartial(value) })
+				let msg = this.connectionPaths({ value: ConnectionPaths.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryConnectionResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgConnectionOpenConfirm({ value, fee, memo }: sendMsgConnectionOpenConfirmParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgConnectionOpenConfirm: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgConnectionOpenConfirm({ value: MsgConnectionOpenConfirm.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgConnectionOpenConfirm: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryClientConnectionsResponse({ value, fee, memo }: sendQueryClientConnectionsResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryClientConnectionsResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryClientConnectionsResponse({ value: QueryClientConnectionsResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryClientConnectionsResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryConnectionParamsResponse({ value, fee, memo }: sendQueryConnectionParamsResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryConnectionParamsResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryConnectionParamsResponse({ value: QueryConnectionParamsResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryConnectionParamsResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgConnectionOpenConfirmResponse({ value, fee, memo }: sendMsgConnectionOpenConfirmResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgConnectionOpenConfirmResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgConnectionOpenConfirmResponse({ value: MsgConnectionOpenConfirmResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgConnectionOpenConfirmResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendConnectionPaths: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -679,59 +497,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendQueryConnectionsRequest({ value, fee, memo }: sendQueryConnectionsRequestParams): Promise<DeliverTxResponse> {
+		async sendQueryConnectionConsensusStateResponse({ value, fee, memo }: sendQueryConnectionConsensusStateResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryConnectionsRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryConnectionConsensusStateResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryConnectionsRequest({ value: QueryConnectionsRequest.fromPartial(value) })
+				let msg = this.queryConnectionConsensusStateResponse({ value: QueryConnectionConsensusStateResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryConnectionsRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendIdentifiedConnection({ value, fee, memo }: sendIdentifiedConnectionParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendIdentifiedConnection: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.identifiedConnection({ value: IdentifiedConnection.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendIdentifiedConnection: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendClientPaths({ value, fee, memo }: sendClientPathsParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendClientPaths: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.clientPaths({ value: ClientPaths.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendClientPaths: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgConnectionOpenInit({ value, fee, memo }: sendMsgConnectionOpenInitParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgConnectionOpenInit: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgConnectionOpenInit({ value: MsgConnectionOpenInit.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgConnectionOpenInit: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryConnectionConsensusStateResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -749,31 +525,59 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendMsgConnectionOpenAckResponse({ value, fee, memo }: sendMsgConnectionOpenAckResponseParams): Promise<DeliverTxResponse> {
+		async sendMsgConnectionOpenInit({ value, fee, memo }: sendMsgConnectionOpenInitParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgConnectionOpenAckResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgConnectionOpenInit: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgConnectionOpenAckResponse({ value: MsgConnectionOpenAckResponse.fromPartial(value) })
+				let msg = this.msgConnectionOpenInit({ value: MsgConnectionOpenInit.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgConnectionOpenAckResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgConnectionOpenInit: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendQueryConnectionConsensusStateResponse({ value, fee, memo }: sendQueryConnectionConsensusStateResponseParams): Promise<DeliverTxResponse> {
+		async sendMsgConnectionOpenConfirm({ value, fee, memo }: sendMsgConnectionOpenConfirmParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryConnectionConsensusStateResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgConnectionOpenConfirm: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryConnectionConsensusStateResponse({ value: QueryConnectionConsensusStateResponse.fromPartial(value) })
+				let msg = this.msgConnectionOpenConfirm({ value: MsgConnectionOpenConfirm.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryConnectionConsensusStateResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgConnectionOpenConfirm: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateParams({ value: MsgUpdateParams.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryClientConnectionsResponse({ value, fee, memo }: sendQueryClientConnectionsResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryClientConnectionsResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryClientConnectionsResponse({ value: QueryClientConnectionsResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryClientConnectionsResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -788,6 +592,202 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
 				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryConnectionsResponse({ value, fee, memo }: sendQueryConnectionsResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryConnectionsResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryConnectionsResponse({ value: QueryConnectionsResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryConnectionsResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryConnectionClientStateResponse({ value, fee, memo }: sendQueryConnectionClientStateResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryConnectionClientStateResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryConnectionClientStateResponse({ value: QueryConnectionClientStateResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryConnectionClientStateResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendVersion({ value, fee, memo }: sendVersionParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendVersion: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.version({ value: Version.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendVersion: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryClientConnectionsRequest({ value, fee, memo }: sendQueryClientConnectionsRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryClientConnectionsRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryClientConnectionsRequest({ value: QueryClientConnectionsRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryClientConnectionsRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendConnectionEnd({ value, fee, memo }: sendConnectionEndParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendConnectionEnd: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.connectionEnd({ value: ConnectionEnd.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendConnectionEnd: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgConnectionOpenAckResponse({ value, fee, memo }: sendMsgConnectionOpenAckResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgConnectionOpenAckResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgConnectionOpenAckResponse({ value: MsgConnectionOpenAckResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgConnectionOpenAckResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryConnectionsRequest({ value, fee, memo }: sendQueryConnectionsRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryConnectionsRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryConnectionsRequest({ value: QueryConnectionsRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryConnectionsRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryConnectionClientStateRequest({ value, fee, memo }: sendQueryConnectionClientStateRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryConnectionClientStateRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryConnectionClientStateRequest({ value: QueryConnectionClientStateRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryConnectionClientStateRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryConnectionParamsRequest({ value, fee, memo }: sendQueryConnectionParamsRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryConnectionParamsRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryConnectionParamsRequest({ value: QueryConnectionParamsRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryConnectionParamsRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateParamsResponse({ value: MsgUpdateParamsResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateParamsResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendIdentifiedConnection({ value, fee, memo }: sendIdentifiedConnectionParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendIdentifiedConnection: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.identifiedConnection({ value: IdentifiedConnection.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendIdentifiedConnection: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryConnectionResponse({ value, fee, memo }: sendQueryConnectionResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryConnectionResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryConnectionResponse({ value: QueryConnectionResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryConnectionResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryConnectionConsensusStateRequest({ value, fee, memo }: sendQueryConnectionConsensusStateRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryConnectionConsensusStateRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryConnectionConsensusStateRequest({ value: QueryConnectionConsensusStateRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryConnectionConsensusStateRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryConnectionParamsResponse({ value, fee, memo }: sendQueryConnectionParamsResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryConnectionParamsResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryConnectionParamsResponse({ value: QueryConnectionParamsResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryConnectionParamsResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -808,35 +808,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		msgConnectionOpenAck({ value }: msgConnectionOpenAckParams): EncodeObject {
+		msgConnectionOpenConfirmResponse({ value }: msgConnectionOpenConfirmResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/ibc.core.connection.v1.MsgConnectionOpenAck", value: MsgConnectionOpenAck.fromPartial( value ) }  
+				return { typeUrl: "/ibc.core.connection.v1.MsgConnectionOpenConfirmResponse", value: MsgConnectionOpenConfirmResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgConnectionOpenAck: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.core.connection.v1.MsgUpdateParams", value: MsgUpdateParams.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryConnectionsResponse({ value }: queryConnectionsResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.core.connection.v1.QueryConnectionsResponse", value: QueryConnectionsResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryConnectionsResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryConnectionClientStateRequest({ value }: queryConnectionClientStateRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.core.connection.v1.QueryConnectionClientStateRequest", value: QueryConnectionClientStateRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryConnectionClientStateRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgConnectionOpenConfirmResponse: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -848,59 +824,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		version({ value }: versionParams): EncodeObject {
+		clientPaths({ value }: clientPathsParams): EncodeObject {
 			try {
-				return { typeUrl: "/ibc.core.connection.v1.Version", value: Version.fromPartial( value ) }  
+				return { typeUrl: "/ibc.core.connection.v1.ClientPaths", value: ClientPaths.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:Version: Could not create message: ' + e.message)
-			}
-		},
-		
-		connectionPaths({ value }: connectionPathsParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.core.connection.v1.ConnectionPaths", value: ConnectionPaths.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:ConnectionPaths: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryConnectionParamsRequest({ value }: queryConnectionParamsRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.core.connection.v1.QueryConnectionParamsRequest", value: QueryConnectionParamsRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryConnectionParamsRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		connectionEnd({ value }: connectionEndParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.core.connection.v1.ConnectionEnd", value: ConnectionEnd.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:ConnectionEnd: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.core.connection.v1.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryClientConnectionsRequest({ value }: queryClientConnectionsRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.core.connection.v1.QueryClientConnectionsRequest", value: QueryClientConnectionsRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryClientConnectionsRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryConnectionConsensusStateRequest({ value }: queryConnectionConsensusStateRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.core.connection.v1.QueryConnectionConsensusStateRequest", value: QueryConnectionConsensusStateRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryConnectionConsensusStateRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:ClientPaths: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -912,51 +840,19 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		queryConnectionClientStateResponse({ value }: queryConnectionClientStateResponseParams): EncodeObject {
+		msgConnectionOpenAck({ value }: msgConnectionOpenAckParams): EncodeObject {
 			try {
-				return { typeUrl: "/ibc.core.connection.v1.QueryConnectionClientStateResponse", value: QueryConnectionClientStateResponse.fromPartial( value ) }  
+				return { typeUrl: "/ibc.core.connection.v1.MsgConnectionOpenAck", value: MsgConnectionOpenAck.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryConnectionClientStateResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgConnectionOpenAck: Could not create message: ' + e.message)
 			}
 		},
 		
-		queryConnectionResponse({ value }: queryConnectionResponseParams): EncodeObject {
+		connectionPaths({ value }: connectionPathsParams): EncodeObject {
 			try {
-				return { typeUrl: "/ibc.core.connection.v1.QueryConnectionResponse", value: QueryConnectionResponse.fromPartial( value ) }  
+				return { typeUrl: "/ibc.core.connection.v1.ConnectionPaths", value: ConnectionPaths.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryConnectionResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgConnectionOpenConfirm({ value }: msgConnectionOpenConfirmParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.core.connection.v1.MsgConnectionOpenConfirm", value: MsgConnectionOpenConfirm.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgConnectionOpenConfirm: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryClientConnectionsResponse({ value }: queryClientConnectionsResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.core.connection.v1.QueryClientConnectionsResponse", value: QueryClientConnectionsResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryClientConnectionsResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryConnectionParamsResponse({ value }: queryConnectionParamsResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.core.connection.v1.QueryConnectionParamsResponse", value: QueryConnectionParamsResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryConnectionParamsResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgConnectionOpenConfirmResponse({ value }: msgConnectionOpenConfirmResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.core.connection.v1.MsgConnectionOpenConfirmResponse", value: MsgConnectionOpenConfirmResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgConnectionOpenConfirmResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:ConnectionPaths: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -968,35 +864,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		queryConnectionsRequest({ value }: queryConnectionsRequestParams): EncodeObject {
+		queryConnectionConsensusStateResponse({ value }: queryConnectionConsensusStateResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/ibc.core.connection.v1.QueryConnectionsRequest", value: QueryConnectionsRequest.fromPartial( value ) }  
+				return { typeUrl: "/ibc.core.connection.v1.QueryConnectionConsensusStateResponse", value: QueryConnectionConsensusStateResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryConnectionsRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		identifiedConnection({ value }: identifiedConnectionParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.core.connection.v1.IdentifiedConnection", value: IdentifiedConnection.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:IdentifiedConnection: Could not create message: ' + e.message)
-			}
-		},
-		
-		clientPaths({ value }: clientPathsParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.core.connection.v1.ClientPaths", value: ClientPaths.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:ClientPaths: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgConnectionOpenInit({ value }: msgConnectionOpenInitParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.core.connection.v1.MsgConnectionOpenInit", value: MsgConnectionOpenInit.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgConnectionOpenInit: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryConnectionConsensusStateResponse: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -1008,19 +880,35 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		msgConnectionOpenAckResponse({ value }: msgConnectionOpenAckResponseParams): EncodeObject {
+		msgConnectionOpenInit({ value }: msgConnectionOpenInitParams): EncodeObject {
 			try {
-				return { typeUrl: "/ibc.core.connection.v1.MsgConnectionOpenAckResponse", value: MsgConnectionOpenAckResponse.fromPartial( value ) }  
+				return { typeUrl: "/ibc.core.connection.v1.MsgConnectionOpenInit", value: MsgConnectionOpenInit.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgConnectionOpenAckResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgConnectionOpenInit: Could not create message: ' + e.message)
 			}
 		},
 		
-		queryConnectionConsensusStateResponse({ value }: queryConnectionConsensusStateResponseParams): EncodeObject {
+		msgConnectionOpenConfirm({ value }: msgConnectionOpenConfirmParams): EncodeObject {
 			try {
-				return { typeUrl: "/ibc.core.connection.v1.QueryConnectionConsensusStateResponse", value: QueryConnectionConsensusStateResponse.fromPartial( value ) }  
+				return { typeUrl: "/ibc.core.connection.v1.MsgConnectionOpenConfirm", value: MsgConnectionOpenConfirm.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryConnectionConsensusStateResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgConnectionOpenConfirm: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.core.connection.v1.MsgUpdateParams", value: MsgUpdateParams.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryClientConnectionsResponse({ value }: queryClientConnectionsResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.core.connection.v1.QueryClientConnectionsResponse", value: QueryClientConnectionsResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryClientConnectionsResponse: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -1029,6 +917,118 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 				return { typeUrl: "/ibc.core.connection.v1.GenesisState", value: GenesisState.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryConnectionsResponse({ value }: queryConnectionsResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.core.connection.v1.QueryConnectionsResponse", value: QueryConnectionsResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryConnectionsResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryConnectionClientStateResponse({ value }: queryConnectionClientStateResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.core.connection.v1.QueryConnectionClientStateResponse", value: QueryConnectionClientStateResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryConnectionClientStateResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		version({ value }: versionParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.core.connection.v1.Version", value: Version.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:Version: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryClientConnectionsRequest({ value }: queryClientConnectionsRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.core.connection.v1.QueryClientConnectionsRequest", value: QueryClientConnectionsRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryClientConnectionsRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		connectionEnd({ value }: connectionEndParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.core.connection.v1.ConnectionEnd", value: ConnectionEnd.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:ConnectionEnd: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgConnectionOpenAckResponse({ value }: msgConnectionOpenAckResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.core.connection.v1.MsgConnectionOpenAckResponse", value: MsgConnectionOpenAckResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgConnectionOpenAckResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryConnectionsRequest({ value }: queryConnectionsRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.core.connection.v1.QueryConnectionsRequest", value: QueryConnectionsRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryConnectionsRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryConnectionClientStateRequest({ value }: queryConnectionClientStateRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.core.connection.v1.QueryConnectionClientStateRequest", value: QueryConnectionClientStateRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryConnectionClientStateRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryConnectionParamsRequest({ value }: queryConnectionParamsRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.core.connection.v1.QueryConnectionParamsRequest", value: QueryConnectionParamsRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryConnectionParamsRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.core.connection.v1.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		identifiedConnection({ value }: identifiedConnectionParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.core.connection.v1.IdentifiedConnection", value: IdentifiedConnection.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:IdentifiedConnection: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryConnectionResponse({ value }: queryConnectionResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.core.connection.v1.QueryConnectionResponse", value: QueryConnectionResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryConnectionResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryConnectionConsensusStateRequest({ value }: queryConnectionConsensusStateRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.core.connection.v1.QueryConnectionConsensusStateRequest", value: QueryConnectionConsensusStateRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryConnectionConsensusStateRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryConnectionParamsResponse({ value }: queryConnectionParamsResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.core.connection.v1.QueryConnectionParamsResponse", value: QueryConnectionParamsResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryConnectionParamsResponse: Could not create message: ' + e.message)
 			}
 		},
 		

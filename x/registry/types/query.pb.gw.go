@@ -325,7 +325,7 @@ var (
 
 	pattern_Query_Region_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"enreach", "registry", "region", "id"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_RegionAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"enreach", "registry", "region"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_RegionAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"enreach", "registry", "regions"}, "", runtime.AssumeColonVerbOpt(false)))
 )
 
 var (
