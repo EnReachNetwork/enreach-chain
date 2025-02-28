@@ -28,6 +28,20 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Shows a manager by id",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}},
 				},
+				{
+					RpcMethod:      "GetManagerByRegion",
+					Use:            "get-manager-by-region [region-code]",
+					Short:          "Query get-manager-by-region",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "regionCode"}},
+				},
+
+				{
+					RpcMethod:      "GetManagerByRegion",
+					Use:            "get-manager-by-region [region-code]",
+					Short:          "Query get-manager-by-region",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "regionCode"}},
+				},
+
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},
@@ -40,16 +54,20 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Skip:      true, // skipped because authority gated
 				},
 				{
-					RpcMethod:      "CreateManager",
-					Use:            "create-manager [managerId] [evmAddress] [regionCode] [status]",
-					Short:          "Create manager",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "managerId"}, {ProtoField: "evmAddress"}, {ProtoField: "regionCode"}, {ProtoField: "status"}},
+					RpcMethod: "RegisterManager",
+					Use:       "register-manager [managerAddress] [operatorName] [operatorDesc] [operatorWebsiteURL] [evmAddress] [hostAddress] [managerPort] [trackerPort] [chainAPIPort] [chainRPCPort] [regionCode]",
+					Short:     "register manager",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "managerAddress"},
+						{ProtoField: "operatorName"}, {ProtoField: "operatorDesc"}, {ProtoField: "operatorWebsiteURL"}, {ProtoField: "evmAddress"},
+						{ProtoField: "hostAddress"}, {ProtoField: "managerPort"}, {ProtoField: "trackerPort"}, {ProtoField: "chainAPIPort"}, {ProtoField: "chainRPCPort"}, {ProtoField: "regionCode"}},
 				},
 				{
-					RpcMethod:      "UpdateManager",
-					Use:            "update-manager [id] [managerId] [evmAddress] [regionCode] [status]",
-					Short:          "Update manager",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}, {ProtoField: "managerId"}, {ProtoField: "evmAddress"}, {ProtoField: "regionCode"}, {ProtoField: "status"}},
+					RpcMethod: "UpdateManager",
+					Use:       "update-manager [id] [managerAddress] [operatorName] [operatorDesc] [operatorWebsiteURL] [evmAddress] [hostAddress] [managerPort] [trackerPort] [chainAPIPort] [chainRPCPort] [regionCode]",
+					Short:     "Update manager",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}, {ProtoField: "managerAddress"},
+						{ProtoField: "operatorName"}, {ProtoField: "operatorDesc"}, {ProtoField: "operatorWebsiteURL"}, {ProtoField: "evmAddress"},
+						{ProtoField: "hostAddress"}, {ProtoField: "managerPort"}, {ProtoField: "trackerPort"}, {ProtoField: "chainAPIPort"}, {ProtoField: "chainRPCPort"}, {ProtoField: "regionCode"}},
 				},
 				{
 					RpcMethod:      "DeleteManager",

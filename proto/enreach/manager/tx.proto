@@ -18,7 +18,7 @@ service Msg {
   // UpdateParams defines a (governance) operation for updating the module
   // parameters. The authority defaults to the x/gov module account.
   rpc UpdateParams  (MsgUpdateParams ) returns (MsgUpdateParamsResponse );
-  rpc CreateManager (MsgCreateManager) returns (MsgCreateManagerResponse);
+  rpc RegisterManager (MsgRegisterManager) returns (MsgRegisterManagerResponse);
   rpc UpdateManager (MsgUpdateManager) returns (MsgUpdateManagerResponse);
   rpc DeleteManager (MsgDeleteManager) returns (MsgDeleteManagerResponse);
 }
@@ -40,16 +40,23 @@ message MsgUpdateParams {
 // MsgUpdateParams message.
 message MsgUpdateParamsResponse {}
 
-message MsgCreateManager {
+message MsgRegisterManager {
   option (cosmos.msg.v1.signer) = "creator";
   string creator    = 1;
-  string managerId  = 2;
-  string evmAddress = 3;
-  string regionCode = 4;
-  string status     = 5;
+  string managerAddress = 2; 
+  string operatorName = 3;
+  string operatorDesc = 4;
+  string operatorWebsiteURL = 5;
+  string evmAddress = 6;
+  string hostAddress = 7;
+  uint32 managerPort = 8;
+  uint32 trackerPort = 9;
+  uint32 chainAPIPort = 10;
+  uint32 chainRPCPort = 11;
+  string regionCode = 12;
 }
 
-message MsgCreateManagerResponse {
+message MsgRegisterManagerResponse {
   uint64 id = 1;
 }
 
@@ -57,10 +64,17 @@ message MsgUpdateManager {
   option (cosmos.msg.v1.signer) = "creator";
   string creator    = 1;
   uint64 id         = 2;
-  string managerId  = 3;
-  string evmAddress = 4;
-  string regionCode = 5;
-  string status     = 6;
+  string managerAddress = 3; 
+  string operatorName = 4;
+  string operatorDesc = 5;
+  string operatorWebsiteURL = 6;
+  string evmAddress = 7;
+  string hostAddress = 8;
+  uint32 managerPort = 9;
+  uint32 trackerPort = 10;
+  uint32 chainAPIPort = 11;
+  uint32 chainRPCPort = 12;
+  string regionCode = 13;
 }
 
 message MsgUpdateManagerResponse {}

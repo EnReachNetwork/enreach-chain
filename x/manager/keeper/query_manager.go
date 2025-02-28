@@ -7,6 +7,7 @@ import (
 
 	"cosmossdk.io/store/prefix"
 	"github.com/cosmos/cosmos-sdk/runtime"
+	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/cosmos/cosmos-sdk/types/query"
 	"google.golang.org/grpc/codes"
@@ -51,4 +52,23 @@ func (k Keeper) Manager(ctx context.Context, req *types.QueryGetManagerRequest) 
 	}
 
 	return &types.QueryGetManagerResponse{Manager: manager}, nil
+}
+
+func (k Keeper) GetManagerByRegion(goCtx context.Context, req *types.QueryGetManagerByRegionRequest) (*types.QueryGetManagerByRegionResponse, error) {
+	if req == nil {
+		return nil, status.Error(codes.InvalidArgument, "invalid request")
+	}
+
+	ctx := sdk.UnwrapSDKContext(goCtx)
+
+	// There should be limited managers, so get all managers and iterate to filter
+	managers := k.GetAllManager(ctx)
+	var managersOfRegion []types.Manager
+	for _, manager := range managers {
+		if manager.RegionCode == req.RegionCode {
+			managersOfRegion = append(managersOfRegion, manager)
+		}
+	}
+
+	return &types.QueryGetManagerByRegionResponse{Managers: managersOfRegion}, nil
 }

@@ -13,7 +13,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/simulation"
 )
 
-func SimulateMsgCreateManager(
+func SimulateMsgRegisterManager(
 	ak types.AccountKeeper,
 	bk types.BankKeeper,
 	k keeper.Keeper,
@@ -22,7 +22,7 @@ func SimulateMsgCreateManager(
 	) (simtypes.OperationMsg, []simtypes.FutureOperation, error) {
 		simAccount, _ := simtypes.RandomAcc(r, accs)
 
-		msg := &types.MsgCreateManager{
+		msg := &types.MsgRegisterManager{
 			Creator: simAccount.Address.String(),
 		}
 

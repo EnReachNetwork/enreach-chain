@@ -23,9 +23,9 @@ var (
 )
 
 const (
-	opWeightMsgCreateManager = "op_weight_msg_manager"
+	opWeightMsgRegisterManager = "op_weight_msg_manager"
 	// TODO: Determine the simulation weight value
-	defaultWeightMsgCreateManager int = 100
+	defaultWeightMsgRegisterManager int = 100
 
 	opWeightMsgUpdateManager = "op_weight_msg_manager"
 	// TODO: Determine the simulation weight value
@@ -69,15 +69,15 @@ func (am AppModule) RegisterStoreDecoder(_ simtypes.StoreDecoderRegistry) {}
 func (am AppModule) WeightedOperations(simState module.SimulationState) []simtypes.WeightedOperation {
 	operations := make([]simtypes.WeightedOperation, 0)
 
-	var weightMsgCreateManager int
-	simState.AppParams.GetOrGenerate(opWeightMsgCreateManager, &weightMsgCreateManager, nil,
+	var weightMsgRegisterManager int
+	simState.AppParams.GetOrGenerate(opWeightMsgRegisterManager, &weightMsgRegisterManager, nil,
 		func(_ *rand.Rand) {
-			weightMsgCreateManager = defaultWeightMsgCreateManager
+			weightMsgRegisterManager = defaultWeightMsgRegisterManager
 		},
 	)
 	operations = append(operations, simulation.NewWeightedOperation(
-		weightMsgCreateManager,
-		managersimulation.SimulateMsgCreateManager(am.accountKeeper, am.bankKeeper, am.keeper),
+		weightMsgRegisterManager,
+		managersimulation.SimulateMsgRegisterManager(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
 	var weightMsgUpdateManager int
@@ -111,10 +111,10 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.WeightedProposalMsg {
 	return []simtypes.WeightedProposalMsg{
 		simulation.NewWeightedProposalMsg(
-			opWeightMsgCreateManager,
-			defaultWeightMsgCreateManager,
+			opWeightMsgRegisterManager,
+			defaultWeightMsgRegisterManager,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
-				managersimulation.SimulateMsgCreateManager(am.accountKeeper, am.bankKeeper, am.keeper)
+				managersimulation.SimulateMsgRegisterManager(am.accountKeeper, am.bankKeeper, am.keeper)
 				return nil
 			},
 		),

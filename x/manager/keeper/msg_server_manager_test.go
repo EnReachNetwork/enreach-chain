@@ -16,7 +16,7 @@ func TestManagerMsgServerCreate(t *testing.T) {
 
 	creator := "A"
 	for i := 0; i < 5; i++ {
-		resp, err := srv.CreateManager(wctx, &types.MsgCreateManager{Creator: creator})
+		resp, err := srv.RegisterManager(wctx, &types.MsgRegisterManager{Creator: creator})
 		require.NoError(t, err)
 		require.Equal(t, i, int(resp.Id))
 	}
@@ -50,7 +50,7 @@ func TestManagerMsgServerUpdate(t *testing.T) {
 			_, srv, ctx := setupMsgServer(t)
 			wctx := sdk.UnwrapSDKContext(ctx)
 
-			_, err := srv.CreateManager(wctx, &types.MsgCreateManager{Creator: creator})
+			_, err := srv.RegisterManager(wctx, &types.MsgRegisterManager{Creator: creator})
 			require.NoError(t, err)
 
 			_, err = srv.UpdateManager(wctx, tc.request)
@@ -91,7 +91,7 @@ func TestManagerMsgServerDelete(t *testing.T) {
 			_, srv, ctx := setupMsgServer(t)
 			wctx := sdk.UnwrapSDKContext(ctx)
 
-			_, err := srv.CreateManager(wctx, &types.MsgCreateManager{Creator: creator})
+			_, err := srv.RegisterManager(wctx, &types.MsgRegisterManager{Creator: creator})
 			require.NoError(t, err)
 			_, err = srv.DeleteManager(wctx, tc.request)
 			if tc.err != nil {

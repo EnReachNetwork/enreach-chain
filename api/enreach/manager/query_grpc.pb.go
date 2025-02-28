@@ -8,7 +8,6 @@ package manager
 
 import (
 	context "context"
-
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -20,9 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Query_Params_FullMethodName     = "/enreach.manager.Query/Params"
-	Query_Manager_FullMethodName    = "/enreach.manager.Query/Manager"
-	Query_ManagerAll_FullMethodName = "/enreach.manager.Query/ManagerAll"
+	Query_Params_FullMethodName             = "/enreach.manager.Query/Params"
+	Query_Manager_FullMethodName            = "/enreach.manager.Query/Manager"
+	Query_ManagerAll_FullMethodName         = "/enreach.manager.Query/ManagerAll"
+	Query_GetManagerByRegion_FullMethodName = "/enreach.manager.Query/GetManagerByRegion"
 )
 
 // QueryClient is the client API for Query service.
@@ -34,6 +34,8 @@ type QueryClient interface {
 	// Queries a list of Manager items.
 	Manager(ctx context.Context, in *QueryGetManagerRequest, opts ...grpc.CallOption) (*QueryGetManagerResponse, error)
 	ManagerAll(ctx context.Context, in *QueryAllManagerRequest, opts ...grpc.CallOption) (*QueryAllManagerResponse, error)
+	// Queries a list of GetManagerByRegion items.
+	GetManagerByRegion(ctx context.Context, in *QueryGetManagerByRegionRequest, opts ...grpc.CallOption) (*QueryGetManagerByRegionResponse, error)
 }
 
 type queryClient struct {
@@ -71,6 +73,15 @@ func (c *queryClient) ManagerAll(ctx context.Context, in *QueryAllManagerRequest
 	return out, nil
 }
 
+func (c *queryClient) GetManagerByRegion(ctx context.Context, in *QueryGetManagerByRegionRequest, opts ...grpc.CallOption) (*QueryGetManagerByRegionResponse, error) {
+	out := new(QueryGetManagerByRegionResponse)
+	err := c.cc.Invoke(ctx, Query_GetManagerByRegion_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
@@ -80,6 +91,8 @@ type QueryServer interface {
 	// Queries a list of Manager items.
 	Manager(context.Context, *QueryGetManagerRequest) (*QueryGetManagerResponse, error)
 	ManagerAll(context.Context, *QueryAllManagerRequest) (*QueryAllManagerResponse, error)
+	// Queries a list of GetManagerByRegion items.
+	GetManagerByRegion(context.Context, *QueryGetManagerByRegionRequest) (*QueryGetManagerByRegionResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -95,6 +108,9 @@ func (UnimplementedQueryServer) Manager(context.Context, *QueryGetManagerRequest
 }
 func (UnimplementedQueryServer) ManagerAll(context.Context, *QueryAllManagerRequest) (*QueryAllManagerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ManagerAll not implemented")
+}
+func (UnimplementedQueryServer) GetManagerByRegion(context.Context, *QueryGetManagerByRegionRequest) (*QueryGetManagerByRegionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetManagerByRegion not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -163,6 +179,24 @@ func _Query_ManagerAll_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_GetManagerByRegion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetManagerByRegionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).GetManagerByRegion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_GetManagerByRegion_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).GetManagerByRegion(ctx, req.(*QueryGetManagerByRegionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -181,6 +215,10 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ManagerAll",
 			Handler:    _Query_ManagerAll_Handler,
+		},
+		{
+			MethodName: "GetManagerByRegion",
+			Handler:    _Query_GetManagerByRegion_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

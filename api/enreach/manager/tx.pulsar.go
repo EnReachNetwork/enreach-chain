@@ -2,19 +2,18 @@
 package manager
 
 import (
-	fmt "fmt"
-	io "io"
-	reflect "reflect"
-	sync "sync"
-
 	_ "cosmossdk.io/api/amino"
 	_ "cosmossdk.io/api/cosmos/msg/v1"
+	fmt "fmt"
 	_ "github.com/cosmos/cosmos-proto"
 	runtime "github.com/cosmos/cosmos-proto/runtime"
 	_ "github.com/cosmos/gogoproto/gogoproto"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoiface "google.golang.org/protobuf/runtime/protoiface"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	io "io"
+	reflect "reflect"
+	sync "sync"
 )
 
 var (
@@ -873,33 +872,47 @@ func (x *fastReflection_MsgUpdateParamsResponse) ProtoMethods() *protoiface.Meth
 }
 
 var (
-	md_MsgCreateManager            protoreflect.MessageDescriptor
-	fd_MsgCreateManager_creator    protoreflect.FieldDescriptor
-	fd_MsgCreateManager_managerId  protoreflect.FieldDescriptor
-	fd_MsgCreateManager_evmAddress protoreflect.FieldDescriptor
-	fd_MsgCreateManager_regionCode protoreflect.FieldDescriptor
-	fd_MsgCreateManager_status     protoreflect.FieldDescriptor
+	md_MsgRegisterManager                    protoreflect.MessageDescriptor
+	fd_MsgRegisterManager_creator            protoreflect.FieldDescriptor
+	fd_MsgRegisterManager_managerAddress     protoreflect.FieldDescriptor
+	fd_MsgRegisterManager_operatorName       protoreflect.FieldDescriptor
+	fd_MsgRegisterManager_operatorDesc       protoreflect.FieldDescriptor
+	fd_MsgRegisterManager_operatorWebsiteURL protoreflect.FieldDescriptor
+	fd_MsgRegisterManager_evmAddress         protoreflect.FieldDescriptor
+	fd_MsgRegisterManager_hostAddress        protoreflect.FieldDescriptor
+	fd_MsgRegisterManager_managerPort        protoreflect.FieldDescriptor
+	fd_MsgRegisterManager_trackerPort        protoreflect.FieldDescriptor
+	fd_MsgRegisterManager_chainAPIPort       protoreflect.FieldDescriptor
+	fd_MsgRegisterManager_chainRPCPort       protoreflect.FieldDescriptor
+	fd_MsgRegisterManager_regionCode         protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_enreach_manager_tx_proto_init()
-	md_MsgCreateManager = File_enreach_manager_tx_proto.Messages().ByName("MsgCreateManager")
-	fd_MsgCreateManager_creator = md_MsgCreateManager.Fields().ByName("creator")
-	fd_MsgCreateManager_managerId = md_MsgCreateManager.Fields().ByName("managerId")
-	fd_MsgCreateManager_evmAddress = md_MsgCreateManager.Fields().ByName("evmAddress")
-	fd_MsgCreateManager_regionCode = md_MsgCreateManager.Fields().ByName("regionCode")
-	fd_MsgCreateManager_status = md_MsgCreateManager.Fields().ByName("status")
+	md_MsgRegisterManager = File_enreach_manager_tx_proto.Messages().ByName("MsgRegisterManager")
+	fd_MsgRegisterManager_creator = md_MsgRegisterManager.Fields().ByName("creator")
+	fd_MsgRegisterManager_managerAddress = md_MsgRegisterManager.Fields().ByName("managerAddress")
+	fd_MsgRegisterManager_operatorName = md_MsgRegisterManager.Fields().ByName("operatorName")
+	fd_MsgRegisterManager_operatorDesc = md_MsgRegisterManager.Fields().ByName("operatorDesc")
+	fd_MsgRegisterManager_operatorWebsiteURL = md_MsgRegisterManager.Fields().ByName("operatorWebsiteURL")
+	fd_MsgRegisterManager_evmAddress = md_MsgRegisterManager.Fields().ByName("evmAddress")
+	fd_MsgRegisterManager_hostAddress = md_MsgRegisterManager.Fields().ByName("hostAddress")
+	fd_MsgRegisterManager_managerPort = md_MsgRegisterManager.Fields().ByName("managerPort")
+	fd_MsgRegisterManager_trackerPort = md_MsgRegisterManager.Fields().ByName("trackerPort")
+	fd_MsgRegisterManager_chainAPIPort = md_MsgRegisterManager.Fields().ByName("chainAPIPort")
+	fd_MsgRegisterManager_chainRPCPort = md_MsgRegisterManager.Fields().ByName("chainRPCPort")
+	fd_MsgRegisterManager_regionCode = md_MsgRegisterManager.Fields().ByName("regionCode")
 }
 
-var _ protoreflect.Message = (*fastReflection_MsgCreateManager)(nil)
+var _ protoreflect.Message = (*fastReflection_MsgRegisterManager)(nil)
 
-type fastReflection_MsgCreateManager MsgCreateManager
+type fastReflection_MsgRegisterManager MsgRegisterManager
 
-func (x *MsgCreateManager) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_MsgCreateManager)(x)
+func (x *MsgRegisterManager) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgRegisterManager)(x)
 }
 
-func (x *MsgCreateManager) slowProtoReflect() protoreflect.Message {
+func (x *MsgRegisterManager) slowProtoReflect() protoreflect.Message {
 	mi := &file_enreach_manager_tx_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -911,43 +924,43 @@ func (x *MsgCreateManager) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_MsgCreateManager_messageType fastReflection_MsgCreateManager_messageType
-var _ protoreflect.MessageType = fastReflection_MsgCreateManager_messageType{}
+var _fastReflection_MsgRegisterManager_messageType fastReflection_MsgRegisterManager_messageType
+var _ protoreflect.MessageType = fastReflection_MsgRegisterManager_messageType{}
 
-type fastReflection_MsgCreateManager_messageType struct{}
+type fastReflection_MsgRegisterManager_messageType struct{}
 
-func (x fastReflection_MsgCreateManager_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_MsgCreateManager)(nil)
+func (x fastReflection_MsgRegisterManager_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgRegisterManager)(nil)
 }
-func (x fastReflection_MsgCreateManager_messageType) New() protoreflect.Message {
-	return new(fastReflection_MsgCreateManager)
+func (x fastReflection_MsgRegisterManager_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgRegisterManager)
 }
-func (x fastReflection_MsgCreateManager_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgCreateManager
+func (x fastReflection_MsgRegisterManager_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgRegisterManager
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_MsgCreateManager) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgCreateManager
+func (x *fastReflection_MsgRegisterManager) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgRegisterManager
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_MsgCreateManager) Type() protoreflect.MessageType {
-	return _fastReflection_MsgCreateManager_messageType
+func (x *fastReflection_MsgRegisterManager) Type() protoreflect.MessageType {
+	return _fastReflection_MsgRegisterManager_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_MsgCreateManager) New() protoreflect.Message {
-	return new(fastReflection_MsgCreateManager)
+func (x *fastReflection_MsgRegisterManager) New() protoreflect.Message {
+	return new(fastReflection_MsgRegisterManager)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_MsgCreateManager) Interface() protoreflect.ProtoMessage {
-	return (*MsgCreateManager)(x)
+func (x *fastReflection_MsgRegisterManager) Interface() protoreflect.ProtoMessage {
+	return (*MsgRegisterManager)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -955,34 +968,76 @@ func (x *fastReflection_MsgCreateManager) Interface() protoreflect.ProtoMessage 
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_MsgCreateManager) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_MsgRegisterManager) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 	if x.Creator != "" {
 		value := protoreflect.ValueOfString(x.Creator)
-		if !f(fd_MsgCreateManager_creator, value) {
+		if !f(fd_MsgRegisterManager_creator, value) {
 			return
 		}
 	}
-	if x.ManagerId != "" {
-		value := protoreflect.ValueOfString(x.ManagerId)
-		if !f(fd_MsgCreateManager_managerId, value) {
+	if x.ManagerAddress != "" {
+		value := protoreflect.ValueOfString(x.ManagerAddress)
+		if !f(fd_MsgRegisterManager_managerAddress, value) {
+			return
+		}
+	}
+	if x.OperatorName != "" {
+		value := protoreflect.ValueOfString(x.OperatorName)
+		if !f(fd_MsgRegisterManager_operatorName, value) {
+			return
+		}
+	}
+	if x.OperatorDesc != "" {
+		value := protoreflect.ValueOfString(x.OperatorDesc)
+		if !f(fd_MsgRegisterManager_operatorDesc, value) {
+			return
+		}
+	}
+	if x.OperatorWebsiteURL != "" {
+		value := protoreflect.ValueOfString(x.OperatorWebsiteURL)
+		if !f(fd_MsgRegisterManager_operatorWebsiteURL, value) {
 			return
 		}
 	}
 	if x.EvmAddress != "" {
 		value := protoreflect.ValueOfString(x.EvmAddress)
-		if !f(fd_MsgCreateManager_evmAddress, value) {
+		if !f(fd_MsgRegisterManager_evmAddress, value) {
+			return
+		}
+	}
+	if x.HostAddress != "" {
+		value := protoreflect.ValueOfString(x.HostAddress)
+		if !f(fd_MsgRegisterManager_hostAddress, value) {
+			return
+		}
+	}
+	if x.ManagerPort != uint32(0) {
+		value := protoreflect.ValueOfUint32(x.ManagerPort)
+		if !f(fd_MsgRegisterManager_managerPort, value) {
+			return
+		}
+	}
+	if x.TrackerPort != uint32(0) {
+		value := protoreflect.ValueOfUint32(x.TrackerPort)
+		if !f(fd_MsgRegisterManager_trackerPort, value) {
+			return
+		}
+	}
+	if x.ChainAPIPort != uint32(0) {
+		value := protoreflect.ValueOfUint32(x.ChainAPIPort)
+		if !f(fd_MsgRegisterManager_chainAPIPort, value) {
+			return
+		}
+	}
+	if x.ChainRPCPort != uint32(0) {
+		value := protoreflect.ValueOfUint32(x.ChainRPCPort)
+		if !f(fd_MsgRegisterManager_chainRPCPort, value) {
 			return
 		}
 	}
 	if x.RegionCode != "" {
 		value := protoreflect.ValueOfString(x.RegionCode)
-		if !f(fd_MsgCreateManager_regionCode, value) {
-			return
-		}
-	}
-	if x.Status != "" {
-		value := protoreflect.ValueOfString(x.Status)
-		if !f(fd_MsgCreateManager_status, value) {
+		if !f(fd_MsgRegisterManager_regionCode, value) {
 			return
 		}
 	}
@@ -999,23 +1054,37 @@ func (x *fastReflection_MsgCreateManager) Range(f func(protoreflect.FieldDescrip
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_MsgCreateManager) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_MsgRegisterManager) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "enreach.manager.MsgCreateManager.creator":
+	case "enreach.manager.MsgRegisterManager.creator":
 		return x.Creator != ""
-	case "enreach.manager.MsgCreateManager.managerId":
-		return x.ManagerId != ""
-	case "enreach.manager.MsgCreateManager.evmAddress":
+	case "enreach.manager.MsgRegisterManager.managerAddress":
+		return x.ManagerAddress != ""
+	case "enreach.manager.MsgRegisterManager.operatorName":
+		return x.OperatorName != ""
+	case "enreach.manager.MsgRegisterManager.operatorDesc":
+		return x.OperatorDesc != ""
+	case "enreach.manager.MsgRegisterManager.operatorWebsiteURL":
+		return x.OperatorWebsiteURL != ""
+	case "enreach.manager.MsgRegisterManager.evmAddress":
 		return x.EvmAddress != ""
-	case "enreach.manager.MsgCreateManager.regionCode":
+	case "enreach.manager.MsgRegisterManager.hostAddress":
+		return x.HostAddress != ""
+	case "enreach.manager.MsgRegisterManager.managerPort":
+		return x.ManagerPort != uint32(0)
+	case "enreach.manager.MsgRegisterManager.trackerPort":
+		return x.TrackerPort != uint32(0)
+	case "enreach.manager.MsgRegisterManager.chainAPIPort":
+		return x.ChainAPIPort != uint32(0)
+	case "enreach.manager.MsgRegisterManager.chainRPCPort":
+		return x.ChainRPCPort != uint32(0)
+	case "enreach.manager.MsgRegisterManager.regionCode":
 		return x.RegionCode != ""
-	case "enreach.manager.MsgCreateManager.status":
-		return x.Status != ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgCreateManager"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgRegisterManager"))
 		}
-		panic(fmt.Errorf("message enreach.manager.MsgCreateManager does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.manager.MsgRegisterManager does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1025,23 +1094,37 @@ func (x *fastReflection_MsgCreateManager) Has(fd protoreflect.FieldDescriptor) b
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateManager) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_MsgRegisterManager) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "enreach.manager.MsgCreateManager.creator":
+	case "enreach.manager.MsgRegisterManager.creator":
 		x.Creator = ""
-	case "enreach.manager.MsgCreateManager.managerId":
-		x.ManagerId = ""
-	case "enreach.manager.MsgCreateManager.evmAddress":
+	case "enreach.manager.MsgRegisterManager.managerAddress":
+		x.ManagerAddress = ""
+	case "enreach.manager.MsgRegisterManager.operatorName":
+		x.OperatorName = ""
+	case "enreach.manager.MsgRegisterManager.operatorDesc":
+		x.OperatorDesc = ""
+	case "enreach.manager.MsgRegisterManager.operatorWebsiteURL":
+		x.OperatorWebsiteURL = ""
+	case "enreach.manager.MsgRegisterManager.evmAddress":
 		x.EvmAddress = ""
-	case "enreach.manager.MsgCreateManager.regionCode":
+	case "enreach.manager.MsgRegisterManager.hostAddress":
+		x.HostAddress = ""
+	case "enreach.manager.MsgRegisterManager.managerPort":
+		x.ManagerPort = uint32(0)
+	case "enreach.manager.MsgRegisterManager.trackerPort":
+		x.TrackerPort = uint32(0)
+	case "enreach.manager.MsgRegisterManager.chainAPIPort":
+		x.ChainAPIPort = uint32(0)
+	case "enreach.manager.MsgRegisterManager.chainRPCPort":
+		x.ChainRPCPort = uint32(0)
+	case "enreach.manager.MsgRegisterManager.regionCode":
 		x.RegionCode = ""
-	case "enreach.manager.MsgCreateManager.status":
-		x.Status = ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgCreateManager"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgRegisterManager"))
 		}
-		panic(fmt.Errorf("message enreach.manager.MsgCreateManager does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.manager.MsgRegisterManager does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1051,28 +1134,49 @@ func (x *fastReflection_MsgCreateManager) Clear(fd protoreflect.FieldDescriptor)
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_MsgCreateManager) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgRegisterManager) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "enreach.manager.MsgCreateManager.creator":
+	case "enreach.manager.MsgRegisterManager.creator":
 		value := x.Creator
 		return protoreflect.ValueOfString(value)
-	case "enreach.manager.MsgCreateManager.managerId":
-		value := x.ManagerId
+	case "enreach.manager.MsgRegisterManager.managerAddress":
+		value := x.ManagerAddress
 		return protoreflect.ValueOfString(value)
-	case "enreach.manager.MsgCreateManager.evmAddress":
+	case "enreach.manager.MsgRegisterManager.operatorName":
+		value := x.OperatorName
+		return protoreflect.ValueOfString(value)
+	case "enreach.manager.MsgRegisterManager.operatorDesc":
+		value := x.OperatorDesc
+		return protoreflect.ValueOfString(value)
+	case "enreach.manager.MsgRegisterManager.operatorWebsiteURL":
+		value := x.OperatorWebsiteURL
+		return protoreflect.ValueOfString(value)
+	case "enreach.manager.MsgRegisterManager.evmAddress":
 		value := x.EvmAddress
 		return protoreflect.ValueOfString(value)
-	case "enreach.manager.MsgCreateManager.regionCode":
-		value := x.RegionCode
+	case "enreach.manager.MsgRegisterManager.hostAddress":
+		value := x.HostAddress
 		return protoreflect.ValueOfString(value)
-	case "enreach.manager.MsgCreateManager.status":
-		value := x.Status
+	case "enreach.manager.MsgRegisterManager.managerPort":
+		value := x.ManagerPort
+		return protoreflect.ValueOfUint32(value)
+	case "enreach.manager.MsgRegisterManager.trackerPort":
+		value := x.TrackerPort
+		return protoreflect.ValueOfUint32(value)
+	case "enreach.manager.MsgRegisterManager.chainAPIPort":
+		value := x.ChainAPIPort
+		return protoreflect.ValueOfUint32(value)
+	case "enreach.manager.MsgRegisterManager.chainRPCPort":
+		value := x.ChainRPCPort
+		return protoreflect.ValueOfUint32(value)
+	case "enreach.manager.MsgRegisterManager.regionCode":
+		value := x.RegionCode
 		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgCreateManager"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgRegisterManager"))
 		}
-		panic(fmt.Errorf("message enreach.manager.MsgCreateManager does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message enreach.manager.MsgRegisterManager does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -1086,23 +1190,37 @@ func (x *fastReflection_MsgCreateManager) Get(descriptor protoreflect.FieldDescr
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateManager) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_MsgRegisterManager) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "enreach.manager.MsgCreateManager.creator":
+	case "enreach.manager.MsgRegisterManager.creator":
 		x.Creator = value.Interface().(string)
-	case "enreach.manager.MsgCreateManager.managerId":
-		x.ManagerId = value.Interface().(string)
-	case "enreach.manager.MsgCreateManager.evmAddress":
+	case "enreach.manager.MsgRegisterManager.managerAddress":
+		x.ManagerAddress = value.Interface().(string)
+	case "enreach.manager.MsgRegisterManager.operatorName":
+		x.OperatorName = value.Interface().(string)
+	case "enreach.manager.MsgRegisterManager.operatorDesc":
+		x.OperatorDesc = value.Interface().(string)
+	case "enreach.manager.MsgRegisterManager.operatorWebsiteURL":
+		x.OperatorWebsiteURL = value.Interface().(string)
+	case "enreach.manager.MsgRegisterManager.evmAddress":
 		x.EvmAddress = value.Interface().(string)
-	case "enreach.manager.MsgCreateManager.regionCode":
+	case "enreach.manager.MsgRegisterManager.hostAddress":
+		x.HostAddress = value.Interface().(string)
+	case "enreach.manager.MsgRegisterManager.managerPort":
+		x.ManagerPort = uint32(value.Uint())
+	case "enreach.manager.MsgRegisterManager.trackerPort":
+		x.TrackerPort = uint32(value.Uint())
+	case "enreach.manager.MsgRegisterManager.chainAPIPort":
+		x.ChainAPIPort = uint32(value.Uint())
+	case "enreach.manager.MsgRegisterManager.chainRPCPort":
+		x.ChainRPCPort = uint32(value.Uint())
+	case "enreach.manager.MsgRegisterManager.regionCode":
 		x.RegionCode = value.Interface().(string)
-	case "enreach.manager.MsgCreateManager.status":
-		x.Status = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgCreateManager"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgRegisterManager"))
 		}
-		panic(fmt.Errorf("message enreach.manager.MsgCreateManager does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.manager.MsgRegisterManager does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1116,56 +1234,84 @@ func (x *fastReflection_MsgCreateManager) Set(fd protoreflect.FieldDescriptor, v
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateManager) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgRegisterManager) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "enreach.manager.MsgCreateManager.creator":
-		panic(fmt.Errorf("field creator of message enreach.manager.MsgCreateManager is not mutable"))
-	case "enreach.manager.MsgCreateManager.managerId":
-		panic(fmt.Errorf("field managerId of message enreach.manager.MsgCreateManager is not mutable"))
-	case "enreach.manager.MsgCreateManager.evmAddress":
-		panic(fmt.Errorf("field evmAddress of message enreach.manager.MsgCreateManager is not mutable"))
-	case "enreach.manager.MsgCreateManager.regionCode":
-		panic(fmt.Errorf("field regionCode of message enreach.manager.MsgCreateManager is not mutable"))
-	case "enreach.manager.MsgCreateManager.status":
-		panic(fmt.Errorf("field status of message enreach.manager.MsgCreateManager is not mutable"))
+	case "enreach.manager.MsgRegisterManager.creator":
+		panic(fmt.Errorf("field creator of message enreach.manager.MsgRegisterManager is not mutable"))
+	case "enreach.manager.MsgRegisterManager.managerAddress":
+		panic(fmt.Errorf("field managerAddress of message enreach.manager.MsgRegisterManager is not mutable"))
+	case "enreach.manager.MsgRegisterManager.operatorName":
+		panic(fmt.Errorf("field operatorName of message enreach.manager.MsgRegisterManager is not mutable"))
+	case "enreach.manager.MsgRegisterManager.operatorDesc":
+		panic(fmt.Errorf("field operatorDesc of message enreach.manager.MsgRegisterManager is not mutable"))
+	case "enreach.manager.MsgRegisterManager.operatorWebsiteURL":
+		panic(fmt.Errorf("field operatorWebsiteURL of message enreach.manager.MsgRegisterManager is not mutable"))
+	case "enreach.manager.MsgRegisterManager.evmAddress":
+		panic(fmt.Errorf("field evmAddress of message enreach.manager.MsgRegisterManager is not mutable"))
+	case "enreach.manager.MsgRegisterManager.hostAddress":
+		panic(fmt.Errorf("field hostAddress of message enreach.manager.MsgRegisterManager is not mutable"))
+	case "enreach.manager.MsgRegisterManager.managerPort":
+		panic(fmt.Errorf("field managerPort of message enreach.manager.MsgRegisterManager is not mutable"))
+	case "enreach.manager.MsgRegisterManager.trackerPort":
+		panic(fmt.Errorf("field trackerPort of message enreach.manager.MsgRegisterManager is not mutable"))
+	case "enreach.manager.MsgRegisterManager.chainAPIPort":
+		panic(fmt.Errorf("field chainAPIPort of message enreach.manager.MsgRegisterManager is not mutable"))
+	case "enreach.manager.MsgRegisterManager.chainRPCPort":
+		panic(fmt.Errorf("field chainRPCPort of message enreach.manager.MsgRegisterManager is not mutable"))
+	case "enreach.manager.MsgRegisterManager.regionCode":
+		panic(fmt.Errorf("field regionCode of message enreach.manager.MsgRegisterManager is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgCreateManager"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgRegisterManager"))
 		}
-		panic(fmt.Errorf("message enreach.manager.MsgCreateManager does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.manager.MsgRegisterManager does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_MsgCreateManager) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgRegisterManager) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "enreach.manager.MsgCreateManager.creator":
+	case "enreach.manager.MsgRegisterManager.creator":
 		return protoreflect.ValueOfString("")
-	case "enreach.manager.MsgCreateManager.managerId":
+	case "enreach.manager.MsgRegisterManager.managerAddress":
 		return protoreflect.ValueOfString("")
-	case "enreach.manager.MsgCreateManager.evmAddress":
+	case "enreach.manager.MsgRegisterManager.operatorName":
 		return protoreflect.ValueOfString("")
-	case "enreach.manager.MsgCreateManager.regionCode":
+	case "enreach.manager.MsgRegisterManager.operatorDesc":
 		return protoreflect.ValueOfString("")
-	case "enreach.manager.MsgCreateManager.status":
+	case "enreach.manager.MsgRegisterManager.operatorWebsiteURL":
+		return protoreflect.ValueOfString("")
+	case "enreach.manager.MsgRegisterManager.evmAddress":
+		return protoreflect.ValueOfString("")
+	case "enreach.manager.MsgRegisterManager.hostAddress":
+		return protoreflect.ValueOfString("")
+	case "enreach.manager.MsgRegisterManager.managerPort":
+		return protoreflect.ValueOfUint32(uint32(0))
+	case "enreach.manager.MsgRegisterManager.trackerPort":
+		return protoreflect.ValueOfUint32(uint32(0))
+	case "enreach.manager.MsgRegisterManager.chainAPIPort":
+		return protoreflect.ValueOfUint32(uint32(0))
+	case "enreach.manager.MsgRegisterManager.chainRPCPort":
+		return protoreflect.ValueOfUint32(uint32(0))
+	case "enreach.manager.MsgRegisterManager.regionCode":
 		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgCreateManager"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgRegisterManager"))
 		}
-		panic(fmt.Errorf("message enreach.manager.MsgCreateManager does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.manager.MsgRegisterManager does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_MsgCreateManager) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_MsgRegisterManager) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in enreach.manager.MsgCreateManager", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in enreach.manager.MsgRegisterManager", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1173,7 +1319,7 @@ func (x *fastReflection_MsgCreateManager) WhichOneof(d protoreflect.OneofDescrip
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_MsgCreateManager) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_MsgRegisterManager) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -1184,7 +1330,7 @@ func (x *fastReflection_MsgCreateManager) GetUnknown() protoreflect.RawFields {
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateManager) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_MsgRegisterManager) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -1196,7 +1342,7 @@ func (x *fastReflection_MsgCreateManager) SetUnknown(fields protoreflect.RawFiel
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_MsgCreateManager) IsValid() bool {
+func (x *fastReflection_MsgRegisterManager) IsValid() bool {
 	return x != nil
 }
 
@@ -1206,9 +1352,9 @@ func (x *fastReflection_MsgCreateManager) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_MsgCreateManager) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_MsgRegisterManager) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*MsgCreateManager)
+		x := input.Message.Interface().(*MsgRegisterManager)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1224,7 +1370,19 @@ func (x *fastReflection_MsgCreateManager) ProtoMethods() *protoiface.Methods {
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		l = len(x.ManagerId)
+		l = len(x.ManagerAddress)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.OperatorName)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.OperatorDesc)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.OperatorWebsiteURL)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -1232,11 +1390,23 @@ func (x *fastReflection_MsgCreateManager) ProtoMethods() *protoiface.Methods {
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		l = len(x.RegionCode)
+		l = len(x.HostAddress)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		l = len(x.Status)
+		if x.ManagerPort != 0 {
+			n += 1 + runtime.Sov(uint64(x.ManagerPort))
+		}
+		if x.TrackerPort != 0 {
+			n += 1 + runtime.Sov(uint64(x.TrackerPort))
+		}
+		if x.ChainAPIPort != 0 {
+			n += 1 + runtime.Sov(uint64(x.ChainAPIPort))
+		}
+		if x.ChainRPCPort != 0 {
+			n += 1 + runtime.Sov(uint64(x.ChainRPCPort))
+		}
+		l = len(x.RegionCode)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -1250,7 +1420,7 @@ func (x *fastReflection_MsgCreateManager) ProtoMethods() *protoiface.Methods {
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*MsgCreateManager)
+		x := input.Message.Interface().(*MsgRegisterManager)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1269,31 +1439,72 @@ func (x *fastReflection_MsgCreateManager) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if len(x.Status) > 0 {
-			i -= len(x.Status)
-			copy(dAtA[i:], x.Status)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Status)))
-			i--
-			dAtA[i] = 0x2a
-		}
 		if len(x.RegionCode) > 0 {
 			i -= len(x.RegionCode)
 			copy(dAtA[i:], x.RegionCode)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.RegionCode)))
 			i--
-			dAtA[i] = 0x22
+			dAtA[i] = 0x62
+		}
+		if x.ChainRPCPort != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.ChainRPCPort))
+			i--
+			dAtA[i] = 0x58
+		}
+		if x.ChainAPIPort != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.ChainAPIPort))
+			i--
+			dAtA[i] = 0x50
+		}
+		if x.TrackerPort != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.TrackerPort))
+			i--
+			dAtA[i] = 0x48
+		}
+		if x.ManagerPort != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.ManagerPort))
+			i--
+			dAtA[i] = 0x40
+		}
+		if len(x.HostAddress) > 0 {
+			i -= len(x.HostAddress)
+			copy(dAtA[i:], x.HostAddress)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.HostAddress)))
+			i--
+			dAtA[i] = 0x3a
 		}
 		if len(x.EvmAddress) > 0 {
 			i -= len(x.EvmAddress)
 			copy(dAtA[i:], x.EvmAddress)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.EvmAddress)))
 			i--
+			dAtA[i] = 0x32
+		}
+		if len(x.OperatorWebsiteURL) > 0 {
+			i -= len(x.OperatorWebsiteURL)
+			copy(dAtA[i:], x.OperatorWebsiteURL)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.OperatorWebsiteURL)))
+			i--
+			dAtA[i] = 0x2a
+		}
+		if len(x.OperatorDesc) > 0 {
+			i -= len(x.OperatorDesc)
+			copy(dAtA[i:], x.OperatorDesc)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.OperatorDesc)))
+			i--
+			dAtA[i] = 0x22
+		}
+		if len(x.OperatorName) > 0 {
+			i -= len(x.OperatorName)
+			copy(dAtA[i:], x.OperatorName)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.OperatorName)))
+			i--
 			dAtA[i] = 0x1a
 		}
-		if len(x.ManagerId) > 0 {
-			i -= len(x.ManagerId)
-			copy(dAtA[i:], x.ManagerId)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.ManagerId)))
+		if len(x.ManagerAddress) > 0 {
+			i -= len(x.ManagerAddress)
+			copy(dAtA[i:], x.ManagerAddress)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.ManagerAddress)))
 			i--
 			dAtA[i] = 0x12
 		}
@@ -1315,7 +1526,7 @@ func (x *fastReflection_MsgCreateManager) ProtoMethods() *protoiface.Methods {
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*MsgCreateManager)
+		x := input.Message.Interface().(*MsgRegisterManager)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1347,10 +1558,10 @@ func (x *fastReflection_MsgCreateManager) ProtoMethods() *protoiface.Methods {
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateManager: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgRegisterManager: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateManager: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgRegisterManager: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
@@ -1387,7 +1598,7 @@ func (x *fastReflection_MsgCreateManager) ProtoMethods() *protoiface.Methods {
 				iNdEx = postIndex
 			case 2:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ManagerId", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ManagerAddress", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -1415,9 +1626,105 @@ func (x *fastReflection_MsgCreateManager) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.ManagerId = string(dAtA[iNdEx:postIndex])
+				x.ManagerAddress = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			case 3:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field OperatorName", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.OperatorName = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 4:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field OperatorDesc", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.OperatorDesc = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 5:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field OperatorWebsiteURL", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.OperatorWebsiteURL = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 6:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field EvmAddress", wireType)
 				}
@@ -1449,7 +1756,115 @@ func (x *fastReflection_MsgCreateManager) ProtoMethods() *protoiface.Methods {
 				}
 				x.EvmAddress = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
-			case 4:
+			case 7:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field HostAddress", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.HostAddress = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 8:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ManagerPort", wireType)
+				}
+				x.ManagerPort = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.ManagerPort |= uint32(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 9:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field TrackerPort", wireType)
+				}
+				x.TrackerPort = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.TrackerPort |= uint32(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 10:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ChainAPIPort", wireType)
+				}
+				x.ChainAPIPort = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.ChainAPIPort |= uint32(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 11:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ChainRPCPort", wireType)
+				}
+				x.ChainRPCPort = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.ChainRPCPort |= uint32(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 12:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field RegionCode", wireType)
 				}
@@ -1480,38 +1895,6 @@ func (x *fastReflection_MsgCreateManager) ProtoMethods() *protoiface.Methods {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
 				x.RegionCode = string(dAtA[iNdEx:postIndex])
-				iNdEx = postIndex
-			case 5:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Status", wireType)
-				}
-				var stringLen uint64
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + intStringLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.Status = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
@@ -1549,25 +1932,25 @@ func (x *fastReflection_MsgCreateManager) ProtoMethods() *protoiface.Methods {
 }
 
 var (
-	md_MsgCreateManagerResponse    protoreflect.MessageDescriptor
-	fd_MsgCreateManagerResponse_id protoreflect.FieldDescriptor
+	md_MsgRegisterManagerResponse    protoreflect.MessageDescriptor
+	fd_MsgRegisterManagerResponse_id protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_enreach_manager_tx_proto_init()
-	md_MsgCreateManagerResponse = File_enreach_manager_tx_proto.Messages().ByName("MsgCreateManagerResponse")
-	fd_MsgCreateManagerResponse_id = md_MsgCreateManagerResponse.Fields().ByName("id")
+	md_MsgRegisterManagerResponse = File_enreach_manager_tx_proto.Messages().ByName("MsgRegisterManagerResponse")
+	fd_MsgRegisterManagerResponse_id = md_MsgRegisterManagerResponse.Fields().ByName("id")
 }
 
-var _ protoreflect.Message = (*fastReflection_MsgCreateManagerResponse)(nil)
+var _ protoreflect.Message = (*fastReflection_MsgRegisterManagerResponse)(nil)
 
-type fastReflection_MsgCreateManagerResponse MsgCreateManagerResponse
+type fastReflection_MsgRegisterManagerResponse MsgRegisterManagerResponse
 
-func (x *MsgCreateManagerResponse) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_MsgCreateManagerResponse)(x)
+func (x *MsgRegisterManagerResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgRegisterManagerResponse)(x)
 }
 
-func (x *MsgCreateManagerResponse) slowProtoReflect() protoreflect.Message {
+func (x *MsgRegisterManagerResponse) slowProtoReflect() protoreflect.Message {
 	mi := &file_enreach_manager_tx_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1579,43 +1962,43 @@ func (x *MsgCreateManagerResponse) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_MsgCreateManagerResponse_messageType fastReflection_MsgCreateManagerResponse_messageType
-var _ protoreflect.MessageType = fastReflection_MsgCreateManagerResponse_messageType{}
+var _fastReflection_MsgRegisterManagerResponse_messageType fastReflection_MsgRegisterManagerResponse_messageType
+var _ protoreflect.MessageType = fastReflection_MsgRegisterManagerResponse_messageType{}
 
-type fastReflection_MsgCreateManagerResponse_messageType struct{}
+type fastReflection_MsgRegisterManagerResponse_messageType struct{}
 
-func (x fastReflection_MsgCreateManagerResponse_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_MsgCreateManagerResponse)(nil)
+func (x fastReflection_MsgRegisterManagerResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgRegisterManagerResponse)(nil)
 }
-func (x fastReflection_MsgCreateManagerResponse_messageType) New() protoreflect.Message {
-	return new(fastReflection_MsgCreateManagerResponse)
+func (x fastReflection_MsgRegisterManagerResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgRegisterManagerResponse)
 }
-func (x fastReflection_MsgCreateManagerResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgCreateManagerResponse
+func (x fastReflection_MsgRegisterManagerResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgRegisterManagerResponse
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_MsgCreateManagerResponse) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgCreateManagerResponse
+func (x *fastReflection_MsgRegisterManagerResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgRegisterManagerResponse
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_MsgCreateManagerResponse) Type() protoreflect.MessageType {
-	return _fastReflection_MsgCreateManagerResponse_messageType
+func (x *fastReflection_MsgRegisterManagerResponse) Type() protoreflect.MessageType {
+	return _fastReflection_MsgRegisterManagerResponse_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_MsgCreateManagerResponse) New() protoreflect.Message {
-	return new(fastReflection_MsgCreateManagerResponse)
+func (x *fastReflection_MsgRegisterManagerResponse) New() protoreflect.Message {
+	return new(fastReflection_MsgRegisterManagerResponse)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_MsgCreateManagerResponse) Interface() protoreflect.ProtoMessage {
-	return (*MsgCreateManagerResponse)(x)
+func (x *fastReflection_MsgRegisterManagerResponse) Interface() protoreflect.ProtoMessage {
+	return (*MsgRegisterManagerResponse)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -1623,10 +2006,10 @@ func (x *fastReflection_MsgCreateManagerResponse) Interface() protoreflect.Proto
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_MsgCreateManagerResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_MsgRegisterManagerResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 	if x.Id != uint64(0) {
 		value := protoreflect.ValueOfUint64(x.Id)
-		if !f(fd_MsgCreateManagerResponse_id, value) {
+		if !f(fd_MsgRegisterManagerResponse_id, value) {
 			return
 		}
 	}
@@ -1643,15 +2026,15 @@ func (x *fastReflection_MsgCreateManagerResponse) Range(f func(protoreflect.Fiel
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_MsgCreateManagerResponse) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_MsgRegisterManagerResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "enreach.manager.MsgCreateManagerResponse.id":
+	case "enreach.manager.MsgRegisterManagerResponse.id":
 		return x.Id != uint64(0)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgCreateManagerResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgRegisterManagerResponse"))
 		}
-		panic(fmt.Errorf("message enreach.manager.MsgCreateManagerResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.manager.MsgRegisterManagerResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1661,15 +2044,15 @@ func (x *fastReflection_MsgCreateManagerResponse) Has(fd protoreflect.FieldDescr
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateManagerResponse) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_MsgRegisterManagerResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "enreach.manager.MsgCreateManagerResponse.id":
+	case "enreach.manager.MsgRegisterManagerResponse.id":
 		x.Id = uint64(0)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgCreateManagerResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgRegisterManagerResponse"))
 		}
-		panic(fmt.Errorf("message enreach.manager.MsgCreateManagerResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.manager.MsgRegisterManagerResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1679,16 +2062,16 @@ func (x *fastReflection_MsgCreateManagerResponse) Clear(fd protoreflect.FieldDes
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_MsgCreateManagerResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgRegisterManagerResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "enreach.manager.MsgCreateManagerResponse.id":
+	case "enreach.manager.MsgRegisterManagerResponse.id":
 		value := x.Id
 		return protoreflect.ValueOfUint64(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgCreateManagerResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgRegisterManagerResponse"))
 		}
-		panic(fmt.Errorf("message enreach.manager.MsgCreateManagerResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message enreach.manager.MsgRegisterManagerResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -1702,15 +2085,15 @@ func (x *fastReflection_MsgCreateManagerResponse) Get(descriptor protoreflect.Fi
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateManagerResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_MsgRegisterManagerResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "enreach.manager.MsgCreateManagerResponse.id":
+	case "enreach.manager.MsgRegisterManagerResponse.id":
 		x.Id = value.Uint()
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgCreateManagerResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgRegisterManagerResponse"))
 		}
-		panic(fmt.Errorf("message enreach.manager.MsgCreateManagerResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.manager.MsgRegisterManagerResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1724,40 +2107,40 @@ func (x *fastReflection_MsgCreateManagerResponse) Set(fd protoreflect.FieldDescr
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateManagerResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgRegisterManagerResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "enreach.manager.MsgCreateManagerResponse.id":
-		panic(fmt.Errorf("field id of message enreach.manager.MsgCreateManagerResponse is not mutable"))
+	case "enreach.manager.MsgRegisterManagerResponse.id":
+		panic(fmt.Errorf("field id of message enreach.manager.MsgRegisterManagerResponse is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgCreateManagerResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgRegisterManagerResponse"))
 		}
-		panic(fmt.Errorf("message enreach.manager.MsgCreateManagerResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.manager.MsgRegisterManagerResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_MsgCreateManagerResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgRegisterManagerResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "enreach.manager.MsgCreateManagerResponse.id":
+	case "enreach.manager.MsgRegisterManagerResponse.id":
 		return protoreflect.ValueOfUint64(uint64(0))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgCreateManagerResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgRegisterManagerResponse"))
 		}
-		panic(fmt.Errorf("message enreach.manager.MsgCreateManagerResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.manager.MsgRegisterManagerResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_MsgCreateManagerResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_MsgRegisterManagerResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in enreach.manager.MsgCreateManagerResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in enreach.manager.MsgRegisterManagerResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1765,7 +2148,7 @@ func (x *fastReflection_MsgCreateManagerResponse) WhichOneof(d protoreflect.Oneo
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_MsgCreateManagerResponse) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_MsgRegisterManagerResponse) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -1776,7 +2159,7 @@ func (x *fastReflection_MsgCreateManagerResponse) GetUnknown() protoreflect.RawF
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateManagerResponse) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_MsgRegisterManagerResponse) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -1788,7 +2171,7 @@ func (x *fastReflection_MsgCreateManagerResponse) SetUnknown(fields protoreflect
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_MsgCreateManagerResponse) IsValid() bool {
+func (x *fastReflection_MsgRegisterManagerResponse) IsValid() bool {
 	return x != nil
 }
 
@@ -1798,9 +2181,9 @@ func (x *fastReflection_MsgCreateManagerResponse) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_MsgCreateManagerResponse) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_MsgRegisterManagerResponse) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*MsgCreateManagerResponse)
+		x := input.Message.Interface().(*MsgRegisterManagerResponse)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1825,7 +2208,7 @@ func (x *fastReflection_MsgCreateManagerResponse) ProtoMethods() *protoiface.Met
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*MsgCreateManagerResponse)
+		x := input.Message.Interface().(*MsgRegisterManagerResponse)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1860,7 +2243,7 @@ func (x *fastReflection_MsgCreateManagerResponse) ProtoMethods() *protoiface.Met
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*MsgCreateManagerResponse)
+		x := input.Message.Interface().(*MsgRegisterManagerResponse)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1892,10 +2275,10 @@ func (x *fastReflection_MsgCreateManagerResponse) ProtoMethods() *protoiface.Met
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateManagerResponse: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgRegisterManagerResponse: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateManagerResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgRegisterManagerResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
@@ -1953,13 +2336,20 @@ func (x *fastReflection_MsgCreateManagerResponse) ProtoMethods() *protoiface.Met
 }
 
 var (
-	md_MsgUpdateManager            protoreflect.MessageDescriptor
-	fd_MsgUpdateManager_creator    protoreflect.FieldDescriptor
-	fd_MsgUpdateManager_id         protoreflect.FieldDescriptor
-	fd_MsgUpdateManager_managerId  protoreflect.FieldDescriptor
-	fd_MsgUpdateManager_evmAddress protoreflect.FieldDescriptor
-	fd_MsgUpdateManager_regionCode protoreflect.FieldDescriptor
-	fd_MsgUpdateManager_status     protoreflect.FieldDescriptor
+	md_MsgUpdateManager                    protoreflect.MessageDescriptor
+	fd_MsgUpdateManager_creator            protoreflect.FieldDescriptor
+	fd_MsgUpdateManager_id                 protoreflect.FieldDescriptor
+	fd_MsgUpdateManager_managerAddress     protoreflect.FieldDescriptor
+	fd_MsgUpdateManager_operatorName       protoreflect.FieldDescriptor
+	fd_MsgUpdateManager_operatorDesc       protoreflect.FieldDescriptor
+	fd_MsgUpdateManager_operatorWebsiteURL protoreflect.FieldDescriptor
+	fd_MsgUpdateManager_evmAddress         protoreflect.FieldDescriptor
+	fd_MsgUpdateManager_hostAddress        protoreflect.FieldDescriptor
+	fd_MsgUpdateManager_managerPort        protoreflect.FieldDescriptor
+	fd_MsgUpdateManager_trackerPort        protoreflect.FieldDescriptor
+	fd_MsgUpdateManager_chainAPIPort       protoreflect.FieldDescriptor
+	fd_MsgUpdateManager_chainRPCPort       protoreflect.FieldDescriptor
+	fd_MsgUpdateManager_regionCode         protoreflect.FieldDescriptor
 )
 
 func init() {
@@ -1967,10 +2357,17 @@ func init() {
 	md_MsgUpdateManager = File_enreach_manager_tx_proto.Messages().ByName("MsgUpdateManager")
 	fd_MsgUpdateManager_creator = md_MsgUpdateManager.Fields().ByName("creator")
 	fd_MsgUpdateManager_id = md_MsgUpdateManager.Fields().ByName("id")
-	fd_MsgUpdateManager_managerId = md_MsgUpdateManager.Fields().ByName("managerId")
+	fd_MsgUpdateManager_managerAddress = md_MsgUpdateManager.Fields().ByName("managerAddress")
+	fd_MsgUpdateManager_operatorName = md_MsgUpdateManager.Fields().ByName("operatorName")
+	fd_MsgUpdateManager_operatorDesc = md_MsgUpdateManager.Fields().ByName("operatorDesc")
+	fd_MsgUpdateManager_operatorWebsiteURL = md_MsgUpdateManager.Fields().ByName("operatorWebsiteURL")
 	fd_MsgUpdateManager_evmAddress = md_MsgUpdateManager.Fields().ByName("evmAddress")
+	fd_MsgUpdateManager_hostAddress = md_MsgUpdateManager.Fields().ByName("hostAddress")
+	fd_MsgUpdateManager_managerPort = md_MsgUpdateManager.Fields().ByName("managerPort")
+	fd_MsgUpdateManager_trackerPort = md_MsgUpdateManager.Fields().ByName("trackerPort")
+	fd_MsgUpdateManager_chainAPIPort = md_MsgUpdateManager.Fields().ByName("chainAPIPort")
+	fd_MsgUpdateManager_chainRPCPort = md_MsgUpdateManager.Fields().ByName("chainRPCPort")
 	fd_MsgUpdateManager_regionCode = md_MsgUpdateManager.Fields().ByName("regionCode")
-	fd_MsgUpdateManager_status = md_MsgUpdateManager.Fields().ByName("status")
 }
 
 var _ protoreflect.Message = (*fastReflection_MsgUpdateManager)(nil)
@@ -2050,9 +2447,27 @@ func (x *fastReflection_MsgUpdateManager) Range(f func(protoreflect.FieldDescrip
 			return
 		}
 	}
-	if x.ManagerId != "" {
-		value := protoreflect.ValueOfString(x.ManagerId)
-		if !f(fd_MsgUpdateManager_managerId, value) {
+	if x.ManagerAddress != "" {
+		value := protoreflect.ValueOfString(x.ManagerAddress)
+		if !f(fd_MsgUpdateManager_managerAddress, value) {
+			return
+		}
+	}
+	if x.OperatorName != "" {
+		value := protoreflect.ValueOfString(x.OperatorName)
+		if !f(fd_MsgUpdateManager_operatorName, value) {
+			return
+		}
+	}
+	if x.OperatorDesc != "" {
+		value := protoreflect.ValueOfString(x.OperatorDesc)
+		if !f(fd_MsgUpdateManager_operatorDesc, value) {
+			return
+		}
+	}
+	if x.OperatorWebsiteURL != "" {
+		value := protoreflect.ValueOfString(x.OperatorWebsiteURL)
+		if !f(fd_MsgUpdateManager_operatorWebsiteURL, value) {
 			return
 		}
 	}
@@ -2062,15 +2477,39 @@ func (x *fastReflection_MsgUpdateManager) Range(f func(protoreflect.FieldDescrip
 			return
 		}
 	}
-	if x.RegionCode != "" {
-		value := protoreflect.ValueOfString(x.RegionCode)
-		if !f(fd_MsgUpdateManager_regionCode, value) {
+	if x.HostAddress != "" {
+		value := protoreflect.ValueOfString(x.HostAddress)
+		if !f(fd_MsgUpdateManager_hostAddress, value) {
 			return
 		}
 	}
-	if x.Status != "" {
-		value := protoreflect.ValueOfString(x.Status)
-		if !f(fd_MsgUpdateManager_status, value) {
+	if x.ManagerPort != uint32(0) {
+		value := protoreflect.ValueOfUint32(x.ManagerPort)
+		if !f(fd_MsgUpdateManager_managerPort, value) {
+			return
+		}
+	}
+	if x.TrackerPort != uint32(0) {
+		value := protoreflect.ValueOfUint32(x.TrackerPort)
+		if !f(fd_MsgUpdateManager_trackerPort, value) {
+			return
+		}
+	}
+	if x.ChainAPIPort != uint32(0) {
+		value := protoreflect.ValueOfUint32(x.ChainAPIPort)
+		if !f(fd_MsgUpdateManager_chainAPIPort, value) {
+			return
+		}
+	}
+	if x.ChainRPCPort != uint32(0) {
+		value := protoreflect.ValueOfUint32(x.ChainRPCPort)
+		if !f(fd_MsgUpdateManager_chainRPCPort, value) {
+			return
+		}
+	}
+	if x.RegionCode != "" {
+		value := protoreflect.ValueOfString(x.RegionCode)
+		if !f(fd_MsgUpdateManager_regionCode, value) {
 			return
 		}
 	}
@@ -2093,14 +2532,28 @@ func (x *fastReflection_MsgUpdateManager) Has(fd protoreflect.FieldDescriptor) b
 		return x.Creator != ""
 	case "enreach.manager.MsgUpdateManager.id":
 		return x.Id != uint64(0)
-	case "enreach.manager.MsgUpdateManager.managerId":
-		return x.ManagerId != ""
+	case "enreach.manager.MsgUpdateManager.managerAddress":
+		return x.ManagerAddress != ""
+	case "enreach.manager.MsgUpdateManager.operatorName":
+		return x.OperatorName != ""
+	case "enreach.manager.MsgUpdateManager.operatorDesc":
+		return x.OperatorDesc != ""
+	case "enreach.manager.MsgUpdateManager.operatorWebsiteURL":
+		return x.OperatorWebsiteURL != ""
 	case "enreach.manager.MsgUpdateManager.evmAddress":
 		return x.EvmAddress != ""
+	case "enreach.manager.MsgUpdateManager.hostAddress":
+		return x.HostAddress != ""
+	case "enreach.manager.MsgUpdateManager.managerPort":
+		return x.ManagerPort != uint32(0)
+	case "enreach.manager.MsgUpdateManager.trackerPort":
+		return x.TrackerPort != uint32(0)
+	case "enreach.manager.MsgUpdateManager.chainAPIPort":
+		return x.ChainAPIPort != uint32(0)
+	case "enreach.manager.MsgUpdateManager.chainRPCPort":
+		return x.ChainRPCPort != uint32(0)
 	case "enreach.manager.MsgUpdateManager.regionCode":
 		return x.RegionCode != ""
-	case "enreach.manager.MsgUpdateManager.status":
-		return x.Status != ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgUpdateManager"))
@@ -2121,14 +2574,28 @@ func (x *fastReflection_MsgUpdateManager) Clear(fd protoreflect.FieldDescriptor)
 		x.Creator = ""
 	case "enreach.manager.MsgUpdateManager.id":
 		x.Id = uint64(0)
-	case "enreach.manager.MsgUpdateManager.managerId":
-		x.ManagerId = ""
+	case "enreach.manager.MsgUpdateManager.managerAddress":
+		x.ManagerAddress = ""
+	case "enreach.manager.MsgUpdateManager.operatorName":
+		x.OperatorName = ""
+	case "enreach.manager.MsgUpdateManager.operatorDesc":
+		x.OperatorDesc = ""
+	case "enreach.manager.MsgUpdateManager.operatorWebsiteURL":
+		x.OperatorWebsiteURL = ""
 	case "enreach.manager.MsgUpdateManager.evmAddress":
 		x.EvmAddress = ""
+	case "enreach.manager.MsgUpdateManager.hostAddress":
+		x.HostAddress = ""
+	case "enreach.manager.MsgUpdateManager.managerPort":
+		x.ManagerPort = uint32(0)
+	case "enreach.manager.MsgUpdateManager.trackerPort":
+		x.TrackerPort = uint32(0)
+	case "enreach.manager.MsgUpdateManager.chainAPIPort":
+		x.ChainAPIPort = uint32(0)
+	case "enreach.manager.MsgUpdateManager.chainRPCPort":
+		x.ChainRPCPort = uint32(0)
 	case "enreach.manager.MsgUpdateManager.regionCode":
 		x.RegionCode = ""
-	case "enreach.manager.MsgUpdateManager.status":
-		x.Status = ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgUpdateManager"))
@@ -2151,17 +2618,38 @@ func (x *fastReflection_MsgUpdateManager) Get(descriptor protoreflect.FieldDescr
 	case "enreach.manager.MsgUpdateManager.id":
 		value := x.Id
 		return protoreflect.ValueOfUint64(value)
-	case "enreach.manager.MsgUpdateManager.managerId":
-		value := x.ManagerId
+	case "enreach.manager.MsgUpdateManager.managerAddress":
+		value := x.ManagerAddress
+		return protoreflect.ValueOfString(value)
+	case "enreach.manager.MsgUpdateManager.operatorName":
+		value := x.OperatorName
+		return protoreflect.ValueOfString(value)
+	case "enreach.manager.MsgUpdateManager.operatorDesc":
+		value := x.OperatorDesc
+		return protoreflect.ValueOfString(value)
+	case "enreach.manager.MsgUpdateManager.operatorWebsiteURL":
+		value := x.OperatorWebsiteURL
 		return protoreflect.ValueOfString(value)
 	case "enreach.manager.MsgUpdateManager.evmAddress":
 		value := x.EvmAddress
 		return protoreflect.ValueOfString(value)
+	case "enreach.manager.MsgUpdateManager.hostAddress":
+		value := x.HostAddress
+		return protoreflect.ValueOfString(value)
+	case "enreach.manager.MsgUpdateManager.managerPort":
+		value := x.ManagerPort
+		return protoreflect.ValueOfUint32(value)
+	case "enreach.manager.MsgUpdateManager.trackerPort":
+		value := x.TrackerPort
+		return protoreflect.ValueOfUint32(value)
+	case "enreach.manager.MsgUpdateManager.chainAPIPort":
+		value := x.ChainAPIPort
+		return protoreflect.ValueOfUint32(value)
+	case "enreach.manager.MsgUpdateManager.chainRPCPort":
+		value := x.ChainRPCPort
+		return protoreflect.ValueOfUint32(value)
 	case "enreach.manager.MsgUpdateManager.regionCode":
 		value := x.RegionCode
-		return protoreflect.ValueOfString(value)
-	case "enreach.manager.MsgUpdateManager.status":
-		value := x.Status
 		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
@@ -2187,14 +2675,28 @@ func (x *fastReflection_MsgUpdateManager) Set(fd protoreflect.FieldDescriptor, v
 		x.Creator = value.Interface().(string)
 	case "enreach.manager.MsgUpdateManager.id":
 		x.Id = value.Uint()
-	case "enreach.manager.MsgUpdateManager.managerId":
-		x.ManagerId = value.Interface().(string)
+	case "enreach.manager.MsgUpdateManager.managerAddress":
+		x.ManagerAddress = value.Interface().(string)
+	case "enreach.manager.MsgUpdateManager.operatorName":
+		x.OperatorName = value.Interface().(string)
+	case "enreach.manager.MsgUpdateManager.operatorDesc":
+		x.OperatorDesc = value.Interface().(string)
+	case "enreach.manager.MsgUpdateManager.operatorWebsiteURL":
+		x.OperatorWebsiteURL = value.Interface().(string)
 	case "enreach.manager.MsgUpdateManager.evmAddress":
 		x.EvmAddress = value.Interface().(string)
+	case "enreach.manager.MsgUpdateManager.hostAddress":
+		x.HostAddress = value.Interface().(string)
+	case "enreach.manager.MsgUpdateManager.managerPort":
+		x.ManagerPort = uint32(value.Uint())
+	case "enreach.manager.MsgUpdateManager.trackerPort":
+		x.TrackerPort = uint32(value.Uint())
+	case "enreach.manager.MsgUpdateManager.chainAPIPort":
+		x.ChainAPIPort = uint32(value.Uint())
+	case "enreach.manager.MsgUpdateManager.chainRPCPort":
+		x.ChainRPCPort = uint32(value.Uint())
 	case "enreach.manager.MsgUpdateManager.regionCode":
 		x.RegionCode = value.Interface().(string)
-	case "enreach.manager.MsgUpdateManager.status":
-		x.Status = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgUpdateManager"))
@@ -2219,14 +2721,28 @@ func (x *fastReflection_MsgUpdateManager) Mutable(fd protoreflect.FieldDescripto
 		panic(fmt.Errorf("field creator of message enreach.manager.MsgUpdateManager is not mutable"))
 	case "enreach.manager.MsgUpdateManager.id":
 		panic(fmt.Errorf("field id of message enreach.manager.MsgUpdateManager is not mutable"))
-	case "enreach.manager.MsgUpdateManager.managerId":
-		panic(fmt.Errorf("field managerId of message enreach.manager.MsgUpdateManager is not mutable"))
+	case "enreach.manager.MsgUpdateManager.managerAddress":
+		panic(fmt.Errorf("field managerAddress of message enreach.manager.MsgUpdateManager is not mutable"))
+	case "enreach.manager.MsgUpdateManager.operatorName":
+		panic(fmt.Errorf("field operatorName of message enreach.manager.MsgUpdateManager is not mutable"))
+	case "enreach.manager.MsgUpdateManager.operatorDesc":
+		panic(fmt.Errorf("field operatorDesc of message enreach.manager.MsgUpdateManager is not mutable"))
+	case "enreach.manager.MsgUpdateManager.operatorWebsiteURL":
+		panic(fmt.Errorf("field operatorWebsiteURL of message enreach.manager.MsgUpdateManager is not mutable"))
 	case "enreach.manager.MsgUpdateManager.evmAddress":
 		panic(fmt.Errorf("field evmAddress of message enreach.manager.MsgUpdateManager is not mutable"))
+	case "enreach.manager.MsgUpdateManager.hostAddress":
+		panic(fmt.Errorf("field hostAddress of message enreach.manager.MsgUpdateManager is not mutable"))
+	case "enreach.manager.MsgUpdateManager.managerPort":
+		panic(fmt.Errorf("field managerPort of message enreach.manager.MsgUpdateManager is not mutable"))
+	case "enreach.manager.MsgUpdateManager.trackerPort":
+		panic(fmt.Errorf("field trackerPort of message enreach.manager.MsgUpdateManager is not mutable"))
+	case "enreach.manager.MsgUpdateManager.chainAPIPort":
+		panic(fmt.Errorf("field chainAPIPort of message enreach.manager.MsgUpdateManager is not mutable"))
+	case "enreach.manager.MsgUpdateManager.chainRPCPort":
+		panic(fmt.Errorf("field chainRPCPort of message enreach.manager.MsgUpdateManager is not mutable"))
 	case "enreach.manager.MsgUpdateManager.regionCode":
 		panic(fmt.Errorf("field regionCode of message enreach.manager.MsgUpdateManager is not mutable"))
-	case "enreach.manager.MsgUpdateManager.status":
-		panic(fmt.Errorf("field status of message enreach.manager.MsgUpdateManager is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.MsgUpdateManager"))
@@ -2244,13 +2760,27 @@ func (x *fastReflection_MsgUpdateManager) NewField(fd protoreflect.FieldDescript
 		return protoreflect.ValueOfString("")
 	case "enreach.manager.MsgUpdateManager.id":
 		return protoreflect.ValueOfUint64(uint64(0))
-	case "enreach.manager.MsgUpdateManager.managerId":
+	case "enreach.manager.MsgUpdateManager.managerAddress":
+		return protoreflect.ValueOfString("")
+	case "enreach.manager.MsgUpdateManager.operatorName":
+		return protoreflect.ValueOfString("")
+	case "enreach.manager.MsgUpdateManager.operatorDesc":
+		return protoreflect.ValueOfString("")
+	case "enreach.manager.MsgUpdateManager.operatorWebsiteURL":
 		return protoreflect.ValueOfString("")
 	case "enreach.manager.MsgUpdateManager.evmAddress":
 		return protoreflect.ValueOfString("")
-	case "enreach.manager.MsgUpdateManager.regionCode":
+	case "enreach.manager.MsgUpdateManager.hostAddress":
 		return protoreflect.ValueOfString("")
-	case "enreach.manager.MsgUpdateManager.status":
+	case "enreach.manager.MsgUpdateManager.managerPort":
+		return protoreflect.ValueOfUint32(uint32(0))
+	case "enreach.manager.MsgUpdateManager.trackerPort":
+		return protoreflect.ValueOfUint32(uint32(0))
+	case "enreach.manager.MsgUpdateManager.chainAPIPort":
+		return protoreflect.ValueOfUint32(uint32(0))
+	case "enreach.manager.MsgUpdateManager.chainRPCPort":
+		return protoreflect.ValueOfUint32(uint32(0))
+	case "enreach.manager.MsgUpdateManager.regionCode":
 		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
@@ -2328,7 +2858,19 @@ func (x *fastReflection_MsgUpdateManager) ProtoMethods() *protoiface.Methods {
 		if x.Id != 0 {
 			n += 1 + runtime.Sov(uint64(x.Id))
 		}
-		l = len(x.ManagerId)
+		l = len(x.ManagerAddress)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.OperatorName)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.OperatorDesc)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.OperatorWebsiteURL)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -2336,11 +2878,23 @@ func (x *fastReflection_MsgUpdateManager) ProtoMethods() *protoiface.Methods {
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		l = len(x.RegionCode)
+		l = len(x.HostAddress)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		l = len(x.Status)
+		if x.ManagerPort != 0 {
+			n += 1 + runtime.Sov(uint64(x.ManagerPort))
+		}
+		if x.TrackerPort != 0 {
+			n += 1 + runtime.Sov(uint64(x.TrackerPort))
+		}
+		if x.ChainAPIPort != 0 {
+			n += 1 + runtime.Sov(uint64(x.ChainAPIPort))
+		}
+		if x.ChainRPCPort != 0 {
+			n += 1 + runtime.Sov(uint64(x.ChainRPCPort))
+		}
+		l = len(x.RegionCode)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -2373,31 +2927,72 @@ func (x *fastReflection_MsgUpdateManager) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if len(x.Status) > 0 {
-			i -= len(x.Status)
-			copy(dAtA[i:], x.Status)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Status)))
-			i--
-			dAtA[i] = 0x32
-		}
 		if len(x.RegionCode) > 0 {
 			i -= len(x.RegionCode)
 			copy(dAtA[i:], x.RegionCode)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.RegionCode)))
 			i--
-			dAtA[i] = 0x2a
+			dAtA[i] = 0x6a
+		}
+		if x.ChainRPCPort != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.ChainRPCPort))
+			i--
+			dAtA[i] = 0x60
+		}
+		if x.ChainAPIPort != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.ChainAPIPort))
+			i--
+			dAtA[i] = 0x58
+		}
+		if x.TrackerPort != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.TrackerPort))
+			i--
+			dAtA[i] = 0x50
+		}
+		if x.ManagerPort != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.ManagerPort))
+			i--
+			dAtA[i] = 0x48
+		}
+		if len(x.HostAddress) > 0 {
+			i -= len(x.HostAddress)
+			copy(dAtA[i:], x.HostAddress)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.HostAddress)))
+			i--
+			dAtA[i] = 0x42
 		}
 		if len(x.EvmAddress) > 0 {
 			i -= len(x.EvmAddress)
 			copy(dAtA[i:], x.EvmAddress)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.EvmAddress)))
 			i--
+			dAtA[i] = 0x3a
+		}
+		if len(x.OperatorWebsiteURL) > 0 {
+			i -= len(x.OperatorWebsiteURL)
+			copy(dAtA[i:], x.OperatorWebsiteURL)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.OperatorWebsiteURL)))
+			i--
+			dAtA[i] = 0x32
+		}
+		if len(x.OperatorDesc) > 0 {
+			i -= len(x.OperatorDesc)
+			copy(dAtA[i:], x.OperatorDesc)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.OperatorDesc)))
+			i--
+			dAtA[i] = 0x2a
+		}
+		if len(x.OperatorName) > 0 {
+			i -= len(x.OperatorName)
+			copy(dAtA[i:], x.OperatorName)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.OperatorName)))
+			i--
 			dAtA[i] = 0x22
 		}
-		if len(x.ManagerId) > 0 {
-			i -= len(x.ManagerId)
-			copy(dAtA[i:], x.ManagerId)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.ManagerId)))
+		if len(x.ManagerAddress) > 0 {
+			i -= len(x.ManagerAddress)
+			copy(dAtA[i:], x.ManagerAddress)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.ManagerAddress)))
 			i--
 			dAtA[i] = 0x1a
 		}
@@ -2515,7 +3110,7 @@ func (x *fastReflection_MsgUpdateManager) ProtoMethods() *protoiface.Methods {
 				}
 			case 3:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ManagerId", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ManagerAddress", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -2543,9 +3138,105 @@ func (x *fastReflection_MsgUpdateManager) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.ManagerId = string(dAtA[iNdEx:postIndex])
+				x.ManagerAddress = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			case 4:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field OperatorName", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.OperatorName = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 5:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field OperatorDesc", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.OperatorDesc = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 6:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field OperatorWebsiteURL", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.OperatorWebsiteURL = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 7:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field EvmAddress", wireType)
 				}
@@ -2577,7 +3268,115 @@ func (x *fastReflection_MsgUpdateManager) ProtoMethods() *protoiface.Methods {
 				}
 				x.EvmAddress = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
-			case 5:
+			case 8:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field HostAddress", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.HostAddress = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 9:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ManagerPort", wireType)
+				}
+				x.ManagerPort = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.ManagerPort |= uint32(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 10:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field TrackerPort", wireType)
+				}
+				x.TrackerPort = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.TrackerPort |= uint32(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 11:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ChainAPIPort", wireType)
+				}
+				x.ChainAPIPort = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.ChainAPIPort |= uint32(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 12:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ChainRPCPort", wireType)
+				}
+				x.ChainRPCPort = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.ChainRPCPort |= uint32(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 13:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field RegionCode", wireType)
 				}
@@ -2608,38 +3407,6 @@ func (x *fastReflection_MsgUpdateManager) ProtoMethods() *protoiface.Methods {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
 				x.RegionCode = string(dAtA[iNdEx:postIndex])
-				iNdEx = postIndex
-			case 6:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Status", wireType)
-				}
-				var stringLen uint64
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + intStringLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.Status = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
@@ -3943,20 +4710,27 @@ func (*MsgUpdateParamsResponse) Descriptor() ([]byte, []int) {
 	return file_enreach_manager_tx_proto_rawDescGZIP(), []int{1}
 }
 
-type MsgCreateManager struct {
+type MsgRegisterManager struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Creator    string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
-	ManagerId  string `protobuf:"bytes,2,opt,name=managerId,proto3" json:"managerId,omitempty"`
-	EvmAddress string `protobuf:"bytes,3,opt,name=evmAddress,proto3" json:"evmAddress,omitempty"`
-	RegionCode string `protobuf:"bytes,4,opt,name=regionCode,proto3" json:"regionCode,omitempty"`
-	Status     string `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
+	Creator            string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	ManagerAddress     string `protobuf:"bytes,2,opt,name=managerAddress,proto3" json:"managerAddress,omitempty"`
+	OperatorName       string `protobuf:"bytes,3,opt,name=operatorName,proto3" json:"operatorName,omitempty"`
+	OperatorDesc       string `protobuf:"bytes,4,opt,name=operatorDesc,proto3" json:"operatorDesc,omitempty"`
+	OperatorWebsiteURL string `protobuf:"bytes,5,opt,name=operatorWebsiteURL,proto3" json:"operatorWebsiteURL,omitempty"`
+	EvmAddress         string `protobuf:"bytes,6,opt,name=evmAddress,proto3" json:"evmAddress,omitempty"`
+	HostAddress        string `protobuf:"bytes,7,opt,name=hostAddress,proto3" json:"hostAddress,omitempty"`
+	ManagerPort        uint32 `protobuf:"varint,8,opt,name=managerPort,proto3" json:"managerPort,omitempty"`
+	TrackerPort        uint32 `protobuf:"varint,9,opt,name=trackerPort,proto3" json:"trackerPort,omitempty"`
+	ChainAPIPort       uint32 `protobuf:"varint,10,opt,name=chainAPIPort,proto3" json:"chainAPIPort,omitempty"`
+	ChainRPCPort       uint32 `protobuf:"varint,11,opt,name=chainRPCPort,proto3" json:"chainRPCPort,omitempty"`
+	RegionCode         string `protobuf:"bytes,12,opt,name=regionCode,proto3" json:"regionCode,omitempty"`
 }
 
-func (x *MsgCreateManager) Reset() {
-	*x = MsgCreateManager{}
+func (x *MsgRegisterManager) Reset() {
+	*x = MsgRegisterManager{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_enreach_manager_tx_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3964,53 +4738,102 @@ func (x *MsgCreateManager) Reset() {
 	}
 }
 
-func (x *MsgCreateManager) String() string {
+func (x *MsgRegisterManager) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MsgCreateManager) ProtoMessage() {}
+func (*MsgRegisterManager) ProtoMessage() {}
 
-// Deprecated: Use MsgCreateManager.ProtoReflect.Descriptor instead.
-func (*MsgCreateManager) Descriptor() ([]byte, []int) {
+// Deprecated: Use MsgRegisterManager.ProtoReflect.Descriptor instead.
+func (*MsgRegisterManager) Descriptor() ([]byte, []int) {
 	return file_enreach_manager_tx_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *MsgCreateManager) GetCreator() string {
+func (x *MsgRegisterManager) GetCreator() string {
 	if x != nil {
 		return x.Creator
 	}
 	return ""
 }
 
-func (x *MsgCreateManager) GetManagerId() string {
+func (x *MsgRegisterManager) GetManagerAddress() string {
 	if x != nil {
-		return x.ManagerId
+		return x.ManagerAddress
 	}
 	return ""
 }
 
-func (x *MsgCreateManager) GetEvmAddress() string {
+func (x *MsgRegisterManager) GetOperatorName() string {
+	if x != nil {
+		return x.OperatorName
+	}
+	return ""
+}
+
+func (x *MsgRegisterManager) GetOperatorDesc() string {
+	if x != nil {
+		return x.OperatorDesc
+	}
+	return ""
+}
+
+func (x *MsgRegisterManager) GetOperatorWebsiteURL() string {
+	if x != nil {
+		return x.OperatorWebsiteURL
+	}
+	return ""
+}
+
+func (x *MsgRegisterManager) GetEvmAddress() string {
 	if x != nil {
 		return x.EvmAddress
 	}
 	return ""
 }
 
-func (x *MsgCreateManager) GetRegionCode() string {
+func (x *MsgRegisterManager) GetHostAddress() string {
+	if x != nil {
+		return x.HostAddress
+	}
+	return ""
+}
+
+func (x *MsgRegisterManager) GetManagerPort() uint32 {
+	if x != nil {
+		return x.ManagerPort
+	}
+	return 0
+}
+
+func (x *MsgRegisterManager) GetTrackerPort() uint32 {
+	if x != nil {
+		return x.TrackerPort
+	}
+	return 0
+}
+
+func (x *MsgRegisterManager) GetChainAPIPort() uint32 {
+	if x != nil {
+		return x.ChainAPIPort
+	}
+	return 0
+}
+
+func (x *MsgRegisterManager) GetChainRPCPort() uint32 {
+	if x != nil {
+		return x.ChainRPCPort
+	}
+	return 0
+}
+
+func (x *MsgRegisterManager) GetRegionCode() string {
 	if x != nil {
 		return x.RegionCode
 	}
 	return ""
 }
 
-func (x *MsgCreateManager) GetStatus() string {
-	if x != nil {
-		return x.Status
-	}
-	return ""
-}
-
-type MsgCreateManagerResponse struct {
+type MsgRegisterManagerResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -4018,8 +4841,8 @@ type MsgCreateManagerResponse struct {
 	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (x *MsgCreateManagerResponse) Reset() {
-	*x = MsgCreateManagerResponse{}
+func (x *MsgRegisterManagerResponse) Reset() {
+	*x = MsgRegisterManagerResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_enreach_manager_tx_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4027,18 +4850,18 @@ func (x *MsgCreateManagerResponse) Reset() {
 	}
 }
 
-func (x *MsgCreateManagerResponse) String() string {
+func (x *MsgRegisterManagerResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MsgCreateManagerResponse) ProtoMessage() {}
+func (*MsgRegisterManagerResponse) ProtoMessage() {}
 
-// Deprecated: Use MsgCreateManagerResponse.ProtoReflect.Descriptor instead.
-func (*MsgCreateManagerResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use MsgRegisterManagerResponse.ProtoReflect.Descriptor instead.
+func (*MsgRegisterManagerResponse) Descriptor() ([]byte, []int) {
 	return file_enreach_manager_tx_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *MsgCreateManagerResponse) GetId() uint64 {
+func (x *MsgRegisterManagerResponse) GetId() uint64 {
 	if x != nil {
 		return x.Id
 	}
@@ -4050,12 +4873,19 @@ type MsgUpdateManager struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Creator    string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
-	Id         uint64 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
-	ManagerId  string `protobuf:"bytes,3,opt,name=managerId,proto3" json:"managerId,omitempty"`
-	EvmAddress string `protobuf:"bytes,4,opt,name=evmAddress,proto3" json:"evmAddress,omitempty"`
-	RegionCode string `protobuf:"bytes,5,opt,name=regionCode,proto3" json:"regionCode,omitempty"`
-	Status     string `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
+	Creator            string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Id                 uint64 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
+	ManagerAddress     string `protobuf:"bytes,3,opt,name=managerAddress,proto3" json:"managerAddress,omitempty"`
+	OperatorName       string `protobuf:"bytes,4,opt,name=operatorName,proto3" json:"operatorName,omitempty"`
+	OperatorDesc       string `protobuf:"bytes,5,opt,name=operatorDesc,proto3" json:"operatorDesc,omitempty"`
+	OperatorWebsiteURL string `protobuf:"bytes,6,opt,name=operatorWebsiteURL,proto3" json:"operatorWebsiteURL,omitempty"`
+	EvmAddress         string `protobuf:"bytes,7,opt,name=evmAddress,proto3" json:"evmAddress,omitempty"`
+	HostAddress        string `protobuf:"bytes,8,opt,name=hostAddress,proto3" json:"hostAddress,omitempty"`
+	ManagerPort        uint32 `protobuf:"varint,9,opt,name=managerPort,proto3" json:"managerPort,omitempty"`
+	TrackerPort        uint32 `protobuf:"varint,10,opt,name=trackerPort,proto3" json:"trackerPort,omitempty"`
+	ChainAPIPort       uint32 `protobuf:"varint,11,opt,name=chainAPIPort,proto3" json:"chainAPIPort,omitempty"`
+	ChainRPCPort       uint32 `protobuf:"varint,12,opt,name=chainRPCPort,proto3" json:"chainRPCPort,omitempty"`
+	RegionCode         string `protobuf:"bytes,13,opt,name=regionCode,proto3" json:"regionCode,omitempty"`
 }
 
 func (x *MsgUpdateManager) Reset() {
@@ -4092,9 +4922,30 @@ func (x *MsgUpdateManager) GetId() uint64 {
 	return 0
 }
 
-func (x *MsgUpdateManager) GetManagerId() string {
+func (x *MsgUpdateManager) GetManagerAddress() string {
 	if x != nil {
-		return x.ManagerId
+		return x.ManagerAddress
+	}
+	return ""
+}
+
+func (x *MsgUpdateManager) GetOperatorName() string {
+	if x != nil {
+		return x.OperatorName
+	}
+	return ""
+}
+
+func (x *MsgUpdateManager) GetOperatorDesc() string {
+	if x != nil {
+		return x.OperatorDesc
+	}
+	return ""
+}
+
+func (x *MsgUpdateManager) GetOperatorWebsiteURL() string {
+	if x != nil {
+		return x.OperatorWebsiteURL
 	}
 	return ""
 }
@@ -4106,16 +4957,44 @@ func (x *MsgUpdateManager) GetEvmAddress() string {
 	return ""
 }
 
-func (x *MsgUpdateManager) GetRegionCode() string {
+func (x *MsgUpdateManager) GetHostAddress() string {
 	if x != nil {
-		return x.RegionCode
+		return x.HostAddress
 	}
 	return ""
 }
 
-func (x *MsgUpdateManager) GetStatus() string {
+func (x *MsgUpdateManager) GetManagerPort() uint32 {
 	if x != nil {
-		return x.Status
+		return x.ManagerPort
+	}
+	return 0
+}
+
+func (x *MsgUpdateManager) GetTrackerPort() uint32 {
+	if x != nil {
+		return x.TrackerPort
+	}
+	return 0
+}
+
+func (x *MsgUpdateManager) GetChainAPIPort() uint32 {
+	if x != nil {
+		return x.ChainAPIPort
+	}
+	return 0
+}
+
+func (x *MsgUpdateManager) GetChainRPCPort() uint32 {
+	if x != nil {
+		return x.ChainRPCPort
+	}
+	return 0
+}
+
+func (x *MsgUpdateManager) GetRegionCode() string {
+	if x != nil {
+		return x.RegionCode
 	}
 	return ""
 }
@@ -4243,77 +5122,112 @@ var file_enreach_manager_tx_proto_rawDesc = []byte{
 	0x2a, 0x21, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x78, 0x2f, 0x6d, 0x61, 0x6e, 0x61,
 	0x67, 0x65, 0x72, 0x2f, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72,
 	0x61, 0x6d, 0x73, 0x22, 0x19, 0x0a, 0x17, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
-	0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xb0,
-	0x01, 0x0a, 0x10, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61,
-	0x67, 0x65, 0x72, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x1c, 0x0a,
-	0x09, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x09, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x49, 0x64, 0x12, 0x1e, 0x0a, 0x0a, 0x65,
-	0x76, 0x6d, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x0a, 0x65, 0x76, 0x6d, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x1e, 0x0a, 0x0a, 0x72,
-	0x65, 0x67, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x64, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x0a, 0x72, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x64, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x73,
-	0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x74, 0x61,
-	0x74, 0x75, 0x73, 0x3a, 0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f,
-	0x72, 0x22, 0x2a, 0x0a, 0x18, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4d, 0x61,
-	0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a,
-	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x22, 0xc0, 0x01,
-	0x0a, 0x10, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67,
-	0x65, 0x72, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x0e, 0x0a, 0x02,
-	0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1c, 0x0a, 0x09,
-	0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x49, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x09, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x49, 0x64, 0x12, 0x1e, 0x0a, 0x0a, 0x65, 0x76,
-	0x6d, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a,
-	0x65, 0x76, 0x6d, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x1e, 0x0a, 0x0a, 0x72, 0x65,
-	0x67, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x64, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a,
-	0x72, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x64, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74,
-	0x61, 0x74, 0x75, 0x73, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74,
-	0x75, 0x73, 0x3a, 0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72,
-	0x22, 0x1a, 0x0a, 0x18, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x61, 0x6e,
-	0x61, 0x67, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x4a, 0x0a, 0x10,
+	0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xca,
+	0x03, 0x0a, 0x12, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x4d, 0x61,
+	0x6e, 0x61, 0x67, 0x65, 0x72, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12,
+	0x26, 0x0a, 0x0e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73,
+	0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72,
+	0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x22, 0x0a, 0x0c, 0x6f, 0x70, 0x65, 0x72, 0x61,
+	0x74, 0x6f, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x6f,
+	0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x22, 0x0a, 0x0c, 0x6f,
+	0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x44, 0x65, 0x73, 0x63, 0x18, 0x04, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x0c, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x44, 0x65, 0x73, 0x63, 0x12,
+	0x2e, 0x0a, 0x12, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x57, 0x65, 0x62, 0x73, 0x69,
+	0x74, 0x65, 0x55, 0x52, 0x4c, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x12, 0x6f, 0x70, 0x65,
+	0x72, 0x61, 0x74, 0x6f, 0x72, 0x57, 0x65, 0x62, 0x73, 0x69, 0x74, 0x65, 0x55, 0x52, 0x4c, 0x12,
+	0x1e, 0x0a, 0x0a, 0x65, 0x76, 0x6d, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x06, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x0a, 0x65, 0x76, 0x6d, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12,
+	0x20, 0x0a, 0x0b, 0x68, 0x6f, 0x73, 0x74, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x07,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x68, 0x6f, 0x73, 0x74, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73,
+	0x73, 0x12, 0x20, 0x0a, 0x0b, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x50, 0x6f, 0x72, 0x74,
+	0x18, 0x08, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x0b, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x50,
+	0x6f, 0x72, 0x74, 0x12, 0x20, 0x0a, 0x0b, 0x74, 0x72, 0x61, 0x63, 0x6b, 0x65, 0x72, 0x50, 0x6f,
+	0x72, 0x74, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x0b, 0x74, 0x72, 0x61, 0x63, 0x6b, 0x65,
+	0x72, 0x50, 0x6f, 0x72, 0x74, 0x12, 0x22, 0x0a, 0x0c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x41, 0x50,
+	0x49, 0x50, 0x6f, 0x72, 0x74, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x0c, 0x63, 0x68, 0x61,
+	0x69, 0x6e, 0x41, 0x50, 0x49, 0x50, 0x6f, 0x72, 0x74, 0x12, 0x22, 0x0a, 0x0c, 0x63, 0x68, 0x61,
+	0x69, 0x6e, 0x52, 0x50, 0x43, 0x50, 0x6f, 0x72, 0x74, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x0d, 0x52,
+	0x0c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x52, 0x50, 0x43, 0x50, 0x6f, 0x72, 0x74, 0x12, 0x1e, 0x0a,
+	0x0a, 0x72, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x64, 0x65, 0x18, 0x0c, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x0a, 0x72, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x64, 0x65, 0x3a, 0x0c, 0x82,
+	0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x2c, 0x0a, 0x1a, 0x4d,
+	0x73, 0x67, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65,
+	0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x22, 0xd8, 0x03, 0x0a, 0x10, 0x4d, 0x73,
+	0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x12, 0x18,
+	0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x12, 0x26, 0x0a, 0x0e, 0x6d, 0x61, 0x6e, 0x61,
+	0x67, 0x65, 0x72, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x0e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73,
+	0x12, 0x22, 0x0a, 0x0c, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x4e, 0x61, 0x6d, 0x65,
+	0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72,
+	0x4e, 0x61, 0x6d, 0x65, 0x12, 0x22, 0x0a, 0x0c, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72,
+	0x44, 0x65, 0x73, 0x63, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x6f, 0x70, 0x65, 0x72,
+	0x61, 0x74, 0x6f, 0x72, 0x44, 0x65, 0x73, 0x63, 0x12, 0x2e, 0x0a, 0x12, 0x6f, 0x70, 0x65, 0x72,
+	0x61, 0x74, 0x6f, 0x72, 0x57, 0x65, 0x62, 0x73, 0x69, 0x74, 0x65, 0x55, 0x52, 0x4c, 0x18, 0x06,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x12, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x57, 0x65,
+	0x62, 0x73, 0x69, 0x74, 0x65, 0x55, 0x52, 0x4c, 0x12, 0x1e, 0x0a, 0x0a, 0x65, 0x76, 0x6d, 0x41,
+	0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x65, 0x76,
+	0x6d, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x20, 0x0a, 0x0b, 0x68, 0x6f, 0x73, 0x74,
+	0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x68,
+	0x6f, 0x73, 0x74, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x20, 0x0a, 0x0b, 0x6d, 0x61,
+	0x6e, 0x61, 0x67, 0x65, 0x72, 0x50, 0x6f, 0x72, 0x74, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0d, 0x52,
+	0x0b, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x50, 0x6f, 0x72, 0x74, 0x12, 0x20, 0x0a, 0x0b,
+	0x74, 0x72, 0x61, 0x63, 0x6b, 0x65, 0x72, 0x50, 0x6f, 0x72, 0x74, 0x18, 0x0a, 0x20, 0x01, 0x28,
+	0x0d, 0x52, 0x0b, 0x74, 0x72, 0x61, 0x63, 0x6b, 0x65, 0x72, 0x50, 0x6f, 0x72, 0x74, 0x12, 0x22,
+	0x0a, 0x0c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x41, 0x50, 0x49, 0x50, 0x6f, 0x72, 0x74, 0x18, 0x0b,
+	0x20, 0x01, 0x28, 0x0d, 0x52, 0x0c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x41, 0x50, 0x49, 0x50, 0x6f,
+	0x72, 0x74, 0x12, 0x22, 0x0a, 0x0c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x52, 0x50, 0x43, 0x50, 0x6f,
+	0x72, 0x74, 0x18, 0x0c, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x0c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x52,
+	0x50, 0x43, 0x50, 0x6f, 0x72, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x72, 0x65, 0x67, 0x69, 0x6f, 0x6e,
+	0x43, 0x6f, 0x64, 0x65, 0x18, 0x0d, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x72, 0x65, 0x67, 0x69,
+	0x6f, 0x6e, 0x43, 0x6f, 0x64, 0x65, 0x3a, 0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65,
+	0x61, 0x74, 0x6f, 0x72, 0x22, 0x1a, 0x0a, 0x18, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x22, 0x4a, 0x0a, 0x10, 0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x61, 0x6e,
+	0x61, 0x67, 0x65, 0x72, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x0e,
+	0x0a, 0x02, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x3a, 0x0c,
+	0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x1a, 0x0a, 0x18,
 	0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72,
-	0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64,
-	0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x3a, 0x0c, 0x82, 0xe7, 0xb0, 0x2a,
-	0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x1a, 0x0a, 0x18, 0x4d, 0x73, 0x67, 0x44,
-	0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x32, 0x85, 0x03, 0x0a, 0x03, 0x4d, 0x73, 0x67, 0x12, 0x5a, 0x0a, 0x0c,
-	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x20, 0x2e, 0x65,
-	0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x4d,
-	0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x28,
-	0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72,
-	0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5d, 0x0a, 0x0d, 0x43, 0x72, 0x65, 0x61,
-	0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x12, 0x21, 0x2e, 0x65, 0x6e, 0x72, 0x65,
-	0x61, 0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x4d, 0x73, 0x67, 0x43,
-	0x72, 0x65, 0x61, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x1a, 0x29, 0x2e, 0x65,
-	0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x4d,
-	0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5d, 0x0a, 0x0d, 0x55, 0x70, 0x64, 0x61, 0x74,
-	0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x12, 0x21, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61,
-	0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x1a, 0x29, 0x2e, 0x65, 0x6e,
-	0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x4d, 0x73,
-	0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5d, 0x0a, 0x0d, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
-	0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x12, 0x21, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63,
-	0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c,
-	0x65, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x1a, 0x29, 0x2e, 0x65, 0x6e, 0x72,
-	0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x4d, 0x73, 0x67,
-	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x05, 0x80, 0xe7, 0xb0, 0x2a, 0x01, 0x42, 0x9d, 0x01, 0x0a,
-	0x13, 0x63, 0x6f, 0x6d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e,
-	0x61, 0x67, 0x65, 0x72, 0x42, 0x07, 0x54, 0x78, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a,
-	0x20, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70,
-	0x69, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65,
-	0x72, 0xa2, 0x02, 0x03, 0x45, 0x4d, 0x58, 0xaa, 0x02, 0x0f, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63,
-	0x68, 0x2e, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0xca, 0x02, 0x0f, 0x45, 0x6e, 0x72, 0x65,
-	0x61, 0x63, 0x68, 0x5c, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0xe2, 0x02, 0x1b, 0x45, 0x6e,
-	0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x5c, 0x47, 0x50,
-	0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x10, 0x45, 0x6e, 0x72, 0x65,
-	0x61, 0x63, 0x68, 0x3a, 0x3a, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x33,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0x8b, 0x03, 0x0a, 0x03, 0x4d, 0x73, 0x67,
+	0x12, 0x5a, 0x0a, 0x0c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73,
+	0x12, 0x20, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67,
+	0x65, 0x72, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61,
+	0x6d, 0x73, 0x1a, 0x28, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e,
+	0x61, 0x67, 0x65, 0x72, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61,
+	0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x63, 0x0a, 0x0f,
+	0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x12,
+	0x23, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65,
+	0x72, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x4d, 0x61, 0x6e,
+	0x61, 0x67, 0x65, 0x72, 0x1a, 0x2b, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d,
+	0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74,
+	0x65, 0x72, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x5d, 0x0a, 0x0d, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67,
+	0x65, 0x72, 0x12, 0x21, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e,
+	0x61, 0x67, 0x65, 0x72, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x61,
+	0x6e, 0x61, 0x67, 0x65, 0x72, 0x1a, 0x29, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e,
+	0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x5d, 0x0a, 0x0d, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65,
+	0x72, 0x12, 0x21, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61,
+	0x67, 0x65, 0x72, 0x2e, 0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x61, 0x6e,
+	0x61, 0x67, 0x65, 0x72, 0x1a, 0x29, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d,
+	0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
+	0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x1a,
+	0x05, 0x80, 0xe7, 0xb0, 0x2a, 0x01, 0x42, 0x9d, 0x01, 0x0a, 0x13, 0x63, 0x6f, 0x6d, 0x2e, 0x65,
+	0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x42, 0x07,
+	0x54, 0x78, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x20, 0x63, 0x6f, 0x73, 0x6d, 0x6f,
+	0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x65, 0x6e, 0x72, 0x65,
+	0x61, 0x63, 0x68, 0x2f, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0xa2, 0x02, 0x03, 0x45, 0x4d,
+	0x58, 0xaa, 0x02, 0x0f, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x4d, 0x61, 0x6e, 0x61,
+	0x67, 0x65, 0x72, 0xca, 0x02, 0x0f, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x4d, 0x61,
+	0x6e, 0x61, 0x67, 0x65, 0x72, 0xe2, 0x02, 0x1b, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c,
+	0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64,
+	0x61, 0x74, 0x61, 0xea, 0x02, 0x10, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x3a, 0x3a, 0x4d,
+	0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -4330,24 +5244,24 @@ func file_enreach_manager_tx_proto_rawDescGZIP() []byte {
 
 var file_enreach_manager_tx_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_enreach_manager_tx_proto_goTypes = []interface{}{
-	(*MsgUpdateParams)(nil),          // 0: enreach.manager.MsgUpdateParams
-	(*MsgUpdateParamsResponse)(nil),  // 1: enreach.manager.MsgUpdateParamsResponse
-	(*MsgCreateManager)(nil),         // 2: enreach.manager.MsgCreateManager
-	(*MsgCreateManagerResponse)(nil), // 3: enreach.manager.MsgCreateManagerResponse
-	(*MsgUpdateManager)(nil),         // 4: enreach.manager.MsgUpdateManager
-	(*MsgUpdateManagerResponse)(nil), // 5: enreach.manager.MsgUpdateManagerResponse
-	(*MsgDeleteManager)(nil),         // 6: enreach.manager.MsgDeleteManager
-	(*MsgDeleteManagerResponse)(nil), // 7: enreach.manager.MsgDeleteManagerResponse
-	(*Params)(nil),                   // 8: enreach.manager.Params
+	(*MsgUpdateParams)(nil),            // 0: enreach.manager.MsgUpdateParams
+	(*MsgUpdateParamsResponse)(nil),    // 1: enreach.manager.MsgUpdateParamsResponse
+	(*MsgRegisterManager)(nil),         // 2: enreach.manager.MsgRegisterManager
+	(*MsgRegisterManagerResponse)(nil), // 3: enreach.manager.MsgRegisterManagerResponse
+	(*MsgUpdateManager)(nil),           // 4: enreach.manager.MsgUpdateManager
+	(*MsgUpdateManagerResponse)(nil),   // 5: enreach.manager.MsgUpdateManagerResponse
+	(*MsgDeleteManager)(nil),           // 6: enreach.manager.MsgDeleteManager
+	(*MsgDeleteManagerResponse)(nil),   // 7: enreach.manager.MsgDeleteManagerResponse
+	(*Params)(nil),                     // 8: enreach.manager.Params
 }
 var file_enreach_manager_tx_proto_depIdxs = []int32{
 	8, // 0: enreach.manager.MsgUpdateParams.params:type_name -> enreach.manager.Params
 	0, // 1: enreach.manager.Msg.UpdateParams:input_type -> enreach.manager.MsgUpdateParams
-	2, // 2: enreach.manager.Msg.CreateManager:input_type -> enreach.manager.MsgCreateManager
+	2, // 2: enreach.manager.Msg.RegisterManager:input_type -> enreach.manager.MsgRegisterManager
 	4, // 3: enreach.manager.Msg.UpdateManager:input_type -> enreach.manager.MsgUpdateManager
 	6, // 4: enreach.manager.Msg.DeleteManager:input_type -> enreach.manager.MsgDeleteManager
 	1, // 5: enreach.manager.Msg.UpdateParams:output_type -> enreach.manager.MsgUpdateParamsResponse
-	3, // 6: enreach.manager.Msg.CreateManager:output_type -> enreach.manager.MsgCreateManagerResponse
+	3, // 6: enreach.manager.Msg.RegisterManager:output_type -> enreach.manager.MsgRegisterManagerResponse
 	5, // 7: enreach.manager.Msg.UpdateManager:output_type -> enreach.manager.MsgUpdateManagerResponse
 	7, // 8: enreach.manager.Msg.DeleteManager:output_type -> enreach.manager.MsgDeleteManagerResponse
 	5, // [5:9] is the sub-list for method output_type
@@ -4390,7 +5304,7 @@ func file_enreach_manager_tx_proto_init() {
 			}
 		}
 		file_enreach_manager_tx_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgCreateManager); i {
+			switch v := v.(*MsgRegisterManager); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4402,7 +5316,7 @@ func file_enreach_manager_tx_proto_init() {
 			}
 		}
 		file_enreach_manager_tx_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgCreateManagerResponse); i {
+			switch v := v.(*MsgRegisterManagerResponse); i {
 			case 0:
 				return &v.state
 			case 1:

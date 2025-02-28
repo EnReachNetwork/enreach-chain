@@ -11,15 +11,23 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
 
-func (k msgServer) CreateManager(goCtx context.Context, msg *types.MsgCreateManager) (*types.MsgCreateManagerResponse, error) {
+func (k msgServer) RegisterManager(goCtx context.Context, msg *types.MsgRegisterManager) (*types.MsgRegisterManagerResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	var manager = types.Manager{
-		Creator:    msg.Creator,
-		ManagerId:  msg.ManagerId,
-		EvmAddress: msg.EvmAddress,
-		RegionCode: msg.RegionCode,
-		Status:     msg.Status,
+		Creator:            msg.Creator,
+		ManagerAddress:     msg.ManagerAddress,
+		OperatorName:       msg.OperatorName,
+		OperatorDesc:       msg.OperatorDesc,
+		OperatorWebsiteURL: msg.OperatorWebsiteURL,
+		EvmAddress:         msg.EvmAddress,
+		HostAddress:        msg.HostAddress,
+		ManagerPort:        msg.ManagerPort,
+		TrackerPort:        msg.TrackerPort,
+		ChainAPIPort:       msg.ChainAPIPort,
+		ChainRPCPort:       msg.ChainRPCPort,
+		RegionCode:         msg.RegionCode,
+		Status:             "Init",
 	}
 
 	id := k.AppendManager(
@@ -27,7 +35,7 @@ func (k msgServer) CreateManager(goCtx context.Context, msg *types.MsgCreateMana
 		manager,
 	)
 
-	return &types.MsgCreateManagerResponse{
+	return &types.MsgRegisterManagerResponse{
 		Id: id,
 	}, nil
 }
@@ -36,12 +44,19 @@ func (k msgServer) UpdateManager(goCtx context.Context, msg *types.MsgUpdateMana
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	var manager = types.Manager{
-		Creator:    msg.Creator,
-		Id:         msg.Id,
-		ManagerId:  msg.ManagerId,
-		EvmAddress: msg.EvmAddress,
-		RegionCode: msg.RegionCode,
-		Status:     msg.Status,
+		Creator:            msg.Creator,
+		Id:                 msg.Id,
+		ManagerAddress:     msg.ManagerAddress,
+		OperatorName:       msg.OperatorName,
+		OperatorDesc:       msg.OperatorDesc,
+		OperatorWebsiteURL: msg.OperatorWebsiteURL,
+		EvmAddress:         msg.EvmAddress,
+		HostAddress:        msg.HostAddress,
+		ManagerPort:        msg.ManagerPort,
+		TrackerPort:        msg.TrackerPort,
+		ChainAPIPort:       msg.ChainAPIPort,
+		ChainRPCPort:       msg.ChainRPCPort,
+		RegionCode:         msg.RegionCode,
 	}
 
 	// Checks that the element exists

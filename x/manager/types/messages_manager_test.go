@@ -9,21 +9,21 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestMsgCreateManager_ValidateBasic(t *testing.T) {
+func TestMsgRegisterManager_ValidateBasic(t *testing.T) {
 	tests := []struct {
 		name string
-		msg  MsgCreateManager
+		msg  MsgRegisterManager
 		err  error
 	}{
 		{
 			name: "invalid address",
-			msg: MsgCreateManager{
+			msg: MsgRegisterManager{
 				Creator: "invalid_address",
 			},
 			err: sdkerrors.ErrInvalidAddress,
 		}, {
 			name: "valid address",
-			msg: MsgCreateManager{
+			msg: MsgRegisterManager{
 				Creator: sample.AccAddress(),
 			},
 		},

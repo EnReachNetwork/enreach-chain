@@ -6,19 +6,27 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
 
-var _ sdk.Msg = &MsgCreateManager{}
+var _ sdk.Msg = &MsgRegisterManager{}
 
-func NewMsgCreateManager(creator string, managerId string, evmAddress string, regionCode string, status string) *MsgCreateManager {
-	return &MsgCreateManager{
-		Creator:    creator,
-		ManagerId:  managerId,
-		EvmAddress: evmAddress,
-		RegionCode: regionCode,
-		Status:     status,
+func NewMsgRegisterManager(creator string, managerAddress string, operatorName string, operatorDesc string, operatorWebsiteURL string,
+	evmAddress string, regionCode string, hostAddress string, managerPort uint32, trackerPort uint32, chainAPIPort uint32, chainRPCPort uint32) *MsgRegisterManager {
+	return &MsgRegisterManager{
+		Creator:            creator,
+		ManagerAddress:     managerAddress,
+		OperatorName:       operatorName,
+		OperatorDesc:       operatorDesc,
+		OperatorWebsiteURL: operatorWebsiteURL,
+		EvmAddress:         evmAddress,
+		RegionCode:         regionCode,
+		HostAddress:        hostAddress,
+		ManagerPort:        managerPort,
+		TrackerPort:        trackerPort,
+		ChainAPIPort:       chainAPIPort,
+		ChainRPCPort:       chainRPCPort,
 	}
 }
 
-func (msg *MsgCreateManager) ValidateBasic() error {
+func (msg *MsgRegisterManager) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(msg.Creator)
 	if err != nil {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid creator address (%s)", err)
@@ -28,14 +36,22 @@ func (msg *MsgCreateManager) ValidateBasic() error {
 
 var _ sdk.Msg = &MsgUpdateManager{}
 
-func NewMsgUpdateManager(creator string, id uint64, managerId string, evmAddress string, regionCode string, status string) *MsgUpdateManager {
+func NewMsgUpdateManager(creator string, id uint64, managerAddress string, operatorName string, operatorDesc string, operatorWebsiteURL string,
+	evmAddress string, regionCode string, hostAddress string, managerPort uint32, trackerPort uint32, chainAPIPort uint32, chainRPCPort uint32) *MsgUpdateManager {
 	return &MsgUpdateManager{
-		Id:         id,
-		Creator:    creator,
-		ManagerId:  managerId,
-		EvmAddress: evmAddress,
-		RegionCode: regionCode,
-		Status:     status,
+		Id:                 id,
+		Creator:            creator,
+		ManagerAddress:     managerAddress,
+		OperatorName:       operatorName,
+		OperatorDesc:       operatorDesc,
+		OperatorWebsiteURL: operatorWebsiteURL,
+		EvmAddress:         evmAddress,
+		RegionCode:         regionCode,
+		HostAddress:        hostAddress,
+		ManagerPort:        managerPort,
+		TrackerPort:        trackerPort,
+		ChainAPIPort:       chainAPIPort,
+		ChainRPCPort:       chainRPCPort,
 	}
 }
 
