@@ -44,8 +44,16 @@ export interface PageResponse {
 export interface QueryAllManagerResponse {
   Manager?: {
     id?: string;
-    managerId?: string;
+    managerAddress?: string;
+    operatorName?: string;
+    operatorDesc?: string;
+    operatorWebsiteURL?: string;
     evmAddress?: string;
+    hostAddress?: string;
+    managerPort?: number;
+    trackerPort?: number;
+    chainAPIPort?: number;
+    chainRPCPort?: number;
     regionCode?: string;
     status?: string;
     creator?: string;
@@ -53,11 +61,38 @@ export interface QueryAllManagerResponse {
   pagination?: { next_key?: string; total?: string };
 }
 
+export interface QueryGetManagerByRegionResponse {
+  managers?: {
+    id?: string;
+    managerAddress?: string;
+    operatorName?: string;
+    operatorDesc?: string;
+    operatorWebsiteURL?: string;
+    evmAddress?: string;
+    hostAddress?: string;
+    managerPort?: number;
+    trackerPort?: number;
+    chainAPIPort?: number;
+    chainRPCPort?: number;
+    regionCode?: string;
+    status?: string;
+    creator?: string;
+  }[];
+}
+
 export interface QueryGetManagerResponse {
   Manager?: {
     id?: string;
-    managerId?: string;
+    managerAddress?: string;
+    operatorName?: string;
+    operatorDesc?: string;
+    operatorWebsiteURL?: string;
     evmAddress?: string;
+    hostAddress?: string;
+    managerPort?: number;
+    trackerPort?: number;
+    chainAPIPort?: number;
+    chainRPCPort?: number;
     regionCode?: string;
     status?: string;
     creator?: string;
@@ -71,8 +106,24 @@ export interface QueryParamsResponse {
 export interface ManagerManager {
   /** @format uint64 */
   id?: string;
-  managerId?: string;
+  managerAddress?: string;
+  operatorName?: string;
+  operatorDesc?: string;
+  operatorWebsiteURL?: string;
   evmAddress?: string;
+  hostAddress?: string;
+
+  /** @format int64 */
+  managerPort?: number;
+
+  /** @format int64 */
+  trackerPort?: number;
+
+  /** @format int64 */
+  chainAPIPort?: number;
+
+  /** @format int64 */
+  chainRPCPort?: number;
   regionCode?: string;
   status?: string;
   creator?: string;
@@ -80,12 +131,12 @@ export interface ManagerManager {
 
 export type ManagerParams = object;
 
-export interface MsgCreateManagerResponse {
+export type MsgDeleteManagerResponse = object;
+
+export interface MsgRegisterManagerResponse {
   /** @format uint64 */
   id?: string;
 }
-
-export type MsgDeleteManagerResponse = object;
 
 export type MsgUpdateManagerResponse = object;
 
@@ -221,36 +272,33 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * No description
    *
    * @tags Query
-   * @name QueryManagerAll
-   * @request GET:/enreach/manager/manager
+   * @name QueryGetManagerByRegion
+   * @request GET:/enreach/manager/get_manager_by_region/{regionCode}
    */
-  queryManagerAll = (
-    query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
-    },
-    params: RequestParams = {},
-  ) =>
+  queryGetManagerByRegion = (regionCode: string, params: RequestParams = {}) =>
     this.request<
       {
-        Manager?: {
+        managers?: {
           id?: string;
-          managerId?: string;
+          managerAddress?: string;
+          operatorName?: string;
+          operatorDesc?: string;
+          operatorWebsiteURL?: string;
           evmAddress?: string;
+          hostAddress?: string;
+          managerPort?: number;
+          trackerPort?: number;
+          chainAPIPort?: number;
+          chainRPCPort?: number;
           regionCode?: string;
           status?: string;
           creator?: string;
         }[];
-        pagination?: { next_key?: string; total?: string };
       },
       { code?: number; message?: string; details?: { "@type"?: string }[] }
     >({
-      path: `/enreach/manager/manager`,
+      path: `/enreach/manager/get_manager_by_region/${regionCode}`,
       method: "GET",
-      query: query,
       ...params,
     });
 
@@ -266,8 +314,16 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       {
         Manager?: {
           id?: string;
-          managerId?: string;
+          managerAddress?: string;
+          operatorName?: string;
+          operatorDesc?: string;
+          operatorWebsiteURL?: string;
           evmAddress?: string;
+          hostAddress?: string;
+          managerPort?: number;
+          trackerPort?: number;
+          chainAPIPort?: number;
+          chainRPCPort?: number;
           regionCode?: string;
           status?: string;
           creator?: string;
@@ -277,6 +333,51 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     >({
       path: `/enreach/manager/manager/${id}`,
       method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryManagerAll
+   * @request GET:/enreach/manager/managers
+   */
+  queryManagerAll = (
+    query?: {
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<
+      {
+        Manager?: {
+          id?: string;
+          managerAddress?: string;
+          operatorName?: string;
+          operatorDesc?: string;
+          operatorWebsiteURL?: string;
+          evmAddress?: string;
+          hostAddress?: string;
+          managerPort?: number;
+          trackerPort?: number;
+          chainAPIPort?: number;
+          chainRPCPort?: number;
+          regionCode?: string;
+          status?: string;
+          creator?: string;
+        }[];
+        pagination?: { next_key?: string; total?: string };
+      },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/manager/managers`,
+      method: "GET",
+      query: query,
       ...params,
     });
 

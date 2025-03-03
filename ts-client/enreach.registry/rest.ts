@@ -220,8 +220,25 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * No description
    *
    * @tags Query
+   * @name QueryRegion
+   * @request GET:/enreach/registry/region/{id}
+   */
+  queryRegion = (id: string, params: RequestParams = {}) =>
+    this.request<
+      { Region?: { id?: string; code?: string; name?: string; description?: string; creator?: string } },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/registry/region/${id}`,
+      method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
    * @name QueryRegionAll
-   * @request GET:/enreach/registry/region
+   * @request GET:/enreach/registry/regions
    */
   queryRegionAll = (
     query?: {
@@ -240,26 +257,9 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       },
       { code?: number; message?: string; details?: { "@type"?: string }[] }
     >({
-      path: `/enreach/registry/region`,
+      path: `/enreach/registry/regions`,
       method: "GET",
       query: query,
-      ...params,
-    });
-
-  /**
-   * No description
-   *
-   * @tags Query
-   * @name QueryRegion
-   * @request GET:/enreach/registry/region/{id}
-   */
-  queryRegion = (id: string, params: RequestParams = {}) =>
-    this.request<
-      { Region?: { id?: string; code?: string; name?: string; description?: string; creator?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
-    >({
-      path: `/enreach/registry/region/${id}`,
-      method: "GET",
       ...params,
     });
 }

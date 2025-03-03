@@ -35,7 +35,56 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /enreach/registry/region:
+  /enreach/registry/region/{id}:
+    get:
+      operationId: Query_Region
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              Region:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uint64
+                  code:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  creator:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          format: uint64
+      tags:
+        - Query
+  /enreach/registry/regions:
     get:
       operationId: Query_RegionAll
       responses:
@@ -111,55 +160,6 @@ paths:
           in: query
           required: false
           type: boolean
-      tags:
-        - Query
-  /enreach/registry/region/{id}:
-    get:
-      operationId: Query_Region
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              Region:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    format: uint64
-                  code:
-                    type: string
-                  name:
-                    type: string
-                  description:
-                    type: string
-                  creator:
-                    type: string
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-          format: uint64
       tags:
         - Query
 definitions:

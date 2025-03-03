@@ -6,10 +6,10 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
-import { ConfigRequest } from "./types/../../../../go/pkg/mod/github.com/cosmos/cosmos-sdk@v0.50.6/proto/cosmos/base/node/v1beta1/query";
-import { ConfigResponse } from "./types/../../../../go/pkg/mod/github.com/cosmos/cosmos-sdk@v0.50.6/proto/cosmos/base/node/v1beta1/query";
-import { StatusRequest } from "./types/../../../../go/pkg/mod/github.com/cosmos/cosmos-sdk@v0.50.6/proto/cosmos/base/node/v1beta1/query";
-import { StatusResponse } from "./types/../../../../go/pkg/mod/github.com/cosmos/cosmos-sdk@v0.50.6/proto/cosmos/base/node/v1beta1/query";
+import { ConfigRequest } from "./types/cosmos/base/node/v1beta1/query";
+import { ConfigResponse } from "./types/cosmos/base/node/v1beta1/query";
+import { StatusRequest } from "./types/cosmos/base/node/v1beta1/query";
+import { StatusResponse } from "./types/cosmos/base/node/v1beta1/query";
 
 
 export { ConfigRequest, ConfigResponse, StatusRequest, StatusResponse };
