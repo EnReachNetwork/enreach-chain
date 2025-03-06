@@ -8,6 +8,7 @@ import "cosmos_proto/cosmos.proto";
 import "gogoproto/gogo.proto";
 import "enreach/manager/params.proto";
 import "enreach/manager/manager.proto";
+import "enreach/manager/operator.proto";
 
 option go_package = "enreach/x/manager/types";
 
@@ -17,10 +18,18 @@ service Msg {
   
   // UpdateParams defines a (governance) operation for updating the module
   // parameters. The authority defaults to the x/gov module account.
-  rpc UpdateParams  (MsgUpdateParams ) returns (MsgUpdateParamsResponse );
-  rpc RegisterManager (MsgRegisterManager) returns (MsgRegisterManagerResponse);
-  rpc UpdateManager (MsgUpdateManager) returns (MsgUpdateManagerResponse);
-  rpc DeleteManager (MsgDeleteManager) returns (MsgDeleteManagerResponse);
+  rpc UpdateParams             (MsgUpdateParams            ) returns (MsgUpdateParamsResponse            );
+  
+  rpc CreateOperator           (MsgCreateOperator          ) returns (MsgCreateOperatorResponse          );
+  rpc BindOperatorManagerAccount (MsgBindOperatorManagerAccount) returns (MsgBindOperatorManagerAccountResponse);
+  rpc SetManagerRegion         (MsgSetManagerRegion        ) returns (MsgSetManagerRegionResponse        );
+  rpc UpdateManagerConnParams  (MsgUpdateManagerConnParams ) returns (MsgUpdateManagerConnParamsResponse );
+  rpc ActivateManager          (MsgActivateManager         ) returns (MsgActivateManagerResponse         );
+  rpc BindOperatorEVMAccount    (MsgBindOperatorEVMAccount   ) returns (MsgBindOperatorEVMAccountResponse   );
+  rpc UpdateOperatorBasicInfo   (MsgUpdateOperatorBasicInfo  ) returns (MsgUpdateOperatorBasicInfoResponse  );
+
+  rpc RegisterManager           (MsgRegisterManager          ) returns (MsgRegisterManagerResponse          );
+  rpc GoWorking                (MsgGoWorking               ) returns (MsgGoWorkingResponse               );
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -29,7 +38,7 @@ message MsgUpdateParams {
   
   // authority is the address that controls the module (defaults to x/gov unless overwritten).
   string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  
+
   // params defines the module parameters to update.
   
   // NOTE: All parameters must be supplied.
@@ -40,50 +49,94 @@ message MsgUpdateParams {
 // MsgUpdateParams message.
 message MsgUpdateParamsResponse {}
 
+
+message MsgCreateOperator {
+  option (cosmos.msg.v1.signer) = "operatorAccount";
+  string operatorAccount =  1;
+  string name            =  2;
+  string description     =  3;
+  string websiteUrl      =  4;
+}
+
+message MsgCreateOperatorResponse {
+}
+
+message MsgBindOperatorManagerAccount {
+  option (cosmos.msg.v1.signer) = "operatorAccount";
+  string operatorAccount  = 1;
+  string managerAccount   = 2;
+  bytes  managerSignature = 3;
+  bool   forceUnbind      = 4;
+}
+
+message MsgBindOperatorManagerAccountResponse {}
+
+message MsgSetManagerRegion {
+  option (cosmos.msg.v1.signer) = "operatorAccount";
+  string operatorAccount = 1;
+  string regionCode      = 2;
+}
+
+message MsgSetManagerRegionResponse {}
+
+
+message MsgUpdateManagerConnParams {
+  option (cosmos.msg.v1.signer) = "operatorAccount";
+  string operatorAccount = 1;
+  string hostAddress    = 2;
+  uint32 managerPort    = 3;
+  uint32 trackerPort    = 4;
+  uint32 chainAPIPort   = 5;
+  uint32 chainRPCPort   = 6;
+}
+
+message MsgUpdateManagerConnParamsResponse {}
+
+
+message MsgActivateManager {
+  option (cosmos.msg.v1.signer) = "operatorAccount";
+  string operatorAccount = 1;
+  string license         = 2;
+}
+
+message MsgActivateManagerResponse {}
+
+
+message MsgBindOperatorEVMAccount {
+  option (cosmos.msg.v1.signer) = "operatorAccount";
+  string operatorAccount = 1;
+  string evmAccount     = 2;
+  bytes  evmSignature   = 3;
+}
+
+message MsgBindOperatorEVMAccountResponse {}
+
+message MsgUpdateOperatorBasicInfo {
+  option (cosmos.msg.v1.signer) = "operatorAccount";
+  string operatorAccount = 1;
+  string name           = 2;
+  string description    = 3;
+  string websiteUrl     = 4;
+}
+
+message MsgUpdateOperatorBasicInfoResponse {}
+
+
 message MsgRegisterManager {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator    = 1;
-  string managerAddress = 2; 
-  string operatorName = 3;
-  string operatorDesc = 4;
-  string operatorWebsiteURL = 5;
-  string evmAddress = 6;
-  string hostAddress = 7;
-  uint32 managerPort = 8;
-  uint32 trackerPort = 9;
-  uint32 chainAPIPort = 10;
-  uint32 chainRPCPort = 11;
-  string regionCode = 12;
+  option (cosmos.msg.v1.signer) = "managerAccount";
+  string managerAccount = 1;
+  string hostAddress   = 2;
+  uint32 managerPort   = 3;
+  uint32 trackerPort   = 4;
+  uint32 chainAPIPort  = 5;
+  uint32 chainRPCPort  = 6;
 }
 
-message MsgRegisterManagerResponse {
-  uint64 id = 1;
+message MsgRegisterManagerResponse {}
+
+message MsgGoWorking {
+  option (cosmos.msg.v1.signer) = "managerAccount";
+  string managerAccount = 1;
 }
 
-message MsgUpdateManager {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator    = 1;
-  uint64 id         = 2;
-  string managerAddress = 3; 
-  string operatorName = 4;
-  string operatorDesc = 5;
-  string operatorWebsiteURL = 6;
-  string evmAddress = 7;
-  string hostAddress = 8;
-  uint32 managerPort = 9;
-  uint32 trackerPort = 10;
-  uint32 chainAPIPort = 11;
-  uint32 chainRPCPort = 12;
-  string regionCode = 13;
-}
-
-message MsgUpdateManagerResponse {}
-
-message MsgDeleteManager {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator = 1;
-  uint64 id      = 2;
-}
-
-message MsgDeleteManagerResponse {}
-
+message MsgGoWorkingResponse {}

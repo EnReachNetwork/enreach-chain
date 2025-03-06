@@ -25,13 +25,22 @@ func TestGenesisState_Validate(t *testing.T) {
 
 				ManagerList: []types.Manager{
 					{
-						Id: 0,
+						ManagerAccount: "alice",
 					},
 					{
-						Id: 1,
+						ManagerAccount: "bob",
 					},
 				},
 				ManagerCount: 2,
+				OperatorList: []types.Operator{
+					{
+						OperatorAccount: "alice",
+					},
+					{
+						OperatorAccount: "bob",
+					},
+				},
+				OperatorCount: 2,
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
@@ -41,10 +50,10 @@ func TestGenesisState_Validate(t *testing.T) {
 			genState: &types.GenesisState{
 				ManagerList: []types.Manager{
 					{
-						Id: 0,
+						ManagerAccount: "alice",
 					},
 					{
-						Id: 0,
+						ManagerAccount: "alice",
 					},
 				},
 			},
@@ -55,10 +64,36 @@ func TestGenesisState_Validate(t *testing.T) {
 			genState: &types.GenesisState{
 				ManagerList: []types.Manager{
 					{
-						Id: 1,
+						ManagerAccount: "alice",
 					},
 				},
 				ManagerCount: 0,
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated operator",
+			genState: &types.GenesisState{
+				OperatorList: []types.Operator{
+					{
+						OperatorAccount: "alice",
+					},
+					{
+						OperatorAccount: "alice",
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "invalid operator count",
+			genState: &types.GenesisState{
+				OperatorList: []types.Operator{
+					{
+						OperatorAccount: "alice",
+					},
+				},
+				OperatorCount: 0,
 			},
 			valid: false,
 		},

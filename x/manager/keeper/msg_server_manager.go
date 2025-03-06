@@ -2,94 +2,41 @@ package keeper
 
 import (
 	"context"
-	"fmt"
 
 	"enreach/x/manager/types"
-
-	errorsmod "cosmossdk.io/errors"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
 
 func (k msgServer) RegisterManager(goCtx context.Context, msg *types.MsgRegisterManager) (*types.MsgRegisterManagerResponse, error) {
-	ctx := sdk.UnwrapSDKContext(goCtx)
+	// ctx := sdk.UnwrapSDKContext(goCtx)
 
-	var manager = types.Manager{
-		Creator:            msg.Creator,
-		ManagerAddress:     msg.ManagerAddress,
-		OperatorName:       msg.OperatorName,
-		OperatorDesc:       msg.OperatorDesc,
-		OperatorWebsiteURL: msg.OperatorWebsiteURL,
-		EvmAddress:         msg.EvmAddress,
-		HostAddress:        msg.HostAddress,
-		ManagerPort:        msg.ManagerPort,
-		TrackerPort:        msg.TrackerPort,
-		ChainAPIPort:       msg.ChainAPIPort,
-		ChainRPCPort:       msg.ChainRPCPort,
-		RegionCode:         msg.RegionCode,
-		Status:             "Init",
-	}
+	// // Check whether the worker account has bound to another manager
+	// manager, found := k.GetManagerByWorkerAccount(ctx, msg.WorkerAccount)
+	// if found {
+	// 	return nil, errorsmod.Wrap(types.ErrElementAlreadyExists, fmt.Sprintf("Manager '%d' already exists", msg.ManagerAddress))
+	// }
 
-	id := k.AppendManager(
-		ctx,
-		manager,
-	)
+	// var manager = types.Manager{
+	// 	ManagerAddress: msg.ManagerAddress,
+	// 	HostAddress:    msg.HostAddress,
+	// 	ManagerPort:    msg.ManagerPort,
+	// 	TrackerPort:    msg.TrackerPort,
+	// 	ChainAPIPort:   msg.ChainAPIPort,
+	// 	ChainRPCPort:   msg.ChainRPCPort,
+	// 	RegionCode:     msg.RegionCode,
+	// 	Creator:        msg.Signer,
+	// 	Status:         "Init",
+	// }
 
-	return &types.MsgRegisterManagerResponse{
-		Id: id,
-	}, nil
+	// id := k.AppendManager(
+	// 	ctx,
+	// 	manager,
+	// )
+
+	return &types.MsgRegisterManagerResponse{}, nil
 }
 
-func (k msgServer) UpdateManager(goCtx context.Context, msg *types.MsgUpdateManager) (*types.MsgUpdateManagerResponse, error) {
-	ctx := sdk.UnwrapSDKContext(goCtx)
+func (k msgServer) GoWorking(goCtx context.Context, msg *types.MsgGoWorking) (*types.MsgGoWorkingResponse, error) {
+	/// TODO
 
-	var manager = types.Manager{
-		Creator:            msg.Creator,
-		Id:                 msg.Id,
-		ManagerAddress:     msg.ManagerAddress,
-		OperatorName:       msg.OperatorName,
-		OperatorDesc:       msg.OperatorDesc,
-		OperatorWebsiteURL: msg.OperatorWebsiteURL,
-		EvmAddress:         msg.EvmAddress,
-		HostAddress:        msg.HostAddress,
-		ManagerPort:        msg.ManagerPort,
-		TrackerPort:        msg.TrackerPort,
-		ChainAPIPort:       msg.ChainAPIPort,
-		ChainRPCPort:       msg.ChainRPCPort,
-		RegionCode:         msg.RegionCode,
-	}
-
-	// Checks that the element exists
-	val, found := k.GetManager(ctx, msg.Id)
-	if !found {
-		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, fmt.Sprintf("key %d doesn't exist", msg.Id))
-	}
-
-	// Checks if the msg creator is the same as the current owner
-	if msg.Creator != val.Creator {
-		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "incorrect owner")
-	}
-
-	k.SetManager(ctx, manager)
-
-	return &types.MsgUpdateManagerResponse{}, nil
-}
-
-func (k msgServer) DeleteManager(goCtx context.Context, msg *types.MsgDeleteManager) (*types.MsgDeleteManagerResponse, error) {
-	ctx := sdk.UnwrapSDKContext(goCtx)
-
-	// Checks that the element exists
-	val, found := k.GetManager(ctx, msg.Id)
-	if !found {
-		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, fmt.Sprintf("key %d doesn't exist", msg.Id))
-	}
-
-	// Checks if the msg creator is the same as the current owner
-	if msg.Creator != val.Creator {
-		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "incorrect owner")
-	}
-
-	k.RemoveManager(ctx, msg.Id)
-
-	return &types.MsgDeleteManagerResponse{}, nil
+	return &types.MsgGoWorkingResponse{}, nil
 }

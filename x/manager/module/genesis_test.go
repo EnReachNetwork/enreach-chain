@@ -17,13 +17,22 @@ func TestGenesis(t *testing.T) {
 
 		ManagerList: []types.Manager{
 			{
-				Id: 0,
+				ManagerAccount: "alice",
 			},
 			{
-				Id: 1,
+				ManagerAccount: "bob",
 			},
 		},
 		ManagerCount: 2,
+		OperatorList: []types.Operator{
+			{
+				OperatorAccount: "alice",
+			},
+			{
+				OperatorAccount: "bob",
+			},
+		},
+		OperatorCount: 2,
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -37,5 +46,9 @@ func TestGenesis(t *testing.T) {
 
 	require.ElementsMatch(t, genesisState.ManagerList, got.ManagerList)
 	require.Equal(t, genesisState.ManagerCount, got.ManagerCount)
+	require.ElementsMatch(t, genesisState.OperatorList, got.OperatorList)
+	require.Equal(t, genesisState.OperatorCount, got.OperatorCount)
+	require.ElementsMatch(t, genesisState.OperatorList, got.OperatorList)
+	require.Equal(t, genesisState.OperatorCount, got.OperatorCount)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

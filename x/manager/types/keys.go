@@ -23,3 +23,8 @@ const (
 	ManagerKey      = "Manager/value/"
 	ManagerCountKey = "Manager/count/"
 )
+
+const (
+	OperatorKey      = "Operator/value/"
+	OperatorCountKey = "Operator/count/"
+)

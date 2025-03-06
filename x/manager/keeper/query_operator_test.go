@@ -14,28 +14,28 @@ import (
 	"enreach/x/manager/types"
 )
 
-func TestManagerQuerySingle(t *testing.T) {
+func TestOperatorQuerySingle(t *testing.T) {
 	keeper, ctx := keepertest.ManagerKeeper(t)
-	msgs := createNManager(keeper, ctx, 2)
+	msgs := createNOperator(keeper, ctx, 2)
 	tests := []struct {
 		desc     string
-		request  *types.QueryGetManagerRequest
-		response *types.QueryGetManagerResponse
+		request  *types.QueryGetOperatorRequest
+		response *types.QueryGetOperatorResponse
 		err      error
 	}{
 		{
 			desc:     "First",
-			request:  &types.QueryGetManagerRequest{ManagerAccount: msgs[0].ManagerAccount},
-			response: &types.QueryGetManagerResponse{Manager: msgs[0]},
+			request:  &types.QueryGetOperatorRequest{OperatorAccount: msgs[0].OperatorAccount},
+			response: &types.QueryGetOperatorResponse{Operator: msgs[0]},
 		},
 		{
 			desc:     "Second",
-			request:  &types.QueryGetManagerRequest{ManagerAccount: msgs[1].ManagerAccount},
-			response: &types.QueryGetManagerResponse{Manager: msgs[1]},
+			request:  &types.QueryGetOperatorRequest{OperatorAccount: msgs[1].OperatorAccount},
+			response: &types.QueryGetOperatorResponse{Operator: msgs[1]},
 		},
 		{
 			desc:    "KeyNotFound",
-			request: &types.QueryGetManagerRequest{ManagerAccount: "NotExistAccount"},
+			request: &types.QueryGetOperatorRequest{OperatorAccount: "NotExistAccount"},
 			err:     sdkerrors.ErrKeyNotFound,
 		},
 		{
@@ -45,7 +45,7 @@ func TestManagerQuerySingle(t *testing.T) {
 	}
 	for _, tc := range tests {
 		t.Run(tc.desc, func(t *testing.T) {
-			response, err := keeper.Manager(ctx, tc.request)
+			response, err := keeper.Operator(ctx, tc.request)
 			if tc.err != nil {
 				require.ErrorIs(t, err, tc.err)
 			} else {
@@ -59,12 +59,12 @@ func TestManagerQuerySingle(t *testing.T) {
 	}
 }
 
-func TestManagerQueryPaginated(t *testing.T) {
+func TestOperatorQueryPaginated(t *testing.T) {
 	keeper, ctx := keepertest.ManagerKeeper(t)
-	msgs := createNManager(keeper, ctx, 5)
+	msgs := createNOperator(keeper, ctx, 5)
 
-	request := func(next []byte, offset, limit uint64, total bool) *types.QueryAllManagerRequest {
-		return &types.QueryAllManagerRequest{
+	request := func(next []byte, offset, limit uint64, total bool) *types.QueryAllOperatorRequest {
+		return &types.QueryAllOperatorRequest{
 			Pagination: &query.PageRequest{
 				Key:        next,
 				Offset:     offset,
@@ -76,12 +76,12 @@ func TestManagerQueryPaginated(t *testing.T) {
 	t.Run("ByOffset", func(t *testing.T) {
 		step := 2
 		for i := 0; i < len(msgs); i += step {
-			resp, err := keeper.ManagerAll(ctx, request(nil, uint64(i), uint64(step), false))
+			resp, err := keeper.OperatorAll(ctx, request(nil, uint64(i), uint64(step), false))
 			require.NoError(t, err)
-			require.LessOrEqual(t, len(resp.Manager), step)
+			require.LessOrEqual(t, len(resp.Operator), step)
 			require.Subset(t,
 				nullify.Fill(msgs),
-				nullify.Fill(resp.Manager),
+				nullify.Fill(resp.Operator),
 			)
 		}
 	})
@@ -89,27 +89,27 @@ func TestManagerQueryPaginated(t *testing.T) {
 		step := 2
 		var next []byte
 		for i := 0; i < len(msgs); i += step {
-			resp, err := keeper.ManagerAll(ctx, request(next, 0, uint64(step), false))
+			resp, err := keeper.OperatorAll(ctx, request(next, 0, uint64(step), false))
 			require.NoError(t, err)
-			require.LessOrEqual(t, len(resp.Manager), step)
+			require.LessOrEqual(t, len(resp.Operator), step)
 			require.Subset(t,
 				nullify.Fill(msgs),
-				nullify.Fill(resp.Manager),
+				nullify.Fill(resp.Operator),
 			)
 			next = resp.Pagination.NextKey
 		}
 	})
 	t.Run("Total", func(t *testing.T) {
-		resp, err := keeper.ManagerAll(ctx, request(nil, 0, 0, true))
+		resp, err := keeper.OperatorAll(ctx, request(nil, 0, 0, true))
 		require.NoError(t, err)
 		require.Equal(t, len(msgs), int(resp.Pagination.Total))
 		require.ElementsMatch(t,
 			nullify.Fill(msgs),
-			nullify.Fill(resp.Manager),
+			nullify.Fill(resp.Operator),
 		)
 	})
 	t.Run("InvalidRequest", func(t *testing.T) {
-		_, err := keeper.ManagerAll(ctx, nil)
+		_, err := keeper.OperatorAll(ctx, nil)
 		require.ErrorIs(t, err, status.Error(codes.InvalidArgument, "invalid request"))
 	})
 }

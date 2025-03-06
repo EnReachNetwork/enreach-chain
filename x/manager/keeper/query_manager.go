@@ -46,7 +46,7 @@ func (k Keeper) Manager(ctx context.Context, req *types.QueryGetManagerRequest) 
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
 	}
 
-	manager, found := k.GetManager(ctx, req.Id)
+	manager, found := k.GetManager(ctx, req.ManagerAccount)
 	if !found {
 		return nil, sdkerrors.ErrKeyNotFound
 	}

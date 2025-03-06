@@ -10,8 +10,16 @@ import (
 func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgRegisterManager{},
-		&MsgUpdateManager{},
-		&MsgDeleteManager{},
+		&MsgGoWorking{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgCreateOperator{},
+		&MsgBindOperatorManagerAccount{},
+		&MsgSetManagerRegion{},
+		&MsgUpdateManagerConnParams{},
+		&MsgActivateManager{},
+		&MsgBindOperatorEVMAccount{},
+		&MsgUpdateOperatorBasicInfo{},
 	)
 	// this line is used by starport scaffolding # 3
 

@@ -16,6 +16,20 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 
 	// Set manager count
 	k.SetManagerCount(ctx, genState.ManagerCount)
+	// Set all the operator
+	for _, elem := range genState.OperatorList {
+		k.SetOperator(ctx, elem)
+	}
+
+	// Set operator count
+	k.SetOperatorCount(ctx, genState.OperatorCount)
+	// Set all the operator
+	for _, elem := range genState.OperatorList {
+		k.SetOperator(ctx, elem)
+	}
+
+	// Set operator count
+	k.SetOperatorCount(ctx, genState.OperatorCount)
 	// this line is used by starport scaffolding # genesis/module/init
 	if err := k.SetParams(ctx, genState.Params); err != nil {
 		panic(err)
@@ -29,6 +43,10 @@ func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 
 	genesis.ManagerList = k.GetAllManager(ctx)
 	genesis.ManagerCount = k.GetManagerCount(ctx)
+	genesis.OperatorList = k.GetAllOperator(ctx)
+	genesis.OperatorCount = k.GetOperatorCount(ctx)
+	genesis.OperatorList = k.GetAllOperator(ctx)
+	genesis.OperatorCount = k.GetOperatorCount(ctx)
 	// this line is used by starport scaffolding # genesis/module/export
 
 	return genesis

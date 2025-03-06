@@ -1,0 +1,17 @@
+syntax = "proto3";
+package enreach.manager;
+
+option go_package = "enreach/x/manager/types";
+
+message Operator {
+  string operatorAccount = 1;
+  string managerAccount = 2; 
+  string evmAccount = 3; 
+  string name = 4; 
+  string description = 5; 
+  string websiteUrl = 6; 
+  string creator = 7; 
+  uint64 createAt = 8; 
+  string updator = 9; 
+  uint64 updateAt = 10; 
+}

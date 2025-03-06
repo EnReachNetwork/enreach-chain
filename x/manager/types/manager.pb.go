@@ -23,20 +23,20 @@ var _ = math.Inf
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type Manager struct {
-	Id                 uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	ManagerAddress     string `protobuf:"bytes,2,opt,name=managerAddress,proto3" json:"managerAddress,omitempty"`
-	OperatorName       string `protobuf:"bytes,3,opt,name=operatorName,proto3" json:"operatorName,omitempty"`
-	OperatorDesc       string `protobuf:"bytes,4,opt,name=operatorDesc,proto3" json:"operatorDesc,omitempty"`
-	OperatorWebsiteURL string `protobuf:"bytes,5,opt,name=operatorWebsiteURL,proto3" json:"operatorWebsiteURL,omitempty"`
-	EvmAddress         string `protobuf:"bytes,6,opt,name=evmAddress,proto3" json:"evmAddress,omitempty"`
-	HostAddress        string `protobuf:"bytes,7,opt,name=hostAddress,proto3" json:"hostAddress,omitempty"`
-	ManagerPort        uint32 `protobuf:"varint,8,opt,name=managerPort,proto3" json:"managerPort,omitempty"`
-	TrackerPort        uint32 `protobuf:"varint,9,opt,name=trackerPort,proto3" json:"trackerPort,omitempty"`
-	ChainAPIPort       uint32 `protobuf:"varint,10,opt,name=chainAPIPort,proto3" json:"chainAPIPort,omitempty"`
-	ChainRPCPort       uint32 `protobuf:"varint,11,opt,name=chainRPCPort,proto3" json:"chainRPCPort,omitempty"`
-	RegionCode         string `protobuf:"bytes,12,opt,name=regionCode,proto3" json:"regionCode,omitempty"`
-	Status             string `protobuf:"bytes,13,opt,name=status,proto3" json:"status,omitempty"`
-	Creator            string `protobuf:"bytes,14,opt,name=creator,proto3" json:"creator,omitempty"`
+	ManagerAccount  string `protobuf:"bytes,1,opt,name=managerAccount,proto3" json:"managerAccount,omitempty"`
+	OperatorAccount string `protobuf:"bytes,2,opt,name=operatorAccount,proto3" json:"operatorAccount,omitempty"`
+	HostAddress     string `protobuf:"bytes,3,opt,name=hostAddress,proto3" json:"hostAddress,omitempty"`
+	ManagerPort     uint32 `protobuf:"varint,4,opt,name=managerPort,proto3" json:"managerPort,omitempty"`
+	TrackerPort     uint32 `protobuf:"varint,5,opt,name=trackerPort,proto3" json:"trackerPort,omitempty"`
+	ChainAPIPort    uint32 `protobuf:"varint,6,opt,name=chainAPIPort,proto3" json:"chainAPIPort,omitempty"`
+	ChainRPCPort    uint32 `protobuf:"varint,7,opt,name=chainRPCPort,proto3" json:"chainRPCPort,omitempty"`
+	RegionCode      string `protobuf:"bytes,8,opt,name=regionCode,proto3" json:"regionCode,omitempty"`
+	RegisterStatus  string `protobuf:"bytes,9,opt,name=registerStatus,proto3" json:"registerStatus,omitempty"`
+	WorkingStatus   string `protobuf:"bytes,10,opt,name=workingStatus,proto3" json:"workingStatus,omitempty"`
+	Creator         string `protobuf:"bytes,11,opt,name=creator,proto3" json:"creator,omitempty"`
+	CreateAt        uint64 `protobuf:"varint,12,opt,name=createAt,proto3" json:"createAt,omitempty"`
+	Updator         string `protobuf:"bytes,13,opt,name=updator,proto3" json:"updator,omitempty"`
+	UpdateAt        uint64 `protobuf:"varint,14,opt,name=updateAt,proto3" json:"updateAt,omitempty"`
 }
 
 func (m *Manager) Reset()         { *m = Manager{} }
@@ -72,44 +72,16 @@ func (m *Manager) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Manager proto.InternalMessageInfo
 
-func (m *Manager) GetId() uint64 {
+func (m *Manager) GetManagerAccount() string {
 	if m != nil {
-		return m.Id
-	}
-	return 0
-}
-
-func (m *Manager) GetManagerAddress() string {
-	if m != nil {
-		return m.ManagerAddress
+		return m.ManagerAccount
 	}
 	return ""
 }
 
-func (m *Manager) GetOperatorName() string {
+func (m *Manager) GetOperatorAccount() string {
 	if m != nil {
-		return m.OperatorName
-	}
-	return ""
-}
-
-func (m *Manager) GetOperatorDesc() string {
-	if m != nil {
-		return m.OperatorDesc
-	}
-	return ""
-}
-
-func (m *Manager) GetOperatorWebsiteURL() string {
-	if m != nil {
-		return m.OperatorWebsiteURL
-	}
-	return ""
-}
-
-func (m *Manager) GetEvmAddress() string {
-	if m != nil {
-		return m.EvmAddress
+		return m.OperatorAccount
 	}
 	return ""
 }
@@ -156,9 +128,16 @@ func (m *Manager) GetRegionCode() string {
 	return ""
 }
 
-func (m *Manager) GetStatus() string {
+func (m *Manager) GetRegisterStatus() string {
 	if m != nil {
-		return m.Status
+		return m.RegisterStatus
+	}
+	return ""
+}
+
+func (m *Manager) GetWorkingStatus() string {
+	if m != nil {
+		return m.WorkingStatus
 	}
 	return ""
 }
@@ -170,6 +149,27 @@ func (m *Manager) GetCreator() string {
 	return ""
 }
 
+func (m *Manager) GetCreateAt() uint64 {
+	if m != nil {
+		return m.CreateAt
+	}
+	return 0
+}
+
+func (m *Manager) GetUpdator() string {
+	if m != nil {
+		return m.Updator
+	}
+	return ""
+}
+
+func (m *Manager) GetUpdateAt() uint64 {
+	if m != nil {
+		return m.UpdateAt
+	}
+	return 0
+}
+
 func init() {
 	proto.RegisterType((*Manager)(nil), "enreach.manager.Manager")
 }
@@ -177,28 +177,28 @@ func init() {
 func init() { proto.RegisterFile("enreach/manager/manager.proto", fileDescriptor_fe2e849f6a07a0ae) }
 
 var fileDescriptor_fe2e849f6a07a0ae = []byte{
-	// 327 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x92, 0xcd, 0x4e, 0x32, 0x31,
-	0x14, 0x86, 0x29, 0xf0, 0xc1, 0xc7, 0xe1, 0xc7, 0xa4, 0x0b, 0xed, 0xc6, 0x66, 0xc2, 0xc2, 0xb0,
-	0xc2, 0x18, 0xaf, 0x00, 0x71, 0x63, 0xa2, 0x86, 0x4c, 0x62, 0x4c, 0xdc, 0x95, 0x99, 0x13, 0x98,
-	0x18, 0xa6, 0xa4, 0xad, 0x46, 0xef, 0xc2, 0xcb, 0x72, 0xc9, 0x52, 0x77, 0x06, 0x6e, 0xc4, 0xb4,
-	0xb4, 0x58, 0x8c, 0xab, 0xf6, 0x3c, 0xef, 0xb3, 0xe8, 0xdb, 0x1c, 0x38, 0xc6, 0x52, 0xa1, 0xc8,
-	0xe6, 0xa7, 0x0b, 0x51, 0x8a, 0x19, 0xaa, 0x70, 0x0e, 0x97, 0x4a, 0x1a, 0x49, 0x0f, 0x7c, 0x3c,
-	0xf4, 0xb8, 0xff, 0x59, 0x83, 0xe6, 0xcd, 0xf6, 0x4e, 0x7b, 0x50, 0x2d, 0x72, 0x46, 0x12, 0x32,
-	0xa8, 0xa7, 0xd5, 0x22, 0xa7, 0x27, 0xd0, 0xf3, 0xda, 0x28, 0xcf, 0x15, 0x6a, 0xcd, 0xaa, 0x09,
-	0x19, 0xb4, 0xd2, 0x5f, 0x94, 0xf6, 0xa1, 0x23, 0x97, 0xa8, 0x84, 0x91, 0xea, 0x56, 0x2c, 0x90,
-	0xd5, 0x9c, 0xb5, 0xc7, 0x62, 0xe7, 0x12, 0x75, 0xc6, 0xea, 0xfb, 0x8e, 0x65, 0x74, 0x08, 0x34,
-	0xcc, 0xf7, 0x38, 0xd5, 0x85, 0xc1, 0xbb, 0xf4, 0x9a, 0xfd, 0x73, 0xe6, 0x1f, 0x09, 0xe5, 0x00,
-	0xf8, 0xbc, 0x08, 0x6f, 0x6b, 0x38, 0x2f, 0x22, 0x34, 0x81, 0xf6, 0x5c, 0x6a, 0x13, 0x84, 0xa6,
-	0x13, 0x62, 0x64, 0x0d, 0xdf, 0x65, 0x22, 0x95, 0x61, 0xff, 0x13, 0x32, 0xe8, 0xa6, 0x31, 0xb2,
-	0x86, 0x51, 0x22, 0x7b, 0xf4, 0x46, 0x6b, 0x6b, 0x44, 0xc8, 0x36, 0xcb, 0xe6, 0xa2, 0x28, 0x47,
-	0x93, 0x2b, 0xa7, 0x80, 0x53, 0xf6, 0xd8, 0xce, 0x49, 0x27, 0x63, 0xe7, 0xb4, 0x23, 0xc7, 0x33,
-	0xdb, 0x46, 0xe1, 0xac, 0x90, 0xe5, 0x58, 0xe6, 0xc8, 0x3a, 0xdb, 0x36, 0x3f, 0x84, 0x1e, 0x42,
-	0x43, 0x1b, 0x61, 0x9e, 0x34, 0xeb, 0xba, 0xcc, 0x4f, 0x94, 0x41, 0x33, 0x53, 0x68, 0xbf, 0x86,
-	0xf5, 0x5c, 0x10, 0xc6, 0x8b, 0xb3, 0xf7, 0x35, 0x27, 0xab, 0x35, 0x27, 0x5f, 0x6b, 0x4e, 0xde,
-	0x36, 0xbc, 0xb2, 0xda, 0xf0, 0xca, 0xc7, 0x86, 0x57, 0x1e, 0x8e, 0xc2, 0x96, 0xbc, 0xec, 0xf6,
-	0xc4, 0xbc, 0x2e, 0x51, 0x4f, 0x1b, 0x6e, 0x4d, 0xce, 0xbf, 0x03, 0x00, 0x00, 0xff, 0xff, 0x1e,
-	0xf6, 0x38, 0x92, 0x47, 0x02, 0x00, 0x00,
+	// 329 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x5c, 0x92, 0xcd, 0x4a, 0xf3, 0x40,
+	0x14, 0x86, 0x3b, 0x5f, 0xfb, 0xf5, 0xe7, 0xf4, 0x0f, 0x66, 0xe3, 0x20, 0x38, 0x84, 0x22, 0x92,
+	0x55, 0x45, 0xbc, 0x82, 0xd8, 0x95, 0x0b, 0xa1, 0xc4, 0x9d, 0xbb, 0x31, 0x19, 0xda, 0x52, 0xcc,
+	0x84, 0x99, 0x29, 0xea, 0x5d, 0x78, 0x59, 0x2e, 0xbb, 0x74, 0x29, 0xcd, 0x8d, 0xc8, 0x9c, 0x4c,
+	0x42, 0xd2, 0x55, 0xcf, 0xfb, 0xcc, 0xf3, 0x96, 0x70, 0x38, 0x70, 0x25, 0x33, 0x2d, 0x45, 0xb2,
+	0xbd, 0x7d, 0x13, 0x99, 0xd8, 0x48, 0x5d, 0xfd, 0x2e, 0x73, 0xad, 0xac, 0xa2, 0x73, 0xff, 0xbc,
+	0xf4, 0x78, 0x51, 0x74, 0x61, 0xf0, 0x54, 0xce, 0xf4, 0x06, 0x66, 0x1e, 0x47, 0x49, 0xa2, 0x0e,
+	0x99, 0x65, 0x24, 0x20, 0xe1, 0x28, 0x3e, 0xa3, 0x34, 0x84, 0xb9, 0xca, 0xa5, 0x16, 0x56, 0xd5,
+	0xe2, 0x3f, 0x14, 0xcf, 0x31, 0x0d, 0x60, 0xbc, 0x55, 0xc6, 0x46, 0x69, 0xaa, 0xa5, 0x31, 0xac,
+	0x8b, 0x56, 0x13, 0x39, 0xc3, 0xff, 0xfb, 0x5a, 0x69, 0xcb, 0x7a, 0x01, 0x09, 0xa7, 0x71, 0x13,
+	0x39, 0xc3, 0x6a, 0x91, 0xec, 0xbd, 0xf1, 0xbf, 0x34, 0x1a, 0x88, 0x2e, 0x60, 0x92, 0x6c, 0xc5,
+	0x2e, 0x8b, 0xd6, 0x8f, 0xa8, 0xf4, 0x51, 0x69, 0xb1, 0xda, 0x89, 0xd7, 0x2b, 0x74, 0x06, 0x0d,
+	0xc7, 0x33, 0xca, 0x01, 0xb4, 0xdc, 0xec, 0x54, 0xb6, 0x52, 0xa9, 0x64, 0x43, 0xfc, 0xd8, 0x06,
+	0x71, 0xfb, 0x71, 0xc9, 0x58, 0xa9, 0x9f, 0xad, 0xb0, 0x07, 0xc3, 0x46, 0xe5, 0x7e, 0xda, 0x94,
+	0x5e, 0xc3, 0xf4, 0x5d, 0xe9, 0xfd, 0x2e, 0xdb, 0x78, 0x0d, 0x50, 0x6b, 0x43, 0xca, 0x60, 0x90,
+	0x68, 0xe9, 0xb6, 0xc5, 0xc6, 0xf8, 0x5e, 0x45, 0x7a, 0x09, 0x43, 0x1c, 0x65, 0x64, 0xd9, 0x24,
+	0x20, 0x61, 0x2f, 0xae, 0xb3, 0x6b, 0x1d, 0xf2, 0x14, 0x5b, 0xd3, 0xb2, 0xe5, 0xa3, 0x6b, 0xe1,
+	0xe8, 0x5a, 0xb3, 0xb2, 0x55, 0xe5, 0x87, 0xbb, 0xef, 0x13, 0x27, 0xc7, 0x13, 0x27, 0xbf, 0x27,
+	0x4e, 0xbe, 0x0a, 0xde, 0x39, 0x16, 0xbc, 0xf3, 0x53, 0xf0, 0xce, 0xcb, 0x45, 0x75, 0x2f, 0x1f,
+	0xf5, 0xc5, 0xd8, 0xcf, 0x5c, 0x9a, 0xd7, 0x3e, 0x1e, 0xcc, 0xfd, 0x5f, 0x00, 0x00, 0x00, 0xff,
+	0xff, 0x86, 0xba, 0x06, 0xc2, 0x51, 0x02, 0x00, 0x00,
 }
 
 func (m *Manager) Marshal() (dAtA []byte, err error) {
@@ -221,93 +221,91 @@ func (m *Manager) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.UpdateAt != 0 {
+		i = encodeVarintManager(dAtA, i, uint64(m.UpdateAt))
+		i--
+		dAtA[i] = 0x70
+	}
+	if len(m.Updator) > 0 {
+		i -= len(m.Updator)
+		copy(dAtA[i:], m.Updator)
+		i = encodeVarintManager(dAtA, i, uint64(len(m.Updator)))
+		i--
+		dAtA[i] = 0x6a
+	}
+	if m.CreateAt != 0 {
+		i = encodeVarintManager(dAtA, i, uint64(m.CreateAt))
+		i--
+		dAtA[i] = 0x60
+	}
 	if len(m.Creator) > 0 {
 		i -= len(m.Creator)
 		copy(dAtA[i:], m.Creator)
 		i = encodeVarintManager(dAtA, i, uint64(len(m.Creator)))
 		i--
-		dAtA[i] = 0x72
+		dAtA[i] = 0x5a
 	}
-	if len(m.Status) > 0 {
-		i -= len(m.Status)
-		copy(dAtA[i:], m.Status)
-		i = encodeVarintManager(dAtA, i, uint64(len(m.Status)))
+	if len(m.WorkingStatus) > 0 {
+		i -= len(m.WorkingStatus)
+		copy(dAtA[i:], m.WorkingStatus)
+		i = encodeVarintManager(dAtA, i, uint64(len(m.WorkingStatus)))
 		i--
-		dAtA[i] = 0x6a
+		dAtA[i] = 0x52
+	}
+	if len(m.RegisterStatus) > 0 {
+		i -= len(m.RegisterStatus)
+		copy(dAtA[i:], m.RegisterStatus)
+		i = encodeVarintManager(dAtA, i, uint64(len(m.RegisterStatus)))
+		i--
+		dAtA[i] = 0x4a
 	}
 	if len(m.RegionCode) > 0 {
 		i -= len(m.RegionCode)
 		copy(dAtA[i:], m.RegionCode)
 		i = encodeVarintManager(dAtA, i, uint64(len(m.RegionCode)))
 		i--
-		dAtA[i] = 0x62
+		dAtA[i] = 0x42
 	}
 	if m.ChainRPCPort != 0 {
 		i = encodeVarintManager(dAtA, i, uint64(m.ChainRPCPort))
 		i--
-		dAtA[i] = 0x58
+		dAtA[i] = 0x38
 	}
 	if m.ChainAPIPort != 0 {
 		i = encodeVarintManager(dAtA, i, uint64(m.ChainAPIPort))
 		i--
-		dAtA[i] = 0x50
+		dAtA[i] = 0x30
 	}
 	if m.TrackerPort != 0 {
 		i = encodeVarintManager(dAtA, i, uint64(m.TrackerPort))
 		i--
-		dAtA[i] = 0x48
+		dAtA[i] = 0x28
 	}
 	if m.ManagerPort != 0 {
 		i = encodeVarintManager(dAtA, i, uint64(m.ManagerPort))
 		i--
-		dAtA[i] = 0x40
+		dAtA[i] = 0x20
 	}
 	if len(m.HostAddress) > 0 {
 		i -= len(m.HostAddress)
 		copy(dAtA[i:], m.HostAddress)
 		i = encodeVarintManager(dAtA, i, uint64(len(m.HostAddress)))
 		i--
-		dAtA[i] = 0x3a
-	}
-	if len(m.EvmAddress) > 0 {
-		i -= len(m.EvmAddress)
-		copy(dAtA[i:], m.EvmAddress)
-		i = encodeVarintManager(dAtA, i, uint64(len(m.EvmAddress)))
-		i--
-		dAtA[i] = 0x32
-	}
-	if len(m.OperatorWebsiteURL) > 0 {
-		i -= len(m.OperatorWebsiteURL)
-		copy(dAtA[i:], m.OperatorWebsiteURL)
-		i = encodeVarintManager(dAtA, i, uint64(len(m.OperatorWebsiteURL)))
-		i--
-		dAtA[i] = 0x2a
-	}
-	if len(m.OperatorDesc) > 0 {
-		i -= len(m.OperatorDesc)
-		copy(dAtA[i:], m.OperatorDesc)
-		i = encodeVarintManager(dAtA, i, uint64(len(m.OperatorDesc)))
-		i--
-		dAtA[i] = 0x22
-	}
-	if len(m.OperatorName) > 0 {
-		i -= len(m.OperatorName)
-		copy(dAtA[i:], m.OperatorName)
-		i = encodeVarintManager(dAtA, i, uint64(len(m.OperatorName)))
-		i--
 		dAtA[i] = 0x1a
 	}
-	if len(m.ManagerAddress) > 0 {
-		i -= len(m.ManagerAddress)
-		copy(dAtA[i:], m.ManagerAddress)
-		i = encodeVarintManager(dAtA, i, uint64(len(m.ManagerAddress)))
+	if len(m.OperatorAccount) > 0 {
+		i -= len(m.OperatorAccount)
+		copy(dAtA[i:], m.OperatorAccount)
+		i = encodeVarintManager(dAtA, i, uint64(len(m.OperatorAccount)))
 		i--
 		dAtA[i] = 0x12
 	}
-	if m.Id != 0 {
-		i = encodeVarintManager(dAtA, i, uint64(m.Id))
+	if len(m.ManagerAccount) > 0 {
+		i -= len(m.ManagerAccount)
+		copy(dAtA[i:], m.ManagerAccount)
+		i = encodeVarintManager(dAtA, i, uint64(len(m.ManagerAccount)))
 		i--
-		dAtA[i] = 0x8
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -329,26 +327,11 @@ func (m *Manager) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Id != 0 {
-		n += 1 + sovManager(uint64(m.Id))
-	}
-	l = len(m.ManagerAddress)
+	l = len(m.ManagerAccount)
 	if l > 0 {
 		n += 1 + l + sovManager(uint64(l))
 	}
-	l = len(m.OperatorName)
-	if l > 0 {
-		n += 1 + l + sovManager(uint64(l))
-	}
-	l = len(m.OperatorDesc)
-	if l > 0 {
-		n += 1 + l + sovManager(uint64(l))
-	}
-	l = len(m.OperatorWebsiteURL)
-	if l > 0 {
-		n += 1 + l + sovManager(uint64(l))
-	}
-	l = len(m.EvmAddress)
+	l = len(m.OperatorAccount)
 	if l > 0 {
 		n += 1 + l + sovManager(uint64(l))
 	}
@@ -372,13 +355,27 @@ func (m *Manager) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovManager(uint64(l))
 	}
-	l = len(m.Status)
+	l = len(m.RegisterStatus)
+	if l > 0 {
+		n += 1 + l + sovManager(uint64(l))
+	}
+	l = len(m.WorkingStatus)
 	if l > 0 {
 		n += 1 + l + sovManager(uint64(l))
 	}
 	l = len(m.Creator)
 	if l > 0 {
 		n += 1 + l + sovManager(uint64(l))
+	}
+	if m.CreateAt != 0 {
+		n += 1 + sovManager(uint64(m.CreateAt))
+	}
+	l = len(m.Updator)
+	if l > 0 {
+		n += 1 + l + sovManager(uint64(l))
+	}
+	if m.UpdateAt != 0 {
+		n += 1 + sovManager(uint64(m.UpdateAt))
 	}
 	return n
 }
@@ -419,10 +416,10 @@ func (m *Manager) Unmarshal(dAtA []byte) error {
 		}
 		switch fieldNum {
 		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ManagerAccount", wireType)
 			}
-			m.Id = 0
+			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowManager
@@ -432,14 +429,27 @@ func (m *Manager) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Id |= uint64(b&0x7F) << shift
+				stringLen |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthManager
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthManager
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ManagerAccount = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ManagerAddress", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field OperatorAccount", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -467,137 +477,9 @@ func (m *Manager) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.ManagerAddress = string(dAtA[iNdEx:postIndex])
+			m.OperatorAccount = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field OperatorName", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowManager
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthManager
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthManager
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.OperatorName = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field OperatorDesc", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowManager
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthManager
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthManager
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.OperatorDesc = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 5:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field OperatorWebsiteURL", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowManager
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthManager
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthManager
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.OperatorWebsiteURL = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 6:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field EvmAddress", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowManager
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthManager
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthManager
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.EvmAddress = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 7:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field HostAddress", wireType)
 			}
@@ -629,7 +511,7 @@ func (m *Manager) Unmarshal(dAtA []byte) error {
 			}
 			m.HostAddress = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 8:
+		case 4:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field ManagerPort", wireType)
 			}
@@ -648,7 +530,7 @@ func (m *Manager) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-		case 9:
+		case 5:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field TrackerPort", wireType)
 			}
@@ -667,7 +549,7 @@ func (m *Manager) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-		case 10:
+		case 6:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field ChainAPIPort", wireType)
 			}
@@ -686,7 +568,7 @@ func (m *Manager) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-		case 11:
+		case 7:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field ChainRPCPort", wireType)
 			}
@@ -705,7 +587,7 @@ func (m *Manager) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-		case 12:
+		case 8:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field RegionCode", wireType)
 			}
@@ -737,9 +619,9 @@ func (m *Manager) Unmarshal(dAtA []byte) error {
 			}
 			m.RegionCode = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 13:
+		case 9:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Status", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field RegisterStatus", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -767,9 +649,41 @@ func (m *Manager) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Status = string(dAtA[iNdEx:postIndex])
+			m.RegisterStatus = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 14:
+		case 10:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field WorkingStatus", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowManager
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthManager
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthManager
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.WorkingStatus = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 11:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
 			}
@@ -801,6 +715,76 @@ func (m *Manager) Unmarshal(dAtA []byte) error {
 			}
 			m.Creator = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
+		case 12:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CreateAt", wireType)
+			}
+			m.CreateAt = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowManager
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.CreateAt |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 13:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Updator", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowManager
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthManager
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthManager
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Updator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 14:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field UpdateAt", wireType)
+			}
+			m.UpdateAt = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowManager
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.UpdateAt |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipManager(dAtA[iNdEx:])

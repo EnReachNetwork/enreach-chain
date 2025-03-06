@@ -27,13 +27,13 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgRegisterManager int = 100
 
-	opWeightMsgUpdateManager = "op_weight_msg_manager"
+	opWeightMsgGoWorking = "op_weight_msg_manager"
 	// TODO: Determine the simulation weight value
-	defaultWeightMsgUpdateManager int = 100
+	defaultWeightMsgGoWorking int = 100
 
-	opWeightMsgDeleteManager = "op_weight_msg_manager"
+	opWeightMsgCreateOperator = "op_weight_msg_operator"
 	// TODO: Determine the simulation weight value
-	defaultWeightMsgDeleteManager int = 100
+	defaultWeightMsgCreateOperator int = 100
 
 	// this line is used by starport scaffolding # simapp/module/const
 )
@@ -48,15 +48,22 @@ func (AppModule) GenerateGenesisState(simState *module.SimulationState) {
 		Params: types.DefaultParams(),
 		ManagerList: []types.Manager{
 			{
-				Id:      0,
-				Creator: sample.AccAddress(),
+				ManagerAccount: "alice",
 			},
 			{
-				Id:      1,
-				Creator: sample.AccAddress(),
+				ManagerAccount: "bob",
 			},
 		},
 		ManagerCount: 2,
+		OperatorList: []types.Operator{
+			{
+				OperatorAccount: "alice",
+			},
+			{
+				OperatorAccount: "bob",
+			},
+		},
+		OperatorCount: 2,
 		// this line is used by starport scaffolding # simapp/module/genesisState
 	}
 	simState.GenState[types.ModuleName] = simState.Cdc.MustMarshalJSON(&managerGenesis)
@@ -80,26 +87,15 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 		managersimulation.SimulateMsgRegisterManager(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
-	var weightMsgUpdateManager int
-	simState.AppParams.GetOrGenerate(opWeightMsgUpdateManager, &weightMsgUpdateManager, nil,
+	var weightMsgCreateOperator int
+	simState.AppParams.GetOrGenerate(opWeightMsgCreateOperator, &weightMsgCreateOperator, nil,
 		func(_ *rand.Rand) {
-			weightMsgUpdateManager = defaultWeightMsgUpdateManager
+			weightMsgCreateOperator = defaultWeightMsgCreateOperator
 		},
 	)
 	operations = append(operations, simulation.NewWeightedOperation(
-		weightMsgUpdateManager,
-		managersimulation.SimulateMsgUpdateManager(am.accountKeeper, am.bankKeeper, am.keeper),
-	))
-
-	var weightMsgDeleteManager int
-	simState.AppParams.GetOrGenerate(opWeightMsgDeleteManager, &weightMsgDeleteManager, nil,
-		func(_ *rand.Rand) {
-			weightMsgDeleteManager = defaultWeightMsgDeleteManager
-		},
-	)
-	operations = append(operations, simulation.NewWeightedOperation(
-		weightMsgDeleteManager,
-		managersimulation.SimulateMsgDeleteManager(am.accountKeeper, am.bankKeeper, am.keeper),
+		weightMsgCreateOperator,
+		managersimulation.SimulateMsgCreateOperator(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
 	// this line is used by starport scaffolding # simapp/module/operation
@@ -119,18 +115,10 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			},
 		),
 		simulation.NewWeightedProposalMsg(
-			opWeightMsgUpdateManager,
-			defaultWeightMsgUpdateManager,
+			opWeightMsgCreateOperator,
+			defaultWeightMsgCreateOperator,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
-				managersimulation.SimulateMsgUpdateManager(am.accountKeeper, am.bankKeeper, am.keeper)
-				return nil
-			},
-		),
-		simulation.NewWeightedProposalMsg(
-			opWeightMsgDeleteManager,
-			defaultWeightMsgDeleteManager,
-			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
-				managersimulation.SimulateMsgDeleteManager(am.accountKeeper, am.bankKeeper, am.keeper)
+				managersimulation.SimulateMsgCreateOperator(am.accountKeeper, am.bankKeeper, am.keeper)
 				return nil
 			},
 		),

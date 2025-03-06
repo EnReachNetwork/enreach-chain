@@ -19,10 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Msg_UpdateParams_FullMethodName    = "/enreach.manager.Msg/UpdateParams"
-	Msg_RegisterManager_FullMethodName = "/enreach.manager.Msg/RegisterManager"
-	Msg_UpdateManager_FullMethodName   = "/enreach.manager.Msg/UpdateManager"
-	Msg_DeleteManager_FullMethodName   = "/enreach.manager.Msg/DeleteManager"
+	Msg_UpdateParams_FullMethodName               = "/enreach.manager.Msg/UpdateParams"
+	Msg_CreateOperator_FullMethodName             = "/enreach.manager.Msg/CreateOperator"
+	Msg_BindOperatorManagerAccount_FullMethodName = "/enreach.manager.Msg/BindOperatorManagerAccount"
+	Msg_SetManagerRegion_FullMethodName           = "/enreach.manager.Msg/SetManagerRegion"
+	Msg_UpdateManagerConnParams_FullMethodName    = "/enreach.manager.Msg/UpdateManagerConnParams"
+	Msg_ActivateManager_FullMethodName            = "/enreach.manager.Msg/ActivateManager"
+	Msg_BindOperatorEVMAccount_FullMethodName     = "/enreach.manager.Msg/BindOperatorEVMAccount"
+	Msg_UpdateOperatorBasicInfo_FullMethodName    = "/enreach.manager.Msg/UpdateOperatorBasicInfo"
+	Msg_RegisterManager_FullMethodName            = "/enreach.manager.Msg/RegisterManager"
+	Msg_GoWorking_FullMethodName                  = "/enreach.manager.Msg/GoWorking"
 )
 
 // MsgClient is the client API for Msg service.
@@ -32,9 +38,15 @@ type MsgClient interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
+	CreateOperator(ctx context.Context, in *MsgCreateOperator, opts ...grpc.CallOption) (*MsgCreateOperatorResponse, error)
+	BindOperatorManagerAccount(ctx context.Context, in *MsgBindOperatorManagerAccount, opts ...grpc.CallOption) (*MsgBindOperatorManagerAccountResponse, error)
+	SetManagerRegion(ctx context.Context, in *MsgSetManagerRegion, opts ...grpc.CallOption) (*MsgSetManagerRegionResponse, error)
+	UpdateManagerConnParams(ctx context.Context, in *MsgUpdateManagerConnParams, opts ...grpc.CallOption) (*MsgUpdateManagerConnParamsResponse, error)
+	ActivateManager(ctx context.Context, in *MsgActivateManager, opts ...grpc.CallOption) (*MsgActivateManagerResponse, error)
+	BindOperatorEVMAccount(ctx context.Context, in *MsgBindOperatorEVMAccount, opts ...grpc.CallOption) (*MsgBindOperatorEVMAccountResponse, error)
+	UpdateOperatorBasicInfo(ctx context.Context, in *MsgUpdateOperatorBasicInfo, opts ...grpc.CallOption) (*MsgUpdateOperatorBasicInfoResponse, error)
 	RegisterManager(ctx context.Context, in *MsgRegisterManager, opts ...grpc.CallOption) (*MsgRegisterManagerResponse, error)
-	UpdateManager(ctx context.Context, in *MsgUpdateManager, opts ...grpc.CallOption) (*MsgUpdateManagerResponse, error)
-	DeleteManager(ctx context.Context, in *MsgDeleteManager, opts ...grpc.CallOption) (*MsgDeleteManagerResponse, error)
+	GoWorking(ctx context.Context, in *MsgGoWorking, opts ...grpc.CallOption) (*MsgGoWorkingResponse, error)
 }
 
 type msgClient struct {
@@ -54,6 +66,69 @@ func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts 
 	return out, nil
 }
 
+func (c *msgClient) CreateOperator(ctx context.Context, in *MsgCreateOperator, opts ...grpc.CallOption) (*MsgCreateOperatorResponse, error) {
+	out := new(MsgCreateOperatorResponse)
+	err := c.cc.Invoke(ctx, Msg_CreateOperator_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) BindOperatorManagerAccount(ctx context.Context, in *MsgBindOperatorManagerAccount, opts ...grpc.CallOption) (*MsgBindOperatorManagerAccountResponse, error) {
+	out := new(MsgBindOperatorManagerAccountResponse)
+	err := c.cc.Invoke(ctx, Msg_BindOperatorManagerAccount_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) SetManagerRegion(ctx context.Context, in *MsgSetManagerRegion, opts ...grpc.CallOption) (*MsgSetManagerRegionResponse, error) {
+	out := new(MsgSetManagerRegionResponse)
+	err := c.cc.Invoke(ctx, Msg_SetManagerRegion_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) UpdateManagerConnParams(ctx context.Context, in *MsgUpdateManagerConnParams, opts ...grpc.CallOption) (*MsgUpdateManagerConnParamsResponse, error) {
+	out := new(MsgUpdateManagerConnParamsResponse)
+	err := c.cc.Invoke(ctx, Msg_UpdateManagerConnParams_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) ActivateManager(ctx context.Context, in *MsgActivateManager, opts ...grpc.CallOption) (*MsgActivateManagerResponse, error) {
+	out := new(MsgActivateManagerResponse)
+	err := c.cc.Invoke(ctx, Msg_ActivateManager_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) BindOperatorEVMAccount(ctx context.Context, in *MsgBindOperatorEVMAccount, opts ...grpc.CallOption) (*MsgBindOperatorEVMAccountResponse, error) {
+	out := new(MsgBindOperatorEVMAccountResponse)
+	err := c.cc.Invoke(ctx, Msg_BindOperatorEVMAccount_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) UpdateOperatorBasicInfo(ctx context.Context, in *MsgUpdateOperatorBasicInfo, opts ...grpc.CallOption) (*MsgUpdateOperatorBasicInfoResponse, error) {
+	out := new(MsgUpdateOperatorBasicInfoResponse)
+	err := c.cc.Invoke(ctx, Msg_UpdateOperatorBasicInfo_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *msgClient) RegisterManager(ctx context.Context, in *MsgRegisterManager, opts ...grpc.CallOption) (*MsgRegisterManagerResponse, error) {
 	out := new(MsgRegisterManagerResponse)
 	err := c.cc.Invoke(ctx, Msg_RegisterManager_FullMethodName, in, out, opts...)
@@ -63,18 +138,9 @@ func (c *msgClient) RegisterManager(ctx context.Context, in *MsgRegisterManager,
 	return out, nil
 }
 
-func (c *msgClient) UpdateManager(ctx context.Context, in *MsgUpdateManager, opts ...grpc.CallOption) (*MsgUpdateManagerResponse, error) {
-	out := new(MsgUpdateManagerResponse)
-	err := c.cc.Invoke(ctx, Msg_UpdateManager_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *msgClient) DeleteManager(ctx context.Context, in *MsgDeleteManager, opts ...grpc.CallOption) (*MsgDeleteManagerResponse, error) {
-	out := new(MsgDeleteManagerResponse)
-	err := c.cc.Invoke(ctx, Msg_DeleteManager_FullMethodName, in, out, opts...)
+func (c *msgClient) GoWorking(ctx context.Context, in *MsgGoWorking, opts ...grpc.CallOption) (*MsgGoWorkingResponse, error) {
+	out := new(MsgGoWorkingResponse)
+	err := c.cc.Invoke(ctx, Msg_GoWorking_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -88,9 +154,15 @@ type MsgServer interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
+	CreateOperator(context.Context, *MsgCreateOperator) (*MsgCreateOperatorResponse, error)
+	BindOperatorManagerAccount(context.Context, *MsgBindOperatorManagerAccount) (*MsgBindOperatorManagerAccountResponse, error)
+	SetManagerRegion(context.Context, *MsgSetManagerRegion) (*MsgSetManagerRegionResponse, error)
+	UpdateManagerConnParams(context.Context, *MsgUpdateManagerConnParams) (*MsgUpdateManagerConnParamsResponse, error)
+	ActivateManager(context.Context, *MsgActivateManager) (*MsgActivateManagerResponse, error)
+	BindOperatorEVMAccount(context.Context, *MsgBindOperatorEVMAccount) (*MsgBindOperatorEVMAccountResponse, error)
+	UpdateOperatorBasicInfo(context.Context, *MsgUpdateOperatorBasicInfo) (*MsgUpdateOperatorBasicInfoResponse, error)
 	RegisterManager(context.Context, *MsgRegisterManager) (*MsgRegisterManagerResponse, error)
-	UpdateManager(context.Context, *MsgUpdateManager) (*MsgUpdateManagerResponse, error)
-	DeleteManager(context.Context, *MsgDeleteManager) (*MsgDeleteManagerResponse, error)
+	GoWorking(context.Context, *MsgGoWorking) (*MsgGoWorkingResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -101,14 +173,32 @@ type UnimplementedMsgServer struct {
 func (UnimplementedMsgServer) UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateParams not implemented")
 }
+func (UnimplementedMsgServer) CreateOperator(context.Context, *MsgCreateOperator) (*MsgCreateOperatorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOperator not implemented")
+}
+func (UnimplementedMsgServer) BindOperatorManagerAccount(context.Context, *MsgBindOperatorManagerAccount) (*MsgBindOperatorManagerAccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BindOperatorManagerAccount not implemented")
+}
+func (UnimplementedMsgServer) SetManagerRegion(context.Context, *MsgSetManagerRegion) (*MsgSetManagerRegionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetManagerRegion not implemented")
+}
+func (UnimplementedMsgServer) UpdateManagerConnParams(context.Context, *MsgUpdateManagerConnParams) (*MsgUpdateManagerConnParamsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateManagerConnParams not implemented")
+}
+func (UnimplementedMsgServer) ActivateManager(context.Context, *MsgActivateManager) (*MsgActivateManagerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ActivateManager not implemented")
+}
+func (UnimplementedMsgServer) BindOperatorEVMAccount(context.Context, *MsgBindOperatorEVMAccount) (*MsgBindOperatorEVMAccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BindOperatorEVMAccount not implemented")
+}
+func (UnimplementedMsgServer) UpdateOperatorBasicInfo(context.Context, *MsgUpdateOperatorBasicInfo) (*MsgUpdateOperatorBasicInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOperatorBasicInfo not implemented")
+}
 func (UnimplementedMsgServer) RegisterManager(context.Context, *MsgRegisterManager) (*MsgRegisterManagerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterManager not implemented")
 }
-func (UnimplementedMsgServer) UpdateManager(context.Context, *MsgUpdateManager) (*MsgUpdateManagerResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateManager not implemented")
-}
-func (UnimplementedMsgServer) DeleteManager(context.Context, *MsgDeleteManager) (*MsgDeleteManagerResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteManager not implemented")
+func (UnimplementedMsgServer) GoWorking(context.Context, *MsgGoWorking) (*MsgGoWorkingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GoWorking not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -141,6 +231,132 @@ func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_CreateOperator_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgCreateOperator)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).CreateOperator(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_CreateOperator_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).CreateOperator(ctx, req.(*MsgCreateOperator))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_BindOperatorManagerAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgBindOperatorManagerAccount)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).BindOperatorManagerAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_BindOperatorManagerAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).BindOperatorManagerAccount(ctx, req.(*MsgBindOperatorManagerAccount))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_SetManagerRegion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgSetManagerRegion)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).SetManagerRegion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_SetManagerRegion_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).SetManagerRegion(ctx, req.(*MsgSetManagerRegion))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_UpdateManagerConnParams_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgUpdateManagerConnParams)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).UpdateManagerConnParams(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_UpdateManagerConnParams_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).UpdateManagerConnParams(ctx, req.(*MsgUpdateManagerConnParams))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_ActivateManager_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgActivateManager)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).ActivateManager(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_ActivateManager_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).ActivateManager(ctx, req.(*MsgActivateManager))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_BindOperatorEVMAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgBindOperatorEVMAccount)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).BindOperatorEVMAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_BindOperatorEVMAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).BindOperatorEVMAccount(ctx, req.(*MsgBindOperatorEVMAccount))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_UpdateOperatorBasicInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgUpdateOperatorBasicInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).UpdateOperatorBasicInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_UpdateOperatorBasicInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).UpdateOperatorBasicInfo(ctx, req.(*MsgUpdateOperatorBasicInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Msg_RegisterManager_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MsgRegisterManager)
 	if err := dec(in); err != nil {
@@ -159,38 +375,20 @@ func _Msg_RegisterManager_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_UpdateManager_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgUpdateManager)
+func _Msg_GoWorking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgGoWorking)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MsgServer).UpdateManager(ctx, in)
+		return srv.(MsgServer).GoWorking(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Msg_UpdateManager_FullMethodName,
+		FullMethod: Msg_GoWorking_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).UpdateManager(ctx, req.(*MsgUpdateManager))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Msg_DeleteManager_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgDeleteManager)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MsgServer).DeleteManager(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Msg_DeleteManager_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).DeleteManager(ctx, req.(*MsgDeleteManager))
+		return srv.(MsgServer).GoWorking(ctx, req.(*MsgGoWorking))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -207,16 +405,40 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Msg_UpdateParams_Handler,
 		},
 		{
+			MethodName: "CreateOperator",
+			Handler:    _Msg_CreateOperator_Handler,
+		},
+		{
+			MethodName: "BindOperatorManagerAccount",
+			Handler:    _Msg_BindOperatorManagerAccount_Handler,
+		},
+		{
+			MethodName: "SetManagerRegion",
+			Handler:    _Msg_SetManagerRegion_Handler,
+		},
+		{
+			MethodName: "UpdateManagerConnParams",
+			Handler:    _Msg_UpdateManagerConnParams_Handler,
+		},
+		{
+			MethodName: "ActivateManager",
+			Handler:    _Msg_ActivateManager_Handler,
+		},
+		{
+			MethodName: "BindOperatorEVMAccount",
+			Handler:    _Msg_BindOperatorEVMAccount_Handler,
+		},
+		{
+			MethodName: "UpdateOperatorBasicInfo",
+			Handler:    _Msg_UpdateOperatorBasicInfo_Handler,
+		},
+		{
 			MethodName: "RegisterManager",
 			Handler:    _Msg_RegisterManager_Handler,
 		},
 		{
-			MethodName: "UpdateManager",
-			Handler:    _Msg_UpdateManager_Handler,
-		},
-		{
-			MethodName: "DeleteManager",
-			Handler:    _Msg_DeleteManager_Handler,
+			MethodName: "GoWorking",
+			Handler:    _Msg_GoWorking_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

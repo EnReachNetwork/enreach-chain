@@ -37,26 +37,21 @@ func (k Keeper) SetManagerCount(ctx context.Context, count uint64) {
 	store.Set(byteKey, bz)
 }
 
-// AppendManager appends a manager in the store with a new id and update the count
+// AppendManager appends a manager in the store with a new key and update the count
 func (k Keeper) AppendManager(
 	ctx context.Context,
 	manager types.Manager,
-) uint64 {
+) {
 	// Create the manager
 	count := k.GetManagerCount(ctx)
-
-	// Set the ID of the appended value
-	manager.Id = count
 
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.ManagerKey))
 	appendedValue := k.cdc.MustMarshal(&manager)
-	store.Set(GetManagerIDBytes(manager.Id), appendedValue)
+	store.Set(GetManagerAccountBytes(manager.ManagerAccount), appendedValue)
 
 	// Update manager count
 	k.SetManagerCount(ctx, count+1)
-
-	return count
 }
 
 // SetManager set a specific manager in the store
@@ -64,26 +59,19 @@ func (k Keeper) SetManager(ctx context.Context, manager types.Manager) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.ManagerKey))
 	b := k.cdc.MustMarshal(&manager)
-	store.Set(GetManagerIDBytes(manager.Id), b)
+	store.Set(GetManagerAccountBytes(manager.ManagerAccount), b)
 }
 
-// GetManager returns a manager from its id
-func (k Keeper) GetManager(ctx context.Context, id uint64) (val types.Manager, found bool) {
+// GetManager returns a manager from its address
+func (k Keeper) GetManager(ctx context.Context, managerAccount string) (val types.Manager, found bool) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.ManagerKey))
-	b := store.Get(GetManagerIDBytes(id))
+	b := store.Get(GetManagerAccountBytes(managerAccount))
 	if b == nil {
 		return val, false
 	}
 	k.cdc.MustUnmarshal(b, &val)
 	return val, true
-}
-
-// RemoveManager removes a manager from the store
-func (k Keeper) RemoveManager(ctx context.Context, id uint64) {
-	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.ManagerKey))
-	store.Delete(GetManagerIDBytes(id))
 }
 
 // GetAllManager returns all manager
@@ -103,10 +91,10 @@ func (k Keeper) GetAllManager(ctx context.Context) (list []types.Manager) {
 	return
 }
 
-// GetManagerIDBytes returns the byte representation of the ID
-func GetManagerIDBytes(id uint64) []byte {
+// GetManagerAccountBytes returns the byte representation of the manager account
+func GetManagerAccountBytes(ManagerAccount string) []byte {
 	bz := types.KeyPrefix(types.ManagerKey)
 	bz = append(bz, []byte("/")...)
-	bz = binary.BigEndian.AppendUint64(bz, id)
+	bz = append(bz, []byte(ManagerAccount)...)
 	return bz
 }

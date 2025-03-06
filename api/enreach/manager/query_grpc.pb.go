@@ -20,6 +20,8 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	Query_Params_FullMethodName             = "/enreach.manager.Query/Params"
+	Query_Operator_FullMethodName           = "/enreach.manager.Query/Operator"
+	Query_OperatorAll_FullMethodName        = "/enreach.manager.Query/OperatorAll"
 	Query_Manager_FullMethodName            = "/enreach.manager.Query/Manager"
 	Query_ManagerAll_FullMethodName         = "/enreach.manager.Query/ManagerAll"
 	Query_GetManagerByRegion_FullMethodName = "/enreach.manager.Query/GetManagerByRegion"
@@ -31,6 +33,9 @@ const (
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
+	// Queries a list of Operator items.
+	Operator(ctx context.Context, in *QueryGetOperatorRequest, opts ...grpc.CallOption) (*QueryGetOperatorResponse, error)
+	OperatorAll(ctx context.Context, in *QueryAllOperatorRequest, opts ...grpc.CallOption) (*QueryAllOperatorResponse, error)
 	// Queries a list of Manager items.
 	Manager(ctx context.Context, in *QueryGetManagerRequest, opts ...grpc.CallOption) (*QueryGetManagerResponse, error)
 	ManagerAll(ctx context.Context, in *QueryAllManagerRequest, opts ...grpc.CallOption) (*QueryAllManagerResponse, error)
@@ -49,6 +54,24 @@ func NewQueryClient(cc grpc.ClientConnInterface) QueryClient {
 func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error) {
 	out := new(QueryParamsResponse)
 	err := c.cc.Invoke(ctx, Query_Params_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) Operator(ctx context.Context, in *QueryGetOperatorRequest, opts ...grpc.CallOption) (*QueryGetOperatorResponse, error) {
+	out := new(QueryGetOperatorResponse)
+	err := c.cc.Invoke(ctx, Query_Operator_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) OperatorAll(ctx context.Context, in *QueryAllOperatorRequest, opts ...grpc.CallOption) (*QueryAllOperatorResponse, error) {
+	out := new(QueryAllOperatorResponse)
+	err := c.cc.Invoke(ctx, Query_OperatorAll_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -88,6 +111,9 @@ func (c *queryClient) GetManagerByRegion(ctx context.Context, in *QueryGetManage
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
+	// Queries a list of Operator items.
+	Operator(context.Context, *QueryGetOperatorRequest) (*QueryGetOperatorResponse, error)
+	OperatorAll(context.Context, *QueryAllOperatorRequest) (*QueryAllOperatorResponse, error)
 	// Queries a list of Manager items.
 	Manager(context.Context, *QueryGetManagerRequest) (*QueryGetManagerResponse, error)
 	ManagerAll(context.Context, *QueryAllManagerRequest) (*QueryAllManagerResponse, error)
@@ -102,6 +128,12 @@ type UnimplementedQueryServer struct {
 
 func (UnimplementedQueryServer) Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
+}
+func (UnimplementedQueryServer) Operator(context.Context, *QueryGetOperatorRequest) (*QueryGetOperatorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Operator not implemented")
+}
+func (UnimplementedQueryServer) OperatorAll(context.Context, *QueryAllOperatorRequest) (*QueryAllOperatorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OperatorAll not implemented")
 }
 func (UnimplementedQueryServer) Manager(context.Context, *QueryGetManagerRequest) (*QueryGetManagerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Manager not implemented")
@@ -139,6 +171,42 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(QueryServer).Params(ctx, req.(*QueryParamsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_Operator_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetOperatorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).Operator(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_Operator_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).Operator(ctx, req.(*QueryGetOperatorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_OperatorAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllOperatorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).OperatorAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_OperatorAll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).OperatorAll(ctx, req.(*QueryAllOperatorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -207,6 +275,14 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Params",
 			Handler:    _Query_Params_Handler,
+		},
+		{
+			MethodName: "Operator",
+			Handler:    _Query_Operator_Handler,
+		},
+		{
+			MethodName: "OperatorAll",
+			Handler:    _Query_OperatorAll_Handler,
 		},
 		{
 			MethodName: "Manager",

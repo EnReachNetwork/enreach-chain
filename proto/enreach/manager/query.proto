@@ -8,6 +8,7 @@ import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "enreach/manager/params.proto";
 import "enreach/manager/manager.proto";
+import "enreach/manager/operator.proto";
 
 option go_package = "enreach/x/manager/types";
 
@@ -20,9 +21,19 @@ service Query {
   
   }
   
+  // Queries a list of Operator items.
+  rpc Operator    (QueryGetOperatorRequest) returns (QueryGetOperatorResponse) {
+    option (google.api.http).get = "/enreach/manager/operator/{operatorAccount}";
+  
+  }
+  rpc OperatorAll (QueryAllOperatorRequest) returns (QueryAllOperatorResponse) {
+    option (google.api.http).get = "/enreach/manager/operators";
+  
+  }
+
   // Queries a list of Manager items.
   rpc Manager    (QueryGetManagerRequest) returns (QueryGetManagerResponse) {
-    option (google.api.http).get = "/enreach/manager/manager/{id}";
+    option (google.api.http).get = "/enreach/manager/manager/{managerAccount}";
   
   }
   rpc ManagerAll (QueryAllManagerRequest) returns (QueryAllManagerResponse) {
@@ -31,10 +42,11 @@ service Query {
   }
   
   // Queries a list of GetManagerByRegion items.
-  rpc GetManagerByRegion (QueryGetManagerByRegionRequest) returns (QueryGetManagerByRegionResponse) {
+  rpc GetManagerByRegion        (QueryGetManagerByRegionRequest       ) returns (QueryGetManagerByRegionResponse       ) {
     option (google.api.http).get = "/enreach/manager/get_manager_by_region/{regionCode}";
   
   }
+  
 }
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
@@ -46,8 +58,26 @@ message QueryParamsResponse {
   Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
 }
 
+
+message QueryGetOperatorRequest {
+  string operatorAccount = 1;
+}
+
+message QueryGetOperatorResponse {
+  Operator Operator = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllOperatorRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllOperatorResponse {
+  repeated Operator                               Operator   = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
 message QueryGetManagerRequest {
-  uint64 id = 1;
+  string managerAccount = 1;
 }
 
 message QueryGetManagerResponse {
@@ -70,4 +100,3 @@ message QueryGetManagerByRegionRequest {
 message QueryGetManagerByRegionResponse {
   repeated Manager managers = 1 [(gogoproto.nullable) = false];
 }
-
