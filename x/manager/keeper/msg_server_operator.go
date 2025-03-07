@@ -108,7 +108,7 @@ func (k msgServer) BindOperatorManagerAccount(goCtx context.Context, msg *types.
 	return &types.MsgBindOperatorManagerAccountResponse{}, nil
 }
 
-func verifyManagerSignature(operatorAccount string, managerAccount string, managerSignature []byte) error {
+func verifyManagerSignature(_operatorAccount string, _managerAccount string, _managerSignature []byte) error {
 	// // Construct original sig data
 	// data := []byte(operatorAccount + managerAccount)
 	// msgHash := sdk.Sha256(data)
@@ -174,6 +174,7 @@ func (k msgServer) SetManagerRegion(goCtx context.Context, msg *types.MsgSetMana
 	// Update and set to the store
 	blockHeight := uint64(ctx.BlockHeight())
 	manager.RegionCode = msg.RegionCode
+	manager.RegisterStatus = string(types.RS_PENDING_ACTIVATE)
 	manager.Updator = msg.OperatorAccount
 	manager.UpdateAt = blockHeight
 	k.SetManager(ctx, manager)
@@ -221,18 +222,109 @@ func (k msgServer) UpdateManagerConnParams(goCtx context.Context, msg *types.Msg
 }
 
 func (k msgServer) ActivateManager(goCtx context.Context, msg *types.MsgActivateManager) (*types.MsgActivateManagerResponse, error) {
-	/// TODO
+	ctx := sdk.UnwrapSDKContext(goCtx)
+
+	// Checks that the element exists
+	operator, found := k.GetOperator(ctx, msg.OperatorAccount)
+	if !found {
+		return nil, errorsmod.Wrapf(sdkerrors.ErrKeyNotFound, "Operator '%s' doesn't exist", msg.OperatorAccount)
+	}
+
+	// tx caller should be current operator owner
+	if msg.OperatorAccount != operator.OperatorAccount {
+		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Incorrect owner")
+	}
+
+	// Operator should have bound a manager
+	if len(operator.ManagerAccount) == 0 {
+		return nil, errorsmod.Wrapf(types.ErrManagerNotBind, "Operator doesn't bind manager yet")
+	}
+
+	// Checks that the manager exists
+	manager, found := k.GetManager(ctx, operator.ManagerAccount)
+	if !found {
+		return nil, errorsmod.Wrapf(sdkerrors.ErrKeyNotFound, "Invalid state: Operator has bound to manager '%s', but doesn't exist in the store", operator.ManagerAccount)
+	}
+
+	// The manager should be in PENDING_ACTIVATE state
+	if manager.RegisterStatus != string(types.RS_PENDING_ACTIVATE) {
+		switch manager.RegisterStatus {
+		case string(types.RS_PENDING_BIND):
+			return nil, errorsmod.Wrap(types.ErrInvalidManagerRegisterStatus,
+				"Invalid state: Operator has bound to manager, RegisterStatus should not be Pending_Bind")
+		case string(types.RS_PENDING_CONFIG):
+			return nil, errorsmod.Wrap(types.ErrInvalidManagerRegisterStatus,
+				"Activate is not allow due to manager configuration is not done yet")
+		case string(types.RS_ACTIVATE):
+			return nil, errorsmod.Wrap(types.ErrInvalidManagerRegisterStatus,
+				"Activate multiple times is not allow")
+		default:
+			return nil, errorsmod.Wrap(types.ErrInvalidManagerRegisterStatus,
+				"Unknow manager register status, cannot proceed")
+		}
+	}
+
+	// Double check the manager region code setting and connection params
+	if len(manager.HostAddress) == 0 || manager.ManagerPort == 0 ||
+		manager.TrackerPort == 0 || manager.ChainAPIPort == 0 || manager.ChainRPCPort == 0 {
+		return nil, errorsmod.Wrap(types.ErrManagerConnParamsNotSet,
+			"Activate manager is not allow due to manager connection params not properly set")
+	}
+	if len(manager.RegionCode) == 0 {
+		return nil, errorsmod.Wrap(types.ErrManagerRegionNotSet,
+			"Activate manager is not allow due to manager region code has not set")
+	}
+
+	//////////////////////////////////////////////////////
+	/// TODO: Verifys the license using license module
+	if err := verifyActivateLicense(msg.License); err != nil {
+		return nil, errorsmod.Wrapf(types.ErrInvalidManagerLicense, "%s", err)
+	}
+
+	// Update and set to the store
+	manager.RegisterStatus = string(types.RS_ACTIVATE)
+	manager.Updator = msg.OperatorAccount
+	manager.UpdateAt = uint64(ctx.BlockHeight())
+	k.SetManager(ctx, manager)
 
 	return &types.MsgActivateManagerResponse{}, nil
 }
 
-func (k msgServer) BindOperatorEVMAccount(goCtx context.Context, msg *types.MsgBindOperatorEVMAccount) (*types.MsgBindOperatorEVMAccountResponse, error) {
+func verifyActivateLicense(_license string) error {
 	/// TODO
+
+	return nil
+}
+
+func (k msgServer) BindOperatorEVMAccount(goCtx context.Context, msg *types.MsgBindOperatorEVMAccount) (*types.MsgBindOperatorEVMAccountResponse, error) {
+	ctx := sdk.UnwrapSDKContext(goCtx)
+
+	// Checks that the element exists
+	operator, found := k.GetOperator(ctx, msg.OperatorAccount)
+	if !found {
+		return nil, errorsmod.Wrapf(sdkerrors.ErrKeyNotFound, "Operator '%s' doesn't exist", msg.OperatorAccount)
+	}
+
+	// tx caller should be current operator owner
+	if msg.OperatorAccount != operator.OperatorAccount {
+		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Incorrect owner")
+	}
+
+	// Verify the EVM Signature to make sure the caller owns the EVM account
+	if err := verifyEvmSignature(msg.OperatorAccount, msg.EvmAccount, msg.EvmSignature); err != nil {
+		return nil, errorsmod.Wrap(types.ErrInvalidSignature, "Invalid evm signature")
+	}
+
+	// Update and set to the store
+	operator.EvmAccount = msg.EvmAccount
+	operator.Updator = msg.OperatorAccount
+	operator.UpdateAt = uint64(ctx.BlockHeight())
+	k.SetOperator(ctx, operator)
 
 	return &types.MsgBindOperatorEVMAccountResponse{}, nil
 }
 
-func verifyEvmSignature(operatorAccount string, evmAccount string, evmSignature []byte) error {
+func verifyEvmSignature(_operatorAccount string, _evmAccount string, _evmSignature []byte) error {
 	/// TODO
 	return nil
 }
