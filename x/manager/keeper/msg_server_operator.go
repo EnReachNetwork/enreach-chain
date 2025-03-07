@@ -2,7 +2,6 @@ package keeper
 
 import (
 	"context"
-	"fmt"
 
 	"enreach/x/manager/types"
 
@@ -17,7 +16,7 @@ func (k msgServer) CreateOperator(goCtx context.Context, msg *types.MsgCreateOpe
 	// First check whether the operator has already been created
 	_, found := k.GetOperator(ctx, msg.OperatorAccount)
 	if found {
-		return nil, errorsmod.Wrap(types.ErrElementAlreadyExists, fmt.Sprintf("Operator '%s' already exists", msg.OperatorAccount))
+		return nil, errorsmod.Wrapf(types.ErrElementAlreadyExists, "Operator '%s' already exists", msg.OperatorAccount)
 	}
 
 	blockHeight := uint64(ctx.BlockHeight())
@@ -44,40 +43,40 @@ func (k msgServer) BindOperatorManagerAccount(goCtx context.Context, msg *types.
 	// Checks that the element exists
 	operator, found := k.GetOperator(ctx, msg.OperatorAccount)
 	if !found {
-		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, fmt.Sprintf("Operator '%s' doesn't exist", msg.OperatorAccount))
+		return nil, errorsmod.Wrapf(sdkerrors.ErrKeyNotFound, "Operator '%s' doesn't exist", msg.OperatorAccount)
 	}
 
-	// tx caller should be current manager owner
+	// tx caller should be current operator owner
 	if msg.OperatorAccount != operator.OperatorAccount {
-		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "incorrect owner")
+		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Incorrect owner")
 	}
 
 	// operator account and manager account should be different
 	if msg.OperatorAccount == msg.ManagerAccount {
-		return nil, errorsmod.Wrap(types.ErrOperatorAndManagerAccountDuplicate, "operator account and manager account should not be the same")
+		return nil, errorsmod.Wrap(types.ErrOperatorAndManagerAccountDuplicate, "Operator account and manager account should not be the same")
 	}
 
 	// Verifys the manager address and signature
 	if err := verifyManagerSignature(msg.OperatorAccount, msg.ManagerAccount, msg.ManagerSignature); err != nil {
-		return nil, errorsmod.Wrap(types.ErrInvalidSignature, "invalid manager signature")
+		return nil, errorsmod.Wrap(types.ErrInvalidSignature, "Invalid manager signature")
 	}
 
 	// Manager should have already been registered
 	manager, found := k.GetManager(ctx, msg.ManagerAccount)
 	if !found {
-		return nil, errorsmod.Wrap(types.ErrManagerNotRegister, "manager should register first before bind to an operator")
+		return nil, errorsmod.Wrap(types.ErrManagerNotRegister, "Manager should register first before bind to an operator")
 	}
 
 	// Manager should be in the PENDING_BIND state
 	if manager.RegisterStatus != string(types.RS_PENDING_BIND) {
-		return nil, errorsmod.Wrap(types.ErrManagerAlreadyBind, "manager already bind to other operator")
+		return nil, errorsmod.Wrap(types.ErrManagerAlreadyBind, "Manager already bind to other operator")
 	}
 
 	blockHeight := uint64(ctx.BlockHeight())
 	if len(operator.ManagerAccount) > 0 {
 		// Should not bind to the same worker account again
 		if operator.ManagerAccount == msg.ManagerAccount {
-			return nil, errorsmod.Wrap(types.ErrOperatorAndManagerAccountAlreadyBind, "operator already bind to the same manager, should not bind again")
+			return nil, errorsmod.Wrap(types.ErrOperatorAndManagerAccountAlreadyBind, "Operator already bind to the same manager, should not bind again")
 		} else {
 			// Already bind to another manager account, need to unbind the previous manager account first if forceUnbind is set to true
 			if msg.ForceUnbind {
@@ -87,7 +86,7 @@ func (k msgServer) BindOperatorManagerAccount(goCtx context.Context, msg *types.
 				manager.UpdateAt = blockHeight
 				k.SetManager(ctx, manager)
 			} else {
-				return nil, errorsmod.Wrap(types.ErrOperatorAlreadyBind, "operator already bind to another manager, could not unbind since forceUnbind flag is false")
+				return nil, errorsmod.Wrap(types.ErrOperatorAlreadyBind, "Operator already bind to another manager, could not unbind since forceUnbind flag is false")
 			}
 		}
 	}
@@ -134,13 +133,84 @@ func verifyManagerSignature(operatorAccount string, managerAccount string, manag
 }
 
 func (k msgServer) SetManagerRegion(goCtx context.Context, msg *types.MsgSetManagerRegion) (*types.MsgSetManagerRegionResponse, error) {
-	/// TODO
+	ctx := sdk.UnwrapSDKContext(goCtx)
+
+	// Checks that the element exists
+	operator, found := k.GetOperator(ctx, msg.OperatorAccount)
+	if !found {
+		return nil, errorsmod.Wrapf(sdkerrors.ErrKeyNotFound, "Operator '%s' doesn't exist", msg.OperatorAccount)
+	}
+
+	// tx caller should be current operator owner
+	if msg.OperatorAccount != operator.OperatorAccount {
+		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Incorrect owner")
+	}
+
+	// Operator should have bound a manager
+	if len(operator.ManagerAccount) == 0 {
+		return nil, errorsmod.Wrapf(types.ErrManagerNotBind, "Operator doesn't bind manager yet")
+	}
+
+	// Checks that the manager exists
+	manager, found := k.GetManager(ctx, operator.ManagerAccount)
+	if !found {
+		return nil, errorsmod.Wrapf(sdkerrors.ErrKeyNotFound, "Invalid state: Operator has bound to manager '%s', but doesn't exist in the store", operator.ManagerAccount)
+	}
+
+	// Right now we simply doesn't allow to change region after the manager has activated
+	// Since edge nodes can only connect to managers in one region,if manager region has changed,
+	// it's difficult to force all the edge nodes to reconnect
+	if manager.RegisterStatus == string(types.RS_ACTIVATE) {
+		return nil, errorsmod.Wrap(types.ErrManagerRegionChangeNotAllow, "Not allow to change region after the manager has activated")
+	}
+
+	// Region code need to be in the registered list
+
+	// Update and set to the store
+	blockHeight := uint64(ctx.BlockHeight())
+	manager.RegionCode = msg.RegionCode
+	manager.Updator = msg.OperatorAccount
+	manager.UpdateAt = blockHeight
+	k.SetManager(ctx, manager)
 
 	return &types.MsgSetManagerRegionResponse{}, nil
 }
 
 func (k msgServer) UpdateManagerConnParams(goCtx context.Context, msg *types.MsgUpdateManagerConnParams) (*types.MsgUpdateManagerConnParamsResponse, error) {
-	/// TODO
+	ctx := sdk.UnwrapSDKContext(goCtx)
+
+	// Checks that the element exists
+	operator, found := k.GetOperator(ctx, msg.OperatorAccount)
+	if !found {
+		return nil, errorsmod.Wrapf(sdkerrors.ErrKeyNotFound, "Operator '%s' doesn't exist", msg.OperatorAccount)
+	}
+
+	// tx caller should be current operator owner
+	if msg.OperatorAccount != operator.OperatorAccount {
+		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Incorrect owner")
+	}
+
+	// Operator should have bound a manager
+	if len(operator.ManagerAccount) == 0 {
+		return nil, errorsmod.Wrapf(types.ErrManagerNotBind, "Operator doesn't bind manager yet")
+	}
+
+	// Checks that the manager exists
+	manager, found := k.GetManager(ctx, operator.ManagerAccount)
+	if !found {
+		return nil, errorsmod.Wrapf(sdkerrors.ErrKeyNotFound, "Invalid state: Operator has bound to manager '%s', but doesn't exist in the store", operator.ManagerAccount)
+	}
+
+	// Update and set to the store
+	blockHeight := uint64(ctx.BlockHeight())
+	manager.HostAddress = msg.HostAddress
+	manager.ManagerPort = msg.ManagerPort
+	manager.TrackerPort = msg.TrackerPort
+	manager.ChainAPIPort = msg.ChainAPIPort
+	manager.ChainRPCPort = msg.ChainRPCPort
+	manager.Updator = msg.OperatorAccount
+	manager.UpdateAt = blockHeight
+	k.SetManager(ctx, manager)
 
 	return &types.MsgUpdateManagerConnParamsResponse{}, nil
 }
@@ -163,27 +233,27 @@ func verifyEvmSignature(operatorAccount string, evmAccount string, evmSignature 
 }
 
 func (k msgServer) UpdateOperatorBasicInfo(goCtx context.Context, msg *types.MsgUpdateOperatorBasicInfo) (*types.MsgUpdateOperatorBasicInfoResponse, error) {
-	// ctx := sdk.UnwrapSDKContext(goCtx)
+	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	// // Checks that the element exists
-	// operator, found := k.GetOperator(ctx, msg.OperatorAddress)
-	// if !found {
-	// 	return nil, errorsmod.Wrapf(sdkerrors.ErrKeyNotFound, "Operator '%s' doesn't exist", msg.OperatorAddress)
-	// }
+	// Checks that the element exists
+	operator, found := k.GetOperator(ctx, msg.OperatorAccount)
+	if !found {
+		return nil, errorsmod.Wrapf(sdkerrors.ErrKeyNotFound, "Operator '%s' doesn't exist", msg.OperatorAccount)
+	}
 
-	// // Checks if the msg signer is the same as the current owner
-	// if msg.Signer != operator.Creator || msg.Signer != msg.OperatorAddress {
-	// 	return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "incorrect owner")
-	// }
+	// tx caller should be current operator owner
+	if msg.OperatorAccount != operator.OperatorAccount {
+		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Incorrect owner")
+	}
 
-	// blockHeight := uint64(ctx.BlockHeight())
-	// operator.Name = msg.Name
-	// operator.Description = msg.Description
-	// operator.WebsiteUrl = msg.WebsiteUrl
-	// operator.Updator = msg.Signer
-	// operator.UpdateAt = blockHeight
-
-	// k.SetOperator(ctx, operator)
+	// Update and set to the store
+	blockHeight := uint64(ctx.BlockHeight())
+	operator.Name = msg.Name
+	operator.Description = msg.Description
+	operator.WebsiteUrl = msg.WebsiteUrl
+	operator.Updator = msg.OperatorAccount
+	operator.UpdateAt = blockHeight
+	k.SetOperator(ctx, operator)
 
 	return &types.MsgUpdateOperatorBasicInfoResponse{}, nil
 }

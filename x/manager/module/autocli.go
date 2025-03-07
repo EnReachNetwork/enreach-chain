@@ -24,8 +24,8 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				},
 				{
 					RpcMethod:      "Manager",
-					Use:            "show-manager [manager-address]",
-					Short:          "Shows a manager by address",
+					Use:            "show-manager [manager-account]",
+					Short:          "Shows a manager by account",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "managerAccount"}},
 				},
 				{
@@ -42,20 +42,9 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				},
 				{
 					RpcMethod:      "Operator",
-					Use:            "show-operator [operator-address]",
-					Short:          "Shows a operator by address",
+					Use:            "show-operator [operator-account]",
+					Short:          "Shows a operator by account",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "operatorAccount"}},
-				},
-				{
-					RpcMethod: "OperatorAll",
-					Use:       "list-operator",
-					Short:     "List all operator",
-				},
-				{
-					RpcMethod:      "Operator",
-					Use:            "show-operator [id]",
-					Short:          "Shows a operator by id",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}},
 				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
@@ -77,15 +66,15 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				},
 				{
 					RpcMethod:      "SetManagerRegion",
-					Use:            "set-manager-region [managerAccount] [regionCode]",
+					Use:            "set-manager-region [operatorAccount] [regionCode]",
 					Short:          "Set manager region",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "managerAccount"}, {ProtoField: "regionCode"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "operatorAccount"}, {ProtoField: "regionCode"}},
 				},
 				{
 					RpcMethod: "UpdateManagerConnParams",
-					Use:       "update-manager-conn-params [managerAccount]  [hostAddress] [managerPort] [trackerPort] [chainAPIPort] [chainRPCPort]",
+					Use:       "update-manager-conn-params [operatorAccount]  [hostAddress] [managerPort] [trackerPort] [chainAPIPort] [chainRPCPort]",
 					Short:     "Update manager conn params",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "managerAccount"},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "operatorAccount"},
 						{ProtoField: "hostAddress"}, {ProtoField: "managerPort"}, {ProtoField: "trackerPort"}, {ProtoField: "chainAPIPort"}, {ProtoField: "chainRPCPort"}},
 				},
 				{
@@ -96,9 +85,9 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				},
 				{
 					RpcMethod:      "ActivateManager",
-					Use:            "activate-manager [managerAccount] [license]",
+					Use:            "activate-manager [operatorAccount] [license]",
 					Short:          "Activate manager",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "managerAccount"}, {ProtoField: "license"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "operatorAccount"}, {ProtoField: "license"}},
 				},
 				{
 					RpcMethod:      "CreateOperator",
@@ -114,15 +103,15 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				},
 				{
 					RpcMethod:      "BindOperatorManagerAccount",
-					Use:            "bind-operator-manager-account [operatorAccount] [managerAccount]",
+					Use:            "bind-operator-manager-account [operatorAccount] [managerAccount] [managerSignature]",
 					Short:          "Bind operator manager account",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "operatorAccount"}, {ProtoField: "managerAccount"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "operatorAccount"}, {ProtoField: "managerAccount"}, {ProtoField: "managerSignature"}},
 				},
 				{
 					RpcMethod:      "BindOperatorEVMAccount",
-					Use:            "bind-operator-evm-account [operatorAccount] [evmAccount]",
+					Use:            "bind-operator-evm-account [operatorAccount] [evmAccount] [evmSignature]",
 					Short:          "Bind operator evm account",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "operatorAccount"}, {ProtoField: "evmAccount"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "operatorAccount"}, {ProtoField: "evmAccount"}, {ProtoField: "evmSignature"}},
 				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},

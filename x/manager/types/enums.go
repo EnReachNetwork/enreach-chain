@@ -11,4 +11,8 @@ const (
 
 type ManagerWorkingStatus string
 
-const ()
+const (
+	WS_WORKING ManagerWorkingStatus = "Working"
+	WS_OFFLINE ManagerWorkingStatus = "Offline"
+	WS_BLOCK   ManagerWorkingStatus = "Block"
+)
