@@ -23,4 +23,5 @@ var (
 	ErrManagerConnParamsNotSet              = sdkerrors.Register(ModuleName, 1112, "manager connection params not set")
 	ErrManagerRegionNotSet                  = sdkerrors.Register(ModuleName, 1113, "manager region not set")
 	ErrManagerRegionChangeNotAllow          = sdkerrors.Register(ModuleName, 1114, "manager region change is not allowed")
+	ErrInvalidRegion                        = sdkerrors.Register(ModuleName, 1114, "invalid region")
 )

@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"enreach/x/manager/types"
+	registrytypes "enreach/x/registry/types"
 
 	errorsmod "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -165,6 +166,10 @@ func (k msgServer) SetManagerRegion(goCtx context.Context, msg *types.MsgSetMana
 	}
 
 	// Region code need to be in the registered list
+	_, err := k.registryKeeper.Region(ctx, &registrytypes.QueryGetRegionRequest{Code: msg.RegionCode})
+	if err != nil {
+		return nil, errorsmod.Wrapf(types.ErrInvalidRegion, "Region '%s' is not in the region list registry", msg.RegionCode)
+	}
 
 	// Update and set to the store
 	blockHeight := uint64(ctx.BlockHeight())

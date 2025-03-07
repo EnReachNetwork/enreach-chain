@@ -3,6 +3,8 @@ package types
 import (
 	"context"
 
+	registrytypes "enreach/x/registry/types"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
@@ -22,4 +24,8 @@ type BankKeeper interface {
 type ParamSubspace interface {
 	Get(context.Context, []byte, interface{})
 	Set(context.Context, []byte, interface{})
+}
+
+type RegistryKeeper interface {
+	Region(context.Context, *registrytypes.QueryGetRegionRequest) (*registrytypes.QueryGetRegionResponse, error)
 }

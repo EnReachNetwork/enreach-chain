@@ -22,5 +22,10 @@ func (msg *MsgCreateOperator) ValidateBasic() error {
 	if err != nil {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid operator account (%s)", err)
 	}
+
+	if len(msg.Name) > 10 {
+		return errorsmod.Wrap(ErrParamExceedMaxLength, "parameter 'name' exceed max length 32")
+	}
+
 	return nil
 }

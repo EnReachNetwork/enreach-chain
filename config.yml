@@ -1,14 +1,21 @@
 validation: sovereign
 version: 1
 accounts:
+- name: admin
+  coins:
+  - 20000token
+  - 200000000stake
+  mnemonic: autumn churn regular flee grid category remember put dish uniform age pepper armor portion wait tribe memory inform fine photo work problem blast enforce
 - name: alice
   coins:
   - 20000token
   - 200000000stake
+  mnemonic: frame blame asset doctor below parrot cross latin camp cruel trumpet fix income impose dose culture amused health sniff poem risk ask twenty zone
 - name: bob
   coins:
   - 10000token
   - 100000000stake
+  mnemonic: swallow asthma famous gasp wear velvet actor addict option poem vacuum box path creek slender lamp such inform cable interest quit exchange exclude hurt
 faucet:
   name: bob
   coins:
