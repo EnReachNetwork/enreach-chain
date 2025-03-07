@@ -2,30 +2,25 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { MsgUpdateParams } from "./types/ibc/applications/interchain_accounts/controller/v1/tx";
-import { QueryInterchainAccountResponse } from "./types/ibc/applications/interchain_accounts/controller/v1/query";
-import { MsgRegisterInterchainAccount } from "./types/ibc/applications/interchain_accounts/controller/v1/tx";
-import { MsgUpdateParamsResponse } from "./types/ibc/applications/interchain_accounts/controller/v1/tx";
-import { QueryParamsRequest } from "./types/ibc/applications/interchain_accounts/controller/v1/query";
-import { QueryParamsResponse } from "./types/ibc/applications/interchain_accounts/controller/v1/query";
 import { MsgSendTx } from "./types/ibc/applications/interchain_accounts/controller/v1/tx";
+import { MsgUpdateParams } from "./types/ibc/applications/interchain_accounts/controller/v1/tx";
+import { MsgUpdateParamsResponse } from "./types/ibc/applications/interchain_accounts/controller/v1/tx";
+import { QueryInterchainAccountResponse } from "./types/ibc/applications/interchain_accounts/controller/v1/query";
+import { QueryParamsResponse } from "./types/ibc/applications/interchain_accounts/controller/v1/query";
+import { MsgRegisterInterchainAccount } from "./types/ibc/applications/interchain_accounts/controller/v1/tx";
 import { MsgRegisterInterchainAccountResponse } from "./types/ibc/applications/interchain_accounts/controller/v1/tx";
 import { MsgSendTxResponse } from "./types/ibc/applications/interchain_accounts/controller/v1/tx";
 import { Params } from "./types/ibc/applications/interchain_accounts/controller/v1/controller";
 import { QueryInterchainAccountRequest } from "./types/ibc/applications/interchain_accounts/controller/v1/query";
-export { MsgUpdateParams, QueryInterchainAccountResponse, MsgRegisterInterchainAccount, MsgUpdateParamsResponse, QueryParamsRequest, QueryParamsResponse, MsgSendTx, MsgRegisterInterchainAccountResponse, MsgSendTxResponse, Params, QueryInterchainAccountRequest };
+import { QueryParamsRequest } from "./types/ibc/applications/interchain_accounts/controller/v1/query";
+export { MsgSendTx, MsgUpdateParams, MsgUpdateParamsResponse, QueryInterchainAccountResponse, QueryParamsResponse, MsgRegisterInterchainAccount, MsgRegisterInterchainAccountResponse, MsgSendTxResponse, Params, QueryInterchainAccountRequest, QueryParamsRequest };
+type sendMsgSendTxParams = {
+    value: MsgSendTx;
+    fee?: StdFee;
+    memo?: string;
+};
 type sendMsgUpdateParamsParams = {
     value: MsgUpdateParams;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryInterchainAccountResponseParams = {
-    value: QueryInterchainAccountResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgRegisterInterchainAccountParams = {
-    value: MsgRegisterInterchainAccount;
     fee?: StdFee;
     memo?: string;
 };
@@ -34,8 +29,8 @@ type sendMsgUpdateParamsResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryParamsRequestParams = {
-    value: QueryParamsRequest;
+type sendQueryInterchainAccountResponseParams = {
+    value: QueryInterchainAccountResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -44,8 +39,8 @@ type sendQueryParamsResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgSendTxParams = {
-    value: MsgSendTx;
+type sendMsgRegisterInterchainAccountParams = {
+    value: MsgRegisterInterchainAccount;
     fee?: StdFee;
     memo?: string;
 };
@@ -69,26 +64,28 @@ type sendQueryInterchainAccountRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
+type sendQueryParamsRequestParams = {
+    value: QueryParamsRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type msgSendTxParams = {
+    value: MsgSendTx;
+};
 type msgUpdateParamsParams = {
     value: MsgUpdateParams;
-};
-type queryInterchainAccountResponseParams = {
-    value: QueryInterchainAccountResponse;
-};
-type msgRegisterInterchainAccountParams = {
-    value: MsgRegisterInterchainAccount;
 };
 type msgUpdateParamsResponseParams = {
     value: MsgUpdateParamsResponse;
 };
-type queryParamsRequestParams = {
-    value: QueryParamsRequest;
+type queryInterchainAccountResponseParams = {
+    value: QueryInterchainAccountResponse;
 };
 type queryParamsResponseParams = {
     value: QueryParamsResponse;
 };
-type msgSendTxParams = {
-    value: MsgSendTx;
+type msgRegisterInterchainAccountParams = {
+    value: MsgRegisterInterchainAccount;
 };
 type msgRegisterInterchainAccountResponseParams = {
     value: MsgRegisterInterchainAccountResponse;
@@ -102,6 +99,9 @@ type paramsParams = {
 type queryInterchainAccountRequestParams = {
     value: QueryInterchainAccountRequest;
 };
+type queryParamsRequestParams = {
+    value: QueryParamsRequest;
+};
 export declare const registry: any;
 interface TxClientOptions {
     addr: string;
@@ -109,28 +109,28 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
-    sendQueryInterchainAccountResponse({ value, fee, memo }: sendQueryInterchainAccountResponseParams): Promise<DeliverTxResponse>;
-    sendMsgRegisterInterchainAccount({ value, fee, memo }: sendMsgRegisterInterchainAccountParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
-    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
-    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
     sendMsgSendTx({ value, fee, memo }: sendMsgSendTxParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
+    sendQueryInterchainAccountResponse({ value, fee, memo }: sendQueryInterchainAccountResponseParams): Promise<DeliverTxResponse>;
+    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
+    sendMsgRegisterInterchainAccount({ value, fee, memo }: sendMsgRegisterInterchainAccountParams): Promise<DeliverTxResponse>;
     sendMsgRegisterInterchainAccountResponse({ value, fee, memo }: sendMsgRegisterInterchainAccountResponseParams): Promise<DeliverTxResponse>;
     sendMsgSendTxResponse({ value, fee, memo }: sendMsgSendTxResponseParams): Promise<DeliverTxResponse>;
     sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
     sendQueryInterchainAccountRequest({ value, fee, memo }: sendQueryInterchainAccountRequestParams): Promise<DeliverTxResponse>;
-    msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
-    queryInterchainAccountResponse({ value }: queryInterchainAccountResponseParams): EncodeObject;
-    msgRegisterInterchainAccount({ value }: msgRegisterInterchainAccountParams): EncodeObject;
-    msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
-    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
-    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
+    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
     msgSendTx({ value }: msgSendTxParams): EncodeObject;
+    msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
+    msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
+    queryInterchainAccountResponse({ value }: queryInterchainAccountResponseParams): EncodeObject;
+    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
+    msgRegisterInterchainAccount({ value }: msgRegisterInterchainAccountParams): EncodeObject;
     msgRegisterInterchainAccountResponse({ value }: msgRegisterInterchainAccountResponseParams): EncodeObject;
     msgSendTxResponse({ value }: msgSendTxResponseParams): EncodeObject;
     params({ value }: paramsParams): EncodeObject;
     queryInterchainAccountRequest({ value }: queryInterchainAccountRequestParams): EncodeObject;
+    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MsgClientImpl = exports.MsgServiceName = exports.MsgDeleteRegionResponse = exports.MsgDeleteRegion = exports.MsgUpdateRegionResponse = exports.MsgUpdateRegion = exports.MsgCreateRegionResponse = exports.MsgCreateRegion = exports.MsgUpdateParamsResponse = exports.MsgUpdateParams = exports.protobufPackage = void 0;
 /* eslint-disable */
-const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const params_1 = require("./params");
 exports.protobufPackage = "enreach.registry";
@@ -115,12 +114,12 @@ exports.MsgUpdateParamsResponse = {
     },
 };
 function createBaseMsgCreateRegion() {
-    return { creator: "", code: "", name: "", description: "" };
+    return { signer: "", code: "", name: "", description: "" };
 }
 exports.MsgCreateRegion = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.creator !== "") {
-            writer.uint32(10).string(message.creator);
+        if (message.signer !== "") {
+            writer.uint32(10).string(message.signer);
         }
         if (message.code !== "") {
             writer.uint32(18).string(message.code);
@@ -144,7 +143,7 @@ exports.MsgCreateRegion = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.creator = reader.string();
+                    message.signer = reader.string();
                     continue;
                 case 2:
                     if (tag !== 18) {
@@ -174,7 +173,7 @@ exports.MsgCreateRegion = {
     },
     fromJSON(object) {
         return {
-            creator: isSet(object.creator) ? String(object.creator) : "",
+            signer: isSet(object.signer) ? String(object.signer) : "",
             code: isSet(object.code) ? String(object.code) : "",
             name: isSet(object.name) ? String(object.name) : "",
             description: isSet(object.description) ? String(object.description) : "",
@@ -182,8 +181,8 @@ exports.MsgCreateRegion = {
     },
     toJSON(message) {
         const obj = {};
-        if (message.creator !== "") {
-            obj.creator = message.creator;
+        if (message.signer !== "") {
+            obj.signer = message.signer;
         }
         if (message.code !== "") {
             obj.code = message.code;
@@ -201,7 +200,7 @@ exports.MsgCreateRegion = {
     },
     fromPartial(object) {
         const message = createBaseMsgCreateRegion();
-        message.creator = object.creator ?? "";
+        message.signer = object.signer ?? "";
         message.code = object.code ?? "";
         message.name = object.name ?? "";
         message.description = object.description ?? "";
@@ -209,13 +208,10 @@ exports.MsgCreateRegion = {
     },
 };
 function createBaseMsgCreateRegionResponse() {
-    return { id: 0 };
+    return {};
 }
 exports.MsgCreateRegionResponse = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.id !== 0) {
-            writer.uint32(8).uint64(message.id);
-        }
+    encode(_, writer = minimal_1.default.Writer.create()) {
         return writer;
     },
     decode(input, length) {
@@ -225,12 +221,6 @@ exports.MsgCreateRegionResponse = {
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 8) {
-                        break;
-                    }
-                    message.id = longToNumber(reader.uint64());
-                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -239,44 +229,37 @@ exports.MsgCreateRegionResponse = {
         }
         return message;
     },
-    fromJSON(object) {
-        return { id: isSet(object.id) ? Number(object.id) : 0 };
+    fromJSON(_) {
+        return {};
     },
-    toJSON(message) {
+    toJSON(_) {
         const obj = {};
-        if (message.id !== 0) {
-            obj.id = Math.round(message.id);
-        }
         return obj;
     },
     create(base) {
         return exports.MsgCreateRegionResponse.fromPartial(base ?? {});
     },
-    fromPartial(object) {
+    fromPartial(_) {
         const message = createBaseMsgCreateRegionResponse();
-        message.id = object.id ?? 0;
         return message;
     },
 };
 function createBaseMsgUpdateRegion() {
-    return { creator: "", id: 0, code: "", name: "", description: "" };
+    return { signer: "", code: "", name: "", description: "" };
 }
 exports.MsgUpdateRegion = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.creator !== "") {
-            writer.uint32(10).string(message.creator);
-        }
-        if (message.id !== 0) {
-            writer.uint32(16).uint64(message.id);
+        if (message.signer !== "") {
+            writer.uint32(10).string(message.signer);
         }
         if (message.code !== "") {
-            writer.uint32(26).string(message.code);
+            writer.uint32(18).string(message.code);
         }
         if (message.name !== "") {
-            writer.uint32(34).string(message.name);
+            writer.uint32(26).string(message.name);
         }
         if (message.description !== "") {
-            writer.uint32(42).string(message.description);
+            writer.uint32(34).string(message.description);
         }
         return writer;
     },
@@ -291,28 +274,22 @@ exports.MsgUpdateRegion = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.creator = reader.string();
+                    message.signer = reader.string();
                     continue;
                 case 2:
-                    if (tag !== 16) {
+                    if (tag !== 18) {
                         break;
                     }
-                    message.id = longToNumber(reader.uint64());
+                    message.code = reader.string();
                     continue;
                 case 3:
                     if (tag !== 26) {
                         break;
                     }
-                    message.code = reader.string();
+                    message.name = reader.string();
                     continue;
                 case 4:
                     if (tag !== 34) {
-                        break;
-                    }
-                    message.name = reader.string();
-                    continue;
-                case 5:
-                    if (tag !== 42) {
                         break;
                     }
                     message.description = reader.string();
@@ -327,8 +304,7 @@ exports.MsgUpdateRegion = {
     },
     fromJSON(object) {
         return {
-            creator: isSet(object.creator) ? String(object.creator) : "",
-            id: isSet(object.id) ? Number(object.id) : 0,
+            signer: isSet(object.signer) ? String(object.signer) : "",
             code: isSet(object.code) ? String(object.code) : "",
             name: isSet(object.name) ? String(object.name) : "",
             description: isSet(object.description) ? String(object.description) : "",
@@ -336,11 +312,8 @@ exports.MsgUpdateRegion = {
     },
     toJSON(message) {
         const obj = {};
-        if (message.creator !== "") {
-            obj.creator = message.creator;
-        }
-        if (message.id !== 0) {
-            obj.id = Math.round(message.id);
+        if (message.signer !== "") {
+            obj.signer = message.signer;
         }
         if (message.code !== "") {
             obj.code = message.code;
@@ -358,8 +331,7 @@ exports.MsgUpdateRegion = {
     },
     fromPartial(object) {
         const message = createBaseMsgUpdateRegion();
-        message.creator = object.creator ?? "";
-        message.id = object.id ?? 0;
+        message.signer = object.signer ?? "";
         message.code = object.code ?? "";
         message.name = object.name ?? "";
         message.description = object.description ?? "";
@@ -404,15 +376,15 @@ exports.MsgUpdateRegionResponse = {
     },
 };
 function createBaseMsgDeleteRegion() {
-    return { creator: "", id: 0 };
+    return { signer: "", code: "" };
 }
 exports.MsgDeleteRegion = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.creator !== "") {
-            writer.uint32(10).string(message.creator);
+        if (message.signer !== "") {
+            writer.uint32(10).string(message.signer);
         }
-        if (message.id !== 0) {
-            writer.uint32(16).uint64(message.id);
+        if (message.code !== "") {
+            writer.uint32(18).string(message.code);
         }
         return writer;
     },
@@ -427,13 +399,13 @@ exports.MsgDeleteRegion = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.creator = reader.string();
+                    message.signer = reader.string();
                     continue;
                 case 2:
-                    if (tag !== 16) {
+                    if (tag !== 18) {
                         break;
                     }
-                    message.id = longToNumber(reader.uint64());
+                    message.code = reader.string();
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -445,17 +417,17 @@ exports.MsgDeleteRegion = {
     },
     fromJSON(object) {
         return {
-            creator: isSet(object.creator) ? String(object.creator) : "",
-            id: isSet(object.id) ? Number(object.id) : 0,
+            signer: isSet(object.signer) ? String(object.signer) : "",
+            code: isSet(object.code) ? String(object.code) : "",
         };
     },
     toJSON(message) {
         const obj = {};
-        if (message.creator !== "") {
-            obj.creator = message.creator;
+        if (message.signer !== "") {
+            obj.signer = message.signer;
         }
-        if (message.id !== 0) {
-            obj.id = Math.round(message.id);
+        if (message.code !== "") {
+            obj.code = message.code;
         }
         return obj;
     },
@@ -464,8 +436,8 @@ exports.MsgDeleteRegion = {
     },
     fromPartial(object) {
         const message = createBaseMsgDeleteRegion();
-        message.creator = object.creator ?? "";
-        message.id = object.id ?? 0;
+        message.signer = object.signer ?? "";
+        message.code = object.code ?? "";
         return message;
     },
 };
@@ -538,31 +510,6 @@ class MsgClientImpl {
     }
 }
 exports.MsgClientImpl = MsgClientImpl;
-const tsProtoGlobalThis = (() => {
-    if (typeof globalThis !== "undefined") {
-        return globalThis;
-    }
-    if (typeof self !== "undefined") {
-        return self;
-    }
-    if (typeof window !== "undefined") {
-        return window;
-    }
-    if (typeof global !== "undefined") {
-        return global;
-    }
-    throw "Unable to locate global object";
-})();
-function longToNumber(long) {
-    if (long.gt(Number.MAX_SAFE_INTEGER)) {
-        throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-    }
-    return long.toNumber();
-}
-if (minimal_1.default.util.Long !== long_1.default) {
-    minimal_1.default.util.Long = long_1.default;
-    minimal_1.default.configure();
-}
 function isSet(value) {
     return value !== null && value !== undefined;
 }

@@ -8,10 +8,11 @@ exports.GenesisState = exports.protobufPackage = void 0;
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const manager_1 = require("./manager");
+const operator_1 = require("./operator");
 const params_1 = require("./params");
 exports.protobufPackage = "enreach.manager";
 function createBaseGenesisState() {
-    return { params: undefined, managerList: [], managerCount: 0 };
+    return { params: undefined, managerList: [], managerCount: 0, operatorList: [], operatorCount: 0 };
 }
 exports.GenesisState = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -23,6 +24,12 @@ exports.GenesisState = {
         }
         if (message.managerCount !== 0) {
             writer.uint32(24).uint64(message.managerCount);
+        }
+        for (const v of message.operatorList) {
+            operator_1.Operator.encode(v, writer.uint32(34).fork()).ldelim();
+        }
+        if (message.operatorCount !== 0) {
+            writer.uint32(40).uint64(message.operatorCount);
         }
         return writer;
     },
@@ -51,6 +58,18 @@ exports.GenesisState = {
                     }
                     message.managerCount = longToNumber(reader.uint64());
                     continue;
+                case 4:
+                    if (tag !== 34) {
+                        break;
+                    }
+                    message.operatorList.push(operator_1.Operator.decode(reader, reader.uint32()));
+                    continue;
+                case 5:
+                    if (tag !== 40) {
+                        break;
+                    }
+                    message.operatorCount = longToNumber(reader.uint64());
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -64,6 +83,10 @@ exports.GenesisState = {
             params: isSet(object.params) ? params_1.Params.fromJSON(object.params) : undefined,
             managerList: Array.isArray(object?.managerList) ? object.managerList.map((e) => manager_1.Manager.fromJSON(e)) : [],
             managerCount: isSet(object.managerCount) ? Number(object.managerCount) : 0,
+            operatorList: Array.isArray(object?.operatorList)
+                ? object.operatorList.map((e) => operator_1.Operator.fromJSON(e))
+                : [],
+            operatorCount: isSet(object.operatorCount) ? Number(object.operatorCount) : 0,
         };
     },
     toJSON(message) {
@@ -77,6 +100,12 @@ exports.GenesisState = {
         if (message.managerCount !== 0) {
             obj.managerCount = Math.round(message.managerCount);
         }
+        if (message.operatorList?.length) {
+            obj.operatorList = message.operatorList.map((e) => operator_1.Operator.toJSON(e));
+        }
+        if (message.operatorCount !== 0) {
+            obj.operatorCount = Math.round(message.operatorCount);
+        }
         return obj;
     },
     create(base) {
@@ -89,6 +118,8 @@ exports.GenesisState = {
             : undefined;
         message.managerList = object.managerList?.map((e) => manager_1.Manager.fromPartial(e)) || [];
         message.managerCount = object.managerCount ?? 0;
+        message.operatorList = object.operatorList?.map((e) => operator_1.Operator.fromPartial(e)) || [];
+        message.operatorCount = object.operatorCount ?? 0;
         return message;
     },
 };

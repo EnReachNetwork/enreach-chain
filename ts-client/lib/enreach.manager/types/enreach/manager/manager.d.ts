@@ -1,20 +1,20 @@
 import _m0 from "protobufjs/minimal";
 export declare const protobufPackage = "enreach.manager";
 export interface Manager {
-    id: number;
-    managerAddress: string;
-    operatorName: string;
-    operatorDesc: string;
-    operatorWebsiteURL: string;
-    evmAddress: string;
+    managerAccount: string;
+    operatorAccount: string;
     hostAddress: string;
     managerPort: number;
     trackerPort: number;
     chainAPIPort: number;
     chainRPCPort: number;
     regionCode: string;
-    status: string;
+    registerStatus: string;
+    workingStatus: string;
     creator: string;
+    createAt: number;
+    updator: string;
+    updateAt: number;
 }
 export declare const Manager: {
     encode(message: Manager, writer?: _m0.Writer): _m0.Writer;

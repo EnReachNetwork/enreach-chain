@@ -15,17 +15,15 @@ export interface MsgUpdateParams {
 export interface MsgUpdateParamsResponse {
 }
 export interface MsgCreateRegion {
-    creator: string;
+    signer: string;
     code: string;
     name: string;
     description: string;
 }
 export interface MsgCreateRegionResponse {
-    id: number;
 }
 export interface MsgUpdateRegion {
-    creator: string;
-    id: number;
+    signer: string;
     code: string;
     name: string;
     description: string;
@@ -33,8 +31,8 @@ export interface MsgUpdateRegion {
 export interface MsgUpdateRegionResponse {
 }
 export interface MsgDeleteRegion {
-    creator: string;
-    id: number;
+    signer: string;
+    code: string;
 }
 export interface MsgDeleteRegionResponse {
 }
@@ -63,12 +61,12 @@ export declare const MsgCreateRegion: {
     fromPartial<I extends Exact<DeepPartial<MsgCreateRegion>, I>>(object: I): MsgCreateRegion;
 };
 export declare const MsgCreateRegionResponse: {
-    encode(message: MsgCreateRegionResponse, writer?: _m0.Writer): _m0.Writer;
+    encode(_: MsgCreateRegionResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateRegionResponse;
-    fromJSON(object: any): MsgCreateRegionResponse;
-    toJSON(message: MsgCreateRegionResponse): unknown;
+    fromJSON(_: any): MsgCreateRegionResponse;
+    toJSON(_: MsgCreateRegionResponse): unknown;
     create<I extends Exact<DeepPartial<MsgCreateRegionResponse>, I>>(base?: I): MsgCreateRegionResponse;
-    fromPartial<I extends Exact<DeepPartial<MsgCreateRegionResponse>, I>>(object: I): MsgCreateRegionResponse;
+    fromPartial<I extends Exact<DeepPartial<MsgCreateRegionResponse>, I>>(_: I): MsgCreateRegionResponse;
 };
 export declare const MsgUpdateRegion: {
     encode(message: MsgUpdateRegion, writer?: _m0.Writer): _m0.Writer;

@@ -1,5 +1,4 @@
 /* eslint-disable */
-import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Params } from "./params";
 
@@ -21,19 +20,17 @@ export interface MsgUpdateParamsResponse {
 }
 
 export interface MsgCreateRegion {
-  creator: string;
+  signer: string;
   code: string;
   name: string;
   description: string;
 }
 
 export interface MsgCreateRegionResponse {
-  id: number;
 }
 
 export interface MsgUpdateRegion {
-  creator: string;
-  id: number;
+  signer: string;
   code: string;
   name: string;
   description: string;
@@ -43,8 +40,8 @@ export interface MsgUpdateRegionResponse {
 }
 
 export interface MsgDeleteRegion {
-  creator: string;
-  id: number;
+  signer: string;
+  code: string;
 }
 
 export interface MsgDeleteRegionResponse {
@@ -170,13 +167,13 @@ export const MsgUpdateParamsResponse = {
 };
 
 function createBaseMsgCreateRegion(): MsgCreateRegion {
-  return { creator: "", code: "", name: "", description: "" };
+  return { signer: "", code: "", name: "", description: "" };
 }
 
 export const MsgCreateRegion = {
   encode(message: MsgCreateRegion, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.creator !== "") {
-      writer.uint32(10).string(message.creator);
+    if (message.signer !== "") {
+      writer.uint32(10).string(message.signer);
     }
     if (message.code !== "") {
       writer.uint32(18).string(message.code);
@@ -202,7 +199,7 @@ export const MsgCreateRegion = {
             break;
           }
 
-          message.creator = reader.string();
+          message.signer = reader.string();
           continue;
         case 2:
           if (tag !== 18) {
@@ -236,7 +233,7 @@ export const MsgCreateRegion = {
 
   fromJSON(object: any): MsgCreateRegion {
     return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
+      signer: isSet(object.signer) ? String(object.signer) : "",
       code: isSet(object.code) ? String(object.code) : "",
       name: isSet(object.name) ? String(object.name) : "",
       description: isSet(object.description) ? String(object.description) : "",
@@ -245,8 +242,8 @@ export const MsgCreateRegion = {
 
   toJSON(message: MsgCreateRegion): unknown {
     const obj: any = {};
-    if (message.creator !== "") {
-      obj.creator = message.creator;
+    if (message.signer !== "") {
+      obj.signer = message.signer;
     }
     if (message.code !== "") {
       obj.code = message.code;
@@ -265,7 +262,7 @@ export const MsgCreateRegion = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgCreateRegion>, I>>(object: I): MsgCreateRegion {
     const message = createBaseMsgCreateRegion();
-    message.creator = object.creator ?? "";
+    message.signer = object.signer ?? "";
     message.code = object.code ?? "";
     message.name = object.name ?? "";
     message.description = object.description ?? "";
@@ -274,14 +271,11 @@ export const MsgCreateRegion = {
 };
 
 function createBaseMsgCreateRegionResponse(): MsgCreateRegionResponse {
-  return { id: 0 };
+  return {};
 }
 
 export const MsgCreateRegionResponse = {
-  encode(message: MsgCreateRegionResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.id !== 0) {
-      writer.uint32(8).uint64(message.id);
-    }
+  encode(_: MsgCreateRegionResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
@@ -292,13 +286,6 @@ export const MsgCreateRegionResponse = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        case 1:
-          if (tag !== 8) {
-            break;
-          }
-
-          message.id = longToNumber(reader.uint64() as Long);
-          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -308,48 +295,41 @@ export const MsgCreateRegionResponse = {
     return message;
   },
 
-  fromJSON(object: any): MsgCreateRegionResponse {
-    return { id: isSet(object.id) ? Number(object.id) : 0 };
+  fromJSON(_: any): MsgCreateRegionResponse {
+    return {};
   },
 
-  toJSON(message: MsgCreateRegionResponse): unknown {
+  toJSON(_: MsgCreateRegionResponse): unknown {
     const obj: any = {};
-    if (message.id !== 0) {
-      obj.id = Math.round(message.id);
-    }
     return obj;
   },
 
   create<I extends Exact<DeepPartial<MsgCreateRegionResponse>, I>>(base?: I): MsgCreateRegionResponse {
     return MsgCreateRegionResponse.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<MsgCreateRegionResponse>, I>>(object: I): MsgCreateRegionResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgCreateRegionResponse>, I>>(_: I): MsgCreateRegionResponse {
     const message = createBaseMsgCreateRegionResponse();
-    message.id = object.id ?? 0;
     return message;
   },
 };
 
 function createBaseMsgUpdateRegion(): MsgUpdateRegion {
-  return { creator: "", id: 0, code: "", name: "", description: "" };
+  return { signer: "", code: "", name: "", description: "" };
 }
 
 export const MsgUpdateRegion = {
   encode(message: MsgUpdateRegion, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.creator !== "") {
-      writer.uint32(10).string(message.creator);
-    }
-    if (message.id !== 0) {
-      writer.uint32(16).uint64(message.id);
+    if (message.signer !== "") {
+      writer.uint32(10).string(message.signer);
     }
     if (message.code !== "") {
-      writer.uint32(26).string(message.code);
+      writer.uint32(18).string(message.code);
     }
     if (message.name !== "") {
-      writer.uint32(34).string(message.name);
+      writer.uint32(26).string(message.name);
     }
     if (message.description !== "") {
-      writer.uint32(42).string(message.description);
+      writer.uint32(34).string(message.description);
     }
     return writer;
   },
@@ -366,31 +346,24 @@ export const MsgUpdateRegion = {
             break;
           }
 
-          message.creator = reader.string();
+          message.signer = reader.string();
           continue;
         case 2:
-          if (tag !== 16) {
+          if (tag !== 18) {
             break;
           }
 
-          message.id = longToNumber(reader.uint64() as Long);
+          message.code = reader.string();
           continue;
         case 3:
           if (tag !== 26) {
             break;
           }
 
-          message.code = reader.string();
+          message.name = reader.string();
           continue;
         case 4:
           if (tag !== 34) {
-            break;
-          }
-
-          message.name = reader.string();
-          continue;
-        case 5:
-          if (tag !== 42) {
             break;
           }
 
@@ -407,8 +380,7 @@ export const MsgUpdateRegion = {
 
   fromJSON(object: any): MsgUpdateRegion {
     return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      id: isSet(object.id) ? Number(object.id) : 0,
+      signer: isSet(object.signer) ? String(object.signer) : "",
       code: isSet(object.code) ? String(object.code) : "",
       name: isSet(object.name) ? String(object.name) : "",
       description: isSet(object.description) ? String(object.description) : "",
@@ -417,11 +389,8 @@ export const MsgUpdateRegion = {
 
   toJSON(message: MsgUpdateRegion): unknown {
     const obj: any = {};
-    if (message.creator !== "") {
-      obj.creator = message.creator;
-    }
-    if (message.id !== 0) {
-      obj.id = Math.round(message.id);
+    if (message.signer !== "") {
+      obj.signer = message.signer;
     }
     if (message.code !== "") {
       obj.code = message.code;
@@ -440,8 +409,7 @@ export const MsgUpdateRegion = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateRegion>, I>>(object: I): MsgUpdateRegion {
     const message = createBaseMsgUpdateRegion();
-    message.creator = object.creator ?? "";
-    message.id = object.id ?? 0;
+    message.signer = object.signer ?? "";
     message.code = object.code ?? "";
     message.name = object.name ?? "";
     message.description = object.description ?? "";
@@ -493,16 +461,16 @@ export const MsgUpdateRegionResponse = {
 };
 
 function createBaseMsgDeleteRegion(): MsgDeleteRegion {
-  return { creator: "", id: 0 };
+  return { signer: "", code: "" };
 }
 
 export const MsgDeleteRegion = {
   encode(message: MsgDeleteRegion, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.creator !== "") {
-      writer.uint32(10).string(message.creator);
+    if (message.signer !== "") {
+      writer.uint32(10).string(message.signer);
     }
-    if (message.id !== 0) {
-      writer.uint32(16).uint64(message.id);
+    if (message.code !== "") {
+      writer.uint32(18).string(message.code);
     }
     return writer;
   },
@@ -519,14 +487,14 @@ export const MsgDeleteRegion = {
             break;
           }
 
-          message.creator = reader.string();
+          message.signer = reader.string();
           continue;
         case 2:
-          if (tag !== 16) {
+          if (tag !== 18) {
             break;
           }
 
-          message.id = longToNumber(reader.uint64() as Long);
+          message.code = reader.string();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -539,18 +507,18 @@ export const MsgDeleteRegion = {
 
   fromJSON(object: any): MsgDeleteRegion {
     return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      id: isSet(object.id) ? Number(object.id) : 0,
+      signer: isSet(object.signer) ? String(object.signer) : "",
+      code: isSet(object.code) ? String(object.code) : "",
     };
   },
 
   toJSON(message: MsgDeleteRegion): unknown {
     const obj: any = {};
-    if (message.creator !== "") {
-      obj.creator = message.creator;
+    if (message.signer !== "") {
+      obj.signer = message.signer;
     }
-    if (message.id !== 0) {
-      obj.id = Math.round(message.id);
+    if (message.code !== "") {
+      obj.code = message.code;
     }
     return obj;
   },
@@ -560,8 +528,8 @@ export const MsgDeleteRegion = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgDeleteRegion>, I>>(object: I): MsgDeleteRegion {
     const message = createBaseMsgDeleteRegion();
-    message.creator = object.creator ?? "";
-    message.id = object.id ?? 0;
+    message.signer = object.signer ?? "";
+    message.code = object.code ?? "";
     return message;
   },
 };
@@ -662,25 +630,6 @@ interface Rpc {
   request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
 }
 
-declare const self: any | undefined;
-declare const window: any | undefined;
-declare const global: any | undefined;
-const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
-    return globalThis;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
-  throw "Unable to locate global object";
-})();
-
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin ? T
@@ -691,18 +640,6 @@ export type DeepPartial<T> = T extends Builtin ? T
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function longToNumber(long: Long): number {
-  if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  return long.toNumber();
-}
-
-if (_m0.util.Long !== Long) {
-  _m0.util.Long = Long as any;
-  _m0.configure();
-}
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

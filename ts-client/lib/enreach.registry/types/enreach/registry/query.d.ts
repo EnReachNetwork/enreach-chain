@@ -12,7 +12,7 @@ export interface QueryParamsResponse {
     params: Params | undefined;
 }
 export interface QueryGetRegionRequest {
-    id: number;
+    code: string;
 }
 export interface QueryGetRegionResponse {
     Region: Region | undefined;

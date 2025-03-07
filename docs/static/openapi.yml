@@ -9195,542 +9195,6 @@ paths:
               Since: cosmos-sdk 0.47
       tags:
         - Msg
-  /enreach/manager/get_manager_by_region/{regionCode}:
-    get:
-      summary: Queries a list of GetManagerByRegion items.
-      operationId: EnreachManagerQuery_GetManagerByRegion
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              managers:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    managerAccount:
-                      type: string
-                    operatorAccount:
-                      type: string
-                    hostAddress:
-                      type: string
-                    managerPort:
-                      type: integer
-                      format: int64
-                    trackerPort:
-                      type: integer
-                      format: int64
-                    chainAPIPort:
-                      type: integer
-                      format: int64
-                    chainRPCPort:
-                      type: integer
-                      format: int64
-                    regionCode:
-                      type: string
-                    registerStatus:
-                      type: string
-                    workingStatus:
-                      type: string
-                    creator:
-                      type: string
-                    createAt:
-                      type: string
-                      format: uint64
-                    updator:
-                      type: string
-                    updateAt:
-                      type: string
-                      format: uint64
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: regionCode
-          in: path
-          required: true
-          type: string
-      tags:
-        - Query
-  /enreach/manager/manager/{managerAccount}:
-    get:
-      summary: Queries a list of Manager items.
-      operationId: EnreachManagerQuery_Manager
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              Manager:
-                type: object
-                properties:
-                  managerAccount:
-                    type: string
-                  operatorAccount:
-                    type: string
-                  hostAddress:
-                    type: string
-                  managerPort:
-                    type: integer
-                    format: int64
-                  trackerPort:
-                    type: integer
-                    format: int64
-                  chainAPIPort:
-                    type: integer
-                    format: int64
-                  chainRPCPort:
-                    type: integer
-                    format: int64
-                  regionCode:
-                    type: string
-                  registerStatus:
-                    type: string
-                  workingStatus:
-                    type: string
-                  creator:
-                    type: string
-                  createAt:
-                    type: string
-                    format: uint64
-                  updator:
-                    type: string
-                  updateAt:
-                    type: string
-                    format: uint64
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: managerAccount
-          in: path
-          required: true
-          type: string
-      tags:
-        - Query
-  /enreach/manager/managers:
-    get:
-      operationId: EnreachManagerQuery_ManagerAll
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              Manager:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    managerAccount:
-                      type: string
-                    operatorAccount:
-                      type: string
-                    hostAddress:
-                      type: string
-                    managerPort:
-                      type: integer
-                      format: int64
-                    trackerPort:
-                      type: integer
-                      format: int64
-                    chainAPIPort:
-                      type: integer
-                      format: int64
-                    chainRPCPort:
-                      type: integer
-                      format: int64
-                    regionCode:
-                      type: string
-                    registerStatus:
-                      type: string
-                    workingStatus:
-                      type: string
-                    creator:
-                      type: string
-                    createAt:
-                      type: string
-                      format: uint64
-                    updator:
-                      type: string
-                    updateAt:
-                      type: string
-                      format: uint64
-              pagination:
-                type: object
-                properties:
-                  next_key:
-                    type: string
-                    format: byte
-                    description: |-
-                      next_key is the key to be passed to PageRequest.key to
-                      query the next page most efficiently. It will be empty if
-                      there are no more results.
-                  total:
-                    type: string
-                    format: uint64
-                    title: >-
-                      total is total number of results available if
-                      PageRequest.count_total
-
-                      was set, its value is undefined otherwise
-                description: >-
-                  PageResponse is to be embedded in gRPC response messages where
-                  the
-
-                  corresponding request message has used PageRequest.
-
-                   message SomeResponse {
-                           repeated Bar results = 1;
-                           PageResponse page = 2;
-                   }
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: pagination.key
-          description: |-
-            key is a value returned in PageResponse.next_key to begin
-            querying the next page most efficiently. Only one of offset or key
-            should be set.
-          in: query
-          required: false
-          type: string
-          format: byte
-        - name: pagination.offset
-          description: >-
-            offset is a numeric offset that can be used when key is unavailable.
-
-            It is less efficient than using key. Only one of offset or key
-            should
-
-            be set.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.limit
-          description: >-
-            limit is the total number of results to be returned in the result
-            page.
-
-            If left empty it will default to a value to be set by each app.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.count_total
-          description: >-
-            count_total is set to true  to indicate that the result set should
-            include
-
-            a count of the total number of items available for pagination in
-            UIs.
-
-            count_total is only respected when offset is used. It is ignored
-            when key
-
-            is set.
-          in: query
-          required: false
-          type: boolean
-        - name: pagination.reverse
-          description: >-
-            reverse is set to true if results are to be returned in the
-            descending order.
-
-
-            Since: cosmos-sdk 0.43
-          in: query
-          required: false
-          type: boolean
-      tags:
-        - Query
-  /enreach/manager/operator/{operatorAccount}:
-    get:
-      summary: Queries a list of Operator items.
-      operationId: EnreachManagerQuery_Operator
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              Operator:
-                type: object
-                properties:
-                  operatorAccount:
-                    type: string
-                  managerAccount:
-                    type: string
-                  evmAccount:
-                    type: string
-                  name:
-                    type: string
-                  description:
-                    type: string
-                  websiteUrl:
-                    type: string
-                  creator:
-                    type: string
-                  createAt:
-                    type: string
-                    format: uint64
-                  updator:
-                    type: string
-                  updateAt:
-                    type: string
-                    format: uint64
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: operatorAccount
-          in: path
-          required: true
-          type: string
-      tags:
-        - Query
-  /enreach/manager/operators:
-    get:
-      operationId: EnreachManagerQuery_OperatorAll
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              Operator:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    operatorAccount:
-                      type: string
-                    managerAccount:
-                      type: string
-                    evmAccount:
-                      type: string
-                    name:
-                      type: string
-                    description:
-                      type: string
-                    websiteUrl:
-                      type: string
-                    creator:
-                      type: string
-                    createAt:
-                      type: string
-                      format: uint64
-                    updator:
-                      type: string
-                    updateAt:
-                      type: string
-                      format: uint64
-              pagination:
-                type: object
-                properties:
-                  next_key:
-                    type: string
-                    format: byte
-                    description: |-
-                      next_key is the key to be passed to PageRequest.key to
-                      query the next page most efficiently. It will be empty if
-                      there are no more results.
-                  total:
-                    type: string
-                    format: uint64
-                    title: >-
-                      total is total number of results available if
-                      PageRequest.count_total
-
-                      was set, its value is undefined otherwise
-                description: >-
-                  PageResponse is to be embedded in gRPC response messages where
-                  the
-
-                  corresponding request message has used PageRequest.
-
-                   message SomeResponse {
-                           repeated Bar results = 1;
-                           PageResponse page = 2;
-                   }
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: pagination.key
-          description: |-
-            key is a value returned in PageResponse.next_key to begin
-            querying the next page most efficiently. Only one of offset or key
-            should be set.
-          in: query
-          required: false
-          type: string
-          format: byte
-        - name: pagination.offset
-          description: >-
-            offset is a numeric offset that can be used when key is unavailable.
-
-            It is less efficient than using key. Only one of offset or key
-            should
-
-            be set.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.limit
-          description: >-
-            limit is the total number of results to be returned in the result
-            page.
-
-            If left empty it will default to a value to be set by each app.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.count_total
-          description: >-
-            count_total is set to true  to indicate that the result set should
-            include
-
-            a count of the total number of items available for pagination in
-            UIs.
-
-            count_total is only respected when offset is used. It is ignored
-            when key
-
-            is set.
-          in: query
-          required: false
-          type: boolean
-        - name: pagination.reverse
-          description: >-
-            reverse is set to true if results are to be returned in the
-            descending order.
-
-
-            Since: cosmos-sdk 0.43
-          in: query
-          required: false
-          type: boolean
-      tags:
-        - Query
-  /enreach/manager/params:
-    get:
-      summary: Parameters queries the parameters of the module.
-      operationId: EnreachManagerQuery_Params
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              params:
-                description: params holds all the parameters of this module.
-                type: object
-            description: >-
-              QueryParamsResponse is response type for the Query/Params RPC
-              method.
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      tags:
-        - Query
   /enreach.manager.Msg/ActivateManager:
     post:
       operationId: EnreachManagerMsg_ActivateManager
@@ -10363,6 +9827,231 @@ paths:
             description: MsgUpdateParams is the Msg/UpdateParams request type.
       tags:
         - Msg
+  /enreach/registry/params:
+    get:
+      summary: Parameters queries the parameters of the module.
+      operationId: EnreachRegistryQuery_Params
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              params:
+                description: params holds all the parameters of this module.
+                type: object
+            description: >-
+              QueryParamsResponse is response type for the Query/Params RPC
+              method.
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
+  /enreach/registry/region/{code}:
+    get:
+      summary: Queries a list of Region items.
+      operationId: EnreachRegistryQuery_Region
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              Region:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  creator:
+                    type: string
+                  createAt:
+                    type: string
+                    format: uint64
+                  updator:
+                    type: string
+                  updateAt:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: code
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /enreach/registry/regions:
+    get:
+      operationId: EnreachRegistryQuery_RegionAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              Region:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    creator:
+                      type: string
+                    createAt:
+                      type: string
+                      format: uint64
+                    updator:
+                      type: string
+                    updateAt:
+                      type: string
+                      format: uint64
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    description: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently. It will be empty if
+                      there are no more results.
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
   /enreach.registry.Msg/CreateRegion:
     post:
       operationId: EnreachRegistryMsg_CreateRegion
@@ -10371,10 +10060,6 @@ paths:
           description: A successful response.
           schema:
             type: object
-            properties:
-              id:
-                type: string
-                format: uint64
         default:
           description: An unexpected error response.
           schema:
@@ -10400,7 +10085,7 @@ paths:
           schema:
             type: object
             properties:
-              creator:
+              signer:
                 type: string
               code:
                 type: string
@@ -10443,11 +10128,10 @@ paths:
           schema:
             type: object
             properties:
-              creator:
+              signer:
                 type: string
-              id:
+              code:
                 type: string
-                format: uint64
       tags:
         - Msg
   /enreach.registry.Msg/UpdateParams:
@@ -10536,11 +10220,8 @@ paths:
           schema:
             type: object
             properties:
-              creator:
+              signer:
                 type: string
-              id:
-                type: string
-                format: uint64
               code:
                 type: string
               name:
@@ -21304,389 +20985,6 @@ definitions:
           min_commission_rate is the chain-wide minimum commission rate that a
           validator can charge their delegators
     description: Params defines the parameters for the x/staking module.
-  cosmos.base.query.v1beta1.PageRequest:
-    type: object
-    properties:
-      key:
-        type: string
-        format: byte
-        description: |-
-          key is a value returned in PageResponse.next_key to begin
-          querying the next page most efficiently. Only one of offset or key
-          should be set.
-      offset:
-        type: string
-        format: uint64
-        description: |-
-          offset is a numeric offset that can be used when key is unavailable.
-          It is less efficient than using key. Only one of offset or key should
-          be set.
-      limit:
-        type: string
-        format: uint64
-        description: >-
-          limit is the total number of results to be returned in the result
-          page.
-
-          If left empty it will default to a value to be set by each app.
-      count_total:
-        type: boolean
-        description: >-
-          count_total is set to true  to indicate that the result set should
-          include
-
-          a count of the total number of items available for pagination in UIs.
-
-          count_total is only respected when offset is used. It is ignored when
-          key
-
-          is set.
-      reverse:
-        type: boolean
-        description: >-
-          reverse is set to true if results are to be returned in the descending
-          order.
-
-
-          Since: cosmos-sdk 0.43
-    description: |-
-      message SomeRequest {
-               Foo some_parameter = 1;
-               PageRequest pagination = 2;
-       }
-    title: |-
-      PageRequest is to be embedded in gRPC request messages for efficient
-      pagination. Ex:
-  cosmos.base.query.v1beta1.PageResponse:
-    type: object
-    properties:
-      next_key:
-        type: string
-        format: byte
-        description: |-
-          next_key is the key to be passed to PageRequest.key to
-          query the next page most efficiently. It will be empty if
-          there are no more results.
-      total:
-        type: string
-        format: uint64
-        title: |-
-          total is total number of results available if PageRequest.count_total
-          was set, its value is undefined otherwise
-    description: |-
-      PageResponse is to be embedded in gRPC response messages where the
-      corresponding request message has used PageRequest.
-
-       message SomeResponse {
-               repeated Bar results = 1;
-               PageResponse page = 2;
-       }
-  enreach.manager.Manager:
-    type: object
-    properties:
-      managerAccount:
-        type: string
-      operatorAccount:
-        type: string
-      hostAddress:
-        type: string
-      managerPort:
-        type: integer
-        format: int64
-      trackerPort:
-        type: integer
-        format: int64
-      chainAPIPort:
-        type: integer
-        format: int64
-      chainRPCPort:
-        type: integer
-        format: int64
-      regionCode:
-        type: string
-      registerStatus:
-        type: string
-      workingStatus:
-        type: string
-      creator:
-        type: string
-      createAt:
-        type: string
-        format: uint64
-      updator:
-        type: string
-      updateAt:
-        type: string
-        format: uint64
-  enreach.manager.Operator:
-    type: object
-    properties:
-      operatorAccount:
-        type: string
-      managerAccount:
-        type: string
-      evmAccount:
-        type: string
-      name:
-        type: string
-      description:
-        type: string
-      websiteUrl:
-        type: string
-      creator:
-        type: string
-      createAt:
-        type: string
-        format: uint64
-      updator:
-        type: string
-      updateAt:
-        type: string
-        format: uint64
-  enreach.manager.Params:
-    type: object
-    description: Params defines the parameters for the module.
-  enreach.manager.QueryAllManagerResponse:
-    type: object
-    properties:
-      Manager:
-        type: array
-        items:
-          type: object
-          properties:
-            managerAccount:
-              type: string
-            operatorAccount:
-              type: string
-            hostAddress:
-              type: string
-            managerPort:
-              type: integer
-              format: int64
-            trackerPort:
-              type: integer
-              format: int64
-            chainAPIPort:
-              type: integer
-              format: int64
-            chainRPCPort:
-              type: integer
-              format: int64
-            regionCode:
-              type: string
-            registerStatus:
-              type: string
-            workingStatus:
-              type: string
-            creator:
-              type: string
-            createAt:
-              type: string
-              format: uint64
-            updator:
-              type: string
-            updateAt:
-              type: string
-              format: uint64
-      pagination:
-        type: object
-        properties:
-          next_key:
-            type: string
-            format: byte
-            description: |-
-              next_key is the key to be passed to PageRequest.key to
-              query the next page most efficiently. It will be empty if
-              there are no more results.
-          total:
-            type: string
-            format: uint64
-            title: >-
-              total is total number of results available if
-              PageRequest.count_total
-
-              was set, its value is undefined otherwise
-        description: |-
-          PageResponse is to be embedded in gRPC response messages where the
-          corresponding request message has used PageRequest.
-
-           message SomeResponse {
-                   repeated Bar results = 1;
-                   PageResponse page = 2;
-           }
-  enreach.manager.QueryAllOperatorResponse:
-    type: object
-    properties:
-      Operator:
-        type: array
-        items:
-          type: object
-          properties:
-            operatorAccount:
-              type: string
-            managerAccount:
-              type: string
-            evmAccount:
-              type: string
-            name:
-              type: string
-            description:
-              type: string
-            websiteUrl:
-              type: string
-            creator:
-              type: string
-            createAt:
-              type: string
-              format: uint64
-            updator:
-              type: string
-            updateAt:
-              type: string
-              format: uint64
-      pagination:
-        type: object
-        properties:
-          next_key:
-            type: string
-            format: byte
-            description: |-
-              next_key is the key to be passed to PageRequest.key to
-              query the next page most efficiently. It will be empty if
-              there are no more results.
-          total:
-            type: string
-            format: uint64
-            title: >-
-              total is total number of results available if
-              PageRequest.count_total
-
-              was set, its value is undefined otherwise
-        description: |-
-          PageResponse is to be embedded in gRPC response messages where the
-          corresponding request message has used PageRequest.
-
-           message SomeResponse {
-                   repeated Bar results = 1;
-                   PageResponse page = 2;
-           }
-  enreach.manager.QueryGetManagerByRegionResponse:
-    type: object
-    properties:
-      managers:
-        type: array
-        items:
-          type: object
-          properties:
-            managerAccount:
-              type: string
-            operatorAccount:
-              type: string
-            hostAddress:
-              type: string
-            managerPort:
-              type: integer
-              format: int64
-            trackerPort:
-              type: integer
-              format: int64
-            chainAPIPort:
-              type: integer
-              format: int64
-            chainRPCPort:
-              type: integer
-              format: int64
-            regionCode:
-              type: string
-            registerStatus:
-              type: string
-            workingStatus:
-              type: string
-            creator:
-              type: string
-            createAt:
-              type: string
-              format: uint64
-            updator:
-              type: string
-            updateAt:
-              type: string
-              format: uint64
-  enreach.manager.QueryGetManagerResponse:
-    type: object
-    properties:
-      Manager:
-        type: object
-        properties:
-          managerAccount:
-            type: string
-          operatorAccount:
-            type: string
-          hostAddress:
-            type: string
-          managerPort:
-            type: integer
-            format: int64
-          trackerPort:
-            type: integer
-            format: int64
-          chainAPIPort:
-            type: integer
-            format: int64
-          chainRPCPort:
-            type: integer
-            format: int64
-          regionCode:
-            type: string
-          registerStatus:
-            type: string
-          workingStatus:
-            type: string
-          creator:
-            type: string
-          createAt:
-            type: string
-            format: uint64
-          updator:
-            type: string
-          updateAt:
-            type: string
-            format: uint64
-  enreach.manager.QueryGetOperatorResponse:
-    type: object
-    properties:
-      Operator:
-        type: object
-        properties:
-          operatorAccount:
-            type: string
-          managerAccount:
-            type: string
-          evmAccount:
-            type: string
-          name:
-            type: string
-          description:
-            type: string
-          websiteUrl:
-            type: string
-          creator:
-            type: string
-          createAt:
-            type: string
-            format: uint64
-          updator:
-            type: string
-          updateAt:
-            type: string
-            format: uint64
-  enreach.manager.QueryParamsResponse:
-    type: object
-    properties:
-      params:
-        description: params holds all the parameters of this module.
-        type: object
-    description: QueryParamsResponse is response type for the Query/Params RPC method.
   enreach.manager.MsgActivateManager:
     type: object
     properties:
@@ -21823,6 +21121,9 @@ definitions:
     description: |-
       MsgUpdateParamsResponse defines the response structure for executing a
       MsgUpdateParams message.
+  enreach.manager.Params:
+    type: object
+    description: Params defines the parameters for the module.
   enreach.miner.MsgCreateMiner:
     type: object
     properties:
@@ -21890,10 +21191,188 @@ definitions:
   enreach.miner.Params:
     type: object
     description: Params defines the parameters for the module.
+  cosmos.base.query.v1beta1.PageRequest:
+    type: object
+    properties:
+      key:
+        type: string
+        format: byte
+        description: |-
+          key is a value returned in PageResponse.next_key to begin
+          querying the next page most efficiently. Only one of offset or key
+          should be set.
+      offset:
+        type: string
+        format: uint64
+        description: |-
+          offset is a numeric offset that can be used when key is unavailable.
+          It is less efficient than using key. Only one of offset or key should
+          be set.
+      limit:
+        type: string
+        format: uint64
+        description: >-
+          limit is the total number of results to be returned in the result
+          page.
+
+          If left empty it will default to a value to be set by each app.
+      count_total:
+        type: boolean
+        description: >-
+          count_total is set to true  to indicate that the result set should
+          include
+
+          a count of the total number of items available for pagination in UIs.
+
+          count_total is only respected when offset is used. It is ignored when
+          key
+
+          is set.
+      reverse:
+        type: boolean
+        description: >-
+          reverse is set to true if results are to be returned in the descending
+          order.
+
+
+          Since: cosmos-sdk 0.43
+    description: |-
+      message SomeRequest {
+               Foo some_parameter = 1;
+               PageRequest pagination = 2;
+       }
+    title: |-
+      PageRequest is to be embedded in gRPC request messages for efficient
+      pagination. Ex:
+  cosmos.base.query.v1beta1.PageResponse:
+    type: object
+    properties:
+      next_key:
+        type: string
+        format: byte
+        description: |-
+          next_key is the key to be passed to PageRequest.key to
+          query the next page most efficiently. It will be empty if
+          there are no more results.
+      total:
+        type: string
+        format: uint64
+        title: |-
+          total is total number of results available if PageRequest.count_total
+          was set, its value is undefined otherwise
+    description: |-
+      PageResponse is to be embedded in gRPC response messages where the
+      corresponding request message has used PageRequest.
+
+       message SomeResponse {
+               repeated Bar results = 1;
+               PageResponse page = 2;
+       }
+  enreach.registry.Params:
+    type: object
+    description: Params defines the parameters for the module.
+  enreach.registry.QueryAllRegionResponse:
+    type: object
+    properties:
+      Region:
+        type: array
+        items:
+          type: object
+          properties:
+            code:
+              type: string
+            name:
+              type: string
+            description:
+              type: string
+            creator:
+              type: string
+            createAt:
+              type: string
+              format: uint64
+            updator:
+              type: string
+            updateAt:
+              type: string
+              format: uint64
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            description: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently. It will be empty if
+              there are no more results.
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  enreach.registry.QueryGetRegionResponse:
+    type: object
+    properties:
+      Region:
+        type: object
+        properties:
+          code:
+            type: string
+          name:
+            type: string
+          description:
+            type: string
+          creator:
+            type: string
+          createAt:
+            type: string
+            format: uint64
+          updator:
+            type: string
+          updateAt:
+            type: string
+            format: uint64
+  enreach.registry.QueryParamsResponse:
+    type: object
+    properties:
+      params:
+        description: params holds all the parameters of this module.
+        type: object
+    description: QueryParamsResponse is response type for the Query/Params RPC method.
+  enreach.registry.Region:
+    type: object
+    properties:
+      code:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      creator:
+        type: string
+      createAt:
+        type: string
+        format: uint64
+      updator:
+        type: string
+      updateAt:
+        type: string
+        format: uint64
   enreach.registry.MsgCreateRegion:
     type: object
     properties:
-      creator:
+      signer:
         type: string
       code:
         type: string
@@ -21903,18 +21382,13 @@ definitions:
         type: string
   enreach.registry.MsgCreateRegionResponse:
     type: object
-    properties:
-      id:
-        type: string
-        format: uint64
   enreach.registry.MsgDeleteRegion:
     type: object
     properties:
-      creator:
+      signer:
         type: string
-      id:
+      code:
         type: string
-        format: uint64
   enreach.registry.MsgDeleteRegionResponse:
     type: object
   enreach.registry.MsgUpdateParams:
@@ -21937,11 +21411,8 @@ definitions:
   enreach.registry.MsgUpdateRegion:
     type: object
     properties:
-      creator:
+      signer:
         type: string
-      id:
-        type: string
-        format: uint64
       code:
         type: string
       name:
@@ -21950,9 +21421,6 @@ definitions:
         type: string
   enreach.registry.MsgUpdateRegionResponse:
     type: object
-  enreach.registry.Params:
-    type: object
-    description: Params defines the parameters for the module.
   ibc.applications.fee.v1.Fee:
     type: object
     properties:

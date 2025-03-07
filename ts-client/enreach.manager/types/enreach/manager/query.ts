@@ -1,8 +1,8 @@
 /* eslint-disable */
-import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
 import { Manager } from "./manager";
+import { Operator } from "./operator";
 import { Params } from "./params";
 
 export const protobufPackage = "enreach.manager";
@@ -17,8 +17,25 @@ export interface QueryParamsResponse {
   params: Params | undefined;
 }
 
+export interface QueryGetOperatorRequest {
+  operatorAccount: string;
+}
+
+export interface QueryGetOperatorResponse {
+  Operator: Operator | undefined;
+}
+
+export interface QueryAllOperatorRequest {
+  pagination: PageRequest | undefined;
+}
+
+export interface QueryAllOperatorResponse {
+  Operator: Operator[];
+  pagination: PageResponse | undefined;
+}
+
 export interface QueryGetManagerRequest {
-  id: number;
+  managerAccount: string;
 }
 
 export interface QueryGetManagerResponse {
@@ -144,14 +161,265 @@ export const QueryParamsResponse = {
   },
 };
 
+function createBaseQueryGetOperatorRequest(): QueryGetOperatorRequest {
+  return { operatorAccount: "" };
+}
+
+export const QueryGetOperatorRequest = {
+  encode(message: QueryGetOperatorRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.operatorAccount !== "") {
+      writer.uint32(10).string(message.operatorAccount);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetOperatorRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetOperatorRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.operatorAccount = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetOperatorRequest {
+    return { operatorAccount: isSet(object.operatorAccount) ? String(object.operatorAccount) : "" };
+  },
+
+  toJSON(message: QueryGetOperatorRequest): unknown {
+    const obj: any = {};
+    if (message.operatorAccount !== "") {
+      obj.operatorAccount = message.operatorAccount;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetOperatorRequest>, I>>(base?: I): QueryGetOperatorRequest {
+    return QueryGetOperatorRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetOperatorRequest>, I>>(object: I): QueryGetOperatorRequest {
+    const message = createBaseQueryGetOperatorRequest();
+    message.operatorAccount = object.operatorAccount ?? "";
+    return message;
+  },
+};
+
+function createBaseQueryGetOperatorResponse(): QueryGetOperatorResponse {
+  return { Operator: undefined };
+}
+
+export const QueryGetOperatorResponse = {
+  encode(message: QueryGetOperatorResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.Operator !== undefined) {
+      Operator.encode(message.Operator, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetOperatorResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetOperatorResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.Operator = Operator.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetOperatorResponse {
+    return { Operator: isSet(object.Operator) ? Operator.fromJSON(object.Operator) : undefined };
+  },
+
+  toJSON(message: QueryGetOperatorResponse): unknown {
+    const obj: any = {};
+    if (message.Operator !== undefined) {
+      obj.Operator = Operator.toJSON(message.Operator);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetOperatorResponse>, I>>(base?: I): QueryGetOperatorResponse {
+    return QueryGetOperatorResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetOperatorResponse>, I>>(object: I): QueryGetOperatorResponse {
+    const message = createBaseQueryGetOperatorResponse();
+    message.Operator = (object.Operator !== undefined && object.Operator !== null)
+      ? Operator.fromPartial(object.Operator)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryAllOperatorRequest(): QueryAllOperatorRequest {
+  return { pagination: undefined };
+}
+
+export const QueryAllOperatorRequest = {
+  encode(message: QueryAllOperatorRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllOperatorRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryAllOperatorRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAllOperatorRequest {
+    return { pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined };
+  },
+
+  toJSON(message: QueryAllOperatorRequest): unknown {
+    const obj: any = {};
+    if (message.pagination !== undefined) {
+      obj.pagination = PageRequest.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryAllOperatorRequest>, I>>(base?: I): QueryAllOperatorRequest {
+    return QueryAllOperatorRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryAllOperatorRequest>, I>>(object: I): QueryAllOperatorRequest {
+    const message = createBaseQueryAllOperatorRequest();
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageRequest.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryAllOperatorResponse(): QueryAllOperatorResponse {
+  return { Operator: [], pagination: undefined };
+}
+
+export const QueryAllOperatorResponse = {
+  encode(message: QueryAllOperatorResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.Operator) {
+      Operator.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllOperatorResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryAllOperatorResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.Operator.push(Operator.decode(reader, reader.uint32()));
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAllOperatorResponse {
+    return {
+      Operator: Array.isArray(object?.Operator) ? object.Operator.map((e: any) => Operator.fromJSON(e)) : [],
+      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryAllOperatorResponse): unknown {
+    const obj: any = {};
+    if (message.Operator?.length) {
+      obj.Operator = message.Operator.map((e) => Operator.toJSON(e));
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryAllOperatorResponse>, I>>(base?: I): QueryAllOperatorResponse {
+    return QueryAllOperatorResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryAllOperatorResponse>, I>>(object: I): QueryAllOperatorResponse {
+    const message = createBaseQueryAllOperatorResponse();
+    message.Operator = object.Operator?.map((e) => Operator.fromPartial(e)) || [];
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageResponse.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
 function createBaseQueryGetManagerRequest(): QueryGetManagerRequest {
-  return { id: 0 };
+  return { managerAccount: "" };
 }
 
 export const QueryGetManagerRequest = {
   encode(message: QueryGetManagerRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.id !== 0) {
-      writer.uint32(8).uint64(message.id);
+    if (message.managerAccount !== "") {
+      writer.uint32(10).string(message.managerAccount);
     }
     return writer;
   },
@@ -164,11 +432,11 @@ export const QueryGetManagerRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          if (tag !== 8) {
+          if (tag !== 10) {
             break;
           }
 
-          message.id = longToNumber(reader.uint64() as Long);
+          message.managerAccount = reader.string();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -180,13 +448,13 @@ export const QueryGetManagerRequest = {
   },
 
   fromJSON(object: any): QueryGetManagerRequest {
-    return { id: isSet(object.id) ? Number(object.id) : 0 };
+    return { managerAccount: isSet(object.managerAccount) ? String(object.managerAccount) : "" };
   },
 
   toJSON(message: QueryGetManagerRequest): unknown {
     const obj: any = {};
-    if (message.id !== 0) {
-      obj.id = Math.round(message.id);
+    if (message.managerAccount !== "") {
+      obj.managerAccount = message.managerAccount;
     }
     return obj;
   },
@@ -196,7 +464,7 @@ export const QueryGetManagerRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryGetManagerRequest>, I>>(object: I): QueryGetManagerRequest {
     const message = createBaseQueryGetManagerRequest();
-    message.id = object.id ?? 0;
+    message.managerAccount = object.managerAccount ?? "";
     return message;
   },
 };
@@ -517,6 +785,9 @@ export const QueryGetManagerByRegionResponse = {
 export interface Query {
   /** Parameters queries the parameters of the module. */
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
+  /** Queries a list of Operator items. */
+  Operator(request: QueryGetOperatorRequest): Promise<QueryGetOperatorResponse>;
+  OperatorAll(request: QueryAllOperatorRequest): Promise<QueryAllOperatorResponse>;
   /** Queries a list of Manager items. */
   Manager(request: QueryGetManagerRequest): Promise<QueryGetManagerResponse>;
   ManagerAll(request: QueryAllManagerRequest): Promise<QueryAllManagerResponse>;
@@ -532,6 +803,8 @@ export class QueryClientImpl implements Query {
     this.service = opts?.service || QueryServiceName;
     this.rpc = rpc;
     this.Params = this.Params.bind(this);
+    this.Operator = this.Operator.bind(this);
+    this.OperatorAll = this.OperatorAll.bind(this);
     this.Manager = this.Manager.bind(this);
     this.ManagerAll = this.ManagerAll.bind(this);
     this.GetManagerByRegion = this.GetManagerByRegion.bind(this);
@@ -540,6 +813,18 @@ export class QueryClientImpl implements Query {
     const data = QueryParamsRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "Params", data);
     return promise.then((data) => QueryParamsResponse.decode(_m0.Reader.create(data)));
+  }
+
+  Operator(request: QueryGetOperatorRequest): Promise<QueryGetOperatorResponse> {
+    const data = QueryGetOperatorRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "Operator", data);
+    return promise.then((data) => QueryGetOperatorResponse.decode(_m0.Reader.create(data)));
+  }
+
+  OperatorAll(request: QueryAllOperatorRequest): Promise<QueryAllOperatorResponse> {
+    const data = QueryAllOperatorRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "OperatorAll", data);
+    return promise.then((data) => QueryAllOperatorResponse.decode(_m0.Reader.create(data)));
   }
 
   Manager(request: QueryGetManagerRequest): Promise<QueryGetManagerResponse> {
@@ -565,25 +850,6 @@ interface Rpc {
   request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
 }
 
-declare const self: any | undefined;
-declare const window: any | undefined;
-declare const global: any | undefined;
-const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
-    return globalThis;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
-  throw "Unable to locate global object";
-})();
-
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin ? T
@@ -594,18 +860,6 @@ export type DeepPartial<T> = T extends Builtin ? T
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function longToNumber(long: Long): number {
-  if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  return long.toNumber();
-}
-
-if (_m0.util.Long !== Long) {
-  _m0.util.Long = Long as any;
-  _m0.configure();
-}
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

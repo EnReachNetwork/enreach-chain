@@ -2,52 +2,75 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 
-export const protobufPackage = "enreach.registry";
+export const protobufPackage = "enreach.manager";
 
-export interface Region {
-  code: string;
+export interface Operator {
+  operatorAccount: string;
+  managerAccount: string;
+  evmAccount: string;
   name: string;
   description: string;
+  websiteUrl: string;
   creator: string;
   createAt: number;
   updator: string;
   updateAt: number;
 }
 
-function createBaseRegion(): Region {
-  return { code: "", name: "", description: "", creator: "", createAt: 0, updator: "", updateAt: 0 };
+function createBaseOperator(): Operator {
+  return {
+    operatorAccount: "",
+    managerAccount: "",
+    evmAccount: "",
+    name: "",
+    description: "",
+    websiteUrl: "",
+    creator: "",
+    createAt: 0,
+    updator: "",
+    updateAt: 0,
+  };
 }
 
-export const Region = {
-  encode(message: Region, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.code !== "") {
-      writer.uint32(10).string(message.code);
+export const Operator = {
+  encode(message: Operator, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.operatorAccount !== "") {
+      writer.uint32(10).string(message.operatorAccount);
+    }
+    if (message.managerAccount !== "") {
+      writer.uint32(18).string(message.managerAccount);
+    }
+    if (message.evmAccount !== "") {
+      writer.uint32(26).string(message.evmAccount);
     }
     if (message.name !== "") {
-      writer.uint32(18).string(message.name);
+      writer.uint32(34).string(message.name);
     }
     if (message.description !== "") {
-      writer.uint32(26).string(message.description);
+      writer.uint32(42).string(message.description);
+    }
+    if (message.websiteUrl !== "") {
+      writer.uint32(50).string(message.websiteUrl);
     }
     if (message.creator !== "") {
-      writer.uint32(34).string(message.creator);
+      writer.uint32(58).string(message.creator);
     }
     if (message.createAt !== 0) {
-      writer.uint32(96).uint64(message.createAt);
+      writer.uint32(64).uint64(message.createAt);
     }
     if (message.updator !== "") {
-      writer.uint32(106).string(message.updator);
+      writer.uint32(74).string(message.updator);
     }
     if (message.updateAt !== 0) {
-      writer.uint32(112).uint64(message.updateAt);
+      writer.uint32(80).uint64(message.updateAt);
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Region {
+  decode(input: _m0.Reader | Uint8Array, length?: number): Operator {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseRegion();
+    const message = createBaseOperator();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -56,45 +79,66 @@ export const Region = {
             break;
           }
 
-          message.code = reader.string();
+          message.operatorAccount = reader.string();
           continue;
         case 2:
           if (tag !== 18) {
             break;
           }
 
-          message.name = reader.string();
+          message.managerAccount = reader.string();
           continue;
         case 3:
           if (tag !== 26) {
             break;
           }
 
-          message.description = reader.string();
+          message.evmAccount = reader.string();
           continue;
         case 4:
           if (tag !== 34) {
             break;
           }
 
+          message.name = reader.string();
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.description = reader.string();
+          continue;
+        case 6:
+          if (tag !== 50) {
+            break;
+          }
+
+          message.websiteUrl = reader.string();
+          continue;
+        case 7:
+          if (tag !== 58) {
+            break;
+          }
+
           message.creator = reader.string();
           continue;
-        case 12:
-          if (tag !== 96) {
+        case 8:
+          if (tag !== 64) {
             break;
           }
 
           message.createAt = longToNumber(reader.uint64() as Long);
           continue;
-        case 13:
-          if (tag !== 106) {
+        case 9:
+          if (tag !== 74) {
             break;
           }
 
           message.updator = reader.string();
           continue;
-        case 14:
-          if (tag !== 112) {
+        case 10:
+          if (tag !== 80) {
             break;
           }
 
@@ -109,11 +153,14 @@ export const Region = {
     return message;
   },
 
-  fromJSON(object: any): Region {
+  fromJSON(object: any): Operator {
     return {
-      code: isSet(object.code) ? String(object.code) : "",
+      operatorAccount: isSet(object.operatorAccount) ? String(object.operatorAccount) : "",
+      managerAccount: isSet(object.managerAccount) ? String(object.managerAccount) : "",
+      evmAccount: isSet(object.evmAccount) ? String(object.evmAccount) : "",
       name: isSet(object.name) ? String(object.name) : "",
       description: isSet(object.description) ? String(object.description) : "",
+      websiteUrl: isSet(object.websiteUrl) ? String(object.websiteUrl) : "",
       creator: isSet(object.creator) ? String(object.creator) : "",
       createAt: isSet(object.createAt) ? Number(object.createAt) : 0,
       updator: isSet(object.updator) ? String(object.updator) : "",
@@ -121,16 +168,25 @@ export const Region = {
     };
   },
 
-  toJSON(message: Region): unknown {
+  toJSON(message: Operator): unknown {
     const obj: any = {};
-    if (message.code !== "") {
-      obj.code = message.code;
+    if (message.operatorAccount !== "") {
+      obj.operatorAccount = message.operatorAccount;
+    }
+    if (message.managerAccount !== "") {
+      obj.managerAccount = message.managerAccount;
+    }
+    if (message.evmAccount !== "") {
+      obj.evmAccount = message.evmAccount;
     }
     if (message.name !== "") {
       obj.name = message.name;
     }
     if (message.description !== "") {
       obj.description = message.description;
+    }
+    if (message.websiteUrl !== "") {
+      obj.websiteUrl = message.websiteUrl;
     }
     if (message.creator !== "") {
       obj.creator = message.creator;
@@ -147,14 +203,17 @@ export const Region = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Region>, I>>(base?: I): Region {
-    return Region.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<Operator>, I>>(base?: I): Operator {
+    return Operator.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<Region>, I>>(object: I): Region {
-    const message = createBaseRegion();
-    message.code = object.code ?? "";
+  fromPartial<I extends Exact<DeepPartial<Operator>, I>>(object: I): Operator {
+    const message = createBaseOperator();
+    message.operatorAccount = object.operatorAccount ?? "";
+    message.managerAccount = object.managerAccount ?? "";
+    message.evmAccount = object.evmAccount ?? "";
     message.name = object.name ?? "";
     message.description = object.description ?? "";
+    message.websiteUrl = object.websiteUrl ?? "";
     message.creator = object.creator ?? "";
     message.createAt = object.createAt ?? 0;
     message.updator = object.updator ?? "";

@@ -27,20 +27,38 @@ export interface PageResponse {
 }
 export interface QueryAllManagerResponse {
     Manager?: {
-        id?: string;
-        managerAddress?: string;
-        operatorName?: string;
-        operatorDesc?: string;
-        operatorWebsiteURL?: string;
-        evmAddress?: string;
+        managerAccount?: string;
+        operatorAccount?: string;
         hostAddress?: string;
         managerPort?: number;
         trackerPort?: number;
         chainAPIPort?: number;
         chainRPCPort?: number;
         regionCode?: string;
-        status?: string;
+        registerStatus?: string;
+        workingStatus?: string;
         creator?: string;
+        createAt?: string;
+        updator?: string;
+        updateAt?: string;
+    }[];
+    pagination?: {
+        next_key?: string;
+        total?: string;
+    };
+}
+export interface QueryAllOperatorResponse {
+    Operator?: {
+        operatorAccount?: string;
+        managerAccount?: string;
+        evmAccount?: string;
+        name?: string;
+        description?: string;
+        websiteUrl?: string;
+        creator?: string;
+        createAt?: string;
+        updator?: string;
+        updateAt?: string;
     }[];
     pagination?: {
         next_key?: string;
@@ -49,51 +67,60 @@ export interface QueryAllManagerResponse {
 }
 export interface QueryGetManagerByRegionResponse {
     managers?: {
-        id?: string;
-        managerAddress?: string;
-        operatorName?: string;
-        operatorDesc?: string;
-        operatorWebsiteURL?: string;
-        evmAddress?: string;
+        managerAccount?: string;
+        operatorAccount?: string;
         hostAddress?: string;
         managerPort?: number;
         trackerPort?: number;
         chainAPIPort?: number;
         chainRPCPort?: number;
         regionCode?: string;
-        status?: string;
+        registerStatus?: string;
+        workingStatus?: string;
         creator?: string;
+        createAt?: string;
+        updator?: string;
+        updateAt?: string;
     }[];
 }
 export interface QueryGetManagerResponse {
     Manager?: {
-        id?: string;
-        managerAddress?: string;
-        operatorName?: string;
-        operatorDesc?: string;
-        operatorWebsiteURL?: string;
-        evmAddress?: string;
+        managerAccount?: string;
+        operatorAccount?: string;
         hostAddress?: string;
         managerPort?: number;
         trackerPort?: number;
         chainAPIPort?: number;
         chainRPCPort?: number;
         regionCode?: string;
-        status?: string;
+        registerStatus?: string;
+        workingStatus?: string;
         creator?: string;
+        createAt?: string;
+        updator?: string;
+        updateAt?: string;
+    };
+}
+export interface QueryGetOperatorResponse {
+    Operator?: {
+        operatorAccount?: string;
+        managerAccount?: string;
+        evmAccount?: string;
+        name?: string;
+        description?: string;
+        websiteUrl?: string;
+        creator?: string;
+        createAt?: string;
+        updator?: string;
+        updateAt?: string;
     };
 }
 export interface QueryParamsResponse {
     params?: object;
 }
 export interface ManagerManager {
-    /** @format uint64 */
-    id?: string;
-    managerAddress?: string;
-    operatorName?: string;
-    operatorDesc?: string;
-    operatorWebsiteURL?: string;
-    evmAddress?: string;
+    managerAccount?: string;
+    operatorAccount?: string;
     hostAddress?: string;
     /** @format int64 */
     managerPort?: number;
@@ -104,16 +131,39 @@ export interface ManagerManager {
     /** @format int64 */
     chainRPCPort?: number;
     regionCode?: string;
-    status?: string;
+    registerStatus?: string;
+    workingStatus?: string;
     creator?: string;
+    /** @format uint64 */
+    createAt?: string;
+    updator?: string;
+    /** @format uint64 */
+    updateAt?: string;
+}
+export interface ManagerOperator {
+    operatorAccount?: string;
+    managerAccount?: string;
+    evmAccount?: string;
+    name?: string;
+    description?: string;
+    websiteUrl?: string;
+    creator?: string;
+    /** @format uint64 */
+    createAt?: string;
+    updator?: string;
+    /** @format uint64 */
+    updateAt?: string;
 }
 export type ManagerParams = object;
-export type MsgDeleteManagerResponse = object;
-export interface MsgRegisterManagerResponse {
-    /** @format uint64 */
-    id?: string;
-}
-export type MsgUpdateManagerResponse = object;
+export type MsgActivateManagerResponse = object;
+export type MsgBindOperatorEVMAccountResponse = object;
+export type MsgBindOperatorManagerAccountResponse = object;
+export type MsgCreateOperatorResponse = object;
+export type MsgGoWorkingResponse = object;
+export type MsgRegisterManagerResponse = object;
+export type MsgSetManagerRegionResponse = object;
+export type MsgUpdateManagerConnParamsResponse = object;
+export type MsgUpdateOperatorBasicInfoResponse = object;
 export type MsgUpdateParamsResponse = object;
 export type Params = object;
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
@@ -172,9 +222,9 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      *
      * @tags Query
      * @name QueryManager
-     * @request GET:/enreach/manager/manager/{id}
+     * @request GET:/enreach/manager/manager/{managerAccount}
      */
-    queryManager: (id: string, params?: RequestParams) => Promise<AxiosResponse<T>>;
+    queryManager: (managerAccount: string, params?: RequestParams) => Promise<AxiosResponse<T>>;
     /**
      * No description
      *
@@ -183,6 +233,28 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * @request GET:/enreach/manager/managers
      */
     queryManagerAll: (query?: {
+        "pagination.key"?: string;
+        "pagination.offset"?: string;
+        "pagination.limit"?: string;
+        "pagination.count_total"?: boolean;
+        "pagination.reverse"?: boolean;
+    }, params?: RequestParams) => Promise<AxiosResponse<T>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryOperator
+     * @request GET:/enreach/manager/operator/{operatorAccount}
+     */
+    queryOperator: (operatorAccount: string, params?: RequestParams) => Promise<AxiosResponse<T>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryOperatorAll
+     * @request GET:/enreach/manager/operators
+     */
+    queryOperatorAll: (query?: {
         "pagination.key"?: string;
         "pagination.offset"?: string;
         "pagination.limit"?: string;

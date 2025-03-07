@@ -2,6 +2,7 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Manager } from "./manager";
+import { Operator } from "./operator";
 import { Params } from "./params";
 
 export const protobufPackage = "enreach.manager";
@@ -12,10 +13,12 @@ export interface GenesisState {
   params: Params | undefined;
   managerList: Manager[];
   managerCount: number;
+  operatorList: Operator[];
+  operatorCount: number;
 }
 
 function createBaseGenesisState(): GenesisState {
-  return { params: undefined, managerList: [], managerCount: 0 };
+  return { params: undefined, managerList: [], managerCount: 0, operatorList: [], operatorCount: 0 };
 }
 
 export const GenesisState = {
@@ -28,6 +31,12 @@ export const GenesisState = {
     }
     if (message.managerCount !== 0) {
       writer.uint32(24).uint64(message.managerCount);
+    }
+    for (const v of message.operatorList) {
+      Operator.encode(v!, writer.uint32(34).fork()).ldelim();
+    }
+    if (message.operatorCount !== 0) {
+      writer.uint32(40).uint64(message.operatorCount);
     }
     return writer;
   },
@@ -60,6 +69,20 @@ export const GenesisState = {
 
           message.managerCount = longToNumber(reader.uint64() as Long);
           continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.operatorList.push(Operator.decode(reader, reader.uint32()));
+          continue;
+        case 5:
+          if (tag !== 40) {
+            break;
+          }
+
+          message.operatorCount = longToNumber(reader.uint64() as Long);
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -74,6 +97,10 @@ export const GenesisState = {
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
       managerList: Array.isArray(object?.managerList) ? object.managerList.map((e: any) => Manager.fromJSON(e)) : [],
       managerCount: isSet(object.managerCount) ? Number(object.managerCount) : 0,
+      operatorList: Array.isArray(object?.operatorList)
+        ? object.operatorList.map((e: any) => Operator.fromJSON(e))
+        : [],
+      operatorCount: isSet(object.operatorCount) ? Number(object.operatorCount) : 0,
     };
   },
 
@@ -88,6 +115,12 @@ export const GenesisState = {
     if (message.managerCount !== 0) {
       obj.managerCount = Math.round(message.managerCount);
     }
+    if (message.operatorList?.length) {
+      obj.operatorList = message.operatorList.map((e) => Operator.toJSON(e));
+    }
+    if (message.operatorCount !== 0) {
+      obj.operatorCount = Math.round(message.operatorCount);
+    }
     return obj;
   },
 
@@ -101,6 +134,8 @@ export const GenesisState = {
       : undefined;
     message.managerList = object.managerList?.map((e) => Manager.fromPartial(e)) || [];
     message.managerCount = object.managerCount ?? 0;
+    message.operatorList = object.operatorList?.map((e) => Operator.fromPartial(e)) || [];
+    message.operatorCount = object.operatorCount ?? 0;
     return message;
   },
 };

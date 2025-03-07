@@ -6,65 +6,29 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
-import { QueryGetWorkloadRequest } from "./types/enreach/workload/query";
-import { QueryGetWorkloadResponse } from "./types/enreach/workload/query";
-import { Params } from "./types/enreach/workload/params";
-import { QueryParamsRequest } from "./types/enreach/workload/query";
-import { MsgUpdateWorkload } from "./types/enreach/workload/tx";
-import { MsgUpdateParams } from "./types/enreach/workload/tx";
-import { QueryParamsResponse } from "./types/enreach/workload/query";
+import { QueryAllWorkloadRequest } from "./types/enreach/workload/query";
 import { MsgUpdateParamsResponse } from "./types/enreach/workload/tx";
 import { MsgUpdateWorkloadResponse } from "./types/enreach/workload/tx";
-import { GenesisState } from "./types/enreach/workload/genesis";
-import { MsgCreateWorkload } from "./types/enreach/workload/tx";
-import { QueryAllWorkloadRequest } from "./types/enreach/workload/query";
-import { QueryAllWorkloadResponse } from "./types/enreach/workload/query";
 import { MsgCreateWorkloadResponse } from "./types/enreach/workload/tx";
-import { MsgDeleteWorkloadResponse } from "./types/enreach/workload/tx";
+import { QueryGetWorkloadRequest } from "./types/enreach/workload/query";
+import { Params } from "./types/enreach/workload/params";
 import { MsgDeleteWorkload } from "./types/enreach/workload/tx";
+import { MsgUpdateWorkload } from "./types/enreach/workload/tx";
+import { QueryAllWorkloadResponse } from "./types/enreach/workload/query";
 import { Workload } from "./types/enreach/workload/workload";
+import { MsgCreateWorkload } from "./types/enreach/workload/tx";
+import { MsgDeleteWorkloadResponse } from "./types/enreach/workload/tx";
+import { QueryParamsRequest } from "./types/enreach/workload/query";
+import { QueryParamsResponse } from "./types/enreach/workload/query";
+import { QueryGetWorkloadResponse } from "./types/enreach/workload/query";
+import { GenesisState } from "./types/enreach/workload/genesis";
+import { MsgUpdateParams } from "./types/enreach/workload/tx";
 
 
-export { QueryGetWorkloadRequest, QueryGetWorkloadResponse, Params, QueryParamsRequest, MsgUpdateWorkload, MsgUpdateParams, QueryParamsResponse, MsgUpdateParamsResponse, MsgUpdateWorkloadResponse, GenesisState, MsgCreateWorkload, QueryAllWorkloadRequest, QueryAllWorkloadResponse, MsgCreateWorkloadResponse, MsgDeleteWorkloadResponse, MsgDeleteWorkload, Workload };
+export { QueryAllWorkloadRequest, MsgUpdateParamsResponse, MsgUpdateWorkloadResponse, MsgCreateWorkloadResponse, QueryGetWorkloadRequest, Params, MsgDeleteWorkload, MsgUpdateWorkload, QueryAllWorkloadResponse, Workload, MsgCreateWorkload, MsgDeleteWorkloadResponse, QueryParamsRequest, QueryParamsResponse, QueryGetWorkloadResponse, GenesisState, MsgUpdateParams };
 
-type sendQueryGetWorkloadRequestParams = {
-  value: QueryGetWorkloadRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetWorkloadResponseParams = {
-  value: QueryGetWorkloadResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendParamsParams = {
-  value: Params,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryParamsRequestParams = {
-  value: QueryParamsRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateWorkloadParams = {
-  value: MsgUpdateWorkload,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateParamsParams = {
-  value: MsgUpdateParams,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryParamsResponseParams = {
-  value: QueryParamsResponse,
+type sendQueryAllWorkloadRequestParams = {
+  value: QueryAllWorkloadRequest,
   fee?: StdFee,
   memo?: string
 };
@@ -81,38 +45,20 @@ type sendMsgUpdateWorkloadResponseParams = {
   memo?: string
 };
 
-type sendGenesisStateParams = {
-  value: GenesisState,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgCreateWorkloadParams = {
-  value: MsgCreateWorkload,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryAllWorkloadRequestParams = {
-  value: QueryAllWorkloadRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryAllWorkloadResponseParams = {
-  value: QueryAllWorkloadResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
 type sendMsgCreateWorkloadResponseParams = {
   value: MsgCreateWorkloadResponse,
   fee?: StdFee,
   memo?: string
 };
 
-type sendMsgDeleteWorkloadResponseParams = {
-  value: MsgDeleteWorkloadResponse,
+type sendQueryGetWorkloadRequestParams = {
+  value: QueryGetWorkloadRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendParamsParams = {
+  value: Params,
   fee?: StdFee,
   memo?: string
 };
@@ -123,39 +69,69 @@ type sendMsgDeleteWorkloadParams = {
   memo?: string
 };
 
+type sendMsgUpdateWorkloadParams = {
+  value: MsgUpdateWorkload,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryAllWorkloadResponseParams = {
+  value: QueryAllWorkloadResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
 type sendWorkloadParams = {
   value: Workload,
   fee?: StdFee,
   memo?: string
 };
 
-
-type queryGetWorkloadRequestParams = {
-  value: QueryGetWorkloadRequest,
+type sendMsgCreateWorkloadParams = {
+  value: MsgCreateWorkload,
+  fee?: StdFee,
+  memo?: string
 };
 
-type queryGetWorkloadResponseParams = {
-  value: QueryGetWorkloadResponse,
+type sendMsgDeleteWorkloadResponseParams = {
+  value: MsgDeleteWorkloadResponse,
+  fee?: StdFee,
+  memo?: string
 };
 
-type paramsParams = {
-  value: Params,
-};
-
-type queryParamsRequestParams = {
+type sendQueryParamsRequestParams = {
   value: QueryParamsRequest,
+  fee?: StdFee,
+  memo?: string
 };
 
-type msgUpdateWorkloadParams = {
-  value: MsgUpdateWorkload,
-};
-
-type msgUpdateParamsParams = {
-  value: MsgUpdateParams,
-};
-
-type queryParamsResponseParams = {
+type sendQueryParamsResponseParams = {
   value: QueryParamsResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetWorkloadResponseParams = {
+  value: QueryGetWorkloadResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendGenesisStateParams = {
+  value: GenesisState,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateParamsParams = {
+  value: MsgUpdateParams,
+  fee?: StdFee,
+  memo?: string
+};
+
+
+type queryAllWorkloadRequestParams = {
+  value: QueryAllWorkloadRequest,
 };
 
 type msgUpdateParamsResponseParams = {
@@ -166,36 +142,60 @@ type msgUpdateWorkloadResponseParams = {
   value: MsgUpdateWorkloadResponse,
 };
 
-type genesisStateParams = {
-  value: GenesisState,
-};
-
-type msgCreateWorkloadParams = {
-  value: MsgCreateWorkload,
-};
-
-type queryAllWorkloadRequestParams = {
-  value: QueryAllWorkloadRequest,
-};
-
-type queryAllWorkloadResponseParams = {
-  value: QueryAllWorkloadResponse,
-};
-
 type msgCreateWorkloadResponseParams = {
   value: MsgCreateWorkloadResponse,
 };
 
-type msgDeleteWorkloadResponseParams = {
-  value: MsgDeleteWorkloadResponse,
+type queryGetWorkloadRequestParams = {
+  value: QueryGetWorkloadRequest,
+};
+
+type paramsParams = {
+  value: Params,
 };
 
 type msgDeleteWorkloadParams = {
   value: MsgDeleteWorkload,
 };
 
+type msgUpdateWorkloadParams = {
+  value: MsgUpdateWorkload,
+};
+
+type queryAllWorkloadResponseParams = {
+  value: QueryAllWorkloadResponse,
+};
+
 type workloadParams = {
   value: Workload,
+};
+
+type msgCreateWorkloadParams = {
+  value: MsgCreateWorkload,
+};
+
+type msgDeleteWorkloadResponseParams = {
+  value: MsgDeleteWorkloadResponse,
+};
+
+type queryParamsRequestParams = {
+  value: QueryParamsRequest,
+};
+
+type queryParamsResponseParams = {
+  value: QueryParamsResponse,
+};
+
+type queryGetWorkloadResponseParams = {
+  value: QueryGetWorkloadResponse,
+};
+
+type genesisStateParams = {
+  value: GenesisState,
+};
+
+type msgUpdateParamsParams = {
+  value: MsgUpdateParams,
 };
 
 
@@ -228,101 +228,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 
   return {
 		
-		async sendQueryGetWorkloadRequest({ value, fee, memo }: sendQueryGetWorkloadRequestParams): Promise<DeliverTxResponse> {
+		async sendQueryAllWorkloadRequest({ value, fee, memo }: sendQueryAllWorkloadRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryGetWorkloadRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryAllWorkloadRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetWorkloadRequest({ value: QueryGetWorkloadRequest.fromPartial(value) })
+				let msg = this.queryAllWorkloadRequest({ value: QueryAllWorkloadRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetWorkloadRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGetWorkloadResponse({ value, fee, memo }: sendQueryGetWorkloadResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetWorkloadResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetWorkloadResponse({ value: QueryGetWorkloadResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetWorkloadResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendParams: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.params({ value: Params.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendParams: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryParamsRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryParamsRequest({ value: QueryParamsRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryParamsRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUpdateWorkload({ value, fee, memo }: sendMsgUpdateWorkloadParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateWorkload: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateWorkload({ value: MsgUpdateWorkload.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateWorkload: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateParams({ value: MsgUpdateParams.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryParamsResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryParamsResponse({ value: QueryParamsResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryParamsResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryAllWorkloadRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -354,62 +270,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgCreateWorkload({ value, fee, memo }: sendMsgCreateWorkloadParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgCreateWorkload: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgCreateWorkload({ value: MsgCreateWorkload.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgCreateWorkload: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryAllWorkloadRequest({ value, fee, memo }: sendQueryAllWorkloadRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryAllWorkloadRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryAllWorkloadRequest({ value: QueryAllWorkloadRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryAllWorkloadRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryAllWorkloadResponse({ value, fee, memo }: sendQueryAllWorkloadResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryAllWorkloadResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryAllWorkloadResponse({ value: QueryAllWorkloadResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryAllWorkloadResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
 		async sendMsgCreateWorkloadResponse({ value, fee, memo }: sendMsgCreateWorkloadResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendMsgCreateWorkloadResponse: Unable to sign Tx. Signer is not present.')
@@ -424,17 +284,31 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendMsgDeleteWorkloadResponse({ value, fee, memo }: sendMsgDeleteWorkloadResponseParams): Promise<DeliverTxResponse> {
+		async sendQueryGetWorkloadRequest({ value, fee, memo }: sendQueryGetWorkloadRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgDeleteWorkloadResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryGetWorkloadRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgDeleteWorkloadResponse({ value: MsgDeleteWorkloadResponse.fromPartial(value) })
+				let msg = this.queryGetWorkloadRequest({ value: QueryGetWorkloadRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgDeleteWorkloadResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryGetWorkloadRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendParams: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.params({ value: Params.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendParams: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -452,6 +326,34 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		async sendMsgUpdateWorkload({ value, fee, memo }: sendMsgUpdateWorkloadParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateWorkload: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateWorkload({ value: MsgUpdateWorkload.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateWorkload: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryAllWorkloadResponse({ value, fee, memo }: sendQueryAllWorkloadResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryAllWorkloadResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryAllWorkloadResponse({ value: QueryAllWorkloadResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryAllWorkloadResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
 		async sendWorkload({ value, fee, memo }: sendWorkloadParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendWorkload: Unable to sign Tx. Signer is not present.')
@@ -466,60 +368,110 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		
-		queryGetWorkloadRequest({ value }: queryGetWorkloadRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetWorkloadRequest", value: QueryGetWorkloadRequest.fromPartial( value ) }  
+		async sendMsgCreateWorkload({ value, fee, memo }: sendMsgCreateWorkloadParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateWorkload: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgCreateWorkload({ value: MsgCreateWorkload.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:QueryGetWorkloadRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendMsgCreateWorkload: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		queryGetWorkloadResponse({ value }: queryGetWorkloadResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetWorkloadResponse", value: QueryGetWorkloadResponse.fromPartial( value ) }  
+		async sendMsgDeleteWorkloadResponse({ value, fee, memo }: sendMsgDeleteWorkloadResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgDeleteWorkloadResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgDeleteWorkloadResponse({ value: MsgDeleteWorkloadResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:QueryGetWorkloadResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendMsgDeleteWorkloadResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		params({ value }: paramsParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.Params", value: Params.fromPartial( value ) }  
+		async sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryParamsRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryParamsRequest({ value: QueryParamsRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:Params: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendQueryParamsRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryParamsRequest", value: QueryParamsRequest.fromPartial( value ) }  
+		async sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryParamsResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryParamsResponse({ value: QueryParamsResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:QueryParamsRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendQueryParamsResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		msgUpdateWorkload({ value }: msgUpdateWorkloadParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.MsgUpdateWorkload", value: MsgUpdateWorkload.fromPartial( value ) }  
+		async sendQueryGetWorkloadResponse({ value, fee, memo }: sendQueryGetWorkloadResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetWorkloadResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetWorkloadResponse({ value: QueryGetWorkloadResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateWorkload: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendQueryGetWorkloadResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.MsgUpdateParams", value: MsgUpdateParams.fromPartial( value ) }  
+		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryParamsResponse", value: QueryParamsResponse.fromPartial( value ) }  
+		async sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateParams({ value: MsgUpdateParams.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:QueryParamsResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		
+		queryAllWorkloadRequest({ value }: queryAllWorkloadRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryAllWorkloadRequest", value: QueryAllWorkloadRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryAllWorkloadRequest: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -539,38 +491,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		genesisState({ value }: genesisStateParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.GenesisState", value: GenesisState.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgCreateWorkload({ value }: msgCreateWorkloadParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.MsgCreateWorkload", value: MsgCreateWorkload.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgCreateWorkload: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryAllWorkloadRequest({ value }: queryAllWorkloadRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryAllWorkloadRequest", value: QueryAllWorkloadRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryAllWorkloadRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryAllWorkloadResponse({ value }: queryAllWorkloadResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryAllWorkloadResponse", value: QueryAllWorkloadResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryAllWorkloadResponse: Could not create message: ' + e.message)
-			}
-		},
-		
 		msgCreateWorkloadResponse({ value }: msgCreateWorkloadResponseParams): EncodeObject {
 			try {
 				return { typeUrl: "/enreach.workload.MsgCreateWorkloadResponse", value: MsgCreateWorkloadResponse.fromPartial( value ) }  
@@ -579,11 +499,19 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		msgDeleteWorkloadResponse({ value }: msgDeleteWorkloadResponseParams): EncodeObject {
+		queryGetWorkloadRequest({ value }: queryGetWorkloadRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/enreach.workload.MsgDeleteWorkloadResponse", value: MsgDeleteWorkloadResponse.fromPartial( value ) }  
+				return { typeUrl: "/enreach.workload.QueryGetWorkloadRequest", value: QueryGetWorkloadRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgDeleteWorkloadResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryGetWorkloadRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		params({ value }: paramsParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.Params", value: Params.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:Params: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -595,11 +523,83 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		msgUpdateWorkload({ value }: msgUpdateWorkloadParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.MsgUpdateWorkload", value: MsgUpdateWorkload.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateWorkload: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryAllWorkloadResponse({ value }: queryAllWorkloadResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryAllWorkloadResponse", value: QueryAllWorkloadResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryAllWorkloadResponse: Could not create message: ' + e.message)
+			}
+		},
+		
 		workload({ value }: workloadParams): EncodeObject {
 			try {
 				return { typeUrl: "/enreach.workload.Workload", value: Workload.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:Workload: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgCreateWorkload({ value }: msgCreateWorkloadParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.MsgCreateWorkload", value: MsgCreateWorkload.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgCreateWorkload: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgDeleteWorkloadResponse({ value }: msgDeleteWorkloadResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.MsgDeleteWorkloadResponse", value: MsgDeleteWorkloadResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgDeleteWorkloadResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryParamsRequest", value: QueryParamsRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryParamsRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryParamsResponse", value: QueryParamsResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryParamsResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryGetWorkloadResponse({ value }: queryGetWorkloadResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetWorkloadResponse", value: QueryGetWorkloadResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetWorkloadResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		genesisState({ value }: genesisStateParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.GenesisState", value: GenesisState.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.MsgUpdateParams", value: MsgUpdateParams.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message)
 			}
 		},
 		

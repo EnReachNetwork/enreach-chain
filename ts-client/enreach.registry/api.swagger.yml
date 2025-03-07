@@ -35,7 +35,7 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /enreach/registry/region/{id}:
+  /enreach/registry/region/{code}:
     get:
       operationId: Query_Region
       responses:
@@ -47,9 +47,6 @@ paths:
               Region:
                 type: object
                 properties:
-                  id:
-                    type: string
-                    format: uint64
                   code:
                     type: string
                   name:
@@ -58,6 +55,14 @@ paths:
                     type: string
                   creator:
                     type: string
+                  createAt:
+                    type: string
+                    format: uint64
+                  updator:
+                    type: string
+                  updateAt:
+                    type: string
+                    format: uint64
         default:
           description: An unexpected error response.
           schema:
@@ -77,11 +82,10 @@ paths:
                       type: string
                   additionalProperties: {}
       parameters:
-        - name: id
+        - name: code
           in: path
           required: true
           type: string
-          format: uint64
       tags:
         - Query
   /enreach/registry/regions:
@@ -98,9 +102,6 @@ paths:
                 items:
                   type: object
                   properties:
-                    id:
-                      type: string
-                      format: uint64
                     code:
                       type: string
                     name:
@@ -109,6 +110,14 @@ paths:
                       type: string
                     creator:
                       type: string
+                    createAt:
+                      type: string
+                      format: uint64
+                    updator:
+                      type: string
+                    updateAt:
+                      type: string
+                      format: uint64
               pagination:
                 type: object
                 properties:
@@ -218,9 +227,6 @@ definitions:
         items:
           type: object
           properties:
-            id:
-              type: string
-              format: uint64
             code:
               type: string
             name:
@@ -229,6 +235,14 @@ definitions:
               type: string
             creator:
               type: string
+            createAt:
+              type: string
+              format: uint64
+            updator:
+              type: string
+            updateAt:
+              type: string
+              format: uint64
       pagination:
         type: object
         properties:
@@ -244,9 +258,6 @@ definitions:
       Region:
         type: object
         properties:
-          id:
-            type: string
-            format: uint64
           code:
             type: string
           name:
@@ -255,6 +266,14 @@ definitions:
             type: string
           creator:
             type: string
+          createAt:
+            type: string
+            format: uint64
+          updator:
+            type: string
+          updateAt:
+            type: string
+            format: uint64
   QueryParamsResponse:
     type: object
     properties:
@@ -265,9 +284,6 @@ definitions:
   registry.Region:
     type: object
     properties:
-      id:
-        type: string
-        format: uint64
       code:
         type: string
       name:
@@ -276,12 +292,16 @@ definitions:
         type: string
       creator:
         type: string
-  MsgCreateRegionResponse:
-    type: object
-    properties:
-      id:
+      createAt:
         type: string
         format: uint64
+      updator:
+        type: string
+      updateAt:
+        type: string
+        format: uint64
+  MsgCreateRegionResponse:
+    type: object
   MsgDeleteRegionResponse:
     type: object
   MsgUpdateParamsResponse:

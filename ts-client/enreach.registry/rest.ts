@@ -42,12 +42,28 @@ export interface PageResponse {
 }
 
 export interface QueryAllRegionResponse {
-  Region?: { id?: string; code?: string; name?: string; description?: string; creator?: string }[];
+  Region?: {
+    code?: string;
+    name?: string;
+    description?: string;
+    creator?: string;
+    createAt?: string;
+    updator?: string;
+    updateAt?: string;
+  }[];
   pagination?: { next_key?: string; total?: string };
 }
 
 export interface QueryGetRegionResponse {
-  Region?: { id?: string; code?: string; name?: string; description?: string; creator?: string };
+  Region?: {
+    code?: string;
+    name?: string;
+    description?: string;
+    creator?: string;
+    createAt?: string;
+    updator?: string;
+    updateAt?: string;
+  };
 }
 
 export interface QueryParamsResponse {
@@ -57,18 +73,20 @@ export interface QueryParamsResponse {
 export type RegistryParams = object;
 
 export interface RegistryRegion {
-  /** @format uint64 */
-  id?: string;
   code?: string;
   name?: string;
   description?: string;
   creator?: string;
+
+  /** @format uint64 */
+  createAt?: string;
+  updator?: string;
+
+  /** @format uint64 */
+  updateAt?: string;
 }
 
-export interface MsgCreateRegionResponse {
-  /** @format uint64 */
-  id?: string;
-}
+export type MsgCreateRegionResponse = object;
 
 export type MsgDeleteRegionResponse = object;
 
@@ -221,14 +239,24 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    *
    * @tags Query
    * @name QueryRegion
-   * @request GET:/enreach/registry/region/{id}
+   * @request GET:/enreach/registry/region/{code}
    */
-  queryRegion = (id: string, params: RequestParams = {}) =>
+  queryRegion = (code: string, params: RequestParams = {}) =>
     this.request<
-      { Region?: { id?: string; code?: string; name?: string; description?: string; creator?: string } },
+      {
+        Region?: {
+          code?: string;
+          name?: string;
+          description?: string;
+          creator?: string;
+          createAt?: string;
+          updator?: string;
+          updateAt?: string;
+        };
+      },
       { code?: number; message?: string; details?: { "@type"?: string }[] }
     >({
-      path: `/enreach/registry/region/${id}`,
+      path: `/enreach/registry/region/${code}`,
       method: "GET",
       ...params,
     });
@@ -252,7 +280,15 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   ) =>
     this.request<
       {
-        Region?: { id?: string; code?: string; name?: string; description?: string; creator?: string }[];
+        Region?: {
+          code?: string;
+          name?: string;
+          description?: string;
+          creator?: string;
+          createAt?: string;
+          updator?: string;
+          updateAt?: string;
+        }[];
         pagination?: { next_key?: string; total?: string };
       },
       { code?: number; message?: string; details?: { "@type"?: string }[] }

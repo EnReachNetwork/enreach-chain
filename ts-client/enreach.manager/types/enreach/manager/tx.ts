@@ -1,5 +1,4 @@
 /* eslint-disable */
-import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Params } from "./params";
 
@@ -20,50 +19,90 @@ export interface MsgUpdateParams {
 export interface MsgUpdateParamsResponse {
 }
 
-export interface MsgRegisterManager {
-  creator: string;
-  managerAddress: string;
-  operatorName: string;
-  operatorDesc: string;
-  operatorWebsiteURL: string;
-  evmAddress: string;
+export interface MsgCreateOperator {
+  operatorAccount: string;
+  name: string;
+  description: string;
+  websiteUrl: string;
+}
+
+export interface MsgCreateOperatorResponse {
+}
+
+export interface MsgBindOperatorManagerAccount {
+  operatorAccount: string;
+  managerAccount: string;
+  managerSignature: Uint8Array;
+  forceUnbind: boolean;
+}
+
+export interface MsgBindOperatorManagerAccountResponse {
+}
+
+export interface MsgSetManagerRegion {
+  operatorAccount: string;
+  regionCode: string;
+}
+
+export interface MsgSetManagerRegionResponse {
+}
+
+export interface MsgUpdateManagerConnParams {
+  operatorAccount: string;
   hostAddress: string;
   managerPort: number;
   trackerPort: number;
   chainAPIPort: number;
   chainRPCPort: number;
-  regionCode: string;
+}
+
+export interface MsgUpdateManagerConnParamsResponse {
+}
+
+export interface MsgActivateManager {
+  operatorAccount: string;
+  license: string;
+}
+
+export interface MsgActivateManagerResponse {
+}
+
+export interface MsgBindOperatorEVMAccount {
+  operatorAccount: string;
+  evmAccount: string;
+  evmSignature: Uint8Array;
+}
+
+export interface MsgBindOperatorEVMAccountResponse {
+}
+
+export interface MsgUpdateOperatorBasicInfo {
+  operatorAccount: string;
+  name: string;
+  description: string;
+  websiteUrl: string;
+}
+
+export interface MsgUpdateOperatorBasicInfoResponse {
+}
+
+export interface MsgRegisterManager {
+  managerAccount: string;
+  hostAddress: string;
+  managerPort: number;
+  trackerPort: number;
+  chainAPIPort: number;
+  chainRPCPort: number;
 }
 
 export interface MsgRegisterManagerResponse {
-  id: number;
 }
 
-export interface MsgUpdateManager {
-  creator: string;
-  id: number;
-  managerAddress: string;
-  operatorName: string;
-  operatorDesc: string;
-  operatorWebsiteURL: string;
-  evmAddress: string;
-  hostAddress: string;
-  managerPort: number;
-  trackerPort: number;
-  chainAPIPort: number;
-  chainRPCPort: number;
-  regionCode: string;
+export interface MsgGoWorking {
+  managerAccount: string;
 }
 
-export interface MsgUpdateManagerResponse {
-}
-
-export interface MsgDeleteManager {
-  creator: string;
-  id: number;
-}
-
-export interface MsgDeleteManagerResponse {
+export interface MsgGoWorkingResponse {
 }
 
 function createBaseMsgUpdateParams(): MsgUpdateParams {
@@ -185,60 +224,1031 @@ export const MsgUpdateParamsResponse = {
   },
 };
 
+function createBaseMsgCreateOperator(): MsgCreateOperator {
+  return { operatorAccount: "", name: "", description: "", websiteUrl: "" };
+}
+
+export const MsgCreateOperator = {
+  encode(message: MsgCreateOperator, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.operatorAccount !== "") {
+      writer.uint32(10).string(message.operatorAccount);
+    }
+    if (message.name !== "") {
+      writer.uint32(18).string(message.name);
+    }
+    if (message.description !== "") {
+      writer.uint32(26).string(message.description);
+    }
+    if (message.websiteUrl !== "") {
+      writer.uint32(34).string(message.websiteUrl);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateOperator {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgCreateOperator();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.operatorAccount = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.description = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.websiteUrl = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgCreateOperator {
+    return {
+      operatorAccount: isSet(object.operatorAccount) ? String(object.operatorAccount) : "",
+      name: isSet(object.name) ? String(object.name) : "",
+      description: isSet(object.description) ? String(object.description) : "",
+      websiteUrl: isSet(object.websiteUrl) ? String(object.websiteUrl) : "",
+    };
+  },
+
+  toJSON(message: MsgCreateOperator): unknown {
+    const obj: any = {};
+    if (message.operatorAccount !== "") {
+      obj.operatorAccount = message.operatorAccount;
+    }
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    if (message.description !== "") {
+      obj.description = message.description;
+    }
+    if (message.websiteUrl !== "") {
+      obj.websiteUrl = message.websiteUrl;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgCreateOperator>, I>>(base?: I): MsgCreateOperator {
+    return MsgCreateOperator.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgCreateOperator>, I>>(object: I): MsgCreateOperator {
+    const message = createBaseMsgCreateOperator();
+    message.operatorAccount = object.operatorAccount ?? "";
+    message.name = object.name ?? "";
+    message.description = object.description ?? "";
+    message.websiteUrl = object.websiteUrl ?? "";
+    return message;
+  },
+};
+
+function createBaseMsgCreateOperatorResponse(): MsgCreateOperatorResponse {
+  return {};
+}
+
+export const MsgCreateOperatorResponse = {
+  encode(_: MsgCreateOperatorResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateOperatorResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgCreateOperatorResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgCreateOperatorResponse {
+    return {};
+  },
+
+  toJSON(_: MsgCreateOperatorResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgCreateOperatorResponse>, I>>(base?: I): MsgCreateOperatorResponse {
+    return MsgCreateOperatorResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgCreateOperatorResponse>, I>>(_: I): MsgCreateOperatorResponse {
+    const message = createBaseMsgCreateOperatorResponse();
+    return message;
+  },
+};
+
+function createBaseMsgBindOperatorManagerAccount(): MsgBindOperatorManagerAccount {
+  return { operatorAccount: "", managerAccount: "", managerSignature: new Uint8Array(0), forceUnbind: false };
+}
+
+export const MsgBindOperatorManagerAccount = {
+  encode(message: MsgBindOperatorManagerAccount, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.operatorAccount !== "") {
+      writer.uint32(10).string(message.operatorAccount);
+    }
+    if (message.managerAccount !== "") {
+      writer.uint32(18).string(message.managerAccount);
+    }
+    if (message.managerSignature.length !== 0) {
+      writer.uint32(26).bytes(message.managerSignature);
+    }
+    if (message.forceUnbind === true) {
+      writer.uint32(32).bool(message.forceUnbind);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgBindOperatorManagerAccount {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgBindOperatorManagerAccount();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.operatorAccount = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.managerAccount = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.managerSignature = reader.bytes();
+          continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+
+          message.forceUnbind = reader.bool();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgBindOperatorManagerAccount {
+    return {
+      operatorAccount: isSet(object.operatorAccount) ? String(object.operatorAccount) : "",
+      managerAccount: isSet(object.managerAccount) ? String(object.managerAccount) : "",
+      managerSignature: isSet(object.managerSignature) ? bytesFromBase64(object.managerSignature) : new Uint8Array(0),
+      forceUnbind: isSet(object.forceUnbind) ? Boolean(object.forceUnbind) : false,
+    };
+  },
+
+  toJSON(message: MsgBindOperatorManagerAccount): unknown {
+    const obj: any = {};
+    if (message.operatorAccount !== "") {
+      obj.operatorAccount = message.operatorAccount;
+    }
+    if (message.managerAccount !== "") {
+      obj.managerAccount = message.managerAccount;
+    }
+    if (message.managerSignature.length !== 0) {
+      obj.managerSignature = base64FromBytes(message.managerSignature);
+    }
+    if (message.forceUnbind === true) {
+      obj.forceUnbind = message.forceUnbind;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgBindOperatorManagerAccount>, I>>(base?: I): MsgBindOperatorManagerAccount {
+    return MsgBindOperatorManagerAccount.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgBindOperatorManagerAccount>, I>>(
+    object: I,
+  ): MsgBindOperatorManagerAccount {
+    const message = createBaseMsgBindOperatorManagerAccount();
+    message.operatorAccount = object.operatorAccount ?? "";
+    message.managerAccount = object.managerAccount ?? "";
+    message.managerSignature = object.managerSignature ?? new Uint8Array(0);
+    message.forceUnbind = object.forceUnbind ?? false;
+    return message;
+  },
+};
+
+function createBaseMsgBindOperatorManagerAccountResponse(): MsgBindOperatorManagerAccountResponse {
+  return {};
+}
+
+export const MsgBindOperatorManagerAccountResponse = {
+  encode(_: MsgBindOperatorManagerAccountResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgBindOperatorManagerAccountResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgBindOperatorManagerAccountResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgBindOperatorManagerAccountResponse {
+    return {};
+  },
+
+  toJSON(_: MsgBindOperatorManagerAccountResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgBindOperatorManagerAccountResponse>, I>>(
+    base?: I,
+  ): MsgBindOperatorManagerAccountResponse {
+    return MsgBindOperatorManagerAccountResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgBindOperatorManagerAccountResponse>, I>>(
+    _: I,
+  ): MsgBindOperatorManagerAccountResponse {
+    const message = createBaseMsgBindOperatorManagerAccountResponse();
+    return message;
+  },
+};
+
+function createBaseMsgSetManagerRegion(): MsgSetManagerRegion {
+  return { operatorAccount: "", regionCode: "" };
+}
+
+export const MsgSetManagerRegion = {
+  encode(message: MsgSetManagerRegion, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.operatorAccount !== "") {
+      writer.uint32(10).string(message.operatorAccount);
+    }
+    if (message.regionCode !== "") {
+      writer.uint32(18).string(message.regionCode);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgSetManagerRegion {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgSetManagerRegion();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.operatorAccount = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.regionCode = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgSetManagerRegion {
+    return {
+      operatorAccount: isSet(object.operatorAccount) ? String(object.operatorAccount) : "",
+      regionCode: isSet(object.regionCode) ? String(object.regionCode) : "",
+    };
+  },
+
+  toJSON(message: MsgSetManagerRegion): unknown {
+    const obj: any = {};
+    if (message.operatorAccount !== "") {
+      obj.operatorAccount = message.operatorAccount;
+    }
+    if (message.regionCode !== "") {
+      obj.regionCode = message.regionCode;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgSetManagerRegion>, I>>(base?: I): MsgSetManagerRegion {
+    return MsgSetManagerRegion.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgSetManagerRegion>, I>>(object: I): MsgSetManagerRegion {
+    const message = createBaseMsgSetManagerRegion();
+    message.operatorAccount = object.operatorAccount ?? "";
+    message.regionCode = object.regionCode ?? "";
+    return message;
+  },
+};
+
+function createBaseMsgSetManagerRegionResponse(): MsgSetManagerRegionResponse {
+  return {};
+}
+
+export const MsgSetManagerRegionResponse = {
+  encode(_: MsgSetManagerRegionResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgSetManagerRegionResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgSetManagerRegionResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgSetManagerRegionResponse {
+    return {};
+  },
+
+  toJSON(_: MsgSetManagerRegionResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgSetManagerRegionResponse>, I>>(base?: I): MsgSetManagerRegionResponse {
+    return MsgSetManagerRegionResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgSetManagerRegionResponse>, I>>(_: I): MsgSetManagerRegionResponse {
+    const message = createBaseMsgSetManagerRegionResponse();
+    return message;
+  },
+};
+
+function createBaseMsgUpdateManagerConnParams(): MsgUpdateManagerConnParams {
+  return { operatorAccount: "", hostAddress: "", managerPort: 0, trackerPort: 0, chainAPIPort: 0, chainRPCPort: 0 };
+}
+
+export const MsgUpdateManagerConnParams = {
+  encode(message: MsgUpdateManagerConnParams, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.operatorAccount !== "") {
+      writer.uint32(10).string(message.operatorAccount);
+    }
+    if (message.hostAddress !== "") {
+      writer.uint32(18).string(message.hostAddress);
+    }
+    if (message.managerPort !== 0) {
+      writer.uint32(24).uint32(message.managerPort);
+    }
+    if (message.trackerPort !== 0) {
+      writer.uint32(32).uint32(message.trackerPort);
+    }
+    if (message.chainAPIPort !== 0) {
+      writer.uint32(40).uint32(message.chainAPIPort);
+    }
+    if (message.chainRPCPort !== 0) {
+      writer.uint32(48).uint32(message.chainRPCPort);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateManagerConnParams {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgUpdateManagerConnParams();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.operatorAccount = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.hostAddress = reader.string();
+          continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+
+          message.managerPort = reader.uint32();
+          continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+
+          message.trackerPort = reader.uint32();
+          continue;
+        case 5:
+          if (tag !== 40) {
+            break;
+          }
+
+          message.chainAPIPort = reader.uint32();
+          continue;
+        case 6:
+          if (tag !== 48) {
+            break;
+          }
+
+          message.chainRPCPort = reader.uint32();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgUpdateManagerConnParams {
+    return {
+      operatorAccount: isSet(object.operatorAccount) ? String(object.operatorAccount) : "",
+      hostAddress: isSet(object.hostAddress) ? String(object.hostAddress) : "",
+      managerPort: isSet(object.managerPort) ? Number(object.managerPort) : 0,
+      trackerPort: isSet(object.trackerPort) ? Number(object.trackerPort) : 0,
+      chainAPIPort: isSet(object.chainAPIPort) ? Number(object.chainAPIPort) : 0,
+      chainRPCPort: isSet(object.chainRPCPort) ? Number(object.chainRPCPort) : 0,
+    };
+  },
+
+  toJSON(message: MsgUpdateManagerConnParams): unknown {
+    const obj: any = {};
+    if (message.operatorAccount !== "") {
+      obj.operatorAccount = message.operatorAccount;
+    }
+    if (message.hostAddress !== "") {
+      obj.hostAddress = message.hostAddress;
+    }
+    if (message.managerPort !== 0) {
+      obj.managerPort = Math.round(message.managerPort);
+    }
+    if (message.trackerPort !== 0) {
+      obj.trackerPort = Math.round(message.trackerPort);
+    }
+    if (message.chainAPIPort !== 0) {
+      obj.chainAPIPort = Math.round(message.chainAPIPort);
+    }
+    if (message.chainRPCPort !== 0) {
+      obj.chainRPCPort = Math.round(message.chainRPCPort);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgUpdateManagerConnParams>, I>>(base?: I): MsgUpdateManagerConnParams {
+    return MsgUpdateManagerConnParams.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateManagerConnParams>, I>>(object: I): MsgUpdateManagerConnParams {
+    const message = createBaseMsgUpdateManagerConnParams();
+    message.operatorAccount = object.operatorAccount ?? "";
+    message.hostAddress = object.hostAddress ?? "";
+    message.managerPort = object.managerPort ?? 0;
+    message.trackerPort = object.trackerPort ?? 0;
+    message.chainAPIPort = object.chainAPIPort ?? 0;
+    message.chainRPCPort = object.chainRPCPort ?? 0;
+    return message;
+  },
+};
+
+function createBaseMsgUpdateManagerConnParamsResponse(): MsgUpdateManagerConnParamsResponse {
+  return {};
+}
+
+export const MsgUpdateManagerConnParamsResponse = {
+  encode(_: MsgUpdateManagerConnParamsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateManagerConnParamsResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgUpdateManagerConnParamsResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgUpdateManagerConnParamsResponse {
+    return {};
+  },
+
+  toJSON(_: MsgUpdateManagerConnParamsResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgUpdateManagerConnParamsResponse>, I>>(
+    base?: I,
+  ): MsgUpdateManagerConnParamsResponse {
+    return MsgUpdateManagerConnParamsResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateManagerConnParamsResponse>, I>>(
+    _: I,
+  ): MsgUpdateManagerConnParamsResponse {
+    const message = createBaseMsgUpdateManagerConnParamsResponse();
+    return message;
+  },
+};
+
+function createBaseMsgActivateManager(): MsgActivateManager {
+  return { operatorAccount: "", license: "" };
+}
+
+export const MsgActivateManager = {
+  encode(message: MsgActivateManager, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.operatorAccount !== "") {
+      writer.uint32(10).string(message.operatorAccount);
+    }
+    if (message.license !== "") {
+      writer.uint32(18).string(message.license);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgActivateManager {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgActivateManager();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.operatorAccount = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.license = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgActivateManager {
+    return {
+      operatorAccount: isSet(object.operatorAccount) ? String(object.operatorAccount) : "",
+      license: isSet(object.license) ? String(object.license) : "",
+    };
+  },
+
+  toJSON(message: MsgActivateManager): unknown {
+    const obj: any = {};
+    if (message.operatorAccount !== "") {
+      obj.operatorAccount = message.operatorAccount;
+    }
+    if (message.license !== "") {
+      obj.license = message.license;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgActivateManager>, I>>(base?: I): MsgActivateManager {
+    return MsgActivateManager.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgActivateManager>, I>>(object: I): MsgActivateManager {
+    const message = createBaseMsgActivateManager();
+    message.operatorAccount = object.operatorAccount ?? "";
+    message.license = object.license ?? "";
+    return message;
+  },
+};
+
+function createBaseMsgActivateManagerResponse(): MsgActivateManagerResponse {
+  return {};
+}
+
+export const MsgActivateManagerResponse = {
+  encode(_: MsgActivateManagerResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgActivateManagerResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgActivateManagerResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgActivateManagerResponse {
+    return {};
+  },
+
+  toJSON(_: MsgActivateManagerResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgActivateManagerResponse>, I>>(base?: I): MsgActivateManagerResponse {
+    return MsgActivateManagerResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgActivateManagerResponse>, I>>(_: I): MsgActivateManagerResponse {
+    const message = createBaseMsgActivateManagerResponse();
+    return message;
+  },
+};
+
+function createBaseMsgBindOperatorEVMAccount(): MsgBindOperatorEVMAccount {
+  return { operatorAccount: "", evmAccount: "", evmSignature: new Uint8Array(0) };
+}
+
+export const MsgBindOperatorEVMAccount = {
+  encode(message: MsgBindOperatorEVMAccount, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.operatorAccount !== "") {
+      writer.uint32(10).string(message.operatorAccount);
+    }
+    if (message.evmAccount !== "") {
+      writer.uint32(18).string(message.evmAccount);
+    }
+    if (message.evmSignature.length !== 0) {
+      writer.uint32(26).bytes(message.evmSignature);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgBindOperatorEVMAccount {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgBindOperatorEVMAccount();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.operatorAccount = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.evmAccount = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.evmSignature = reader.bytes();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgBindOperatorEVMAccount {
+    return {
+      operatorAccount: isSet(object.operatorAccount) ? String(object.operatorAccount) : "",
+      evmAccount: isSet(object.evmAccount) ? String(object.evmAccount) : "",
+      evmSignature: isSet(object.evmSignature) ? bytesFromBase64(object.evmSignature) : new Uint8Array(0),
+    };
+  },
+
+  toJSON(message: MsgBindOperatorEVMAccount): unknown {
+    const obj: any = {};
+    if (message.operatorAccount !== "") {
+      obj.operatorAccount = message.operatorAccount;
+    }
+    if (message.evmAccount !== "") {
+      obj.evmAccount = message.evmAccount;
+    }
+    if (message.evmSignature.length !== 0) {
+      obj.evmSignature = base64FromBytes(message.evmSignature);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgBindOperatorEVMAccount>, I>>(base?: I): MsgBindOperatorEVMAccount {
+    return MsgBindOperatorEVMAccount.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgBindOperatorEVMAccount>, I>>(object: I): MsgBindOperatorEVMAccount {
+    const message = createBaseMsgBindOperatorEVMAccount();
+    message.operatorAccount = object.operatorAccount ?? "";
+    message.evmAccount = object.evmAccount ?? "";
+    message.evmSignature = object.evmSignature ?? new Uint8Array(0);
+    return message;
+  },
+};
+
+function createBaseMsgBindOperatorEVMAccountResponse(): MsgBindOperatorEVMAccountResponse {
+  return {};
+}
+
+export const MsgBindOperatorEVMAccountResponse = {
+  encode(_: MsgBindOperatorEVMAccountResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgBindOperatorEVMAccountResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgBindOperatorEVMAccountResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgBindOperatorEVMAccountResponse {
+    return {};
+  },
+
+  toJSON(_: MsgBindOperatorEVMAccountResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgBindOperatorEVMAccountResponse>, I>>(
+    base?: I,
+  ): MsgBindOperatorEVMAccountResponse {
+    return MsgBindOperatorEVMAccountResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgBindOperatorEVMAccountResponse>, I>>(
+    _: I,
+  ): MsgBindOperatorEVMAccountResponse {
+    const message = createBaseMsgBindOperatorEVMAccountResponse();
+    return message;
+  },
+};
+
+function createBaseMsgUpdateOperatorBasicInfo(): MsgUpdateOperatorBasicInfo {
+  return { operatorAccount: "", name: "", description: "", websiteUrl: "" };
+}
+
+export const MsgUpdateOperatorBasicInfo = {
+  encode(message: MsgUpdateOperatorBasicInfo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.operatorAccount !== "") {
+      writer.uint32(10).string(message.operatorAccount);
+    }
+    if (message.name !== "") {
+      writer.uint32(18).string(message.name);
+    }
+    if (message.description !== "") {
+      writer.uint32(26).string(message.description);
+    }
+    if (message.websiteUrl !== "") {
+      writer.uint32(34).string(message.websiteUrl);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateOperatorBasicInfo {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgUpdateOperatorBasicInfo();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.operatorAccount = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.description = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.websiteUrl = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgUpdateOperatorBasicInfo {
+    return {
+      operatorAccount: isSet(object.operatorAccount) ? String(object.operatorAccount) : "",
+      name: isSet(object.name) ? String(object.name) : "",
+      description: isSet(object.description) ? String(object.description) : "",
+      websiteUrl: isSet(object.websiteUrl) ? String(object.websiteUrl) : "",
+    };
+  },
+
+  toJSON(message: MsgUpdateOperatorBasicInfo): unknown {
+    const obj: any = {};
+    if (message.operatorAccount !== "") {
+      obj.operatorAccount = message.operatorAccount;
+    }
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    if (message.description !== "") {
+      obj.description = message.description;
+    }
+    if (message.websiteUrl !== "") {
+      obj.websiteUrl = message.websiteUrl;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgUpdateOperatorBasicInfo>, I>>(base?: I): MsgUpdateOperatorBasicInfo {
+    return MsgUpdateOperatorBasicInfo.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateOperatorBasicInfo>, I>>(object: I): MsgUpdateOperatorBasicInfo {
+    const message = createBaseMsgUpdateOperatorBasicInfo();
+    message.operatorAccount = object.operatorAccount ?? "";
+    message.name = object.name ?? "";
+    message.description = object.description ?? "";
+    message.websiteUrl = object.websiteUrl ?? "";
+    return message;
+  },
+};
+
+function createBaseMsgUpdateOperatorBasicInfoResponse(): MsgUpdateOperatorBasicInfoResponse {
+  return {};
+}
+
+export const MsgUpdateOperatorBasicInfoResponse = {
+  encode(_: MsgUpdateOperatorBasicInfoResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateOperatorBasicInfoResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgUpdateOperatorBasicInfoResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgUpdateOperatorBasicInfoResponse {
+    return {};
+  },
+
+  toJSON(_: MsgUpdateOperatorBasicInfoResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgUpdateOperatorBasicInfoResponse>, I>>(
+    base?: I,
+  ): MsgUpdateOperatorBasicInfoResponse {
+    return MsgUpdateOperatorBasicInfoResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateOperatorBasicInfoResponse>, I>>(
+    _: I,
+  ): MsgUpdateOperatorBasicInfoResponse {
+    const message = createBaseMsgUpdateOperatorBasicInfoResponse();
+    return message;
+  },
+};
+
 function createBaseMsgRegisterManager(): MsgRegisterManager {
-  return {
-    creator: "",
-    managerAddress: "",
-    operatorName: "",
-    operatorDesc: "",
-    operatorWebsiteURL: "",
-    evmAddress: "",
-    hostAddress: "",
-    managerPort: 0,
-    trackerPort: 0,
-    chainAPIPort: 0,
-    chainRPCPort: 0,
-    regionCode: "",
-  };
+  return { managerAccount: "", hostAddress: "", managerPort: 0, trackerPort: 0, chainAPIPort: 0, chainRPCPort: 0 };
 }
 
 export const MsgRegisterManager = {
   encode(message: MsgRegisterManager, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.creator !== "") {
-      writer.uint32(10).string(message.creator);
-    }
-    if (message.managerAddress !== "") {
-      writer.uint32(18).string(message.managerAddress);
-    }
-    if (message.operatorName !== "") {
-      writer.uint32(26).string(message.operatorName);
-    }
-    if (message.operatorDesc !== "") {
-      writer.uint32(34).string(message.operatorDesc);
-    }
-    if (message.operatorWebsiteURL !== "") {
-      writer.uint32(42).string(message.operatorWebsiteURL);
-    }
-    if (message.evmAddress !== "") {
-      writer.uint32(50).string(message.evmAddress);
+    if (message.managerAccount !== "") {
+      writer.uint32(10).string(message.managerAccount);
     }
     if (message.hostAddress !== "") {
-      writer.uint32(58).string(message.hostAddress);
+      writer.uint32(18).string(message.hostAddress);
     }
     if (message.managerPort !== 0) {
-      writer.uint32(64).uint32(message.managerPort);
+      writer.uint32(24).uint32(message.managerPort);
     }
     if (message.trackerPort !== 0) {
-      writer.uint32(72).uint32(message.trackerPort);
+      writer.uint32(32).uint32(message.trackerPort);
     }
     if (message.chainAPIPort !== 0) {
-      writer.uint32(80).uint32(message.chainAPIPort);
+      writer.uint32(40).uint32(message.chainAPIPort);
     }
     if (message.chainRPCPort !== 0) {
-      writer.uint32(88).uint32(message.chainRPCPort);
-    }
-    if (message.regionCode !== "") {
-      writer.uint32(98).string(message.regionCode);
+      writer.uint32(48).uint32(message.chainRPCPort);
     }
     return writer;
   },
@@ -255,84 +1265,42 @@ export const MsgRegisterManager = {
             break;
           }
 
-          message.creator = reader.string();
+          message.managerAccount = reader.string();
           continue;
         case 2:
           if (tag !== 18) {
             break;
           }
 
-          message.managerAddress = reader.string();
-          continue;
-        case 3:
-          if (tag !== 26) {
-            break;
-          }
-
-          message.operatorName = reader.string();
-          continue;
-        case 4:
-          if (tag !== 34) {
-            break;
-          }
-
-          message.operatorDesc = reader.string();
-          continue;
-        case 5:
-          if (tag !== 42) {
-            break;
-          }
-
-          message.operatorWebsiteURL = reader.string();
-          continue;
-        case 6:
-          if (tag !== 50) {
-            break;
-          }
-
-          message.evmAddress = reader.string();
-          continue;
-        case 7:
-          if (tag !== 58) {
-            break;
-          }
-
           message.hostAddress = reader.string();
           continue;
-        case 8:
-          if (tag !== 64) {
+        case 3:
+          if (tag !== 24) {
             break;
           }
 
           message.managerPort = reader.uint32();
           continue;
-        case 9:
-          if (tag !== 72) {
+        case 4:
+          if (tag !== 32) {
             break;
           }
 
           message.trackerPort = reader.uint32();
           continue;
-        case 10:
-          if (tag !== 80) {
+        case 5:
+          if (tag !== 40) {
             break;
           }
 
           message.chainAPIPort = reader.uint32();
           continue;
-        case 11:
-          if (tag !== 88) {
+        case 6:
+          if (tag !== 48) {
             break;
           }
 
           message.chainRPCPort = reader.uint32();
-          continue;
-        case 12:
-          if (tag !== 98) {
-            break;
-          }
-
-          message.regionCode = reader.string();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -345,40 +1313,19 @@ export const MsgRegisterManager = {
 
   fromJSON(object: any): MsgRegisterManager {
     return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      managerAddress: isSet(object.managerAddress) ? String(object.managerAddress) : "",
-      operatorName: isSet(object.operatorName) ? String(object.operatorName) : "",
-      operatorDesc: isSet(object.operatorDesc) ? String(object.operatorDesc) : "",
-      operatorWebsiteURL: isSet(object.operatorWebsiteURL) ? String(object.operatorWebsiteURL) : "",
-      evmAddress: isSet(object.evmAddress) ? String(object.evmAddress) : "",
+      managerAccount: isSet(object.managerAccount) ? String(object.managerAccount) : "",
       hostAddress: isSet(object.hostAddress) ? String(object.hostAddress) : "",
       managerPort: isSet(object.managerPort) ? Number(object.managerPort) : 0,
       trackerPort: isSet(object.trackerPort) ? Number(object.trackerPort) : 0,
       chainAPIPort: isSet(object.chainAPIPort) ? Number(object.chainAPIPort) : 0,
       chainRPCPort: isSet(object.chainRPCPort) ? Number(object.chainRPCPort) : 0,
-      regionCode: isSet(object.regionCode) ? String(object.regionCode) : "",
     };
   },
 
   toJSON(message: MsgRegisterManager): unknown {
     const obj: any = {};
-    if (message.creator !== "") {
-      obj.creator = message.creator;
-    }
-    if (message.managerAddress !== "") {
-      obj.managerAddress = message.managerAddress;
-    }
-    if (message.operatorName !== "") {
-      obj.operatorName = message.operatorName;
-    }
-    if (message.operatorDesc !== "") {
-      obj.operatorDesc = message.operatorDesc;
-    }
-    if (message.operatorWebsiteURL !== "") {
-      obj.operatorWebsiteURL = message.operatorWebsiteURL;
-    }
-    if (message.evmAddress !== "") {
-      obj.evmAddress = message.evmAddress;
+    if (message.managerAccount !== "") {
+      obj.managerAccount = message.managerAccount;
     }
     if (message.hostAddress !== "") {
       obj.hostAddress = message.hostAddress;
@@ -395,9 +1342,6 @@ export const MsgRegisterManager = {
     if (message.chainRPCPort !== 0) {
       obj.chainRPCPort = Math.round(message.chainRPCPort);
     }
-    if (message.regionCode !== "") {
-      obj.regionCode = message.regionCode;
-    }
     return obj;
   },
 
@@ -406,31 +1350,22 @@ export const MsgRegisterManager = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgRegisterManager>, I>>(object: I): MsgRegisterManager {
     const message = createBaseMsgRegisterManager();
-    message.creator = object.creator ?? "";
-    message.managerAddress = object.managerAddress ?? "";
-    message.operatorName = object.operatorName ?? "";
-    message.operatorDesc = object.operatorDesc ?? "";
-    message.operatorWebsiteURL = object.operatorWebsiteURL ?? "";
-    message.evmAddress = object.evmAddress ?? "";
+    message.managerAccount = object.managerAccount ?? "";
     message.hostAddress = object.hostAddress ?? "";
     message.managerPort = object.managerPort ?? 0;
     message.trackerPort = object.trackerPort ?? 0;
     message.chainAPIPort = object.chainAPIPort ?? 0;
     message.chainRPCPort = object.chainRPCPort ?? 0;
-    message.regionCode = object.regionCode ?? "";
     return message;
   },
 };
 
 function createBaseMsgRegisterManagerResponse(): MsgRegisterManagerResponse {
-  return { id: 0 };
+  return {};
 }
 
 export const MsgRegisterManagerResponse = {
-  encode(message: MsgRegisterManagerResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.id !== 0) {
-      writer.uint32(8).uint64(message.id);
-    }
+  encode(_: MsgRegisterManagerResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
@@ -441,13 +1376,6 @@ export const MsgRegisterManagerResponse = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        case 1:
-          if (tag !== 8) {
-            break;
-          }
-
-          message.id = longToNumber(reader.uint64() as Long);
-          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -457,94 +1385,40 @@ export const MsgRegisterManagerResponse = {
     return message;
   },
 
-  fromJSON(object: any): MsgRegisterManagerResponse {
-    return { id: isSet(object.id) ? Number(object.id) : 0 };
+  fromJSON(_: any): MsgRegisterManagerResponse {
+    return {};
   },
 
-  toJSON(message: MsgRegisterManagerResponse): unknown {
+  toJSON(_: MsgRegisterManagerResponse): unknown {
     const obj: any = {};
-    if (message.id !== 0) {
-      obj.id = Math.round(message.id);
-    }
     return obj;
   },
 
   create<I extends Exact<DeepPartial<MsgRegisterManagerResponse>, I>>(base?: I): MsgRegisterManagerResponse {
     return MsgRegisterManagerResponse.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<MsgRegisterManagerResponse>, I>>(object: I): MsgRegisterManagerResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgRegisterManagerResponse>, I>>(_: I): MsgRegisterManagerResponse {
     const message = createBaseMsgRegisterManagerResponse();
-    message.id = object.id ?? 0;
     return message;
   },
 };
 
-function createBaseMsgUpdateManager(): MsgUpdateManager {
-  return {
-    creator: "",
-    id: 0,
-    managerAddress: "",
-    operatorName: "",
-    operatorDesc: "",
-    operatorWebsiteURL: "",
-    evmAddress: "",
-    hostAddress: "",
-    managerPort: 0,
-    trackerPort: 0,
-    chainAPIPort: 0,
-    chainRPCPort: 0,
-    regionCode: "",
-  };
+function createBaseMsgGoWorking(): MsgGoWorking {
+  return { managerAccount: "" };
 }
 
-export const MsgUpdateManager = {
-  encode(message: MsgUpdateManager, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.creator !== "") {
-      writer.uint32(10).string(message.creator);
-    }
-    if (message.id !== 0) {
-      writer.uint32(16).uint64(message.id);
-    }
-    if (message.managerAddress !== "") {
-      writer.uint32(26).string(message.managerAddress);
-    }
-    if (message.operatorName !== "") {
-      writer.uint32(34).string(message.operatorName);
-    }
-    if (message.operatorDesc !== "") {
-      writer.uint32(42).string(message.operatorDesc);
-    }
-    if (message.operatorWebsiteURL !== "") {
-      writer.uint32(50).string(message.operatorWebsiteURL);
-    }
-    if (message.evmAddress !== "") {
-      writer.uint32(58).string(message.evmAddress);
-    }
-    if (message.hostAddress !== "") {
-      writer.uint32(66).string(message.hostAddress);
-    }
-    if (message.managerPort !== 0) {
-      writer.uint32(72).uint32(message.managerPort);
-    }
-    if (message.trackerPort !== 0) {
-      writer.uint32(80).uint32(message.trackerPort);
-    }
-    if (message.chainAPIPort !== 0) {
-      writer.uint32(88).uint32(message.chainAPIPort);
-    }
-    if (message.chainRPCPort !== 0) {
-      writer.uint32(96).uint32(message.chainRPCPort);
-    }
-    if (message.regionCode !== "") {
-      writer.uint32(106).string(message.regionCode);
+export const MsgGoWorking = {
+  encode(message: MsgGoWorking, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.managerAccount !== "") {
+      writer.uint32(10).string(message.managerAccount);
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateManager {
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgGoWorking {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgUpdateManager();
+    const message = createBaseMsgGoWorking();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -553,91 +1427,7 @@ export const MsgUpdateManager = {
             break;
           }
 
-          message.creator = reader.string();
-          continue;
-        case 2:
-          if (tag !== 16) {
-            break;
-          }
-
-          message.id = longToNumber(reader.uint64() as Long);
-          continue;
-        case 3:
-          if (tag !== 26) {
-            break;
-          }
-
-          message.managerAddress = reader.string();
-          continue;
-        case 4:
-          if (tag !== 34) {
-            break;
-          }
-
-          message.operatorName = reader.string();
-          continue;
-        case 5:
-          if (tag !== 42) {
-            break;
-          }
-
-          message.operatorDesc = reader.string();
-          continue;
-        case 6:
-          if (tag !== 50) {
-            break;
-          }
-
-          message.operatorWebsiteURL = reader.string();
-          continue;
-        case 7:
-          if (tag !== 58) {
-            break;
-          }
-
-          message.evmAddress = reader.string();
-          continue;
-        case 8:
-          if (tag !== 66) {
-            break;
-          }
-
-          message.hostAddress = reader.string();
-          continue;
-        case 9:
-          if (tag !== 72) {
-            break;
-          }
-
-          message.managerPort = reader.uint32();
-          continue;
-        case 10:
-          if (tag !== 80) {
-            break;
-          }
-
-          message.trackerPort = reader.uint32();
-          continue;
-        case 11:
-          if (tag !== 88) {
-            break;
-          }
-
-          message.chainAPIPort = reader.uint32();
-          continue;
-        case 12:
-          if (tag !== 96) {
-            break;
-          }
-
-          message.chainRPCPort = reader.uint32();
-          continue;
-        case 13:
-          if (tag !== 106) {
-            break;
-          }
-
-          message.regionCode = reader.string();
+          message.managerAccount = reader.string();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -648,103 +1438,41 @@ export const MsgUpdateManager = {
     return message;
   },
 
-  fromJSON(object: any): MsgUpdateManager {
-    return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      id: isSet(object.id) ? Number(object.id) : 0,
-      managerAddress: isSet(object.managerAddress) ? String(object.managerAddress) : "",
-      operatorName: isSet(object.operatorName) ? String(object.operatorName) : "",
-      operatorDesc: isSet(object.operatorDesc) ? String(object.operatorDesc) : "",
-      operatorWebsiteURL: isSet(object.operatorWebsiteURL) ? String(object.operatorWebsiteURL) : "",
-      evmAddress: isSet(object.evmAddress) ? String(object.evmAddress) : "",
-      hostAddress: isSet(object.hostAddress) ? String(object.hostAddress) : "",
-      managerPort: isSet(object.managerPort) ? Number(object.managerPort) : 0,
-      trackerPort: isSet(object.trackerPort) ? Number(object.trackerPort) : 0,
-      chainAPIPort: isSet(object.chainAPIPort) ? Number(object.chainAPIPort) : 0,
-      chainRPCPort: isSet(object.chainRPCPort) ? Number(object.chainRPCPort) : 0,
-      regionCode: isSet(object.regionCode) ? String(object.regionCode) : "",
-    };
+  fromJSON(object: any): MsgGoWorking {
+    return { managerAccount: isSet(object.managerAccount) ? String(object.managerAccount) : "" };
   },
 
-  toJSON(message: MsgUpdateManager): unknown {
+  toJSON(message: MsgGoWorking): unknown {
     const obj: any = {};
-    if (message.creator !== "") {
-      obj.creator = message.creator;
-    }
-    if (message.id !== 0) {
-      obj.id = Math.round(message.id);
-    }
-    if (message.managerAddress !== "") {
-      obj.managerAddress = message.managerAddress;
-    }
-    if (message.operatorName !== "") {
-      obj.operatorName = message.operatorName;
-    }
-    if (message.operatorDesc !== "") {
-      obj.operatorDesc = message.operatorDesc;
-    }
-    if (message.operatorWebsiteURL !== "") {
-      obj.operatorWebsiteURL = message.operatorWebsiteURL;
-    }
-    if (message.evmAddress !== "") {
-      obj.evmAddress = message.evmAddress;
-    }
-    if (message.hostAddress !== "") {
-      obj.hostAddress = message.hostAddress;
-    }
-    if (message.managerPort !== 0) {
-      obj.managerPort = Math.round(message.managerPort);
-    }
-    if (message.trackerPort !== 0) {
-      obj.trackerPort = Math.round(message.trackerPort);
-    }
-    if (message.chainAPIPort !== 0) {
-      obj.chainAPIPort = Math.round(message.chainAPIPort);
-    }
-    if (message.chainRPCPort !== 0) {
-      obj.chainRPCPort = Math.round(message.chainRPCPort);
-    }
-    if (message.regionCode !== "") {
-      obj.regionCode = message.regionCode;
+    if (message.managerAccount !== "") {
+      obj.managerAccount = message.managerAccount;
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgUpdateManager>, I>>(base?: I): MsgUpdateManager {
-    return MsgUpdateManager.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<MsgGoWorking>, I>>(base?: I): MsgGoWorking {
+    return MsgGoWorking.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<MsgUpdateManager>, I>>(object: I): MsgUpdateManager {
-    const message = createBaseMsgUpdateManager();
-    message.creator = object.creator ?? "";
-    message.id = object.id ?? 0;
-    message.managerAddress = object.managerAddress ?? "";
-    message.operatorName = object.operatorName ?? "";
-    message.operatorDesc = object.operatorDesc ?? "";
-    message.operatorWebsiteURL = object.operatorWebsiteURL ?? "";
-    message.evmAddress = object.evmAddress ?? "";
-    message.hostAddress = object.hostAddress ?? "";
-    message.managerPort = object.managerPort ?? 0;
-    message.trackerPort = object.trackerPort ?? 0;
-    message.chainAPIPort = object.chainAPIPort ?? 0;
-    message.chainRPCPort = object.chainRPCPort ?? 0;
-    message.regionCode = object.regionCode ?? "";
+  fromPartial<I extends Exact<DeepPartial<MsgGoWorking>, I>>(object: I): MsgGoWorking {
+    const message = createBaseMsgGoWorking();
+    message.managerAccount = object.managerAccount ?? "";
     return message;
   },
 };
 
-function createBaseMsgUpdateManagerResponse(): MsgUpdateManagerResponse {
+function createBaseMsgGoWorkingResponse(): MsgGoWorkingResponse {
   return {};
 }
 
-export const MsgUpdateManagerResponse = {
-  encode(_: MsgUpdateManagerResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const MsgGoWorkingResponse = {
+  encode(_: MsgGoWorkingResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateManagerResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgGoWorkingResponse {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgUpdateManagerResponse();
+    const message = createBaseMsgGoWorkingResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -757,137 +1485,20 @@ export const MsgUpdateManagerResponse = {
     return message;
   },
 
-  fromJSON(_: any): MsgUpdateManagerResponse {
+  fromJSON(_: any): MsgGoWorkingResponse {
     return {};
   },
 
-  toJSON(_: MsgUpdateManagerResponse): unknown {
+  toJSON(_: MsgGoWorkingResponse): unknown {
     const obj: any = {};
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgUpdateManagerResponse>, I>>(base?: I): MsgUpdateManagerResponse {
-    return MsgUpdateManagerResponse.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<MsgGoWorkingResponse>, I>>(base?: I): MsgGoWorkingResponse {
+    return MsgGoWorkingResponse.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<MsgUpdateManagerResponse>, I>>(_: I): MsgUpdateManagerResponse {
-    const message = createBaseMsgUpdateManagerResponse();
-    return message;
-  },
-};
-
-function createBaseMsgDeleteManager(): MsgDeleteManager {
-  return { creator: "", id: 0 };
-}
-
-export const MsgDeleteManager = {
-  encode(message: MsgDeleteManager, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.creator !== "") {
-      writer.uint32(10).string(message.creator);
-    }
-    if (message.id !== 0) {
-      writer.uint32(16).uint64(message.id);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): MsgDeleteManager {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgDeleteManager();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.creator = reader.string();
-          continue;
-        case 2:
-          if (tag !== 16) {
-            break;
-          }
-
-          message.id = longToNumber(reader.uint64() as Long);
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): MsgDeleteManager {
-    return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      id: isSet(object.id) ? Number(object.id) : 0,
-    };
-  },
-
-  toJSON(message: MsgDeleteManager): unknown {
-    const obj: any = {};
-    if (message.creator !== "") {
-      obj.creator = message.creator;
-    }
-    if (message.id !== 0) {
-      obj.id = Math.round(message.id);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MsgDeleteManager>, I>>(base?: I): MsgDeleteManager {
-    return MsgDeleteManager.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MsgDeleteManager>, I>>(object: I): MsgDeleteManager {
-    const message = createBaseMsgDeleteManager();
-    message.creator = object.creator ?? "";
-    message.id = object.id ?? 0;
-    return message;
-  },
-};
-
-function createBaseMsgDeleteManagerResponse(): MsgDeleteManagerResponse {
-  return {};
-}
-
-export const MsgDeleteManagerResponse = {
-  encode(_: MsgDeleteManagerResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): MsgDeleteManagerResponse {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgDeleteManagerResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(_: any): MsgDeleteManagerResponse {
-    return {};
-  },
-
-  toJSON(_: MsgDeleteManagerResponse): unknown {
-    const obj: any = {};
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MsgDeleteManagerResponse>, I>>(base?: I): MsgDeleteManagerResponse {
-    return MsgDeleteManagerResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MsgDeleteManagerResponse>, I>>(_: I): MsgDeleteManagerResponse {
-    const message = createBaseMsgDeleteManagerResponse();
+  fromPartial<I extends Exact<DeepPartial<MsgGoWorkingResponse>, I>>(_: I): MsgGoWorkingResponse {
+    const message = createBaseMsgGoWorkingResponse();
     return message;
   },
 };
@@ -899,9 +1510,15 @@ export interface Msg {
    * parameters. The authority defaults to the x/gov module account.
    */
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
+  CreateOperator(request: MsgCreateOperator): Promise<MsgCreateOperatorResponse>;
+  BindOperatorManagerAccount(request: MsgBindOperatorManagerAccount): Promise<MsgBindOperatorManagerAccountResponse>;
+  SetManagerRegion(request: MsgSetManagerRegion): Promise<MsgSetManagerRegionResponse>;
+  UpdateManagerConnParams(request: MsgUpdateManagerConnParams): Promise<MsgUpdateManagerConnParamsResponse>;
+  ActivateManager(request: MsgActivateManager): Promise<MsgActivateManagerResponse>;
+  BindOperatorEVMAccount(request: MsgBindOperatorEVMAccount): Promise<MsgBindOperatorEVMAccountResponse>;
+  UpdateOperatorBasicInfo(request: MsgUpdateOperatorBasicInfo): Promise<MsgUpdateOperatorBasicInfoResponse>;
   RegisterManager(request: MsgRegisterManager): Promise<MsgRegisterManagerResponse>;
-  UpdateManager(request: MsgUpdateManager): Promise<MsgUpdateManagerResponse>;
-  DeleteManager(request: MsgDeleteManager): Promise<MsgDeleteManagerResponse>;
+  GoWorking(request: MsgGoWorking): Promise<MsgGoWorkingResponse>;
 }
 
 export const MsgServiceName = "enreach.manager.Msg";
@@ -912,14 +1529,62 @@ export class MsgClientImpl implements Msg {
     this.service = opts?.service || MsgServiceName;
     this.rpc = rpc;
     this.UpdateParams = this.UpdateParams.bind(this);
+    this.CreateOperator = this.CreateOperator.bind(this);
+    this.BindOperatorManagerAccount = this.BindOperatorManagerAccount.bind(this);
+    this.SetManagerRegion = this.SetManagerRegion.bind(this);
+    this.UpdateManagerConnParams = this.UpdateManagerConnParams.bind(this);
+    this.ActivateManager = this.ActivateManager.bind(this);
+    this.BindOperatorEVMAccount = this.BindOperatorEVMAccount.bind(this);
+    this.UpdateOperatorBasicInfo = this.UpdateOperatorBasicInfo.bind(this);
     this.RegisterManager = this.RegisterManager.bind(this);
-    this.UpdateManager = this.UpdateManager.bind(this);
-    this.DeleteManager = this.DeleteManager.bind(this);
+    this.GoWorking = this.GoWorking.bind(this);
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request(this.service, "UpdateParams", data);
     return promise.then((data) => MsgUpdateParamsResponse.decode(_m0.Reader.create(data)));
+  }
+
+  CreateOperator(request: MsgCreateOperator): Promise<MsgCreateOperatorResponse> {
+    const data = MsgCreateOperator.encode(request).finish();
+    const promise = this.rpc.request(this.service, "CreateOperator", data);
+    return promise.then((data) => MsgCreateOperatorResponse.decode(_m0.Reader.create(data)));
+  }
+
+  BindOperatorManagerAccount(request: MsgBindOperatorManagerAccount): Promise<MsgBindOperatorManagerAccountResponse> {
+    const data = MsgBindOperatorManagerAccount.encode(request).finish();
+    const promise = this.rpc.request(this.service, "BindOperatorManagerAccount", data);
+    return promise.then((data) => MsgBindOperatorManagerAccountResponse.decode(_m0.Reader.create(data)));
+  }
+
+  SetManagerRegion(request: MsgSetManagerRegion): Promise<MsgSetManagerRegionResponse> {
+    const data = MsgSetManagerRegion.encode(request).finish();
+    const promise = this.rpc.request(this.service, "SetManagerRegion", data);
+    return promise.then((data) => MsgSetManagerRegionResponse.decode(_m0.Reader.create(data)));
+  }
+
+  UpdateManagerConnParams(request: MsgUpdateManagerConnParams): Promise<MsgUpdateManagerConnParamsResponse> {
+    const data = MsgUpdateManagerConnParams.encode(request).finish();
+    const promise = this.rpc.request(this.service, "UpdateManagerConnParams", data);
+    return promise.then((data) => MsgUpdateManagerConnParamsResponse.decode(_m0.Reader.create(data)));
+  }
+
+  ActivateManager(request: MsgActivateManager): Promise<MsgActivateManagerResponse> {
+    const data = MsgActivateManager.encode(request).finish();
+    const promise = this.rpc.request(this.service, "ActivateManager", data);
+    return promise.then((data) => MsgActivateManagerResponse.decode(_m0.Reader.create(data)));
+  }
+
+  BindOperatorEVMAccount(request: MsgBindOperatorEVMAccount): Promise<MsgBindOperatorEVMAccountResponse> {
+    const data = MsgBindOperatorEVMAccount.encode(request).finish();
+    const promise = this.rpc.request(this.service, "BindOperatorEVMAccount", data);
+    return promise.then((data) => MsgBindOperatorEVMAccountResponse.decode(_m0.Reader.create(data)));
+  }
+
+  UpdateOperatorBasicInfo(request: MsgUpdateOperatorBasicInfo): Promise<MsgUpdateOperatorBasicInfoResponse> {
+    const data = MsgUpdateOperatorBasicInfo.encode(request).finish();
+    const promise = this.rpc.request(this.service, "UpdateOperatorBasicInfo", data);
+    return promise.then((data) => MsgUpdateOperatorBasicInfoResponse.decode(_m0.Reader.create(data)));
   }
 
   RegisterManager(request: MsgRegisterManager): Promise<MsgRegisterManagerResponse> {
@@ -928,16 +1593,10 @@ export class MsgClientImpl implements Msg {
     return promise.then((data) => MsgRegisterManagerResponse.decode(_m0.Reader.create(data)));
   }
 
-  UpdateManager(request: MsgUpdateManager): Promise<MsgUpdateManagerResponse> {
-    const data = MsgUpdateManager.encode(request).finish();
-    const promise = this.rpc.request(this.service, "UpdateManager", data);
-    return promise.then((data) => MsgUpdateManagerResponse.decode(_m0.Reader.create(data)));
-  }
-
-  DeleteManager(request: MsgDeleteManager): Promise<MsgDeleteManagerResponse> {
-    const data = MsgDeleteManager.encode(request).finish();
-    const promise = this.rpc.request(this.service, "DeleteManager", data);
-    return promise.then((data) => MsgDeleteManagerResponse.decode(_m0.Reader.create(data)));
+  GoWorking(request: MsgGoWorking): Promise<MsgGoWorkingResponse> {
+    const data = MsgGoWorking.encode(request).finish();
+    const promise = this.rpc.request(this.service, "GoWorking", data);
+    return promise.then((data) => MsgGoWorkingResponse.decode(_m0.Reader.create(data)));
   }
 }
 
@@ -964,6 +1623,31 @@ const tsProtoGlobalThis: any = (() => {
   throw "Unable to locate global object";
 })();
 
+function bytesFromBase64(b64: string): Uint8Array {
+  if (tsProtoGlobalThis.Buffer) {
+    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
+  } else {
+    const bin = tsProtoGlobalThis.atob(b64);
+    const arr = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; ++i) {
+      arr[i] = bin.charCodeAt(i);
+    }
+    return arr;
+  }
+}
+
+function base64FromBytes(arr: Uint8Array): string {
+  if (tsProtoGlobalThis.Buffer) {
+    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
+  } else {
+    const bin: string[] = [];
+    arr.forEach((byte) => {
+      bin.push(String.fromCharCode(byte));
+    });
+    return tsProtoGlobalThis.btoa(bin.join(""));
+  }
+}
+
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin ? T
@@ -974,18 +1658,6 @@ export type DeepPartial<T> = T extends Builtin ? T
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function longToNumber(long: Long): number {
-  if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  return long.toNumber();
-}
-
-if (_m0.util.Long !== Long) {
-  _m0.util.Long = Long as any;
-  _m0.configure();
-}
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

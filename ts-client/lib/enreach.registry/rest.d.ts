@@ -27,11 +27,13 @@ export interface PageResponse {
 }
 export interface QueryAllRegionResponse {
     Region?: {
-        id?: string;
         code?: string;
         name?: string;
         description?: string;
         creator?: string;
+        createAt?: string;
+        updator?: string;
+        updateAt?: string;
     }[];
     pagination?: {
         next_key?: string;
@@ -40,11 +42,13 @@ export interface QueryAllRegionResponse {
 }
 export interface QueryGetRegionResponse {
     Region?: {
-        id?: string;
         code?: string;
         name?: string;
         description?: string;
         creator?: string;
+        createAt?: string;
+        updator?: string;
+        updateAt?: string;
     };
 }
 export interface QueryParamsResponse {
@@ -52,17 +56,17 @@ export interface QueryParamsResponse {
 }
 export type RegistryParams = object;
 export interface RegistryRegion {
-    /** @format uint64 */
-    id?: string;
     code?: string;
     name?: string;
     description?: string;
     creator?: string;
-}
-export interface MsgCreateRegionResponse {
     /** @format uint64 */
-    id?: string;
+    createAt?: string;
+    updator?: string;
+    /** @format uint64 */
+    updateAt?: string;
 }
+export type MsgCreateRegionResponse = object;
 export type MsgDeleteRegionResponse = object;
 export type MsgUpdateParamsResponse = object;
 export type MsgUpdateRegionResponse = object;
@@ -123,9 +127,9 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      *
      * @tags Query
      * @name QueryRegion
-     * @request GET:/enreach/registry/region/{id}
+     * @request GET:/enreach/registry/region/{code}
      */
-    queryRegion: (id: string, params?: RequestParams) => Promise<AxiosResponse<T>>;
+    queryRegion: (code: string, params?: RequestParams) => Promise<AxiosResponse<T>>;
     /**
      * No description
      *

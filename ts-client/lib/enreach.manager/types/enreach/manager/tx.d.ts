@@ -14,45 +14,73 @@ export interface MsgUpdateParams {
  */
 export interface MsgUpdateParamsResponse {
 }
-export interface MsgRegisterManager {
-    creator: string;
-    managerAddress: string;
-    operatorName: string;
-    operatorDesc: string;
-    operatorWebsiteURL: string;
-    evmAddress: string;
+export interface MsgCreateOperator {
+    operatorAccount: string;
+    name: string;
+    description: string;
+    websiteUrl: string;
+}
+export interface MsgCreateOperatorResponse {
+}
+export interface MsgBindOperatorManagerAccount {
+    operatorAccount: string;
+    managerAccount: string;
+    managerSignature: Uint8Array;
+    forceUnbind: boolean;
+}
+export interface MsgBindOperatorManagerAccountResponse {
+}
+export interface MsgSetManagerRegion {
+    operatorAccount: string;
+    regionCode: string;
+}
+export interface MsgSetManagerRegionResponse {
+}
+export interface MsgUpdateManagerConnParams {
+    operatorAccount: string;
     hostAddress: string;
     managerPort: number;
     trackerPort: number;
     chainAPIPort: number;
     chainRPCPort: number;
-    regionCode: string;
+}
+export interface MsgUpdateManagerConnParamsResponse {
+}
+export interface MsgActivateManager {
+    operatorAccount: string;
+    license: string;
+}
+export interface MsgActivateManagerResponse {
+}
+export interface MsgBindOperatorEVMAccount {
+    operatorAccount: string;
+    evmAccount: string;
+    evmSignature: Uint8Array;
+}
+export interface MsgBindOperatorEVMAccountResponse {
+}
+export interface MsgUpdateOperatorBasicInfo {
+    operatorAccount: string;
+    name: string;
+    description: string;
+    websiteUrl: string;
+}
+export interface MsgUpdateOperatorBasicInfoResponse {
+}
+export interface MsgRegisterManager {
+    managerAccount: string;
+    hostAddress: string;
+    managerPort: number;
+    trackerPort: number;
+    chainAPIPort: number;
+    chainRPCPort: number;
 }
 export interface MsgRegisterManagerResponse {
-    id: number;
 }
-export interface MsgUpdateManager {
-    creator: string;
-    id: number;
-    managerAddress: string;
-    operatorName: string;
-    operatorDesc: string;
-    operatorWebsiteURL: string;
-    evmAddress: string;
-    hostAddress: string;
-    managerPort: number;
-    trackerPort: number;
-    chainAPIPort: number;
-    chainRPCPort: number;
-    regionCode: string;
+export interface MsgGoWorking {
+    managerAccount: string;
 }
-export interface MsgUpdateManagerResponse {
-}
-export interface MsgDeleteManager {
-    creator: string;
-    id: number;
-}
-export interface MsgDeleteManagerResponse {
+export interface MsgGoWorkingResponse {
 }
 export declare const MsgUpdateParams: {
     encode(message: MsgUpdateParams, writer?: _m0.Writer): _m0.Writer;
@@ -70,6 +98,118 @@ export declare const MsgUpdateParamsResponse: {
     create<I extends Exact<DeepPartial<MsgUpdateParamsResponse>, I>>(base?: I): MsgUpdateParamsResponse;
     fromPartial<I extends Exact<DeepPartial<MsgUpdateParamsResponse>, I>>(_: I): MsgUpdateParamsResponse;
 };
+export declare const MsgCreateOperator: {
+    encode(message: MsgCreateOperator, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateOperator;
+    fromJSON(object: any): MsgCreateOperator;
+    toJSON(message: MsgCreateOperator): unknown;
+    create<I extends Exact<DeepPartial<MsgCreateOperator>, I>>(base?: I): MsgCreateOperator;
+    fromPartial<I extends Exact<DeepPartial<MsgCreateOperator>, I>>(object: I): MsgCreateOperator;
+};
+export declare const MsgCreateOperatorResponse: {
+    encode(_: MsgCreateOperatorResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateOperatorResponse;
+    fromJSON(_: any): MsgCreateOperatorResponse;
+    toJSON(_: MsgCreateOperatorResponse): unknown;
+    create<I extends Exact<DeepPartial<MsgCreateOperatorResponse>, I>>(base?: I): MsgCreateOperatorResponse;
+    fromPartial<I extends Exact<DeepPartial<MsgCreateOperatorResponse>, I>>(_: I): MsgCreateOperatorResponse;
+};
+export declare const MsgBindOperatorManagerAccount: {
+    encode(message: MsgBindOperatorManagerAccount, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgBindOperatorManagerAccount;
+    fromJSON(object: any): MsgBindOperatorManagerAccount;
+    toJSON(message: MsgBindOperatorManagerAccount): unknown;
+    create<I extends Exact<DeepPartial<MsgBindOperatorManagerAccount>, I>>(base?: I): MsgBindOperatorManagerAccount;
+    fromPartial<I extends Exact<DeepPartial<MsgBindOperatorManagerAccount>, I>>(object: I): MsgBindOperatorManagerAccount;
+};
+export declare const MsgBindOperatorManagerAccountResponse: {
+    encode(_: MsgBindOperatorManagerAccountResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgBindOperatorManagerAccountResponse;
+    fromJSON(_: any): MsgBindOperatorManagerAccountResponse;
+    toJSON(_: MsgBindOperatorManagerAccountResponse): unknown;
+    create<I extends Exact<DeepPartial<MsgBindOperatorManagerAccountResponse>, I>>(base?: I): MsgBindOperatorManagerAccountResponse;
+    fromPartial<I extends Exact<DeepPartial<MsgBindOperatorManagerAccountResponse>, I>>(_: I): MsgBindOperatorManagerAccountResponse;
+};
+export declare const MsgSetManagerRegion: {
+    encode(message: MsgSetManagerRegion, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgSetManagerRegion;
+    fromJSON(object: any): MsgSetManagerRegion;
+    toJSON(message: MsgSetManagerRegion): unknown;
+    create<I extends Exact<DeepPartial<MsgSetManagerRegion>, I>>(base?: I): MsgSetManagerRegion;
+    fromPartial<I extends Exact<DeepPartial<MsgSetManagerRegion>, I>>(object: I): MsgSetManagerRegion;
+};
+export declare const MsgSetManagerRegionResponse: {
+    encode(_: MsgSetManagerRegionResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgSetManagerRegionResponse;
+    fromJSON(_: any): MsgSetManagerRegionResponse;
+    toJSON(_: MsgSetManagerRegionResponse): unknown;
+    create<I extends Exact<DeepPartial<MsgSetManagerRegionResponse>, I>>(base?: I): MsgSetManagerRegionResponse;
+    fromPartial<I extends Exact<DeepPartial<MsgSetManagerRegionResponse>, I>>(_: I): MsgSetManagerRegionResponse;
+};
+export declare const MsgUpdateManagerConnParams: {
+    encode(message: MsgUpdateManagerConnParams, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateManagerConnParams;
+    fromJSON(object: any): MsgUpdateManagerConnParams;
+    toJSON(message: MsgUpdateManagerConnParams): unknown;
+    create<I extends Exact<DeepPartial<MsgUpdateManagerConnParams>, I>>(base?: I): MsgUpdateManagerConnParams;
+    fromPartial<I extends Exact<DeepPartial<MsgUpdateManagerConnParams>, I>>(object: I): MsgUpdateManagerConnParams;
+};
+export declare const MsgUpdateManagerConnParamsResponse: {
+    encode(_: MsgUpdateManagerConnParamsResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateManagerConnParamsResponse;
+    fromJSON(_: any): MsgUpdateManagerConnParamsResponse;
+    toJSON(_: MsgUpdateManagerConnParamsResponse): unknown;
+    create<I extends Exact<DeepPartial<MsgUpdateManagerConnParamsResponse>, I>>(base?: I): MsgUpdateManagerConnParamsResponse;
+    fromPartial<I extends Exact<DeepPartial<MsgUpdateManagerConnParamsResponse>, I>>(_: I): MsgUpdateManagerConnParamsResponse;
+};
+export declare const MsgActivateManager: {
+    encode(message: MsgActivateManager, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgActivateManager;
+    fromJSON(object: any): MsgActivateManager;
+    toJSON(message: MsgActivateManager): unknown;
+    create<I extends Exact<DeepPartial<MsgActivateManager>, I>>(base?: I): MsgActivateManager;
+    fromPartial<I extends Exact<DeepPartial<MsgActivateManager>, I>>(object: I): MsgActivateManager;
+};
+export declare const MsgActivateManagerResponse: {
+    encode(_: MsgActivateManagerResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgActivateManagerResponse;
+    fromJSON(_: any): MsgActivateManagerResponse;
+    toJSON(_: MsgActivateManagerResponse): unknown;
+    create<I extends Exact<DeepPartial<MsgActivateManagerResponse>, I>>(base?: I): MsgActivateManagerResponse;
+    fromPartial<I extends Exact<DeepPartial<MsgActivateManagerResponse>, I>>(_: I): MsgActivateManagerResponse;
+};
+export declare const MsgBindOperatorEVMAccount: {
+    encode(message: MsgBindOperatorEVMAccount, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgBindOperatorEVMAccount;
+    fromJSON(object: any): MsgBindOperatorEVMAccount;
+    toJSON(message: MsgBindOperatorEVMAccount): unknown;
+    create<I extends Exact<DeepPartial<MsgBindOperatorEVMAccount>, I>>(base?: I): MsgBindOperatorEVMAccount;
+    fromPartial<I extends Exact<DeepPartial<MsgBindOperatorEVMAccount>, I>>(object: I): MsgBindOperatorEVMAccount;
+};
+export declare const MsgBindOperatorEVMAccountResponse: {
+    encode(_: MsgBindOperatorEVMAccountResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgBindOperatorEVMAccountResponse;
+    fromJSON(_: any): MsgBindOperatorEVMAccountResponse;
+    toJSON(_: MsgBindOperatorEVMAccountResponse): unknown;
+    create<I extends Exact<DeepPartial<MsgBindOperatorEVMAccountResponse>, I>>(base?: I): MsgBindOperatorEVMAccountResponse;
+    fromPartial<I extends Exact<DeepPartial<MsgBindOperatorEVMAccountResponse>, I>>(_: I): MsgBindOperatorEVMAccountResponse;
+};
+export declare const MsgUpdateOperatorBasicInfo: {
+    encode(message: MsgUpdateOperatorBasicInfo, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateOperatorBasicInfo;
+    fromJSON(object: any): MsgUpdateOperatorBasicInfo;
+    toJSON(message: MsgUpdateOperatorBasicInfo): unknown;
+    create<I extends Exact<DeepPartial<MsgUpdateOperatorBasicInfo>, I>>(base?: I): MsgUpdateOperatorBasicInfo;
+    fromPartial<I extends Exact<DeepPartial<MsgUpdateOperatorBasicInfo>, I>>(object: I): MsgUpdateOperatorBasicInfo;
+};
+export declare const MsgUpdateOperatorBasicInfoResponse: {
+    encode(_: MsgUpdateOperatorBasicInfoResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateOperatorBasicInfoResponse;
+    fromJSON(_: any): MsgUpdateOperatorBasicInfoResponse;
+    toJSON(_: MsgUpdateOperatorBasicInfoResponse): unknown;
+    create<I extends Exact<DeepPartial<MsgUpdateOperatorBasicInfoResponse>, I>>(base?: I): MsgUpdateOperatorBasicInfoResponse;
+    fromPartial<I extends Exact<DeepPartial<MsgUpdateOperatorBasicInfoResponse>, I>>(_: I): MsgUpdateOperatorBasicInfoResponse;
+};
 export declare const MsgRegisterManager: {
     encode(message: MsgRegisterManager, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgRegisterManager;
@@ -79,44 +219,28 @@ export declare const MsgRegisterManager: {
     fromPartial<I extends Exact<DeepPartial<MsgRegisterManager>, I>>(object: I): MsgRegisterManager;
 };
 export declare const MsgRegisterManagerResponse: {
-    encode(message: MsgRegisterManagerResponse, writer?: _m0.Writer): _m0.Writer;
+    encode(_: MsgRegisterManagerResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgRegisterManagerResponse;
-    fromJSON(object: any): MsgRegisterManagerResponse;
-    toJSON(message: MsgRegisterManagerResponse): unknown;
+    fromJSON(_: any): MsgRegisterManagerResponse;
+    toJSON(_: MsgRegisterManagerResponse): unknown;
     create<I extends Exact<DeepPartial<MsgRegisterManagerResponse>, I>>(base?: I): MsgRegisterManagerResponse;
-    fromPartial<I extends Exact<DeepPartial<MsgRegisterManagerResponse>, I>>(object: I): MsgRegisterManagerResponse;
+    fromPartial<I extends Exact<DeepPartial<MsgRegisterManagerResponse>, I>>(_: I): MsgRegisterManagerResponse;
 };
-export declare const MsgUpdateManager: {
-    encode(message: MsgUpdateManager, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateManager;
-    fromJSON(object: any): MsgUpdateManager;
-    toJSON(message: MsgUpdateManager): unknown;
-    create<I extends Exact<DeepPartial<MsgUpdateManager>, I>>(base?: I): MsgUpdateManager;
-    fromPartial<I extends Exact<DeepPartial<MsgUpdateManager>, I>>(object: I): MsgUpdateManager;
+export declare const MsgGoWorking: {
+    encode(message: MsgGoWorking, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgGoWorking;
+    fromJSON(object: any): MsgGoWorking;
+    toJSON(message: MsgGoWorking): unknown;
+    create<I extends Exact<DeepPartial<MsgGoWorking>, I>>(base?: I): MsgGoWorking;
+    fromPartial<I extends Exact<DeepPartial<MsgGoWorking>, I>>(object: I): MsgGoWorking;
 };
-export declare const MsgUpdateManagerResponse: {
-    encode(_: MsgUpdateManagerResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateManagerResponse;
-    fromJSON(_: any): MsgUpdateManagerResponse;
-    toJSON(_: MsgUpdateManagerResponse): unknown;
-    create<I extends Exact<DeepPartial<MsgUpdateManagerResponse>, I>>(base?: I): MsgUpdateManagerResponse;
-    fromPartial<I extends Exact<DeepPartial<MsgUpdateManagerResponse>, I>>(_: I): MsgUpdateManagerResponse;
-};
-export declare const MsgDeleteManager: {
-    encode(message: MsgDeleteManager, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgDeleteManager;
-    fromJSON(object: any): MsgDeleteManager;
-    toJSON(message: MsgDeleteManager): unknown;
-    create<I extends Exact<DeepPartial<MsgDeleteManager>, I>>(base?: I): MsgDeleteManager;
-    fromPartial<I extends Exact<DeepPartial<MsgDeleteManager>, I>>(object: I): MsgDeleteManager;
-};
-export declare const MsgDeleteManagerResponse: {
-    encode(_: MsgDeleteManagerResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgDeleteManagerResponse;
-    fromJSON(_: any): MsgDeleteManagerResponse;
-    toJSON(_: MsgDeleteManagerResponse): unknown;
-    create<I extends Exact<DeepPartial<MsgDeleteManagerResponse>, I>>(base?: I): MsgDeleteManagerResponse;
-    fromPartial<I extends Exact<DeepPartial<MsgDeleteManagerResponse>, I>>(_: I): MsgDeleteManagerResponse;
+export declare const MsgGoWorkingResponse: {
+    encode(_: MsgGoWorkingResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgGoWorkingResponse;
+    fromJSON(_: any): MsgGoWorkingResponse;
+    toJSON(_: MsgGoWorkingResponse): unknown;
+    create<I extends Exact<DeepPartial<MsgGoWorkingResponse>, I>>(base?: I): MsgGoWorkingResponse;
+    fromPartial<I extends Exact<DeepPartial<MsgGoWorkingResponse>, I>>(_: I): MsgGoWorkingResponse;
 };
 /** Msg defines the Msg service. */
 export interface Msg {
@@ -125,9 +249,15 @@ export interface Msg {
      * parameters. The authority defaults to the x/gov module account.
      */
     UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
+    CreateOperator(request: MsgCreateOperator): Promise<MsgCreateOperatorResponse>;
+    BindOperatorManagerAccount(request: MsgBindOperatorManagerAccount): Promise<MsgBindOperatorManagerAccountResponse>;
+    SetManagerRegion(request: MsgSetManagerRegion): Promise<MsgSetManagerRegionResponse>;
+    UpdateManagerConnParams(request: MsgUpdateManagerConnParams): Promise<MsgUpdateManagerConnParamsResponse>;
+    ActivateManager(request: MsgActivateManager): Promise<MsgActivateManagerResponse>;
+    BindOperatorEVMAccount(request: MsgBindOperatorEVMAccount): Promise<MsgBindOperatorEVMAccountResponse>;
+    UpdateOperatorBasicInfo(request: MsgUpdateOperatorBasicInfo): Promise<MsgUpdateOperatorBasicInfoResponse>;
     RegisterManager(request: MsgRegisterManager): Promise<MsgRegisterManagerResponse>;
-    UpdateManager(request: MsgUpdateManager): Promise<MsgUpdateManagerResponse>;
-    DeleteManager(request: MsgDeleteManager): Promise<MsgDeleteManagerResponse>;
+    GoWorking(request: MsgGoWorking): Promise<MsgGoWorkingResponse>;
 }
 export declare const MsgServiceName = "enreach.manager.Msg";
 export declare class MsgClientImpl implements Msg {
@@ -137,9 +267,15 @@ export declare class MsgClientImpl implements Msg {
         service?: string;
     });
     UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
+    CreateOperator(request: MsgCreateOperator): Promise<MsgCreateOperatorResponse>;
+    BindOperatorManagerAccount(request: MsgBindOperatorManagerAccount): Promise<MsgBindOperatorManagerAccountResponse>;
+    SetManagerRegion(request: MsgSetManagerRegion): Promise<MsgSetManagerRegionResponse>;
+    UpdateManagerConnParams(request: MsgUpdateManagerConnParams): Promise<MsgUpdateManagerConnParamsResponse>;
+    ActivateManager(request: MsgActivateManager): Promise<MsgActivateManagerResponse>;
+    BindOperatorEVMAccount(request: MsgBindOperatorEVMAccount): Promise<MsgBindOperatorEVMAccountResponse>;
+    UpdateOperatorBasicInfo(request: MsgUpdateOperatorBasicInfo): Promise<MsgUpdateOperatorBasicInfoResponse>;
     RegisterManager(request: MsgRegisterManager): Promise<MsgRegisterManagerResponse>;
-    UpdateManager(request: MsgUpdateManager): Promise<MsgUpdateManagerResponse>;
-    DeleteManager(request: MsgDeleteManager): Promise<MsgDeleteManagerResponse>;
+    GoWorking(request: MsgGoWorking): Promise<MsgGoWorkingResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

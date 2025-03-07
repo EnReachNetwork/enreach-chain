@@ -3,12 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.QueryClientImpl = exports.QueryServiceName = exports.QueryGetManagerByRegionResponse = exports.QueryGetManagerByRegionRequest = exports.QueryAllManagerResponse = exports.QueryAllManagerRequest = exports.QueryGetManagerResponse = exports.QueryGetManagerRequest = exports.QueryParamsResponse = exports.QueryParamsRequest = exports.protobufPackage = void 0;
+exports.QueryClientImpl = exports.QueryServiceName = exports.QueryGetManagerByRegionResponse = exports.QueryGetManagerByRegionRequest = exports.QueryAllManagerResponse = exports.QueryAllManagerRequest = exports.QueryGetManagerResponse = exports.QueryGetManagerRequest = exports.QueryAllOperatorResponse = exports.QueryAllOperatorRequest = exports.QueryGetOperatorResponse = exports.QueryGetOperatorRequest = exports.QueryParamsResponse = exports.QueryParamsRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
-const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const pagination_1 = require("../../cosmos/base/query/v1beta1/pagination");
 const manager_1 = require("./manager");
+const operator_1 = require("./operator");
 const params_1 = require("./params");
 exports.protobufPackage = "enreach.manager";
 function createBaseQueryParamsRequest() {
@@ -100,13 +100,235 @@ exports.QueryParamsResponse = {
         return message;
     },
 };
+function createBaseQueryGetOperatorRequest() {
+    return { operatorAccount: "" };
+}
+exports.QueryGetOperatorRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.operatorAccount !== "") {
+            writer.uint32(10).string(message.operatorAccount);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetOperatorRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.operatorAccount = reader.string();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { operatorAccount: isSet(object.operatorAccount) ? String(object.operatorAccount) : "" };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.operatorAccount !== "") {
+            obj.operatorAccount = message.operatorAccount;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetOperatorRequest.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetOperatorRequest();
+        message.operatorAccount = object.operatorAccount ?? "";
+        return message;
+    },
+};
+function createBaseQueryGetOperatorResponse() {
+    return { Operator: undefined };
+}
+exports.QueryGetOperatorResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.Operator !== undefined) {
+            operator_1.Operator.encode(message.Operator, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetOperatorResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.Operator = operator_1.Operator.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { Operator: isSet(object.Operator) ? operator_1.Operator.fromJSON(object.Operator) : undefined };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.Operator !== undefined) {
+            obj.Operator = operator_1.Operator.toJSON(message.Operator);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetOperatorResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetOperatorResponse();
+        message.Operator = (object.Operator !== undefined && object.Operator !== null)
+            ? operator_1.Operator.fromPartial(object.Operator)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryAllOperatorRequest() {
+    return { pagination: undefined };
+}
+exports.QueryAllOperatorRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.pagination !== undefined) {
+            pagination_1.PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryAllOperatorRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.pagination = pagination_1.PageRequest.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { pagination: isSet(object.pagination) ? pagination_1.PageRequest.fromJSON(object.pagination) : undefined };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.pagination !== undefined) {
+            obj.pagination = pagination_1.PageRequest.toJSON(message.pagination);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryAllOperatorRequest.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryAllOperatorRequest();
+        message.pagination = (object.pagination !== undefined && object.pagination !== null)
+            ? pagination_1.PageRequest.fromPartial(object.pagination)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryAllOperatorResponse() {
+    return { Operator: [], pagination: undefined };
+}
+exports.QueryAllOperatorResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        for (const v of message.Operator) {
+            operator_1.Operator.encode(v, writer.uint32(10).fork()).ldelim();
+        }
+        if (message.pagination !== undefined) {
+            pagination_1.PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryAllOperatorResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.Operator.push(operator_1.Operator.decode(reader, reader.uint32()));
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.pagination = pagination_1.PageResponse.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            Operator: Array.isArray(object?.Operator) ? object.Operator.map((e) => operator_1.Operator.fromJSON(e)) : [],
+            pagination: isSet(object.pagination) ? pagination_1.PageResponse.fromJSON(object.pagination) : undefined,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.Operator?.length) {
+            obj.Operator = message.Operator.map((e) => operator_1.Operator.toJSON(e));
+        }
+        if (message.pagination !== undefined) {
+            obj.pagination = pagination_1.PageResponse.toJSON(message.pagination);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryAllOperatorResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryAllOperatorResponse();
+        message.Operator = object.Operator?.map((e) => operator_1.Operator.fromPartial(e)) || [];
+        message.pagination = (object.pagination !== undefined && object.pagination !== null)
+            ? pagination_1.PageResponse.fromPartial(object.pagination)
+            : undefined;
+        return message;
+    },
+};
 function createBaseQueryGetManagerRequest() {
-    return { id: 0 };
+    return { managerAccount: "" };
 }
 exports.QueryGetManagerRequest = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.id !== 0) {
-            writer.uint32(8).uint64(message.id);
+        if (message.managerAccount !== "") {
+            writer.uint32(10).string(message.managerAccount);
         }
         return writer;
     },
@@ -118,10 +340,10 @@ exports.QueryGetManagerRequest = {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    if (tag !== 8) {
+                    if (tag !== 10) {
                         break;
                     }
-                    message.id = longToNumber(reader.uint64());
+                    message.managerAccount = reader.string();
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -132,12 +354,12 @@ exports.QueryGetManagerRequest = {
         return message;
     },
     fromJSON(object) {
-        return { id: isSet(object.id) ? Number(object.id) : 0 };
+        return { managerAccount: isSet(object.managerAccount) ? String(object.managerAccount) : "" };
     },
     toJSON(message) {
         const obj = {};
-        if (message.id !== 0) {
-            obj.id = Math.round(message.id);
+        if (message.managerAccount !== "") {
+            obj.managerAccount = message.managerAccount;
         }
         return obj;
     },
@@ -146,7 +368,7 @@ exports.QueryGetManagerRequest = {
     },
     fromPartial(object) {
         const message = createBaseQueryGetManagerRequest();
-        message.id = object.id ?? 0;
+        message.managerAccount = object.managerAccount ?? "";
         return message;
     },
 };
@@ -428,6 +650,8 @@ class QueryClientImpl {
         this.service = opts?.service || exports.QueryServiceName;
         this.rpc = rpc;
         this.Params = this.Params.bind(this);
+        this.Operator = this.Operator.bind(this);
+        this.OperatorAll = this.OperatorAll.bind(this);
         this.Manager = this.Manager.bind(this);
         this.ManagerAll = this.ManagerAll.bind(this);
         this.GetManagerByRegion = this.GetManagerByRegion.bind(this);
@@ -436,6 +660,16 @@ class QueryClientImpl {
         const data = exports.QueryParamsRequest.encode(request).finish();
         const promise = this.rpc.request(this.service, "Params", data);
         return promise.then((data) => exports.QueryParamsResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    Operator(request) {
+        const data = exports.QueryGetOperatorRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "Operator", data);
+        return promise.then((data) => exports.QueryGetOperatorResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    OperatorAll(request) {
+        const data = exports.QueryAllOperatorRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "OperatorAll", data);
+        return promise.then((data) => exports.QueryAllOperatorResponse.decode(minimal_1.default.Reader.create(data)));
     }
     Manager(request) {
         const data = exports.QueryGetManagerRequest.encode(request).finish();
@@ -454,31 +688,6 @@ class QueryClientImpl {
     }
 }
 exports.QueryClientImpl = QueryClientImpl;
-const tsProtoGlobalThis = (() => {
-    if (typeof globalThis !== "undefined") {
-        return globalThis;
-    }
-    if (typeof self !== "undefined") {
-        return self;
-    }
-    if (typeof window !== "undefined") {
-        return window;
-    }
-    if (typeof global !== "undefined") {
-        return global;
-    }
-    throw "Unable to locate global object";
-})();
-function longToNumber(long) {
-    if (long.gt(Number.MAX_SAFE_INTEGER)) {
-        throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-    }
-    return long.toNumber();
-}
-if (minimal_1.default.util.Long !== long_1.default) {
-    minimal_1.default.util.Long = long_1.default;
-    minimal_1.default.configure();
-}
 function isSet(value) {
     return value !== null && value !== undefined;
 }

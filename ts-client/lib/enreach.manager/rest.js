@@ -105,10 +105,10 @@ class Api extends HttpClient {
          *
          * @tags Query
          * @name QueryManager
-         * @request GET:/enreach/manager/manager/{id}
+         * @request GET:/enreach/manager/manager/{managerAccount}
          */
-        this.queryManager = (id, params = {}) => this.request({
-            path: `/enreach/manager/manager/${id}`,
+        this.queryManager = (managerAccount, params = {}) => this.request({
+            path: `/enreach/manager/manager/${managerAccount}`,
             method: "GET",
             ...params,
         });
@@ -121,6 +121,31 @@ class Api extends HttpClient {
          */
         this.queryManagerAll = (query, params = {}) => this.request({
             path: `/enreach/manager/managers`,
+            method: "GET",
+            query: query,
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryOperator
+         * @request GET:/enreach/manager/operator/{operatorAccount}
+         */
+        this.queryOperator = (operatorAccount, params = {}) => this.request({
+            path: `/enreach/manager/operator/${operatorAccount}`,
+            method: "GET",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryOperatorAll
+         * @request GET:/enreach/manager/operators
+         */
+        this.queryOperatorAll = (query, params = {}) => this.request({
+            path: `/enreach/manager/operators`,
             method: "GET",
             query: query,
             ...params,

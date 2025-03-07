@@ -43,59 +43,90 @@ export interface PageResponse {
 
 export interface QueryAllManagerResponse {
   Manager?: {
-    id?: string;
-    managerAddress?: string;
-    operatorName?: string;
-    operatorDesc?: string;
-    operatorWebsiteURL?: string;
-    evmAddress?: string;
+    managerAccount?: string;
+    operatorAccount?: string;
     hostAddress?: string;
     managerPort?: number;
     trackerPort?: number;
     chainAPIPort?: number;
     chainRPCPort?: number;
     regionCode?: string;
-    status?: string;
+    registerStatus?: string;
+    workingStatus?: string;
     creator?: string;
+    createAt?: string;
+    updator?: string;
+    updateAt?: string;
+  }[];
+  pagination?: { next_key?: string; total?: string };
+}
+
+export interface QueryAllOperatorResponse {
+  Operator?: {
+    operatorAccount?: string;
+    managerAccount?: string;
+    evmAccount?: string;
+    name?: string;
+    description?: string;
+    websiteUrl?: string;
+    creator?: string;
+    createAt?: string;
+    updator?: string;
+    updateAt?: string;
   }[];
   pagination?: { next_key?: string; total?: string };
 }
 
 export interface QueryGetManagerByRegionResponse {
   managers?: {
-    id?: string;
-    managerAddress?: string;
-    operatorName?: string;
-    operatorDesc?: string;
-    operatorWebsiteURL?: string;
-    evmAddress?: string;
+    managerAccount?: string;
+    operatorAccount?: string;
     hostAddress?: string;
     managerPort?: number;
     trackerPort?: number;
     chainAPIPort?: number;
     chainRPCPort?: number;
     regionCode?: string;
-    status?: string;
+    registerStatus?: string;
+    workingStatus?: string;
     creator?: string;
+    createAt?: string;
+    updator?: string;
+    updateAt?: string;
   }[];
 }
 
 export interface QueryGetManagerResponse {
   Manager?: {
-    id?: string;
-    managerAddress?: string;
-    operatorName?: string;
-    operatorDesc?: string;
-    operatorWebsiteURL?: string;
-    evmAddress?: string;
+    managerAccount?: string;
+    operatorAccount?: string;
     hostAddress?: string;
     managerPort?: number;
     trackerPort?: number;
     chainAPIPort?: number;
     chainRPCPort?: number;
     regionCode?: string;
-    status?: string;
+    registerStatus?: string;
+    workingStatus?: string;
     creator?: string;
+    createAt?: string;
+    updator?: string;
+    updateAt?: string;
+  };
+}
+
+export interface QueryGetOperatorResponse {
+  Operator?: {
+    operatorAccount?: string;
+    managerAccount?: string;
+    evmAccount?: string;
+    name?: string;
+    description?: string;
+    websiteUrl?: string;
+    creator?: string;
+    createAt?: string;
+    updator?: string;
+    updateAt?: string;
   };
 }
 
@@ -104,13 +135,8 @@ export interface QueryParamsResponse {
 }
 
 export interface ManagerManager {
-  /** @format uint64 */
-  id?: string;
-  managerAddress?: string;
-  operatorName?: string;
-  operatorDesc?: string;
-  operatorWebsiteURL?: string;
-  evmAddress?: string;
+  managerAccount?: string;
+  operatorAccount?: string;
   hostAddress?: string;
 
   /** @format int64 */
@@ -125,20 +151,54 @@ export interface ManagerManager {
   /** @format int64 */
   chainRPCPort?: number;
   regionCode?: string;
-  status?: string;
+  registerStatus?: string;
+  workingStatus?: string;
   creator?: string;
+
+  /** @format uint64 */
+  createAt?: string;
+  updator?: string;
+
+  /** @format uint64 */
+  updateAt?: string;
+}
+
+export interface ManagerOperator {
+  operatorAccount?: string;
+  managerAccount?: string;
+  evmAccount?: string;
+  name?: string;
+  description?: string;
+  websiteUrl?: string;
+  creator?: string;
+
+  /** @format uint64 */
+  createAt?: string;
+  updator?: string;
+
+  /** @format uint64 */
+  updateAt?: string;
 }
 
 export type ManagerParams = object;
 
-export type MsgDeleteManagerResponse = object;
+export type MsgActivateManagerResponse = object;
 
-export interface MsgRegisterManagerResponse {
-  /** @format uint64 */
-  id?: string;
-}
+export type MsgBindOperatorEVMAccountResponse = object;
 
-export type MsgUpdateManagerResponse = object;
+export type MsgBindOperatorManagerAccountResponse = object;
+
+export type MsgCreateOperatorResponse = object;
+
+export type MsgGoWorkingResponse = object;
+
+export type MsgRegisterManagerResponse = object;
+
+export type MsgSetManagerRegionResponse = object;
+
+export type MsgUpdateManagerConnParamsResponse = object;
+
+export type MsgUpdateOperatorBasicInfoResponse = object;
 
 export type MsgUpdateParamsResponse = object;
 
@@ -279,20 +339,20 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     this.request<
       {
         managers?: {
-          id?: string;
-          managerAddress?: string;
-          operatorName?: string;
-          operatorDesc?: string;
-          operatorWebsiteURL?: string;
-          evmAddress?: string;
+          managerAccount?: string;
+          operatorAccount?: string;
           hostAddress?: string;
           managerPort?: number;
           trackerPort?: number;
           chainAPIPort?: number;
           chainRPCPort?: number;
           regionCode?: string;
-          status?: string;
+          registerStatus?: string;
+          workingStatus?: string;
           creator?: string;
+          createAt?: string;
+          updator?: string;
+          updateAt?: string;
         }[];
       },
       { code?: number; message?: string; details?: { "@type"?: string }[] }
@@ -307,31 +367,31 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    *
    * @tags Query
    * @name QueryManager
-   * @request GET:/enreach/manager/manager/{id}
+   * @request GET:/enreach/manager/manager/{managerAccount}
    */
-  queryManager = (id: string, params: RequestParams = {}) =>
+  queryManager = (managerAccount: string, params: RequestParams = {}) =>
     this.request<
       {
         Manager?: {
-          id?: string;
-          managerAddress?: string;
-          operatorName?: string;
-          operatorDesc?: string;
-          operatorWebsiteURL?: string;
-          evmAddress?: string;
+          managerAccount?: string;
+          operatorAccount?: string;
           hostAddress?: string;
           managerPort?: number;
           trackerPort?: number;
           chainAPIPort?: number;
           chainRPCPort?: number;
           regionCode?: string;
-          status?: string;
+          registerStatus?: string;
+          workingStatus?: string;
           creator?: string;
+          createAt?: string;
+          updator?: string;
+          updateAt?: string;
         };
       },
       { code?: number; message?: string; details?: { "@type"?: string }[] }
     >({
-      path: `/enreach/manager/manager/${id}`,
+      path: `/enreach/manager/manager/${managerAccount}`,
       method: "GET",
       ...params,
     });
@@ -356,26 +416,97 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     this.request<
       {
         Manager?: {
-          id?: string;
-          managerAddress?: string;
-          operatorName?: string;
-          operatorDesc?: string;
-          operatorWebsiteURL?: string;
-          evmAddress?: string;
+          managerAccount?: string;
+          operatorAccount?: string;
           hostAddress?: string;
           managerPort?: number;
           trackerPort?: number;
           chainAPIPort?: number;
           chainRPCPort?: number;
           regionCode?: string;
-          status?: string;
+          registerStatus?: string;
+          workingStatus?: string;
           creator?: string;
+          createAt?: string;
+          updator?: string;
+          updateAt?: string;
         }[];
         pagination?: { next_key?: string; total?: string };
       },
       { code?: number; message?: string; details?: { "@type"?: string }[] }
     >({
       path: `/enreach/manager/managers`,
+      method: "GET",
+      query: query,
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryOperator
+   * @request GET:/enreach/manager/operator/{operatorAccount}
+   */
+  queryOperator = (operatorAccount: string, params: RequestParams = {}) =>
+    this.request<
+      {
+        Operator?: {
+          operatorAccount?: string;
+          managerAccount?: string;
+          evmAccount?: string;
+          name?: string;
+          description?: string;
+          websiteUrl?: string;
+          creator?: string;
+          createAt?: string;
+          updator?: string;
+          updateAt?: string;
+        };
+      },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/manager/operator/${operatorAccount}`,
+      method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryOperatorAll
+   * @request GET:/enreach/manager/operators
+   */
+  queryOperatorAll = (
+    query?: {
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<
+      {
+        Operator?: {
+          operatorAccount?: string;
+          managerAccount?: string;
+          evmAccount?: string;
+          name?: string;
+          description?: string;
+          websiteUrl?: string;
+          creator?: string;
+          createAt?: string;
+          updator?: string;
+          updateAt?: string;
+        }[];
+        pagination?: { next_key?: string; total?: string };
+      },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/manager/operators`,
       method: "GET",
       query: query,
       ...params,

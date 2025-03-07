@@ -1,6 +1,7 @@
 import _m0 from "protobufjs/minimal";
 import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
 import { Manager } from "./manager";
+import { Operator } from "./operator";
 import { Params } from "./params";
 export declare const protobufPackage = "enreach.manager";
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
@@ -11,8 +12,21 @@ export interface QueryParamsResponse {
     /** params holds all the parameters of this module. */
     params: Params | undefined;
 }
+export interface QueryGetOperatorRequest {
+    operatorAccount: string;
+}
+export interface QueryGetOperatorResponse {
+    Operator: Operator | undefined;
+}
+export interface QueryAllOperatorRequest {
+    pagination: PageRequest | undefined;
+}
+export interface QueryAllOperatorResponse {
+    Operator: Operator[];
+    pagination: PageResponse | undefined;
+}
 export interface QueryGetManagerRequest {
-    id: number;
+    managerAccount: string;
 }
 export interface QueryGetManagerResponse {
     Manager: Manager | undefined;
@@ -45,6 +59,38 @@ export declare const QueryParamsResponse: {
     toJSON(message: QueryParamsResponse): unknown;
     create<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(base?: I): QueryParamsResponse;
     fromPartial<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(object: I): QueryParamsResponse;
+};
+export declare const QueryGetOperatorRequest: {
+    encode(message: QueryGetOperatorRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetOperatorRequest;
+    fromJSON(object: any): QueryGetOperatorRequest;
+    toJSON(message: QueryGetOperatorRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryGetOperatorRequest>, I>>(base?: I): QueryGetOperatorRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryGetOperatorRequest>, I>>(object: I): QueryGetOperatorRequest;
+};
+export declare const QueryGetOperatorResponse: {
+    encode(message: QueryGetOperatorResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetOperatorResponse;
+    fromJSON(object: any): QueryGetOperatorResponse;
+    toJSON(message: QueryGetOperatorResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryGetOperatorResponse>, I>>(base?: I): QueryGetOperatorResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryGetOperatorResponse>, I>>(object: I): QueryGetOperatorResponse;
+};
+export declare const QueryAllOperatorRequest: {
+    encode(message: QueryAllOperatorRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllOperatorRequest;
+    fromJSON(object: any): QueryAllOperatorRequest;
+    toJSON(message: QueryAllOperatorRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryAllOperatorRequest>, I>>(base?: I): QueryAllOperatorRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryAllOperatorRequest>, I>>(object: I): QueryAllOperatorRequest;
+};
+export declare const QueryAllOperatorResponse: {
+    encode(message: QueryAllOperatorResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllOperatorResponse;
+    fromJSON(object: any): QueryAllOperatorResponse;
+    toJSON(message: QueryAllOperatorResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryAllOperatorResponse>, I>>(base?: I): QueryAllOperatorResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryAllOperatorResponse>, I>>(object: I): QueryAllOperatorResponse;
 };
 export declare const QueryGetManagerRequest: {
     encode(message: QueryGetManagerRequest, writer?: _m0.Writer): _m0.Writer;
@@ -98,6 +144,9 @@ export declare const QueryGetManagerByRegionResponse: {
 export interface Query {
     /** Parameters queries the parameters of the module. */
     Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
+    /** Queries a list of Operator items. */
+    Operator(request: QueryGetOperatorRequest): Promise<QueryGetOperatorResponse>;
+    OperatorAll(request: QueryAllOperatorRequest): Promise<QueryAllOperatorResponse>;
     /** Queries a list of Manager items. */
     Manager(request: QueryGetManagerRequest): Promise<QueryGetManagerResponse>;
     ManagerAll(request: QueryAllManagerRequest): Promise<QueryAllManagerResponse>;
@@ -112,6 +161,8 @@ export declare class QueryClientImpl implements Query {
         service?: string;
     });
     Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
+    Operator(request: QueryGetOperatorRequest): Promise<QueryGetOperatorResponse>;
+    OperatorAll(request: QueryAllOperatorRequest): Promise<QueryAllOperatorResponse>;
     Manager(request: QueryGetManagerRequest): Promise<QueryGetManagerResponse>;
     ManagerAll(request: QueryAllManagerRequest): Promise<QueryAllManagerResponse>;
     GetManagerByRegion(request: QueryGetManagerByRegionRequest): Promise<QueryGetManagerByRegionResponse>;

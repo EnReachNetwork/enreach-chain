@@ -18,18 +18,9 @@ paths:
                 items:
                   type: object
                   properties:
-                    id:
+                    managerAccount:
                       type: string
-                      format: uint64
-                    managerAddress:
-                      type: string
-                    operatorName:
-                      type: string
-                    operatorDesc:
-                      type: string
-                    operatorWebsiteURL:
-                      type: string
-                    evmAddress:
+                    operatorAccount:
                       type: string
                     hostAddress:
                       type: string
@@ -47,10 +38,20 @@ paths:
                       format: int64
                     regionCode:
                       type: string
-                    status:
+                    registerStatus:
+                      type: string
+                    workingStatus:
                       type: string
                     creator:
                       type: string
+                    createAt:
+                      type: string
+                      format: uint64
+                    updator:
+                      type: string
+                    updateAt:
+                      type: string
+                      format: uint64
         default:
           description: An unexpected error response.
           schema:
@@ -76,7 +77,7 @@ paths:
           type: string
       tags:
         - Query
-  /enreach/manager/manager/{id}:
+  /enreach/manager/manager/{managerAccount}:
     get:
       operationId: Query_Manager
       responses:
@@ -88,18 +89,9 @@ paths:
               Manager:
                 type: object
                 properties:
-                  id:
+                  managerAccount:
                     type: string
-                    format: uint64
-                  managerAddress:
-                    type: string
-                  operatorName:
-                    type: string
-                  operatorDesc:
-                    type: string
-                  operatorWebsiteURL:
-                    type: string
-                  evmAddress:
+                  operatorAccount:
                     type: string
                   hostAddress:
                     type: string
@@ -117,10 +109,20 @@ paths:
                     format: int64
                   regionCode:
                     type: string
-                  status:
+                  registerStatus:
+                    type: string
+                  workingStatus:
                     type: string
                   creator:
                     type: string
+                  createAt:
+                    type: string
+                    format: uint64
+                  updator:
+                    type: string
+                  updateAt:
+                    type: string
+                    format: uint64
         default:
           description: An unexpected error response.
           schema:
@@ -140,11 +142,10 @@ paths:
                       type: string
                   additionalProperties: {}
       parameters:
-        - name: id
+        - name: managerAccount
           in: path
           required: true
           type: string
-          format: uint64
       tags:
         - Query
   /enreach/manager/managers:
@@ -161,18 +162,9 @@ paths:
                 items:
                   type: object
                   properties:
-                    id:
+                    managerAccount:
                       type: string
-                      format: uint64
-                    managerAddress:
-                      type: string
-                    operatorName:
-                      type: string
-                    operatorDesc:
-                      type: string
-                    operatorWebsiteURL:
-                      type: string
-                    evmAddress:
+                    operatorAccount:
                       type: string
                     hostAddress:
                       type: string
@@ -190,10 +182,168 @@ paths:
                       format: int64
                     regionCode:
                       type: string
-                    status:
+                    registerStatus:
+                      type: string
+                    workingStatus:
                       type: string
                     creator:
                       type: string
+                    createAt:
+                      type: string
+                      format: uint64
+                    updator:
+                      type: string
+                    updateAt:
+                      type: string
+                      format: uint64
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                  total:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  /enreach/manager/operator/{operatorAccount}:
+    get:
+      operationId: Query_Operator
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              Operator:
+                type: object
+                properties:
+                  operatorAccount:
+                    type: string
+                  managerAccount:
+                    type: string
+                  evmAccount:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  websiteUrl:
+                    type: string
+                  creator:
+                    type: string
+                  createAt:
+                    type: string
+                    format: uint64
+                  updator:
+                    type: string
+                  updateAt:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: operatorAccount
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /enreach/manager/operators:
+    get:
+      operationId: Query_OperatorAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              Operator:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    operatorAccount:
+                      type: string
+                    managerAccount:
+                      type: string
+                    evmAccount:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    websiteUrl:
+                      type: string
+                    creator:
+                      type: string
+                    createAt:
+                      type: string
+                      format: uint64
+                    updator:
+                      type: string
+                    updateAt:
+                      type: string
+                      format: uint64
               pagination:
                 type: object
                 properties:
@@ -334,18 +484,9 @@ definitions:
         items:
           type: object
           properties:
-            id:
+            managerAccount:
               type: string
-              format: uint64
-            managerAddress:
-              type: string
-            operatorName:
-              type: string
-            operatorDesc:
-              type: string
-            operatorWebsiteURL:
-              type: string
-            evmAddress:
+            operatorAccount:
               type: string
             hostAddress:
               type: string
@@ -363,10 +504,59 @@ definitions:
               format: int64
             regionCode:
               type: string
-            status:
+            registerStatus:
+              type: string
+            workingStatus:
               type: string
             creator:
               type: string
+            createAt:
+              type: string
+              format: uint64
+            updator:
+              type: string
+            updateAt:
+              type: string
+              format: uint64
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+          total:
+            type: string
+            format: uint64
+  QueryAllOperatorResponse:
+    type: object
+    properties:
+      Operator:
+        type: array
+        items:
+          type: object
+          properties:
+            operatorAccount:
+              type: string
+            managerAccount:
+              type: string
+            evmAccount:
+              type: string
+            name:
+              type: string
+            description:
+              type: string
+            websiteUrl:
+              type: string
+            creator:
+              type: string
+            createAt:
+              type: string
+              format: uint64
+            updator:
+              type: string
+            updateAt:
+              type: string
+              format: uint64
       pagination:
         type: object
         properties:
@@ -384,18 +574,9 @@ definitions:
         items:
           type: object
           properties:
-            id:
+            managerAccount:
               type: string
-              format: uint64
-            managerAddress:
-              type: string
-            operatorName:
-              type: string
-            operatorDesc:
-              type: string
-            operatorWebsiteURL:
-              type: string
-            evmAddress:
+            operatorAccount:
               type: string
             hostAddress:
               type: string
@@ -413,28 +594,29 @@ definitions:
               format: int64
             regionCode:
               type: string
-            status:
+            registerStatus:
+              type: string
+            workingStatus:
               type: string
             creator:
               type: string
+            createAt:
+              type: string
+              format: uint64
+            updator:
+              type: string
+            updateAt:
+              type: string
+              format: uint64
   QueryGetManagerResponse:
     type: object
     properties:
       Manager:
         type: object
         properties:
-          id:
+          managerAccount:
             type: string
-            format: uint64
-          managerAddress:
-            type: string
-          operatorName:
-            type: string
-          operatorDesc:
-            type: string
-          operatorWebsiteURL:
-            type: string
-          evmAddress:
+          operatorAccount:
             type: string
           hostAddress:
             type: string
@@ -452,10 +634,48 @@ definitions:
             format: int64
           regionCode:
             type: string
-          status:
+          registerStatus:
+            type: string
+          workingStatus:
             type: string
           creator:
             type: string
+          createAt:
+            type: string
+            format: uint64
+          updator:
+            type: string
+          updateAt:
+            type: string
+            format: uint64
+  QueryGetOperatorResponse:
+    type: object
+    properties:
+      Operator:
+        type: object
+        properties:
+          operatorAccount:
+            type: string
+          managerAccount:
+            type: string
+          evmAccount:
+            type: string
+          name:
+            type: string
+          description:
+            type: string
+          websiteUrl:
+            type: string
+          creator:
+            type: string
+          createAt:
+            type: string
+            format: uint64
+          updator:
+            type: string
+          updateAt:
+            type: string
+            format: uint64
   QueryParamsResponse:
     type: object
     properties:
@@ -464,18 +684,9 @@ definitions:
   manager.Manager:
     type: object
     properties:
-      id:
+      managerAccount:
         type: string
-        format: uint64
-      managerAddress:
-        type: string
-      operatorName:
-        type: string
-      operatorDesc:
-        type: string
-      operatorWebsiteURL:
-        type: string
-      evmAddress:
+      operatorAccount:
         type: string
       hostAddress:
         type: string
@@ -493,21 +704,64 @@ definitions:
         format: int64
       regionCode:
         type: string
-      status:
+      registerStatus:
+        type: string
+      workingStatus:
         type: string
       creator:
         type: string
+      createAt:
+        type: string
+        format: uint64
+      updator:
+        type: string
+      updateAt:
+        type: string
+        format: uint64
+  manager.Operator:
+    type: object
+    properties:
+      operatorAccount:
+        type: string
+      managerAccount:
+        type: string
+      evmAccount:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      websiteUrl:
+        type: string
+      creator:
+        type: string
+      createAt:
+        type: string
+        format: uint64
+      updator:
+        type: string
+      updateAt:
+        type: string
+        format: uint64
   manager.Params:
     type: object
-  MsgDeleteManagerResponse:
+  MsgActivateManagerResponse:
+    type: object
+  MsgBindOperatorEVMAccountResponse:
+    type: object
+  MsgBindOperatorManagerAccountResponse:
+    type: object
+  MsgCreateOperatorResponse:
+    type: object
+  MsgGoWorkingResponse:
     type: object
   MsgRegisterManagerResponse:
     type: object
-    properties:
-      id:
-        type: string
-        format: uint64
-  MsgUpdateManagerResponse:
+  MsgSetManagerRegionResponse:
+    type: object
+  MsgUpdateManagerConnParamsResponse:
+    type: object
+  MsgUpdateOperatorBasicInfoResponse:
     type: object
   MsgUpdateParamsResponse:
     type: object

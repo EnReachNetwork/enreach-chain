@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.QueryClientImpl = exports.QueryServiceName = exports.QueryAllRegionResponse = exports.QueryAllRegionRequest = exports.QueryGetRegionResponse = exports.QueryGetRegionRequest = exports.QueryParamsResponse = exports.QueryParamsRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
-const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const pagination_1 = require("../../cosmos/base/query/v1beta1/pagination");
 const params_1 = require("./params");
@@ -101,12 +100,12 @@ exports.QueryParamsResponse = {
     },
 };
 function createBaseQueryGetRegionRequest() {
-    return { id: 0 };
+    return { code: "" };
 }
 exports.QueryGetRegionRequest = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.id !== 0) {
-            writer.uint32(8).uint64(message.id);
+        if (message.code !== "") {
+            writer.uint32(10).string(message.code);
         }
         return writer;
     },
@@ -118,10 +117,10 @@ exports.QueryGetRegionRequest = {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    if (tag !== 8) {
+                    if (tag !== 10) {
                         break;
                     }
-                    message.id = longToNumber(reader.uint64());
+                    message.code = reader.string();
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -132,12 +131,12 @@ exports.QueryGetRegionRequest = {
         return message;
     },
     fromJSON(object) {
-        return { id: isSet(object.id) ? Number(object.id) : 0 };
+        return { code: isSet(object.code) ? String(object.code) : "" };
     },
     toJSON(message) {
         const obj = {};
-        if (message.id !== 0) {
-            obj.id = Math.round(message.id);
+        if (message.code !== "") {
+            obj.code = message.code;
         }
         return obj;
     },
@@ -146,7 +145,7 @@ exports.QueryGetRegionRequest = {
     },
     fromPartial(object) {
         const message = createBaseQueryGetRegionRequest();
-        message.id = object.id ?? 0;
+        message.code = object.code ?? "";
         return message;
     },
 };
@@ -348,31 +347,6 @@ class QueryClientImpl {
     }
 }
 exports.QueryClientImpl = QueryClientImpl;
-const tsProtoGlobalThis = (() => {
-    if (typeof globalThis !== "undefined") {
-        return globalThis;
-    }
-    if (typeof self !== "undefined") {
-        return self;
-    }
-    if (typeof window !== "undefined") {
-        return window;
-    }
-    if (typeof global !== "undefined") {
-        return global;
-    }
-    throw "Unable to locate global object";
-})();
-function longToNumber(long) {
-    if (long.gt(Number.MAX_SAFE_INTEGER)) {
-        throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-    }
-    return long.toNumber();
-}
-if (minimal_1.default.util.Long !== long_1.default) {
-    minimal_1.default.util.Long = long_1.default;
-    minimal_1.default.configure();
-}
 function isSet(value) {
     return value !== null && value !== undefined;
 }

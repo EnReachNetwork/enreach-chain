@@ -105,10 +105,10 @@ class Api extends HttpClient {
          *
          * @tags Query
          * @name QueryRegion
-         * @request GET:/enreach/registry/region/{id}
+         * @request GET:/enreach/registry/region/{code}
          */
-        this.queryRegion = (id, params = {}) => this.request({
-            path: `/enreach/registry/region/${id}`,
+        this.queryRegion = (code, params = {}) => this.request({
+            path: `/enreach/registry/region/${code}`,
             method: "GET",
             ...params,
         });
