@@ -18,13 +18,13 @@ func TestMsgCreateRegion_ValidateBasic(t *testing.T) {
 		{
 			name: "invalid address",
 			msg: MsgCreateRegion{
-				Creator: "invalid_address",
+				Signer: "invalid_address",
 			},
 			err: sdkerrors.ErrInvalidAddress,
 		}, {
 			name: "valid address",
 			msg: MsgCreateRegion{
-				Creator: sample.AccAddress(),
+				Signer: sample.AccAddress(),
 			},
 		},
 	}
@@ -49,13 +49,13 @@ func TestMsgUpdateRegion_ValidateBasic(t *testing.T) {
 		{
 			name: "invalid address",
 			msg: MsgUpdateRegion{
-				Creator: "invalid_address",
+				Signer: "invalid_address",
 			},
 			err: sdkerrors.ErrInvalidAddress,
 		}, {
 			name: "valid address",
 			msg: MsgUpdateRegion{
-				Creator: sample.AccAddress(),
+				Signer: sample.AccAddress(),
 			},
 		},
 	}
@@ -80,13 +80,13 @@ func TestMsgDeleteRegion_ValidateBasic(t *testing.T) {
 		{
 			name: "invalid address",
 			msg: MsgDeleteRegion{
-				Creator: "invalid_address",
+				Signer: "invalid_address",
 			},
 			err: sdkerrors.ErrInvalidAddress,
 		}, {
 			name: "valid address",
 			msg: MsgDeleteRegion{
-				Creator: sample.AccAddress(),
+				Signer: sample.AccAddress(),
 			},
 		},
 	}

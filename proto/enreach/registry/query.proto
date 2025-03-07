@@ -22,7 +22,7 @@ service Query {
   
   // Queries a list of Region items.
   rpc Region    (QueryGetRegionRequest) returns (QueryGetRegionResponse) {
-    option (google.api.http).get = "/enreach/registry/region/{id}";
+    option (google.api.http).get = "/enreach/registry/region/{code}";
   
   }
   rpc RegionAll (QueryAllRegionRequest) returns (QueryAllRegionResponse) {
@@ -41,7 +41,7 @@ message QueryParamsResponse {
 }
 
 message QueryGetRegionRequest {
-  uint64 id = 1;
+  string code = 1;
 }
 
 message QueryGetRegionResponse {

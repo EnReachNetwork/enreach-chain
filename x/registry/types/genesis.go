@@ -20,16 +20,12 @@ func DefaultGenesis() *GenesisState {
 // failure.
 func (gs GenesisState) Validate() error {
 	// Check for duplicated ID in region
-	regionIdMap := make(map[uint64]bool)
-	regionCount := gs.GetRegionCount()
+	regionMap := make(map[string]bool)
 	for _, elem := range gs.RegionList {
-		if _, ok := regionIdMap[elem.Id]; ok {
+		if _, ok := regionMap[elem.Code]; ok {
 			return fmt.Errorf("duplicated id for region")
 		}
-		if elem.Id >= regionCount {
-			return fmt.Errorf("region id should be lower or equal than the last id")
-		}
-		regionIdMap[elem.Id] = true
+		regionMap[elem.Code] = true
 	}
 	// this line is used by starport scaffolding # genesis/types/validate
 

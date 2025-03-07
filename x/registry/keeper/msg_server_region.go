@@ -2,7 +2,6 @@ package keeper
 
 import (
 	"context"
-	"fmt"
 
 	"enreach/x/registry/types"
 
@@ -12,67 +11,72 @@ import (
 )
 
 func (k msgServer) CreateRegion(goCtx context.Context, msg *types.MsgCreateRegion) (*types.MsgCreateRegionResponse, error) {
-	ctx := sdk.UnwrapSDKContext(goCtx)
+	// tx caller must be authority
+	if k.GetAuthority() != msg.Signer {
+		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only authority can execute this call")
+	}
 
+	ctx := sdk.UnwrapSDKContext(goCtx)
+	// Check duplicate region
+	_, found := k.GetRegion(ctx, msg.Code)
+	if found {
+		return nil, errorsmod.Wrapf(types.ErrElementAlreadyExists, "Region '%s' already exist", msg.Code)
+	}
+
+	// Append to the store
+	blockHeight := uint64(ctx.BlockHeight())
 	var region = types.Region{
-		Creator:     msg.Creator,
 		Code:        msg.Code,
 		Name:        msg.Name,
 		Description: msg.Description,
+		Creator:     msg.Signer,
+		CreateAt:    blockHeight,
+		Updator:     msg.Signer,
+		UpdateAt:    blockHeight,
 	}
+	k.AppendRegion(ctx, region)
 
-	id := k.AppendRegion(
-		ctx,
-		region,
-	)
-
-	return &types.MsgCreateRegionResponse{
-		Id: id,
-	}, nil
+	return &types.MsgCreateRegionResponse{}, nil
 }
 
 func (k msgServer) UpdateRegion(goCtx context.Context, msg *types.MsgUpdateRegion) (*types.MsgUpdateRegionResponse, error) {
+	// tx caller must be authority
+	if k.GetAuthority() != msg.Signer {
+		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only authority can execute this call")
+	}
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	var region = types.Region{
-		Creator:     msg.Creator,
-		Id:          msg.Id,
-		Code:        msg.Code,
-		Name:        msg.Name,
-		Description: msg.Description,
-	}
-
 	// Checks that the element exists
-	val, found := k.GetRegion(ctx, msg.Id)
+	region, found := k.GetRegion(ctx, msg.Code)
 	if !found {
-		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, fmt.Sprintf("key %d doesn't exist", msg.Id))
+		return nil, errorsmod.Wrapf(sdkerrors.ErrKeyNotFound, "Region '%s' doesn't exist", msg.Code)
 	}
 
-	// Checks if the msg creator is the same as the current owner
-	if msg.Creator != val.Creator {
-		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "incorrect owner")
-	}
-
+	// Update and set to the store
+	region.Name = msg.Name
+	region.Description = msg.Description
+	region.Updator = msg.Signer
+	region.UpdateAt = uint64(ctx.BlockHeight())
 	k.SetRegion(ctx, region)
 
 	return &types.MsgUpdateRegionResponse{}, nil
 }
 
 func (k msgServer) DeleteRegion(goCtx context.Context, msg *types.MsgDeleteRegion) (*types.MsgDeleteRegionResponse, error) {
+	// tx caller must be authority
+	if k.GetAuthority() != msg.Signer {
+		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only authority can execute this call")
+	}
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	// Checks that the element exists
-	val, found := k.GetRegion(ctx, msg.Id)
+	_, found := k.GetRegion(ctx, msg.Code)
 	if !found {
-		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, fmt.Sprintf("key %d doesn't exist", msg.Id))
+		return nil, errorsmod.Wrapf(sdkerrors.ErrKeyNotFound, "Region '%s' doesn't exist", msg.Code)
 	}
 
-	// Checks if the msg creator is the same as the current owner
-	if msg.Creator != val.Creator {
-		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "incorrect owner")
-	}
-
-	k.RemoveRegion(ctx, msg.Id)
+	// Remove from the store
+	k.RemoveRegion(ctx, msg.Code)
 
 	return &types.MsgDeleteRegionResponse{}, nil
 }

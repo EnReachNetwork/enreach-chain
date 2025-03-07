@@ -315,8 +315,10 @@ var (
 				Config: appconfig.WrapAny(&circuitmodulev1.Module{}),
 			},
 			{
-				Name:   registrymoduletypes.ModuleName,
-				Config: appconfig.WrapAny(&registrymodulev1.Module{}),
+				Name: registrymoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&registrymodulev1.Module{
+					Authority: "enreach1mwyh5y3nu300s2v2spr3mw8ypf65nzzdmf3lex",
+				}),
 			},
 			{
 				Name:   managermoduletypes.ModuleName,

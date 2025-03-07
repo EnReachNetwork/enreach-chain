@@ -15,7 +15,7 @@ import (
 func createNRegion(keeper keeper.Keeper, ctx context.Context, n int) []types.Region {
 	items := make([]types.Region, n)
 	for i := range items {
-		items[i].Id = keeper.AppendRegion(ctx, items[i])
+		keeper.AppendRegion(ctx, items[i])
 	}
 	return items
 }
@@ -24,7 +24,7 @@ func TestRegionGet(t *testing.T) {
 	keeper, ctx := keepertest.RegistryKeeper(t)
 	items := createNRegion(keeper, ctx, 10)
 	for _, item := range items {
-		got, found := keeper.GetRegion(ctx, item.Id)
+		got, found := keeper.GetRegion(ctx, item.Code)
 		require.True(t, found)
 		require.Equal(t,
 			nullify.Fill(&item),
@@ -37,8 +37,8 @@ func TestRegionRemove(t *testing.T) {
 	keeper, ctx := keepertest.RegistryKeeper(t)
 	items := createNRegion(keeper, ctx, 10)
 	for _, item := range items {
-		keeper.RemoveRegion(ctx, item.Id)
-		_, found := keeper.GetRegion(ctx, item.Id)
+		keeper.RemoveRegion(ctx, item.Code)
+		_, found := keeper.GetRegion(ctx, item.Code)
 		require.False(t, found)
 	}
 }

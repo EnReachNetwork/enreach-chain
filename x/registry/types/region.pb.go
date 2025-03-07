@@ -23,11 +23,13 @@ var _ = math.Inf
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type Region struct {
-	Id          uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Code        string `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
-	Name        string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	Description string `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
-	Creator     string `protobuf:"bytes,5,opt,name=creator,proto3" json:"creator,omitempty"`
+	Code        string `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	Name        string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	Creator     string `protobuf:"bytes,4,opt,name=creator,proto3" json:"creator,omitempty"`
+	CreateAt    uint64 `protobuf:"varint,12,opt,name=createAt,proto3" json:"createAt,omitempty"`
+	Updator     string `protobuf:"bytes,13,opt,name=updator,proto3" json:"updator,omitempty"`
+	UpdateAt    uint64 `protobuf:"varint,14,opt,name=updateAt,proto3" json:"updateAt,omitempty"`
 }
 
 func (m *Region) Reset()         { *m = Region{} }
@@ -63,13 +65,6 @@ func (m *Region) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Region proto.InternalMessageInfo
 
-func (m *Region) GetId() uint64 {
-	if m != nil {
-		return m.Id
-	}
-	return 0
-}
-
 func (m *Region) GetCode() string {
 	if m != nil {
 		return m.Code
@@ -98,6 +93,27 @@ func (m *Region) GetCreator() string {
 	return ""
 }
 
+func (m *Region) GetCreateAt() uint64 {
+	if m != nil {
+		return m.CreateAt
+	}
+	return 0
+}
+
+func (m *Region) GetUpdator() string {
+	if m != nil {
+		return m.Updator
+	}
+	return ""
+}
+
+func (m *Region) GetUpdateAt() uint64 {
+	if m != nil {
+		return m.UpdateAt
+	}
+	return 0
+}
+
 func init() {
 	proto.RegisterType((*Region)(nil), "enreach.registry.Region")
 }
@@ -105,20 +121,21 @@ func init() {
 func init() { proto.RegisterFile("enreach/registry/region.proto", fileDescriptor_0172ecf70661e880) }
 
 var fileDescriptor_0172ecf70661e880 = []byte{
-	// 193 bytes of a gzipped FileDescriptorProto
+	// 218 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x4d, 0xcd, 0x2b, 0x4a,
 	0x4d, 0x4c, 0xce, 0xd0, 0x2f, 0x4a, 0x4d, 0xcf, 0x2c, 0x2e, 0x29, 0xaa, 0x04, 0x33, 0xf2, 0xf3,
-	0xf4, 0x0a, 0x8a, 0xf2, 0x4b, 0xf2, 0x85, 0x04, 0xa0, 0xd2, 0x7a, 0x30, 0x69, 0xa5, 0x1a, 0x2e,
-	0xb6, 0x20, 0xb0, 0x0a, 0x21, 0x3e, 0x2e, 0xa6, 0xcc, 0x14, 0x09, 0x46, 0x05, 0x46, 0x0d, 0x96,
-	0x20, 0xa6, 0xcc, 0x14, 0x21, 0x21, 0x2e, 0x96, 0xe4, 0xfc, 0x94, 0x54, 0x09, 0x26, 0x05, 0x46,
-	0x0d, 0xce, 0x20, 0x30, 0x1b, 0x24, 0x96, 0x97, 0x98, 0x9b, 0x2a, 0xc1, 0x0c, 0x11, 0x03, 0xb1,
-	0x85, 0x14, 0xb8, 0xb8, 0x53, 0x52, 0x8b, 0x93, 0x8b, 0x32, 0x0b, 0x4a, 0x32, 0xf3, 0xf3, 0x24,
-	0x58, 0xc0, 0x52, 0xc8, 0x42, 0x42, 0x12, 0x5c, 0xec, 0xc9, 0x45, 0xa9, 0x89, 0x25, 0xf9, 0x45,
-	0x12, 0xac, 0x60, 0x59, 0x18, 0xd7, 0xc9, 0xe8, 0xc4, 0x23, 0x39, 0xc6, 0x0b, 0x8f, 0xe4, 0x18,
-	0x1f, 0x3c, 0x92, 0x63, 0x9c, 0xf0, 0x58, 0x8e, 0xe1, 0xc2, 0x63, 0x39, 0x86, 0x1b, 0x8f, 0xe5,
-	0x18, 0xa2, 0x24, 0x60, 0x1e, 0xa9, 0x40, 0x78, 0xa5, 0xa4, 0xb2, 0x20, 0xb5, 0x38, 0x89, 0x0d,
-	0xec, 0x15, 0x63, 0x40, 0x00, 0x00, 0x00, 0xff, 0xff, 0xc3, 0x96, 0x08, 0x2e, 0xeb, 0x00, 0x00,
-	0x00,
+	0xf4, 0x0a, 0x8a, 0xf2, 0x4b, 0xf2, 0x85, 0x04, 0xa0, 0xd2, 0x7a, 0x30, 0x69, 0xa5, 0x7d, 0x8c,
+	0x5c, 0x6c, 0x41, 0x60, 0x25, 0x42, 0x42, 0x5c, 0x2c, 0xc9, 0xf9, 0x29, 0xa9, 0x12, 0x8c, 0x0a,
+	0x8c, 0x1a, 0x9c, 0x41, 0x60, 0x36, 0x48, 0x2c, 0x2f, 0x31, 0x37, 0x55, 0x82, 0x09, 0x22, 0x06,
+	0x62, 0x0b, 0x29, 0x70, 0x71, 0xa7, 0xa4, 0x16, 0x27, 0x17, 0x65, 0x16, 0x94, 0x64, 0xe6, 0xe7,
+	0x49, 0x30, 0x83, 0xa5, 0x90, 0x85, 0x84, 0x24, 0xb8, 0xd8, 0x93, 0x8b, 0x52, 0x13, 0x4b, 0xf2,
+	0x8b, 0x24, 0x58, 0xc0, 0xb2, 0x30, 0xae, 0x90, 0x14, 0x17, 0x07, 0x98, 0x99, 0xea, 0x58, 0x22,
+	0xc1, 0xa3, 0xc0, 0xa8, 0xc1, 0x12, 0x04, 0xe7, 0x83, 0x74, 0x95, 0x16, 0xa4, 0x80, 0x75, 0xf1,
+	0x42, 0x74, 0x41, 0xb9, 0x20, 0x5d, 0x60, 0x26, 0x48, 0x17, 0x1f, 0x44, 0x17, 0x8c, 0xef, 0x64,
+	0x74, 0xe2, 0x91, 0x1c, 0xe3, 0x85, 0x47, 0x72, 0x8c, 0x0f, 0x1e, 0xc9, 0x31, 0x4e, 0x78, 0x2c,
+	0xc7, 0x70, 0xe1, 0xb1, 0x1c, 0xc3, 0x8d, 0xc7, 0x72, 0x0c, 0x51, 0x12, 0xb0, 0xb0, 0xa8, 0x40,
+	0x84, 0x46, 0x49, 0x65, 0x41, 0x6a, 0x71, 0x12, 0x1b, 0x38, 0x34, 0x8c, 0x01, 0x01, 0x00, 0x00,
+	0xff, 0xff, 0x3c, 0x27, 0xd0, 0x56, 0x2e, 0x01, 0x00, 0x00,
 }
 
 func (m *Region) Marshal() (dAtA []byte, err error) {
@@ -141,38 +158,50 @@ func (m *Region) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.UpdateAt != 0 {
+		i = encodeVarintRegion(dAtA, i, uint64(m.UpdateAt))
+		i--
+		dAtA[i] = 0x70
+	}
+	if len(m.Updator) > 0 {
+		i -= len(m.Updator)
+		copy(dAtA[i:], m.Updator)
+		i = encodeVarintRegion(dAtA, i, uint64(len(m.Updator)))
+		i--
+		dAtA[i] = 0x6a
+	}
+	if m.CreateAt != 0 {
+		i = encodeVarintRegion(dAtA, i, uint64(m.CreateAt))
+		i--
+		dAtA[i] = 0x60
+	}
 	if len(m.Creator) > 0 {
 		i -= len(m.Creator)
 		copy(dAtA[i:], m.Creator)
 		i = encodeVarintRegion(dAtA, i, uint64(len(m.Creator)))
 		i--
-		dAtA[i] = 0x2a
+		dAtA[i] = 0x22
 	}
 	if len(m.Description) > 0 {
 		i -= len(m.Description)
 		copy(dAtA[i:], m.Description)
 		i = encodeVarintRegion(dAtA, i, uint64(len(m.Description)))
 		i--
-		dAtA[i] = 0x22
+		dAtA[i] = 0x1a
 	}
 	if len(m.Name) > 0 {
 		i -= len(m.Name)
 		copy(dAtA[i:], m.Name)
 		i = encodeVarintRegion(dAtA, i, uint64(len(m.Name)))
 		i--
-		dAtA[i] = 0x1a
+		dAtA[i] = 0x12
 	}
 	if len(m.Code) > 0 {
 		i -= len(m.Code)
 		copy(dAtA[i:], m.Code)
 		i = encodeVarintRegion(dAtA, i, uint64(len(m.Code)))
 		i--
-		dAtA[i] = 0x12
-	}
-	if m.Id != 0 {
-		i = encodeVarintRegion(dAtA, i, uint64(m.Id))
-		i--
-		dAtA[i] = 0x8
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -194,9 +223,6 @@ func (m *Region) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Id != 0 {
-		n += 1 + sovRegion(uint64(m.Id))
-	}
 	l = len(m.Code)
 	if l > 0 {
 		n += 1 + l + sovRegion(uint64(l))
@@ -212,6 +238,16 @@ func (m *Region) Size() (n int) {
 	l = len(m.Creator)
 	if l > 0 {
 		n += 1 + l + sovRegion(uint64(l))
+	}
+	if m.CreateAt != 0 {
+		n += 1 + sovRegion(uint64(m.CreateAt))
+	}
+	l = len(m.Updator)
+	if l > 0 {
+		n += 1 + l + sovRegion(uint64(l))
+	}
+	if m.UpdateAt != 0 {
+		n += 1 + sovRegion(uint64(m.UpdateAt))
 	}
 	return n
 }
@@ -252,25 +288,6 @@ func (m *Region) Unmarshal(dAtA []byte) error {
 		}
 		switch fieldNum {
 		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
-			}
-			m.Id = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRegion
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Id |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 2:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Code", wireType)
 			}
@@ -302,7 +319,7 @@ func (m *Region) Unmarshal(dAtA []byte) error {
 			}
 			m.Code = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 3:
+		case 2:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
 			}
@@ -334,7 +351,7 @@ func (m *Region) Unmarshal(dAtA []byte) error {
 			}
 			m.Name = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 4:
+		case 3:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Description", wireType)
 			}
@@ -366,7 +383,7 @@ func (m *Region) Unmarshal(dAtA []byte) error {
 			}
 			m.Description = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 5:
+		case 4:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
 			}
@@ -398,6 +415,76 @@ func (m *Region) Unmarshal(dAtA []byte) error {
 			}
 			m.Creator = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
+		case 12:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CreateAt", wireType)
+			}
+			m.CreateAt = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowRegion
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.CreateAt |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 13:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Updator", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowRegion
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthRegion
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthRegion
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Updator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 14:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field UpdateAt", wireType)
+			}
+			m.UpdateAt = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowRegion
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.UpdateAt |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipRegion(dAtA[iNdEx:])

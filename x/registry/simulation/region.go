@@ -23,7 +23,7 @@ func SimulateMsgCreateRegion(
 		simAccount, _ := simtypes.RandomAcc(r, accs)
 
 		msg := &types.MsgCreateRegion{
-			Creator: simAccount.Address.String(),
+			Signer: simAccount.Address.String(),
 		}
 
 		txCtx := simulation.OperationInput{
@@ -67,8 +67,8 @@ func SimulateMsgUpdateRegion(
 		if !found {
 			return simtypes.NoOpMsg(types.ModuleName, sdk.MsgTypeURL(msg), "region creator not found"), nil, nil
 		}
-		msg.Creator = simAccount.Address.String()
-		msg.Id = region.Id
+		msg.Signer = simAccount.Address.String()
+		msg.Code = region.Code
 
 		txCtx := simulation.OperationInput{
 			R:               r,
@@ -111,8 +111,8 @@ func SimulateMsgDeleteRegion(
 		if !found {
 			return simtypes.NoOpMsg(types.ModuleName, sdk.MsgTypeURL(msg), "region creator not found"), nil, nil
 		}
-		msg.Creator = simAccount.Address.String()
-		msg.Id = region.Id
+		msg.Signer = simAccount.Address.String()
+		msg.Code = region.Code
 
 		txCtx := simulation.OperationInput{
 			R:               r,

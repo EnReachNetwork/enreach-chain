@@ -8,9 +8,9 @@ import (
 
 var _ sdk.Msg = &MsgCreateRegion{}
 
-func NewMsgCreateRegion(creator string, code string, name string, description string) *MsgCreateRegion {
+func NewMsgCreateRegion(signer string, code string, name string, description string) *MsgCreateRegion {
 	return &MsgCreateRegion{
-		Creator:     creator,
+		Signer:      signer,
 		Code:        code,
 		Name:        name,
 		Description: description,
@@ -18,19 +18,18 @@ func NewMsgCreateRegion(creator string, code string, name string, description st
 }
 
 func (msg *MsgCreateRegion) ValidateBasic() error {
-	_, err := sdk.AccAddressFromBech32(msg.Creator)
+	_, err := sdk.AccAddressFromBech32(msg.Signer)
 	if err != nil {
-		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid creator address (%s)", err)
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid signer address (%s)", err)
 	}
 	return nil
 }
 
 var _ sdk.Msg = &MsgUpdateRegion{}
 
-func NewMsgUpdateRegion(creator string, id uint64, code string, name string, description string) *MsgUpdateRegion {
+func NewMsgUpdateRegion(signer string, code string, name string, description string) *MsgUpdateRegion {
 	return &MsgUpdateRegion{
-		Id:          id,
-		Creator:     creator,
+		Signer:      signer,
 		Code:        code,
 		Name:        name,
 		Description: description,
@@ -38,26 +37,26 @@ func NewMsgUpdateRegion(creator string, id uint64, code string, name string, des
 }
 
 func (msg *MsgUpdateRegion) ValidateBasic() error {
-	_, err := sdk.AccAddressFromBech32(msg.Creator)
+	_, err := sdk.AccAddressFromBech32(msg.Signer)
 	if err != nil {
-		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid creator address (%s)", err)
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid signer address (%s)", err)
 	}
 	return nil
 }
 
 var _ sdk.Msg = &MsgDeleteRegion{}
 
-func NewMsgDeleteRegion(creator string, id uint64) *MsgDeleteRegion {
+func NewMsgDeleteRegion(signer string, code string) *MsgDeleteRegion {
 	return &MsgDeleteRegion{
-		Id:      id,
-		Creator: creator,
+		Signer: signer,
+		Code:   code,
 	}
 }
 
 func (msg *MsgDeleteRegion) ValidateBasic() error {
-	_, err := sdk.AccAddressFromBech32(msg.Creator)
+	_, err := sdk.AccAddressFromBech32(msg.Signer)
 	if err != nil {
-		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid creator address (%s)", err)
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid signer address (%s)", err)
 	}
 	return nil
 }

@@ -41,22 +41,17 @@ func (k Keeper) SetRegionCount(ctx context.Context, count uint64) {
 func (k Keeper) AppendRegion(
 	ctx context.Context,
 	region types.Region,
-) uint64 {
+) {
 	// Create the region
 	count := k.GetRegionCount(ctx)
-
-	// Set the ID of the appended value
-	region.Id = count
 
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.RegionKey))
 	appendedValue := k.cdc.MustMarshal(&region)
-	store.Set(GetRegionIDBytes(region.Id), appendedValue)
+	store.Set(GetRegionCodeBytes(region.Code), appendedValue)
 
 	// Update region count
 	k.SetRegionCount(ctx, count+1)
-
-	return count
 }
 
 // SetRegion set a specific region in the store
@@ -64,14 +59,14 @@ func (k Keeper) SetRegion(ctx context.Context, region types.Region) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.RegionKey))
 	b := k.cdc.MustMarshal(&region)
-	store.Set(GetRegionIDBytes(region.Id), b)
+	store.Set(GetRegionCodeBytes(region.Code), b)
 }
 
 // GetRegion returns a region from its id
-func (k Keeper) GetRegion(ctx context.Context, id uint64) (val types.Region, found bool) {
+func (k Keeper) GetRegion(ctx context.Context, code string) (val types.Region, found bool) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.RegionKey))
-	b := store.Get(GetRegionIDBytes(id))
+	b := store.Get(GetRegionCodeBytes(code))
 	if b == nil {
 		return val, false
 	}
@@ -80,10 +75,10 @@ func (k Keeper) GetRegion(ctx context.Context, id uint64) (val types.Region, fou
 }
 
 // RemoveRegion removes a region from the store
-func (k Keeper) RemoveRegion(ctx context.Context, id uint64) {
+func (k Keeper) RemoveRegion(ctx context.Context, code string) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.RegionKey))
-	store.Delete(GetRegionIDBytes(id))
+	store.Delete(GetRegionCodeBytes(code))
 }
 
 // GetAllRegion returns all region
@@ -103,10 +98,10 @@ func (k Keeper) GetAllRegion(ctx context.Context) (list []types.Region) {
 	return
 }
 
-// GetRegionIDBytes returns the byte representation of the ID
-func GetRegionIDBytes(id uint64) []byte {
+// GetRegionCodeBytes returns the byte representation of the Code
+func GetRegionCodeBytes(code string) []byte {
 	bz := types.KeyPrefix(types.RegionKey)
 	bz = append(bz, []byte("/")...)
-	bz = binary.BigEndian.AppendUint64(bz, id)
+	bz = append(bz, []byte(code)...)
 	return bz
 }

@@ -25,17 +25,17 @@ func TestRegionQuerySingle(t *testing.T) {
 	}{
 		{
 			desc:     "First",
-			request:  &types.QueryGetRegionRequest{Id: msgs[0].Id},
+			request:  &types.QueryGetRegionRequest{Code: msgs[0].Code},
 			response: &types.QueryGetRegionResponse{Region: msgs[0]},
 		},
 		{
 			desc:     "Second",
-			request:  &types.QueryGetRegionRequest{Id: msgs[1].Id},
+			request:  &types.QueryGetRegionRequest{Code: msgs[1].Code},
 			response: &types.QueryGetRegionResponse{Region: msgs[1]},
 		},
 		{
 			desc:    "KeyNotFound",
-			request: &types.QueryGetRegionRequest{Id: uint64(len(msgs))},
+			request: &types.QueryGetRegionRequest{Code: "NotExistCode"},
 			err:     sdkerrors.ErrKeyNotFound,
 		},
 		{

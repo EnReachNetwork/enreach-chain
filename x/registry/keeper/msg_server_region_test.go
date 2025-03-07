@@ -14,16 +14,15 @@ func TestRegionMsgServerCreate(t *testing.T) {
 	_, srv, ctx := setupMsgServer(t)
 	wctx := sdk.UnwrapSDKContext(ctx)
 
-	creator := "A"
+	signer := "A"
 	for i := 0; i < 5; i++ {
-		resp, err := srv.CreateRegion(wctx, &types.MsgCreateRegion{Creator: creator})
+		_, err := srv.CreateRegion(wctx, &types.MsgCreateRegion{Signer: signer})
 		require.NoError(t, err)
-		require.Equal(t, i, int(resp.Id))
 	}
 }
 
 func TestRegionMsgServerUpdate(t *testing.T) {
-	creator := "A"
+	signer := "A"
 
 	tests := []struct {
 		desc    string
@@ -32,16 +31,16 @@ func TestRegionMsgServerUpdate(t *testing.T) {
 	}{
 		{
 			desc:    "Completed",
-			request: &types.MsgUpdateRegion{Creator: creator},
+			request: &types.MsgUpdateRegion{Signer: signer},
 		},
 		{
 			desc:    "Unauthorized",
-			request: &types.MsgUpdateRegion{Creator: "B"},
+			request: &types.MsgUpdateRegion{Signer: "B"},
 			err:     sdkerrors.ErrUnauthorized,
 		},
 		{
 			desc:    "Unauthorized",
-			request: &types.MsgUpdateRegion{Creator: creator, Id: 10},
+			request: &types.MsgUpdateRegion{Signer: signer, Code: "us"},
 			err:     sdkerrors.ErrKeyNotFound,
 		},
 	}
@@ -50,7 +49,7 @@ func TestRegionMsgServerUpdate(t *testing.T) {
 			_, srv, ctx := setupMsgServer(t)
 			wctx := sdk.UnwrapSDKContext(ctx)
 
-			_, err := srv.CreateRegion(wctx, &types.MsgCreateRegion{Creator: creator})
+			_, err := srv.CreateRegion(wctx, &types.MsgCreateRegion{Signer: signer})
 			require.NoError(t, err)
 
 			_, err = srv.UpdateRegion(wctx, tc.request)
@@ -64,7 +63,7 @@ func TestRegionMsgServerUpdate(t *testing.T) {
 }
 
 func TestRegionMsgServerDelete(t *testing.T) {
-	creator := "A"
+	signer := "A"
 
 	tests := []struct {
 		desc    string
@@ -73,16 +72,16 @@ func TestRegionMsgServerDelete(t *testing.T) {
 	}{
 		{
 			desc:    "Completed",
-			request: &types.MsgDeleteRegion{Creator: creator},
+			request: &types.MsgDeleteRegion{Signer: signer},
 		},
 		{
 			desc:    "Unauthorized",
-			request: &types.MsgDeleteRegion{Creator: "B"},
+			request: &types.MsgDeleteRegion{Signer: "B"},
 			err:     sdkerrors.ErrUnauthorized,
 		},
 		{
 			desc:    "KeyNotFound",
-			request: &types.MsgDeleteRegion{Creator: creator, Id: 10},
+			request: &types.MsgDeleteRegion{Signer: signer, Code: "NotExistCode"},
 			err:     sdkerrors.ErrKeyNotFound,
 		},
 	}
@@ -91,7 +90,7 @@ func TestRegionMsgServerDelete(t *testing.T) {
 			_, srv, ctx := setupMsgServer(t)
 			wctx := sdk.UnwrapSDKContext(ctx)
 
-			_, err := srv.CreateRegion(wctx, &types.MsgCreateRegion{Creator: creator})
+			_, err := srv.CreateRegion(wctx, &types.MsgCreateRegion{Signer: signer})
 			require.NoError(t, err)
 			_, err = srv.DeleteRegion(wctx, tc.request)
 			if tc.err != nil {

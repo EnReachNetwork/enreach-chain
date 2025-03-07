@@ -62,15 +62,15 @@ func request_Query_Region_0(ctx context.Context, marshaler runtime.Marshaler, cl
 		_   = err
 	)
 
-	val, ok = pathParams["id"]
+	val, ok = pathParams["code"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "code")
 	}
 
-	protoReq.Id, err = runtime.Uint64(val)
+	protoReq.Code, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "code", err)
 	}
 
 	msg, err := client.Region(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -89,15 +89,15 @@ func local_request_Query_Region_0(ctx context.Context, marshaler runtime.Marshal
 		_   = err
 	)
 
-	val, ok = pathParams["id"]
+	val, ok = pathParams["code"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "code")
 	}
 
-	protoReq.Id, err = runtime.Uint64(val)
+	protoReq.Code, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "code", err)
 	}
 
 	msg, err := server.Region(ctx, &protoReq)
@@ -323,7 +323,7 @@ func RegisterQueryHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 var (
 	pattern_Query_Params_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"enreach", "registry", "params"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_Region_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"enreach", "registry", "region", "id"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_Region_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"enreach", "registry", "region", "code"}, "", runtime.AssumeColonVerbOpt(false)))
 
 	pattern_Query_RegionAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"enreach", "registry", "regions"}, "", runtime.AssumeColonVerbOpt(false)))
 )

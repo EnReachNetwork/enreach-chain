@@ -41,32 +41,30 @@ message MsgUpdateParams {
 message MsgUpdateParamsResponse {}
 
 message MsgCreateRegion {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator     = 1;
+  option (cosmos.msg.v1.signer) = "signer";
+  string signer      = 1;
   string code        = 2;
   string name        = 3;
   string description = 4;
 }
 
 message MsgCreateRegionResponse {
-  uint64 id = 1;
 }
 
 message MsgUpdateRegion {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator     = 1;
-  uint64 id          = 2;
-  string code        = 3;
-  string name        = 4;
-  string description = 5;
+  option (cosmos.msg.v1.signer) = "signer";
+  string signer      = 1;
+  string code        = 2;
+  string name        = 3;
+  string description = 4;
 }
 
 message MsgUpdateRegionResponse {}
 
 message MsgDeleteRegion {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator = 1;
-  uint64 id      = 2;
+  option (cosmos.msg.v1.signer) = "signer";
+  string signer      = 1;
+  string code        = 2;
 }
 
 message MsgDeleteRegionResponse {}

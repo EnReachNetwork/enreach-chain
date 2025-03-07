@@ -4,9 +4,11 @@ package enreach.registry;
 option go_package = "enreach/x/registry/types";
 
 message Region {
-  uint64 id = 1;
-  string code = 2; 
-  string name = 3; 
-  string description = 4; 
-  string creator = 5;
+  string code = 1; 
+  string name = 2; 
+  string description = 3; 
+  string creator = 4;
+  uint64 createAt = 12;
+  string updator = 13;
+  uint64 updateAt = 14;
 }

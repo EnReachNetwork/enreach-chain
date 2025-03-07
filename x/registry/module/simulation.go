@@ -48,11 +48,11 @@ func (AppModule) GenerateGenesisState(simState *module.SimulationState) {
 		Params: types.DefaultParams(),
 		RegionList: []types.Region{
 			{
-				Id:      0,
+				Code:    "us",
 				Creator: sample.AccAddress(),
 			},
 			{
-				Id:      1,
+				Code:    "eu",
 				Creator: sample.AccAddress(),
 			},
 		},

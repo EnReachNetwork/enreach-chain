@@ -45,7 +45,7 @@ func (k Keeper) Region(ctx context.Context, req *types.QueryGetRegionRequest) (*
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
 	}
 
-	region, found := k.GetRegion(ctx, req.Id)
+	region, found := k.GetRegion(ctx, req.Code)
 	if !found {
 		return nil, sdkerrors.ErrKeyNotFound
 	}

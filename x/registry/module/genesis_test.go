@@ -17,10 +17,10 @@ func TestGenesis(t *testing.T) {
 
 		RegionList: []types.Region{
 			{
-				Id: 0,
+				Code: "us",
 			},
 			{
-				Id: 1,
+				Code: "eu",
 			},
 		},
 		RegionCount: 2,
