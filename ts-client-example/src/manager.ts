@@ -1,4 +1,4 @@
-import { DirectSecp256k1HdWallet, OfflineSigner } from '@cosmjs/proto-signing'
+import { DirectSecp256k1HdWallet } from '@cosmjs/proto-signing'
 import { txClient } from 'enreach-client-ts/lib/enreach.manager';
 import { queryClient } from "enreach-client-ts/lib/enreach.manager";
 import { MsgGoWorking, MsgRegisterManager, QueryAllManagerResponse } from 'enreach-client-ts/lib/enreach.manager/module';
@@ -6,7 +6,7 @@ import { CHAIN_API_URL, CHAIN_PREFIX, CHAIN_RPC_URL } from './consts';
 
 export default class ManagerApi {
     private mnemonic: string;
-    private wallet!: OfflineSigner;
+    public wallet!: DirectSecp256k1HdWallet;
     public account!: string;
 
     constructor(mnemonic: string) {
