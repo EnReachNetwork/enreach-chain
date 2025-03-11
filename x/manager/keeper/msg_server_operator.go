@@ -58,8 +58,8 @@ func (k msgServer) BindOperatorManagerAccount(goCtx context.Context, msg *types.
 	}
 
 	// Verifys the manager address and signature
-	if err := verifyManagerSignature(msg.OperatorAccount, msg.ManagerAccount, msg.ManagerSignature); err != nil {
-		return nil, errorsmod.Wrap(types.ErrInvalidSignature, "Invalid manager signature")
+	if err := verifyManagerSignature(k, ctx, msg.OperatorAccount, msg.ManagerAccount, msg.ManagerSignature); err != nil {
+		return nil, errorsmod.Wrapf(types.ErrInvalidSignature, "Invalid manager signature:%s", err)
 	}
 
 	// Manager should have already been registered
@@ -108,27 +108,35 @@ func (k msgServer) BindOperatorManagerAccount(goCtx context.Context, msg *types.
 	return &types.MsgBindOperatorManagerAccountResponse{}, nil
 }
 
-func verifyManagerSignature(_operatorAccount string, _managerAccount string, _managerSignature []byte) error {
-	// // Construct original sig data
-	// data := []byte(operatorAccount + managerAccount)
-	// msgHash := sdk.Sha256(data)
+func verifyManagerSignature(k msgServer, ctx context.Context, operatorAccount string, managerAccount string, managerSignature []byte) error {
 
-	// // Decode the manager address
-	// workerAccAddr, err := sdk.AccAddressFromBech32(managerAccount)
-	// if err != nil {
-	// 	return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid manager account: %s", err)
-	// }
+	// Decode the manager address
+	managerAccAddr, err := sdk.AccAddressFromBech32(managerAccount)
+	if err != nil {
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid manager account: %s", err)
+	}
 
-	// // Recover the pubkey and verify signature
-	// pubKey, err := secp256k1.RecoverPubKey(msgHash, managerSignature)
-	// if err != nil {
-	// 	return errorsmod.Wrapf(types.ErrInvalidSignature, "invalid worker signature: %s", err)
-	// }
+	// Get the manager account pubkey from the store,
+	// manager should have called RegisterManager tx before, so there should be account in the AccountKeeper store
+	account := k.accountKeeper.GetAccount(ctx, managerAccAddr)
+	if account == nil {
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "account not found for address: %s", managerAccount)
+	}
 
-	// // Verify if the pubkey match
-	// if !pubKey.Address().Equals(workerAccAddr) {
-	// 	return errorsmod.Wrapf(types.ErrInvalidSignature, "invalid worker signature: public key does not match the signer address")
-	// }
+	pubKey := account.GetPubKey()
+	if pubKey == nil {
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "public key not found for account: %s", managerAccount)
+	}
+
+	// Construct original sig data
+	data := []byte(operatorAccount + ":" + managerAccount)
+	// Verify the signature, please be attention that the 'msg' param here is the raw msg bytes, not the sha256 form
+	// because pubKey.VerifySignature will do sha256(msg) internally,
+	// and the signature here should be 64 bytes without the last recovery field
+	if !pubKey.VerifySignature(data, managerSignature) {
+		return errorsmod.Wrap(types.ErrInvalidSignature,
+			"manager signature verification failed, please ensure the signature is correct and ensure to use the manager account to sign the message")
+	}
 
 	return nil
 }
