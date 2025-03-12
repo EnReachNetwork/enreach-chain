@@ -1,0 +1,13 @@
+syntax = "proto3";
+package enreach.edgenode;
+
+option go_package = "enreach/x/edgenode/types";
+
+message User {
+  string userID = 1; 
+  string evmAccount = 2; 
+  string creator = 3; 
+  uint64 createAt = 4; 
+  string updator = 5; 
+  uint64 updateAt = 6; 
+}

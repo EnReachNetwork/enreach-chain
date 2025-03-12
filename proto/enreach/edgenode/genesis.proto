@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package enreach.edgenode;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "enreach/edgenode/params.proto";
+import "enreach/edgenode/user.proto";
+import "enreach/edgenode/node.proto";
+import "enreach/edgenode/superior.proto";
+
+option go_package = "enreach/x/edgenode/types";
+
+// GenesisState defines the edgenode module's genesis state.
+message GenesisState {
+  
+  // params defines all the parameters of the module.
+           Params   params    = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  repeated User     userList  = 2 [(gogoproto.nullable) = false] ;
+           uint64   userCount = 3;
+  repeated Node     nodeList  = 4 [(gogoproto.nullable) = false] ;
+           uint64   nodeCount = 5;
+           Superior superior  = 6;
+}
+

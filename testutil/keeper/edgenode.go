@@ -13,17 +13,15 @@ import (
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	"github.com/cosmos/cosmos-sdk/runtime"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	authkeeper "github.com/cosmos/cosmos-sdk/x/auth/keeper"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	"github.com/stretchr/testify/require"
 
-	"enreach/x/manager/keeper"
-	"enreach/x/manager/types"
-	registryKeeper "enreach/x/registry/keeper"
+	"enreach/x/edgenode/keeper"
+	"enreach/x/edgenode/types"
 )
 
-func ManagerKeeper(t testing.TB) (keeper.Keeper, sdk.Context) {
+func EdgenodeKeeper(t testing.TB) (keeper.Keeper, sdk.Context) {
 	storeKey := storetypes.NewKVStoreKey(types.StoreKey)
 
 	db := dbm.NewMemDB()
@@ -40,16 +38,12 @@ func ManagerKeeper(t testing.TB) (keeper.Keeper, sdk.Context) {
 		runtime.NewKVStoreService(storeKey),
 		log.NewNopLogger(),
 		authority.String(),
-		authkeeper.AccountKeeper{},
-		registryKeeper.Keeper{},
 	)
 
 	ctx := sdk.NewContext(stateStore, cmtproto.Header{}, false, log.NewNopLogger())
 
 	// Initialize params
-	if err := k.SetParams(ctx, types.DefaultParams()); err != nil {
-		panic(err)
-	}
+	k.SetParams(ctx, types.DefaultParams())
 
 	return k, ctx
 }

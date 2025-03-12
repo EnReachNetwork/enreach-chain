@@ -1,0 +1,16 @@
+syntax = "proto3";
+package enreach.edgenode;
+
+option go_package = "enreach/x/edgenode/types";
+
+message Node {
+  string nodeID = 1; 
+  string userID = 2; 
+  string deviceType = 3; 
+  string registerStatus = 4; 
+  string workingStatus = 5; 
+  string creator = 6; 
+  uint64 createAt = 7; 
+  string updator = 8; 
+  uint64 updateAt = 9;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+package enreach.edgenode;
+
+option go_package = "enreach/x/edgenode/types";
+
+message Superior {
+  string account = 1; 
+  string creator = 2; 
+  uint64 createAt = 3; 
+  string updator = 4; 
+  uint64 updateAt = 5; 
+}

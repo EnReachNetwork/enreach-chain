@@ -19,6 +19,10 @@ import (
 	_ "enreach/x/workload/module" // import for side-effects
 	workloadmoduletypes "enreach/x/workload/types"
 
+	edgenodemodulev1 "enreach/api/enreach/edgenode/module"
+	_ "enreach/x/edgenode/module" // import for side-effects
+	edgenodemoduletypes "enreach/x/edgenode/types"
+
 	runtimev1alpha1 "cosmossdk.io/api/cosmos/app/runtime/v1alpha1"
 	appv1alpha1 "cosmossdk.io/api/cosmos/app/v1alpha1"
 	authmodulev1 "cosmossdk.io/api/cosmos/auth/module/v1"
@@ -109,6 +113,7 @@ var (
 		managermoduletypes.ModuleName,
 		minermoduletypes.ModuleName,
 		workloadmoduletypes.ModuleName,
+		edgenodemoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
@@ -137,6 +142,7 @@ var (
 		managermoduletypes.ModuleName,
 		minermoduletypes.ModuleName,
 		workloadmoduletypes.ModuleName,
+		edgenodemoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	}
 
@@ -159,6 +165,7 @@ var (
 		managermoduletypes.ModuleName,
 		minermoduletypes.ModuleName,
 		workloadmoduletypes.ModuleName,
+		edgenodemoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	}
 
@@ -331,6 +338,12 @@ var (
 			{
 				Name:   workloadmoduletypes.ModuleName,
 				Config: appconfig.WrapAny(&workloadmodulev1.Module{}),
+			},
+			{
+				Name: edgenodemoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&edgenodemodulev1.Module{
+					Authority: "enreach1mwyh5y3nu300s2v2spr3mw8ypf65nzzdmf3lex",
+				}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},

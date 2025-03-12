@@ -81,6 +81,7 @@ import (
 	minermodulekeeper "enreach/x/miner/keeper"
 	workloadmodulekeeper "enreach/x/workload/keeper"
 
+	edgenodemodulekeeper "enreach/x/edgenode/keeper"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
 	"enreach/docs"
@@ -149,6 +150,7 @@ type App struct {
 	ManagerKeeper  managermodulekeeper.Keeper
 	MinerKeeper    minermodulekeeper.Keeper
 	WorkloadKeeper workloadmodulekeeper.Keeper
+	EdgenodeKeeper edgenodemodulekeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
 
 	// simulation manager
@@ -291,6 +293,7 @@ func New(
 		&app.ManagerKeeper,
 		&app.MinerKeeper,
 		&app.WorkloadKeeper,
+		&app.EdgenodeKeeper,
 		// this line is used by starport scaffolding # stargate/app/keeperDefinition
 	); err != nil {
 		panic(err)

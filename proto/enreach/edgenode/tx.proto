@@ -1,0 +1,111 @@
+syntax = "proto3";
+
+package enreach.edgenode;
+
+import "amino/amino.proto";
+import "cosmos/msg/v1/msg.proto";
+import "cosmos_proto/cosmos.proto";
+import "gogoproto/gogo.proto";
+import "enreach/edgenode/params.proto";
+import "enreach/edgenode/user.proto";
+import "enreach/edgenode/node.proto";
+import "enreach/edgenode/superior.proto";
+
+option go_package = "enreach/x/edgenode/types";
+
+// Msg defines the Msg service.
+service Msg {
+  option (cosmos.msg.v1.service) = true;
+  
+  // UpdateParams defines a (governance) operation for updating the module
+  // parameters. The authority defaults to the x/gov module account.
+  rpc UpdateParams        (MsgUpdateParams       ) returns (MsgUpdateParamsResponse       );
+  rpc CreateUser          (MsgCreateUser         ) returns (MsgCreateUserResponse         );
+  rpc BindUserEVMAccount  (MsgBindUserEVMAccount ) returns (MsgBindUserEVMAccountResponse );
+  rpc RegisterNode        (MsgRegisterNode       ) returns (MsgRegisterNodeResponse       );
+  rpc BindAndActivateNode (MsgBindAndActivateNode) returns (MsgBindAndActivateNodeResponse);
+  rpc UnbindNode          (MsgUnbindNode         ) returns (MsgUnbindNodeResponse          );
+  rpc CreateSuperior      (MsgCreateSuperior     ) returns (MsgCreateSuperiorResponse     );
+  rpc UpdateSuperior      (MsgUpdateSuperior     ) returns (MsgUpdateSuperiorResponse     );
+}
+// MsgUpdateParams is the Msg/UpdateParams request type.
+message MsgUpdateParams {
+  option (cosmos.msg.v1.signer) =                          "authority";
+  option           (amino.name) = "enreach/x/edgenode/MsgUpdateParams";
+  
+  // authority is the address that controls the module (defaults to x/gov unless overwritten).
+  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // params defines the module parameters to update.
+  
+  // NOTE: All parameters must be supplied.
+  Params params = 2 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+// MsgUpdateParamsResponse defines the response structure for executing a
+// MsgUpdateParams message.
+message MsgUpdateParamsResponse {}
+
+message MsgCreateUser {
+  option (cosmos.msg.v1.signer) = "signer";
+  string signer = 1;
+  string userID = 2;
+}
+
+message MsgCreateUserResponse {}
+
+message MsgBindUserEVMAccount {
+  option (cosmos.msg.v1.signer) = "signer";
+  string signer     = 1;
+  string userID     = 2;
+  string evmAccount = 3;
+  bytes  evmPubkey   = 4;
+  bytes  evmSignature = 5;
+}
+
+message MsgBindUserEVMAccountResponse {}
+
+message MsgRegisterNode {
+  option (cosmos.msg.v1.signer) = "signer";
+  string signer     = 1;
+  string nodeID     = 2;
+  string deviceType = 3;
+}
+
+message MsgRegisterNodeResponse {}
+
+message MsgBindAndActivateNode {
+  option (cosmos.msg.v1.signer) = "signer";
+  string signer = 1;
+  string nodeID = 2;
+  string userID = 3;
+}
+
+message MsgBindAndActivateNodeResponse {}
+
+message MsgUnbindNode {
+  option (cosmos.msg.v1.signer) = "signer";
+  string signer = 1;
+  string nodeID = 2;
+  string userID = 3;
+}
+
+message MsgUnbindNodeResponse {}
+
+message MsgCreateSuperior {
+  option (cosmos.msg.v1.signer) = "signer";
+  string signer   = 1;
+  string account  = 2;
+}
+
+message MsgCreateSuperiorResponse {}
+
+message MsgUpdateSuperior {
+  option (cosmos.msg.v1.signer) = "signer";
+  string signer   = 1;
+  string account  = 2;
+}
+
+message MsgUpdateSuperiorResponse {}
+
+
