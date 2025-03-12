@@ -75,13 +75,11 @@ import (
 	ibctransferkeeper "github.com/cosmos/ibc-go/v8/modules/apps/transfer/keeper"
 	ibckeeper "github.com/cosmos/ibc-go/v8/modules/core/keeper"
 
+	edgenodemodulekeeper "enreach/x/edgenode/keeper"
 	managermodulekeeper "enreach/x/manager/keeper"
 	registrymodulekeeper "enreach/x/registry/keeper"
-
-	minermodulekeeper "enreach/x/miner/keeper"
 	workloadmodulekeeper "enreach/x/workload/keeper"
 
-	edgenodemodulekeeper "enreach/x/edgenode/keeper"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
 	"enreach/docs"
@@ -148,7 +146,6 @@ type App struct {
 
 	RegistryKeeper registrymodulekeeper.Keeper
 	ManagerKeeper  managermodulekeeper.Keeper
-	MinerKeeper    minermodulekeeper.Keeper
 	WorkloadKeeper workloadmodulekeeper.Keeper
 	EdgenodeKeeper edgenodemodulekeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
@@ -291,7 +288,6 @@ func New(
 		&app.CircuitBreakerKeeper,
 		&app.RegistryKeeper,
 		&app.ManagerKeeper,
-		&app.MinerKeeper,
 		&app.WorkloadKeeper,
 		&app.EdgenodeKeeper,
 		// this line is used by starport scaffolding # stargate/app/keeperDefinition

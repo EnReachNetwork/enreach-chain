@@ -11,10 +11,6 @@ import (
 	_ "enreach/x/manager/module" // import for side-effects
 	managermoduletypes "enreach/x/manager/types"
 
-	minermodulev1 "enreach/api/enreach/miner/module"
-	_ "enreach/x/miner/module" // import for side-effects
-	minermoduletypes "enreach/x/miner/types"
-
 	workloadmodulev1 "enreach/api/enreach/workload/module"
 	_ "enreach/x/workload/module" // import for side-effects
 	workloadmoduletypes "enreach/x/workload/types"
@@ -111,7 +107,6 @@ var (
 		// chain modules
 		registrymoduletypes.ModuleName,
 		managermoduletypes.ModuleName,
-		minermoduletypes.ModuleName,
 		workloadmoduletypes.ModuleName,
 		edgenodemoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
@@ -140,7 +135,6 @@ var (
 		// chain modules
 		registrymoduletypes.ModuleName,
 		managermoduletypes.ModuleName,
-		minermoduletypes.ModuleName,
 		workloadmoduletypes.ModuleName,
 		edgenodemoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
@@ -163,7 +157,6 @@ var (
 		// chain modules
 		registrymoduletypes.ModuleName,
 		managermoduletypes.ModuleName,
-		minermoduletypes.ModuleName,
 		workloadmoduletypes.ModuleName,
 		edgenodemoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
@@ -330,10 +323,6 @@ var (
 			{
 				Name:   managermoduletypes.ModuleName,
 				Config: appconfig.WrapAny(&managermodulev1.Module{}),
-			},
-			{
-				Name:   minermoduletypes.ModuleName,
-				Config: appconfig.WrapAny(&minermodulev1.Module{}),
 			},
 			{
 				Name:   workloadmoduletypes.ModuleName,
