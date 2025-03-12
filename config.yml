@@ -6,12 +6,17 @@ accounts:
   - 20000token
   - 200000000stake
   mnemonic: autumn churn regular flee grid category remember put dish uniform age pepper armor portion wait tribe memory inform fine photo work problem blast enforce
-- name: alice
+- name: superior
+  coins:
+  - 10000token
+  - 100000000stake
+  mnemonic: fitness marine video shine dose garlic senior throw room metal seek address stable abstract salmon traffic multiply erode category brass maid joy usual round
+- name: operator
   coins:
   - 20000token
   - 200000000stake
   mnemonic: frame blame asset doctor below parrot cross latin camp cruel trumpet fix income impose dose culture amused health sniff poem risk ask twenty zone
-- name: bob
+- name: manager
   coins:
   - 10000token
   - 100000000stake
