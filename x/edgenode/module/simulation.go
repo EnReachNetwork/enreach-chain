@@ -27,25 +27,9 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgCreateUser int = 100
 
-	opWeightMsgUpdateUser = "op_weight_msg_user"
-	// TODO: Determine the simulation weight value
-	defaultWeightMsgUpdateUser int = 100
-
-	opWeightMsgDeleteUser = "op_weight_msg_user"
-	// TODO: Determine the simulation weight value
-	defaultWeightMsgDeleteUser int = 100
-
 	opWeightMsgCreateNode = "op_weight_msg_node"
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgCreateNode int = 100
-
-	opWeightMsgUpdateNode = "op_weight_msg_node"
-	// TODO: Determine the simulation weight value
-	defaultWeightMsgUpdateNode int = 100
-
-	opWeightMsgDeleteNode = "op_weight_msg_node"
-	// TODO: Determine the simulation weight value
-	defaultWeightMsgDeleteNode int = 100
 
 	opWeightMsgCreateSuperior = "op_weight_msg_superior"
 	// TODO: Determine the simulation weight value

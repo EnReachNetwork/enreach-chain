@@ -11,12 +11,12 @@ accounts:
   - 10000token
   - 100000000stake
   mnemonic: fitness marine video shine dose garlic senior throw room metal seek address stable abstract salmon traffic multiply erode category brass maid joy usual round
-- name: operator
+- name: alice
   coins:
   - 20000token
   - 200000000stake
   mnemonic: frame blame asset doctor below parrot cross latin camp cruel trumpet fix income impose dose culture amused health sniff poem risk ask twenty zone
-- name: manager
+- name: bob
   coins:
   - 10000token
   - 100000000stake
