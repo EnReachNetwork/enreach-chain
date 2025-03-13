@@ -8,6 +8,7 @@ import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "enreach/registry/params.proto";
 import "enreach/registry/region.proto";
+import "enreach/registry/superior.proto";
 
 option go_package = "enreach/x/registry/types";
 
@@ -27,6 +28,12 @@ service Query {
   }
   rpc RegionAll (QueryAllRegionRequest) returns (QueryAllRegionResponse) {
     option (google.api.http).get = "/enreach/registry/regions";
+  
+  }
+  
+  // Queries a Superior by index.
+  rpc Superior (QueryGetSuperiorRequest) returns (QueryGetSuperiorResponse) {
+    option (google.api.http).get = "/enreach/registry/superior";
   
   }
 }
@@ -55,5 +62,11 @@ message QueryAllRegionRequest {
 message QueryAllRegionResponse {
   repeated Region                                 Region     = 1 [(gogoproto.nullable) = false];
            cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetSuperiorRequest {}
+
+message QueryGetSuperiorResponse {
+  Superior Superior = 1 [(gogoproto.nullable) = false];
 }
 

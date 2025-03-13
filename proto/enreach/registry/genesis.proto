@@ -6,6 +6,7 @@ import "amino/amino.proto";
 import "gogoproto/gogo.proto";
 import "enreach/registry/params.proto";
 import "enreach/registry/region.proto";
+import "enreach/registry/superior.proto";
 
 option go_package = "enreach/x/registry/types";
 
@@ -13,8 +14,9 @@ option go_package = "enreach/x/registry/types";
 message GenesisState {
   
   // params defines all the parameters of the module.
-           Params params      = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
-  repeated Region regionList  = 2 [(gogoproto.nullable) = false] ;
-           uint64 regionCount = 3;
+           Params   params      = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  repeated Region   regionList  = 2 [(gogoproto.nullable) = false] ;
+           uint64   regionCount = 3;
+           Superior superior    = 4;
 }
 

@@ -19,10 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Msg_UpdateParams_FullMethodName = "/enreach.registry.Msg/UpdateParams"
-	Msg_CreateRegion_FullMethodName = "/enreach.registry.Msg/CreateRegion"
-	Msg_UpdateRegion_FullMethodName = "/enreach.registry.Msg/UpdateRegion"
-	Msg_DeleteRegion_FullMethodName = "/enreach.registry.Msg/DeleteRegion"
+	Msg_UpdateParams_FullMethodName   = "/enreach.registry.Msg/UpdateParams"
+	Msg_CreateRegion_FullMethodName   = "/enreach.registry.Msg/CreateRegion"
+	Msg_UpdateRegion_FullMethodName   = "/enreach.registry.Msg/UpdateRegion"
+	Msg_DeleteRegion_FullMethodName   = "/enreach.registry.Msg/DeleteRegion"
+	Msg_CreateSuperior_FullMethodName = "/enreach.registry.Msg/CreateSuperior"
+	Msg_UpdateSuperior_FullMethodName = "/enreach.registry.Msg/UpdateSuperior"
 )
 
 // MsgClient is the client API for Msg service.
@@ -35,6 +37,8 @@ type MsgClient interface {
 	CreateRegion(ctx context.Context, in *MsgCreateRegion, opts ...grpc.CallOption) (*MsgCreateRegionResponse, error)
 	UpdateRegion(ctx context.Context, in *MsgUpdateRegion, opts ...grpc.CallOption) (*MsgUpdateRegionResponse, error)
 	DeleteRegion(ctx context.Context, in *MsgDeleteRegion, opts ...grpc.CallOption) (*MsgDeleteRegionResponse, error)
+	CreateSuperior(ctx context.Context, in *MsgCreateSuperior, opts ...grpc.CallOption) (*MsgCreateSuperiorResponse, error)
+	UpdateSuperior(ctx context.Context, in *MsgUpdateSuperior, opts ...grpc.CallOption) (*MsgUpdateSuperiorResponse, error)
 }
 
 type msgClient struct {
@@ -81,6 +85,24 @@ func (c *msgClient) DeleteRegion(ctx context.Context, in *MsgDeleteRegion, opts 
 	return out, nil
 }
 
+func (c *msgClient) CreateSuperior(ctx context.Context, in *MsgCreateSuperior, opts ...grpc.CallOption) (*MsgCreateSuperiorResponse, error) {
+	out := new(MsgCreateSuperiorResponse)
+	err := c.cc.Invoke(ctx, Msg_CreateSuperior_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) UpdateSuperior(ctx context.Context, in *MsgUpdateSuperior, opts ...grpc.CallOption) (*MsgUpdateSuperiorResponse, error) {
+	out := new(MsgUpdateSuperiorResponse)
+	err := c.cc.Invoke(ctx, Msg_UpdateSuperior_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -91,6 +113,8 @@ type MsgServer interface {
 	CreateRegion(context.Context, *MsgCreateRegion) (*MsgCreateRegionResponse, error)
 	UpdateRegion(context.Context, *MsgUpdateRegion) (*MsgUpdateRegionResponse, error)
 	DeleteRegion(context.Context, *MsgDeleteRegion) (*MsgDeleteRegionResponse, error)
+	CreateSuperior(context.Context, *MsgCreateSuperior) (*MsgCreateSuperiorResponse, error)
+	UpdateSuperior(context.Context, *MsgUpdateSuperior) (*MsgUpdateSuperiorResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -109,6 +133,12 @@ func (UnimplementedMsgServer) UpdateRegion(context.Context, *MsgUpdateRegion) (*
 }
 func (UnimplementedMsgServer) DeleteRegion(context.Context, *MsgDeleteRegion) (*MsgDeleteRegionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRegion not implemented")
+}
+func (UnimplementedMsgServer) CreateSuperior(context.Context, *MsgCreateSuperior) (*MsgCreateSuperiorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateSuperior not implemented")
+}
+func (UnimplementedMsgServer) UpdateSuperior(context.Context, *MsgUpdateSuperior) (*MsgUpdateSuperiorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSuperior not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -195,6 +225,42 @@ func _Msg_DeleteRegion_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_CreateSuperior_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgCreateSuperior)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).CreateSuperior(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_CreateSuperior_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).CreateSuperior(ctx, req.(*MsgCreateSuperior))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_UpdateSuperior_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgUpdateSuperior)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).UpdateSuperior(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_UpdateSuperior_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).UpdateSuperior(ctx, req.(*MsgUpdateSuperior))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -217,6 +283,14 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteRegion",
 			Handler:    _Msg_DeleteRegion_Handler,
+		},
+		{
+			MethodName: "CreateSuperior",
+			Handler:    _Msg_CreateSuperior_Handler,
+		},
+		{
+			MethodName: "UpdateSuperior",
+			Handler:    _Msg_UpdateSuperior_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

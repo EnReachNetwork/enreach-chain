@@ -3,6 +3,7 @@ import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Params } from "./params";
 import { Region } from "./region";
+import { Superior } from "./superior";
 
 export const protobufPackage = "enreach.registry";
 
@@ -12,10 +13,11 @@ export interface GenesisState {
   params: Params | undefined;
   regionList: Region[];
   regionCount: number;
+  superior: Superior | undefined;
 }
 
 function createBaseGenesisState(): GenesisState {
-  return { params: undefined, regionList: [], regionCount: 0 };
+  return { params: undefined, regionList: [], regionCount: 0, superior: undefined };
 }
 
 export const GenesisState = {
@@ -28,6 +30,9 @@ export const GenesisState = {
     }
     if (message.regionCount !== 0) {
       writer.uint32(24).uint64(message.regionCount);
+    }
+    if (message.superior !== undefined) {
+      Superior.encode(message.superior, writer.uint32(34).fork()).ldelim();
     }
     return writer;
   },
@@ -60,6 +65,13 @@ export const GenesisState = {
 
           message.regionCount = longToNumber(reader.uint64() as Long);
           continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.superior = Superior.decode(reader, reader.uint32());
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -74,6 +86,7 @@ export const GenesisState = {
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
       regionList: Array.isArray(object?.regionList) ? object.regionList.map((e: any) => Region.fromJSON(e)) : [],
       regionCount: isSet(object.regionCount) ? Number(object.regionCount) : 0,
+      superior: isSet(object.superior) ? Superior.fromJSON(object.superior) : undefined,
     };
   },
 
@@ -88,6 +101,9 @@ export const GenesisState = {
     if (message.regionCount !== 0) {
       obj.regionCount = Math.round(message.regionCount);
     }
+    if (message.superior !== undefined) {
+      obj.superior = Superior.toJSON(message.superior);
+    }
     return obj;
   },
 
@@ -101,6 +117,9 @@ export const GenesisState = {
       : undefined;
     message.regionList = object.regionList?.map((e) => Region.fromPartial(e)) || [];
     message.regionCount = object.regionCount ?? 0;
+    message.superior = (object.superior !== undefined && object.superior !== null)
+      ? Superior.fromPartial(object.superior)
+      : undefined;
     return message;
   },
 };

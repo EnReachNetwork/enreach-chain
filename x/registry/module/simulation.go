@@ -35,6 +35,14 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgDeleteRegion int = 100
 
+	opWeightMsgCreateSuperior = "op_weight_msg_superior"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgCreateSuperior int = 100
+
+	opWeightMsgUpdateSuperior = "op_weight_msg_superior"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgUpdateSuperior int = 100
+
 	// this line is used by starport scaffolding # simapp/module/const
 )
 
@@ -102,6 +110,28 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 		registrysimulation.SimulateMsgDeleteRegion(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
+	var weightMsgCreateSuperior int
+	simState.AppParams.GetOrGenerate(opWeightMsgCreateSuperior, &weightMsgCreateSuperior, nil,
+		func(_ *rand.Rand) {
+			weightMsgCreateSuperior = defaultWeightMsgCreateSuperior
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgCreateSuperior,
+		registrysimulation.SimulateMsgCreateSuperior(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgUpdateSuperior int
+	simState.AppParams.GetOrGenerate(opWeightMsgUpdateSuperior, &weightMsgUpdateSuperior, nil,
+		func(_ *rand.Rand) {
+			weightMsgUpdateSuperior = defaultWeightMsgUpdateSuperior
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgUpdateSuperior,
+		registrysimulation.SimulateMsgUpdateSuperior(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
 	// this line is used by starport scaffolding # simapp/module/operation
 
 	return operations
@@ -131,6 +161,22 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			defaultWeightMsgDeleteRegion,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
 				registrysimulation.SimulateMsgDeleteRegion(am.accountKeeper, am.bankKeeper, am.keeper)
+				return nil
+			},
+		),
+		simulation.NewWeightedProposalMsg(
+			opWeightMsgCreateSuperior,
+			defaultWeightMsgCreateSuperior,
+			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
+				registrysimulation.SimulateMsgCreateSuperior(am.accountKeeper, am.bankKeeper, am.keeper)
+				return nil
+			},
+		),
+		simulation.NewWeightedProposalMsg(
+			opWeightMsgUpdateSuperior,
+			defaultWeightMsgUpdateSuperior,
+			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
+				registrysimulation.SimulateMsgUpdateSuperior(am.accountKeeper, am.bankKeeper, am.keeper)
 				return nil
 			},
 		),

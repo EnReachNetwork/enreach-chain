@@ -23,3 +23,7 @@ const (
 	RegionKey      = "Region/value/"
 	RegionCountKey = "Region/count/"
 )
+
+const (
+	SuperiorKey = "Superior/value/"
+)

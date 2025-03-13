@@ -28,6 +28,11 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Shows a region by code",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "code"}},
 				},
+				{
+					RpcMethod: "Superior",
+					Use:       "show-superior",
+					Short:     "show superior",
+				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},
@@ -56,6 +61,18 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Use:            "delete-region [code]",
 					Short:          "Delete region",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "code"}},
+				},
+				{
+					RpcMethod:      "CreateSuperior",
+					Use:            "create-superior [account]",
+					Short:          "Create superior",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "account"}},
+				},
+				{
+					RpcMethod:      "UpdateSuperior",
+					Use:            "update-superior [account]",
+					Short:          "Update superior",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "account"}},
 				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},

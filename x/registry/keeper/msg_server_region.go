@@ -11,12 +11,17 @@ import (
 )
 
 func (k msgServer) CreateRegion(goCtx context.Context, msg *types.MsgCreateRegion) (*types.MsgCreateRegionResponse, error) {
-	// tx caller must be authority
-	if k.GetAuthority() != msg.Signer {
-		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only authority can execute this call")
+	ctx := sdk.UnwrapSDKContext(goCtx)
+
+	// tx caller must be superior
+	superior, isFound := k.GetSuperior(ctx)
+	if !isFound {
+		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, "superior not set")
+	}
+	if superior.Account != msg.Signer {
+		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only superior can execute this call")
 	}
 
-	ctx := sdk.UnwrapSDKContext(goCtx)
 	// Check duplicate region
 	_, found := k.GetRegion(ctx, msg.Code)
 	if found {
@@ -40,11 +45,16 @@ func (k msgServer) CreateRegion(goCtx context.Context, msg *types.MsgCreateRegio
 }
 
 func (k msgServer) UpdateRegion(goCtx context.Context, msg *types.MsgUpdateRegion) (*types.MsgUpdateRegionResponse, error) {
-	// tx caller must be authority
-	if k.GetAuthority() != msg.Signer {
-		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only authority can execute this call")
-	}
 	ctx := sdk.UnwrapSDKContext(goCtx)
+
+	// tx caller must be superior
+	superior, isFound := k.GetSuperior(ctx)
+	if !isFound {
+		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, "superior not set")
+	}
+	if superior.Account != msg.Signer {
+		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only superior can execute this call")
+	}
 
 	// Checks that the element exists
 	region, found := k.GetRegion(ctx, msg.Code)
@@ -63,11 +73,16 @@ func (k msgServer) UpdateRegion(goCtx context.Context, msg *types.MsgUpdateRegio
 }
 
 func (k msgServer) DeleteRegion(goCtx context.Context, msg *types.MsgDeleteRegion) (*types.MsgDeleteRegionResponse, error) {
-	// tx caller must be authority
-	if k.GetAuthority() != msg.Signer {
-		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only authority can execute this call")
-	}
 	ctx := sdk.UnwrapSDKContext(goCtx)
+
+	// tx caller must be superior
+	superior, isFound := k.GetSuperior(ctx)
+	if !isFound {
+		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, "superior not set")
+	}
+	if superior.Account != msg.Signer {
+		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only superior can execute this call")
+	}
 
 	// Checks that the element exists
 	_, found := k.GetRegion(ctx, msg.Code)

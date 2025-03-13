@@ -8,6 +8,7 @@ import "cosmos_proto/cosmos.proto";
 import "gogoproto/gogo.proto";
 import "enreach/registry/params.proto";
 import "enreach/registry/region.proto";
+import "enreach/registry/superior.proto";
 
 option go_package = "enreach/x/registry/types";
 
@@ -17,10 +18,12 @@ service Msg {
   
   // UpdateParams defines a (governance) operation for updating the module
   // parameters. The authority defaults to the x/gov module account.
-  rpc UpdateParams (MsgUpdateParams) returns (MsgUpdateParamsResponse);
-  rpc CreateRegion (MsgCreateRegion) returns (MsgCreateRegionResponse);
-  rpc UpdateRegion (MsgUpdateRegion) returns (MsgUpdateRegionResponse);
-  rpc DeleteRegion (MsgDeleteRegion) returns (MsgDeleteRegionResponse);
+  rpc UpdateParams   (MsgUpdateParams  ) returns (MsgUpdateParamsResponse  );
+  rpc CreateRegion   (MsgCreateRegion  ) returns (MsgCreateRegionResponse  );
+  rpc UpdateRegion   (MsgUpdateRegion  ) returns (MsgUpdateRegionResponse  );
+  rpc DeleteRegion   (MsgDeleteRegion  ) returns (MsgDeleteRegionResponse  );
+  rpc CreateSuperior (MsgCreateSuperior) returns (MsgCreateSuperiorResponse);
+  rpc UpdateSuperior (MsgUpdateSuperior) returns (MsgUpdateSuperiorResponse);
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -29,7 +32,7 @@ message MsgUpdateParams {
   
   // authority is the address that controls the module (defaults to x/gov unless overwritten).
   string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  
+
   // params defines the module parameters to update.
   
   // NOTE: All parameters must be supplied.
@@ -48,8 +51,7 @@ message MsgCreateRegion {
   string description = 4;
 }
 
-message MsgCreateRegionResponse {
-}
+message MsgCreateRegionResponse {}
 
 message MsgUpdateRegion {
   option (cosmos.msg.v1.signer) = "signer";
@@ -63,9 +65,25 @@ message MsgUpdateRegionResponse {}
 
 message MsgDeleteRegion {
   option (cosmos.msg.v1.signer) = "signer";
-  string signer      = 1;
-  string code        = 2;
+  string signer = 1;
+  string code   = 2;
 }
 
 message MsgDeleteRegionResponse {}
+
+message MsgCreateSuperior {
+  option (cosmos.msg.v1.signer) = "signer";
+  string signer   = 1;
+  string account  = 2;
+}
+
+message MsgCreateSuperiorResponse {}
+
+message MsgUpdateSuperior {
+  option (cosmos.msg.v1.signer) = "signer";
+  string signer   = 1;
+  string account  = 2;
+}
+
+message MsgUpdateSuperiorResponse {}
 

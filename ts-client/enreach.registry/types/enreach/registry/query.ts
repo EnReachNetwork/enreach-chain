@@ -3,6 +3,7 @@ import _m0 from "protobufjs/minimal";
 import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
 import { Params } from "./params";
 import { Region } from "./region";
+import { Superior } from "./superior";
 
 export const protobufPackage = "enreach.registry";
 
@@ -31,6 +32,13 @@ export interface QueryAllRegionRequest {
 export interface QueryAllRegionResponse {
   Region: Region[];
   pagination: PageResponse | undefined;
+}
+
+export interface QueryGetSuperiorRequest {
+}
+
+export interface QueryGetSuperiorResponse {
+  Superior: Superior | undefined;
 }
 
 function createBaseQueryParamsRequest(): QueryParamsRequest {
@@ -386,6 +394,108 @@ export const QueryAllRegionResponse = {
   },
 };
 
+function createBaseQueryGetSuperiorRequest(): QueryGetSuperiorRequest {
+  return {};
+}
+
+export const QueryGetSuperiorRequest = {
+  encode(_: QueryGetSuperiorRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetSuperiorRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetSuperiorRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): QueryGetSuperiorRequest {
+    return {};
+  },
+
+  toJSON(_: QueryGetSuperiorRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetSuperiorRequest>, I>>(base?: I): QueryGetSuperiorRequest {
+    return QueryGetSuperiorRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetSuperiorRequest>, I>>(_: I): QueryGetSuperiorRequest {
+    const message = createBaseQueryGetSuperiorRequest();
+    return message;
+  },
+};
+
+function createBaseQueryGetSuperiorResponse(): QueryGetSuperiorResponse {
+  return { Superior: undefined };
+}
+
+export const QueryGetSuperiorResponse = {
+  encode(message: QueryGetSuperiorResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.Superior !== undefined) {
+      Superior.encode(message.Superior, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetSuperiorResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetSuperiorResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.Superior = Superior.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetSuperiorResponse {
+    return { Superior: isSet(object.Superior) ? Superior.fromJSON(object.Superior) : undefined };
+  },
+
+  toJSON(message: QueryGetSuperiorResponse): unknown {
+    const obj: any = {};
+    if (message.Superior !== undefined) {
+      obj.Superior = Superior.toJSON(message.Superior);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetSuperiorResponse>, I>>(base?: I): QueryGetSuperiorResponse {
+    return QueryGetSuperiorResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetSuperiorResponse>, I>>(object: I): QueryGetSuperiorResponse {
+    const message = createBaseQueryGetSuperiorResponse();
+    message.Superior = (object.Superior !== undefined && object.Superior !== null)
+      ? Superior.fromPartial(object.Superior)
+      : undefined;
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Parameters queries the parameters of the module. */
@@ -393,6 +503,8 @@ export interface Query {
   /** Queries a list of Region items. */
   Region(request: QueryGetRegionRequest): Promise<QueryGetRegionResponse>;
   RegionAll(request: QueryAllRegionRequest): Promise<QueryAllRegionResponse>;
+  /** Queries a Superior by index. */
+  Superior(request: QueryGetSuperiorRequest): Promise<QueryGetSuperiorResponse>;
 }
 
 export const QueryServiceName = "enreach.registry.Query";
@@ -405,6 +517,7 @@ export class QueryClientImpl implements Query {
     this.Params = this.Params.bind(this);
     this.Region = this.Region.bind(this);
     this.RegionAll = this.RegionAll.bind(this);
+    this.Superior = this.Superior.bind(this);
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
@@ -422,6 +535,12 @@ export class QueryClientImpl implements Query {
     const data = QueryAllRegionRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "RegionAll", data);
     return promise.then((data) => QueryAllRegionResponse.decode(_m0.Reader.create(data)));
+  }
+
+  Superior(request: QueryGetSuperiorRequest): Promise<QueryGetSuperiorResponse> {
+    const data = QueryGetSuperiorRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "Superior", data);
+    return promise.then((data) => QueryGetSuperiorResponse.decode(_m0.Reader.create(data)));
   }
 }
 

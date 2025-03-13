@@ -32,6 +32,13 @@ func TestGenesisState_Validate(t *testing.T) {
 					},
 				},
 				RegionCount: 2,
+				Superior: &types.Superior{
+					Account:  "51",
+					Creator:  "17",
+					CreateAt: 57,
+					Updator:  "23",
+					UpdateAt: 76,
+				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,

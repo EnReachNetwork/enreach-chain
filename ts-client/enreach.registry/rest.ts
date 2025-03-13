@@ -66,6 +66,17 @@ export interface QueryGetRegionResponse {
   };
 }
 
+export interface QueryGetSuperiorResponse {
+  Superior?: {
+    account?: string;
+    creator?: string;
+    createAt?: string;
+    updator?: string;
+    updateAt?: string;
+    signer?: string;
+  };
+}
+
 export interface QueryParamsResponse {
   params?: object;
 }
@@ -86,13 +97,32 @@ export interface RegistryRegion {
   updateAt?: string;
 }
 
+export interface RegistrySuperior {
+  account?: string;
+  creator?: string;
+
+  /** @format uint64 */
+  createAt?: string;
+  updator?: string;
+
+  /** @format uint64 */
+  updateAt?: string;
+  signer?: string;
+}
+
 export type MsgCreateRegionResponse = object;
 
+export type MsgCreateSuperiorResponse = object;
+
 export type MsgDeleteRegionResponse = object;
+
+export type MsgDeleteSuperiorResponse = object;
 
 export type MsgUpdateParamsResponse = object;
 
 export type MsgUpdateRegionResponse = object;
+
+export type MsgUpdateSuperiorResponse = object;
 
 export type Params = object;
 
@@ -296,6 +326,32 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       path: `/enreach/registry/regions`,
       method: "GET",
       query: query,
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QuerySuperior
+   * @request GET:/enreach/registry/superior
+   */
+  querySuperior = (params: RequestParams = {}) =>
+    this.request<
+      {
+        Superior?: {
+          account?: string;
+          creator?: string;
+          createAt?: string;
+          updator?: string;
+          updateAt?: string;
+          signer?: string;
+        };
+      },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/registry/superior`,
+      method: "GET",
       ...params,
     });
 }

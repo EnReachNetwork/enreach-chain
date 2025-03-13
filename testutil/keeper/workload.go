@@ -17,6 +17,8 @@ import (
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	"github.com/stretchr/testify/require"
 
+	edgenodeKeeper "enreach/x/edgenode/keeper"
+	managerKeeper "enreach/x/manager/keeper"
 	"enreach/x/workload/keeper"
 	"enreach/x/workload/types"
 )
@@ -38,6 +40,8 @@ func WorkloadKeeper(t testing.TB) (keeper.Keeper, sdk.Context) {
 		runtime.NewKVStoreService(storeKey),
 		log.NewNopLogger(),
 		authority.String(),
+		managerKeeper.Keeper{},
+		edgenodeKeeper.Keeper{},
 	)
 
 	ctx := sdk.NewContext(stateStore, cmtproto.Header{}, false, log.NewNopLogger())
