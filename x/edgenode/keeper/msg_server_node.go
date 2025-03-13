@@ -65,10 +65,16 @@ func (k msgServer) BindAndActivateNode(goCtx context.Context, msg *types.MsgBind
 		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only superior can execute this call")
 	}
 
-	// Checks that the element exists
+	// Checks whether the node exists
 	node, found := k.GetNode(ctx, msg.NodeID)
 	if !found {
-		return nil, errorsmod.Wrapf(sdkerrors.ErrKeyNotFound, "Node %s doesn't exist", msg.NodeID)
+		return nil, errorsmod.Wrapf(sdkerrors.ErrKeyNotFound, "Node '%s' doesn't exist", msg.NodeID)
+	}
+
+	// Checks whether the user exists
+	_, found = k.GetUser(ctx, msg.UserID)
+	if !found {
+		return nil, errorsmod.Wrapf(sdkerrors.ErrKeyNotFound, "User '%s' doesn't exist", msg.UserID)
 	}
 
 	// Checks whether it's duplicate bind
