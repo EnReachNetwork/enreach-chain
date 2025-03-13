@@ -1,5 +1,4 @@
 /* eslint-disable */
-import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Params } from "./params";
 
@@ -51,10 +50,6 @@ export interface MsgDeleteRegionResponse {
 export interface MsgCreateSuperior {
   signer: string;
   account: string;
-  creator: string;
-  createAt: number;
-  updator: string;
-  updateAt: number;
 }
 
 export interface MsgCreateSuperiorResponse {
@@ -63,20 +58,9 @@ export interface MsgCreateSuperiorResponse {
 export interface MsgUpdateSuperior {
   signer: string;
   account: string;
-  creator: string;
-  createAt: number;
-  updator: string;
-  updateAt: number;
 }
 
 export interface MsgUpdateSuperiorResponse {
-}
-
-export interface MsgDeleteSuperior {
-  signer: string;
-}
-
-export interface MsgDeleteSuperiorResponse {
 }
 
 function createBaseMsgUpdateParams(): MsgUpdateParams {
@@ -610,7 +594,7 @@ export const MsgDeleteRegionResponse = {
 };
 
 function createBaseMsgCreateSuperior(): MsgCreateSuperior {
-  return { signer: "", account: "", creator: "", createAt: 0, updator: "", updateAt: 0 };
+  return { signer: "", account: "" };
 }
 
 export const MsgCreateSuperior = {
@@ -619,19 +603,7 @@ export const MsgCreateSuperior = {
       writer.uint32(10).string(message.signer);
     }
     if (message.account !== "") {
-      writer.uint32(26).string(message.account);
-    }
-    if (message.creator !== "") {
-      writer.uint32(34).string(message.creator);
-    }
-    if (message.createAt !== 0) {
-      writer.uint32(40).uint64(message.createAt);
-    }
-    if (message.updator !== "") {
-      writer.uint32(50).string(message.updator);
-    }
-    if (message.updateAt !== 0) {
-      writer.uint32(56).uint64(message.updateAt);
+      writer.uint32(18).string(message.account);
     }
     return writer;
   },
@@ -650,40 +622,12 @@ export const MsgCreateSuperior = {
 
           message.signer = reader.string();
           continue;
-        case 3:
-          if (tag !== 26) {
+        case 2:
+          if (tag !== 18) {
             break;
           }
 
           message.account = reader.string();
-          continue;
-        case 4:
-          if (tag !== 34) {
-            break;
-          }
-
-          message.creator = reader.string();
-          continue;
-        case 5:
-          if (tag !== 40) {
-            break;
-          }
-
-          message.createAt = longToNumber(reader.uint64() as Long);
-          continue;
-        case 6:
-          if (tag !== 50) {
-            break;
-          }
-
-          message.updator = reader.string();
-          continue;
-        case 7:
-          if (tag !== 56) {
-            break;
-          }
-
-          message.updateAt = longToNumber(reader.uint64() as Long);
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -698,10 +642,6 @@ export const MsgCreateSuperior = {
     return {
       signer: isSet(object.signer) ? String(object.signer) : "",
       account: isSet(object.account) ? String(object.account) : "",
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      createAt: isSet(object.createAt) ? Number(object.createAt) : 0,
-      updator: isSet(object.updator) ? String(object.updator) : "",
-      updateAt: isSet(object.updateAt) ? Number(object.updateAt) : 0,
     };
   },
 
@@ -713,18 +653,6 @@ export const MsgCreateSuperior = {
     if (message.account !== "") {
       obj.account = message.account;
     }
-    if (message.creator !== "") {
-      obj.creator = message.creator;
-    }
-    if (message.createAt !== 0) {
-      obj.createAt = Math.round(message.createAt);
-    }
-    if (message.updator !== "") {
-      obj.updator = message.updator;
-    }
-    if (message.updateAt !== 0) {
-      obj.updateAt = Math.round(message.updateAt);
-    }
     return obj;
   },
 
@@ -735,10 +663,6 @@ export const MsgCreateSuperior = {
     const message = createBaseMsgCreateSuperior();
     message.signer = object.signer ?? "";
     message.account = object.account ?? "";
-    message.creator = object.creator ?? "";
-    message.createAt = object.createAt ?? 0;
-    message.updator = object.updator ?? "";
-    message.updateAt = object.updateAt ?? 0;
     return message;
   },
 };
@@ -787,7 +711,7 @@ export const MsgCreateSuperiorResponse = {
 };
 
 function createBaseMsgUpdateSuperior(): MsgUpdateSuperior {
-  return { signer: "", account: "", creator: "", createAt: 0, updator: "", updateAt: 0 };
+  return { signer: "", account: "" };
 }
 
 export const MsgUpdateSuperior = {
@@ -796,19 +720,7 @@ export const MsgUpdateSuperior = {
       writer.uint32(10).string(message.signer);
     }
     if (message.account !== "") {
-      writer.uint32(26).string(message.account);
-    }
-    if (message.creator !== "") {
-      writer.uint32(34).string(message.creator);
-    }
-    if (message.createAt !== 0) {
-      writer.uint32(40).uint64(message.createAt);
-    }
-    if (message.updator !== "") {
-      writer.uint32(50).string(message.updator);
-    }
-    if (message.updateAt !== 0) {
-      writer.uint32(56).uint64(message.updateAt);
+      writer.uint32(18).string(message.account);
     }
     return writer;
   },
@@ -827,40 +739,12 @@ export const MsgUpdateSuperior = {
 
           message.signer = reader.string();
           continue;
-        case 3:
-          if (tag !== 26) {
+        case 2:
+          if (tag !== 18) {
             break;
           }
 
           message.account = reader.string();
-          continue;
-        case 4:
-          if (tag !== 34) {
-            break;
-          }
-
-          message.creator = reader.string();
-          continue;
-        case 5:
-          if (tag !== 40) {
-            break;
-          }
-
-          message.createAt = longToNumber(reader.uint64() as Long);
-          continue;
-        case 6:
-          if (tag !== 50) {
-            break;
-          }
-
-          message.updator = reader.string();
-          continue;
-        case 7:
-          if (tag !== 56) {
-            break;
-          }
-
-          message.updateAt = longToNumber(reader.uint64() as Long);
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -875,10 +759,6 @@ export const MsgUpdateSuperior = {
     return {
       signer: isSet(object.signer) ? String(object.signer) : "",
       account: isSet(object.account) ? String(object.account) : "",
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      createAt: isSet(object.createAt) ? Number(object.createAt) : 0,
-      updator: isSet(object.updator) ? String(object.updator) : "",
-      updateAt: isSet(object.updateAt) ? Number(object.updateAt) : 0,
     };
   },
 
@@ -890,18 +770,6 @@ export const MsgUpdateSuperior = {
     if (message.account !== "") {
       obj.account = message.account;
     }
-    if (message.creator !== "") {
-      obj.creator = message.creator;
-    }
-    if (message.createAt !== 0) {
-      obj.createAt = Math.round(message.createAt);
-    }
-    if (message.updator !== "") {
-      obj.updator = message.updator;
-    }
-    if (message.updateAt !== 0) {
-      obj.updateAt = Math.round(message.updateAt);
-    }
     return obj;
   },
 
@@ -912,10 +780,6 @@ export const MsgUpdateSuperior = {
     const message = createBaseMsgUpdateSuperior();
     message.signer = object.signer ?? "";
     message.account = object.account ?? "";
-    message.creator = object.creator ?? "";
-    message.createAt = object.createAt ?? 0;
-    message.updator = object.updator ?? "";
-    message.updateAt = object.updateAt ?? 0;
     return message;
   },
 };
@@ -963,106 +827,6 @@ export const MsgUpdateSuperiorResponse = {
   },
 };
 
-function createBaseMsgDeleteSuperior(): MsgDeleteSuperior {
-  return { signer: "" };
-}
-
-export const MsgDeleteSuperior = {
-  encode(message: MsgDeleteSuperior, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.signer !== "") {
-      writer.uint32(10).string(message.signer);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): MsgDeleteSuperior {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgDeleteSuperior();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.signer = reader.string();
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): MsgDeleteSuperior {
-    return { signer: isSet(object.signer) ? String(object.signer) : "" };
-  },
-
-  toJSON(message: MsgDeleteSuperior): unknown {
-    const obj: any = {};
-    if (message.signer !== "") {
-      obj.signer = message.signer;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MsgDeleteSuperior>, I>>(base?: I): MsgDeleteSuperior {
-    return MsgDeleteSuperior.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MsgDeleteSuperior>, I>>(object: I): MsgDeleteSuperior {
-    const message = createBaseMsgDeleteSuperior();
-    message.signer = object.signer ?? "";
-    return message;
-  },
-};
-
-function createBaseMsgDeleteSuperiorResponse(): MsgDeleteSuperiorResponse {
-  return {};
-}
-
-export const MsgDeleteSuperiorResponse = {
-  encode(_: MsgDeleteSuperiorResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): MsgDeleteSuperiorResponse {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgDeleteSuperiorResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(_: any): MsgDeleteSuperiorResponse {
-    return {};
-  },
-
-  toJSON(_: MsgDeleteSuperiorResponse): unknown {
-    const obj: any = {};
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MsgDeleteSuperiorResponse>, I>>(base?: I): MsgDeleteSuperiorResponse {
-    return MsgDeleteSuperiorResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MsgDeleteSuperiorResponse>, I>>(_: I): MsgDeleteSuperiorResponse {
-    const message = createBaseMsgDeleteSuperiorResponse();
-    return message;
-  },
-};
-
 /** Msg defines the Msg service. */
 export interface Msg {
   /**
@@ -1075,7 +839,6 @@ export interface Msg {
   DeleteRegion(request: MsgDeleteRegion): Promise<MsgDeleteRegionResponse>;
   CreateSuperior(request: MsgCreateSuperior): Promise<MsgCreateSuperiorResponse>;
   UpdateSuperior(request: MsgUpdateSuperior): Promise<MsgUpdateSuperiorResponse>;
-  DeleteSuperior(request: MsgDeleteSuperior): Promise<MsgDeleteSuperiorResponse>;
 }
 
 export const MsgServiceName = "enreach.registry.Msg";
@@ -1091,7 +854,6 @@ export class MsgClientImpl implements Msg {
     this.DeleteRegion = this.DeleteRegion.bind(this);
     this.CreateSuperior = this.CreateSuperior.bind(this);
     this.UpdateSuperior = this.UpdateSuperior.bind(this);
-    this.DeleteSuperior = this.DeleteSuperior.bind(this);
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
@@ -1128,36 +890,11 @@ export class MsgClientImpl implements Msg {
     const promise = this.rpc.request(this.service, "UpdateSuperior", data);
     return promise.then((data) => MsgUpdateSuperiorResponse.decode(_m0.Reader.create(data)));
   }
-
-  DeleteSuperior(request: MsgDeleteSuperior): Promise<MsgDeleteSuperiorResponse> {
-    const data = MsgDeleteSuperior.encode(request).finish();
-    const promise = this.rpc.request(this.service, "DeleteSuperior", data);
-    return promise.then((data) => MsgDeleteSuperiorResponse.decode(_m0.Reader.create(data)));
-  }
 }
 
 interface Rpc {
   request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
 }
-
-declare const self: any | undefined;
-declare const window: any | undefined;
-declare const global: any | undefined;
-const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
-    return globalThis;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
-  throw "Unable to locate global object";
-})();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
@@ -1169,18 +906,6 @@ export type DeepPartial<T> = T extends Builtin ? T
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function longToNumber(long: Long): number {
-  if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  return long.toNumber();
-}
-
-if (_m0.util.Long !== Long) {
-  _m0.util.Long = Long as any;
-  _m0.configure();
-}
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

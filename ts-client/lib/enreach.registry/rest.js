@@ -125,6 +125,18 @@ class Api extends HttpClient {
             query: query,
             ...params,
         });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QuerySuperior
+         * @request GET:/enreach/registry/superior
+         */
+        this.querySuperior = (params = {}) => this.request({
+            path: `/enreach/registry/superior`,
+            method: "GET",
+            ...params,
+        });
     }
 }
 exports.Api = Api;

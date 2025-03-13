@@ -389,8 +389,6 @@ definitions:
     type: object
   MsgDeleteRegionResponse:
     type: object
-  MsgDeleteSuperiorResponse:
-    type: object
   MsgUpdateParamsResponse:
     type: object
   MsgUpdateRegionResponse:

@@ -1,6 +1,7 @@
 import _m0 from "protobufjs/minimal";
 import { Params } from "./params";
 import { Region } from "./region";
+import { Superior } from "./superior";
 export declare const protobufPackage = "enreach.registry";
 /** GenesisState defines the registry module's genesis state. */
 export interface GenesisState {
@@ -8,6 +9,7 @@ export interface GenesisState {
     params: Params | undefined;
     regionList: Region[];
     regionCount: number;
+    superior: Superior | undefined;
 }
 export declare const GenesisState: {
     encode(message: GenesisState, writer?: _m0.Writer): _m0.Writer;

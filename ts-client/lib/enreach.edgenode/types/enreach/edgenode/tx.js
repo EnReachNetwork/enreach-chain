@@ -362,7 +362,7 @@ exports.MsgBindUserEVMAccountResponse = {
     },
 };
 function createBaseMsgRegisterNode() {
-    return { signer: "", nodeID: "", deviceType: "", regionCode: "" };
+    return { signer: "", nodeID: "", deviceType: "" };
 }
 exports.MsgRegisterNode = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -374,9 +374,6 @@ exports.MsgRegisterNode = {
         }
         if (message.deviceType !== "") {
             writer.uint32(26).string(message.deviceType);
-        }
-        if (message.regionCode !== "") {
-            writer.uint32(34).string(message.regionCode);
         }
         return writer;
     },
@@ -405,12 +402,6 @@ exports.MsgRegisterNode = {
                     }
                     message.deviceType = reader.string();
                     continue;
-                case 4:
-                    if (tag !== 34) {
-                        break;
-                    }
-                    message.regionCode = reader.string();
-                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -424,7 +415,6 @@ exports.MsgRegisterNode = {
             signer: isSet(object.signer) ? String(object.signer) : "",
             nodeID: isSet(object.nodeID) ? String(object.nodeID) : "",
             deviceType: isSet(object.deviceType) ? String(object.deviceType) : "",
-            regionCode: isSet(object.regionCode) ? String(object.regionCode) : "",
         };
     },
     toJSON(message) {
@@ -438,9 +428,6 @@ exports.MsgRegisterNode = {
         if (message.deviceType !== "") {
             obj.deviceType = message.deviceType;
         }
-        if (message.regionCode !== "") {
-            obj.regionCode = message.regionCode;
-        }
         return obj;
     },
     create(base) {
@@ -451,7 +438,6 @@ exports.MsgRegisterNode = {
         message.signer = object.signer ?? "";
         message.nodeID = object.nodeID ?? "";
         message.deviceType = object.deviceType ?? "";
-        message.regionCode = object.regionCode ?? "";
         return message;
     },
 };
@@ -493,7 +479,7 @@ exports.MsgRegisterNodeResponse = {
     },
 };
 function createBaseMsgBindAndActivateNode() {
-    return { signer: "", nodeID: "", userID: "" };
+    return { signer: "", nodeID: "", userID: "", nodeName: "", regionCode: "" };
 }
 exports.MsgBindAndActivateNode = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -505,6 +491,12 @@ exports.MsgBindAndActivateNode = {
         }
         if (message.userID !== "") {
             writer.uint32(26).string(message.userID);
+        }
+        if (message.nodeName !== "") {
+            writer.uint32(34).string(message.nodeName);
+        }
+        if (message.regionCode !== "") {
+            writer.uint32(42).string(message.regionCode);
         }
         return writer;
     },
@@ -533,6 +525,18 @@ exports.MsgBindAndActivateNode = {
                     }
                     message.userID = reader.string();
                     continue;
+                case 4:
+                    if (tag !== 34) {
+                        break;
+                    }
+                    message.nodeName = reader.string();
+                    continue;
+                case 5:
+                    if (tag !== 42) {
+                        break;
+                    }
+                    message.regionCode = reader.string();
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -546,6 +550,8 @@ exports.MsgBindAndActivateNode = {
             signer: isSet(object.signer) ? String(object.signer) : "",
             nodeID: isSet(object.nodeID) ? String(object.nodeID) : "",
             userID: isSet(object.userID) ? String(object.userID) : "",
+            nodeName: isSet(object.nodeName) ? String(object.nodeName) : "",
+            regionCode: isSet(object.regionCode) ? String(object.regionCode) : "",
         };
     },
     toJSON(message) {
@@ -559,6 +565,12 @@ exports.MsgBindAndActivateNode = {
         if (message.userID !== "") {
             obj.userID = message.userID;
         }
+        if (message.nodeName !== "") {
+            obj.nodeName = message.nodeName;
+        }
+        if (message.regionCode !== "") {
+            obj.regionCode = message.regionCode;
+        }
         return obj;
     },
     create(base) {
@@ -569,6 +581,8 @@ exports.MsgBindAndActivateNode = {
         message.signer = object.signer ?? "";
         message.nodeID = object.nodeID ?? "";
         message.userID = object.userID ?? "";
+        message.nodeName = object.nodeName ?? "";
+        message.regionCode = object.regionCode ?? "";
         return message;
     },
 };

@@ -2,37 +2,52 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { GenesisState } from "./types/enreach/workload/genesis";
-import { QueryParamsRequest } from "./types/enreach/workload/query";
-import { MsgCreateWorkloadResponse } from "./types/enreach/workload/tx";
+import { MsgUpdateParams } from "./types/enreach/workload/tx";
 import { Params } from "./types/enreach/workload/params";
+import { QueryParamsResponse } from "./types/enreach/workload/query";
+import { QueryAllWorkloadResponse } from "./types/enreach/workload/query";
+import { QueryGetWorkloadResponse } from "./types/enreach/workload/query";
+import { MsgUpdateParamsResponse } from "./types/enreach/workload/tx";
+import { QueryAllWorkloadRequest } from "./types/enreach/workload/query";
 import { Workload } from "./types/enreach/workload/workload";
 import { MsgCreateWorkload } from "./types/enreach/workload/tx";
-import { MsgUpdateParams } from "./types/enreach/workload/tx";
-import { MsgUpdateParamsResponse } from "./types/enreach/workload/tx";
-import { QueryParamsResponse } from "./types/enreach/workload/query";
+import { MsgCreateWorkloadResponse } from "./types/enreach/workload/tx";
+import { GenesisState } from "./types/enreach/workload/genesis";
+import { QueryParamsRequest } from "./types/enreach/workload/query";
 import { QueryGetWorkloadRequest } from "./types/enreach/workload/query";
-import { QueryGetWorkloadResponse } from "./types/enreach/workload/query";
-import { QueryAllWorkloadRequest } from "./types/enreach/workload/query";
-import { QueryAllWorkloadResponse } from "./types/enreach/workload/query";
-export { GenesisState, QueryParamsRequest, MsgCreateWorkloadResponse, Params, Workload, MsgCreateWorkload, MsgUpdateParams, MsgUpdateParamsResponse, QueryParamsResponse, QueryGetWorkloadRequest, QueryGetWorkloadResponse, QueryAllWorkloadRequest, QueryAllWorkloadResponse };
-type sendGenesisStateParams = {
-    value: GenesisState;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryParamsRequestParams = {
-    value: QueryParamsRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgCreateWorkloadResponseParams = {
-    value: MsgCreateWorkloadResponse;
+export { MsgUpdateParams, Params, QueryParamsResponse, QueryAllWorkloadResponse, QueryGetWorkloadResponse, MsgUpdateParamsResponse, QueryAllWorkloadRequest, Workload, MsgCreateWorkload, MsgCreateWorkloadResponse, GenesisState, QueryParamsRequest, QueryGetWorkloadRequest };
+type sendMsgUpdateParamsParams = {
+    value: MsgUpdateParams;
     fee?: StdFee;
     memo?: string;
 };
 type sendParamsParams = {
     value: Params;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryParamsResponseParams = {
+    value: QueryParamsResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryAllWorkloadResponseParams = {
+    value: QueryAllWorkloadResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryGetWorkloadResponseParams = {
+    value: QueryGetWorkloadResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateParamsResponseParams = {
+    value: MsgUpdateParamsResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryAllWorkloadRequestParams = {
+    value: QueryAllWorkloadRequest;
     fee?: StdFee;
     memo?: string;
 };
@@ -46,18 +61,18 @@ type sendMsgCreateWorkloadParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgUpdateParamsParams = {
-    value: MsgUpdateParams;
+type sendMsgCreateWorkloadResponseParams = {
+    value: MsgCreateWorkloadResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgUpdateParamsResponseParams = {
-    value: MsgUpdateParamsResponse;
+type sendGenesisStateParams = {
+    value: GenesisState;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryParamsResponseParams = {
-    value: QueryParamsResponse;
+type sendQueryParamsRequestParams = {
+    value: QueryParamsRequest;
     fee?: StdFee;
     memo?: string;
 };
@@ -66,32 +81,26 @@ type sendQueryGetWorkloadRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryGetWorkloadResponseParams = {
-    value: QueryGetWorkloadResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryAllWorkloadRequestParams = {
-    value: QueryAllWorkloadRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryAllWorkloadResponseParams = {
-    value: QueryAllWorkloadResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type genesisStateParams = {
-    value: GenesisState;
-};
-type queryParamsRequestParams = {
-    value: QueryParamsRequest;
-};
-type msgCreateWorkloadResponseParams = {
-    value: MsgCreateWorkloadResponse;
+type msgUpdateParamsParams = {
+    value: MsgUpdateParams;
 };
 type paramsParams = {
     value: Params;
+};
+type queryParamsResponseParams = {
+    value: QueryParamsResponse;
+};
+type queryAllWorkloadResponseParams = {
+    value: QueryAllWorkloadResponse;
+};
+type queryGetWorkloadResponseParams = {
+    value: QueryGetWorkloadResponse;
+};
+type msgUpdateParamsResponseParams = {
+    value: MsgUpdateParamsResponse;
+};
+type queryAllWorkloadRequestParams = {
+    value: QueryAllWorkloadRequest;
 };
 type workloadParams = {
     value: Workload;
@@ -99,26 +108,17 @@ type workloadParams = {
 type msgCreateWorkloadParams = {
     value: MsgCreateWorkload;
 };
-type msgUpdateParamsParams = {
-    value: MsgUpdateParams;
+type msgCreateWorkloadResponseParams = {
+    value: MsgCreateWorkloadResponse;
 };
-type msgUpdateParamsResponseParams = {
-    value: MsgUpdateParamsResponse;
+type genesisStateParams = {
+    value: GenesisState;
 };
-type queryParamsResponseParams = {
-    value: QueryParamsResponse;
+type queryParamsRequestParams = {
+    value: QueryParamsRequest;
 };
 type queryGetWorkloadRequestParams = {
     value: QueryGetWorkloadRequest;
-};
-type queryGetWorkloadResponseParams = {
-    value: QueryGetWorkloadResponse;
-};
-type queryAllWorkloadRequestParams = {
-    value: QueryAllWorkloadRequest;
-};
-type queryAllWorkloadResponseParams = {
-    value: QueryAllWorkloadResponse;
 };
 export declare const registry: any;
 interface TxClientOptions {
@@ -127,32 +127,32 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
-    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
-    sendMsgCreateWorkloadResponse({ value, fee, memo }: sendMsgCreateWorkloadResponseParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
     sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
+    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
+    sendQueryAllWorkloadResponse({ value, fee, memo }: sendQueryAllWorkloadResponseParams): Promise<DeliverTxResponse>;
+    sendQueryGetWorkloadResponse({ value, fee, memo }: sendQueryGetWorkloadResponseParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
+    sendQueryAllWorkloadRequest({ value, fee, memo }: sendQueryAllWorkloadRequestParams): Promise<DeliverTxResponse>;
     sendWorkload({ value, fee, memo }: sendWorkloadParams): Promise<DeliverTxResponse>;
     sendMsgCreateWorkload({ value, fee, memo }: sendMsgCreateWorkloadParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
-    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
+    sendMsgCreateWorkloadResponse({ value, fee, memo }: sendMsgCreateWorkloadResponseParams): Promise<DeliverTxResponse>;
+    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
+    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
     sendQueryGetWorkloadRequest({ value, fee, memo }: sendQueryGetWorkloadRequestParams): Promise<DeliverTxResponse>;
-    sendQueryGetWorkloadResponse({ value, fee, memo }: sendQueryGetWorkloadResponseParams): Promise<DeliverTxResponse>;
-    sendQueryAllWorkloadRequest({ value, fee, memo }: sendQueryAllWorkloadRequestParams): Promise<DeliverTxResponse>;
-    sendQueryAllWorkloadResponse({ value, fee, memo }: sendQueryAllWorkloadResponseParams): Promise<DeliverTxResponse>;
-    genesisState({ value }: genesisStateParams): EncodeObject;
-    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
-    msgCreateWorkloadResponse({ value }: msgCreateWorkloadResponseParams): EncodeObject;
+    msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
     params({ value }: paramsParams): EncodeObject;
+    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
+    queryAllWorkloadResponse({ value }: queryAllWorkloadResponseParams): EncodeObject;
+    queryGetWorkloadResponse({ value }: queryGetWorkloadResponseParams): EncodeObject;
+    msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
+    queryAllWorkloadRequest({ value }: queryAllWorkloadRequestParams): EncodeObject;
     workload({ value }: workloadParams): EncodeObject;
     msgCreateWorkload({ value }: msgCreateWorkloadParams): EncodeObject;
-    msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
-    msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
-    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
+    msgCreateWorkloadResponse({ value }: msgCreateWorkloadResponseParams): EncodeObject;
+    genesisState({ value }: genesisStateParams): EncodeObject;
+    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
     queryGetWorkloadRequest({ value }: queryGetWorkloadRequestParams): EncodeObject;
-    queryGetWorkloadResponse({ value }: queryGetWorkloadResponseParams): EncodeObject;
-    queryAllWorkloadRequest({ value }: queryAllWorkloadRequestParams): EncodeObject;
-    queryAllWorkloadResponse({ value }: queryAllWorkloadResponseParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

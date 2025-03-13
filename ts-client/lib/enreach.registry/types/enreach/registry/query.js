@@ -3,12 +3,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.QueryClientImpl = exports.QueryServiceName = exports.QueryAllRegionResponse = exports.QueryAllRegionRequest = exports.QueryGetRegionResponse = exports.QueryGetRegionRequest = exports.QueryParamsResponse = exports.QueryParamsRequest = exports.protobufPackage = void 0;
+exports.QueryClientImpl = exports.QueryServiceName = exports.QueryGetSuperiorResponse = exports.QueryGetSuperiorRequest = exports.QueryAllRegionResponse = exports.QueryAllRegionRequest = exports.QueryGetRegionResponse = exports.QueryGetRegionRequest = exports.QueryParamsResponse = exports.QueryParamsRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const pagination_1 = require("../../cosmos/base/query/v1beta1/pagination");
 const params_1 = require("./params");
 const region_1 = require("./region");
+const superior_1 = require("./superior");
 exports.protobufPackage = "enreach.registry";
 function createBaseQueryParamsRequest() {
     return {};
@@ -321,6 +322,95 @@ exports.QueryAllRegionResponse = {
         return message;
     },
 };
+function createBaseQueryGetSuperiorRequest() {
+    return {};
+}
+exports.QueryGetSuperiorRequest = {
+    encode(_, writer = minimal_1.default.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetSuperiorRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(_) {
+        return {};
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetSuperiorRequest.fromPartial(base ?? {});
+    },
+    fromPartial(_) {
+        const message = createBaseQueryGetSuperiorRequest();
+        return message;
+    },
+};
+function createBaseQueryGetSuperiorResponse() {
+    return { Superior: undefined };
+}
+exports.QueryGetSuperiorResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.Superior !== undefined) {
+            superior_1.Superior.encode(message.Superior, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetSuperiorResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.Superior = superior_1.Superior.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { Superior: isSet(object.Superior) ? superior_1.Superior.fromJSON(object.Superior) : undefined };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.Superior !== undefined) {
+            obj.Superior = superior_1.Superior.toJSON(message.Superior);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetSuperiorResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetSuperiorResponse();
+        message.Superior = (object.Superior !== undefined && object.Superior !== null)
+            ? superior_1.Superior.fromPartial(object.Superior)
+            : undefined;
+        return message;
+    },
+};
 exports.QueryServiceName = "enreach.registry.Query";
 class QueryClientImpl {
     constructor(rpc, opts) {
@@ -329,6 +419,7 @@ class QueryClientImpl {
         this.Params = this.Params.bind(this);
         this.Region = this.Region.bind(this);
         this.RegionAll = this.RegionAll.bind(this);
+        this.Superior = this.Superior.bind(this);
     }
     Params(request) {
         const data = exports.QueryParamsRequest.encode(request).finish();
@@ -344,6 +435,11 @@ class QueryClientImpl {
         const data = exports.QueryAllRegionRequest.encode(request).finish();
         const promise = this.rpc.request(this.service, "RegionAll", data);
         return promise.then((data) => exports.QueryAllRegionResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    Superior(request) {
+        const data = exports.QueryGetSuperiorRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "Superior", data);
+        return promise.then((data) => exports.QueryGetSuperiorResponse.decode(minimal_1.default.Reader.create(data)));
     }
 }
 exports.QueryClientImpl = QueryClientImpl;

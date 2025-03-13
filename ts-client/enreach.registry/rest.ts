@@ -116,8 +116,6 @@ export type MsgCreateSuperiorResponse = object;
 
 export type MsgDeleteRegionResponse = object;
 
-export type MsgDeleteSuperiorResponse = object;
-
 export type MsgUpdateParamsResponse = object;
 
 export type MsgUpdateRegionResponse = object;

@@ -2,6 +2,7 @@ import _m0 from "protobufjs/minimal";
 import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
 import { Params } from "./params";
 import { Region } from "./region";
+import { Superior } from "./superior";
 export declare const protobufPackage = "enreach.registry";
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {
@@ -23,6 +24,11 @@ export interface QueryAllRegionRequest {
 export interface QueryAllRegionResponse {
     Region: Region[];
     pagination: PageResponse | undefined;
+}
+export interface QueryGetSuperiorRequest {
+}
+export interface QueryGetSuperiorResponse {
+    Superior: Superior | undefined;
 }
 export declare const QueryParamsRequest: {
     encode(_: QueryParamsRequest, writer?: _m0.Writer): _m0.Writer;
@@ -72,6 +78,22 @@ export declare const QueryAllRegionResponse: {
     create<I extends Exact<DeepPartial<QueryAllRegionResponse>, I>>(base?: I): QueryAllRegionResponse;
     fromPartial<I extends Exact<DeepPartial<QueryAllRegionResponse>, I>>(object: I): QueryAllRegionResponse;
 };
+export declare const QueryGetSuperiorRequest: {
+    encode(_: QueryGetSuperiorRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetSuperiorRequest;
+    fromJSON(_: any): QueryGetSuperiorRequest;
+    toJSON(_: QueryGetSuperiorRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryGetSuperiorRequest>, I>>(base?: I): QueryGetSuperiorRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryGetSuperiorRequest>, I>>(_: I): QueryGetSuperiorRequest;
+};
+export declare const QueryGetSuperiorResponse: {
+    encode(message: QueryGetSuperiorResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetSuperiorResponse;
+    fromJSON(object: any): QueryGetSuperiorResponse;
+    toJSON(message: QueryGetSuperiorResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryGetSuperiorResponse>, I>>(base?: I): QueryGetSuperiorResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryGetSuperiorResponse>, I>>(object: I): QueryGetSuperiorResponse;
+};
 /** Query defines the gRPC querier service. */
 export interface Query {
     /** Parameters queries the parameters of the module. */
@@ -79,6 +101,8 @@ export interface Query {
     /** Queries a list of Region items. */
     Region(request: QueryGetRegionRequest): Promise<QueryGetRegionResponse>;
     RegionAll(request: QueryAllRegionRequest): Promise<QueryAllRegionResponse>;
+    /** Queries a Superior by index. */
+    Superior(request: QueryGetSuperiorRequest): Promise<QueryGetSuperiorResponse>;
 }
 export declare const QueryServiceName = "enreach.registry.Query";
 export declare class QueryClientImpl implements Query {
@@ -90,6 +114,7 @@ export declare class QueryClientImpl implements Query {
     Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
     Region(request: QueryGetRegionRequest): Promise<QueryGetRegionResponse>;
     RegionAll(request: QueryAllRegionRequest): Promise<QueryAllRegionResponse>;
+    Superior(request: QueryGetSuperiorRequest): Promise<QueryGetSuperiorResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

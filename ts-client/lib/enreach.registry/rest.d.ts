@@ -51,6 +51,16 @@ export interface QueryGetRegionResponse {
         updateAt?: string;
     };
 }
+export interface QueryGetSuperiorResponse {
+    Superior?: {
+        account?: string;
+        creator?: string;
+        createAt?: string;
+        updator?: string;
+        updateAt?: string;
+        signer?: string;
+    };
+}
 export interface QueryParamsResponse {
     params?: object;
 }
@@ -66,10 +76,22 @@ export interface RegistryRegion {
     /** @format uint64 */
     updateAt?: string;
 }
+export interface RegistrySuperior {
+    account?: string;
+    creator?: string;
+    /** @format uint64 */
+    createAt?: string;
+    updator?: string;
+    /** @format uint64 */
+    updateAt?: string;
+    signer?: string;
+}
 export type MsgCreateRegionResponse = object;
+export type MsgCreateSuperiorResponse = object;
 export type MsgDeleteRegionResponse = object;
 export type MsgUpdateParamsResponse = object;
 export type MsgUpdateRegionResponse = object;
+export type MsgUpdateSuperiorResponse = object;
 export type Params = object;
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
 export type QueryParamsType = Record<string | number, any>;
@@ -144,4 +166,12 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
         "pagination.count_total"?: boolean;
         "pagination.reverse"?: boolean;
     }, params?: RequestParams) => Promise<AxiosResponse<T>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QuerySuperior
+     * @request GET:/enreach/registry/superior
+     */
+    querySuperior: (params?: RequestParams) => Promise<AxiosResponse<T>>;
 }

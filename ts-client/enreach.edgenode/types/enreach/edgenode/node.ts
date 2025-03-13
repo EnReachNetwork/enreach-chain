@@ -7,6 +7,7 @@ export const protobufPackage = "enreach.edgenode";
 export interface Node {
   nodeID: string;
   userID: string;
+  nodeName: string;
   deviceType: string;
   regionCode: string;
   registerStatus: string;
@@ -21,6 +22,7 @@ function createBaseNode(): Node {
   return {
     nodeID: "",
     userID: "",
+    nodeName: "",
     deviceType: "",
     regionCode: "",
     registerStatus: "",
@@ -40,29 +42,32 @@ export const Node = {
     if (message.userID !== "") {
       writer.uint32(18).string(message.userID);
     }
+    if (message.nodeName !== "") {
+      writer.uint32(26).string(message.nodeName);
+    }
     if (message.deviceType !== "") {
-      writer.uint32(26).string(message.deviceType);
+      writer.uint32(34).string(message.deviceType);
     }
     if (message.regionCode !== "") {
-      writer.uint32(34).string(message.regionCode);
+      writer.uint32(42).string(message.regionCode);
     }
     if (message.registerStatus !== "") {
-      writer.uint32(42).string(message.registerStatus);
+      writer.uint32(50).string(message.registerStatus);
     }
     if (message.workingStatus !== "") {
-      writer.uint32(50).string(message.workingStatus);
+      writer.uint32(58).string(message.workingStatus);
     }
     if (message.creator !== "") {
-      writer.uint32(58).string(message.creator);
+      writer.uint32(66).string(message.creator);
     }
     if (message.createAt !== 0) {
-      writer.uint32(64).uint64(message.createAt);
+      writer.uint32(72).uint64(message.createAt);
     }
     if (message.updator !== "") {
-      writer.uint32(74).string(message.updator);
+      writer.uint32(82).string(message.updator);
     }
     if (message.updateAt !== 0) {
-      writer.uint32(80).uint64(message.updateAt);
+      writer.uint32(88).uint64(message.updateAt);
     }
     return writer;
   },
@@ -93,52 +98,59 @@ export const Node = {
             break;
           }
 
-          message.deviceType = reader.string();
+          message.nodeName = reader.string();
           continue;
         case 4:
           if (tag !== 34) {
             break;
           }
 
-          message.regionCode = reader.string();
+          message.deviceType = reader.string();
           continue;
         case 5:
           if (tag !== 42) {
             break;
           }
 
-          message.registerStatus = reader.string();
+          message.regionCode = reader.string();
           continue;
         case 6:
           if (tag !== 50) {
             break;
           }
 
-          message.workingStatus = reader.string();
+          message.registerStatus = reader.string();
           continue;
         case 7:
           if (tag !== 58) {
             break;
           }
 
-          message.creator = reader.string();
+          message.workingStatus = reader.string();
           continue;
         case 8:
-          if (tag !== 64) {
+          if (tag !== 66) {
+            break;
+          }
+
+          message.creator = reader.string();
+          continue;
+        case 9:
+          if (tag !== 72) {
             break;
           }
 
           message.createAt = longToNumber(reader.uint64() as Long);
           continue;
-        case 9:
-          if (tag !== 74) {
+        case 10:
+          if (tag !== 82) {
             break;
           }
 
           message.updator = reader.string();
           continue;
-        case 10:
-          if (tag !== 80) {
+        case 11:
+          if (tag !== 88) {
             break;
           }
 
@@ -157,6 +169,7 @@ export const Node = {
     return {
       nodeID: isSet(object.nodeID) ? String(object.nodeID) : "",
       userID: isSet(object.userID) ? String(object.userID) : "",
+      nodeName: isSet(object.nodeName) ? String(object.nodeName) : "",
       deviceType: isSet(object.deviceType) ? String(object.deviceType) : "",
       regionCode: isSet(object.regionCode) ? String(object.regionCode) : "",
       registerStatus: isSet(object.registerStatus) ? String(object.registerStatus) : "",
@@ -175,6 +188,9 @@ export const Node = {
     }
     if (message.userID !== "") {
       obj.userID = message.userID;
+    }
+    if (message.nodeName !== "") {
+      obj.nodeName = message.nodeName;
     }
     if (message.deviceType !== "") {
       obj.deviceType = message.deviceType;
@@ -210,6 +226,7 @@ export const Node = {
     const message = createBaseNode();
     message.nodeID = object.nodeID ?? "";
     message.userID = object.userID ?? "";
+    message.nodeName = object.nodeName ?? "";
     message.deviceType = object.deviceType ?? "";
     message.regionCode = object.regionCode ?? "";
     message.registerStatus = object.registerStatus ?? "";

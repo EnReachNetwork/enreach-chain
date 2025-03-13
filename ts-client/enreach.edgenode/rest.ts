@@ -45,6 +45,7 @@ export interface QueryAllNodeResponse {
   Node?: {
     nodeID?: string;
     userID?: string;
+    nodeName?: string;
     deviceType?: string;
     regionCode?: string;
     registerStatus?: string;
@@ -73,6 +74,7 @@ export interface QueryGetNodeResponse {
   Node?: {
     nodeID?: string;
     userID?: string;
+    nodeName?: string;
     deviceType?: string;
     regionCode?: string;
     registerStatus?: string;
@@ -106,6 +108,7 @@ export interface QueryParamsResponse {
 export interface EdgenodeNode {
   nodeID?: string;
   userID?: string;
+  nodeName?: string;
   deviceType?: string;
   regionCode?: string;
   registerStatus?: string;
@@ -302,6 +305,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         Node?: {
           nodeID?: string;
           userID?: string;
+          nodeName?: string;
           deviceType?: string;
           regionCode?: string;
           registerStatus?: string;
@@ -341,6 +345,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         Node?: {
           nodeID?: string;
           userID?: string;
+          nodeName?: string;
           deviceType?: string;
           regionCode?: string;
           registerStatus?: string;

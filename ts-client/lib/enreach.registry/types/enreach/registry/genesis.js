@@ -9,9 +9,10 @@ const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const params_1 = require("./params");
 const region_1 = require("./region");
+const superior_1 = require("./superior");
 exports.protobufPackage = "enreach.registry";
 function createBaseGenesisState() {
-    return { params: undefined, regionList: [], regionCount: 0 };
+    return { params: undefined, regionList: [], regionCount: 0, superior: undefined };
 }
 exports.GenesisState = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -23,6 +24,9 @@ exports.GenesisState = {
         }
         if (message.regionCount !== 0) {
             writer.uint32(24).uint64(message.regionCount);
+        }
+        if (message.superior !== undefined) {
+            superior_1.Superior.encode(message.superior, writer.uint32(34).fork()).ldelim();
         }
         return writer;
     },
@@ -51,6 +55,12 @@ exports.GenesisState = {
                     }
                     message.regionCount = longToNumber(reader.uint64());
                     continue;
+                case 4:
+                    if (tag !== 34) {
+                        break;
+                    }
+                    message.superior = superior_1.Superior.decode(reader, reader.uint32());
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -64,6 +74,7 @@ exports.GenesisState = {
             params: isSet(object.params) ? params_1.Params.fromJSON(object.params) : undefined,
             regionList: Array.isArray(object?.regionList) ? object.regionList.map((e) => region_1.Region.fromJSON(e)) : [],
             regionCount: isSet(object.regionCount) ? Number(object.regionCount) : 0,
+            superior: isSet(object.superior) ? superior_1.Superior.fromJSON(object.superior) : undefined,
         };
     },
     toJSON(message) {
@@ -77,6 +88,9 @@ exports.GenesisState = {
         if (message.regionCount !== 0) {
             obj.regionCount = Math.round(message.regionCount);
         }
+        if (message.superior !== undefined) {
+            obj.superior = superior_1.Superior.toJSON(message.superior);
+        }
         return obj;
     },
     create(base) {
@@ -89,6 +103,9 @@ exports.GenesisState = {
             : undefined;
         message.regionList = object.regionList?.map((e) => region_1.Region.fromPartial(e)) || [];
         message.regionCount = object.regionCount ?? 0;
+        message.superior = (object.superior !== undefined && object.superior !== null)
+            ? superior_1.Superior.fromPartial(object.superior)
+            : undefined;
         return message;
     },
 };

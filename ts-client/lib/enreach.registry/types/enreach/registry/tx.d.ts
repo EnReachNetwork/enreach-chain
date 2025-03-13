@@ -36,6 +36,18 @@ export interface MsgDeleteRegion {
 }
 export interface MsgDeleteRegionResponse {
 }
+export interface MsgCreateSuperior {
+    signer: string;
+    account: string;
+}
+export interface MsgCreateSuperiorResponse {
+}
+export interface MsgUpdateSuperior {
+    signer: string;
+    account: string;
+}
+export interface MsgUpdateSuperiorResponse {
+}
 export declare const MsgUpdateParams: {
     encode(message: MsgUpdateParams, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateParams;
@@ -100,6 +112,38 @@ export declare const MsgDeleteRegionResponse: {
     create<I extends Exact<DeepPartial<MsgDeleteRegionResponse>, I>>(base?: I): MsgDeleteRegionResponse;
     fromPartial<I extends Exact<DeepPartial<MsgDeleteRegionResponse>, I>>(_: I): MsgDeleteRegionResponse;
 };
+export declare const MsgCreateSuperior: {
+    encode(message: MsgCreateSuperior, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateSuperior;
+    fromJSON(object: any): MsgCreateSuperior;
+    toJSON(message: MsgCreateSuperior): unknown;
+    create<I extends Exact<DeepPartial<MsgCreateSuperior>, I>>(base?: I): MsgCreateSuperior;
+    fromPartial<I extends Exact<DeepPartial<MsgCreateSuperior>, I>>(object: I): MsgCreateSuperior;
+};
+export declare const MsgCreateSuperiorResponse: {
+    encode(_: MsgCreateSuperiorResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateSuperiorResponse;
+    fromJSON(_: any): MsgCreateSuperiorResponse;
+    toJSON(_: MsgCreateSuperiorResponse): unknown;
+    create<I extends Exact<DeepPartial<MsgCreateSuperiorResponse>, I>>(base?: I): MsgCreateSuperiorResponse;
+    fromPartial<I extends Exact<DeepPartial<MsgCreateSuperiorResponse>, I>>(_: I): MsgCreateSuperiorResponse;
+};
+export declare const MsgUpdateSuperior: {
+    encode(message: MsgUpdateSuperior, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateSuperior;
+    fromJSON(object: any): MsgUpdateSuperior;
+    toJSON(message: MsgUpdateSuperior): unknown;
+    create<I extends Exact<DeepPartial<MsgUpdateSuperior>, I>>(base?: I): MsgUpdateSuperior;
+    fromPartial<I extends Exact<DeepPartial<MsgUpdateSuperior>, I>>(object: I): MsgUpdateSuperior;
+};
+export declare const MsgUpdateSuperiorResponse: {
+    encode(_: MsgUpdateSuperiorResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateSuperiorResponse;
+    fromJSON(_: any): MsgUpdateSuperiorResponse;
+    toJSON(_: MsgUpdateSuperiorResponse): unknown;
+    create<I extends Exact<DeepPartial<MsgUpdateSuperiorResponse>, I>>(base?: I): MsgUpdateSuperiorResponse;
+    fromPartial<I extends Exact<DeepPartial<MsgUpdateSuperiorResponse>, I>>(_: I): MsgUpdateSuperiorResponse;
+};
 /** Msg defines the Msg service. */
 export interface Msg {
     /**
@@ -110,6 +154,8 @@ export interface Msg {
     CreateRegion(request: MsgCreateRegion): Promise<MsgCreateRegionResponse>;
     UpdateRegion(request: MsgUpdateRegion): Promise<MsgUpdateRegionResponse>;
     DeleteRegion(request: MsgDeleteRegion): Promise<MsgDeleteRegionResponse>;
+    CreateSuperior(request: MsgCreateSuperior): Promise<MsgCreateSuperiorResponse>;
+    UpdateSuperior(request: MsgUpdateSuperior): Promise<MsgUpdateSuperiorResponse>;
 }
 export declare const MsgServiceName = "enreach.registry.Msg";
 export declare class MsgClientImpl implements Msg {
@@ -122,6 +168,8 @@ export declare class MsgClientImpl implements Msg {
     CreateRegion(request: MsgCreateRegion): Promise<MsgCreateRegionResponse>;
     UpdateRegion(request: MsgUpdateRegion): Promise<MsgUpdateRegionResponse>;
     DeleteRegion(request: MsgDeleteRegion): Promise<MsgDeleteRegionResponse>;
+    CreateSuperior(request: MsgCreateSuperior): Promise<MsgCreateSuperiorResponse>;
+    UpdateSuperior(request: MsgUpdateSuperior): Promise<MsgUpdateSuperiorResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

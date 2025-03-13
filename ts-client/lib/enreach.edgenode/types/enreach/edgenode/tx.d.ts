@@ -33,7 +33,6 @@ export interface MsgRegisterNode {
     signer: string;
     nodeID: string;
     deviceType: string;
-    regionCode: string;
 }
 export interface MsgRegisterNodeResponse {
 }
@@ -41,6 +40,8 @@ export interface MsgBindAndActivateNode {
     signer: string;
     nodeID: string;
     userID: string;
+    nodeName: string;
+    regionCode: string;
 }
 export interface MsgBindAndActivateNodeResponse {
 }
