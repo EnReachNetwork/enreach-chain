@@ -35,7 +35,61 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /enreach/workload/workload:
+  /enreach/workload/workload/{id}:
+    get:
+      operationId: Query_Workload
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              Workload:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uint64
+                  managerAccount:
+                    type: string
+                  epoch:
+                    type: string
+                    format: uint64
+                  nodeID:
+                    type: string
+                  score:
+                    type: string
+                    format: uint64
+                  createAt:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          format: uint64
+      tags:
+        - Query
+  /enreach/workload/workloads:
     get:
       operationId: Query_WorkloadAll
       responses:
@@ -52,18 +106,19 @@ paths:
                     id:
                       type: string
                       format: uint64
+                    managerAccount:
+                      type: string
                     epoch:
                       type: string
                       format: uint64
-                    minerId:
+                    nodeID:
                       type: string
                     score:
                       type: string
                       format: uint64
-                    managerId:
+                    createAt:
                       type: string
-                    creator:
-                      type: string
+                      format: uint64
               pagination:
                 type: object
                 properties:
@@ -115,59 +170,6 @@ paths:
           in: query
           required: false
           type: boolean
-      tags:
-        - Query
-  /enreach/workload/workload/{id}:
-    get:
-      operationId: Query_Workload
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              Workload:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    format: uint64
-                  epoch:
-                    type: string
-                    format: uint64
-                  minerId:
-                    type: string
-                  score:
-                    type: string
-                    format: uint64
-                  managerId:
-                    type: string
-                  creator:
-                    type: string
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-          format: uint64
       tags:
         - Query
 definitions:
@@ -229,18 +231,19 @@ definitions:
             id:
               type: string
               format: uint64
+            managerAccount:
+              type: string
             epoch:
               type: string
               format: uint64
-            minerId:
+            nodeID:
               type: string
             score:
               type: string
               format: uint64
-            managerId:
+            createAt:
               type: string
-            creator:
-              type: string
+              format: uint64
       pagination:
         type: object
         properties:
@@ -259,18 +262,19 @@ definitions:
           id:
             type: string
             format: uint64
+          managerAccount:
+            type: string
           epoch:
             type: string
             format: uint64
-          minerId:
+          nodeID:
             type: string
           score:
             type: string
             format: uint64
-          managerId:
+          createAt:
             type: string
-          creator:
-            type: string
+            format: uint64
   QueryParamsResponse:
     type: object
     properties:
@@ -284,29 +288,26 @@ definitions:
       id:
         type: string
         format: uint64
+      managerAccount:
+        type: string
       epoch:
         type: string
         format: uint64
-      minerId:
+      nodeID:
         type: string
       score:
         type: string
         format: uint64
-      managerId:
+      createAt:
         type: string
-      creator:
-        type: string
+        format: uint64
   MsgCreateWorkloadResponse:
     type: object
     properties:
       id:
         type: string
         format: uint64
-  MsgDeleteWorkloadResponse:
-    type: object
   MsgUpdateParamsResponse:
-    type: object
-  MsgUpdateWorkloadResponse:
     type: object
   Params:
     type: object

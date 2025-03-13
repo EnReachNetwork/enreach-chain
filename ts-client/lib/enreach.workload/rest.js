@@ -104,25 +104,25 @@ class Api extends HttpClient {
          * No description
          *
          * @tags Query
-         * @name QueryWorkloadAll
-         * @request GET:/enreach/workload/workload
-         */
-        this.queryWorkloadAll = (query, params = {}) => this.request({
-            path: `/enreach/workload/workload`,
-            method: "GET",
-            query: query,
-            ...params,
-        });
-        /**
-         * No description
-         *
-         * @tags Query
          * @name QueryWorkload
          * @request GET:/enreach/workload/workload/{id}
          */
         this.queryWorkload = (id, params = {}) => this.request({
             path: `/enreach/workload/workload/${id}`,
             method: "GET",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryWorkloadAll
+         * @request GET:/enreach/workload/workloads
+         */
+        this.queryWorkloadAll = (query, params = {}) => this.request({
+            path: `/enreach/workload/workloads`,
+            method: "GET",
+            query: query,
             ...params,
         });
     }

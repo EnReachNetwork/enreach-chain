@@ -178,17 +178,17 @@ declare const Client: typeof IgniteClient & import("./helpers").Constructor<{
         updateTX(client: IgniteClient): void;
     };
 } & {
-    EnreachManager: {
-        query: ReturnType<typeof import("./enreach.manager").queryClient>;
-        tx: ReturnType<typeof import("./enreach.manager").txClient>;
+    EnreachEdgenode: {
+        query: ReturnType<typeof import("./enreach.edgenode").queryClient>;
+        tx: ReturnType<typeof import("./enreach.edgenode").txClient>;
         structure: Record<string, unknown>;
         registry: Array<[string, Registry]>;
         updateTX(client: IgniteClient): void;
     };
 } & {
-    EnreachMiner: {
-        query: ReturnType<typeof import("./enreach.miner").queryClient>;
-        tx: ReturnType<typeof import("./enreach.miner").txClient>;
+    EnreachManager: {
+        query: ReturnType<typeof import("./enreach.manager").queryClient>;
+        tx: ReturnType<typeof import("./enreach.manager").txClient>;
         structure: Record<string, unknown>;
         registry: Array<[string, Registry]>;
         updateTX(client: IgniteClient): void;

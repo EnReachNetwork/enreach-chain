@@ -42,12 +42,26 @@ export interface PageResponse {
 }
 
 export interface QueryAllWorkloadResponse {
-  Workload?: { id?: string; epoch?: string; minerId?: string; score?: string; managerId?: string; creator?: string }[];
+  Workload?: {
+    id?: string;
+    managerAccount?: string;
+    epoch?: string;
+    nodeID?: string;
+    score?: string;
+    createAt?: string;
+  }[];
   pagination?: { next_key?: string; total?: string };
 }
 
 export interface QueryGetWorkloadResponse {
-  Workload?: { id?: string; epoch?: string; minerId?: string; score?: string; managerId?: string; creator?: string };
+  Workload?: {
+    id?: string;
+    managerAccount?: string;
+    epoch?: string;
+    nodeID?: string;
+    score?: string;
+    createAt?: string;
+  };
 }
 
 export interface QueryParamsResponse {
@@ -59,15 +73,17 @@ export type WorkloadParams = object;
 export interface WorkloadWorkload {
   /** @format uint64 */
   id?: string;
+  managerAccount?: string;
 
   /** @format uint64 */
   epoch?: string;
-  minerId?: string;
+  nodeID?: string;
 
   /** @format uint64 */
   score?: string;
-  managerId?: string;
-  creator?: string;
+
+  /** @format uint64 */
+  createAt?: string;
 }
 
 export interface MsgCreateWorkloadResponse {
@@ -75,11 +91,7 @@ export interface MsgCreateWorkloadResponse {
   id?: string;
 }
 
-export type MsgDeleteWorkloadResponse = object;
-
 export type MsgUpdateParamsResponse = object;
-
-export type MsgUpdateWorkloadResponse = object;
 
 export type Params = object;
 
@@ -225,8 +237,34 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * No description
    *
    * @tags Query
+   * @name QueryWorkload
+   * @request GET:/enreach/workload/workload/{id}
+   */
+  queryWorkload = (id: string, params: RequestParams = {}) =>
+    this.request<
+      {
+        Workload?: {
+          id?: string;
+          managerAccount?: string;
+          epoch?: string;
+          nodeID?: string;
+          score?: string;
+          createAt?: string;
+        };
+      },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/workload/workload/${id}`,
+      method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
    * @name QueryWorkloadAll
-   * @request GET:/enreach/workload/workload
+   * @request GET:/enreach/workload/workloads
    */
   queryWorkloadAll = (
     query?: {
@@ -242,45 +280,19 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       {
         Workload?: {
           id?: string;
+          managerAccount?: string;
           epoch?: string;
-          minerId?: string;
+          nodeID?: string;
           score?: string;
-          managerId?: string;
-          creator?: string;
+          createAt?: string;
         }[];
         pagination?: { next_key?: string; total?: string };
       },
       { code?: number; message?: string; details?: { "@type"?: string }[] }
     >({
-      path: `/enreach/workload/workload`,
+      path: `/enreach/workload/workloads`,
       method: "GET",
       query: query,
-      ...params,
-    });
-
-  /**
-   * No description
-   *
-   * @tags Query
-   * @name QueryWorkload
-   * @request GET:/enreach/workload/workload/{id}
-   */
-  queryWorkload = (id: string, params: RequestParams = {}) =>
-    this.request<
-      {
-        Workload?: {
-          id?: string;
-          epoch?: string;
-          minerId?: string;
-          score?: string;
-          managerId?: string;
-          creator?: string;
-        };
-      },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
-    >({
-      path: `/enreach/workload/workload/${id}`,
-      method: "GET",
       ...params,
     });
 }

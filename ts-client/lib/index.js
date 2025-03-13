@@ -28,8 +28,8 @@ const cosmos_staking_v1beta1_1 = require("./cosmos.staking.v1beta1");
 const cosmos_tx_v1beta1_1 = require("./cosmos.tx.v1beta1");
 const cosmos_upgrade_v1beta1_1 = require("./cosmos.upgrade.v1beta1");
 const cosmos_vesting_v1beta1_1 = require("./cosmos.vesting.v1beta1");
+const enreach_edgenode_1 = require("./enreach.edgenode");
 const enreach_manager_1 = require("./enreach.manager");
-const enreach_miner_1 = require("./enreach.miner");
 const enreach_registry_1 = require("./enreach.registry");
 const enreach_workload_1 = require("./enreach.workload");
 const ibc_applications_fee_v1_1 = require("./ibc.applications.fee.v1");
@@ -40,7 +40,7 @@ const ibc_core_channel_v1_1 = require("./ibc.core.channel.v1");
 const ibc_core_client_v1_1 = require("./ibc.core.client.v1");
 const ibc_core_connection_v1_1 = require("./ibc.core.connection.v1");
 const Client = client_1.IgniteClient.plugin([
-    cosmos_auth_v1beta1_1.IgntModule, cosmos_authz_v1beta1_1.IgntModule, cosmos_bank_v1beta1_1.IgntModule, cosmos_base_node_v1beta1_1.IgntModule, cosmos_base_tendermint_v1beta1_1.IgntModule, cosmos_circuit_v1_1.IgntModule, cosmos_consensus_v1_1.IgntModule, cosmos_crisis_v1beta1_1.IgntModule, cosmos_distribution_v1beta1_1.IgntModule, cosmos_evidence_v1beta1_1.IgntModule, cosmos_feegrant_v1beta1_1.IgntModule, cosmos_gov_v1_1.IgntModule, cosmos_gov_v1beta1_1.IgntModule, cosmos_group_v1_1.IgntModule, cosmos_mint_v1beta1_1.IgntModule, cosmos_nft_v1beta1_1.IgntModule, cosmos_params_v1beta1_1.IgntModule, cosmos_slashing_v1beta1_1.IgntModule, cosmos_staking_v1beta1_1.IgntModule, cosmos_tx_v1beta1_1.IgntModule, cosmos_upgrade_v1beta1_1.IgntModule, cosmos_vesting_v1beta1_1.IgntModule, enreach_manager_1.IgntModule, enreach_miner_1.IgntModule, enreach_registry_1.IgntModule, enreach_workload_1.IgntModule, ibc_applications_fee_v1_1.IgntModule, ibc_applications_interchain_accounts_controller_v1_1.IgntModule, ibc_applications_interchain_accounts_host_v1_1.IgntModule, ibc_applications_transfer_v1_1.IgntModule, ibc_core_channel_v1_1.IgntModule, ibc_core_client_v1_1.IgntModule, ibc_core_connection_v1_1.IgntModule
+    cosmos_auth_v1beta1_1.IgntModule, cosmos_authz_v1beta1_1.IgntModule, cosmos_bank_v1beta1_1.IgntModule, cosmos_base_node_v1beta1_1.IgntModule, cosmos_base_tendermint_v1beta1_1.IgntModule, cosmos_circuit_v1_1.IgntModule, cosmos_consensus_v1_1.IgntModule, cosmos_crisis_v1beta1_1.IgntModule, cosmos_distribution_v1beta1_1.IgntModule, cosmos_evidence_v1beta1_1.IgntModule, cosmos_feegrant_v1beta1_1.IgntModule, cosmos_gov_v1_1.IgntModule, cosmos_gov_v1beta1_1.IgntModule, cosmos_group_v1_1.IgntModule, cosmos_mint_v1beta1_1.IgntModule, cosmos_nft_v1beta1_1.IgntModule, cosmos_params_v1beta1_1.IgntModule, cosmos_slashing_v1beta1_1.IgntModule, cosmos_staking_v1beta1_1.IgntModule, cosmos_tx_v1beta1_1.IgntModule, cosmos_upgrade_v1beta1_1.IgntModule, cosmos_vesting_v1beta1_1.IgntModule, enreach_edgenode_1.IgntModule, enreach_manager_1.IgntModule, enreach_registry_1.IgntModule, enreach_workload_1.IgntModule, ibc_applications_fee_v1_1.IgntModule, ibc_applications_interchain_accounts_controller_v1_1.IgntModule, ibc_applications_interchain_accounts_host_v1_1.IgntModule, ibc_applications_transfer_v1_1.IgntModule, ibc_core_channel_v1_1.IgntModule, ibc_core_client_v1_1.IgntModule, ibc_core_connection_v1_1.IgntModule
 ]);
 exports.Client = Client;
 const registry = new proto_signing_1.Registry([
@@ -66,8 +66,8 @@ const registry = new proto_signing_1.Registry([
     ...cosmos_tx_v1beta1_1.msgTypes,
     ...cosmos_upgrade_v1beta1_1.msgTypes,
     ...cosmos_vesting_v1beta1_1.msgTypes,
+    ...enreach_edgenode_1.msgTypes,
     ...enreach_manager_1.msgTypes,
-    ...enreach_miner_1.msgTypes,
     ...enreach_registry_1.msgTypes,
     ...enreach_workload_1.msgTypes,
     ...ibc_applications_fee_v1_1.msgTypes,

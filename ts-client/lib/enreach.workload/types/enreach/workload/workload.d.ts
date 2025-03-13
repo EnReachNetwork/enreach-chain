@@ -2,11 +2,11 @@ import _m0 from "protobufjs/minimal";
 export declare const protobufPackage = "enreach.workload";
 export interface Workload {
     id: number;
+    managerAccount: string;
     epoch: number;
-    minerId: string;
+    nodeID: string;
     score: number;
-    managerId: string;
-    creator: string;
+    createAt: number;
 }
 export declare const Workload: {
     encode(message: Workload, writer?: _m0.Writer): _m0.Writer;

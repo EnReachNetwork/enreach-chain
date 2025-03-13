@@ -9,27 +9,27 @@ const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 exports.protobufPackage = "enreach.workload";
 function createBaseWorkload() {
-    return { id: 0, epoch: 0, minerId: "", score: 0, managerId: "", creator: "" };
+    return { id: 0, managerAccount: "", epoch: 0, nodeID: "", score: 0, createAt: 0 };
 }
 exports.Workload = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.id !== 0) {
             writer.uint32(8).uint64(message.id);
         }
-        if (message.epoch !== 0) {
-            writer.uint32(16).uint64(message.epoch);
+        if (message.managerAccount !== "") {
+            writer.uint32(18).string(message.managerAccount);
         }
-        if (message.minerId !== "") {
-            writer.uint32(26).string(message.minerId);
+        if (message.epoch !== 0) {
+            writer.uint32(24).uint64(message.epoch);
+        }
+        if (message.nodeID !== "") {
+            writer.uint32(34).string(message.nodeID);
         }
         if (message.score !== 0) {
-            writer.uint32(32).uint64(message.score);
+            writer.uint32(40).uint64(message.score);
         }
-        if (message.managerId !== "") {
-            writer.uint32(42).string(message.managerId);
-        }
-        if (message.creator !== "") {
-            writer.uint32(50).string(message.creator);
+        if (message.createAt !== 0) {
+            writer.uint32(48).uint64(message.createAt);
         }
         return writer;
     },
@@ -47,34 +47,34 @@ exports.Workload = {
                     message.id = longToNumber(reader.uint64());
                     continue;
                 case 2:
-                    if (tag !== 16) {
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.managerAccount = reader.string();
+                    continue;
+                case 3:
+                    if (tag !== 24) {
                         break;
                     }
                     message.epoch = longToNumber(reader.uint64());
                     continue;
-                case 3:
-                    if (tag !== 26) {
+                case 4:
+                    if (tag !== 34) {
                         break;
                     }
-                    message.minerId = reader.string();
+                    message.nodeID = reader.string();
                     continue;
-                case 4:
-                    if (tag !== 32) {
+                case 5:
+                    if (tag !== 40) {
                         break;
                     }
                     message.score = longToNumber(reader.uint64());
                     continue;
-                case 5:
-                    if (tag !== 42) {
-                        break;
-                    }
-                    message.managerId = reader.string();
-                    continue;
                 case 6:
-                    if (tag !== 50) {
+                    if (tag !== 48) {
                         break;
                     }
-                    message.creator = reader.string();
+                    message.createAt = longToNumber(reader.uint64());
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -87,11 +87,11 @@ exports.Workload = {
     fromJSON(object) {
         return {
             id: isSet(object.id) ? Number(object.id) : 0,
+            managerAccount: isSet(object.managerAccount) ? String(object.managerAccount) : "",
             epoch: isSet(object.epoch) ? Number(object.epoch) : 0,
-            minerId: isSet(object.minerId) ? String(object.minerId) : "",
+            nodeID: isSet(object.nodeID) ? String(object.nodeID) : "",
             score: isSet(object.score) ? Number(object.score) : 0,
-            managerId: isSet(object.managerId) ? String(object.managerId) : "",
-            creator: isSet(object.creator) ? String(object.creator) : "",
+            createAt: isSet(object.createAt) ? Number(object.createAt) : 0,
         };
     },
     toJSON(message) {
@@ -99,20 +99,20 @@ exports.Workload = {
         if (message.id !== 0) {
             obj.id = Math.round(message.id);
         }
+        if (message.managerAccount !== "") {
+            obj.managerAccount = message.managerAccount;
+        }
         if (message.epoch !== 0) {
             obj.epoch = Math.round(message.epoch);
         }
-        if (message.minerId !== "") {
-            obj.minerId = message.minerId;
+        if (message.nodeID !== "") {
+            obj.nodeID = message.nodeID;
         }
         if (message.score !== 0) {
             obj.score = Math.round(message.score);
         }
-        if (message.managerId !== "") {
-            obj.managerId = message.managerId;
-        }
-        if (message.creator !== "") {
-            obj.creator = message.creator;
+        if (message.createAt !== 0) {
+            obj.createAt = Math.round(message.createAt);
         }
         return obj;
     },
@@ -122,11 +122,11 @@ exports.Workload = {
     fromPartial(object) {
         const message = createBaseWorkload();
         message.id = object.id ?? 0;
+        message.managerAccount = object.managerAccount ?? "";
         message.epoch = object.epoch ?? 0;
-        message.minerId = object.minerId ?? "";
+        message.nodeID = object.nodeID ?? "";
         message.score = object.score ?? 0;
-        message.managerId = object.managerId ?? "";
-        message.creator = object.creator ?? "";
+        message.createAt = object.createAt ?? 0;
         return message;
     },
 };

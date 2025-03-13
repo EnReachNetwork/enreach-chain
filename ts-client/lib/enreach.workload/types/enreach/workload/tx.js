@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MsgClientImpl = exports.MsgServiceName = exports.MsgDeleteWorkloadResponse = exports.MsgDeleteWorkload = exports.MsgUpdateWorkloadResponse = exports.MsgUpdateWorkload = exports.MsgCreateWorkloadResponse = exports.MsgCreateWorkload = exports.MsgUpdateParamsResponse = exports.MsgUpdateParams = exports.protobufPackage = void 0;
+exports.MsgClientImpl = exports.MsgServiceName = exports.MsgCreateWorkloadResponse = exports.MsgCreateWorkload = exports.MsgUpdateParamsResponse = exports.MsgUpdateParams = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -115,24 +115,21 @@ exports.MsgUpdateParamsResponse = {
     },
 };
 function createBaseMsgCreateWorkload() {
-    return { creator: "", epoch: 0, minerId: "", score: 0, managerId: "" };
+    return { managerAccount: "", epoch: 0, nodeID: "", score: 0 };
 }
 exports.MsgCreateWorkload = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.creator !== "") {
-            writer.uint32(10).string(message.creator);
+        if (message.managerAccount !== "") {
+            writer.uint32(10).string(message.managerAccount);
         }
         if (message.epoch !== 0) {
             writer.uint32(16).uint64(message.epoch);
         }
-        if (message.minerId !== "") {
-            writer.uint32(26).string(message.minerId);
+        if (message.nodeID !== "") {
+            writer.uint32(26).string(message.nodeID);
         }
         if (message.score !== 0) {
             writer.uint32(32).uint64(message.score);
-        }
-        if (message.managerId !== "") {
-            writer.uint32(42).string(message.managerId);
         }
         return writer;
     },
@@ -147,7 +144,7 @@ exports.MsgCreateWorkload = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.creator = reader.string();
+                    message.managerAccount = reader.string();
                     continue;
                 case 2:
                     if (tag !== 16) {
@@ -159,19 +156,13 @@ exports.MsgCreateWorkload = {
                     if (tag !== 26) {
                         break;
                     }
-                    message.minerId = reader.string();
+                    message.nodeID = reader.string();
                     continue;
                 case 4:
                     if (tag !== 32) {
                         break;
                     }
                     message.score = longToNumber(reader.uint64());
-                    continue;
-                case 5:
-                    if (tag !== 42) {
-                        break;
-                    }
-                    message.managerId = reader.string();
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -183,29 +174,25 @@ exports.MsgCreateWorkload = {
     },
     fromJSON(object) {
         return {
-            creator: isSet(object.creator) ? String(object.creator) : "",
+            managerAccount: isSet(object.managerAccount) ? String(object.managerAccount) : "",
             epoch: isSet(object.epoch) ? Number(object.epoch) : 0,
-            minerId: isSet(object.minerId) ? String(object.minerId) : "",
+            nodeID: isSet(object.nodeID) ? String(object.nodeID) : "",
             score: isSet(object.score) ? Number(object.score) : 0,
-            managerId: isSet(object.managerId) ? String(object.managerId) : "",
         };
     },
     toJSON(message) {
         const obj = {};
-        if (message.creator !== "") {
-            obj.creator = message.creator;
+        if (message.managerAccount !== "") {
+            obj.managerAccount = message.managerAccount;
         }
         if (message.epoch !== 0) {
             obj.epoch = Math.round(message.epoch);
         }
-        if (message.minerId !== "") {
-            obj.minerId = message.minerId;
+        if (message.nodeID !== "") {
+            obj.nodeID = message.nodeID;
         }
         if (message.score !== 0) {
             obj.score = Math.round(message.score);
-        }
-        if (message.managerId !== "") {
-            obj.managerId = message.managerId;
         }
         return obj;
     },
@@ -214,11 +201,10 @@ exports.MsgCreateWorkload = {
     },
     fromPartial(object) {
         const message = createBaseMsgCreateWorkload();
-        message.creator = object.creator ?? "";
+        message.managerAccount = object.managerAccount ?? "";
         message.epoch = object.epoch ?? 0;
-        message.minerId = object.minerId ?? "";
+        message.nodeID = object.nodeID ?? "";
         message.score = object.score ?? 0;
-        message.managerId = object.managerId ?? "";
         return message;
     },
 };
@@ -272,268 +258,6 @@ exports.MsgCreateWorkloadResponse = {
         return message;
     },
 };
-function createBaseMsgUpdateWorkload() {
-    return { creator: "", id: 0, epoch: 0, minerId: "", score: 0, managerId: "" };
-}
-exports.MsgUpdateWorkload = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.creator !== "") {
-            writer.uint32(10).string(message.creator);
-        }
-        if (message.id !== 0) {
-            writer.uint32(16).uint64(message.id);
-        }
-        if (message.epoch !== 0) {
-            writer.uint32(24).uint64(message.epoch);
-        }
-        if (message.minerId !== "") {
-            writer.uint32(34).string(message.minerId);
-        }
-        if (message.score !== 0) {
-            writer.uint32(40).uint64(message.score);
-        }
-        if (message.managerId !== "") {
-            writer.uint32(50).string(message.managerId);
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseMsgUpdateWorkload();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.creator = reader.string();
-                    continue;
-                case 2:
-                    if (tag !== 16) {
-                        break;
-                    }
-                    message.id = longToNumber(reader.uint64());
-                    continue;
-                case 3:
-                    if (tag !== 24) {
-                        break;
-                    }
-                    message.epoch = longToNumber(reader.uint64());
-                    continue;
-                case 4:
-                    if (tag !== 34) {
-                        break;
-                    }
-                    message.minerId = reader.string();
-                    continue;
-                case 5:
-                    if (tag !== 40) {
-                        break;
-                    }
-                    message.score = longToNumber(reader.uint64());
-                    continue;
-                case 6:
-                    if (tag !== 50) {
-                        break;
-                    }
-                    message.managerId = reader.string();
-                    continue;
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return {
-            creator: isSet(object.creator) ? String(object.creator) : "",
-            id: isSet(object.id) ? Number(object.id) : 0,
-            epoch: isSet(object.epoch) ? Number(object.epoch) : 0,
-            minerId: isSet(object.minerId) ? String(object.minerId) : "",
-            score: isSet(object.score) ? Number(object.score) : 0,
-            managerId: isSet(object.managerId) ? String(object.managerId) : "",
-        };
-    },
-    toJSON(message) {
-        const obj = {};
-        if (message.creator !== "") {
-            obj.creator = message.creator;
-        }
-        if (message.id !== 0) {
-            obj.id = Math.round(message.id);
-        }
-        if (message.epoch !== 0) {
-            obj.epoch = Math.round(message.epoch);
-        }
-        if (message.minerId !== "") {
-            obj.minerId = message.minerId;
-        }
-        if (message.score !== 0) {
-            obj.score = Math.round(message.score);
-        }
-        if (message.managerId !== "") {
-            obj.managerId = message.managerId;
-        }
-        return obj;
-    },
-    create(base) {
-        return exports.MsgUpdateWorkload.fromPartial(base ?? {});
-    },
-    fromPartial(object) {
-        const message = createBaseMsgUpdateWorkload();
-        message.creator = object.creator ?? "";
-        message.id = object.id ?? 0;
-        message.epoch = object.epoch ?? 0;
-        message.minerId = object.minerId ?? "";
-        message.score = object.score ?? 0;
-        message.managerId = object.managerId ?? "";
-        return message;
-    },
-};
-function createBaseMsgUpdateWorkloadResponse() {
-    return {};
-}
-exports.MsgUpdateWorkloadResponse = {
-    encode(_, writer = minimal_1.default.Writer.create()) {
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseMsgUpdateWorkloadResponse();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(_) {
-        return {};
-    },
-    toJSON(_) {
-        const obj = {};
-        return obj;
-    },
-    create(base) {
-        return exports.MsgUpdateWorkloadResponse.fromPartial(base ?? {});
-    },
-    fromPartial(_) {
-        const message = createBaseMsgUpdateWorkloadResponse();
-        return message;
-    },
-};
-function createBaseMsgDeleteWorkload() {
-    return { creator: "", id: 0 };
-}
-exports.MsgDeleteWorkload = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.creator !== "") {
-            writer.uint32(10).string(message.creator);
-        }
-        if (message.id !== 0) {
-            writer.uint32(16).uint64(message.id);
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseMsgDeleteWorkload();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.creator = reader.string();
-                    continue;
-                case 2:
-                    if (tag !== 16) {
-                        break;
-                    }
-                    message.id = longToNumber(reader.uint64());
-                    continue;
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return {
-            creator: isSet(object.creator) ? String(object.creator) : "",
-            id: isSet(object.id) ? Number(object.id) : 0,
-        };
-    },
-    toJSON(message) {
-        const obj = {};
-        if (message.creator !== "") {
-            obj.creator = message.creator;
-        }
-        if (message.id !== 0) {
-            obj.id = Math.round(message.id);
-        }
-        return obj;
-    },
-    create(base) {
-        return exports.MsgDeleteWorkload.fromPartial(base ?? {});
-    },
-    fromPartial(object) {
-        const message = createBaseMsgDeleteWorkload();
-        message.creator = object.creator ?? "";
-        message.id = object.id ?? 0;
-        return message;
-    },
-};
-function createBaseMsgDeleteWorkloadResponse() {
-    return {};
-}
-exports.MsgDeleteWorkloadResponse = {
-    encode(_, writer = minimal_1.default.Writer.create()) {
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseMsgDeleteWorkloadResponse();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(_) {
-        return {};
-    },
-    toJSON(_) {
-        const obj = {};
-        return obj;
-    },
-    create(base) {
-        return exports.MsgDeleteWorkloadResponse.fromPartial(base ?? {});
-    },
-    fromPartial(_) {
-        const message = createBaseMsgDeleteWorkloadResponse();
-        return message;
-    },
-};
 exports.MsgServiceName = "enreach.workload.Msg";
 class MsgClientImpl {
     constructor(rpc, opts) {
@@ -541,8 +265,6 @@ class MsgClientImpl {
         this.rpc = rpc;
         this.UpdateParams = this.UpdateParams.bind(this);
         this.CreateWorkload = this.CreateWorkload.bind(this);
-        this.UpdateWorkload = this.UpdateWorkload.bind(this);
-        this.DeleteWorkload = this.DeleteWorkload.bind(this);
     }
     UpdateParams(request) {
         const data = exports.MsgUpdateParams.encode(request).finish();
@@ -553,16 +275,6 @@ class MsgClientImpl {
         const data = exports.MsgCreateWorkload.encode(request).finish();
         const promise = this.rpc.request(this.service, "CreateWorkload", data);
         return promise.then((data) => exports.MsgCreateWorkloadResponse.decode(minimal_1.default.Reader.create(data)));
-    }
-    UpdateWorkload(request) {
-        const data = exports.MsgUpdateWorkload.encode(request).finish();
-        const promise = this.rpc.request(this.service, "UpdateWorkload", data);
-        return promise.then((data) => exports.MsgUpdateWorkloadResponse.decode(minimal_1.default.Reader.create(data)));
-    }
-    DeleteWorkload(request) {
-        const data = exports.MsgDeleteWorkload.encode(request).finish();
-        const promise = this.rpc.request(this.service, "DeleteWorkload", data);
-        return promise.then((data) => exports.MsgDeleteWorkloadResponse.decode(minimal_1.default.Reader.create(data)));
     }
 }
 exports.MsgClientImpl = MsgClientImpl;

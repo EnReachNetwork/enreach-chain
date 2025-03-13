@@ -2,28 +2,43 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { QueryGrantsResponse } from "./types/cosmos/authz/v1beta1/query";
+import { QueryGrantsRequest } from "./types/cosmos/authz/v1beta1/query";
+import { MsgExecResponse } from "./types/cosmos/authz/v1beta1/tx";
+import { EventGrant } from "./types/cosmos/authz/v1beta1/event";
+import { EventRevoke } from "./types/cosmos/authz/v1beta1/event";
 import { QueryGranterGrantsResponse } from "./types/cosmos/authz/v1beta1/query";
 import { QueryGranteeGrantsRequest } from "./types/cosmos/authz/v1beta1/query";
 import { QueryGranteeGrantsResponse } from "./types/cosmos/authz/v1beta1/query";
-import { GenesisState } from "./types/cosmos/authz/v1beta1/genesis";
-import { GrantAuthorization } from "./types/cosmos/authz/v1beta1/authz";
-import { MsgExecResponse } from "./types/cosmos/authz/v1beta1/tx";
-import { MsgRevokeResponse } from "./types/cosmos/authz/v1beta1/tx";
-import { MsgExec } from "./types/cosmos/authz/v1beta1/tx";
-import { GrantQueueItem } from "./types/cosmos/authz/v1beta1/authz";
-import { QueryGranterGrantsRequest } from "./types/cosmos/authz/v1beta1/query";
-import { MsgGrantResponse } from "./types/cosmos/authz/v1beta1/tx";
-import { Grant } from "./types/cosmos/authz/v1beta1/authz";
-import { GenericAuthorization } from "./types/cosmos/authz/v1beta1/authz";
-import { EventGrant } from "./types/cosmos/authz/v1beta1/event";
-import { EventRevoke } from "./types/cosmos/authz/v1beta1/event";
-import { QueryGrantsRequest } from "./types/cosmos/authz/v1beta1/query";
-import { MsgRevoke } from "./types/cosmos/authz/v1beta1/tx";
 import { MsgGrant } from "./types/cosmos/authz/v1beta1/tx";
-export { QueryGrantsResponse, QueryGranterGrantsResponse, QueryGranteeGrantsRequest, QueryGranteeGrantsResponse, GenesisState, GrantAuthorization, MsgExecResponse, MsgRevokeResponse, MsgExec, GrantQueueItem, QueryGranterGrantsRequest, MsgGrantResponse, Grant, GenericAuthorization, EventGrant, EventRevoke, QueryGrantsRequest, MsgRevoke, MsgGrant };
-type sendQueryGrantsResponseParams = {
-    value: QueryGrantsResponse;
+import { MsgRevoke } from "./types/cosmos/authz/v1beta1/tx";
+import { MsgRevokeResponse } from "./types/cosmos/authz/v1beta1/tx";
+import { GenesisState } from "./types/cosmos/authz/v1beta1/genesis";
+import { GenericAuthorization } from "./types/cosmos/authz/v1beta1/authz";
+import { QueryGrantsResponse } from "./types/cosmos/authz/v1beta1/query";
+import { MsgGrantResponse } from "./types/cosmos/authz/v1beta1/tx";
+import { QueryGranterGrantsRequest } from "./types/cosmos/authz/v1beta1/query";
+import { MsgExec } from "./types/cosmos/authz/v1beta1/tx";
+import { GrantAuthorization } from "./types/cosmos/authz/v1beta1/authz";
+import { Grant } from "./types/cosmos/authz/v1beta1/authz";
+import { GrantQueueItem } from "./types/cosmos/authz/v1beta1/authz";
+export { QueryGrantsRequest, MsgExecResponse, EventGrant, EventRevoke, QueryGranterGrantsResponse, QueryGranteeGrantsRequest, QueryGranteeGrantsResponse, MsgGrant, MsgRevoke, MsgRevokeResponse, GenesisState, GenericAuthorization, QueryGrantsResponse, MsgGrantResponse, QueryGranterGrantsRequest, MsgExec, GrantAuthorization, Grant, GrantQueueItem };
+type sendQueryGrantsRequestParams = {
+    value: QueryGrantsRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgExecResponseParams = {
+    value: MsgExecResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendEventGrantParams = {
+    value: EventGrant;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendEventRevokeParams = {
+    value: EventRevoke;
     fee?: StdFee;
     memo?: string;
 };
@@ -42,68 +57,8 @@ type sendQueryGranteeGrantsResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendGenesisStateParams = {
-    value: GenesisState;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendGrantAuthorizationParams = {
-    value: GrantAuthorization;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgExecResponseParams = {
-    value: MsgExecResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgRevokeResponseParams = {
-    value: MsgRevokeResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgExecParams = {
-    value: MsgExec;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendGrantQueueItemParams = {
-    value: GrantQueueItem;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGranterGrantsRequestParams = {
-    value: QueryGranterGrantsRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgGrantResponseParams = {
-    value: MsgGrantResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendGrantParams = {
-    value: Grant;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendGenericAuthorizationParams = {
-    value: GenericAuthorization;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendEventGrantParams = {
-    value: EventGrant;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendEventRevokeParams = {
-    value: EventRevoke;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGrantsRequestParams = {
-    value: QueryGrantsRequest;
+type sendMsgGrantParams = {
+    value: MsgGrant;
     fee?: StdFee;
     memo?: string;
 };
@@ -112,13 +67,67 @@ type sendMsgRevokeParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgGrantParams = {
-    value: MsgGrant;
+type sendMsgRevokeResponseParams = {
+    value: MsgRevokeResponse;
     fee?: StdFee;
     memo?: string;
 };
-type queryGrantsResponseParams = {
+type sendGenesisStateParams = {
+    value: GenesisState;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendGenericAuthorizationParams = {
+    value: GenericAuthorization;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryGrantsResponseParams = {
     value: QueryGrantsResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgGrantResponseParams = {
+    value: MsgGrantResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryGranterGrantsRequestParams = {
+    value: QueryGranterGrantsRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgExecParams = {
+    value: MsgExec;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendGrantAuthorizationParams = {
+    value: GrantAuthorization;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendGrantParams = {
+    value: Grant;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendGrantQueueItemParams = {
+    value: GrantQueueItem;
+    fee?: StdFee;
+    memo?: string;
+};
+type queryGrantsRequestParams = {
+    value: QueryGrantsRequest;
+};
+type msgExecResponseParams = {
+    value: MsgExecResponse;
+};
+type eventGrantParams = {
+    value: EventGrant;
+};
+type eventRevokeParams = {
+    value: EventRevoke;
 };
 type queryGranterGrantsResponseParams = {
     value: QueryGranterGrantsResponse;
@@ -129,50 +138,41 @@ type queryGranteeGrantsRequestParams = {
 type queryGranteeGrantsResponseParams = {
     value: QueryGranteeGrantsResponse;
 };
-type genesisStateParams = {
-    value: GenesisState;
-};
-type grantAuthorizationParams = {
-    value: GrantAuthorization;
-};
-type msgExecResponseParams = {
-    value: MsgExecResponse;
-};
-type msgRevokeResponseParams = {
-    value: MsgRevokeResponse;
-};
-type msgExecParams = {
-    value: MsgExec;
-};
-type grantQueueItemParams = {
-    value: GrantQueueItem;
-};
-type queryGranterGrantsRequestParams = {
-    value: QueryGranterGrantsRequest;
-};
-type msgGrantResponseParams = {
-    value: MsgGrantResponse;
-};
-type grantParams = {
-    value: Grant;
-};
-type genericAuthorizationParams = {
-    value: GenericAuthorization;
-};
-type eventGrantParams = {
-    value: EventGrant;
-};
-type eventRevokeParams = {
-    value: EventRevoke;
-};
-type queryGrantsRequestParams = {
-    value: QueryGrantsRequest;
+type msgGrantParams = {
+    value: MsgGrant;
 };
 type msgRevokeParams = {
     value: MsgRevoke;
 };
-type msgGrantParams = {
-    value: MsgGrant;
+type msgRevokeResponseParams = {
+    value: MsgRevokeResponse;
+};
+type genesisStateParams = {
+    value: GenesisState;
+};
+type genericAuthorizationParams = {
+    value: GenericAuthorization;
+};
+type queryGrantsResponseParams = {
+    value: QueryGrantsResponse;
+};
+type msgGrantResponseParams = {
+    value: MsgGrantResponse;
+};
+type queryGranterGrantsRequestParams = {
+    value: QueryGranterGrantsRequest;
+};
+type msgExecParams = {
+    value: MsgExec;
+};
+type grantAuthorizationParams = {
+    value: GrantAuthorization;
+};
+type grantParams = {
+    value: Grant;
+};
+type grantQueueItemParams = {
+    value: GrantQueueItem;
 };
 export declare const registry: any;
 interface TxClientOptions {
@@ -181,44 +181,44 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendQueryGrantsResponse({ value, fee, memo }: sendQueryGrantsResponseParams): Promise<DeliverTxResponse>;
+    sendQueryGrantsRequest({ value, fee, memo }: sendQueryGrantsRequestParams): Promise<DeliverTxResponse>;
+    sendMsgExecResponse({ value, fee, memo }: sendMsgExecResponseParams): Promise<DeliverTxResponse>;
+    sendEventGrant({ value, fee, memo }: sendEventGrantParams): Promise<DeliverTxResponse>;
+    sendEventRevoke({ value, fee, memo }: sendEventRevokeParams): Promise<DeliverTxResponse>;
     sendQueryGranterGrantsResponse({ value, fee, memo }: sendQueryGranterGrantsResponseParams): Promise<DeliverTxResponse>;
     sendQueryGranteeGrantsRequest({ value, fee, memo }: sendQueryGranteeGrantsRequestParams): Promise<DeliverTxResponse>;
     sendQueryGranteeGrantsResponse({ value, fee, memo }: sendQueryGranteeGrantsResponseParams): Promise<DeliverTxResponse>;
-    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
-    sendGrantAuthorization({ value, fee, memo }: sendGrantAuthorizationParams): Promise<DeliverTxResponse>;
-    sendMsgExecResponse({ value, fee, memo }: sendMsgExecResponseParams): Promise<DeliverTxResponse>;
-    sendMsgRevokeResponse({ value, fee, memo }: sendMsgRevokeResponseParams): Promise<DeliverTxResponse>;
-    sendMsgExec({ value, fee, memo }: sendMsgExecParams): Promise<DeliverTxResponse>;
-    sendGrantQueueItem({ value, fee, memo }: sendGrantQueueItemParams): Promise<DeliverTxResponse>;
-    sendQueryGranterGrantsRequest({ value, fee, memo }: sendQueryGranterGrantsRequestParams): Promise<DeliverTxResponse>;
-    sendMsgGrantResponse({ value, fee, memo }: sendMsgGrantResponseParams): Promise<DeliverTxResponse>;
-    sendGrant({ value, fee, memo }: sendGrantParams): Promise<DeliverTxResponse>;
-    sendGenericAuthorization({ value, fee, memo }: sendGenericAuthorizationParams): Promise<DeliverTxResponse>;
-    sendEventGrant({ value, fee, memo }: sendEventGrantParams): Promise<DeliverTxResponse>;
-    sendEventRevoke({ value, fee, memo }: sendEventRevokeParams): Promise<DeliverTxResponse>;
-    sendQueryGrantsRequest({ value, fee, memo }: sendQueryGrantsRequestParams): Promise<DeliverTxResponse>;
-    sendMsgRevoke({ value, fee, memo }: sendMsgRevokeParams): Promise<DeliverTxResponse>;
     sendMsgGrant({ value, fee, memo }: sendMsgGrantParams): Promise<DeliverTxResponse>;
-    queryGrantsResponse({ value }: queryGrantsResponseParams): EncodeObject;
+    sendMsgRevoke({ value, fee, memo }: sendMsgRevokeParams): Promise<DeliverTxResponse>;
+    sendMsgRevokeResponse({ value, fee, memo }: sendMsgRevokeResponseParams): Promise<DeliverTxResponse>;
+    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
+    sendGenericAuthorization({ value, fee, memo }: sendGenericAuthorizationParams): Promise<DeliverTxResponse>;
+    sendQueryGrantsResponse({ value, fee, memo }: sendQueryGrantsResponseParams): Promise<DeliverTxResponse>;
+    sendMsgGrantResponse({ value, fee, memo }: sendMsgGrantResponseParams): Promise<DeliverTxResponse>;
+    sendQueryGranterGrantsRequest({ value, fee, memo }: sendQueryGranterGrantsRequestParams): Promise<DeliverTxResponse>;
+    sendMsgExec({ value, fee, memo }: sendMsgExecParams): Promise<DeliverTxResponse>;
+    sendGrantAuthorization({ value, fee, memo }: sendGrantAuthorizationParams): Promise<DeliverTxResponse>;
+    sendGrant({ value, fee, memo }: sendGrantParams): Promise<DeliverTxResponse>;
+    sendGrantQueueItem({ value, fee, memo }: sendGrantQueueItemParams): Promise<DeliverTxResponse>;
+    queryGrantsRequest({ value }: queryGrantsRequestParams): EncodeObject;
+    msgExecResponse({ value }: msgExecResponseParams): EncodeObject;
+    eventGrant({ value }: eventGrantParams): EncodeObject;
+    eventRevoke({ value }: eventRevokeParams): EncodeObject;
     queryGranterGrantsResponse({ value }: queryGranterGrantsResponseParams): EncodeObject;
     queryGranteeGrantsRequest({ value }: queryGranteeGrantsRequestParams): EncodeObject;
     queryGranteeGrantsResponse({ value }: queryGranteeGrantsResponseParams): EncodeObject;
-    genesisState({ value }: genesisStateParams): EncodeObject;
-    grantAuthorization({ value }: grantAuthorizationParams): EncodeObject;
-    msgExecResponse({ value }: msgExecResponseParams): EncodeObject;
-    msgRevokeResponse({ value }: msgRevokeResponseParams): EncodeObject;
-    msgExec({ value }: msgExecParams): EncodeObject;
-    grantQueueItem({ value }: grantQueueItemParams): EncodeObject;
-    queryGranterGrantsRequest({ value }: queryGranterGrantsRequestParams): EncodeObject;
-    msgGrantResponse({ value }: msgGrantResponseParams): EncodeObject;
-    grant({ value }: grantParams): EncodeObject;
-    genericAuthorization({ value }: genericAuthorizationParams): EncodeObject;
-    eventGrant({ value }: eventGrantParams): EncodeObject;
-    eventRevoke({ value }: eventRevokeParams): EncodeObject;
-    queryGrantsRequest({ value }: queryGrantsRequestParams): EncodeObject;
-    msgRevoke({ value }: msgRevokeParams): EncodeObject;
     msgGrant({ value }: msgGrantParams): EncodeObject;
+    msgRevoke({ value }: msgRevokeParams): EncodeObject;
+    msgRevokeResponse({ value }: msgRevokeResponseParams): EncodeObject;
+    genesisState({ value }: genesisStateParams): EncodeObject;
+    genericAuthorization({ value }: genericAuthorizationParams): EncodeObject;
+    queryGrantsResponse({ value }: queryGrantsResponseParams): EncodeObject;
+    msgGrantResponse({ value }: msgGrantResponseParams): EncodeObject;
+    queryGranterGrantsRequest({ value }: queryGranterGrantsRequestParams): EncodeObject;
+    msgExec({ value }: msgExecParams): EncodeObject;
+    grantAuthorization({ value }: grantAuthorizationParams): EncodeObject;
+    grant({ value }: grantParams): EncodeObject;
+    grantQueueItem({ value }: grantQueueItemParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

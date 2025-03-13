@@ -15,30 +15,13 @@ export interface MsgUpdateParams {
 export interface MsgUpdateParamsResponse {
 }
 export interface MsgCreateWorkload {
-    creator: string;
+    managerAccount: string;
     epoch: number;
-    minerId: string;
+    nodeID: string;
     score: number;
-    managerId: string;
 }
 export interface MsgCreateWorkloadResponse {
     id: number;
-}
-export interface MsgUpdateWorkload {
-    creator: string;
-    id: number;
-    epoch: number;
-    minerId: string;
-    score: number;
-    managerId: string;
-}
-export interface MsgUpdateWorkloadResponse {
-}
-export interface MsgDeleteWorkload {
-    creator: string;
-    id: number;
-}
-export interface MsgDeleteWorkloadResponse {
 }
 export declare const MsgUpdateParams: {
     encode(message: MsgUpdateParams, writer?: _m0.Writer): _m0.Writer;
@@ -72,38 +55,6 @@ export declare const MsgCreateWorkloadResponse: {
     create<I extends Exact<DeepPartial<MsgCreateWorkloadResponse>, I>>(base?: I): MsgCreateWorkloadResponse;
     fromPartial<I extends Exact<DeepPartial<MsgCreateWorkloadResponse>, I>>(object: I): MsgCreateWorkloadResponse;
 };
-export declare const MsgUpdateWorkload: {
-    encode(message: MsgUpdateWorkload, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateWorkload;
-    fromJSON(object: any): MsgUpdateWorkload;
-    toJSON(message: MsgUpdateWorkload): unknown;
-    create<I extends Exact<DeepPartial<MsgUpdateWorkload>, I>>(base?: I): MsgUpdateWorkload;
-    fromPartial<I extends Exact<DeepPartial<MsgUpdateWorkload>, I>>(object: I): MsgUpdateWorkload;
-};
-export declare const MsgUpdateWorkloadResponse: {
-    encode(_: MsgUpdateWorkloadResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateWorkloadResponse;
-    fromJSON(_: any): MsgUpdateWorkloadResponse;
-    toJSON(_: MsgUpdateWorkloadResponse): unknown;
-    create<I extends Exact<DeepPartial<MsgUpdateWorkloadResponse>, I>>(base?: I): MsgUpdateWorkloadResponse;
-    fromPartial<I extends Exact<DeepPartial<MsgUpdateWorkloadResponse>, I>>(_: I): MsgUpdateWorkloadResponse;
-};
-export declare const MsgDeleteWorkload: {
-    encode(message: MsgDeleteWorkload, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgDeleteWorkload;
-    fromJSON(object: any): MsgDeleteWorkload;
-    toJSON(message: MsgDeleteWorkload): unknown;
-    create<I extends Exact<DeepPartial<MsgDeleteWorkload>, I>>(base?: I): MsgDeleteWorkload;
-    fromPartial<I extends Exact<DeepPartial<MsgDeleteWorkload>, I>>(object: I): MsgDeleteWorkload;
-};
-export declare const MsgDeleteWorkloadResponse: {
-    encode(_: MsgDeleteWorkloadResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgDeleteWorkloadResponse;
-    fromJSON(_: any): MsgDeleteWorkloadResponse;
-    toJSON(_: MsgDeleteWorkloadResponse): unknown;
-    create<I extends Exact<DeepPartial<MsgDeleteWorkloadResponse>, I>>(base?: I): MsgDeleteWorkloadResponse;
-    fromPartial<I extends Exact<DeepPartial<MsgDeleteWorkloadResponse>, I>>(_: I): MsgDeleteWorkloadResponse;
-};
 /** Msg defines the Msg service. */
 export interface Msg {
     /**
@@ -112,8 +63,6 @@ export interface Msg {
      */
     UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
     CreateWorkload(request: MsgCreateWorkload): Promise<MsgCreateWorkloadResponse>;
-    UpdateWorkload(request: MsgUpdateWorkload): Promise<MsgUpdateWorkloadResponse>;
-    DeleteWorkload(request: MsgDeleteWorkload): Promise<MsgDeleteWorkloadResponse>;
 }
 export declare const MsgServiceName = "enreach.workload.Msg";
 export declare class MsgClientImpl implements Msg {
@@ -124,8 +73,6 @@ export declare class MsgClientImpl implements Msg {
     });
     UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
     CreateWorkload(request: MsgCreateWorkload): Promise<MsgCreateWorkloadResponse>;
-    UpdateWorkload(request: MsgUpdateWorkload): Promise<MsgUpdateWorkloadResponse>;
-    DeleteWorkload(request: MsgDeleteWorkload): Promise<MsgDeleteWorkloadResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

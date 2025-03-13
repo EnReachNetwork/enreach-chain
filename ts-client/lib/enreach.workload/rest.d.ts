@@ -28,11 +28,11 @@ export interface PageResponse {
 export interface QueryAllWorkloadResponse {
     Workload?: {
         id?: string;
+        managerAccount?: string;
         epoch?: string;
-        minerId?: string;
+        nodeID?: string;
         score?: string;
-        managerId?: string;
-        creator?: string;
+        createAt?: string;
     }[];
     pagination?: {
         next_key?: string;
@@ -42,11 +42,11 @@ export interface QueryAllWorkloadResponse {
 export interface QueryGetWorkloadResponse {
     Workload?: {
         id?: string;
+        managerAccount?: string;
         epoch?: string;
-        minerId?: string;
+        nodeID?: string;
         score?: string;
-        managerId?: string;
-        creator?: string;
+        createAt?: string;
     };
 }
 export interface QueryParamsResponse {
@@ -56,21 +56,20 @@ export type WorkloadParams = object;
 export interface WorkloadWorkload {
     /** @format uint64 */
     id?: string;
+    managerAccount?: string;
     /** @format uint64 */
     epoch?: string;
-    minerId?: string;
+    nodeID?: string;
     /** @format uint64 */
     score?: string;
-    managerId?: string;
-    creator?: string;
+    /** @format uint64 */
+    createAt?: string;
 }
 export interface MsgCreateWorkloadResponse {
     /** @format uint64 */
     id?: string;
 }
-export type MsgDeleteWorkloadResponse = object;
 export type MsgUpdateParamsResponse = object;
-export type MsgUpdateWorkloadResponse = object;
 export type Params = object;
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
 export type QueryParamsType = Record<string | number, any>;
@@ -127,8 +126,16 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * No description
      *
      * @tags Query
+     * @name QueryWorkload
+     * @request GET:/enreach/workload/workload/{id}
+     */
+    queryWorkload: (id: string, params?: RequestParams) => Promise<AxiosResponse<T>>;
+    /**
+     * No description
+     *
+     * @tags Query
      * @name QueryWorkloadAll
-     * @request GET:/enreach/workload/workload
+     * @request GET:/enreach/workload/workloads
      */
     queryWorkloadAll: (query?: {
         "pagination.key"?: string;
@@ -137,12 +144,4 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
         "pagination.count_total"?: boolean;
         "pagination.reverse"?: boolean;
     }, params?: RequestParams) => Promise<AxiosResponse<T>>;
-    /**
-     * No description
-     *
-     * @tags Query
-     * @name QueryWorkload
-     * @request GET:/enreach/workload/workload/{id}
-     */
-    queryWorkload: (id: string, params?: RequestParams) => Promise<AxiosResponse<T>>;
 }
