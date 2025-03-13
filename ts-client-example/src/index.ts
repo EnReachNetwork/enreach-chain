@@ -7,7 +7,8 @@ import { Secp256k1, sha256, Bip39, Slip10,Slip10Curve, EnglishMnemonic, stringTo
 import EdgenodeApi from './edgenode';
 import WorkloadApi from './workload';
 async function main() {
-  const regionApi = new RegionApi(ADMIN_MNEMONIC);
+  const regionAdminApi = new RegionApi(ADMIN_MNEMONIC);
+  const regionApi = new RegionApi(SUPERIOR_MENMONIC);
   const operatorApi = new OperatorApi(OPERATOR_MNEMONIC);
   const managerApi = new ManagerApi(MANAGER_MNEMONIC);
   const edgenodeAdminApi = new EdgenodeApi(ADMIN_MNEMONIC);
@@ -15,6 +16,7 @@ async function main() {
   const workloadApi = new WorkloadApi(MANAGER_MNEMONIC);
 
   console.log("===Init Api Objects");
+  await regionAdminApi.initApi();
   await regionApi.initApi();
   await operatorApi.initApi();
   await managerApi.initApi();
@@ -23,6 +25,7 @@ async function main() {
   await workloadApi.initApi();
 
   console.log("===setSuperior");
+  await regionAdminApi.createSuperior({signer: regionAdminApi.account, account: regionApi.account});
   await edgenodeAdminApi.createSuperior({signer: edgenodeAdminApi.account, account: edgenodeApi.account});
 
   console.log("===createRegion");
@@ -88,10 +91,10 @@ async function testEdgenode(edgenodeApi: EdgenodeApi) {
   await edgenodeApi.createUser({signer:edgenodeApi.account, userID: "user1"});
 
   console.log("===registerNode");
-  await edgenodeApi.registerNode({signer:edgenodeApi.account, nodeID: "node1", deviceType: "Box", regionCode: "US"});
+  await edgenodeApi.registerNode({signer:edgenodeApi.account, nodeID: "node1", deviceType: "Box"});
   
   console.log("===bindAndActivateNode");
-  await edgenodeApi.bindAndActivateNode({signer:edgenodeApi.account, nodeID: "node1", userID: "user1"});
+  await edgenodeApi.bindAndActivateNode({signer:edgenodeApi.account, nodeID: "node1", userID: "user1", nodeName: "My Home Node", regionCode: "US"});
 
   console.log("===Query all data");
   const allUsers = await edgenodeApi.queryAllUser();
