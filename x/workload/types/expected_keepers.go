@@ -4,6 +4,9 @@ import (
 	"context"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
+
+	edgenodetypes "enreach/x/edgenode/types"
+	managertypes "enreach/x/manager/types"
 )
 
 // AccountKeeper defines the expected interface for the Account module.
@@ -22,4 +25,12 @@ type BankKeeper interface {
 type ParamSubspace interface {
 	Get(context.Context, []byte, interface{})
 	Set(context.Context, []byte, interface{})
+}
+
+type ManagerKeeper interface {
+	Manager(context.Context, *managertypes.QueryGetManagerRequest) (*managertypes.QueryGetManagerResponse, error)
+}
+
+type EdgenodeKeeper interface {
+	Node(context.Context, *edgenodetypes.QueryGetNodeRequest) (*edgenodetypes.QueryGetNodeResponse, error)
 }
