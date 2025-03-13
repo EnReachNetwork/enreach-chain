@@ -69,9 +69,9 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				},
 				{
 					RpcMethod:      "RegisterNode",
-					Use:            "register-node [nodeID] [deviceType]",
+					Use:            "register-node [nodeID] [deviceType] [regionCode]",
 					Short:          "Register node",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "nodeID"}, {ProtoField: "deviceType"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "nodeID"}, {ProtoField: "deviceType"}, {ProtoField: "regionCode"}},
 				},
 				{
 					RpcMethod:      "BindAndActivateNode",

@@ -15,4 +15,5 @@ var (
 	ErrNodeAlreadyBindToOtherUser = sdkerrors.Register(ModuleName, 1104, "node already bound to other user")
 	ErrNodeNotBindYet             = sdkerrors.Register(ModuleName, 1105, "node not bound yet")
 	ErrUnbindUserIDNotMatch       = sdkerrors.Register(ModuleName, 1106, "unbind userID not match")
+	ErrInvalidRegion              = sdkerrors.Register(ModuleName, 1107, "invalid region")
 )

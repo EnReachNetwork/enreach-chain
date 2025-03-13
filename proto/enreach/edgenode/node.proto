@@ -7,10 +7,11 @@ message Node {
   string nodeID = 1; 
   string userID = 2; 
   string deviceType = 3; 
-  string registerStatus = 4; 
-  string workingStatus = 5; 
-  string creator = 6; 
-  uint64 createAt = 7; 
-  string updator = 8; 
-  uint64 updateAt = 9;
+  string regionCode = 4;
+  string registerStatus = 5; 
+  string workingStatus = 6; 
+  string creator = 7; 
+  uint64 createAt = 8; 
+  string updator = 9; 
+  uint64 updateAt = 10;
 }

@@ -17,6 +17,7 @@ var (
 	fd_Node_nodeID         protoreflect.FieldDescriptor
 	fd_Node_userID         protoreflect.FieldDescriptor
 	fd_Node_deviceType     protoreflect.FieldDescriptor
+	fd_Node_regionCode     protoreflect.FieldDescriptor
 	fd_Node_registerStatus protoreflect.FieldDescriptor
 	fd_Node_workingStatus  protoreflect.FieldDescriptor
 	fd_Node_creator        protoreflect.FieldDescriptor
@@ -31,6 +32,7 @@ func init() {
 	fd_Node_nodeID = md_Node.Fields().ByName("nodeID")
 	fd_Node_userID = md_Node.Fields().ByName("userID")
 	fd_Node_deviceType = md_Node.Fields().ByName("deviceType")
+	fd_Node_regionCode = md_Node.Fields().ByName("regionCode")
 	fd_Node_registerStatus = md_Node.Fields().ByName("registerStatus")
 	fd_Node_workingStatus = md_Node.Fields().ByName("workingStatus")
 	fd_Node_creator = md_Node.Fields().ByName("creator")
@@ -122,6 +124,12 @@ func (x *fastReflection_Node) Range(f func(protoreflect.FieldDescriptor, protore
 			return
 		}
 	}
+	if x.RegionCode != "" {
+		value := protoreflect.ValueOfString(x.RegionCode)
+		if !f(fd_Node_regionCode, value) {
+			return
+		}
+	}
 	if x.RegisterStatus != "" {
 		value := protoreflect.ValueOfString(x.RegisterStatus)
 		if !f(fd_Node_registerStatus, value) {
@@ -179,6 +187,8 @@ func (x *fastReflection_Node) Has(fd protoreflect.FieldDescriptor) bool {
 		return x.UserID != ""
 	case "enreach.edgenode.Node.deviceType":
 		return x.DeviceType != ""
+	case "enreach.edgenode.Node.regionCode":
+		return x.RegionCode != ""
 	case "enreach.edgenode.Node.registerStatus":
 		return x.RegisterStatus != ""
 	case "enreach.edgenode.Node.workingStatus":
@@ -213,6 +223,8 @@ func (x *fastReflection_Node) Clear(fd protoreflect.FieldDescriptor) {
 		x.UserID = ""
 	case "enreach.edgenode.Node.deviceType":
 		x.DeviceType = ""
+	case "enreach.edgenode.Node.regionCode":
+		x.RegionCode = ""
 	case "enreach.edgenode.Node.registerStatus":
 		x.RegisterStatus = ""
 	case "enreach.edgenode.Node.workingStatus":
@@ -249,6 +261,9 @@ func (x *fastReflection_Node) Get(descriptor protoreflect.FieldDescriptor) proto
 		return protoreflect.ValueOfString(value)
 	case "enreach.edgenode.Node.deviceType":
 		value := x.DeviceType
+		return protoreflect.ValueOfString(value)
+	case "enreach.edgenode.Node.regionCode":
+		value := x.RegionCode
 		return protoreflect.ValueOfString(value)
 	case "enreach.edgenode.Node.registerStatus":
 		value := x.RegisterStatus
@@ -294,6 +309,8 @@ func (x *fastReflection_Node) Set(fd protoreflect.FieldDescriptor, value protore
 		x.UserID = value.Interface().(string)
 	case "enreach.edgenode.Node.deviceType":
 		x.DeviceType = value.Interface().(string)
+	case "enreach.edgenode.Node.regionCode":
+		x.RegionCode = value.Interface().(string)
 	case "enreach.edgenode.Node.registerStatus":
 		x.RegisterStatus = value.Interface().(string)
 	case "enreach.edgenode.Node.workingStatus":
@@ -332,6 +349,8 @@ func (x *fastReflection_Node) Mutable(fd protoreflect.FieldDescriptor) protorefl
 		panic(fmt.Errorf("field userID of message enreach.edgenode.Node is not mutable"))
 	case "enreach.edgenode.Node.deviceType":
 		panic(fmt.Errorf("field deviceType of message enreach.edgenode.Node is not mutable"))
+	case "enreach.edgenode.Node.regionCode":
+		panic(fmt.Errorf("field regionCode of message enreach.edgenode.Node is not mutable"))
 	case "enreach.edgenode.Node.registerStatus":
 		panic(fmt.Errorf("field registerStatus of message enreach.edgenode.Node is not mutable"))
 	case "enreach.edgenode.Node.workingStatus":
@@ -362,6 +381,8 @@ func (x *fastReflection_Node) NewField(fd protoreflect.FieldDescriptor) protoref
 	case "enreach.edgenode.Node.userID":
 		return protoreflect.ValueOfString("")
 	case "enreach.edgenode.Node.deviceType":
+		return protoreflect.ValueOfString("")
+	case "enreach.edgenode.Node.regionCode":
 		return protoreflect.ValueOfString("")
 	case "enreach.edgenode.Node.registerStatus":
 		return protoreflect.ValueOfString("")
@@ -456,6 +477,10 @@ func (x *fastReflection_Node) ProtoMethods() *protoiface.Methods {
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
+		l = len(x.RegionCode)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
 		l = len(x.RegisterStatus)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
@@ -510,38 +535,45 @@ func (x *fastReflection_Node) ProtoMethods() *protoiface.Methods {
 		if x.UpdateAt != 0 {
 			i = runtime.EncodeVarint(dAtA, i, uint64(x.UpdateAt))
 			i--
-			dAtA[i] = 0x48
+			dAtA[i] = 0x50
 		}
 		if len(x.Updator) > 0 {
 			i -= len(x.Updator)
 			copy(dAtA[i:], x.Updator)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Updator)))
 			i--
-			dAtA[i] = 0x42
+			dAtA[i] = 0x4a
 		}
 		if x.CreateAt != 0 {
 			i = runtime.EncodeVarint(dAtA, i, uint64(x.CreateAt))
 			i--
-			dAtA[i] = 0x38
+			dAtA[i] = 0x40
 		}
 		if len(x.Creator) > 0 {
 			i -= len(x.Creator)
 			copy(dAtA[i:], x.Creator)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Creator)))
 			i--
-			dAtA[i] = 0x32
+			dAtA[i] = 0x3a
 		}
 		if len(x.WorkingStatus) > 0 {
 			i -= len(x.WorkingStatus)
 			copy(dAtA[i:], x.WorkingStatus)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.WorkingStatus)))
 			i--
-			dAtA[i] = 0x2a
+			dAtA[i] = 0x32
 		}
 		if len(x.RegisterStatus) > 0 {
 			i -= len(x.RegisterStatus)
 			copy(dAtA[i:], x.RegisterStatus)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.RegisterStatus)))
+			i--
+			dAtA[i] = 0x2a
+		}
+		if len(x.RegionCode) > 0 {
+			i -= len(x.RegionCode)
+			copy(dAtA[i:], x.RegionCode)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.RegionCode)))
 			i--
 			dAtA[i] = 0x22
 		}
@@ -713,6 +745,38 @@ func (x *fastReflection_Node) ProtoMethods() *protoiface.Methods {
 				iNdEx = postIndex
 			case 4:
 				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field RegionCode", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.RegionCode = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 5:
+				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field RegisterStatus", wireType)
 				}
 				var stringLen uint64
@@ -743,7 +807,7 @@ func (x *fastReflection_Node) ProtoMethods() *protoiface.Methods {
 				}
 				x.RegisterStatus = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
-			case 5:
+			case 6:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field WorkingStatus", wireType)
 				}
@@ -775,7 +839,7 @@ func (x *fastReflection_Node) ProtoMethods() *protoiface.Methods {
 				}
 				x.WorkingStatus = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
-			case 6:
+			case 7:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
 				}
@@ -807,7 +871,7 @@ func (x *fastReflection_Node) ProtoMethods() *protoiface.Methods {
 				}
 				x.Creator = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
-			case 7:
+			case 8:
 				if wireType != 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field CreateAt", wireType)
 				}
@@ -826,7 +890,7 @@ func (x *fastReflection_Node) ProtoMethods() *protoiface.Methods {
 						break
 					}
 				}
-			case 8:
+			case 9:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Updator", wireType)
 				}
@@ -858,7 +922,7 @@ func (x *fastReflection_Node) ProtoMethods() *protoiface.Methods {
 				}
 				x.Updator = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
-			case 9:
+			case 10:
 				if wireType != 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field UpdateAt", wireType)
 				}
@@ -933,12 +997,13 @@ type Node struct {
 	NodeID         string `protobuf:"bytes,1,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
 	UserID         string `protobuf:"bytes,2,opt,name=userID,proto3" json:"userID,omitempty"`
 	DeviceType     string `protobuf:"bytes,3,opt,name=deviceType,proto3" json:"deviceType,omitempty"`
-	RegisterStatus string `protobuf:"bytes,4,opt,name=registerStatus,proto3" json:"registerStatus,omitempty"`
-	WorkingStatus  string `protobuf:"bytes,5,opt,name=workingStatus,proto3" json:"workingStatus,omitempty"`
-	Creator        string `protobuf:"bytes,6,opt,name=creator,proto3" json:"creator,omitempty"`
-	CreateAt       uint64 `protobuf:"varint,7,opt,name=createAt,proto3" json:"createAt,omitempty"`
-	Updator        string `protobuf:"bytes,8,opt,name=updator,proto3" json:"updator,omitempty"`
-	UpdateAt       uint64 `protobuf:"varint,9,opt,name=updateAt,proto3" json:"updateAt,omitempty"`
+	RegionCode     string `protobuf:"bytes,4,opt,name=regionCode,proto3" json:"regionCode,omitempty"`
+	RegisterStatus string `protobuf:"bytes,5,opt,name=registerStatus,proto3" json:"registerStatus,omitempty"`
+	WorkingStatus  string `protobuf:"bytes,6,opt,name=workingStatus,proto3" json:"workingStatus,omitempty"`
+	Creator        string `protobuf:"bytes,7,opt,name=creator,proto3" json:"creator,omitempty"`
+	CreateAt       uint64 `protobuf:"varint,8,opt,name=createAt,proto3" json:"createAt,omitempty"`
+	Updator        string `protobuf:"bytes,9,opt,name=updator,proto3" json:"updator,omitempty"`
+	UpdateAt       uint64 `protobuf:"varint,10,opt,name=updateAt,proto3" json:"updateAt,omitempty"`
 }
 
 func (x *Node) Reset() {
@@ -978,6 +1043,13 @@ func (x *Node) GetUserID() string {
 func (x *Node) GetDeviceType() string {
 	if x != nil {
 		return x.DeviceType
+	}
+	return ""
+}
+
+func (x *Node) GetRegionCode() string {
+	if x != nil {
+		return x.RegionCode
 	}
 	return ""
 }
@@ -1030,23 +1102,25 @@ var file_enreach_edgenode_node_proto_rawDesc = []byte{
 	0x0a, 0x1b, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x65, 0x64, 0x67, 0x65, 0x6e, 0x6f,
 	0x64, 0x65, 0x2f, 0x6e, 0x6f, 0x64, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x10, 0x65,
 	0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x65, 0x64, 0x67, 0x65, 0x6e, 0x6f, 0x64, 0x65, 0x22,
-	0x90, 0x02, 0x0a, 0x04, 0x4e, 0x6f, 0x64, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x6e, 0x6f, 0x64, 0x65,
+	0xb0, 0x02, 0x0a, 0x04, 0x4e, 0x6f, 0x64, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x6e, 0x6f, 0x64, 0x65,
 	0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x6e, 0x6f, 0x64, 0x65, 0x49, 0x44,
 	0x12, 0x16, 0x0a, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
 	0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x44, 0x12, 0x1e, 0x0a, 0x0a, 0x64, 0x65, 0x76, 0x69,
 	0x63, 0x65, 0x54, 0x79, 0x70, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x64, 0x65,
-	0x76, 0x69, 0x63, 0x65, 0x54, 0x79, 0x70, 0x65, 0x12, 0x26, 0x0a, 0x0e, 0x72, 0x65, 0x67, 0x69,
-	0x73, 0x74, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09,
+	0x76, 0x69, 0x63, 0x65, 0x54, 0x79, 0x70, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x72, 0x65, 0x67, 0x69,
+	0x6f, 0x6e, 0x43, 0x6f, 0x64, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x72, 0x65,
+	0x67, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x64, 0x65, 0x12, 0x26, 0x0a, 0x0e, 0x72, 0x65, 0x67, 0x69,
+	0x73, 0x74, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09,
 	0x52, 0x0e, 0x72, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73,
 	0x12, 0x24, 0x0a, 0x0d, 0x77, 0x6f, 0x72, 0x6b, 0x69, 0x6e, 0x67, 0x53, 0x74, 0x61, 0x74, 0x75,
-	0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x77, 0x6f, 0x72, 0x6b, 0x69, 0x6e, 0x67,
+	0x73, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x77, 0x6f, 0x72, 0x6b, 0x69, 0x6e, 0x67,
 	0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f,
-	0x72, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72,
-	0x12, 0x1a, 0x0a, 0x08, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x74, 0x18, 0x07, 0x20, 0x01,
+	0x72, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72,
+	0x12, 0x1a, 0x0a, 0x08, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x74, 0x18, 0x08, 0x20, 0x01,
 	0x28, 0x04, 0x52, 0x08, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x74, 0x12, 0x18, 0x0a, 0x07,
-	0x75, 0x70, 0x64, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x75,
+	0x75, 0x70, 0x64, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x09, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x75,
 	0x70, 0x64, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65,
-	0x41, 0x74, 0x18, 0x09, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x41, 0x74, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65,
 	0x41, 0x74, 0x42, 0xa5, 0x01, 0x0a, 0x14, 0x63, 0x6f, 0x6d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61,
 	0x63, 0x68, 0x2e, 0x65, 0x64, 0x67, 0x65, 0x6e, 0x6f, 0x64, 0x65, 0x42, 0x09, 0x4e, 0x6f, 0x64,
 	0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x21, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,

@@ -70,6 +70,7 @@ message MsgRegisterNode {
   string signer     = 1;
   string nodeID     = 2;
   string deviceType = 3;
+  string regionCode = 4;
 }
 
 message MsgRegisterNodeResponse {}

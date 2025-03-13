@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"enreach/x/edgenode/types"
+	registrytypes "enreach/x/registry/types"
 
 	errorsmod "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -28,11 +29,18 @@ func (k msgServer) RegisterNode(goCtx context.Context, msg *types.MsgRegisterNod
 		return nil, errorsmod.Wrapf(types.ErrElementAlreadyExists, "Node '%s' already exist", msg.NodeID)
 	}
 
+	// Region code need to be in the registered list
+	_, err := k.registryKeeper.Region(ctx, &registrytypes.QueryGetRegionRequest{Code: msg.RegionCode})
+	if err != nil {
+		return nil, errorsmod.Wrapf(types.ErrInvalidRegion, "Region '%s' is not in the region list registry", msg.RegionCode)
+	}
+
 	// Append to the store
 	blockHeight := uint64(ctx.BlockHeight())
 	var node = types.Node{
 		NodeID:         msg.NodeID,
 		DeviceType:     msg.DeviceType,
+		RegionCode:     msg.RegionCode,
 		RegisterStatus: string(types.RS_PENDING_BIND),
 		Creator:        msg.Signer,
 		CreateAt:       blockHeight,
@@ -115,6 +123,7 @@ func (k msgServer) UnbindNode(goCtx context.Context, msg *types.MsgUnbindNode) (
 
 	// Unbind
 	node.UserID = ""
+	node.RegionCode = ""
 	node.RegisterStatus = string(types.RS_PENDING_BIND)
 	node.Updator = msg.Signer
 	node.UpdateAt = uint64(ctx.BlockHeight())

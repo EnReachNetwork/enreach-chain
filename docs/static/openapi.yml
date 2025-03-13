@@ -9195,6 +9195,348 @@ paths:
               Since: cosmos-sdk 0.47
       tags:
         - Msg
+  /enreach.edgenode.Msg/BindAndActivateNode:
+    post:
+      operationId: EnreachEdgenodeMsg_BindAndActivateNode
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              signer:
+                type: string
+              nodeID:
+                type: string
+              userID:
+                type: string
+      tags:
+        - Msg
+  /enreach.edgenode.Msg/BindUserEVMAccount:
+    post:
+      operationId: EnreachEdgenodeMsg_BindUserEVMAccount
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              signer:
+                type: string
+              userID:
+                type: string
+              evmAccount:
+                type: string
+              evmPubkey:
+                type: string
+                format: byte
+              evmSignature:
+                type: string
+                format: byte
+      tags:
+        - Msg
+  /enreach.edgenode.Msg/CreateSuperior:
+    post:
+      operationId: EnreachEdgenodeMsg_CreateSuperior
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              signer:
+                type: string
+              account:
+                type: string
+      tags:
+        - Msg
+  /enreach.edgenode.Msg/CreateUser:
+    post:
+      operationId: EnreachEdgenodeMsg_CreateUser
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              signer:
+                type: string
+              userID:
+                type: string
+      tags:
+        - Msg
+  /enreach.edgenode.Msg/RegisterNode:
+    post:
+      operationId: EnreachEdgenodeMsg_RegisterNode
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              signer:
+                type: string
+              nodeID:
+                type: string
+              deviceType:
+                type: string
+              regionCode:
+                type: string
+      tags:
+        - Msg
+  /enreach.edgenode.Msg/UnbindNode:
+    post:
+      operationId: EnreachEdgenodeMsg_UnbindNode
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              signer:
+                type: string
+              nodeID:
+                type: string
+              userID:
+                type: string
+      tags:
+        - Msg
+  /enreach.edgenode.Msg/UpdateParams:
+    post:
+      summary: |-
+        UpdateParams defines a (governance) operation for updating the module
+        parameters. The authority defaults to the x/gov module account.
+      operationId: EnreachEdgenodeMsg_UpdateParams
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            description: >-
+              MsgUpdateParamsResponse defines the response structure for
+              executing a
+
+              MsgUpdateParams message.
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          description: MsgUpdateParams is the Msg/UpdateParams request type.
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              authority:
+                type: string
+                description: >-
+                  authority is the address that controls the module (defaults to
+                  x/gov unless overwritten).
+              params:
+                description: 'NOTE: All parameters must be supplied.'
+                type: object
+            description: MsgUpdateParams is the Msg/UpdateParams request type.
+      tags:
+        - Msg
+  /enreach.edgenode.Msg/UpdateSuperior:
+    post:
+      operationId: EnreachEdgenodeMsg_UpdateSuperior
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              signer:
+                type: string
+              account:
+                type: string
+      tags:
+        - Msg
   /enreach/edgenode/node/{nodeID}:
     get:
       summary: Queries a list of Node items.
@@ -9213,6 +9555,8 @@ paths:
                   userID:
                     type: string
                   deviceType:
+                    type: string
+                  regionCode:
                     type: string
                   registerStatus:
                     type: string
@@ -9272,6 +9616,8 @@ paths:
                     userID:
                       type: string
                     deviceType:
+                      type: string
+                    regionCode:
                       type: string
                     registerStatus:
                       type: string
@@ -9658,346 +10004,6 @@ paths:
           type: boolean
       tags:
         - Query
-  /enreach.edgenode.Msg/BindAndActivateNode:
-    post:
-      operationId: EnreachEdgenodeMsg_BindAndActivateNode
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              signer:
-                type: string
-              nodeID:
-                type: string
-              userID:
-                type: string
-      tags:
-        - Msg
-  /enreach.edgenode.Msg/BindUserEVMAccount:
-    post:
-      operationId: EnreachEdgenodeMsg_BindUserEVMAccount
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              signer:
-                type: string
-              userID:
-                type: string
-              evmAccount:
-                type: string
-              evmPubkey:
-                type: string
-                format: byte
-              evmSignature:
-                type: string
-                format: byte
-      tags:
-        - Msg
-  /enreach.edgenode.Msg/CreateSuperior:
-    post:
-      operationId: EnreachEdgenodeMsg_CreateSuperior
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              signer:
-                type: string
-              account:
-                type: string
-      tags:
-        - Msg
-  /enreach.edgenode.Msg/CreateUser:
-    post:
-      operationId: EnreachEdgenodeMsg_CreateUser
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              signer:
-                type: string
-              userID:
-                type: string
-      tags:
-        - Msg
-  /enreach.edgenode.Msg/RegisterNode:
-    post:
-      operationId: EnreachEdgenodeMsg_RegisterNode
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              signer:
-                type: string
-              nodeID:
-                type: string
-              deviceType:
-                type: string
-      tags:
-        - Msg
-  /enreach.edgenode.Msg/UnbindNode:
-    post:
-      operationId: EnreachEdgenodeMsg_UnbindNode
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              signer:
-                type: string
-              nodeID:
-                type: string
-              userID:
-                type: string
-      tags:
-        - Msg
-  /enreach.edgenode.Msg/UpdateParams:
-    post:
-      summary: |-
-        UpdateParams defines a (governance) operation for updating the module
-        parameters. The authority defaults to the x/gov module account.
-      operationId: EnreachEdgenodeMsg_UpdateParams
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            description: >-
-              MsgUpdateParamsResponse defines the response structure for
-              executing a
-
-              MsgUpdateParams message.
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          description: MsgUpdateParams is the Msg/UpdateParams request type.
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              authority:
-                type: string
-                description: >-
-                  authority is the address that controls the module (defaults to
-                  x/gov unless overwritten).
-              params:
-                description: 'NOTE: All parameters must be supplied.'
-                type: object
-            description: MsgUpdateParams is the Msg/UpdateParams request type.
-      tags:
-        - Msg
-  /enreach.edgenode.Msg/UpdateSuperior:
-    post:
-      operationId: EnreachEdgenodeMsg_UpdateSuperior
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              signer:
-                type: string
-              account:
-                type: string
-      tags:
-        - Msg
   /enreach.manager.Msg/ActivateManager:
     post:
       operationId: EnreachManagerMsg_ActivateManager
@@ -10393,196 +10399,6 @@ paths:
         UpdateParams defines a (governance) operation for updating the module
         parameters. The authority defaults to the x/gov module account.
       operationId: EnreachManagerMsg_UpdateParams
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            description: >-
-              MsgUpdateParamsResponse defines the response structure for
-              executing a
-
-              MsgUpdateParams message.
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          description: MsgUpdateParams is the Msg/UpdateParams request type.
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              authority:
-                type: string
-                description: >-
-                  authority is the address that controls the module (defaults to
-                  x/gov unless overwritten).
-              params:
-                description: 'NOTE: All parameters must be supplied.'
-                type: object
-            description: MsgUpdateParams is the Msg/UpdateParams request type.
-      tags:
-        - Msg
-  /enreach.miner.Msg/CreateMiner:
-    post:
-      operationId: EnreachMinerMsg_CreateMiner
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uint64
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              creator:
-                type: string
-              minerId:
-                type: string
-              evmAddress:
-                type: string
-              regionCode:
-                type: string
-              status:
-                type: string
-      tags:
-        - Msg
-  /enreach.miner.Msg/DeleteMiner:
-    post:
-      operationId: EnreachMinerMsg_DeleteMiner
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              creator:
-                type: string
-              id:
-                type: string
-                format: uint64
-      tags:
-        - Msg
-  /enreach.miner.Msg/UpdateMiner:
-    post:
-      operationId: EnreachMinerMsg_UpdateMiner
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              creator:
-                type: string
-              id:
-                type: string
-                format: uint64
-              minerId:
-                type: string
-              evmAddress:
-                type: string
-              regionCode:
-                type: string
-              status:
-                type: string
-      tags:
-        - Msg
-  /enreach.miner.Msg/UpdateParams:
-    post:
-      summary: |-
-        UpdateParams defines a (governance) operation for updating the module
-        parameters. The authority defaults to the x/gov module account.
-      operationId: EnreachMinerMsg_UpdateParams
       responses:
         '200':
           description: A successful response.
@@ -21563,6 +21379,105 @@ definitions:
           min_commission_rate is the chain-wide minimum commission rate that a
           validator can charge their delegators
     description: Params defines the parameters for the x/staking module.
+  enreach.edgenode.MsgBindAndActivateNode:
+    type: object
+    properties:
+      signer:
+        type: string
+      nodeID:
+        type: string
+      userID:
+        type: string
+  enreach.edgenode.MsgBindAndActivateNodeResponse:
+    type: object
+  enreach.edgenode.MsgBindUserEVMAccount:
+    type: object
+    properties:
+      signer:
+        type: string
+      userID:
+        type: string
+      evmAccount:
+        type: string
+      evmPubkey:
+        type: string
+        format: byte
+      evmSignature:
+        type: string
+        format: byte
+  enreach.edgenode.MsgBindUserEVMAccountResponse:
+    type: object
+  enreach.edgenode.MsgCreateSuperior:
+    type: object
+    properties:
+      signer:
+        type: string
+      account:
+        type: string
+  enreach.edgenode.MsgCreateSuperiorResponse:
+    type: object
+  enreach.edgenode.MsgCreateUser:
+    type: object
+    properties:
+      signer:
+        type: string
+      userID:
+        type: string
+  enreach.edgenode.MsgCreateUserResponse:
+    type: object
+  enreach.edgenode.MsgRegisterNode:
+    type: object
+    properties:
+      signer:
+        type: string
+      nodeID:
+        type: string
+      deviceType:
+        type: string
+      regionCode:
+        type: string
+  enreach.edgenode.MsgRegisterNodeResponse:
+    type: object
+  enreach.edgenode.MsgUnbindNode:
+    type: object
+    properties:
+      signer:
+        type: string
+      nodeID:
+        type: string
+      userID:
+        type: string
+  enreach.edgenode.MsgUnbindNodeResponse:
+    type: object
+  enreach.edgenode.MsgUpdateParams:
+    type: object
+    properties:
+      authority:
+        type: string
+        description: >-
+          authority is the address that controls the module (defaults to x/gov
+          unless overwritten).
+      params:
+        description: 'NOTE: All parameters must be supplied.'
+        type: object
+    description: MsgUpdateParams is the Msg/UpdateParams request type.
+  enreach.edgenode.MsgUpdateParamsResponse:
+    type: object
+    description: |-
+      MsgUpdateParamsResponse defines the response structure for executing a
+      MsgUpdateParams message.
+  enreach.edgenode.MsgUpdateSuperior:
+    type: object
+    properties:
+      signer:
+        type: string
+      account:
+        type: string
+  enreach.edgenode.MsgUpdateSuperiorResponse:
+    type: object
+  enreach.edgenode.Params:
+    type: object
+    description: Params defines the parameters for the module.
   cosmos.base.query.v1beta1.PageRequest:
     type: object
     properties:
@@ -21649,6 +21564,8 @@ definitions:
         type: string
       deviceType:
         type: string
+      regionCode:
+        type: string
       registerStatus:
         type: string
       workingStatus:
@@ -21663,9 +21580,6 @@ definitions:
       updateAt:
         type: string
         format: uint64
-  enreach.edgenode.Params:
-    type: object
-    description: Params defines the parameters for the module.
   enreach.edgenode.QueryAllNodeResponse:
     type: object
     properties:
@@ -21679,6 +21593,8 @@ definitions:
             userID:
               type: string
             deviceType:
+              type: string
+            regionCode:
               type: string
             registerStatus:
               type: string
@@ -21780,6 +21696,8 @@ definitions:
             type: string
           deviceType:
             type: string
+          regionCode:
+            type: string
           registerStatus:
             type: string
           workingStatus:
@@ -21871,100 +21789,6 @@ definitions:
       updateAt:
         type: string
         format: uint64
-  enreach.edgenode.MsgBindAndActivateNode:
-    type: object
-    properties:
-      signer:
-        type: string
-      nodeID:
-        type: string
-      userID:
-        type: string
-  enreach.edgenode.MsgBindAndActivateNodeResponse:
-    type: object
-  enreach.edgenode.MsgBindUserEVMAccount:
-    type: object
-    properties:
-      signer:
-        type: string
-      userID:
-        type: string
-      evmAccount:
-        type: string
-      evmPubkey:
-        type: string
-        format: byte
-      evmSignature:
-        type: string
-        format: byte
-  enreach.edgenode.MsgBindUserEVMAccountResponse:
-    type: object
-  enreach.edgenode.MsgCreateSuperior:
-    type: object
-    properties:
-      signer:
-        type: string
-      account:
-        type: string
-  enreach.edgenode.MsgCreateSuperiorResponse:
-    type: object
-  enreach.edgenode.MsgCreateUser:
-    type: object
-    properties:
-      signer:
-        type: string
-      userID:
-        type: string
-  enreach.edgenode.MsgCreateUserResponse:
-    type: object
-  enreach.edgenode.MsgRegisterNode:
-    type: object
-    properties:
-      signer:
-        type: string
-      nodeID:
-        type: string
-      deviceType:
-        type: string
-  enreach.edgenode.MsgRegisterNodeResponse:
-    type: object
-  enreach.edgenode.MsgUnbindNode:
-    type: object
-    properties:
-      signer:
-        type: string
-      nodeID:
-        type: string
-      userID:
-        type: string
-  enreach.edgenode.MsgUnbindNodeResponse:
-    type: object
-  enreach.edgenode.MsgUpdateParams:
-    type: object
-    properties:
-      authority:
-        type: string
-        description: >-
-          authority is the address that controls the module (defaults to x/gov
-          unless overwritten).
-      params:
-        description: 'NOTE: All parameters must be supplied.'
-        type: object
-    description: MsgUpdateParams is the Msg/UpdateParams request type.
-  enreach.edgenode.MsgUpdateParamsResponse:
-    type: object
-    description: |-
-      MsgUpdateParamsResponse defines the response structure for executing a
-      MsgUpdateParams message.
-  enreach.edgenode.MsgUpdateSuperior:
-    type: object
-    properties:
-      signer:
-        type: string
-      account:
-        type: string
-  enreach.edgenode.MsgUpdateSuperiorResponse:
-    type: object
   enreach.manager.MsgActivateManager:
     type: object
     properties:
@@ -22102,73 +21926,6 @@ definitions:
       MsgUpdateParamsResponse defines the response structure for executing a
       MsgUpdateParams message.
   enreach.manager.Params:
-    type: object
-    description: Params defines the parameters for the module.
-  enreach.miner.MsgCreateMiner:
-    type: object
-    properties:
-      creator:
-        type: string
-      minerId:
-        type: string
-      evmAddress:
-        type: string
-      regionCode:
-        type: string
-      status:
-        type: string
-  enreach.miner.MsgCreateMinerResponse:
-    type: object
-    properties:
-      id:
-        type: string
-        format: uint64
-  enreach.miner.MsgDeleteMiner:
-    type: object
-    properties:
-      creator:
-        type: string
-      id:
-        type: string
-        format: uint64
-  enreach.miner.MsgDeleteMinerResponse:
-    type: object
-  enreach.miner.MsgUpdateMiner:
-    type: object
-    properties:
-      creator:
-        type: string
-      id:
-        type: string
-        format: uint64
-      minerId:
-        type: string
-      evmAddress:
-        type: string
-      regionCode:
-        type: string
-      status:
-        type: string
-  enreach.miner.MsgUpdateMinerResponse:
-    type: object
-  enreach.miner.MsgUpdateParams:
-    type: object
-    properties:
-      authority:
-        type: string
-        description: >-
-          authority is the address that controls the module (defaults to x/gov
-          unless overwritten).
-      params:
-        description: 'NOTE: All parameters must be supplied.'
-        type: object
-    description: MsgUpdateParams is the Msg/UpdateParams request type.
-  enreach.miner.MsgUpdateParamsResponse:
-    type: object
-    description: |-
-      MsgUpdateParamsResponse defines the response structure for executing a
-      MsgUpdateParams message.
-  enreach.miner.Params:
     type: object
     description: Params defines the parameters for the module.
   enreach.registry.MsgCreateRegion:

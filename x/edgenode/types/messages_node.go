@@ -8,11 +8,12 @@ import (
 
 var _ sdk.Msg = &MsgRegisterNode{}
 
-func NewMsgRegisterNode(signer string, nodeID string, deviceType string) *MsgRegisterNode {
+func NewMsgRegisterNode(signer string, nodeID string, deviceType string, regionCode string) *MsgRegisterNode {
 	return &MsgRegisterNode{
 		Signer:     signer,
 		NodeID:     nodeID,
 		DeviceType: deviceType,
+		RegionCode: regionCode,
 	}
 }
 
