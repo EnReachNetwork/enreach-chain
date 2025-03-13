@@ -6,12 +6,13 @@ option go_package = "enreach/x/edgenode/types";
 message Node {
   string nodeID = 1; 
   string userID = 2; 
-  string deviceType = 3; 
-  string regionCode = 4;
-  string registerStatus = 5; 
-  string workingStatus = 6; 
-  string creator = 7; 
-  uint64 createAt = 8; 
-  string updator = 9; 
-  uint64 updateAt = 10;
+  string nodeName = 3;
+  string deviceType = 4; 
+  string regionCode = 5;
+  string registerStatus = 6; 
+  string workingStatus = 7; 
+  string creator = 8; 
+  uint64 createAt = 9; 
+  string updator = 10; 
+  uint64 updateAt = 11;
 }

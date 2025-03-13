@@ -70,7 +70,6 @@ message MsgRegisterNode {
   string signer     = 1;
   string nodeID     = 2;
   string deviceType = 3;
-  string regionCode = 4;
 }
 
 message MsgRegisterNodeResponse {}
@@ -80,6 +79,8 @@ message MsgBindAndActivateNode {
   string signer = 1;
   string nodeID = 2;
   string userID = 3;
+  string nodeName = 4;
+  string regionCode = 5;
 }
 
 message MsgBindAndActivateNodeResponse {}

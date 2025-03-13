@@ -29,18 +29,11 @@ func (k msgServer) RegisterNode(goCtx context.Context, msg *types.MsgRegisterNod
 		return nil, errorsmod.Wrapf(types.ErrElementAlreadyExists, "Node '%s' already exist", msg.NodeID)
 	}
 
-	// Region code need to be in the registered list
-	_, err := k.registryKeeper.Region(ctx, &registrytypes.QueryGetRegionRequest{Code: msg.RegionCode})
-	if err != nil {
-		return nil, errorsmod.Wrapf(types.ErrInvalidRegion, "Region '%s' is not in the region list registry", msg.RegionCode)
-	}
-
 	// Append to the store
 	blockHeight := uint64(ctx.BlockHeight())
 	var node = types.Node{
 		NodeID:         msg.NodeID,
 		DeviceType:     msg.DeviceType,
-		RegionCode:     msg.RegionCode,
 		RegisterStatus: string(types.RS_PENDING_BIND),
 		Creator:        msg.Signer,
 		CreateAt:       blockHeight,
@@ -87,8 +80,16 @@ func (k msgServer) BindAndActivateNode(goCtx context.Context, msg *types.MsgBind
 		return nil, errorsmod.Wrap(types.ErrNodeAlreadyBindToOtherUser, "Unbind first before bind to other user")
 	}
 
+	// Region code need to be in the registered list
+	_, err := k.registryKeeper.Region(ctx, &registrytypes.QueryGetRegionRequest{Code: msg.RegionCode})
+	if err != nil {
+		return nil, errorsmod.Wrapf(types.ErrInvalidRegion, "Region '%s' is not in the region list registry", msg.RegionCode)
+	}
+
 	// Bind
 	node.UserID = msg.UserID
+	node.NodeName = msg.NodeName
+	node.RegionCode = msg.RegionCode
 	node.RegisterStatus = string(types.RS_ACTIVATE)
 	node.Updator = msg.Signer
 	node.UpdateAt = uint64(ctx.BlockHeight())

@@ -8,12 +8,11 @@ import (
 
 var _ sdk.Msg = &MsgRegisterNode{}
 
-func NewMsgRegisterNode(signer string, nodeID string, deviceType string, regionCode string) *MsgRegisterNode {
+func NewMsgRegisterNode(signer string, nodeID string, deviceType string) *MsgRegisterNode {
 	return &MsgRegisterNode{
 		Signer:     signer,
 		NodeID:     nodeID,
 		DeviceType: deviceType,
-		RegionCode: regionCode,
 	}
 }
 
@@ -27,11 +26,13 @@ func (msg *MsgRegisterNode) ValidateBasic() error {
 
 var _ sdk.Msg = &MsgBindAndActivateNode{}
 
-func NewMsgBindAndActivateNode(signer string, nodeID string, userID string) *MsgBindAndActivateNode {
+func NewMsgBindAndActivateNode(signer string, nodeID string, userID string, nodeName string, regionCode string) *MsgBindAndActivateNode {
 	return &MsgBindAndActivateNode{
-		Signer: signer,
-		NodeID: nodeID,
-		UserID: userID,
+		Signer:     signer,
+		NodeID:     nodeID,
+		UserID:     userID,
+		NodeName:   nodeName,
+		RegionCode: regionCode,
 	}
 }
 
