@@ -13,24 +13,24 @@ import (
 )
 
 var (
-	md_Workload           protoreflect.MessageDescriptor
-	fd_Workload_id        protoreflect.FieldDescriptor
-	fd_Workload_epoch     protoreflect.FieldDescriptor
-	fd_Workload_minerId   protoreflect.FieldDescriptor
-	fd_Workload_score     protoreflect.FieldDescriptor
-	fd_Workload_managerId protoreflect.FieldDescriptor
-	fd_Workload_creator   protoreflect.FieldDescriptor
+	md_Workload                protoreflect.MessageDescriptor
+	fd_Workload_id             protoreflect.FieldDescriptor
+	fd_Workload_managerAccount protoreflect.FieldDescriptor
+	fd_Workload_epoch          protoreflect.FieldDescriptor
+	fd_Workload_nodeID         protoreflect.FieldDescriptor
+	fd_Workload_score          protoreflect.FieldDescriptor
+	fd_Workload_createAt       protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_enreach_workload_workload_proto_init()
 	md_Workload = File_enreach_workload_workload_proto.Messages().ByName("Workload")
 	fd_Workload_id = md_Workload.Fields().ByName("id")
+	fd_Workload_managerAccount = md_Workload.Fields().ByName("managerAccount")
 	fd_Workload_epoch = md_Workload.Fields().ByName("epoch")
-	fd_Workload_minerId = md_Workload.Fields().ByName("minerId")
+	fd_Workload_nodeID = md_Workload.Fields().ByName("nodeID")
 	fd_Workload_score = md_Workload.Fields().ByName("score")
-	fd_Workload_managerId = md_Workload.Fields().ByName("managerId")
-	fd_Workload_creator = md_Workload.Fields().ByName("creator")
+	fd_Workload_createAt = md_Workload.Fields().ByName("createAt")
 }
 
 var _ protoreflect.Message = (*fastReflection_Workload)(nil)
@@ -104,15 +104,21 @@ func (x *fastReflection_Workload) Range(f func(protoreflect.FieldDescriptor, pro
 			return
 		}
 	}
+	if x.ManagerAccount != "" {
+		value := protoreflect.ValueOfString(x.ManagerAccount)
+		if !f(fd_Workload_managerAccount, value) {
+			return
+		}
+	}
 	if x.Epoch != uint64(0) {
 		value := protoreflect.ValueOfUint64(x.Epoch)
 		if !f(fd_Workload_epoch, value) {
 			return
 		}
 	}
-	if x.MinerId != "" {
-		value := protoreflect.ValueOfString(x.MinerId)
-		if !f(fd_Workload_minerId, value) {
+	if x.NodeID != "" {
+		value := protoreflect.ValueOfString(x.NodeID)
+		if !f(fd_Workload_nodeID, value) {
 			return
 		}
 	}
@@ -122,15 +128,9 @@ func (x *fastReflection_Workload) Range(f func(protoreflect.FieldDescriptor, pro
 			return
 		}
 	}
-	if x.ManagerId != "" {
-		value := protoreflect.ValueOfString(x.ManagerId)
-		if !f(fd_Workload_managerId, value) {
-			return
-		}
-	}
-	if x.Creator != "" {
-		value := protoreflect.ValueOfString(x.Creator)
-		if !f(fd_Workload_creator, value) {
+	if x.CreateAt != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.CreateAt)
+		if !f(fd_Workload_createAt, value) {
 			return
 		}
 	}
@@ -151,16 +151,16 @@ func (x *fastReflection_Workload) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
 	case "enreach.workload.Workload.id":
 		return x.Id != uint64(0)
+	case "enreach.workload.Workload.managerAccount":
+		return x.ManagerAccount != ""
 	case "enreach.workload.Workload.epoch":
 		return x.Epoch != uint64(0)
-	case "enreach.workload.Workload.minerId":
-		return x.MinerId != ""
+	case "enreach.workload.Workload.nodeID":
+		return x.NodeID != ""
 	case "enreach.workload.Workload.score":
 		return x.Score != uint64(0)
-	case "enreach.workload.Workload.managerId":
-		return x.ManagerId != ""
-	case "enreach.workload.Workload.creator":
-		return x.Creator != ""
+	case "enreach.workload.Workload.createAt":
+		return x.CreateAt != uint64(0)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.Workload"))
@@ -179,16 +179,16 @@ func (x *fastReflection_Workload) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
 	case "enreach.workload.Workload.id":
 		x.Id = uint64(0)
+	case "enreach.workload.Workload.managerAccount":
+		x.ManagerAccount = ""
 	case "enreach.workload.Workload.epoch":
 		x.Epoch = uint64(0)
-	case "enreach.workload.Workload.minerId":
-		x.MinerId = ""
+	case "enreach.workload.Workload.nodeID":
+		x.NodeID = ""
 	case "enreach.workload.Workload.score":
 		x.Score = uint64(0)
-	case "enreach.workload.Workload.managerId":
-		x.ManagerId = ""
-	case "enreach.workload.Workload.creator":
-		x.Creator = ""
+	case "enreach.workload.Workload.createAt":
+		x.CreateAt = uint64(0)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.Workload"))
@@ -208,21 +208,21 @@ func (x *fastReflection_Workload) Get(descriptor protoreflect.FieldDescriptor) p
 	case "enreach.workload.Workload.id":
 		value := x.Id
 		return protoreflect.ValueOfUint64(value)
+	case "enreach.workload.Workload.managerAccount":
+		value := x.ManagerAccount
+		return protoreflect.ValueOfString(value)
 	case "enreach.workload.Workload.epoch":
 		value := x.Epoch
 		return protoreflect.ValueOfUint64(value)
-	case "enreach.workload.Workload.minerId":
-		value := x.MinerId
+	case "enreach.workload.Workload.nodeID":
+		value := x.NodeID
 		return protoreflect.ValueOfString(value)
 	case "enreach.workload.Workload.score":
 		value := x.Score
 		return protoreflect.ValueOfUint64(value)
-	case "enreach.workload.Workload.managerId":
-		value := x.ManagerId
-		return protoreflect.ValueOfString(value)
-	case "enreach.workload.Workload.creator":
-		value := x.Creator
-		return protoreflect.ValueOfString(value)
+	case "enreach.workload.Workload.createAt":
+		value := x.CreateAt
+		return protoreflect.ValueOfUint64(value)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.Workload"))
@@ -245,16 +245,16 @@ func (x *fastReflection_Workload) Set(fd protoreflect.FieldDescriptor, value pro
 	switch fd.FullName() {
 	case "enreach.workload.Workload.id":
 		x.Id = value.Uint()
+	case "enreach.workload.Workload.managerAccount":
+		x.ManagerAccount = value.Interface().(string)
 	case "enreach.workload.Workload.epoch":
 		x.Epoch = value.Uint()
-	case "enreach.workload.Workload.minerId":
-		x.MinerId = value.Interface().(string)
+	case "enreach.workload.Workload.nodeID":
+		x.NodeID = value.Interface().(string)
 	case "enreach.workload.Workload.score":
 		x.Score = value.Uint()
-	case "enreach.workload.Workload.managerId":
-		x.ManagerId = value.Interface().(string)
-	case "enreach.workload.Workload.creator":
-		x.Creator = value.Interface().(string)
+	case "enreach.workload.Workload.createAt":
+		x.CreateAt = value.Uint()
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.Workload"))
@@ -277,16 +277,16 @@ func (x *fastReflection_Workload) Mutable(fd protoreflect.FieldDescriptor) proto
 	switch fd.FullName() {
 	case "enreach.workload.Workload.id":
 		panic(fmt.Errorf("field id of message enreach.workload.Workload is not mutable"))
+	case "enreach.workload.Workload.managerAccount":
+		panic(fmt.Errorf("field managerAccount of message enreach.workload.Workload is not mutable"))
 	case "enreach.workload.Workload.epoch":
 		panic(fmt.Errorf("field epoch of message enreach.workload.Workload is not mutable"))
-	case "enreach.workload.Workload.minerId":
-		panic(fmt.Errorf("field minerId of message enreach.workload.Workload is not mutable"))
+	case "enreach.workload.Workload.nodeID":
+		panic(fmt.Errorf("field nodeID of message enreach.workload.Workload is not mutable"))
 	case "enreach.workload.Workload.score":
 		panic(fmt.Errorf("field score of message enreach.workload.Workload is not mutable"))
-	case "enreach.workload.Workload.managerId":
-		panic(fmt.Errorf("field managerId of message enreach.workload.Workload is not mutable"))
-	case "enreach.workload.Workload.creator":
-		panic(fmt.Errorf("field creator of message enreach.workload.Workload is not mutable"))
+	case "enreach.workload.Workload.createAt":
+		panic(fmt.Errorf("field createAt of message enreach.workload.Workload is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.Workload"))
@@ -302,16 +302,16 @@ func (x *fastReflection_Workload) NewField(fd protoreflect.FieldDescriptor) prot
 	switch fd.FullName() {
 	case "enreach.workload.Workload.id":
 		return protoreflect.ValueOfUint64(uint64(0))
+	case "enreach.workload.Workload.managerAccount":
+		return protoreflect.ValueOfString("")
 	case "enreach.workload.Workload.epoch":
 		return protoreflect.ValueOfUint64(uint64(0))
-	case "enreach.workload.Workload.minerId":
+	case "enreach.workload.Workload.nodeID":
 		return protoreflect.ValueOfString("")
 	case "enreach.workload.Workload.score":
 		return protoreflect.ValueOfUint64(uint64(0))
-	case "enreach.workload.Workload.managerId":
-		return protoreflect.ValueOfString("")
-	case "enreach.workload.Workload.creator":
-		return protoreflect.ValueOfString("")
+	case "enreach.workload.Workload.createAt":
+		return protoreflect.ValueOfUint64(uint64(0))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.Workload"))
@@ -384,23 +384,22 @@ func (x *fastReflection_Workload) ProtoMethods() *protoiface.Methods {
 		if x.Id != 0 {
 			n += 1 + runtime.Sov(uint64(x.Id))
 		}
+		l = len(x.ManagerAccount)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
 		if x.Epoch != 0 {
 			n += 1 + runtime.Sov(uint64(x.Epoch))
 		}
-		l = len(x.MinerId)
+		l = len(x.NodeID)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
 		if x.Score != 0 {
 			n += 1 + runtime.Sov(uint64(x.Score))
 		}
-		l = len(x.ManagerId)
-		if l > 0 {
-			n += 1 + l + runtime.Sov(uint64(l))
-		}
-		l = len(x.Creator)
-		if l > 0 {
-			n += 1 + l + runtime.Sov(uint64(l))
+		if x.CreateAt != 0 {
+			n += 1 + runtime.Sov(uint64(x.CreateAt))
 		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
@@ -431,36 +430,34 @@ func (x *fastReflection_Workload) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if len(x.Creator) > 0 {
-			i -= len(x.Creator)
-			copy(dAtA[i:], x.Creator)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Creator)))
+		if x.CreateAt != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.CreateAt))
 			i--
-			dAtA[i] = 0x32
-		}
-		if len(x.ManagerId) > 0 {
-			i -= len(x.ManagerId)
-			copy(dAtA[i:], x.ManagerId)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.ManagerId)))
-			i--
-			dAtA[i] = 0x2a
+			dAtA[i] = 0x30
 		}
 		if x.Score != 0 {
 			i = runtime.EncodeVarint(dAtA, i, uint64(x.Score))
 			i--
-			dAtA[i] = 0x20
+			dAtA[i] = 0x28
 		}
-		if len(x.MinerId) > 0 {
-			i -= len(x.MinerId)
-			copy(dAtA[i:], x.MinerId)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.MinerId)))
+		if len(x.NodeID) > 0 {
+			i -= len(x.NodeID)
+			copy(dAtA[i:], x.NodeID)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.NodeID)))
 			i--
-			dAtA[i] = 0x1a
+			dAtA[i] = 0x22
 		}
 		if x.Epoch != 0 {
 			i = runtime.EncodeVarint(dAtA, i, uint64(x.Epoch))
 			i--
-			dAtA[i] = 0x10
+			dAtA[i] = 0x18
+		}
+		if len(x.ManagerAccount) > 0 {
+			i -= len(x.ManagerAccount)
+			copy(dAtA[i:], x.ManagerAccount)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.ManagerAccount)))
+			i--
+			dAtA[i] = 0x12
 		}
 		if x.Id != 0 {
 			i = runtime.EncodeVarint(dAtA, i, uint64(x.Id))
@@ -536,6 +533,38 @@ func (x *fastReflection_Workload) ProtoMethods() *protoiface.Methods {
 					}
 				}
 			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ManagerAccount", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.ManagerAccount = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 3:
 				if wireType != 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Epoch", wireType)
 				}
@@ -554,9 +583,9 @@ func (x *fastReflection_Workload) ProtoMethods() *protoiface.Methods {
 						break
 					}
 				}
-			case 3:
+			case 4:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field MinerId", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field NodeID", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -584,9 +613,9 @@ func (x *fastReflection_Workload) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.MinerId = string(dAtA[iNdEx:postIndex])
+				x.NodeID = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
-			case 4:
+			case 5:
 				if wireType != 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Score", wireType)
 				}
@@ -605,43 +634,11 @@ func (x *fastReflection_Workload) ProtoMethods() *protoiface.Methods {
 						break
 					}
 				}
-			case 5:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ManagerId", wireType)
-				}
-				var stringLen uint64
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + intStringLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.ManagerId = string(dAtA[iNdEx:postIndex])
-				iNdEx = postIndex
 			case 6:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field CreateAt", wireType)
 				}
-				var stringLen uint64
+				x.CreateAt = 0
 				for shift := uint(0); ; shift += 7 {
 					if shift >= 64 {
 						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
@@ -651,24 +648,11 @@ func (x *fastReflection_Workload) ProtoMethods() *protoiface.Methods {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
+					x.CreateAt |= uint64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
 				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + intStringLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.Creator = string(dAtA[iNdEx:postIndex])
-				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -722,12 +706,12 @@ type Workload struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id        uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Epoch     uint64 `protobuf:"varint,2,opt,name=epoch,proto3" json:"epoch,omitempty"`
-	MinerId   string `protobuf:"bytes,3,opt,name=minerId,proto3" json:"minerId,omitempty"`
-	Score     uint64 `protobuf:"varint,4,opt,name=score,proto3" json:"score,omitempty"`
-	ManagerId string `protobuf:"bytes,5,opt,name=managerId,proto3" json:"managerId,omitempty"`
-	Creator   string `protobuf:"bytes,6,opt,name=creator,proto3" json:"creator,omitempty"`
+	Id             uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	ManagerAccount string `protobuf:"bytes,2,opt,name=managerAccount,proto3" json:"managerAccount,omitempty"`
+	Epoch          uint64 `protobuf:"varint,3,opt,name=epoch,proto3" json:"epoch,omitempty"`
+	NodeID         string `protobuf:"bytes,4,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
+	Score          uint64 `protobuf:"varint,5,opt,name=score,proto3" json:"score,omitempty"`
+	CreateAt       uint64 `protobuf:"varint,6,opt,name=createAt,proto3" json:"createAt,omitempty"`
 }
 
 func (x *Workload) Reset() {
@@ -757,6 +741,13 @@ func (x *Workload) GetId() uint64 {
 	return 0
 }
 
+func (x *Workload) GetManagerAccount() string {
+	if x != nil {
+		return x.ManagerAccount
+	}
+	return ""
+}
+
 func (x *Workload) GetEpoch() uint64 {
 	if x != nil {
 		return x.Epoch
@@ -764,9 +755,9 @@ func (x *Workload) GetEpoch() uint64 {
 	return 0
 }
 
-func (x *Workload) GetMinerId() string {
+func (x *Workload) GetNodeID() string {
 	if x != nil {
-		return x.MinerId
+		return x.NodeID
 	}
 	return ""
 }
@@ -778,18 +769,11 @@ func (x *Workload) GetScore() uint64 {
 	return 0
 }
 
-func (x *Workload) GetManagerId() string {
+func (x *Workload) GetCreateAt() uint64 {
 	if x != nil {
-		return x.ManagerId
+		return x.CreateAt
 	}
-	return ""
-}
-
-func (x *Workload) GetCreator() string {
-	if x != nil {
-		return x.Creator
-	}
-	return ""
+	return 0
 }
 
 var File_enreach_workload_workload_proto protoreflect.FileDescriptor
@@ -798,28 +782,28 @@ var file_enreach_workload_workload_proto_rawDesc = []byte{
 	0x0a, 0x1f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f,
 	0x61, 0x64, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x12, 0x10, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c,
-	0x6f, 0x61, 0x64, 0x22, 0x98, 0x01, 0x0a, 0x08, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64,
+	0x6f, 0x61, 0x64, 0x22, 0xa2, 0x01, 0x0a, 0x08, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64,
 	0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64,
-	0x12, 0x14, 0x0a, 0x05, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52,
-	0x05, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x69, 0x6e, 0x65, 0x72, 0x49,
-	0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x69, 0x6e, 0x65, 0x72, 0x49, 0x64,
-	0x12, 0x14, 0x0a, 0x05, 0x73, 0x63, 0x6f, 0x72, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x04, 0x52,
-	0x05, 0x73, 0x63, 0x6f, 0x72, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65,
-	0x72, 0x49, 0x64, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x6d, 0x61, 0x6e, 0x61, 0x67,
-	0x65, 0x72, 0x49, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18,
-	0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x42, 0xa9,
-	0x01, 0x0a, 0x14, 0x63, 0x6f, 0x6d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77,
-	0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x42, 0x0d, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61,
-	0x64, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x21, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
-	0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61,
-	0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xa2, 0x02, 0x03, 0x45, 0x57,
-	0x58, 0xaa, 0x02, 0x10, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x57, 0x6f, 0x72, 0x6b,
-	0x6c, 0x6f, 0x61, 0x64, 0xca, 0x02, 0x10, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x57,
-	0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xe2, 0x02, 0x1c, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63,
-	0x68, 0x5c, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65,
-	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x11, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68,
-	0x3a, 0x3a, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x33,
+	0x12, 0x26, 0x0a, 0x0e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x41, 0x63, 0x63, 0x6f, 0x75,
+	0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65,
+	0x72, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x70, 0x6f, 0x63,
+	0x68, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x05, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x12, 0x16,
+	0x0a, 0x06, 0x6e, 0x6f, 0x64, 0x65, 0x49, 0x44, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06,
+	0x6e, 0x6f, 0x64, 0x65, 0x49, 0x44, 0x12, 0x14, 0x0a, 0x05, 0x73, 0x63, 0x6f, 0x72, 0x65, 0x18,
+	0x05, 0x20, 0x01, 0x28, 0x04, 0x52, 0x05, 0x73, 0x63, 0x6f, 0x72, 0x65, 0x12, 0x1a, 0x0a, 0x08,
+	0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x74, 0x18, 0x06, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08,
+	0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x74, 0x42, 0xa9, 0x01, 0x0a, 0x14, 0x63, 0x6f, 0x6d,
+	0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61,
+	0x64, 0x42, 0x0d, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x50, 0x72, 0x6f, 0x74, 0x6f,
+	0x50, 0x01, 0x5a, 0x21, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f,
+	0x2f, 0x61, 0x70, 0x69, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72,
+	0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xa2, 0x02, 0x03, 0x45, 0x57, 0x58, 0xaa, 0x02, 0x10, 0x45, 0x6e,
+	0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xca, 0x02,
+	0x10, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61,
+	0x64, 0xe2, 0x02, 0x1c, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x57, 0x6f, 0x72, 0x6b,
+	0x6c, 0x6f, 0x61, 0x64, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61,
+	0xea, 0x02, 0x11, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x3a, 0x3a, 0x57, 0x6f, 0x72, 0x6b,
+	0x6c, 0x6f, 0x61, 0x64, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (

@@ -8,58 +8,19 @@ import (
 
 var _ sdk.Msg = &MsgCreateWorkload{}
 
-func NewMsgCreateWorkload(creator string, epoch uint64, minerId string, score uint64, managerId string) *MsgCreateWorkload {
+func NewMsgCreateWorkload(managerAccount string, epoch uint64, nodeID string, score uint64) *MsgCreateWorkload {
 	return &MsgCreateWorkload{
-		Creator:   creator,
-		Epoch:     epoch,
-		MinerId:   minerId,
-		Score:     score,
-		ManagerId: managerId,
+		ManagerAccount: managerAccount,
+		Epoch:          epoch,
+		NodeID:         nodeID,
+		Score:          score,
 	}
 }
 
 func (msg *MsgCreateWorkload) ValidateBasic() error {
-	_, err := sdk.AccAddressFromBech32(msg.Creator)
+	_, err := sdk.AccAddressFromBech32(msg.ManagerAccount)
 	if err != nil {
-		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid creator address (%s)", err)
-	}
-	return nil
-}
-
-var _ sdk.Msg = &MsgUpdateWorkload{}
-
-func NewMsgUpdateWorkload(creator string, id uint64, epoch uint64, minerId string, score uint64, managerId string) *MsgUpdateWorkload {
-	return &MsgUpdateWorkload{
-		Id:        id,
-		Creator:   creator,
-		Epoch:     epoch,
-		MinerId:   minerId,
-		Score:     score,
-		ManagerId: managerId,
-	}
-}
-
-func (msg *MsgUpdateWorkload) ValidateBasic() error {
-	_, err := sdk.AccAddressFromBech32(msg.Creator)
-	if err != nil {
-		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid creator address (%s)", err)
-	}
-	return nil
-}
-
-var _ sdk.Msg = &MsgDeleteWorkload{}
-
-func NewMsgDeleteWorkload(creator string, id uint64) *MsgDeleteWorkload {
-	return &MsgDeleteWorkload{
-		Id:      id,
-		Creator: creator,
-	}
-}
-
-func (msg *MsgDeleteWorkload) ValidateBasic() error {
-	_, err := sdk.AccAddressFromBech32(msg.Creator)
-	if err != nil {
-		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid creator address (%s)", err)
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid manager account (%s)", err)
 	}
 	return nil
 }

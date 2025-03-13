@@ -23,12 +23,12 @@ var _ = math.Inf
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type Workload struct {
-	Id        uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Epoch     uint64 `protobuf:"varint,2,opt,name=epoch,proto3" json:"epoch,omitempty"`
-	MinerId   string `protobuf:"bytes,3,opt,name=minerId,proto3" json:"minerId,omitempty"`
-	Score     uint64 `protobuf:"varint,4,opt,name=score,proto3" json:"score,omitempty"`
-	ManagerId string `protobuf:"bytes,5,opt,name=managerId,proto3" json:"managerId,omitempty"`
-	Creator   string `protobuf:"bytes,6,opt,name=creator,proto3" json:"creator,omitempty"`
+	Id             uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	ManagerAccount string `protobuf:"bytes,2,opt,name=managerAccount,proto3" json:"managerAccount,omitempty"`
+	Epoch          uint64 `protobuf:"varint,3,opt,name=epoch,proto3" json:"epoch,omitempty"`
+	NodeID         string `protobuf:"bytes,4,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
+	Score          uint64 `protobuf:"varint,5,opt,name=score,proto3" json:"score,omitempty"`
+	CreateAt       uint64 `protobuf:"varint,6,opt,name=createAt,proto3" json:"createAt,omitempty"`
 }
 
 func (m *Workload) Reset()         { *m = Workload{} }
@@ -71,6 +71,13 @@ func (m *Workload) GetId() uint64 {
 	return 0
 }
 
+func (m *Workload) GetManagerAccount() string {
+	if m != nil {
+		return m.ManagerAccount
+	}
+	return ""
+}
+
 func (m *Workload) GetEpoch() uint64 {
 	if m != nil {
 		return m.Epoch
@@ -78,9 +85,9 @@ func (m *Workload) GetEpoch() uint64 {
 	return 0
 }
 
-func (m *Workload) GetMinerId() string {
+func (m *Workload) GetNodeID() string {
 	if m != nil {
-		return m.MinerId
+		return m.NodeID
 	}
 	return ""
 }
@@ -92,18 +99,11 @@ func (m *Workload) GetScore() uint64 {
 	return 0
 }
 
-func (m *Workload) GetManagerId() string {
+func (m *Workload) GetCreateAt() uint64 {
 	if m != nil {
-		return m.ManagerId
+		return m.CreateAt
 	}
-	return ""
-}
-
-func (m *Workload) GetCreator() string {
-	if m != nil {
-		return m.Creator
-	}
-	return ""
+	return 0
 }
 
 func init() {
@@ -113,20 +113,21 @@ func init() {
 func init() { proto.RegisterFile("enreach/workload/workload.proto", fileDescriptor_f62260080c3c5bbe) }
 
 var fileDescriptor_f62260080c3c5bbe = []byte{
-	// 204 bytes of a gzipped FileDescriptorProto
+	// 214 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x4f, 0xcd, 0x2b, 0x4a,
 	0x4d, 0x4c, 0xce, 0xd0, 0x2f, 0xcf, 0x2f, 0xca, 0xce, 0xc9, 0x4f, 0x4c, 0x81, 0x33, 0xf4, 0x0a,
-	0x8a, 0xf2, 0x4b, 0xf2, 0x85, 0x04, 0xa0, 0x0a, 0xf4, 0x60, 0xe2, 0x4a, 0x33, 0x18, 0xb9, 0x38,
+	0x8a, 0xf2, 0x4b, 0xf2, 0x85, 0x04, 0xa0, 0x0a, 0xf4, 0x60, 0xe2, 0x4a, 0x8b, 0x18, 0xb9, 0x38,
 	0xc2, 0xa1, 0x1c, 0x21, 0x3e, 0x2e, 0xa6, 0xcc, 0x14, 0x09, 0x46, 0x05, 0x46, 0x0d, 0x96, 0x20,
-	0xa6, 0xcc, 0x14, 0x21, 0x11, 0x2e, 0xd6, 0xd4, 0x82, 0xfc, 0xe4, 0x0c, 0x09, 0x26, 0xb0, 0x10,
-	0x84, 0x23, 0x24, 0xc1, 0xc5, 0x9e, 0x9b, 0x99, 0x97, 0x5a, 0xe4, 0x99, 0x22, 0xc1, 0xac, 0xc0,
-	0xa8, 0xc1, 0x19, 0x04, 0xe3, 0x82, 0xd4, 0x17, 0x27, 0xe7, 0x17, 0xa5, 0x4a, 0xb0, 0x40, 0xd4,
-	0x83, 0x39, 0x42, 0x32, 0x5c, 0x9c, 0xb9, 0x89, 0x79, 0x89, 0xe9, 0x60, 0x1d, 0xac, 0x60, 0x1d,
-	0x08, 0x01, 0x90, 0x69, 0xc9, 0x45, 0xa9, 0x89, 0x25, 0xf9, 0x45, 0x12, 0x6c, 0x10, 0xd3, 0xa0,
-	0x5c, 0x27, 0xa3, 0x13, 0x8f, 0xe4, 0x18, 0x2f, 0x3c, 0x92, 0x63, 0x7c, 0xf0, 0x48, 0x8e, 0x71,
-	0xc2, 0x63, 0x39, 0x86, 0x0b, 0x8f, 0xe5, 0x18, 0x6e, 0x3c, 0x96, 0x63, 0x88, 0x92, 0x80, 0xf9,
-	0xb3, 0x02, 0xe1, 0xd3, 0x92, 0xca, 0x82, 0xd4, 0xe2, 0x24, 0x36, 0xb0, 0x3f, 0x8d, 0x01, 0x01,
-	0x00, 0x00, 0xff, 0xff, 0xda, 0x3e, 0x75, 0x66, 0x0a, 0x01, 0x00, 0x00,
+	0xa6, 0xcc, 0x14, 0x21, 0x35, 0x2e, 0xbe, 0xdc, 0xc4, 0xbc, 0xc4, 0xf4, 0xd4, 0x22, 0xc7, 0xe4,
+	0xe4, 0xfc, 0xd2, 0xbc, 0x12, 0x09, 0x26, 0x05, 0x46, 0x0d, 0xce, 0x20, 0x34, 0x51, 0x21, 0x11,
+	0x2e, 0xd6, 0xd4, 0x82, 0xfc, 0xe4, 0x0c, 0x09, 0x66, 0xb0, 0x56, 0x08, 0x47, 0x48, 0x8c, 0x8b,
+	0x2d, 0x2f, 0x3f, 0x25, 0xd5, 0xd3, 0x45, 0x82, 0x05, 0xac, 0x0b, 0xca, 0x03, 0xa9, 0x2e, 0x4e,
+	0xce, 0x2f, 0x4a, 0x95, 0x60, 0x85, 0xa8, 0x06, 0x73, 0x84, 0xa4, 0xb8, 0x38, 0x92, 0x8b, 0x52,
+	0x13, 0x4b, 0x52, 0x1d, 0x4b, 0x24, 0xd8, 0xc0, 0x12, 0x70, 0xbe, 0x93, 0xd1, 0x89, 0x47, 0x72,
+	0x8c, 0x17, 0x1e, 0xc9, 0x31, 0x3e, 0x78, 0x24, 0xc7, 0x38, 0xe1, 0xb1, 0x1c, 0xc3, 0x85, 0xc7,
+	0x72, 0x0c, 0x37, 0x1e, 0xcb, 0x31, 0x44, 0x49, 0xc0, 0x7c, 0x5c, 0x81, 0xf0, 0x73, 0x49, 0x65,
+	0x41, 0x6a, 0x71, 0x12, 0x1b, 0xd8, 0xc7, 0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0x5e, 0x22,
+	0x7f, 0xa0, 0x14, 0x01, 0x00, 0x00,
 }
 
 func (m *Workload) Marshal() (dAtA []byte, err error) {
@@ -149,36 +150,34 @@ func (m *Workload) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.Creator) > 0 {
-		i -= len(m.Creator)
-		copy(dAtA[i:], m.Creator)
-		i = encodeVarintWorkload(dAtA, i, uint64(len(m.Creator)))
+	if m.CreateAt != 0 {
+		i = encodeVarintWorkload(dAtA, i, uint64(m.CreateAt))
 		i--
-		dAtA[i] = 0x32
-	}
-	if len(m.ManagerId) > 0 {
-		i -= len(m.ManagerId)
-		copy(dAtA[i:], m.ManagerId)
-		i = encodeVarintWorkload(dAtA, i, uint64(len(m.ManagerId)))
-		i--
-		dAtA[i] = 0x2a
+		dAtA[i] = 0x30
 	}
 	if m.Score != 0 {
 		i = encodeVarintWorkload(dAtA, i, uint64(m.Score))
 		i--
-		dAtA[i] = 0x20
+		dAtA[i] = 0x28
 	}
-	if len(m.MinerId) > 0 {
-		i -= len(m.MinerId)
-		copy(dAtA[i:], m.MinerId)
-		i = encodeVarintWorkload(dAtA, i, uint64(len(m.MinerId)))
+	if len(m.NodeID) > 0 {
+		i -= len(m.NodeID)
+		copy(dAtA[i:], m.NodeID)
+		i = encodeVarintWorkload(dAtA, i, uint64(len(m.NodeID)))
 		i--
-		dAtA[i] = 0x1a
+		dAtA[i] = 0x22
 	}
 	if m.Epoch != 0 {
 		i = encodeVarintWorkload(dAtA, i, uint64(m.Epoch))
 		i--
-		dAtA[i] = 0x10
+		dAtA[i] = 0x18
+	}
+	if len(m.ManagerAccount) > 0 {
+		i -= len(m.ManagerAccount)
+		copy(dAtA[i:], m.ManagerAccount)
+		i = encodeVarintWorkload(dAtA, i, uint64(len(m.ManagerAccount)))
+		i--
+		dAtA[i] = 0x12
 	}
 	if m.Id != 0 {
 		i = encodeVarintWorkload(dAtA, i, uint64(m.Id))
@@ -208,23 +207,22 @@ func (m *Workload) Size() (n int) {
 	if m.Id != 0 {
 		n += 1 + sovWorkload(uint64(m.Id))
 	}
+	l = len(m.ManagerAccount)
+	if l > 0 {
+		n += 1 + l + sovWorkload(uint64(l))
+	}
 	if m.Epoch != 0 {
 		n += 1 + sovWorkload(uint64(m.Epoch))
 	}
-	l = len(m.MinerId)
+	l = len(m.NodeID)
 	if l > 0 {
 		n += 1 + l + sovWorkload(uint64(l))
 	}
 	if m.Score != 0 {
 		n += 1 + sovWorkload(uint64(m.Score))
 	}
-	l = len(m.ManagerId)
-	if l > 0 {
-		n += 1 + l + sovWorkload(uint64(l))
-	}
-	l = len(m.Creator)
-	if l > 0 {
-		n += 1 + l + sovWorkload(uint64(l))
+	if m.CreateAt != 0 {
+		n += 1 + sovWorkload(uint64(m.CreateAt))
 	}
 	return n
 }
@@ -284,6 +282,38 @@ func (m *Workload) Unmarshal(dAtA []byte) error {
 				}
 			}
 		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ManagerAccount", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowWorkload
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthWorkload
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthWorkload
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ManagerAccount = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Epoch", wireType)
 			}
@@ -302,9 +332,9 @@ func (m *Workload) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-		case 3:
+		case 4:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field MinerId", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field NodeID", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -332,9 +362,9 @@ func (m *Workload) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.MinerId = string(dAtA[iNdEx:postIndex])
+			m.NodeID = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 4:
+		case 5:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Score", wireType)
 			}
@@ -353,43 +383,11 @@ func (m *Workload) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-		case 5:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ManagerId", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowWorkload
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthWorkload
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthWorkload
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.ManagerId = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
 		case 6:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CreateAt", wireType)
 			}
-			var stringLen uint64
+			m.CreateAt = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowWorkload
@@ -399,24 +397,11 @@ func (m *Workload) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
+				m.CreateAt |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthWorkload
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthWorkload
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Creator = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipWorkload(dAtA[iNdEx:])

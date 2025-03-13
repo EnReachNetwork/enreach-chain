@@ -26,7 +26,7 @@ service Query {
   
   }
   rpc WorkloadAll (QueryAllWorkloadRequest) returns (QueryAllWorkloadResponse) {
-    option (google.api.http).get = "/enreach/workload/workload";
+    option (google.api.http).get = "/enreach/workload/workloads";
   
   }
 }

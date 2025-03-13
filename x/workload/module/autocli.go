@@ -41,21 +41,9 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				},
 				{
 					RpcMethod:      "CreateWorkload",
-					Use:            "create-workload [epoch] [minerId] [score] [managerId]",
+					Use:            "create-workload [managerAccount] [epoch] [nodeID] [score]",
 					Short:          "Create workload",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "epoch"}, {ProtoField: "minerId"}, {ProtoField: "score"}, {ProtoField: "managerId"}},
-				},
-				{
-					RpcMethod:      "UpdateWorkload",
-					Use:            "update-workload [id] [epoch] [minerId] [score] [managerId]",
-					Short:          "Update workload",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}, {ProtoField: "epoch"}, {ProtoField: "minerId"}, {ProtoField: "score"}, {ProtoField: "managerId"}},
-				},
-				{
-					RpcMethod:      "DeleteWorkload",
-					Use:            "delete-workload [id]",
-					Short:          "Delete workload",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "managerAccount"}, {ProtoField: "epoch"}, {ProtoField: "nodeID"}, {ProtoField: "score"}},
 				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},

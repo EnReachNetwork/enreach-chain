@@ -19,6 +19,7 @@ import (
 
 	"enreach/x/edgenode/keeper"
 	"enreach/x/edgenode/types"
+	registryKeeper "enreach/x/registry/keeper"
 )
 
 func EdgenodeKeeper(t testing.TB) (keeper.Keeper, sdk.Context) {
@@ -38,6 +39,7 @@ func EdgenodeKeeper(t testing.TB) (keeper.Keeper, sdk.Context) {
 		runtime.NewKVStoreService(storeKey),
 		log.NewNopLogger(),
 		authority.String(),
+		registryKeeper.Keeper{},
 	)
 
 	ctx := sdk.NewContext(stateStore, cmtproto.Header{}, false, log.NewNopLogger())

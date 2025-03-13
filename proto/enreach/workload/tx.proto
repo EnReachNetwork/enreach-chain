@@ -19,8 +19,6 @@ service Msg {
   // parameters. The authority defaults to the x/gov module account.
   rpc UpdateParams   (MsgUpdateParams  ) returns (MsgUpdateParamsResponse  );
   rpc CreateWorkload (MsgCreateWorkload) returns (MsgCreateWorkloadResponse);
-  rpc UpdateWorkload (MsgUpdateWorkload) returns (MsgUpdateWorkloadResponse);
-  rpc DeleteWorkload (MsgDeleteWorkload) returns (MsgDeleteWorkloadResponse);
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -41,35 +39,15 @@ message MsgUpdateParams {
 message MsgUpdateParamsResponse {}
 
 message MsgCreateWorkload {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator   = 1;
+  option (cosmos.msg.v1.signer) = "managerAccount";
+  string managerAccount = 1;
   uint64 epoch     = 2;
-  string minerId   = 3;
+  string nodeID   = 3;
   uint64 score     = 4;
-  string managerId = 5;
 }
 
 message MsgCreateWorkloadResponse {
   uint64 id = 1;
 }
 
-message MsgUpdateWorkload {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator   = 1;
-  uint64 id        = 2;
-  uint64 epoch     = 3;
-  string minerId   = 4;
-  uint64 score     = 5;
-  string managerId = 6;
-}
-
-message MsgUpdateWorkloadResponse {}
-
-message MsgDeleteWorkload {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator = 1;
-  uint64 id      = 2;
-}
-
-message MsgDeleteWorkloadResponse {}
 

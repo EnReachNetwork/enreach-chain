@@ -27,14 +27,6 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgCreateWorkload int = 100
 
-	opWeightMsgUpdateWorkload = "op_weight_msg_workload"
-	// TODO: Determine the simulation weight value
-	defaultWeightMsgUpdateWorkload int = 100
-
-	opWeightMsgDeleteWorkload = "op_weight_msg_workload"
-	// TODO: Determine the simulation weight value
-	defaultWeightMsgDeleteWorkload int = 100
-
 	// this line is used by starport scaffolding # simapp/module/const
 )
 
@@ -48,12 +40,12 @@ func (AppModule) GenerateGenesisState(simState *module.SimulationState) {
 		Params: types.DefaultParams(),
 		WorkloadList: []types.Workload{
 			{
-				Id:      0,
-				Creator: sample.AccAddress(),
+				Id:             0,
+				ManagerAccount: sample.AccAddress(),
 			},
 			{
-				Id:      1,
-				Creator: sample.AccAddress(),
+				Id:             1,
+				ManagerAccount: sample.AccAddress(),
 			},
 		},
 		WorkloadCount: 2,
@@ -80,28 +72,6 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 		workloadsimulation.SimulateMsgCreateWorkload(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
-	var weightMsgUpdateWorkload int
-	simState.AppParams.GetOrGenerate(opWeightMsgUpdateWorkload, &weightMsgUpdateWorkload, nil,
-		func(_ *rand.Rand) {
-			weightMsgUpdateWorkload = defaultWeightMsgUpdateWorkload
-		},
-	)
-	operations = append(operations, simulation.NewWeightedOperation(
-		weightMsgUpdateWorkload,
-		workloadsimulation.SimulateMsgUpdateWorkload(am.accountKeeper, am.bankKeeper, am.keeper),
-	))
-
-	var weightMsgDeleteWorkload int
-	simState.AppParams.GetOrGenerate(opWeightMsgDeleteWorkload, &weightMsgDeleteWorkload, nil,
-		func(_ *rand.Rand) {
-			weightMsgDeleteWorkload = defaultWeightMsgDeleteWorkload
-		},
-	)
-	operations = append(operations, simulation.NewWeightedOperation(
-		weightMsgDeleteWorkload,
-		workloadsimulation.SimulateMsgDeleteWorkload(am.accountKeeper, am.bankKeeper, am.keeper),
-	))
-
 	// this line is used by starport scaffolding # simapp/module/operation
 
 	return operations
@@ -115,22 +85,6 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			defaultWeightMsgCreateWorkload,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
 				workloadsimulation.SimulateMsgCreateWorkload(am.accountKeeper, am.bankKeeper, am.keeper)
-				return nil
-			},
-		),
-		simulation.NewWeightedProposalMsg(
-			opWeightMsgUpdateWorkload,
-			defaultWeightMsgUpdateWorkload,
-			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
-				workloadsimulation.SimulateMsgUpdateWorkload(am.accountKeeper, am.bankKeeper, am.keeper)
-				return nil
-			},
-		),
-		simulation.NewWeightedProposalMsg(
-			opWeightMsgDeleteWorkload,
-			defaultWeightMsgDeleteWorkload,
-			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
-				workloadsimulation.SimulateMsgDeleteWorkload(am.accountKeeper, am.bankKeeper, am.keeper)
 				return nil
 			},
 		),

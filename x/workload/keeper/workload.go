@@ -79,13 +79,6 @@ func (k Keeper) GetWorkload(ctx context.Context, id uint64) (val types.Workload,
 	return val, true
 }
 
-// RemoveWorkload removes a workload from the store
-func (k Keeper) RemoveWorkload(ctx context.Context, id uint64) {
-	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.WorkloadKey))
-	store.Delete(GetWorkloadIDBytes(id))
-}
-
 // GetAllWorkload returns all workload
 func (k Keeper) GetAllWorkload(ctx context.Context) (list []types.Workload) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))

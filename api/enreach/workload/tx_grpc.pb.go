@@ -21,8 +21,6 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	Msg_UpdateParams_FullMethodName   = "/enreach.workload.Msg/UpdateParams"
 	Msg_CreateWorkload_FullMethodName = "/enreach.workload.Msg/CreateWorkload"
-	Msg_UpdateWorkload_FullMethodName = "/enreach.workload.Msg/UpdateWorkload"
-	Msg_DeleteWorkload_FullMethodName = "/enreach.workload.Msg/DeleteWorkload"
 )
 
 // MsgClient is the client API for Msg service.
@@ -33,8 +31,6 @@ type MsgClient interface {
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
 	CreateWorkload(ctx context.Context, in *MsgCreateWorkload, opts ...grpc.CallOption) (*MsgCreateWorkloadResponse, error)
-	UpdateWorkload(ctx context.Context, in *MsgUpdateWorkload, opts ...grpc.CallOption) (*MsgUpdateWorkloadResponse, error)
-	DeleteWorkload(ctx context.Context, in *MsgDeleteWorkload, opts ...grpc.CallOption) (*MsgDeleteWorkloadResponse, error)
 }
 
 type msgClient struct {
@@ -63,24 +59,6 @@ func (c *msgClient) CreateWorkload(ctx context.Context, in *MsgCreateWorkload, o
 	return out, nil
 }
 
-func (c *msgClient) UpdateWorkload(ctx context.Context, in *MsgUpdateWorkload, opts ...grpc.CallOption) (*MsgUpdateWorkloadResponse, error) {
-	out := new(MsgUpdateWorkloadResponse)
-	err := c.cc.Invoke(ctx, Msg_UpdateWorkload_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *msgClient) DeleteWorkload(ctx context.Context, in *MsgDeleteWorkload, opts ...grpc.CallOption) (*MsgDeleteWorkloadResponse, error) {
-	out := new(MsgDeleteWorkloadResponse)
-	err := c.cc.Invoke(ctx, Msg_DeleteWorkload_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -89,8 +67,6 @@ type MsgServer interface {
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
 	CreateWorkload(context.Context, *MsgCreateWorkload) (*MsgCreateWorkloadResponse, error)
-	UpdateWorkload(context.Context, *MsgUpdateWorkload) (*MsgUpdateWorkloadResponse, error)
-	DeleteWorkload(context.Context, *MsgDeleteWorkload) (*MsgDeleteWorkloadResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -103,12 +79,6 @@ func (UnimplementedMsgServer) UpdateParams(context.Context, *MsgUpdateParams) (*
 }
 func (UnimplementedMsgServer) CreateWorkload(context.Context, *MsgCreateWorkload) (*MsgCreateWorkloadResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateWorkload not implemented")
-}
-func (UnimplementedMsgServer) UpdateWorkload(context.Context, *MsgUpdateWorkload) (*MsgUpdateWorkloadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateWorkload not implemented")
-}
-func (UnimplementedMsgServer) DeleteWorkload(context.Context, *MsgDeleteWorkload) (*MsgDeleteWorkloadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteWorkload not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -159,42 +129,6 @@ func _Msg_CreateWorkload_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_UpdateWorkload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgUpdateWorkload)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MsgServer).UpdateWorkload(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Msg_UpdateWorkload_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).UpdateWorkload(ctx, req.(*MsgUpdateWorkload))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Msg_DeleteWorkload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgDeleteWorkload)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MsgServer).DeleteWorkload(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Msg_DeleteWorkload_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).DeleteWorkload(ctx, req.(*MsgDeleteWorkload))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -209,14 +143,6 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateWorkload",
 			Handler:    _Msg_CreateWorkload_Handler,
-		},
-		{
-			MethodName: "UpdateWorkload",
-			Handler:    _Msg_UpdateWorkload_Handler,
-		},
-		{
-			MethodName: "DeleteWorkload",
-			Handler:    _Msg_DeleteWorkload_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -325,7 +325,7 @@ var (
 
 	pattern_Query_Workload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"enreach", "workload", "id"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_WorkloadAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1}, []string{"enreach", "workload"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_WorkloadAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"enreach", "workload", "workloads"}, "", runtime.AssumeColonVerbOpt(false)))
 )
 
 var (

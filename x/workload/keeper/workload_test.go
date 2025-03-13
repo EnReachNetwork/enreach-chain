@@ -33,16 +33,6 @@ func TestWorkloadGet(t *testing.T) {
 	}
 }
 
-func TestWorkloadRemove(t *testing.T) {
-	keeper, ctx := keepertest.WorkloadKeeper(t)
-	items := createNWorkload(keeper, ctx, 10)
-	for _, item := range items {
-		keeper.RemoveWorkload(ctx, item.Id)
-		_, found := keeper.GetWorkload(ctx, item.Id)
-		require.False(t, found)
-	}
-}
-
 func TestWorkloadGetAll(t *testing.T) {
 	keeper, ctx := keepertest.WorkloadKeeper(t)
 	items := createNWorkload(keeper, ctx, 10)
