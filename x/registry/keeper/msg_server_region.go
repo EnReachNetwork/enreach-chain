@@ -41,6 +41,14 @@ func (k msgServer) CreateRegion(goCtx context.Context, msg *types.MsgCreateRegio
 	}
 	k.AppendRegion(ctx, region)
 
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeRegionCreated,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyCreator, msg.Signer),
+			sdk.NewAttribute(types.AttributeKeyRegionCode, msg.Code),
+		),
+	)
+
 	return &types.MsgCreateRegionResponse{}, nil
 }
 
