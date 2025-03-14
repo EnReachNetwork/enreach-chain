@@ -1,6 +1,7 @@
 export const CHAIN_PREFIX = "enreach"
 export const CHAIN_API_URL = "http://localhost:1317"
 export const CHAIN_RPC_URL = "http://localhost:26657"
+export const CHAIN_WS_URL = "ws://localhost:26657"
 
 export const ADMIN_MNEMONIC = "autumn churn regular flee grid category remember put dish uniform age pepper armor portion wait tribe memory inform fine photo work problem blast enforce"
 export const SUPERIOR_MENMONIC = "fitness marine video shine dose garlic senior throw room metal seek address stable abstract salmon traffic multiply erode category brass maid joy usual round"

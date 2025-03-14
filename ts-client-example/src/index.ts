@@ -2,10 +2,11 @@ import { DirectSecp256k1HdWallet } from '@cosmjs/proto-signing'
 import RegionApi from "./region";
 import OperatorApi from './operator';
 import ManagerApi from './manager';
-import { ADMIN_MNEMONIC, OPERATOR_MNEMONIC, MANAGER_MNEMONIC, SUPERIOR_MENMONIC } from './consts';
+import { ADMIN_MNEMONIC, OPERATOR_MNEMONIC, MANAGER_MNEMONIC, SUPERIOR_MENMONIC, CHAIN_WS_URL } from './consts';
 import { Secp256k1, sha256, Bip39, Slip10,Slip10Curve, EnglishMnemonic, stringToPath } from "@cosmjs/crypto";
 import EdgenodeApi from './edgenode';
 import WorkloadApi from './workload';
+import { Tendermint37Client } from "@cosmjs/tendermint-rpc";
 async function main() {
   const regionAdminApi = new RegionApi(ADMIN_MNEMONIC);
   const regionApi = new RegionApi(SUPERIOR_MENMONIC);
@@ -24,12 +25,16 @@ async function main() {
   await edgenodeApi.initApi();
   await workloadApi.initApi();
 
-  console.log("===setSuperior");
+  // Listen and log events
+  listenEvents();
+
   await regionAdminApi.createSuperior({signer: regionAdminApi.account, account: regionApi.account});
   await edgenodeAdminApi.createSuperior({signer: edgenodeAdminApi.account, account: edgenodeApi.account});
 
-  console.log("===createRegion");
   await regionApi.createRegion({signer: regionApi.account, code: "US", name: "United State", description: "US Region"});
+  //console.log("Create Region Result:", JSON.stringify(result, (key, value) => typeof value === 'bigint' ? value.toString() : value, 2));
+  const allRegions = await regionApi.queryAllRegion();
+  console.log("Regions:", allRegions);
 
   await testManager(regionApi, operatorApi, managerApi);
 
@@ -40,31 +45,23 @@ async function main() {
 
 async function testManager(regionApi: RegionApi, operatorApi: OperatorApi, managerApi: ManagerApi) {
 
-  console.log("===createOperator");
   await operatorApi.createOperator({operatorAccount: operatorApi.account, name:"Crust", description: "Crust Network", websiteUrl: "https://crust.network"});
   
-  console.log("===registerManager");
   await managerApi.registerManager({managerAccount: managerApi.account, hostAddress:"127.0.0.1",managerPort:100,trackerPort:200,chainAPIPort:1337, chainRPCPort:26657});
   
-  console.log("===bindOperatorManagerAccount");
   const managerSignature = await getManagerSignature(operatorApi.account, managerApi.wallet);
   await operatorApi.bindOperatorManagerAccount({operatorAccount: operatorApi.account, managerAccount: managerApi.account, managerSignature: managerSignature, forceUnbind: true});
   
-  console.log("===setManagerRegion");
   await operatorApi.setManagerRegion({operatorAccount: operatorApi.account, regionCode:"US"});
   
-  console.log("===activateManager");
   await operatorApi.activateManager({operatorAccount: operatorApi.account, license:"aaaaaa"});
   
-  console.log("===goWorking");
   await managerApi.goWorking({managerAccount: managerApi.account});
 
   console.log("===Query all data");
-  const allRegions = await regionApi.queryAllRegion();
   const allOperators = await operatorApi.queryAllOperator();
   const allManagers = await managerApi.queryAllManager();
 
-  console.log("Regions:", allRegions);
   console.log("Operators:", allOperators);
   console.log("Managers:", allManagers);
 }
@@ -87,13 +84,10 @@ async function getManagerSignature(operatorAccount: string, managerWallet: Direc
 
 async function testEdgenode(edgenodeApi: EdgenodeApi) {
 
-  console.log("===createUser");
   await edgenodeApi.createUser({signer:edgenodeApi.account, userID: "user1"});
 
-  console.log("===registerNode");
   await edgenodeApi.registerNode({signer:edgenodeApi.account, nodeID: "node1", deviceType: "Box"});
   
-  console.log("===bindAndActivateNode");
   await edgenodeApi.bindAndActivateNode({signer:edgenodeApi.account, nodeID: "node1", userID: "user1", nodeName: "My Home Node", regionCode: "US"});
 
   console.log("===Query all data");
@@ -106,12 +100,36 @@ async function testEdgenode(edgenodeApi: EdgenodeApi) {
 
 async function testWorkload(workloadApi: WorkloadApi) {
 
-  console.log("===createWorkload");
   await workloadApi.createWorkload({managerAccount: workloadApi.account, epoch: 1, nodeID: "node1", score: 100});
 
   console.log("===Query all data");
   const allWorkloads = await workloadApi.queryAllWorkload();
   console.log("Workloads:", allWorkloads);
 } 
+
+async function listenEvents() {
+  const tmClient = await Tendermint37Client.connect(CHAIN_WS_URL);
+
+  const query = `tm.event='Tx'`;
+  const subscription = tmClient.subscribeTx(query);
+  const decoder = new TextDecoder();
+
+  subscription.subscribe({
+      next: (txResponse) => {
+          txResponse.result.events.forEach((event) => {
+              if (event.type === 'message') {
+                  const action = event.attributes.find((attr) => attr.key === "action")?.value;
+
+                  console.log("===", action!);
+              } else if (event.type === "RegionCreated") {
+                const code = event.attributes.find((attr) => attr.key === "code")?.value;
+                console.log("***RegionCreated -", code);
+              }
+          });
+      },
+      error: (err) => console.error("Subsription Failed:", err),
+      complete: () => console.log("Subscription Complete"),
+  });
+}
 
 main().catch(console.error);

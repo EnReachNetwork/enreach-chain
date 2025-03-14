@@ -31,6 +31,8 @@ export default class RegionAPI {
         if (result.code != 0) {
             throw new Error(`Transaction failed: ${result.rawLog}`)
         }
+
+        return result;
     }
 
     async deleteRegion(msg: MsgDeleteRegion) {
