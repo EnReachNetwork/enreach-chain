@@ -92,6 +92,30 @@ class Api extends HttpClient {
          * No description
          *
          * @tags Query
+         * @name QueryGetCurrentEpoch
+         * @request GET:/enreach/manager/epoch/currentepoch
+         */
+        this.queryGetCurrentEpoch = (params = {}) => this.request({
+            path: `/enreach/manager/epoch/currentepoch`,
+            method: "GET",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryGetEpochLength
+         * @request GET:/enreach/manager/epoch/length
+         */
+        this.queryGetEpochLength = (params = {}) => this.request({
+            path: `/enreach/manager/epoch/length`,
+            method: "GET",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
          * @name QueryGetManagerByRegion
          * @request GET:/enreach/manager/get_manager_by_region/{regionCode}
          */

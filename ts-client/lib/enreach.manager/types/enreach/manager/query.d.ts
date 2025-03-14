@@ -44,6 +44,16 @@ export interface QueryGetManagerByRegionRequest {
 export interface QueryGetManagerByRegionResponse {
     managers: Manager[];
 }
+export interface QueryGetEpochLengthRequest {
+}
+export interface QueryGetEpochLengthResponse {
+    epochLength: number;
+}
+export interface QueryGetCurrentEpochRequest {
+}
+export interface QueryGetCurrentEpochResponse {
+    currentEpoch: number;
+}
 export declare const QueryParamsRequest: {
     encode(_: QueryParamsRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsRequest;
@@ -140,6 +150,38 @@ export declare const QueryGetManagerByRegionResponse: {
     create<I extends Exact<DeepPartial<QueryGetManagerByRegionResponse>, I>>(base?: I): QueryGetManagerByRegionResponse;
     fromPartial<I extends Exact<DeepPartial<QueryGetManagerByRegionResponse>, I>>(object: I): QueryGetManagerByRegionResponse;
 };
+export declare const QueryGetEpochLengthRequest: {
+    encode(_: QueryGetEpochLengthRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEpochLengthRequest;
+    fromJSON(_: any): QueryGetEpochLengthRequest;
+    toJSON(_: QueryGetEpochLengthRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryGetEpochLengthRequest>, I>>(base?: I): QueryGetEpochLengthRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryGetEpochLengthRequest>, I>>(_: I): QueryGetEpochLengthRequest;
+};
+export declare const QueryGetEpochLengthResponse: {
+    encode(message: QueryGetEpochLengthResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEpochLengthResponse;
+    fromJSON(object: any): QueryGetEpochLengthResponse;
+    toJSON(message: QueryGetEpochLengthResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryGetEpochLengthResponse>, I>>(base?: I): QueryGetEpochLengthResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryGetEpochLengthResponse>, I>>(object: I): QueryGetEpochLengthResponse;
+};
+export declare const QueryGetCurrentEpochRequest: {
+    encode(_: QueryGetCurrentEpochRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetCurrentEpochRequest;
+    fromJSON(_: any): QueryGetCurrentEpochRequest;
+    toJSON(_: QueryGetCurrentEpochRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryGetCurrentEpochRequest>, I>>(base?: I): QueryGetCurrentEpochRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryGetCurrentEpochRequest>, I>>(_: I): QueryGetCurrentEpochRequest;
+};
+export declare const QueryGetCurrentEpochResponse: {
+    encode(message: QueryGetCurrentEpochResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetCurrentEpochResponse;
+    fromJSON(object: any): QueryGetCurrentEpochResponse;
+    toJSON(message: QueryGetCurrentEpochResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryGetCurrentEpochResponse>, I>>(base?: I): QueryGetCurrentEpochResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryGetCurrentEpochResponse>, I>>(object: I): QueryGetCurrentEpochResponse;
+};
 /** Query defines the gRPC querier service. */
 export interface Query {
     /** Parameters queries the parameters of the module. */
@@ -152,6 +194,9 @@ export interface Query {
     ManagerAll(request: QueryAllManagerRequest): Promise<QueryAllManagerResponse>;
     /** Queries a list of GetManagerByRegion items. */
     GetManagerByRegion(request: QueryGetManagerByRegionRequest): Promise<QueryGetManagerByRegionResponse>;
+    /** Queries epoch */
+    GetEpochLength(request: QueryGetEpochLengthRequest): Promise<QueryGetEpochLengthResponse>;
+    GetCurrentEpoch(request: QueryGetCurrentEpochRequest): Promise<QueryGetCurrentEpochResponse>;
 }
 export declare const QueryServiceName = "enreach.manager.Query";
 export declare class QueryClientImpl implements Query {
@@ -166,6 +211,8 @@ export declare class QueryClientImpl implements Query {
     Manager(request: QueryGetManagerRequest): Promise<QueryGetManagerResponse>;
     ManagerAll(request: QueryAllManagerRequest): Promise<QueryAllManagerResponse>;
     GetManagerByRegion(request: QueryGetManagerByRegionRequest): Promise<QueryGetManagerByRegionResponse>;
+    GetEpochLength(request: QueryGetEpochLengthRequest): Promise<QueryGetEpochLengthResponse>;
+    GetCurrentEpoch(request: QueryGetCurrentEpochRequest): Promise<QueryGetCurrentEpochResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

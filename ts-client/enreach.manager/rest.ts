@@ -77,6 +77,16 @@ export interface QueryAllOperatorResponse {
   pagination?: { next_key?: string; total?: string };
 }
 
+export interface QueryGetCurrentEpochResponse {
+  /** @format uint64 */
+  currentEpoch?: string;
+}
+
+export interface QueryGetEpochLengthResponse {
+  /** @format uint64 */
+  epochLength?: string;
+}
+
 export interface QueryGetManagerByRegionResponse {
   managers?: {
     managerAccount?: string;
@@ -328,6 +338,34 @@ export class HttpClient<SecurityDataType = unknown> {
  * @title HTTP API Console enreach.manager
  */
 export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryGetCurrentEpoch
+   * @request GET:/enreach/manager/epoch/currentepoch
+   */
+  queryGetCurrentEpoch = (params: RequestParams = {}) =>
+    this.request<{ currentEpoch?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+      path: `/enreach/manager/epoch/currentepoch`,
+      method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryGetEpochLength
+   * @request GET:/enreach/manager/epoch/length
+   */
+  queryGetEpochLength = (params: RequestParams = {}) =>
+    this.request<{ epochLength?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+      path: `/enreach/manager/epoch/length`,
+      method: "GET",
+      ...params,
+    });
+
   /**
    * No description
    *

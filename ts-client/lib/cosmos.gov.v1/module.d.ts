@@ -2,76 +2,61 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { MsgVote } from "./types/cosmos/gov/v1/tx";
-import { QueryDepositsResponse } from "./types/cosmos/gov/v1/query";
-import { Proposal } from "./types/cosmos/gov/v1/gov";
-import { QueryDepositsRequest } from "./types/cosmos/gov/v1/query";
-import { MsgExecLegacyContent } from "./types/cosmos/gov/v1/tx";
-import { QueryVoteRequest } from "./types/cosmos/gov/v1/query";
-import { QueryVoteResponse } from "./types/cosmos/gov/v1/query";
-import { QueryParamsResponse } from "./types/cosmos/gov/v1/query";
-import { QueryConstitutionRequest } from "./types/cosmos/gov/v1/query";
-import { QueryProposalRequest } from "./types/cosmos/gov/v1/query";
-import { QueryParamsRequest } from "./types/cosmos/gov/v1/query";
-import { Deposit } from "./types/cosmos/gov/v1/gov";
-import { MsgSubmitProposalResponse } from "./types/cosmos/gov/v1/tx";
-import { MsgVoteResponse } from "./types/cosmos/gov/v1/tx";
-import { QueryProposalsResponse } from "./types/cosmos/gov/v1/query";
-import { QueryTallyResultResponse } from "./types/cosmos/gov/v1/query";
-import { DepositParams } from "./types/cosmos/gov/v1/gov";
-import { MsgDepositResponse } from "./types/cosmos/gov/v1/tx";
-import { QueryDepositRequest } from "./types/cosmos/gov/v1/query";
-import { GenesisState } from "./types/cosmos/gov/v1/genesis";
-import { QueryConstitutionResponse } from "./types/cosmos/gov/v1/query";
-import { QueryProposalResponse } from "./types/cosmos/gov/v1/query";
-import { QueryVotesRequest } from "./types/cosmos/gov/v1/query";
-import { VotingParams } from "./types/cosmos/gov/v1/gov";
 import { MsgVoteWeightedResponse } from "./types/cosmos/gov/v1/tx";
 import { QueryVotesResponse } from "./types/cosmos/gov/v1/query";
+import { QueryDepositResponse } from "./types/cosmos/gov/v1/query";
+import { QueryVoteResponse } from "./types/cosmos/gov/v1/query";
+import { QueryVotesRequest } from "./types/cosmos/gov/v1/query";
+import { QueryDepositsRequest } from "./types/cosmos/gov/v1/query";
+import { GenesisState } from "./types/cosmos/gov/v1/genesis";
+import { Proposal } from "./types/cosmos/gov/v1/gov";
+import { QueryDepositsResponse } from "./types/cosmos/gov/v1/query";
+import { QueryTallyResultResponse } from "./types/cosmos/gov/v1/query";
+import { MsgVoteResponse } from "./types/cosmos/gov/v1/tx";
+import { MsgUpdateParams } from "./types/cosmos/gov/v1/tx";
+import { Params } from "./types/cosmos/gov/v1/gov";
+import { QueryDepositRequest } from "./types/cosmos/gov/v1/query";
+import { MsgSubmitProposalResponse } from "./types/cosmos/gov/v1/tx";
 import { MsgVoteWeighted } from "./types/cosmos/gov/v1/tx";
 import { MsgDeposit } from "./types/cosmos/gov/v1/tx";
-import { QueryDepositResponse } from "./types/cosmos/gov/v1/query";
+import { MsgExecLegacyContentResponse } from "./types/cosmos/gov/v1/tx";
+import { QueryConstitutionResponse } from "./types/cosmos/gov/v1/query";
 import { Vote } from "./types/cosmos/gov/v1/gov";
-import { MsgSubmitProposal } from "./types/cosmos/gov/v1/tx";
-import { WeightedVoteOption } from "./types/cosmos/gov/v1/gov";
-import { Params } from "./types/cosmos/gov/v1/gov";
-import { MsgUpdateParams } from "./types/cosmos/gov/v1/tx";
 import { MsgUpdateParamsResponse } from "./types/cosmos/gov/v1/tx";
+import { QueryProposalRequest } from "./types/cosmos/gov/v1/query";
+import { QueryVoteRequest } from "./types/cosmos/gov/v1/query";
+import { DepositParams } from "./types/cosmos/gov/v1/gov";
+import { MsgSubmitProposal } from "./types/cosmos/gov/v1/tx";
+import { MsgCancelProposal } from "./types/cosmos/gov/v1/tx";
+import { QueryConstitutionRequest } from "./types/cosmos/gov/v1/query";
+import { QueryProposalsResponse } from "./types/cosmos/gov/v1/query";
+import { QueryProposalResponse } from "./types/cosmos/gov/v1/query";
+import { TallyResult } from "./types/cosmos/gov/v1/gov";
+import { MsgVote } from "./types/cosmos/gov/v1/tx";
+import { MsgCancelProposalResponse } from "./types/cosmos/gov/v1/tx";
+import { WeightedVoteOption } from "./types/cosmos/gov/v1/gov";
+import { QueryParamsResponse } from "./types/cosmos/gov/v1/query";
+import { VotingParams } from "./types/cosmos/gov/v1/gov";
+import { TallyParams } from "./types/cosmos/gov/v1/gov";
+import { MsgExecLegacyContent } from "./types/cosmos/gov/v1/tx";
+import { QueryParamsRequest } from "./types/cosmos/gov/v1/query";
 import { QueryProposalsRequest } from "./types/cosmos/gov/v1/query";
 import { QueryTallyResultRequest } from "./types/cosmos/gov/v1/query";
-import { TallyResult } from "./types/cosmos/gov/v1/gov";
-import { TallyParams } from "./types/cosmos/gov/v1/gov";
-import { MsgExecLegacyContentResponse } from "./types/cosmos/gov/v1/tx";
-import { MsgCancelProposal } from "./types/cosmos/gov/v1/tx";
-import { MsgCancelProposalResponse } from "./types/cosmos/gov/v1/tx";
-export { MsgVote, QueryDepositsResponse, Proposal, QueryDepositsRequest, MsgExecLegacyContent, QueryVoteRequest, QueryVoteResponse, QueryParamsResponse, QueryConstitutionRequest, QueryProposalRequest, QueryParamsRequest, Deposit, MsgSubmitProposalResponse, MsgVoteResponse, QueryProposalsResponse, QueryTallyResultResponse, DepositParams, MsgDepositResponse, QueryDepositRequest, GenesisState, QueryConstitutionResponse, QueryProposalResponse, QueryVotesRequest, VotingParams, MsgVoteWeightedResponse, QueryVotesResponse, MsgVoteWeighted, MsgDeposit, QueryDepositResponse, Vote, MsgSubmitProposal, WeightedVoteOption, Params, MsgUpdateParams, MsgUpdateParamsResponse, QueryProposalsRequest, QueryTallyResultRequest, TallyResult, TallyParams, MsgExecLegacyContentResponse, MsgCancelProposal, MsgCancelProposalResponse };
-type sendMsgVoteParams = {
-    value: MsgVote;
+import { Deposit } from "./types/cosmos/gov/v1/gov";
+import { MsgDepositResponse } from "./types/cosmos/gov/v1/tx";
+export { MsgVoteWeightedResponse, QueryVotesResponse, QueryDepositResponse, QueryVoteResponse, QueryVotesRequest, QueryDepositsRequest, GenesisState, Proposal, QueryDepositsResponse, QueryTallyResultResponse, MsgVoteResponse, MsgUpdateParams, Params, QueryDepositRequest, MsgSubmitProposalResponse, MsgVoteWeighted, MsgDeposit, MsgExecLegacyContentResponse, QueryConstitutionResponse, Vote, MsgUpdateParamsResponse, QueryProposalRequest, QueryVoteRequest, DepositParams, MsgSubmitProposal, MsgCancelProposal, QueryConstitutionRequest, QueryProposalsResponse, QueryProposalResponse, TallyResult, MsgVote, MsgCancelProposalResponse, WeightedVoteOption, QueryParamsResponse, VotingParams, TallyParams, MsgExecLegacyContent, QueryParamsRequest, QueryProposalsRequest, QueryTallyResultRequest, Deposit, MsgDepositResponse };
+type sendMsgVoteWeightedResponseParams = {
+    value: MsgVoteWeightedResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryDepositsResponseParams = {
-    value: QueryDepositsResponse;
+type sendQueryVotesResponseParams = {
+    value: QueryVotesResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendProposalParams = {
-    value: Proposal;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryDepositsRequestParams = {
-    value: QueryDepositsRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgExecLegacyContentParams = {
-    value: MsgExecLegacyContent;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryVoteRequestParams = {
-    value: QueryVoteRequest;
+type sendQueryDepositResponseParams = {
+    value: QueryDepositResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -80,63 +65,13 @@ type sendQueryVoteResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryParamsResponseParams = {
-    value: QueryParamsResponse;
+type sendQueryVotesRequestParams = {
+    value: QueryVotesRequest;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryConstitutionRequestParams = {
-    value: QueryConstitutionRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryProposalRequestParams = {
-    value: QueryProposalRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryParamsRequestParams = {
-    value: QueryParamsRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendDepositParams = {
-    value: Deposit;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgSubmitProposalResponseParams = {
-    value: MsgSubmitProposalResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgVoteResponseParams = {
-    value: MsgVoteResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryProposalsResponseParams = {
-    value: QueryProposalsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryTallyResultResponseParams = {
-    value: QueryTallyResultResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendDepositParamsParams = {
-    value: DepositParams;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgDepositResponseParams = {
-    value: MsgDepositResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryDepositRequestParams = {
-    value: QueryDepositRequest;
+type sendQueryDepositsRequestParams = {
+    value: QueryDepositsRequest;
     fee?: StdFee;
     memo?: string;
 };
@@ -145,33 +80,43 @@ type sendGenesisStateParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryConstitutionResponseParams = {
-    value: QueryConstitutionResponse;
+type sendProposalParams = {
+    value: Proposal;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryProposalResponseParams = {
-    value: QueryProposalResponse;
+type sendQueryDepositsResponseParams = {
+    value: QueryDepositsResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryVotesRequestParams = {
-    value: QueryVotesRequest;
+type sendQueryTallyResultResponseParams = {
+    value: QueryTallyResultResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendVotingParamsParams = {
-    value: VotingParams;
+type sendMsgVoteResponseParams = {
+    value: MsgVoteResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgVoteWeightedResponseParams = {
-    value: MsgVoteWeightedResponse;
+type sendMsgUpdateParamsParams = {
+    value: MsgUpdateParams;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryVotesResponseParams = {
-    value: QueryVotesResponse;
+type sendParamsParams = {
+    value: Params;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryDepositRequestParams = {
+    value: QueryDepositRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgSubmitProposalResponseParams = {
+    value: MsgSubmitProposalResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -185,8 +130,13 @@ type sendMsgDepositParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryDepositResponseParams = {
-    value: QueryDepositResponse;
+type sendMsgExecLegacyContentResponseParams = {
+    value: MsgExecLegacyContentResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryConstitutionResponseParams = {
+    value: QueryConstitutionResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -195,8 +145,63 @@ type sendVoteParams = {
     fee?: StdFee;
     memo?: string;
 };
+type sendMsgUpdateParamsResponseParams = {
+    value: MsgUpdateParamsResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryProposalRequestParams = {
+    value: QueryProposalRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryVoteRequestParams = {
+    value: QueryVoteRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendDepositParamsParams = {
+    value: DepositParams;
+    fee?: StdFee;
+    memo?: string;
+};
 type sendMsgSubmitProposalParams = {
     value: MsgSubmitProposal;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgCancelProposalParams = {
+    value: MsgCancelProposal;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryConstitutionRequestParams = {
+    value: QueryConstitutionRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryProposalsResponseParams = {
+    value: QueryProposalsResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryProposalResponseParams = {
+    value: QueryProposalResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendTallyResultParams = {
+    value: TallyResult;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgVoteParams = {
+    value: MsgVote;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgCancelProposalResponseParams = {
+    value: MsgCancelProposalResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -205,18 +210,28 @@ type sendWeightedVoteOptionParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendParamsParams = {
-    value: Params;
+type sendQueryParamsResponseParams = {
+    value: QueryParamsResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgUpdateParamsParams = {
-    value: MsgUpdateParams;
+type sendVotingParamsParams = {
+    value: VotingParams;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgUpdateParamsResponseParams = {
-    value: MsgUpdateParamsResponse;
+type sendTallyParamsParams = {
+    value: TallyParams;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgExecLegacyContentParams = {
+    value: MsgExecLegacyContent;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryParamsRequestParams = {
+    value: QueryParamsRequest;
     fee?: StdFee;
     memo?: string;
 };
@@ -230,102 +245,15 @@ type sendQueryTallyResultRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendTallyResultParams = {
-    value: TallyResult;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendTallyParamsParams = {
-    value: TallyParams;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgExecLegacyContentResponseParams = {
-    value: MsgExecLegacyContentResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgCancelProposalParams = {
-    value: MsgCancelProposal;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgCancelProposalResponseParams = {
-    value: MsgCancelProposalResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type msgVoteParams = {
-    value: MsgVote;
-};
-type queryDepositsResponseParams = {
-    value: QueryDepositsResponse;
-};
-type proposalParams = {
-    value: Proposal;
-};
-type queryDepositsRequestParams = {
-    value: QueryDepositsRequest;
-};
-type msgExecLegacyContentParams = {
-    value: MsgExecLegacyContent;
-};
-type queryVoteRequestParams = {
-    value: QueryVoteRequest;
-};
-type queryVoteResponseParams = {
-    value: QueryVoteResponse;
-};
-type queryParamsResponseParams = {
-    value: QueryParamsResponse;
-};
-type queryConstitutionRequestParams = {
-    value: QueryConstitutionRequest;
-};
-type queryProposalRequestParams = {
-    value: QueryProposalRequest;
-};
-type queryParamsRequestParams = {
-    value: QueryParamsRequest;
-};
-type depositParams = {
+type sendDepositParams = {
     value: Deposit;
+    fee?: StdFee;
+    memo?: string;
 };
-type msgSubmitProposalResponseParams = {
-    value: MsgSubmitProposalResponse;
-};
-type msgVoteResponseParams = {
-    value: MsgVoteResponse;
-};
-type queryProposalsResponseParams = {
-    value: QueryProposalsResponse;
-};
-type queryTallyResultResponseParams = {
-    value: QueryTallyResultResponse;
-};
-type depositParamsParams = {
-    value: DepositParams;
-};
-type msgDepositResponseParams = {
+type sendMsgDepositResponseParams = {
     value: MsgDepositResponse;
-};
-type queryDepositRequestParams = {
-    value: QueryDepositRequest;
-};
-type genesisStateParams = {
-    value: GenesisState;
-};
-type queryConstitutionResponseParams = {
-    value: QueryConstitutionResponse;
-};
-type queryProposalResponseParams = {
-    value: QueryProposalResponse;
-};
-type queryVotesRequestParams = {
-    value: QueryVotesRequest;
-};
-type votingParamsParams = {
-    value: VotingParams;
+    fee?: StdFee;
+    memo?: string;
 };
 type msgVoteWeightedResponseParams = {
     value: MsgVoteWeightedResponse;
@@ -333,32 +261,113 @@ type msgVoteWeightedResponseParams = {
 type queryVotesResponseParams = {
     value: QueryVotesResponse;
 };
+type queryDepositResponseParams = {
+    value: QueryDepositResponse;
+};
+type queryVoteResponseParams = {
+    value: QueryVoteResponse;
+};
+type queryVotesRequestParams = {
+    value: QueryVotesRequest;
+};
+type queryDepositsRequestParams = {
+    value: QueryDepositsRequest;
+};
+type genesisStateParams = {
+    value: GenesisState;
+};
+type proposalParams = {
+    value: Proposal;
+};
+type queryDepositsResponseParams = {
+    value: QueryDepositsResponse;
+};
+type queryTallyResultResponseParams = {
+    value: QueryTallyResultResponse;
+};
+type msgVoteResponseParams = {
+    value: MsgVoteResponse;
+};
+type msgUpdateParamsParams = {
+    value: MsgUpdateParams;
+};
+type paramsParams = {
+    value: Params;
+};
+type queryDepositRequestParams = {
+    value: QueryDepositRequest;
+};
+type msgSubmitProposalResponseParams = {
+    value: MsgSubmitProposalResponse;
+};
 type msgVoteWeightedParams = {
     value: MsgVoteWeighted;
 };
 type msgDepositParams = {
     value: MsgDeposit;
 };
-type queryDepositResponseParams = {
-    value: QueryDepositResponse;
+type msgExecLegacyContentResponseParams = {
+    value: MsgExecLegacyContentResponse;
+};
+type queryConstitutionResponseParams = {
+    value: QueryConstitutionResponse;
 };
 type voteParams = {
     value: Vote;
 };
+type msgUpdateParamsResponseParams = {
+    value: MsgUpdateParamsResponse;
+};
+type queryProposalRequestParams = {
+    value: QueryProposalRequest;
+};
+type queryVoteRequestParams = {
+    value: QueryVoteRequest;
+};
+type depositParamsParams = {
+    value: DepositParams;
+};
 type msgSubmitProposalParams = {
     value: MsgSubmitProposal;
+};
+type msgCancelProposalParams = {
+    value: MsgCancelProposal;
+};
+type queryConstitutionRequestParams = {
+    value: QueryConstitutionRequest;
+};
+type queryProposalsResponseParams = {
+    value: QueryProposalsResponse;
+};
+type queryProposalResponseParams = {
+    value: QueryProposalResponse;
+};
+type tallyResultParams = {
+    value: TallyResult;
+};
+type msgVoteParams = {
+    value: MsgVote;
+};
+type msgCancelProposalResponseParams = {
+    value: MsgCancelProposalResponse;
 };
 type weightedVoteOptionParams = {
     value: WeightedVoteOption;
 };
-type paramsParams = {
-    value: Params;
+type queryParamsResponseParams = {
+    value: QueryParamsResponse;
 };
-type msgUpdateParamsParams = {
-    value: MsgUpdateParams;
+type votingParamsParams = {
+    value: VotingParams;
 };
-type msgUpdateParamsResponseParams = {
-    value: MsgUpdateParamsResponse;
+type tallyParamsParams = {
+    value: TallyParams;
+};
+type msgExecLegacyContentParams = {
+    value: MsgExecLegacyContent;
+};
+type queryParamsRequestParams = {
+    value: QueryParamsRequest;
 };
 type queryProposalsRequestParams = {
     value: QueryProposalsRequest;
@@ -366,20 +375,11 @@ type queryProposalsRequestParams = {
 type queryTallyResultRequestParams = {
     value: QueryTallyResultRequest;
 };
-type tallyResultParams = {
-    value: TallyResult;
+type depositParams = {
+    value: Deposit;
 };
-type tallyParamsParams = {
-    value: TallyParams;
-};
-type msgExecLegacyContentResponseParams = {
-    value: MsgExecLegacyContentResponse;
-};
-type msgCancelProposalParams = {
-    value: MsgCancelProposal;
-};
-type msgCancelProposalResponseParams = {
-    value: MsgCancelProposalResponse;
+type msgDepositResponseParams = {
+    value: MsgDepositResponse;
 };
 export declare const registry: any;
 interface TxClientOptions {
@@ -388,90 +388,90 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendMsgVote({ value, fee, memo }: sendMsgVoteParams): Promise<DeliverTxResponse>;
-    sendQueryDepositsResponse({ value, fee, memo }: sendQueryDepositsResponseParams): Promise<DeliverTxResponse>;
-    sendProposal({ value, fee, memo }: sendProposalParams): Promise<DeliverTxResponse>;
-    sendQueryDepositsRequest({ value, fee, memo }: sendQueryDepositsRequestParams): Promise<DeliverTxResponse>;
-    sendMsgExecLegacyContent({ value, fee, memo }: sendMsgExecLegacyContentParams): Promise<DeliverTxResponse>;
-    sendQueryVoteRequest({ value, fee, memo }: sendQueryVoteRequestParams): Promise<DeliverTxResponse>;
-    sendQueryVoteResponse({ value, fee, memo }: sendQueryVoteResponseParams): Promise<DeliverTxResponse>;
-    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
-    sendQueryConstitutionRequest({ value, fee, memo }: sendQueryConstitutionRequestParams): Promise<DeliverTxResponse>;
-    sendQueryProposalRequest({ value, fee, memo }: sendQueryProposalRequestParams): Promise<DeliverTxResponse>;
-    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
-    sendDeposit({ value, fee, memo }: sendDepositParams): Promise<DeliverTxResponse>;
-    sendMsgSubmitProposalResponse({ value, fee, memo }: sendMsgSubmitProposalResponseParams): Promise<DeliverTxResponse>;
-    sendMsgVoteResponse({ value, fee, memo }: sendMsgVoteResponseParams): Promise<DeliverTxResponse>;
-    sendQueryProposalsResponse({ value, fee, memo }: sendQueryProposalsResponseParams): Promise<DeliverTxResponse>;
-    sendQueryTallyResultResponse({ value, fee, memo }: sendQueryTallyResultResponseParams): Promise<DeliverTxResponse>;
-    sendDepositParams({ value, fee, memo }: sendDepositParamsParams): Promise<DeliverTxResponse>;
-    sendMsgDepositResponse({ value, fee, memo }: sendMsgDepositResponseParams): Promise<DeliverTxResponse>;
-    sendQueryDepositRequest({ value, fee, memo }: sendQueryDepositRequestParams): Promise<DeliverTxResponse>;
-    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
-    sendQueryConstitutionResponse({ value, fee, memo }: sendQueryConstitutionResponseParams): Promise<DeliverTxResponse>;
-    sendQueryProposalResponse({ value, fee, memo }: sendQueryProposalResponseParams): Promise<DeliverTxResponse>;
-    sendQueryVotesRequest({ value, fee, memo }: sendQueryVotesRequestParams): Promise<DeliverTxResponse>;
-    sendVotingParams({ value, fee, memo }: sendVotingParamsParams): Promise<DeliverTxResponse>;
     sendMsgVoteWeightedResponse({ value, fee, memo }: sendMsgVoteWeightedResponseParams): Promise<DeliverTxResponse>;
     sendQueryVotesResponse({ value, fee, memo }: sendQueryVotesResponseParams): Promise<DeliverTxResponse>;
+    sendQueryDepositResponse({ value, fee, memo }: sendQueryDepositResponseParams): Promise<DeliverTxResponse>;
+    sendQueryVoteResponse({ value, fee, memo }: sendQueryVoteResponseParams): Promise<DeliverTxResponse>;
+    sendQueryVotesRequest({ value, fee, memo }: sendQueryVotesRequestParams): Promise<DeliverTxResponse>;
+    sendQueryDepositsRequest({ value, fee, memo }: sendQueryDepositsRequestParams): Promise<DeliverTxResponse>;
+    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
+    sendProposal({ value, fee, memo }: sendProposalParams): Promise<DeliverTxResponse>;
+    sendQueryDepositsResponse({ value, fee, memo }: sendQueryDepositsResponseParams): Promise<DeliverTxResponse>;
+    sendQueryTallyResultResponse({ value, fee, memo }: sendQueryTallyResultResponseParams): Promise<DeliverTxResponse>;
+    sendMsgVoteResponse({ value, fee, memo }: sendMsgVoteResponseParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
+    sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
+    sendQueryDepositRequest({ value, fee, memo }: sendQueryDepositRequestParams): Promise<DeliverTxResponse>;
+    sendMsgSubmitProposalResponse({ value, fee, memo }: sendMsgSubmitProposalResponseParams): Promise<DeliverTxResponse>;
     sendMsgVoteWeighted({ value, fee, memo }: sendMsgVoteWeightedParams): Promise<DeliverTxResponse>;
     sendMsgDeposit({ value, fee, memo }: sendMsgDepositParams): Promise<DeliverTxResponse>;
-    sendQueryDepositResponse({ value, fee, memo }: sendQueryDepositResponseParams): Promise<DeliverTxResponse>;
+    sendMsgExecLegacyContentResponse({ value, fee, memo }: sendMsgExecLegacyContentResponseParams): Promise<DeliverTxResponse>;
+    sendQueryConstitutionResponse({ value, fee, memo }: sendQueryConstitutionResponseParams): Promise<DeliverTxResponse>;
     sendVote({ value, fee, memo }: sendVoteParams): Promise<DeliverTxResponse>;
-    sendMsgSubmitProposal({ value, fee, memo }: sendMsgSubmitProposalParams): Promise<DeliverTxResponse>;
-    sendWeightedVoteOption({ value, fee, memo }: sendWeightedVoteOptionParams): Promise<DeliverTxResponse>;
-    sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
     sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
+    sendQueryProposalRequest({ value, fee, memo }: sendQueryProposalRequestParams): Promise<DeliverTxResponse>;
+    sendQueryVoteRequest({ value, fee, memo }: sendQueryVoteRequestParams): Promise<DeliverTxResponse>;
+    sendDepositParams({ value, fee, memo }: sendDepositParamsParams): Promise<DeliverTxResponse>;
+    sendMsgSubmitProposal({ value, fee, memo }: sendMsgSubmitProposalParams): Promise<DeliverTxResponse>;
+    sendMsgCancelProposal({ value, fee, memo }: sendMsgCancelProposalParams): Promise<DeliverTxResponse>;
+    sendQueryConstitutionRequest({ value, fee, memo }: sendQueryConstitutionRequestParams): Promise<DeliverTxResponse>;
+    sendQueryProposalsResponse({ value, fee, memo }: sendQueryProposalsResponseParams): Promise<DeliverTxResponse>;
+    sendQueryProposalResponse({ value, fee, memo }: sendQueryProposalResponseParams): Promise<DeliverTxResponse>;
+    sendTallyResult({ value, fee, memo }: sendTallyResultParams): Promise<DeliverTxResponse>;
+    sendMsgVote({ value, fee, memo }: sendMsgVoteParams): Promise<DeliverTxResponse>;
+    sendMsgCancelProposalResponse({ value, fee, memo }: sendMsgCancelProposalResponseParams): Promise<DeliverTxResponse>;
+    sendWeightedVoteOption({ value, fee, memo }: sendWeightedVoteOptionParams): Promise<DeliverTxResponse>;
+    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
+    sendVotingParams({ value, fee, memo }: sendVotingParamsParams): Promise<DeliverTxResponse>;
+    sendTallyParams({ value, fee, memo }: sendTallyParamsParams): Promise<DeliverTxResponse>;
+    sendMsgExecLegacyContent({ value, fee, memo }: sendMsgExecLegacyContentParams): Promise<DeliverTxResponse>;
+    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
     sendQueryProposalsRequest({ value, fee, memo }: sendQueryProposalsRequestParams): Promise<DeliverTxResponse>;
     sendQueryTallyResultRequest({ value, fee, memo }: sendQueryTallyResultRequestParams): Promise<DeliverTxResponse>;
-    sendTallyResult({ value, fee, memo }: sendTallyResultParams): Promise<DeliverTxResponse>;
-    sendTallyParams({ value, fee, memo }: sendTallyParamsParams): Promise<DeliverTxResponse>;
-    sendMsgExecLegacyContentResponse({ value, fee, memo }: sendMsgExecLegacyContentResponseParams): Promise<DeliverTxResponse>;
-    sendMsgCancelProposal({ value, fee, memo }: sendMsgCancelProposalParams): Promise<DeliverTxResponse>;
-    sendMsgCancelProposalResponse({ value, fee, memo }: sendMsgCancelProposalResponseParams): Promise<DeliverTxResponse>;
-    msgVote({ value }: msgVoteParams): EncodeObject;
-    queryDepositsResponse({ value }: queryDepositsResponseParams): EncodeObject;
-    proposal({ value }: proposalParams): EncodeObject;
-    queryDepositsRequest({ value }: queryDepositsRequestParams): EncodeObject;
-    msgExecLegacyContent({ value }: msgExecLegacyContentParams): EncodeObject;
-    queryVoteRequest({ value }: queryVoteRequestParams): EncodeObject;
-    queryVoteResponse({ value }: queryVoteResponseParams): EncodeObject;
-    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
-    queryConstitutionRequest({ value }: queryConstitutionRequestParams): EncodeObject;
-    queryProposalRequest({ value }: queryProposalRequestParams): EncodeObject;
-    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
-    deposit({ value }: depositParams): EncodeObject;
-    msgSubmitProposalResponse({ value }: msgSubmitProposalResponseParams): EncodeObject;
-    msgVoteResponse({ value }: msgVoteResponseParams): EncodeObject;
-    queryProposalsResponse({ value }: queryProposalsResponseParams): EncodeObject;
-    queryTallyResultResponse({ value }: queryTallyResultResponseParams): EncodeObject;
-    depositParams({ value }: depositParamsParams): EncodeObject;
-    msgDepositResponse({ value }: msgDepositResponseParams): EncodeObject;
-    queryDepositRequest({ value }: queryDepositRequestParams): EncodeObject;
-    genesisState({ value }: genesisStateParams): EncodeObject;
-    queryConstitutionResponse({ value }: queryConstitutionResponseParams): EncodeObject;
-    queryProposalResponse({ value }: queryProposalResponseParams): EncodeObject;
-    queryVotesRequest({ value }: queryVotesRequestParams): EncodeObject;
-    votingParams({ value }: votingParamsParams): EncodeObject;
+    sendDeposit({ value, fee, memo }: sendDepositParams): Promise<DeliverTxResponse>;
+    sendMsgDepositResponse({ value, fee, memo }: sendMsgDepositResponseParams): Promise<DeliverTxResponse>;
     msgVoteWeightedResponse({ value }: msgVoteWeightedResponseParams): EncodeObject;
     queryVotesResponse({ value }: queryVotesResponseParams): EncodeObject;
+    queryDepositResponse({ value }: queryDepositResponseParams): EncodeObject;
+    queryVoteResponse({ value }: queryVoteResponseParams): EncodeObject;
+    queryVotesRequest({ value }: queryVotesRequestParams): EncodeObject;
+    queryDepositsRequest({ value }: queryDepositsRequestParams): EncodeObject;
+    genesisState({ value }: genesisStateParams): EncodeObject;
+    proposal({ value }: proposalParams): EncodeObject;
+    queryDepositsResponse({ value }: queryDepositsResponseParams): EncodeObject;
+    queryTallyResultResponse({ value }: queryTallyResultResponseParams): EncodeObject;
+    msgVoteResponse({ value }: msgVoteResponseParams): EncodeObject;
+    msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
+    params({ value }: paramsParams): EncodeObject;
+    queryDepositRequest({ value }: queryDepositRequestParams): EncodeObject;
+    msgSubmitProposalResponse({ value }: msgSubmitProposalResponseParams): EncodeObject;
     msgVoteWeighted({ value }: msgVoteWeightedParams): EncodeObject;
     msgDeposit({ value }: msgDepositParams): EncodeObject;
-    queryDepositResponse({ value }: queryDepositResponseParams): EncodeObject;
+    msgExecLegacyContentResponse({ value }: msgExecLegacyContentResponseParams): EncodeObject;
+    queryConstitutionResponse({ value }: queryConstitutionResponseParams): EncodeObject;
     vote({ value }: voteParams): EncodeObject;
-    msgSubmitProposal({ value }: msgSubmitProposalParams): EncodeObject;
-    weightedVoteOption({ value }: weightedVoteOptionParams): EncodeObject;
-    params({ value }: paramsParams): EncodeObject;
-    msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
     msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
+    queryProposalRequest({ value }: queryProposalRequestParams): EncodeObject;
+    queryVoteRequest({ value }: queryVoteRequestParams): EncodeObject;
+    depositParams({ value }: depositParamsParams): EncodeObject;
+    msgSubmitProposal({ value }: msgSubmitProposalParams): EncodeObject;
+    msgCancelProposal({ value }: msgCancelProposalParams): EncodeObject;
+    queryConstitutionRequest({ value }: queryConstitutionRequestParams): EncodeObject;
+    queryProposalsResponse({ value }: queryProposalsResponseParams): EncodeObject;
+    queryProposalResponse({ value }: queryProposalResponseParams): EncodeObject;
+    tallyResult({ value }: tallyResultParams): EncodeObject;
+    msgVote({ value }: msgVoteParams): EncodeObject;
+    msgCancelProposalResponse({ value }: msgCancelProposalResponseParams): EncodeObject;
+    weightedVoteOption({ value }: weightedVoteOptionParams): EncodeObject;
+    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
+    votingParams({ value }: votingParamsParams): EncodeObject;
+    tallyParams({ value }: tallyParamsParams): EncodeObject;
+    msgExecLegacyContent({ value }: msgExecLegacyContentParams): EncodeObject;
+    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
     queryProposalsRequest({ value }: queryProposalsRequestParams): EncodeObject;
     queryTallyResultRequest({ value }: queryTallyResultRequestParams): EncodeObject;
-    tallyResult({ value }: tallyResultParams): EncodeObject;
-    tallyParams({ value }: tallyParamsParams): EncodeObject;
-    msgExecLegacyContentResponse({ value }: msgExecLegacyContentResponseParams): EncodeObject;
-    msgCancelProposal({ value }: msgCancelProposalParams): EncodeObject;
-    msgCancelProposalResponse({ value }: msgCancelProposalResponseParams): EncodeObject;
+    deposit({ value }: depositParams): EncodeObject;
+    msgDepositResponse({ value }: msgDepositResponseParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

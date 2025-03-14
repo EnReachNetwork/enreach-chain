@@ -3,8 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.QueryClientImpl = exports.QueryServiceName = exports.QueryGetManagerByRegionResponse = exports.QueryGetManagerByRegionRequest = exports.QueryAllManagerResponse = exports.QueryAllManagerRequest = exports.QueryGetManagerResponse = exports.QueryGetManagerRequest = exports.QueryAllOperatorResponse = exports.QueryAllOperatorRequest = exports.QueryGetOperatorResponse = exports.QueryGetOperatorRequest = exports.QueryParamsResponse = exports.QueryParamsRequest = exports.protobufPackage = void 0;
+exports.QueryClientImpl = exports.QueryServiceName = exports.QueryGetCurrentEpochResponse = exports.QueryGetCurrentEpochRequest = exports.QueryGetEpochLengthResponse = exports.QueryGetEpochLengthRequest = exports.QueryGetManagerByRegionResponse = exports.QueryGetManagerByRegionRequest = exports.QueryAllManagerResponse = exports.QueryAllManagerRequest = exports.QueryGetManagerResponse = exports.QueryGetManagerRequest = exports.QueryAllOperatorResponse = exports.QueryAllOperatorRequest = exports.QueryGetOperatorResponse = exports.QueryGetOperatorRequest = exports.QueryParamsResponse = exports.QueryParamsRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
+const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const pagination_1 = require("../../cosmos/base/query/v1beta1/pagination");
 const manager_1 = require("./manager");
@@ -644,6 +645,180 @@ exports.QueryGetManagerByRegionResponse = {
         return message;
     },
 };
+function createBaseQueryGetEpochLengthRequest() {
+    return {};
+}
+exports.QueryGetEpochLengthRequest = {
+    encode(_, writer = minimal_1.default.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetEpochLengthRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(_) {
+        return {};
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetEpochLengthRequest.fromPartial(base ?? {});
+    },
+    fromPartial(_) {
+        const message = createBaseQueryGetEpochLengthRequest();
+        return message;
+    },
+};
+function createBaseQueryGetEpochLengthResponse() {
+    return { epochLength: 0 };
+}
+exports.QueryGetEpochLengthResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.epochLength !== 0) {
+            writer.uint32(8).uint64(message.epochLength);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetEpochLengthResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 8) {
+                        break;
+                    }
+                    message.epochLength = longToNumber(reader.uint64());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { epochLength: isSet(object.epochLength) ? Number(object.epochLength) : 0 };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.epochLength !== 0) {
+            obj.epochLength = Math.round(message.epochLength);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetEpochLengthResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetEpochLengthResponse();
+        message.epochLength = object.epochLength ?? 0;
+        return message;
+    },
+};
+function createBaseQueryGetCurrentEpochRequest() {
+    return {};
+}
+exports.QueryGetCurrentEpochRequest = {
+    encode(_, writer = minimal_1.default.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetCurrentEpochRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(_) {
+        return {};
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetCurrentEpochRequest.fromPartial(base ?? {});
+    },
+    fromPartial(_) {
+        const message = createBaseQueryGetCurrentEpochRequest();
+        return message;
+    },
+};
+function createBaseQueryGetCurrentEpochResponse() {
+    return { currentEpoch: 0 };
+}
+exports.QueryGetCurrentEpochResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.currentEpoch !== 0) {
+            writer.uint32(8).uint64(message.currentEpoch);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetCurrentEpochResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 8) {
+                        break;
+                    }
+                    message.currentEpoch = longToNumber(reader.uint64());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { currentEpoch: isSet(object.currentEpoch) ? Number(object.currentEpoch) : 0 };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.currentEpoch !== 0) {
+            obj.currentEpoch = Math.round(message.currentEpoch);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetCurrentEpochResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetCurrentEpochResponse();
+        message.currentEpoch = object.currentEpoch ?? 0;
+        return message;
+    },
+};
 exports.QueryServiceName = "enreach.manager.Query";
 class QueryClientImpl {
     constructor(rpc, opts) {
@@ -655,6 +830,8 @@ class QueryClientImpl {
         this.Manager = this.Manager.bind(this);
         this.ManagerAll = this.ManagerAll.bind(this);
         this.GetManagerByRegion = this.GetManagerByRegion.bind(this);
+        this.GetEpochLength = this.GetEpochLength.bind(this);
+        this.GetCurrentEpoch = this.GetCurrentEpoch.bind(this);
     }
     Params(request) {
         const data = exports.QueryParamsRequest.encode(request).finish();
@@ -686,8 +863,43 @@ class QueryClientImpl {
         const promise = this.rpc.request(this.service, "GetManagerByRegion", data);
         return promise.then((data) => exports.QueryGetManagerByRegionResponse.decode(minimal_1.default.Reader.create(data)));
     }
+    GetEpochLength(request) {
+        const data = exports.QueryGetEpochLengthRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "GetEpochLength", data);
+        return promise.then((data) => exports.QueryGetEpochLengthResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    GetCurrentEpoch(request) {
+        const data = exports.QueryGetCurrentEpochRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "GetCurrentEpoch", data);
+        return promise.then((data) => exports.QueryGetCurrentEpochResponse.decode(minimal_1.default.Reader.create(data)));
+    }
 }
 exports.QueryClientImpl = QueryClientImpl;
+const tsProtoGlobalThis = (() => {
+    if (typeof globalThis !== "undefined") {
+        return globalThis;
+    }
+    if (typeof self !== "undefined") {
+        return self;
+    }
+    if (typeof window !== "undefined") {
+        return window;
+    }
+    if (typeof global !== "undefined") {
+        return global;
+    }
+    throw "Unable to locate global object";
+})();
+function longToNumber(long) {
+    if (long.gt(Number.MAX_SAFE_INTEGER)) {
+        throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    }
+    return long.toNumber();
+}
+if (minimal_1.default.util.Long !== long_1.default) {
+    minimal_1.default.util.Long = long_1.default;
+    minimal_1.default.configure();
+}
 function isSet(value) {
     return value !== null && value !== undefined;
 }
