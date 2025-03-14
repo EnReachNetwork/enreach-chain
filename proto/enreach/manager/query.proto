@@ -46,6 +46,16 @@ service Query {
     option (google.api.http).get = "/enreach/manager/get_manager_by_region/{regionCode}";
   
   }
+
+  // Queries epoch
+  rpc GetEpochLength    (QueryGetEpochLengthRequest) returns (QueryGetEpochLengthResponse) {
+    option (google.api.http).get = "/enreach/manager/epoch/length";
+  
+  }
+  rpc GetCurrentEpoch    (QueryGetCurrentEpochRequest) returns (QueryGetCurrentEpochResponse) {
+    option (google.api.http).get = "/enreach/manager/epoch/currentepoch";
+  
+  }
   
 }
 // QueryParamsRequest is request type for the Query/Params RPC method.
@@ -99,4 +109,18 @@ message QueryGetManagerByRegionRequest {
 
 message QueryGetManagerByRegionResponse {
   repeated Manager managers = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetEpochLengthRequest {
+}
+
+message QueryGetEpochLengthResponse {
+  uint64 epochLength = 1;
+}
+
+message QueryGetCurrentEpochRequest {
+}
+
+message QueryGetCurrentEpochResponse {
+  uint64 currentEpoch = 1;
 }

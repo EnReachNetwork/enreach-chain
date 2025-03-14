@@ -9195,371 +9195,176 @@ paths:
               Since: cosmos-sdk 0.47
       tags:
         - Msg
-  /enreach.edgenode.Msg/BindAndActivateNode:
-    post:
-      operationId: EnreachEdgenodeMsg_BindAndActivateNode
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              signer:
-                type: string
-              nodeID:
-                type: string
-              userID:
-                type: string
-              nodeName:
-                type: string
-              regionCode:
-                type: string
-      tags:
-        - Msg
-  /enreach.edgenode.Msg/BindUserEVMAccount:
-    post:
-      operationId: EnreachEdgenodeMsg_BindUserEVMAccount
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              signer:
-                type: string
-              userID:
-                type: string
-              evmAccount:
-                type: string
-              evmPubkey:
-                type: string
-                format: byte
-              evmSignature:
-                type: string
-                format: byte
-      tags:
-        - Msg
-  /enreach.edgenode.Msg/CreateSuperior:
-    post:
-      operationId: EnreachEdgenodeMsg_CreateSuperior
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              signer:
-                type: string
-              account:
-                type: string
-      tags:
-        - Msg
-  /enreach.edgenode.Msg/CreateUser:
-    post:
-      operationId: EnreachEdgenodeMsg_CreateUser
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              signer:
-                type: string
-              userID:
-                type: string
-      tags:
-        - Msg
-  /enreach.edgenode.Msg/RegisterNode:
-    post:
-      operationId: EnreachEdgenodeMsg_RegisterNode
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              signer:
-                type: string
-              nodeID:
-                type: string
-              deviceType:
-                type: string
-      tags:
-        - Msg
-  /enreach.edgenode.Msg/UnbindNode:
-    post:
-      operationId: EnreachEdgenodeMsg_UnbindNode
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              signer:
-                type: string
-              nodeID:
-                type: string
-              userID:
-                type: string
-      tags:
-        - Msg
-  /enreach.edgenode.Msg/UpdateParams:
-    post:
-      summary: |-
-        UpdateParams defines a (governance) operation for updating the module
-        parameters. The authority defaults to the x/gov module account.
-      operationId: EnreachEdgenodeMsg_UpdateParams
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            description: >-
-              MsgUpdateParamsResponse defines the response structure for
-              executing a
-
-              MsgUpdateParams message.
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          description: MsgUpdateParams is the Msg/UpdateParams request type.
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              authority:
-                type: string
-                description: >-
-                  authority is the address that controls the module (defaults to
-                  x/gov unless overwritten).
-              params:
-                description: 'NOTE: All parameters must be supplied.'
-                type: object
-            description: MsgUpdateParams is the Msg/UpdateParams request type.
-      tags:
-        - Msg
-  /enreach.edgenode.Msg/UpdateSuperior:
-    post:
-      operationId: EnreachEdgenodeMsg_UpdateSuperior
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              signer:
-                type: string
-              account:
-                type: string
-      tags:
-        - Msg
-  /enreach/edgenode/node/{nodeID}:
+  /enreach/manager/epoch/currentepoch:
     get:
-      summary: Queries a list of Node items.
-      operationId: EnreachEdgenodeQuery_Node
+      operationId: EnreachManagerQuery_GetCurrentEpoch
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
             properties:
-              Node:
+              currentEpoch:
+                type: string
+                format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
+  /enreach/manager/epoch/length:
+    get:
+      summary: Queries epoch
+      operationId: EnreachManagerQuery_GetEpochLength
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              epochLength:
+                type: string
+                format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
+  /enreach/manager/get_manager_by_region/{regionCode}:
+    get:
+      summary: Queries a list of GetManagerByRegion items.
+      operationId: EnreachManagerQuery_GetManagerByRegion
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              managers:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    managerAccount:
+                      type: string
+                    operatorAccount:
+                      type: string
+                    hostAddress:
+                      type: string
+                    managerPort:
+                      type: integer
+                      format: int64
+                    trackerPort:
+                      type: integer
+                      format: int64
+                    chainAPIPort:
+                      type: integer
+                      format: int64
+                    chainRPCPort:
+                      type: integer
+                      format: int64
+                    regionCode:
+                      type: string
+                    registerStatus:
+                      type: string
+                    workingStatus:
+                      type: string
+                    creator:
+                      type: string
+                    createAt:
+                      type: string
+                      format: uint64
+                    updator:
+                      type: string
+                    updateAt:
+                      type: string
+                      format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: regionCode
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /enreach/manager/manager/{managerAccount}:
+    get:
+      summary: Queries a list of Manager items.
+      operationId: EnreachManagerQuery_Manager
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              Manager:
                 type: object
                 properties:
-                  nodeID:
+                  managerAccount:
                     type: string
-                  userID:
+                  operatorAccount:
                     type: string
-                  nodeName:
+                  hostAddress:
                     type: string
-                  deviceType:
-                    type: string
+                  managerPort:
+                    type: integer
+                    format: int64
+                  trackerPort:
+                    type: integer
+                    format: int64
+                  chainAPIPort:
+                    type: integer
+                    format: int64
+                  chainRPCPort:
+                    type: integer
+                    format: int64
                   regionCode:
                     type: string
                   registerStatus:
@@ -9595,34 +9400,44 @@ paths:
                       type: string
                   additionalProperties: {}
       parameters:
-        - name: nodeID
+        - name: managerAccount
           in: path
           required: true
           type: string
       tags:
         - Query
-  /enreach/edgenode/nodes:
+  /enreach/manager/managers:
     get:
-      operationId: EnreachEdgenodeQuery_NodeAll
+      operationId: EnreachManagerQuery_ManagerAll
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
             properties:
-              Node:
+              Manager:
                 type: array
                 items:
                   type: object
                   properties:
-                    nodeID:
+                    managerAccount:
                       type: string
-                    userID:
+                    operatorAccount:
                       type: string
-                    nodeName:
+                    hostAddress:
                       type: string
-                    deviceType:
-                      type: string
+                    managerPort:
+                      type: integer
+                      format: int64
+                    trackerPort:
+                      type: integer
+                      format: int64
+                    chainAPIPort:
+                      type: integer
+                      format: int64
+                    chainRPCPort:
+                      type: integer
+                      format: int64
                     regionCode:
                       type: string
                     registerStatus:
@@ -9744,103 +9559,30 @@ paths:
           type: boolean
       tags:
         - Query
-  /enreach/edgenode/params:
+  /enreach/manager/operator/{operatorAccount}:
     get:
-      summary: Parameters queries the parameters of the module.
-      operationId: EnreachEdgenodeQuery_Params
+      summary: Queries a list of Operator items.
+      operationId: EnreachManagerQuery_Operator
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
             properties:
-              params:
-                description: params holds all the parameters of this module.
-                type: object
-            description: >-
-              QueryParamsResponse is response type for the Query/Params RPC
-              method.
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      tags:
-        - Query
-  /enreach/edgenode/superior:
-    get:
-      summary: Queries a Superior by index.
-      operationId: EnreachEdgenodeQuery_Superior
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              Superior:
+              Operator:
                 type: object
                 properties:
-                  account:
+                  operatorAccount:
                     type: string
-                  creator:
-                    type: string
-                  createAt:
-                    type: string
-                    format: uint64
-                  updator:
-                    type: string
-                  updateAt:
-                    type: string
-                    format: uint64
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      tags:
-        - Query
-  /enreach/edgenode/user/{userID}:
-    get:
-      summary: Queries a list of User items.
-      operationId: EnreachEdgenodeQuery_User
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              User:
-                type: object
-                properties:
-                  userID:
+                  managerAccount:
                     type: string
                   evmAccount:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  websiteUrl:
                     type: string
                   creator:
                     type: string
@@ -9871,29 +9613,37 @@ paths:
                       type: string
                   additionalProperties: {}
       parameters:
-        - name: userID
+        - name: operatorAccount
           in: path
           required: true
           type: string
       tags:
         - Query
-  /enreach/edgenode/users:
+  /enreach/manager/operators:
     get:
-      operationId: EnreachEdgenodeQuery_UserAll
+      operationId: EnreachManagerQuery_OperatorAll
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
             properties:
-              User:
+              Operator:
                 type: array
                 items:
                   type: object
                   properties:
-                    userID:
+                    operatorAccount:
+                      type: string
+                    managerAccount:
                       type: string
                     evmAccount:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    websiteUrl:
                       type: string
                     creator:
                       type: string
@@ -10008,6 +9758,42 @@ paths:
           in: query
           required: false
           type: boolean
+      tags:
+        - Query
+  /enreach/manager/params:
+    get:
+      summary: Parameters queries the parameters of the module.
+      operationId: EnreachManagerQuery_Params
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              params:
+                description: params holds all the parameters of this module.
+                type: object
+            description: >-
+              QueryParamsResponse is response type for the Query/Params RPC
+              method.
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
       tags:
         - Query
   /enreach.manager.Msg/ActivateManager:
@@ -21463,107 +21249,6 @@ definitions:
           min_commission_rate is the chain-wide minimum commission rate that a
           validator can charge their delegators
     description: Params defines the parameters for the x/staking module.
-  enreach.edgenode.MsgBindAndActivateNode:
-    type: object
-    properties:
-      signer:
-        type: string
-      nodeID:
-        type: string
-      userID:
-        type: string
-      nodeName:
-        type: string
-      regionCode:
-        type: string
-  enreach.edgenode.MsgBindAndActivateNodeResponse:
-    type: object
-  enreach.edgenode.MsgBindUserEVMAccount:
-    type: object
-    properties:
-      signer:
-        type: string
-      userID:
-        type: string
-      evmAccount:
-        type: string
-      evmPubkey:
-        type: string
-        format: byte
-      evmSignature:
-        type: string
-        format: byte
-  enreach.edgenode.MsgBindUserEVMAccountResponse:
-    type: object
-  enreach.edgenode.MsgCreateSuperior:
-    type: object
-    properties:
-      signer:
-        type: string
-      account:
-        type: string
-  enreach.edgenode.MsgCreateSuperiorResponse:
-    type: object
-  enreach.edgenode.MsgCreateUser:
-    type: object
-    properties:
-      signer:
-        type: string
-      userID:
-        type: string
-  enreach.edgenode.MsgCreateUserResponse:
-    type: object
-  enreach.edgenode.MsgRegisterNode:
-    type: object
-    properties:
-      signer:
-        type: string
-      nodeID:
-        type: string
-      deviceType:
-        type: string
-  enreach.edgenode.MsgRegisterNodeResponse:
-    type: object
-  enreach.edgenode.MsgUnbindNode:
-    type: object
-    properties:
-      signer:
-        type: string
-      nodeID:
-        type: string
-      userID:
-        type: string
-  enreach.edgenode.MsgUnbindNodeResponse:
-    type: object
-  enreach.edgenode.MsgUpdateParams:
-    type: object
-    properties:
-      authority:
-        type: string
-        description: >-
-          authority is the address that controls the module (defaults to x/gov
-          unless overwritten).
-      params:
-        description: 'NOTE: All parameters must be supplied.'
-        type: object
-    description: MsgUpdateParams is the Msg/UpdateParams request type.
-  enreach.edgenode.MsgUpdateParamsResponse:
-    type: object
-    description: |-
-      MsgUpdateParamsResponse defines the response structure for executing a
-      MsgUpdateParams message.
-  enreach.edgenode.MsgUpdateSuperior:
-    type: object
-    properties:
-      signer:
-        type: string
-      account:
-        type: string
-  enreach.edgenode.MsgUpdateSuperiorResponse:
-    type: object
-  enreach.edgenode.Params:
-    type: object
-    description: Params defines the parameters for the module.
   cosmos.base.query.v1beta1.PageRequest:
     type: object
     properties:
@@ -21641,17 +21326,27 @@ definitions:
                repeated Bar results = 1;
                PageResponse page = 2;
        }
-  enreach.edgenode.Node:
+  enreach.manager.Manager:
     type: object
     properties:
-      nodeID:
+      managerAccount:
         type: string
-      userID:
+      operatorAccount:
         type: string
-      nodeName:
+      hostAddress:
         type: string
-      deviceType:
-        type: string
+      managerPort:
+        type: integer
+        format: int64
+      trackerPort:
+        type: integer
+        format: int64
+      chainAPIPort:
+        type: integer
+        format: int64
+      chainRPCPort:
+        type: integer
+        format: int64
       regionCode:
         type: string
       registerStatus:
@@ -21668,22 +21363,60 @@ definitions:
       updateAt:
         type: string
         format: uint64
-  enreach.edgenode.QueryAllNodeResponse:
+  enreach.manager.Operator:
     type: object
     properties:
-      Node:
+      operatorAccount:
+        type: string
+      managerAccount:
+        type: string
+      evmAccount:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      websiteUrl:
+        type: string
+      creator:
+        type: string
+      createAt:
+        type: string
+        format: uint64
+      updator:
+        type: string
+      updateAt:
+        type: string
+        format: uint64
+  enreach.manager.Params:
+    type: object
+    description: Params defines the parameters for the module.
+  enreach.manager.QueryAllManagerResponse:
+    type: object
+    properties:
+      Manager:
         type: array
         items:
           type: object
           properties:
-            nodeID:
+            managerAccount:
               type: string
-            userID:
+            operatorAccount:
               type: string
-            nodeName:
+            hostAddress:
               type: string
-            deviceType:
-              type: string
+            managerPort:
+              type: integer
+              format: int64
+            trackerPort:
+              type: integer
+              format: int64
+            chainAPIPort:
+              type: integer
+              format: int64
+            chainRPCPort:
+              type: integer
+              format: int64
             regionCode:
               type: string
             registerStatus:
@@ -21726,17 +21459,25 @@ definitions:
                    repeated Bar results = 1;
                    PageResponse page = 2;
            }
-  enreach.edgenode.QueryAllUserResponse:
+  enreach.manager.QueryAllOperatorResponse:
     type: object
     properties:
-      User:
+      Operator:
         type: array
         items:
           type: object
           properties:
-            userID:
+            operatorAccount:
+              type: string
+            managerAccount:
               type: string
             evmAccount:
+              type: string
+            name:
+              type: string
+            description:
+              type: string
+            websiteUrl:
               type: string
             creator:
               type: string
@@ -21774,20 +21515,84 @@ definitions:
                    repeated Bar results = 1;
                    PageResponse page = 2;
            }
-  enreach.edgenode.QueryGetNodeResponse:
+  enreach.manager.QueryGetCurrentEpochResponse:
     type: object
     properties:
-      Node:
+      currentEpoch:
+        type: string
+        format: uint64
+  enreach.manager.QueryGetEpochLengthResponse:
+    type: object
+    properties:
+      epochLength:
+        type: string
+        format: uint64
+  enreach.manager.QueryGetManagerByRegionResponse:
+    type: object
+    properties:
+      managers:
+        type: array
+        items:
+          type: object
+          properties:
+            managerAccount:
+              type: string
+            operatorAccount:
+              type: string
+            hostAddress:
+              type: string
+            managerPort:
+              type: integer
+              format: int64
+            trackerPort:
+              type: integer
+              format: int64
+            chainAPIPort:
+              type: integer
+              format: int64
+            chainRPCPort:
+              type: integer
+              format: int64
+            regionCode:
+              type: string
+            registerStatus:
+              type: string
+            workingStatus:
+              type: string
+            creator:
+              type: string
+            createAt:
+              type: string
+              format: uint64
+            updator:
+              type: string
+            updateAt:
+              type: string
+              format: uint64
+  enreach.manager.QueryGetManagerResponse:
+    type: object
+    properties:
+      Manager:
         type: object
         properties:
-          nodeID:
+          managerAccount:
             type: string
-          userID:
+          operatorAccount:
             type: string
-          nodeName:
+          hostAddress:
             type: string
-          deviceType:
-            type: string
+          managerPort:
+            type: integer
+            format: int64
+          trackerPort:
+            type: integer
+            format: int64
+          chainAPIPort:
+            type: integer
+            format: int64
+          chainRPCPort:
+            type: integer
+            format: int64
           regionCode:
             type: string
           registerStatus:
@@ -21804,34 +21609,24 @@ definitions:
           updateAt:
             type: string
             format: uint64
-  enreach.edgenode.QueryGetSuperiorResponse:
+  enreach.manager.QueryGetOperatorResponse:
     type: object
     properties:
-      Superior:
+      Operator:
         type: object
         properties:
-          account:
+          operatorAccount:
             type: string
-          creator:
-            type: string
-          createAt:
-            type: string
-            format: uint64
-          updator:
-            type: string
-          updateAt:
-            type: string
-            format: uint64
-  enreach.edgenode.QueryGetUserResponse:
-    type: object
-    properties:
-      User:
-        type: object
-        properties:
-          userID:
+          managerAccount:
             type: string
           evmAccount:
             type: string
+          name:
+            type: string
+          description:
+            type: string
+          websiteUrl:
+            type: string
           creator:
             type: string
           createAt:
@@ -21842,45 +21637,13 @@ definitions:
           updateAt:
             type: string
             format: uint64
-  enreach.edgenode.QueryParamsResponse:
+  enreach.manager.QueryParamsResponse:
     type: object
     properties:
       params:
         description: params holds all the parameters of this module.
         type: object
     description: QueryParamsResponse is response type for the Query/Params RPC method.
-  enreach.edgenode.Superior:
-    type: object
-    properties:
-      account:
-        type: string
-      creator:
-        type: string
-      createAt:
-        type: string
-        format: uint64
-      updator:
-        type: string
-      updateAt:
-        type: string
-        format: uint64
-  enreach.edgenode.User:
-    type: object
-    properties:
-      userID:
-        type: string
-      evmAccount:
-        type: string
-      creator:
-        type: string
-      createAt:
-        type: string
-        format: uint64
-      updator:
-        type: string
-      updateAt:
-        type: string
-        format: uint64
   enreach.manager.MsgActivateManager:
     type: object
     properties:
@@ -22017,9 +21780,6 @@ definitions:
     description: |-
       MsgUpdateParamsResponse defines the response structure for executing a
       MsgUpdateParams message.
-  enreach.manager.Params:
-    type: object
-    description: Params defines the parameters for the module.
   enreach.registry.MsgCreateRegion:
     type: object
     properties:

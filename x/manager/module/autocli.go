@@ -46,6 +46,16 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Shows a operator by account",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "operatorAccount"}},
 				},
+				{
+					RpcMethod: "GetEpochLength",
+					Use:       "get-epoch-length",
+					Short:     "Get epoch length",
+				},
+				{
+					RpcMethod: "GetCurrentEpoch",
+					Use:       "get-current-epoch",
+					Short:     "Get current epoch",
+				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},
