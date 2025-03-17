@@ -37,9 +37,15 @@ func (k msgServer) CreateUser(goCtx context.Context, msg *types.MsgCreateUser) (
 		Updator:  msg.Signer,
 		UpdateAt: blockHeight,
 	}
-
 	k.AppendUser(ctx, user)
 
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeUserCreated,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.Signer),
+			sdk.NewAttribute(types.AttributeKeyUserID, msg.UserID),
+		),
+	)
 	return &types.MsgCreateUserResponse{}, nil
 }
 
@@ -67,8 +73,15 @@ func (k msgServer) BindUserEVMAccount(goCtx context.Context, msg *types.MsgBindU
 	user.EvmAccount = msg.EvmAccount
 	user.Updator = msg.Signer
 	user.UpdateAt = uint64(ctx.BlockHeight())
-
 	k.SetUser(ctx, user)
 
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeUserEVMAccountBinded,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.Signer),
+			sdk.NewAttribute(types.AttributeKeyUserID, msg.UserID),
+			sdk.NewAttribute(types.AttributeKeyEvmAccount, msg.EvmAccount),
+		),
+	)
 	return &types.MsgBindUserEVMAccountResponse{}, nil
 }

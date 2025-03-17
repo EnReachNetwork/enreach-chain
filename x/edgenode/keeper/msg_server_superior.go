@@ -32,8 +32,15 @@ func (k msgServer) CreateSuperior(goCtx context.Context, msg *types.MsgCreateSup
 		Updator:  msg.Signer,
 		UpdateAt: blockHeight,
 	}
-
 	k.SetSuperior(ctx, superior)
+
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeSuperiorCreated,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.Signer),
+			sdk.NewAttribute(types.AttributeKeySuperior, msg.Account),
+		),
+	)
 	return &types.MsgCreateSuperiorResponse{}, nil
 }
 
@@ -56,5 +63,12 @@ func (k msgServer) UpdateSuperior(goCtx context.Context, msg *types.MsgUpdateSup
 	superior.UpdateAt = uint64(ctx.BlockHeight())
 	k.SetSuperior(ctx, superior)
 
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeSuperiorUpdated,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.Signer),
+			sdk.NewAttribute(types.AttributeKeySuperior, msg.Account),
+		),
+	)
 	return &types.MsgUpdateSuperiorResponse{}, nil
 }

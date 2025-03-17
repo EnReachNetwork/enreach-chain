@@ -44,7 +44,7 @@ func (k msgServer) CreateRegion(goCtx context.Context, msg *types.MsgCreateRegio
 	ctx.EventManager().EmitEvent(
 		sdk.NewEvent(types.EventTypeRegionCreated,
 			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
-			sdk.NewAttribute(types.AttributeKeyCreator, msg.Signer),
+			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.Signer),
 			sdk.NewAttribute(types.AttributeKeyRegionCode, msg.Code),
 		),
 	)
@@ -77,6 +77,14 @@ func (k msgServer) UpdateRegion(goCtx context.Context, msg *types.MsgUpdateRegio
 	region.UpdateAt = uint64(ctx.BlockHeight())
 	k.SetRegion(ctx, region)
 
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeRegionUpdated,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.Signer),
+			sdk.NewAttribute(types.AttributeKeyRegionCode, msg.Code),
+		),
+	)
+
 	return &types.MsgUpdateRegionResponse{}, nil
 }
 
@@ -100,6 +108,14 @@ func (k msgServer) DeleteRegion(goCtx context.Context, msg *types.MsgDeleteRegio
 
 	// Remove from the store
 	k.RemoveRegion(ctx, msg.Code)
+
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeRegionDeleted,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.Signer),
+			sdk.NewAttribute(types.AttributeKeyRegionCode, msg.Code),
+		),
+	)
 
 	return &types.MsgDeleteRegionResponse{}, nil
 }
