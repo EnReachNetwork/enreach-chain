@@ -121,9 +121,9 @@ async function listenEvents() {
                   const action = event.attributes.find((attr) => attr.key === "action")?.value;
 
                   console.log("===", action!);
-              } else if (event.type === "RegionCreated") {
-                const code = event.attributes.find((attr) => attr.key === "code")?.value;
-                console.log("***RegionCreated -", code);
+              } else if (event.type != "tx") {
+                const module = event.attributes.find((attr) => attr.key === "module")?.value;
+                console.log(`[Event] ${module}.${event.type} - ${event.attributes.map(item => `'${item.key}':'${item.value}'`).join(', ')}`);
               }
           });
       },
