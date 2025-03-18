@@ -10,4 +10,5 @@ import (
 var (
 	ErrInvalidSigner        = sdkerrors.Register(ModuleName, 1100, "expected gov account as only signer for proposal message")
 	ErrElementAlreadyExists = sdkerrors.Register(ModuleName, 1101, "element already exists")
+	ErrInvalidParamLength   = sdkerrors.Register(ModuleName, 1102, "invalid parameter length")
 )

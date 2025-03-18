@@ -1,0 +1,7 @@
+package types
+
+const (
+	REGION_CODE_MAX_LENGTH = 10
+	REGION_NAME_MAX_LENGTH = 20
+	REGION_DESC_MAX_LENGTH = 100
+)

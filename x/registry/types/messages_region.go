@@ -22,6 +22,24 @@ func (msg *MsgCreateRegion) ValidateBasic() error {
 	if err != nil {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid signer address (%s)", err)
 	}
+	if len(msg.Code) == 0 {
+		return errorsmod.Wrap(ErrInvalidParamLength, "Region code should not be empty")
+	}
+	if len(msg.Code) > REGION_CODE_MAX_LENGTH {
+		return errorsmod.Wrapf(ErrInvalidParamLength, "Region code exceed max length %d", REGION_CODE_MAX_LENGTH)
+	}
+	if len(msg.Name) == 0 {
+		return errorsmod.Wrap(ErrInvalidParamLength, "Region name should not be empty")
+	}
+	if len(msg.Name) > REGION_NAME_MAX_LENGTH {
+		return errorsmod.Wrapf(ErrInvalidParamLength, "Region name exceed max length %d", REGION_NAME_MAX_LENGTH)
+	}
+	if len(msg.Description) == 0 {
+		return errorsmod.Wrap(ErrInvalidParamLength, "Region description should not be empty")
+	}
+	if len(msg.Description) > REGION_DESC_MAX_LENGTH {
+		return errorsmod.Wrapf(ErrInvalidParamLength, "Region description exceed max length %d", REGION_DESC_MAX_LENGTH)
+	}
 	return nil
 }
 
@@ -41,6 +59,24 @@ func (msg *MsgUpdateRegion) ValidateBasic() error {
 	if err != nil {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid signer address (%s)", err)
 	}
+	if len(msg.Code) == 0 {
+		return errorsmod.Wrap(ErrInvalidParamLength, "Region code should not be empty")
+	}
+	if len(msg.Code) > REGION_CODE_MAX_LENGTH {
+		return errorsmod.Wrapf(ErrInvalidParamLength, "Region code exceed max length %d", REGION_CODE_MAX_LENGTH)
+	}
+	if len(msg.Name) == 0 {
+		return errorsmod.Wrap(ErrInvalidParamLength, "Region name should not be empty")
+	}
+	if len(msg.Name) > REGION_NAME_MAX_LENGTH {
+		return errorsmod.Wrapf(ErrInvalidParamLength, "Region name exceed max length %d", REGION_NAME_MAX_LENGTH)
+	}
+	if len(msg.Description) == 0 {
+		return errorsmod.Wrap(ErrInvalidParamLength, "Region description should not be empty")
+	}
+	if len(msg.Description) > REGION_DESC_MAX_LENGTH {
+		return errorsmod.Wrapf(ErrInvalidParamLength, "Region description exceed max length %d", REGION_DESC_MAX_LENGTH)
+	}
 	return nil
 }
 
@@ -57,6 +93,12 @@ func (msg *MsgDeleteRegion) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(msg.Signer)
 	if err != nil {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid signer address (%s)", err)
+	}
+	if len(msg.Code) == 0 {
+		return errorsmod.Wrap(ErrInvalidParamLength, "Region code should not be empty")
+	}
+	if len(msg.Code) > REGION_CODE_MAX_LENGTH {
+		return errorsmod.Wrapf(ErrInvalidParamLength, "Region code exceed max length %d", REGION_CODE_MAX_LENGTH)
 	}
 	return nil
 }

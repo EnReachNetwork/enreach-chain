@@ -15,4 +15,5 @@ var (
 	ErrNodeNotExist       = sdkerrors.Register(ModuleName, 1104, "node does not exist")
 	ErrNodeNotActivate    = sdkerrors.Register(ModuleName, 1105, "node is not activate")
 	ErrRegionNotMatch     = sdkerrors.Register(ModuleName, 1106, "region code not match")
+	ErrInvalidParamLength = sdkerrors.Register(ModuleName, 1107, "invalid parameter length")
 )

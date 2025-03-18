@@ -22,5 +22,9 @@ func (msg *MsgCreateWorkload) ValidateBasic() error {
 	if err != nil {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid manager account (%s)", err)
 	}
+
+	if len(msg.NodeID) > NODEID_MAX_LENGTH {
+		return errorsmod.Wrapf(ErrInvalidParamLength, "parameter 'nodeID' exceed max length %d", NODEID_MAX_LENGTH)
+	}
 	return nil
 }
