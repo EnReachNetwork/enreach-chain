@@ -150,7 +150,7 @@ func verifyManagerSignature(k msgServer, ctx context.Context, operatorAccount st
 	// Verify the signature, please be attention that the 'msg' param here is the raw msg bytes, not the sha256 form
 	// because pubKey.VerifySignature will do sha256(msg) internally,
 	// and the signature here should be 64 bytes without the last recovery field
-	if !pubKey.VerifySignature(data, managerSignature) {
+	if !pubKey.VerifySignature(data, managerSignature[0:64]) {
 		return errorsmod.Wrap(types.ErrInvalidSignature,
 			"manager signature verification failed, please ensure the signature is correct and ensure to use the manager account to sign the message")
 	}

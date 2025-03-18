@@ -79,7 +79,7 @@ async function getManagerSignature(operatorAccount: string, managerWallet: Direc
 
   const signature = await Secp256k1.createSignature(messageHash, privateKey);
 
-  return signature.toFixedLength().slice(0, 64); // Should exclude the last recovery field in the signature
+  return signature.toFixedLength();
 }
 
 async function testEdgenode(edgenodeApi: EdgenodeApi) {
