@@ -2,6 +2,7 @@ package keeper
 
 import (
 	"context"
+	"strconv"
 
 	"enreach/x/manager/types"
 	registrytypes "enreach/x/registry/types"
@@ -31,9 +32,16 @@ func (k msgServer) CreateOperator(goCtx context.Context, msg *types.MsgCreateOpe
 		Updator:         msg.OperatorAccount,
 		UpdateAt:        blockHeight,
 	}
-
 	// Add the operator to the store
 	k.AppendOperator(ctx, operator)
+
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeOperatorCreated,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.OperatorAccount),
+			sdk.NewAttribute(types.AttributeKeyOperatorAccount, msg.OperatorAccount),
+		),
+	)
 
 	return &types.MsgCreateOperatorResponse{}, nil
 }
@@ -104,6 +112,15 @@ func (k msgServer) BindOperatorManagerAccount(goCtx context.Context, msg *types.
 	manager.Updator = msg.OperatorAccount
 	manager.UpdateAt = blockHeight
 	k.SetManager(ctx, manager)
+
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeOperatorManagerBound,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.OperatorAccount),
+			sdk.NewAttribute(types.AttributeKeyOperatorAccount, msg.OperatorAccount),
+			sdk.NewAttribute(types.AttributeKeyManagerAccount, msg.ManagerAccount),
+		),
+	)
 
 	return &types.MsgBindOperatorManagerAccountResponse{}, nil
 }
@@ -187,6 +204,14 @@ func (k msgServer) SetManagerRegion(goCtx context.Context, msg *types.MsgSetMana
 	manager.UpdateAt = blockHeight
 	k.SetManager(ctx, manager)
 
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeManagerRegionSet,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.OperatorAccount),
+			sdk.NewAttribute(types.AttributeKeyRegionCode, msg.RegionCode),
+		),
+	)
+
 	return &types.MsgSetManagerRegionResponse{}, nil
 }
 
@@ -225,6 +250,17 @@ func (k msgServer) UpdateManagerConnParams(goCtx context.Context, msg *types.Msg
 	manager.Updator = msg.OperatorAccount
 	manager.UpdateAt = blockHeight
 	k.SetManager(ctx, manager)
+
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeManagerConnParamsUpdated,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.OperatorAccount),
+			sdk.NewAttribute(types.AttributeKeyManagerPort, strconv.FormatUint(uint64(msg.ManagerPort), 10)),
+			sdk.NewAttribute(types.AttributeKeyTrackerPort, strconv.FormatUint(uint64(msg.TrackerPort), 10)),
+			sdk.NewAttribute(types.AttributeKeyChainAPIPort, strconv.FormatUint(uint64(msg.ChainAPIPort), 10)),
+			sdk.NewAttribute(types.AttributeKeyChainRPCPort, strconv.FormatUint(uint64(msg.ChainRPCPort), 10)),
+		),
+	)
 
 	return &types.MsgUpdateManagerConnParamsResponse{}, nil
 }
@@ -295,6 +331,15 @@ func (k msgServer) ActivateManager(goCtx context.Context, msg *types.MsgActivate
 	manager.UpdateAt = uint64(ctx.BlockHeight())
 	k.SetManager(ctx, manager)
 
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeManagerActivated,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.OperatorAccount),
+			sdk.NewAttribute(types.AttributeKeyOperatorAccount, msg.OperatorAccount),
+			sdk.NewAttribute(types.AttributeKeyManagerAccount, manager.ManagerAccount),
+		),
+	)
+
 	return &types.MsgActivateManagerResponse{}, nil
 }
 
@@ -329,6 +374,15 @@ func (k msgServer) BindOperatorEVMAccount(goCtx context.Context, msg *types.MsgB
 	operator.UpdateAt = uint64(ctx.BlockHeight())
 	k.SetOperator(ctx, operator)
 
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeOperatorEVMAccountBound,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.OperatorAccount),
+			sdk.NewAttribute(types.AttributeKeyOperatorAccount, msg.OperatorAccount),
+			sdk.NewAttribute(types.AttributeKeyEvmAccount, msg.EvmAccount),
+		),
+	)
+
 	return &types.MsgBindOperatorEVMAccountResponse{}, nil
 }
 
@@ -359,6 +413,14 @@ func (k msgServer) UpdateOperatorBasicInfo(goCtx context.Context, msg *types.Msg
 	operator.Updator = msg.OperatorAccount
 	operator.UpdateAt = blockHeight
 	k.SetOperator(ctx, operator)
+
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeOperatorBasicInfoUpdated,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.OperatorAccount),
+			sdk.NewAttribute(types.AttributeKeyOperatorAccount, msg.OperatorAccount),
+		),
+	)
 
 	return &types.MsgUpdateOperatorBasicInfoResponse{}, nil
 }

@@ -2,6 +2,7 @@ package keeper
 
 import (
 	"context"
+	"strconv"
 
 	edgenodetypes "enreach/x/edgenode/types"
 	managertypes "enreach/x/manager/types"
@@ -61,6 +62,17 @@ func (k msgServer) CreateWorkload(goCtx context.Context, msg *types.MsgCreateWor
 	}
 
 	id := k.AppendWorkload(ctx, workload)
+
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeWorkloadCreated,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.ManagerAccount),
+			sdk.NewAttribute(types.AttributeKeyNodeID, msg.NodeID),
+			sdk.NewAttribute(types.AttributeKeyEpoch, strconv.FormatUint(msg.Epoch, 10)),
+			sdk.NewAttribute(types.AttributeKeyScore, strconv.FormatUint(msg.Score, 10)),
+			sdk.NewAttribute(types.AttributeKeyWorkloadID, strconv.FormatUint(id, 10)),
+		),
+	)
 
 	return &types.MsgCreateWorkloadResponse{Id: id}, nil
 }

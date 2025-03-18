@@ -1,15 +1,15 @@
 package types
 
 const (
-	EventTypeSuperiorCreated = "SuperiorCreated"
-	EventTypeSuperiorUpdated = "SuperiorUpdated"
+	EventTypeSuperiorCreated = "EventSuperiorCreated"
+	EventTypeSuperiorUpdated = "EventSuperiorUpdated"
 
-	EventTypeUserCreated          = "UserCreated"
-	EventTypeUserEVMAccountBinded = "UserEVMAccountBinded"
+	EventTypeUserCreated          = "EventUserCreated"
+	EventTypeUserEVMAccountBinded = "EventUserEVMAccountBinded"
 
-	EventTypeNodeRegistered        = "NodeRegistered"
-	EventTypeNodeBoundAndActivated = "NodeBoundAndActivated"
-	EventTypeNodeUnbound           = "NodeUnbound"
+	EventTypeNodeRegistered        = "EventNodeRegistered"
+	EventTypeNodeBoundAndActivated = "EventNodeBoundAndActivated"
+	EventTypeNodeUnbound           = "EventNodeUnbound"
 
 	AttributeKeyTxSigner   = "signer"
 	AttributeKeySuperior   = "superior"

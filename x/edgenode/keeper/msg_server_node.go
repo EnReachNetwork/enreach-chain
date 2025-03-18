@@ -40,9 +40,16 @@ func (k msgServer) RegisterNode(goCtx context.Context, msg *types.MsgRegisterNod
 		Updator:        msg.Signer,
 		UpdateAt:       blockHeight,
 	}
-
 	k.AppendNode(ctx, node)
 
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeNodeRegistered,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.Signer),
+			sdk.NewAttribute(types.AttributeKeyNodeID, msg.NodeID),
+			sdk.NewAttribute(types.AttributeKeyDeviceType, msg.DeviceType),
+		),
+	)
 	return &types.MsgRegisterNodeResponse{}, nil
 }
 
@@ -93,9 +100,18 @@ func (k msgServer) BindAndActivateNode(goCtx context.Context, msg *types.MsgBind
 	node.RegisterStatus = string(types.RS_ACTIVATE)
 	node.Updator = msg.Signer
 	node.UpdateAt = uint64(ctx.BlockHeight())
-
 	k.SetNode(ctx, node)
 
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeNodeBoundAndActivated,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.Signer),
+			sdk.NewAttribute(types.AttributeKeyNodeID, msg.NodeID),
+			sdk.NewAttribute(types.AttributeKeyUserID, msg.UserID),
+			sdk.NewAttribute(types.AttributeKeyNodeName, msg.NodeName),
+			sdk.NewAttribute(types.AttributeKeyRegionCode, msg.RegionCode),
+		),
+	)
 	return &types.MsgBindAndActivateNodeResponse{}, nil
 }
 
@@ -134,8 +150,16 @@ func (k msgServer) UnbindNode(goCtx context.Context, msg *types.MsgUnbindNode) (
 	node.RegisterStatus = string(types.RS_PENDING_BIND)
 	node.Updator = msg.Signer
 	node.UpdateAt = uint64(ctx.BlockHeight())
-
 	k.SetNode(ctx, node)
+
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeNodeUnbound,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.Signer),
+			sdk.NewAttribute(types.AttributeKeyNodeID, msg.NodeID),
+			sdk.NewAttribute(types.AttributeKeyUserID, msg.UserID),
+		),
+	)
 
 	return &types.MsgUnbindNodeResponse{}, nil
 }

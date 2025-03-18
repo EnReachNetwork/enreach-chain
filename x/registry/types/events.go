@@ -1,12 +1,12 @@
 package types
 
 const (
-	EventTypeSuperiorCreated = "SuperiorCreated"
-	EventTypeSuperiorUpdated = "SuperiorUpdated"
+	EventTypeSuperiorCreated = "EventSuperiorCreated"
+	EventTypeSuperiorUpdated = "EventSuperiorUpdated"
 
-	EventTypeRegionCreated = "RegionCreated"
-	EventTypeRegionUpdated = "RegionCreated"
-	EventTypeRegionDeleted = "RegionDeleted"
+	EventTypeRegionCreated = "EventRegionCreated"
+	EventTypeRegionUpdated = "EventRegionCreated"
+	EventTypeRegionDeleted = "EventRegionDeleted"
 
 	AttributeKeyTxSigner   = "signer"
 	AttributeKeyRegionCode = "code"
