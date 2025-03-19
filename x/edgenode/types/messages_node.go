@@ -21,6 +21,21 @@ func (msg *MsgRegisterNode) ValidateBasic() error {
 	if err != nil {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid signer address (%s)", err)
 	}
+
+	if len(msg.NodeID) == 0 {
+		return errorsmod.Wrap(ErrInvalidParamLength, "NodeID should not be empty")
+	}
+	if len(msg.NodeID) > NODE_ID_MAX_LENGTH {
+		return errorsmod.Wrapf(ErrInvalidParamLength, "NodeID exceed max length %d", NODE_ID_MAX_LENGTH)
+	}
+
+	if len(msg.DeviceType) == 0 {
+		return errorsmod.Wrap(ErrInvalidParamLength, "DeviceType should not be empty")
+	}
+	if len(msg.DeviceType) > DEVICE_TYPE_MAX_LENGTH {
+		return errorsmod.Wrapf(ErrInvalidParamLength, "DeviceType exceed max length %d", DEVICE_TYPE_MAX_LENGTH)
+	}
+
 	return nil
 }
 
@@ -42,12 +57,32 @@ func (msg *MsgBindAndActivateNode) ValidateBasic() error {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid signer address (%s)", err)
 	}
 
-	if len(msg.UserID) == 0 {
-		return errorsmod.Wrap(ErrInvalidParamLength, "empty userID is not allowed")
+	if len(msg.NodeID) == 0 {
+		return errorsmod.Wrap(ErrInvalidParamLength, "NodeID should not be empty")
+	}
+	if len(msg.NodeID) > NODE_ID_MAX_LENGTH {
+		return errorsmod.Wrapf(ErrInvalidParamLength, "NodeID exceed max length %d", NODE_ID_MAX_LENGTH)
 	}
 
-	if len(msg.UserID) > MaxUserIDLength {
-		return errorsmod.Wrapf(ErrInvalidParamLength, "userID length has exceeded max length %d", MaxUserIDLength)
+	if len(msg.UserID) == 0 {
+		return errorsmod.Wrap(ErrInvalidParamLength, "UserID should not be empty")
+	}
+	if len(msg.UserID) > USER_ID_MAX_LENGTH {
+		return errorsmod.Wrapf(ErrInvalidParamLength, "UserID exceed max length %d", USER_ID_MAX_LENGTH)
+	}
+
+	if len(msg.NodeName) == 0 {
+		return errorsmod.Wrap(ErrInvalidParamLength, "NodeName should not be empty")
+	}
+	if len(msg.NodeName) > NODE_NAME_MAX_LENGTH {
+		return errorsmod.Wrapf(ErrInvalidParamLength, "NodeName exceed max length %d", NODE_NAME_MAX_LENGTH)
+	}
+
+	if len(msg.RegionCode) == 0 {
+		return errorsmod.Wrap(ErrInvalidParamLength, "UserID should not be empty")
+	}
+	if len(msg.RegionCode) > REGION_CODE_MAX_LENGTH {
+		return errorsmod.Wrapf(ErrInvalidParamLength, "UserID exceed max length %d", USER_ID_MAX_LENGTH)
 	}
 
 	return nil

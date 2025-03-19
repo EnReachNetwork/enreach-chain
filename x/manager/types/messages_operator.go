@@ -1,6 +1,8 @@
 package types
 
 import (
+	"regexp"
+
 	errorsmod "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
@@ -177,6 +179,52 @@ func (msg *MsgBindOperatorEVMAccount) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(msg.OperatorAccount)
 	if err != nil {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid operator account (%s)", err)
+	}
+
+	matched, _ := regexp.MatchString("^0x[0-9a-fA-F]{40}$", msg.EvmAccount)
+	if !matched {
+		return errorsmod.Wrap(sdkerrors.ErrInvalidAddress, "EvmAccount is not a valid etherum address")
+	}
+
+	if len(msg.EvmSignature) != EVM_SIGNATURE_LENGTH {
+		return errorsmod.Wrapf(ErrInvalidParamLength, "EvmSignature should be %d bytes long", EVM_SIGNATURE_LENGTH)
+	}
+
+	return nil
+}
+
+var _ sdk.Msg = &MsgUpdateOperatorBasicInfo{}
+
+func NewMsgUpdateOperatorBasicInfo(operatorAccount string, name string, description string, websiteUrl string) *MsgUpdateOperatorBasicInfo {
+	return &MsgUpdateOperatorBasicInfo{
+		OperatorAccount: operatorAccount,
+		Name:            name,
+		Description:     description,
+		WebsiteUrl:      websiteUrl,
+	}
+}
+
+func (msg *MsgUpdateOperatorBasicInfo) ValidateBasic() error {
+	_, err := sdk.AccAddressFromBech32(msg.OperatorAccount)
+	if err != nil {
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid operator account (%s)", err)
+	}
+
+	if len(msg.Name) == 0 {
+		return errorsmod.Wrap(ErrInvalidParamLength, "Operator name should not be empty")
+	}
+	if len(msg.Name) > OPERATOR_NAME_MAX_LENGTH {
+		return errorsmod.Wrapf(ErrInvalidParamLength, "Operator name exceed max length %d", OPERATOR_NAME_MAX_LENGTH)
+	}
+
+	// description can be empty
+	if len(msg.Description) > OPERATOR_DESC_MAX_LENGTH {
+		return errorsmod.Wrapf(ErrInvalidParamLength, "Operator description exceed max length %d", OPERATOR_DESC_MAX_LENGTH)
+	}
+
+	// website url can be empty
+	if len(msg.WebsiteUrl) > OPERATOR_URL_MAX_LENGTH {
+		return errorsmod.Wrapf(ErrInvalidParamLength, "Operator website url exceed max length %d", OPERATOR_URL_MAX_LENGTH)
 	}
 
 	return nil

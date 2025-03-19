@@ -20,6 +20,10 @@ func (msg *MsgCreateSuperior) ValidateBasic() error {
 	if err != nil {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid signer address (%s)", err)
 	}
+	_, err = sdk.AccAddressFromBech32(msg.Account)
+	if err != nil {
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid superior account address (%s)", err)
+	}
 	return nil
 }
 
@@ -36,6 +40,10 @@ func (msg *MsgUpdateSuperior) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(msg.Signer)
 	if err != nil {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid signer address (%s)", err)
+	}
+	_, err = sdk.AccAddressFromBech32(msg.Account)
+	if err != nil {
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid superior account address (%s)", err)
 	}
 	return nil
 }
