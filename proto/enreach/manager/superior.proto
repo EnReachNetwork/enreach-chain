@@ -1,0 +1,13 @@
+syntax = "proto3";
+package enreach.manager;
+
+option go_package = "enreach/x/manager/types";
+
+message Superior {
+  string account = 1; 
+  string creator = 2; 
+  uint64 createAt = 3; 
+  string updator = 4; 
+  uint64 updateAt = 5; 
+  string signer = 6;
+}

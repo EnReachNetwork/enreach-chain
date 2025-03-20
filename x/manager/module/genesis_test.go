@@ -33,6 +33,13 @@ func TestGenesis(t *testing.T) {
 			},
 		},
 		OperatorCount: 2,
+		Superior: &types.Superior{
+			Account:  "95",
+			Creator:  "8",
+			CreateAt: 73,
+			Updator:  "72",
+			UpdateAt: 52,
+		},
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -50,5 +57,6 @@ func TestGenesis(t *testing.T) {
 	require.Equal(t, genesisState.OperatorCount, got.OperatorCount)
 	require.ElementsMatch(t, genesisState.OperatorList, got.OperatorList)
 	require.Equal(t, genesisState.OperatorCount, got.OperatorCount)
+	require.Equal(t, genesisState.Superior, got.Superior)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

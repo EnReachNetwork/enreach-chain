@@ -28,3 +28,7 @@ const (
 	OperatorKey      = "Operator/value/"
 	OperatorCountKey = "Operator/count/"
 )
+
+const (
+	SuperiorKey = "Superior/value/"
+)

@@ -30,6 +30,10 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 
 	// Set operator count
 	k.SetOperatorCount(ctx, genState.OperatorCount)
+	// Set if defined
+	if genState.Superior != nil {
+		k.SetSuperior(ctx, *genState.Superior)
+	}
 	// this line is used by starport scaffolding # genesis/module/init
 	if err := k.SetParams(ctx, genState.Params); err != nil {
 		panic(err)
@@ -47,6 +51,11 @@ func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 	genesis.OperatorCount = k.GetOperatorCount(ctx)
 	genesis.OperatorList = k.GetAllOperator(ctx)
 	genesis.OperatorCount = k.GetOperatorCount(ctx)
+	// Get all superior
+	superior, found := k.GetSuperior(ctx)
+	if found {
+		genesis.Superior = &superior
+	}
 	// this line is used by starport scaffolding # genesis/module/export
 
 	return genesis

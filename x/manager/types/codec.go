@@ -21,6 +21,10 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 		&MsgBindOperatorEVMAccount{},
 		&MsgUpdateOperatorBasicInfo{},
 	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgCreateSuperior{},
+		&MsgUpdateSuperior{},
+	)
 	// this line is used by starport scaffolding # 3
 
 	registry.RegisterImplementations((*sdk.Msg)(nil),

@@ -321,8 +321,10 @@ var (
 				}),
 			},
 			{
-				Name:   managermoduletypes.ModuleName,
-				Config: appconfig.WrapAny(&managermodulev1.Module{}),
+				Name: managermoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&managermodulev1.Module{
+					Authority: "enreach1mwyh5y3nu300s2v2spr3mw8ypf65nzzdmf3lex",
+				}),
 			},
 			{
 				Name:   workloadmoduletypes.ModuleName,

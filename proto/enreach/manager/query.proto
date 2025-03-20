@@ -9,6 +9,7 @@ import "cosmos/base/query/v1beta1/pagination.proto";
 import "enreach/manager/params.proto";
 import "enreach/manager/manager.proto";
 import "enreach/manager/operator.proto";
+import "enreach/manager/superior.proto";
 
 option go_package = "enreach/x/manager/types";
 
@@ -30,7 +31,7 @@ service Query {
     option (google.api.http).get = "/enreach/manager/operators";
   
   }
-
+  
   // Queries a list of Manager items.
   rpc Manager    (QueryGetManagerRequest) returns (QueryGetManagerResponse) {
     option (google.api.http).get = "/enreach/manager/manager/{managerAccount}";
@@ -42,21 +43,26 @@ service Query {
   }
   
   // Queries a list of GetManagerByRegion items.
-  rpc GetManagerByRegion        (QueryGetManagerByRegionRequest       ) returns (QueryGetManagerByRegionResponse       ) {
+  rpc GetManagerByRegion (QueryGetManagerByRegionRequest) returns (QueryGetManagerByRegionResponse) {
     option (google.api.http).get = "/enreach/manager/get_manager_by_region/{regionCode}";
   
   }
-
+  
   // Queries epoch
-  rpc GetEpochLength    (QueryGetEpochLengthRequest) returns (QueryGetEpochLengthResponse) {
+  rpc GetEpochLength  (QueryGetEpochLengthRequest ) returns (QueryGetEpochLengthResponse ) {
     option (google.api.http).get = "/enreach/manager/epoch/length";
   
   }
-  rpc GetCurrentEpoch    (QueryGetCurrentEpochRequest) returns (QueryGetCurrentEpochResponse) {
+  rpc GetCurrentEpoch (QueryGetCurrentEpochRequest) returns (QueryGetCurrentEpochResponse) {
     option (google.api.http).get = "/enreach/manager/epoch/currentepoch";
   
   }
   
+  // Queries a Superior by index.
+  rpc Superior (QueryGetSuperiorRequest) returns (QueryGetSuperiorResponse) {
+    option (google.api.http).get = "/enreach/manager/superior";
+  
+  }
 }
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
@@ -67,7 +73,6 @@ message QueryParamsResponse {
   // params holds all the parameters of this module.
   Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
 }
-
 
 message QueryGetOperatorRequest {
   string operatorAccount = 1;
@@ -111,16 +116,21 @@ message QueryGetManagerByRegionResponse {
   repeated Manager managers = 1 [(gogoproto.nullable) = false];
 }
 
-message QueryGetEpochLengthRequest {
-}
+message QueryGetEpochLengthRequest {}
 
 message QueryGetEpochLengthResponse {
   uint64 epochLength = 1;
 }
 
-message QueryGetCurrentEpochRequest {
-}
+message QueryGetCurrentEpochRequest {}
 
 message QueryGetCurrentEpochResponse {
   uint64 currentEpoch = 1;
 }
+
+message QueryGetSuperiorRequest {}
+
+message QueryGetSuperiorResponse {
+  Superior Superior = 1 [(gogoproto.nullable) = false];
+}
+

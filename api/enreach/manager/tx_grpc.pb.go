@@ -29,6 +29,8 @@ const (
 	Msg_UpdateOperatorBasicInfo_FullMethodName    = "/enreach.manager.Msg/UpdateOperatorBasicInfo"
 	Msg_RegisterManager_FullMethodName            = "/enreach.manager.Msg/RegisterManager"
 	Msg_GoWorking_FullMethodName                  = "/enreach.manager.Msg/GoWorking"
+	Msg_CreateSuperior_FullMethodName             = "/enreach.manager.Msg/CreateSuperior"
+	Msg_UpdateSuperior_FullMethodName             = "/enreach.manager.Msg/UpdateSuperior"
 )
 
 // MsgClient is the client API for Msg service.
@@ -47,6 +49,8 @@ type MsgClient interface {
 	UpdateOperatorBasicInfo(ctx context.Context, in *MsgUpdateOperatorBasicInfo, opts ...grpc.CallOption) (*MsgUpdateOperatorBasicInfoResponse, error)
 	RegisterManager(ctx context.Context, in *MsgRegisterManager, opts ...grpc.CallOption) (*MsgRegisterManagerResponse, error)
 	GoWorking(ctx context.Context, in *MsgGoWorking, opts ...grpc.CallOption) (*MsgGoWorkingResponse, error)
+	CreateSuperior(ctx context.Context, in *MsgCreateSuperior, opts ...grpc.CallOption) (*MsgCreateSuperiorResponse, error)
+	UpdateSuperior(ctx context.Context, in *MsgUpdateSuperior, opts ...grpc.CallOption) (*MsgUpdateSuperiorResponse, error)
 }
 
 type msgClient struct {
@@ -147,6 +151,24 @@ func (c *msgClient) GoWorking(ctx context.Context, in *MsgGoWorking, opts ...grp
 	return out, nil
 }
 
+func (c *msgClient) CreateSuperior(ctx context.Context, in *MsgCreateSuperior, opts ...grpc.CallOption) (*MsgCreateSuperiorResponse, error) {
+	out := new(MsgCreateSuperiorResponse)
+	err := c.cc.Invoke(ctx, Msg_CreateSuperior_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) UpdateSuperior(ctx context.Context, in *MsgUpdateSuperior, opts ...grpc.CallOption) (*MsgUpdateSuperiorResponse, error) {
+	out := new(MsgUpdateSuperiorResponse)
+	err := c.cc.Invoke(ctx, Msg_UpdateSuperior_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -163,6 +185,8 @@ type MsgServer interface {
 	UpdateOperatorBasicInfo(context.Context, *MsgUpdateOperatorBasicInfo) (*MsgUpdateOperatorBasicInfoResponse, error)
 	RegisterManager(context.Context, *MsgRegisterManager) (*MsgRegisterManagerResponse, error)
 	GoWorking(context.Context, *MsgGoWorking) (*MsgGoWorkingResponse, error)
+	CreateSuperior(context.Context, *MsgCreateSuperior) (*MsgCreateSuperiorResponse, error)
+	UpdateSuperior(context.Context, *MsgUpdateSuperior) (*MsgUpdateSuperiorResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -199,6 +223,12 @@ func (UnimplementedMsgServer) RegisterManager(context.Context, *MsgRegisterManag
 }
 func (UnimplementedMsgServer) GoWorking(context.Context, *MsgGoWorking) (*MsgGoWorkingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GoWorking not implemented")
+}
+func (UnimplementedMsgServer) CreateSuperior(context.Context, *MsgCreateSuperior) (*MsgCreateSuperiorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateSuperior not implemented")
+}
+func (UnimplementedMsgServer) UpdateSuperior(context.Context, *MsgUpdateSuperior) (*MsgUpdateSuperiorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSuperior not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -393,6 +423,42 @@ func _Msg_GoWorking_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_CreateSuperior_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgCreateSuperior)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).CreateSuperior(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_CreateSuperior_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).CreateSuperior(ctx, req.(*MsgCreateSuperior))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_UpdateSuperior_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgUpdateSuperior)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).UpdateSuperior(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_UpdateSuperior_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).UpdateSuperior(ctx, req.(*MsgUpdateSuperior))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -439,6 +505,14 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GoWorking",
 			Handler:    _Msg_GoWorking_Handler,
+		},
+		{
+			MethodName: "CreateSuperior",
+			Handler:    _Msg_CreateSuperior_Handler,
+		},
+		{
+			MethodName: "UpdateSuperior",
+			Handler:    _Msg_UpdateSuperior_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

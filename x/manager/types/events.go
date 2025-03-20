@@ -13,6 +13,9 @@ const (
 	EventTypeManagerRegistered = "EventManagerRegistered"
 	EventTypeManagerGoWorking  = "EventManagerGoWorking"
 
+	EventTypeSuperiorCreated = "EventSuperiorCreated"
+	EventTypeSuperiorUpdated = "EventSuperiorUpdated"
+
 	AttributeKeyTxSigner        = "signer"
 	AttributeKeyOperatorAccount = "operatorAccount"
 	AttributeKeyManagerAccount  = "managerAccount"
@@ -23,4 +26,5 @@ const (
 	AttributeKeyTrackerPort     = "trackerPort"
 	AttributeKeyChainAPIPort    = "chainAPIPort"
 	AttributeKeyChainRPCPort    = "chainRPCPort"
+	AttributeKeySuperior        = "superior"
 )

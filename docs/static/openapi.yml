@@ -9195,6 +9195,526 @@ paths:
               Since: cosmos-sdk 0.47
       tags:
         - Msg
+  /enreach.manager.Msg/ActivateManager:
+    post:
+      operationId: EnreachManagerMsg_ActivateManager
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              operatorAccount:
+                type: string
+              license:
+                type: string
+      tags:
+        - Msg
+  /enreach.manager.Msg/BindOperatorEVMAccount:
+    post:
+      operationId: EnreachManagerMsg_BindOperatorEVMAccount
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              operatorAccount:
+                type: string
+              evmAccount:
+                type: string
+              evmSignature:
+                type: string
+                format: byte
+      tags:
+        - Msg
+  /enreach.manager.Msg/BindOperatorManagerAccount:
+    post:
+      operationId: EnreachManagerMsg_BindOperatorManagerAccount
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              operatorAccount:
+                type: string
+              managerAccount:
+                type: string
+              managerSignature:
+                type: string
+                format: byte
+              forceUnbind:
+                type: boolean
+      tags:
+        - Msg
+  /enreach.manager.Msg/CreateOperator:
+    post:
+      operationId: EnreachManagerMsg_CreateOperator
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              operatorAccount:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              websiteUrl:
+                type: string
+      tags:
+        - Msg
+  /enreach.manager.Msg/CreateSuperior:
+    post:
+      operationId: EnreachManagerMsg_CreateSuperior
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              signer:
+                type: string
+              account:
+                type: string
+      tags:
+        - Msg
+  /enreach.manager.Msg/GoWorking:
+    post:
+      operationId: EnreachManagerMsg_GoWorking
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              managerAccount:
+                type: string
+      tags:
+        - Msg
+  /enreach.manager.Msg/RegisterManager:
+    post:
+      operationId: EnreachManagerMsg_RegisterManager
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              managerAccount:
+                type: string
+              hostAddress:
+                type: string
+              managerPort:
+                type: integer
+                format: int64
+              trackerPort:
+                type: integer
+                format: int64
+              chainAPIPort:
+                type: integer
+                format: int64
+              chainRPCPort:
+                type: integer
+                format: int64
+      tags:
+        - Msg
+  /enreach.manager.Msg/SetManagerRegion:
+    post:
+      operationId: EnreachManagerMsg_SetManagerRegion
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              operatorAccount:
+                type: string
+              regionCode:
+                type: string
+      tags:
+        - Msg
+  /enreach.manager.Msg/UpdateManagerConnParams:
+    post:
+      operationId: EnreachManagerMsg_UpdateManagerConnParams
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              operatorAccount:
+                type: string
+              hostAddress:
+                type: string
+              managerPort:
+                type: integer
+                format: int64
+              trackerPort:
+                type: integer
+                format: int64
+              chainAPIPort:
+                type: integer
+                format: int64
+              chainRPCPort:
+                type: integer
+                format: int64
+      tags:
+        - Msg
+  /enreach.manager.Msg/UpdateOperatorBasicInfo:
+    post:
+      operationId: EnreachManagerMsg_UpdateOperatorBasicInfo
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              operatorAccount:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              websiteUrl:
+                type: string
+      tags:
+        - Msg
+  /enreach.manager.Msg/UpdateParams:
+    post:
+      summary: |-
+        UpdateParams defines a (governance) operation for updating the module
+        parameters. The authority defaults to the x/gov module account.
+      operationId: EnreachManagerMsg_UpdateParams
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            description: >-
+              MsgUpdateParamsResponse defines the response structure for
+              executing a
+
+              MsgUpdateParams message.
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          description: MsgUpdateParams is the Msg/UpdateParams request type.
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              authority:
+                type: string
+                description: >-
+                  authority is the address that controls the module (defaults to
+                  x/gov unless overwritten).
+              params:
+                description: 'NOTE: All parameters must be supplied.'
+                type: object
+            description: MsgUpdateParams is the Msg/UpdateParams request type.
+      tags:
+        - Msg
+  /enreach.manager.Msg/UpdateSuperior:
+    post:
+      operationId: EnreachManagerMsg_UpdateSuperior
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              signer:
+                type: string
+              account:
+                type: string
+      tags:
+        - Msg
   /enreach/manager/epoch/currentepoch:
     get:
       operationId: EnreachManagerQuery_GetCurrentEpoch
@@ -9796,448 +10316,53 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /enreach.manager.Msg/ActivateManager:
-    post:
-      operationId: EnreachManagerMsg_ActivateManager
+  /enreach/manager/superior:
+    get:
+      summary: Queries a Superior by index.
+      operationId: EnreachManagerQuery_Superior
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
             properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              operatorAccount:
-                type: string
-              license:
-                type: string
-      tags:
-        - Msg
-  /enreach.manager.Msg/BindOperatorEVMAccount:
-    post:
-      operationId: EnreachManagerMsg_BindOperatorEVMAccount
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              operatorAccount:
-                type: string
-              evmAccount:
-                type: string
-              evmSignature:
-                type: string
-                format: byte
-      tags:
-        - Msg
-  /enreach.manager.Msg/BindOperatorManagerAccount:
-    post:
-      operationId: EnreachManagerMsg_BindOperatorManagerAccount
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              operatorAccount:
-                type: string
-              managerAccount:
-                type: string
-              managerSignature:
-                type: string
-                format: byte
-              forceUnbind:
-                type: boolean
-      tags:
-        - Msg
-  /enreach.manager.Msg/CreateOperator:
-    post:
-      operationId: EnreachManagerMsg_CreateOperator
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              operatorAccount:
-                type: string
-              name:
-                type: string
-              description:
-                type: string
-              websiteUrl:
-                type: string
-      tags:
-        - Msg
-  /enreach.manager.Msg/GoWorking:
-    post:
-      operationId: EnreachManagerMsg_GoWorking
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              managerAccount:
-                type: string
-      tags:
-        - Msg
-  /enreach.manager.Msg/RegisterManager:
-    post:
-      operationId: EnreachManagerMsg_RegisterManager
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              managerAccount:
-                type: string
-              hostAddress:
-                type: string
-              managerPort:
-                type: integer
-                format: int64
-              trackerPort:
-                type: integer
-                format: int64
-              chainAPIPort:
-                type: integer
-                format: int64
-              chainRPCPort:
-                type: integer
-                format: int64
-      tags:
-        - Msg
-  /enreach.manager.Msg/SetManagerRegion:
-    post:
-      operationId: EnreachManagerMsg_SetManagerRegion
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              operatorAccount:
-                type: string
-              regionCode:
-                type: string
-      tags:
-        - Msg
-  /enreach.manager.Msg/UpdateManagerConnParams:
-    post:
-      operationId: EnreachManagerMsg_UpdateManagerConnParams
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              operatorAccount:
-                type: string
-              hostAddress:
-                type: string
-              managerPort:
-                type: integer
-                format: int64
-              trackerPort:
-                type: integer
-                format: int64
-              chainAPIPort:
-                type: integer
-                format: int64
-              chainRPCPort:
-                type: integer
-                format: int64
-      tags:
-        - Msg
-  /enreach.manager.Msg/UpdateOperatorBasicInfo:
-    post:
-      operationId: EnreachManagerMsg_UpdateOperatorBasicInfo
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              operatorAccount:
-                type: string
-              name:
-                type: string
-              description:
-                type: string
-              websiteUrl:
-                type: string
-      tags:
-        - Msg
-  /enreach.manager.Msg/UpdateParams:
-    post:
-      summary: |-
-        UpdateParams defines a (governance) operation for updating the module
-        parameters. The authority defaults to the x/gov module account.
-      operationId: EnreachManagerMsg_UpdateParams
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            description: >-
-              MsgUpdateParamsResponse defines the response structure for
-              executing a
-
-              MsgUpdateParams message.
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          description: MsgUpdateParams is the Msg/UpdateParams request type.
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              authority:
-                type: string
-                description: >-
-                  authority is the address that controls the module (defaults to
-                  x/gov unless overwritten).
-              params:
-                description: 'NOTE: All parameters must be supplied.'
+              Superior:
                 type: object
-            description: MsgUpdateParams is the Msg/UpdateParams request type.
+                properties:
+                  account:
+                    type: string
+                  creator:
+                    type: string
+                  createAt:
+                    type: string
+                    format: uint64
+                  updator:
+                    type: string
+                  updateAt:
+                    type: string
+                    format: uint64
+                  signer:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
       tags:
-        - Msg
+        - Query
   /enreach.registry.Msg/CreateRegion:
     post:
       operationId: EnreachRegistryMsg_CreateRegion
@@ -21249,6 +21374,163 @@ definitions:
           min_commission_rate is the chain-wide minimum commission rate that a
           validator can charge their delegators
     description: Params defines the parameters for the x/staking module.
+  enreach.manager.MsgActivateManager:
+    type: object
+    properties:
+      operatorAccount:
+        type: string
+      license:
+        type: string
+  enreach.manager.MsgActivateManagerResponse:
+    type: object
+  enreach.manager.MsgBindOperatorEVMAccount:
+    type: object
+    properties:
+      operatorAccount:
+        type: string
+      evmAccount:
+        type: string
+      evmSignature:
+        type: string
+        format: byte
+  enreach.manager.MsgBindOperatorEVMAccountResponse:
+    type: object
+  enreach.manager.MsgBindOperatorManagerAccount:
+    type: object
+    properties:
+      operatorAccount:
+        type: string
+      managerAccount:
+        type: string
+      managerSignature:
+        type: string
+        format: byte
+      forceUnbind:
+        type: boolean
+  enreach.manager.MsgBindOperatorManagerAccountResponse:
+    type: object
+  enreach.manager.MsgCreateOperator:
+    type: object
+    properties:
+      operatorAccount:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      websiteUrl:
+        type: string
+  enreach.manager.MsgCreateOperatorResponse:
+    type: object
+  enreach.manager.MsgCreateSuperior:
+    type: object
+    properties:
+      signer:
+        type: string
+      account:
+        type: string
+  enreach.manager.MsgCreateSuperiorResponse:
+    type: object
+  enreach.manager.MsgGoWorking:
+    type: object
+    properties:
+      managerAccount:
+        type: string
+  enreach.manager.MsgGoWorkingResponse:
+    type: object
+  enreach.manager.MsgRegisterManager:
+    type: object
+    properties:
+      managerAccount:
+        type: string
+      hostAddress:
+        type: string
+      managerPort:
+        type: integer
+        format: int64
+      trackerPort:
+        type: integer
+        format: int64
+      chainAPIPort:
+        type: integer
+        format: int64
+      chainRPCPort:
+        type: integer
+        format: int64
+  enreach.manager.MsgRegisterManagerResponse:
+    type: object
+  enreach.manager.MsgSetManagerRegion:
+    type: object
+    properties:
+      operatorAccount:
+        type: string
+      regionCode:
+        type: string
+  enreach.manager.MsgSetManagerRegionResponse:
+    type: object
+  enreach.manager.MsgUpdateManagerConnParams:
+    type: object
+    properties:
+      operatorAccount:
+        type: string
+      hostAddress:
+        type: string
+      managerPort:
+        type: integer
+        format: int64
+      trackerPort:
+        type: integer
+        format: int64
+      chainAPIPort:
+        type: integer
+        format: int64
+      chainRPCPort:
+        type: integer
+        format: int64
+  enreach.manager.MsgUpdateManagerConnParamsResponse:
+    type: object
+  enreach.manager.MsgUpdateOperatorBasicInfo:
+    type: object
+    properties:
+      operatorAccount:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      websiteUrl:
+        type: string
+  enreach.manager.MsgUpdateOperatorBasicInfoResponse:
+    type: object
+  enreach.manager.MsgUpdateParams:
+    type: object
+    properties:
+      authority:
+        type: string
+        description: >-
+          authority is the address that controls the module (defaults to x/gov
+          unless overwritten).
+      params:
+        description: 'NOTE: All parameters must be supplied.'
+        type: object
+    description: MsgUpdateParams is the Msg/UpdateParams request type.
+  enreach.manager.MsgUpdateParamsResponse:
+    type: object
+    description: |-
+      MsgUpdateParamsResponse defines the response structure for executing a
+      MsgUpdateParams message.
+  enreach.manager.MsgUpdateSuperior:
+    type: object
+    properties:
+      signer:
+        type: string
+      account:
+        type: string
+  enreach.manager.MsgUpdateSuperiorResponse:
+    type: object
+  enreach.manager.Params:
+    type: object
+    description: Params defines the parameters for the module.
   cosmos.base.query.v1beta1.PageRequest:
     type: object
     properties:
@@ -21388,9 +21670,6 @@ definitions:
       updateAt:
         type: string
         format: uint64
-  enreach.manager.Params:
-    type: object
-    description: Params defines the parameters for the module.
   enreach.manager.QueryAllManagerResponse:
     type: object
     properties:
@@ -21637,6 +21916,26 @@ definitions:
           updateAt:
             type: string
             format: uint64
+  enreach.manager.QueryGetSuperiorResponse:
+    type: object
+    properties:
+      Superior:
+        type: object
+        properties:
+          account:
+            type: string
+          creator:
+            type: string
+          createAt:
+            type: string
+            format: uint64
+          updator:
+            type: string
+          updateAt:
+            type: string
+            format: uint64
+          signer:
+            type: string
   enreach.manager.QueryParamsResponse:
     type: object
     properties:
@@ -21644,142 +21943,23 @@ definitions:
         description: params holds all the parameters of this module.
         type: object
     description: QueryParamsResponse is response type for the Query/Params RPC method.
-  enreach.manager.MsgActivateManager:
+  enreach.manager.Superior:
     type: object
     properties:
-      operatorAccount:
+      account:
         type: string
-      license:
+      creator:
         type: string
-  enreach.manager.MsgActivateManagerResponse:
-    type: object
-  enreach.manager.MsgBindOperatorEVMAccount:
-    type: object
-    properties:
-      operatorAccount:
+      createAt:
         type: string
-      evmAccount:
+        format: uint64
+      updator:
         type: string
-      evmSignature:
+      updateAt:
         type: string
-        format: byte
-  enreach.manager.MsgBindOperatorEVMAccountResponse:
-    type: object
-  enreach.manager.MsgBindOperatorManagerAccount:
-    type: object
-    properties:
-      operatorAccount:
+        format: uint64
+      signer:
         type: string
-      managerAccount:
-        type: string
-      managerSignature:
-        type: string
-        format: byte
-      forceUnbind:
-        type: boolean
-  enreach.manager.MsgBindOperatorManagerAccountResponse:
-    type: object
-  enreach.manager.MsgCreateOperator:
-    type: object
-    properties:
-      operatorAccount:
-        type: string
-      name:
-        type: string
-      description:
-        type: string
-      websiteUrl:
-        type: string
-  enreach.manager.MsgCreateOperatorResponse:
-    type: object
-  enreach.manager.MsgGoWorking:
-    type: object
-    properties:
-      managerAccount:
-        type: string
-  enreach.manager.MsgGoWorkingResponse:
-    type: object
-  enreach.manager.MsgRegisterManager:
-    type: object
-    properties:
-      managerAccount:
-        type: string
-      hostAddress:
-        type: string
-      managerPort:
-        type: integer
-        format: int64
-      trackerPort:
-        type: integer
-        format: int64
-      chainAPIPort:
-        type: integer
-        format: int64
-      chainRPCPort:
-        type: integer
-        format: int64
-  enreach.manager.MsgRegisterManagerResponse:
-    type: object
-  enreach.manager.MsgSetManagerRegion:
-    type: object
-    properties:
-      operatorAccount:
-        type: string
-      regionCode:
-        type: string
-  enreach.manager.MsgSetManagerRegionResponse:
-    type: object
-  enreach.manager.MsgUpdateManagerConnParams:
-    type: object
-    properties:
-      operatorAccount:
-        type: string
-      hostAddress:
-        type: string
-      managerPort:
-        type: integer
-        format: int64
-      trackerPort:
-        type: integer
-        format: int64
-      chainAPIPort:
-        type: integer
-        format: int64
-      chainRPCPort:
-        type: integer
-        format: int64
-  enreach.manager.MsgUpdateManagerConnParamsResponse:
-    type: object
-  enreach.manager.MsgUpdateOperatorBasicInfo:
-    type: object
-    properties:
-      operatorAccount:
-        type: string
-      name:
-        type: string
-      description:
-        type: string
-      websiteUrl:
-        type: string
-  enreach.manager.MsgUpdateOperatorBasicInfoResponse:
-    type: object
-  enreach.manager.MsgUpdateParams:
-    type: object
-    properties:
-      authority:
-        type: string
-        description: >-
-          authority is the address that controls the module (defaults to x/gov
-          unless overwritten).
-      params:
-        description: 'NOTE: All parameters must be supplied.'
-        type: object
-    description: MsgUpdateParams is the Msg/UpdateParams request type.
-  enreach.manager.MsgUpdateParamsResponse:
-    type: object
-    description: |-
-      MsgUpdateParamsResponse defines the response structure for executing a
-      MsgUpdateParams message.
   enreach.registry.MsgCreateRegion:
     type: object
     properties:

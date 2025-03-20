@@ -26,4 +26,5 @@ var (
 	ErrInvalidRegion                        = sdkerrors.Register(ModuleName, 1115, "invalid region")
 	ErrInvalidManagerRegisterStatus         = sdkerrors.Register(ModuleName, 1116, "invalid manager register status")
 	ErrInvalidManagerLicense                = sdkerrors.Register(ModuleName, 1117, "invalid manager activate license")
+	ErrSuperiorNotSet                       = sdkerrors.Register(ModuleName, 1118, "superior not set")
 )

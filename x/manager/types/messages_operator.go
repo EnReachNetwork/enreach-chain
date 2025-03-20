@@ -158,8 +158,8 @@ func (msg *MsgActivateManager) ValidateBasic() error {
 	if len(msg.License) == 0 {
 		return errorsmod.Wrap(ErrInvalidParamLength, "License should not be empty")
 	}
-	if len(msg.License) > LICENSE_MAX_LENGTH {
-		return errorsmod.Wrapf(ErrInvalidParamLength, "License exceed max length %d", LICENSE_MAX_LENGTH)
+	if len(msg.License) != LICENSE_LENGTH {
+		return errorsmod.Wrapf(ErrInvalidParamLength, "License must be length %d", LICENSE_LENGTH)
 	}
 
 	return nil

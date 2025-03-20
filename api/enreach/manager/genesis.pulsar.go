@@ -123,6 +123,7 @@ var (
 	fd_GenesisState_managerCount  protoreflect.FieldDescriptor
 	fd_GenesisState_operatorList  protoreflect.FieldDescriptor
 	fd_GenesisState_operatorCount protoreflect.FieldDescriptor
+	fd_GenesisState_superior      protoreflect.FieldDescriptor
 )
 
 func init() {
@@ -133,6 +134,7 @@ func init() {
 	fd_GenesisState_managerCount = md_GenesisState.Fields().ByName("managerCount")
 	fd_GenesisState_operatorList = md_GenesisState.Fields().ByName("operatorList")
 	fd_GenesisState_operatorCount = md_GenesisState.Fields().ByName("operatorCount")
+	fd_GenesisState_superior = md_GenesisState.Fields().ByName("superior")
 }
 
 var _ protoreflect.Message = (*fastReflection_GenesisState)(nil)
@@ -230,6 +232,12 @@ func (x *fastReflection_GenesisState) Range(f func(protoreflect.FieldDescriptor,
 			return
 		}
 	}
+	if x.Superior != nil {
+		value := protoreflect.ValueOfMessage(x.Superior.ProtoReflect())
+		if !f(fd_GenesisState_superior, value) {
+			return
+		}
+	}
 }
 
 // Has reports whether a field is populated.
@@ -255,6 +263,8 @@ func (x *fastReflection_GenesisState) Has(fd protoreflect.FieldDescriptor) bool 
 		return len(x.OperatorList) != 0
 	case "enreach.manager.GenesisState.operatorCount":
 		return x.OperatorCount != uint64(0)
+	case "enreach.manager.GenesisState.superior":
+		return x.Superior != nil
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.GenesisState"))
@@ -281,6 +291,8 @@ func (x *fastReflection_GenesisState) Clear(fd protoreflect.FieldDescriptor) {
 		x.OperatorList = nil
 	case "enreach.manager.GenesisState.operatorCount":
 		x.OperatorCount = uint64(0)
+	case "enreach.manager.GenesisState.superior":
+		x.Superior = nil
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.GenesisState"))
@@ -318,6 +330,9 @@ func (x *fastReflection_GenesisState) Get(descriptor protoreflect.FieldDescripto
 	case "enreach.manager.GenesisState.operatorCount":
 		value := x.OperatorCount
 		return protoreflect.ValueOfUint64(value)
+	case "enreach.manager.GenesisState.superior":
+		value := x.Superior
+		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.GenesisState"))
@@ -352,6 +367,8 @@ func (x *fastReflection_GenesisState) Set(fd protoreflect.FieldDescriptor, value
 		x.OperatorList = *clv.list
 	case "enreach.manager.GenesisState.operatorCount":
 		x.OperatorCount = value.Uint()
+	case "enreach.manager.GenesisState.superior":
+		x.Superior = value.Message().Interface().(*Superior)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.GenesisState"))
@@ -389,6 +406,11 @@ func (x *fastReflection_GenesisState) Mutable(fd protoreflect.FieldDescriptor) p
 		}
 		value := &_GenesisState_4_list{list: &x.OperatorList}
 		return protoreflect.ValueOfList(value)
+	case "enreach.manager.GenesisState.superior":
+		if x.Superior == nil {
+			x.Superior = new(Superior)
+		}
+		return protoreflect.ValueOfMessage(x.Superior.ProtoReflect())
 	case "enreach.manager.GenesisState.managerCount":
 		panic(fmt.Errorf("field managerCount of message enreach.manager.GenesisState is not mutable"))
 	case "enreach.manager.GenesisState.operatorCount":
@@ -419,6 +441,9 @@ func (x *fastReflection_GenesisState) NewField(fd protoreflect.FieldDescriptor) 
 		return protoreflect.ValueOfList(&_GenesisState_4_list{list: &list})
 	case "enreach.manager.GenesisState.operatorCount":
 		return protoreflect.ValueOfUint64(uint64(0))
+	case "enreach.manager.GenesisState.superior":
+		m := new(Superior)
+		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.manager.GenesisState"))
@@ -510,6 +535,10 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 		if x.OperatorCount != 0 {
 			n += 1 + runtime.Sov(uint64(x.OperatorCount))
 		}
+		if x.Superior != nil {
+			l = options.Size(x.Superior)
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -538,6 +567,20 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 		if x.unknownFields != nil {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
+		}
+		if x.Superior != nil {
+			encoded, err := options.Marshal(x.Superior)
+			if err != nil {
+				return protoiface.MarshalOutput{
+					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+					Buf:               input.Buf,
+				}, err
+			}
+			i -= len(encoded)
+			copy(dAtA[i:], encoded)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+			i--
+			dAtA[i] = 0x32
 		}
 		if x.OperatorCount != 0 {
 			i = runtime.EncodeVarint(dAtA, i, uint64(x.OperatorCount))
@@ -786,6 +829,42 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 						break
 					}
 				}
+			case 6:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Superior", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if x.Superior == nil {
+					x.Superior = &Superior{}
+				}
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Superior); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -846,6 +925,7 @@ type GenesisState struct {
 	ManagerCount  uint64      `protobuf:"varint,3,opt,name=managerCount,proto3" json:"managerCount,omitempty"`
 	OperatorList  []*Operator `protobuf:"bytes,4,rep,name=operatorList,proto3" json:"operatorList,omitempty"`
 	OperatorCount uint64      `protobuf:"varint,5,opt,name=operatorCount,proto3" json:"operatorCount,omitempty"`
+	Superior      *Superior   `protobuf:"bytes,6,opt,name=superior,proto3" json:"superior,omitempty"`
 }
 
 func (x *GenesisState) Reset() {
@@ -903,6 +983,13 @@ func (x *GenesisState) GetOperatorCount() uint64 {
 	return 0
 }
 
+func (x *GenesisState) GetSuperior() *Superior {
+	if x != nil {
+		return x.Superior
+	}
+	return nil
+}
+
 var File_enreach_manager_genesis_proto protoreflect.FileDescriptor
 
 var file_enreach_manager_genesis_proto_rawDesc = []byte{
@@ -917,7 +1004,9 @@ var file_enreach_manager_genesis_proto_rawDesc = []byte{
 	0x2f, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2f, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72,
 	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f,
 	0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2f, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x9b, 0x02, 0x0a, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f,
+	0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2f, 0x73, 0x75, 0x70, 0x65, 0x72, 0x69, 0x6f, 0x72,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xd2, 0x02, 0x0a, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73,
 	0x69, 0x73, 0x53, 0x74, 0x61, 0x74, 0x65, 0x12, 0x3a, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d,
 	0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63,
 	0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73,
@@ -935,18 +1024,21 @@ var file_enreach_manager_genesis_proto_rawDesc = []byte{
 	0x52, 0x0c, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x24,
 	0x0a, 0x0d, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x18,
 	0x05, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0d, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x43,
-	0x6f, 0x75, 0x6e, 0x74, 0x42, 0xa2, 0x01, 0x0a, 0x13, 0x63, 0x6f, 0x6d, 0x2e, 0x65, 0x6e, 0x72,
-	0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x42, 0x0c, 0x47, 0x65,
-	0x6e, 0x65, 0x73, 0x69, 0x73, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x20, 0x63, 0x6f,
-	0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x65,
-	0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0xa2, 0x02,
-	0x03, 0x45, 0x4d, 0x58, 0xaa, 0x02, 0x0f, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x4d,
-	0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0xca, 0x02, 0x0f, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68,
-	0x5c, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0xe2, 0x02, 0x1b, 0x45, 0x6e, 0x72, 0x65, 0x61,
-	0x63, 0x68, 0x5c, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65,
-	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x10, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68,
-	0x3a, 0x3a, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x6f, 0x75, 0x6e, 0x74, 0x12, 0x35, 0x0a, 0x08, 0x73, 0x75, 0x70, 0x65, 0x72, 0x69, 0x6f, 0x72,
+	0x18, 0x06, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68,
+	0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x53, 0x75, 0x70, 0x65, 0x72, 0x69, 0x6f,
+	0x72, 0x52, 0x08, 0x73, 0x75, 0x70, 0x65, 0x72, 0x69, 0x6f, 0x72, 0x42, 0xa2, 0x01, 0x0a, 0x13,
+	0x63, 0x6f, 0x6d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61,
+	0x67, 0x65, 0x72, 0x42, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x50, 0x72, 0x6f, 0x74,
+	0x6f, 0x50, 0x01, 0x5a, 0x20, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69,
+	0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x6d, 0x61,
+	0x6e, 0x61, 0x67, 0x65, 0x72, 0xa2, 0x02, 0x03, 0x45, 0x4d, 0x58, 0xaa, 0x02, 0x0f, 0x45, 0x6e,
+	0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0xca, 0x02, 0x0f,
+	0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0xe2,
+	0x02, 0x1b, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65,
+	0x72, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x10,
+	0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x3a, 0x3a, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -967,16 +1059,18 @@ var file_enreach_manager_genesis_proto_goTypes = []interface{}{
 	(*Params)(nil),       // 1: enreach.manager.Params
 	(*Manager)(nil),      // 2: enreach.manager.Manager
 	(*Operator)(nil),     // 3: enreach.manager.Operator
+	(*Superior)(nil),     // 4: enreach.manager.Superior
 }
 var file_enreach_manager_genesis_proto_depIdxs = []int32{
 	1, // 0: enreach.manager.GenesisState.params:type_name -> enreach.manager.Params
 	2, // 1: enreach.manager.GenesisState.managerList:type_name -> enreach.manager.Manager
 	3, // 2: enreach.manager.GenesisState.operatorList:type_name -> enreach.manager.Operator
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	4, // 3: enreach.manager.GenesisState.superior:type_name -> enreach.manager.Superior
+	4, // [4:4] is the sub-list for method output_type
+	4, // [4:4] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_enreach_manager_genesis_proto_init() }
@@ -987,6 +1081,7 @@ func file_enreach_manager_genesis_proto_init() {
 	file_enreach_manager_params_proto_init()
 	file_enreach_manager_manager_proto_init()
 	file_enreach_manager_operator_proto_init()
+	file_enreach_manager_superior_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_enreach_manager_genesis_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GenesisState); i {

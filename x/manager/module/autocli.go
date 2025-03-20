@@ -56,6 +56,11 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Use:       "get-current-epoch",
 					Short:     "Get current epoch",
 				},
+				{
+					RpcMethod: "Superior",
+					Use:       "show-superior",
+					Short:     "show superior",
+				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},
@@ -122,6 +127,18 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Use:            "bind-operator-evm-account [operatorAccount] [evmAccount] [evmSignature]",
 					Short:          "Bind operator evm account",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "operatorAccount"}, {ProtoField: "evmAccount"}, {ProtoField: "evmSignature"}},
+				},
+				{
+					RpcMethod:      "CreateSuperior",
+					Use:            "create-superior [account]",
+					Short:          "Create superior",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "account"}},
+				},
+				{
+					RpcMethod:      "UpdateSuperior",
+					Use:            "update-superior [account]",
+					Short:          "Update superior",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "account"}},
 				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},

@@ -27,6 +27,7 @@ const (
 	Query_GetManagerByRegion_FullMethodName = "/enreach.manager.Query/GetManagerByRegion"
 	Query_GetEpochLength_FullMethodName     = "/enreach.manager.Query/GetEpochLength"
 	Query_GetCurrentEpoch_FullMethodName    = "/enreach.manager.Query/GetCurrentEpoch"
+	Query_Superior_FullMethodName           = "/enreach.manager.Query/Superior"
 )
 
 // QueryClient is the client API for Query service.
@@ -46,6 +47,8 @@ type QueryClient interface {
 	// Queries epoch
 	GetEpochLength(ctx context.Context, in *QueryGetEpochLengthRequest, opts ...grpc.CallOption) (*QueryGetEpochLengthResponse, error)
 	GetCurrentEpoch(ctx context.Context, in *QueryGetCurrentEpochRequest, opts ...grpc.CallOption) (*QueryGetCurrentEpochResponse, error)
+	// Queries a Superior by index.
+	Superior(ctx context.Context, in *QueryGetSuperiorRequest, opts ...grpc.CallOption) (*QueryGetSuperiorResponse, error)
 }
 
 type queryClient struct {
@@ -128,6 +131,15 @@ func (c *queryClient) GetCurrentEpoch(ctx context.Context, in *QueryGetCurrentEp
 	return out, nil
 }
 
+func (c *queryClient) Superior(ctx context.Context, in *QueryGetSuperiorRequest, opts ...grpc.CallOption) (*QueryGetSuperiorResponse, error) {
+	out := new(QueryGetSuperiorResponse)
+	err := c.cc.Invoke(ctx, Query_Superior_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
@@ -145,6 +157,8 @@ type QueryServer interface {
 	// Queries epoch
 	GetEpochLength(context.Context, *QueryGetEpochLengthRequest) (*QueryGetEpochLengthResponse, error)
 	GetCurrentEpoch(context.Context, *QueryGetCurrentEpochRequest) (*QueryGetCurrentEpochResponse, error)
+	// Queries a Superior by index.
+	Superior(context.Context, *QueryGetSuperiorRequest) (*QueryGetSuperiorResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -175,6 +189,9 @@ func (UnimplementedQueryServer) GetEpochLength(context.Context, *QueryGetEpochLe
 }
 func (UnimplementedQueryServer) GetCurrentEpoch(context.Context, *QueryGetCurrentEpochRequest) (*QueryGetCurrentEpochResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCurrentEpoch not implemented")
+}
+func (UnimplementedQueryServer) Superior(context.Context, *QueryGetSuperiorRequest) (*QueryGetSuperiorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Superior not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -333,6 +350,24 @@ func _Query_GetCurrentEpoch_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_Superior_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetSuperiorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).Superior(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_Superior_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).Superior(ctx, req.(*QueryGetSuperiorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -371,6 +406,10 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCurrentEpoch",
 			Handler:    _Query_GetCurrentEpoch_Handler,
+		},
+		{
+			MethodName: "Superior",
+			Handler:    _Query_Superior_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

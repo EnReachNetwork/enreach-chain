@@ -7,6 +7,7 @@ import "gogoproto/gogo.proto";
 import "enreach/manager/params.proto";
 import "enreach/manager/manager.proto";
 import "enreach/manager/operator.proto";
+import "enreach/manager/superior.proto";
 
 option go_package = "enreach/x/manager/types";
 
@@ -19,5 +20,6 @@ message GenesisState {
            uint64   managerCount  = 3;
   repeated Operator operatorList  = 4 [(gogoproto.nullable) = false] ;
            uint64   operatorCount = 5;
+           Superior superior      = 6;
 }
 

@@ -2,6 +2,7 @@ package keeper
 
 import (
 	"context"
+	"encoding/base64"
 	"strconv"
 
 	"enreach/x/manager/types"
@@ -321,7 +322,7 @@ func (k msgServer) ActivateManager(goCtx context.Context, msg *types.MsgActivate
 
 	//////////////////////////////////////////////////////
 	/// TODO: Verifys the license using license module
-	if err := verifyActivateLicense(msg.License); err != nil {
+	if err := verifyActivateLicense(k, ctx, operator.OperatorAccount, operator.ManagerAccount, msg.License); err != nil {
 		return nil, errorsmod.Wrapf(types.ErrInvalidManagerLicense, "%s", err)
 	}
 
@@ -343,8 +344,41 @@ func (k msgServer) ActivateManager(goCtx context.Context, msg *types.MsgActivate
 	return &types.MsgActivateManagerResponse{}, nil
 }
 
-func verifyActivateLicense(_license string) error {
-	/// TODO
+func verifyActivateLicense(k msgServer, ctx context.Context, operatorAccount string, managerAccount string, license string) error {
+
+	// The license string is actually a signature signed by the superior account
+	superior, isFound := k.GetSuperior(ctx)
+	if !isFound {
+		return types.ErrSuperiorNotSet
+	}
+
+	// Decode the superior address
+	superiorAccAddr, err := sdk.AccAddressFromBech32(superior.Account)
+	if err != nil {
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid superior account: %s", err)
+	}
+
+	// Get the superior account pubkey from the store,
+	// superior should have called other tx before, so there should be account in the AccountKeeper store
+	account := k.accountKeeper.GetAccount(ctx, superiorAccAddr)
+	if account == nil {
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "account not found for address: %s", superior.Account)
+	}
+	pubKey := account.GetPubKey()
+	if pubKey == nil {
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "public key not found for account: %s", superior.Account)
+	}
+
+	// Construct original sig data
+	data := []byte(superior.Account + ":" + operatorAccount + ":" + managerAccount)
+	licenseSigBytes, err := base64.StdEncoding.DecodeString(license)
+	if err != nil {
+		return errorsmod.Wrapf(types.ErrInvalidSignature, "invalid license signature: %s", err)
+	}
+	// Verify the signature, please be attention that the 'msg' param here is the raw msg bytes, not the sha256 form
+	if !pubKey.VerifySignature(data, licenseSigBytes[0:64]) {
+		return errorsmod.Wrap(types.ErrInvalidSignature, "License verification failed, please ensure it's issued by official")
+	}
 
 	return nil
 }
