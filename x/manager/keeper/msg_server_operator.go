@@ -259,6 +259,7 @@ func (k msgServer) UpdateManagerConnParams(goCtx context.Context, msg *types.Msg
 		sdk.NewEvent(types.EventTypeManagerConnParamsUpdated,
 			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
 			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.OperatorAccount),
+			sdk.NewAttribute(types.AttributeKeyHostAddress, msg.HostAddress),
 			sdk.NewAttribute(types.AttributeKeyManagerPort, strconv.FormatUint(uint64(msg.ManagerPort), 10)),
 			sdk.NewAttribute(types.AttributeKeyTrackerPort, strconv.FormatUint(uint64(msg.TrackerPort), 10)),
 			sdk.NewAttribute(types.AttributeKeyChainAPIPort, strconv.FormatUint(uint64(msg.ChainAPIPort), 10)),

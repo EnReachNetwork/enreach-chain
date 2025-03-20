@@ -3,6 +3,7 @@ package keeper
 import (
 	"context"
 	"fmt"
+	"strconv"
 
 	"enreach/x/manager/types"
 
@@ -34,9 +35,20 @@ func (k msgServer) RegisterManager(goCtx context.Context, msg *types.MsgRegister
 		UpdateAt:       blockHeight,
 		RegisterStatus: string(types.RS_PENDING_BIND), // New register manager start with "Pending_Bind" register status
 	}
-
 	// Add manager to the store
 	k.AppendManager(ctx, manager)
+
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeManagerRegistered,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.ManagerAccount),
+			sdk.NewAttribute(types.AttributeKeyHostAddress, msg.HostAddress),
+			sdk.NewAttribute(types.AttributeKeyManagerPort, strconv.FormatUint(uint64(msg.ManagerPort), 10)),
+			sdk.NewAttribute(types.AttributeKeyTrackerPort, strconv.FormatUint(uint64(msg.TrackerPort), 10)),
+			sdk.NewAttribute(types.AttributeKeyChainAPIPort, strconv.FormatUint(uint64(msg.ChainAPIPort), 10)),
+			sdk.NewAttribute(types.AttributeKeyChainRPCPort, strconv.FormatUint(uint64(msg.ChainRPCPort), 10)),
+		),
+	)
 
 	return &types.MsgRegisterManagerResponse{}, nil
 }
@@ -83,6 +95,13 @@ func (k msgServer) GoWorking(goCtx context.Context, msg *types.MsgGoWorking) (*t
 	manager.UpdateAt = blockHeight
 
 	k.SetManager(ctx, manager)
+
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeManagerGoWorking,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.ManagerAccount),
+		),
+	)
 
 	return &types.MsgGoWorkingResponse{}, nil
 }
