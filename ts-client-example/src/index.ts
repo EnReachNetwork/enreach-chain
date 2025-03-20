@@ -7,6 +7,8 @@ import { Secp256k1, sha256, Bip39, Slip10,Slip10Curve, EnglishMnemonic, stringTo
 import EdgenodeApi from './edgenode';
 import WorkloadApi from './workload';
 import { Tendermint37Client } from "@cosmjs/tendermint-rpc";
+import { ethers } from 'ethers';
+
 async function main() {
   const regionAdminApi = new RegionApi(ADMIN_MNEMONIC);
   const regionApi = new RegionApi(SUPERIOR_MENMONIC);
@@ -50,6 +52,9 @@ async function testManager(regionApi: RegionApi, operatorApi: OperatorApi, manag
 
   await operatorApi.createOperator({operatorAccount: operatorApi.account, name:"Crust", description: "Crust Network", websiteUrl: "https://crust.network"});
   
+  const [evmAccount, sig] = await getEvmSignature(operatorApi.account);
+  await operatorApi.bindOperatorEVMAccount({operatorAccount: operatorApi.account, evmAccount: evmAccount, evmSignature: ethers.utils.arrayify(sig)})
+
   await managerApi.registerManager({managerAccount: managerApi.account, hostAddress:"127.0.0.1",managerPort:100,trackerPort:200,chainAPIPort:1337, chainRPCPort:26657});
   
   const managerSignature = await getManagerSignature(operatorApi.account, managerApi.wallet);
@@ -69,6 +74,18 @@ async function testManager(regionApi: RegionApi, operatorApi: OperatorApi, manag
   console.log("Operators:", allOperators);
   console.log("Managers:", allManagers);
 }
+
+async function getEvmSignature(operatorAccount: string) {
+
+  const pair = ethers.Wallet.createRandom();
+  const evmAccount = pair.address;
+  
+  const toSignedMessage = `${operatorAccount}:${evmAccount}`;
+  const sig = await pair.signMessage(toSignedMessage);
+
+  return [evmAccount, sig];
+}
+
 async function getManagerSignature(operatorAccount: string, managerWallet: DirectSecp256k1HdWallet) {
   const accounts = await managerWallet.getAccounts();
   const managerAccount = accounts[0].address;

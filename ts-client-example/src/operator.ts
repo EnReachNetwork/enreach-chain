@@ -1,7 +1,7 @@
 import { DirectSecp256k1HdWallet } from '@cosmjs/proto-signing'
 import { txClient } from 'enreach-client-ts/lib/enreach.manager';
 import { queryClient } from "enreach-client-ts/lib/enreach.manager";
-import { MsgActivateManager, MsgBindOperatorManagerAccount, MsgCreateOperator, MsgSetManagerRegion, QueryAllOperatorResponse } from 'enreach-client-ts/lib/enreach.manager/module';
+import { MsgActivateManager, MsgBindOperatorEVMAccount, MsgBindOperatorManagerAccount, MsgCreateOperator, MsgSetManagerRegion, QueryAllOperatorResponse } from 'enreach-client-ts/lib/enreach.manager/module';
 import { CHAIN_API_URL, CHAIN_PREFIX, CHAIN_RPC_URL } from './consts';
 
 export default class OperatorApi {
@@ -64,6 +64,20 @@ export default class OperatorApi {
     async activateManager(msg: MsgActivateManager) {
         let tClient = txClient({ signer: this.wallet, prefix: CHAIN_PREFIX, addr: CHAIN_RPC_URL });
         const result = await tClient.sendMsgActivateManager({
+            value: {
+                ...msg,
+                operatorAccount: this.account,
+            }
+        })
+
+        if (result.code != 0) {
+            throw new Error(`Transaction failed: ${result.rawLog}`)
+        }
+    }
+
+    async bindOperatorEVMAccount(msg: MsgBindOperatorEVMAccount) {
+        let tClient = txClient({ signer: this.wallet, prefix: CHAIN_PREFIX, addr: CHAIN_RPC_URL });
+        const result = await tClient.sendMsgBindOperatorEVMAccount({
             value: {
                 ...msg,
                 operatorAccount: this.account,
