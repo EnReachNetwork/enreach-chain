@@ -122,12 +122,16 @@ async function getActivateLicense(operatorAccount: string, managerAccount: strin
 }
 
 async function testEdgenode(edgenodeApi: EdgenodeApi) {
+  const userID = "user1";
+  const nodeID = "node1";
+  await edgenodeApi.createUser({signer:edgenodeApi.account, userID: userID});
 
-  await edgenodeApi.createUser({signer:edgenodeApi.account, userID: "user1"});
+  const [evmAccount, sig] = await getEvmSignature(userID);
+  await edgenodeApi.bindUserEVMAccount({signer:edgenodeApi.account, userID: userID, evmAccount: evmAccount, evmSignature: ethers.utils.arrayify(sig)});
 
-  await edgenodeApi.registerNode({signer:edgenodeApi.account, nodeID: "node1", deviceType: "Box"});
+  await edgenodeApi.registerNode({signer:edgenodeApi.account, nodeID: nodeID, deviceType: "Box"});
   
-  await edgenodeApi.bindAndActivateNode({signer:edgenodeApi.account, nodeID: "node1", userID: "user1", nodeName: "My Home Node", regionCode: "US"});
+  await edgenodeApi.bindAndActivateNode({signer:edgenodeApi.account, nodeID: nodeID, userID: userID, nodeName: "My Home Node", regionCode: "US"});
 
   console.log("===Query all data");
   const allUsers = await edgenodeApi.queryAllUser();
