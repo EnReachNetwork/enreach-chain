@@ -105,6 +105,22 @@ export interface MsgGoWorking {
 export interface MsgGoWorkingResponse {
 }
 
+export interface MsgCreateSuperior {
+  signer: string;
+  account: string;
+}
+
+export interface MsgCreateSuperiorResponse {
+}
+
+export interface MsgUpdateSuperior {
+  signer: string;
+  account: string;
+}
+
+export interface MsgUpdateSuperiorResponse {
+}
+
 function createBaseMsgUpdateParams(): MsgUpdateParams {
   return { authority: "", params: undefined };
 }
@@ -1503,6 +1519,240 @@ export const MsgGoWorkingResponse = {
   },
 };
 
+function createBaseMsgCreateSuperior(): MsgCreateSuperior {
+  return { signer: "", account: "" };
+}
+
+export const MsgCreateSuperior = {
+  encode(message: MsgCreateSuperior, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.signer !== "") {
+      writer.uint32(10).string(message.signer);
+    }
+    if (message.account !== "") {
+      writer.uint32(18).string(message.account);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateSuperior {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgCreateSuperior();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.signer = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.account = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgCreateSuperior {
+    return {
+      signer: isSet(object.signer) ? String(object.signer) : "",
+      account: isSet(object.account) ? String(object.account) : "",
+    };
+  },
+
+  toJSON(message: MsgCreateSuperior): unknown {
+    const obj: any = {};
+    if (message.signer !== "") {
+      obj.signer = message.signer;
+    }
+    if (message.account !== "") {
+      obj.account = message.account;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgCreateSuperior>, I>>(base?: I): MsgCreateSuperior {
+    return MsgCreateSuperior.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgCreateSuperior>, I>>(object: I): MsgCreateSuperior {
+    const message = createBaseMsgCreateSuperior();
+    message.signer = object.signer ?? "";
+    message.account = object.account ?? "";
+    return message;
+  },
+};
+
+function createBaseMsgCreateSuperiorResponse(): MsgCreateSuperiorResponse {
+  return {};
+}
+
+export const MsgCreateSuperiorResponse = {
+  encode(_: MsgCreateSuperiorResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateSuperiorResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgCreateSuperiorResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgCreateSuperiorResponse {
+    return {};
+  },
+
+  toJSON(_: MsgCreateSuperiorResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgCreateSuperiorResponse>, I>>(base?: I): MsgCreateSuperiorResponse {
+    return MsgCreateSuperiorResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgCreateSuperiorResponse>, I>>(_: I): MsgCreateSuperiorResponse {
+    const message = createBaseMsgCreateSuperiorResponse();
+    return message;
+  },
+};
+
+function createBaseMsgUpdateSuperior(): MsgUpdateSuperior {
+  return { signer: "", account: "" };
+}
+
+export const MsgUpdateSuperior = {
+  encode(message: MsgUpdateSuperior, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.signer !== "") {
+      writer.uint32(10).string(message.signer);
+    }
+    if (message.account !== "") {
+      writer.uint32(18).string(message.account);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateSuperior {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgUpdateSuperior();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.signer = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.account = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgUpdateSuperior {
+    return {
+      signer: isSet(object.signer) ? String(object.signer) : "",
+      account: isSet(object.account) ? String(object.account) : "",
+    };
+  },
+
+  toJSON(message: MsgUpdateSuperior): unknown {
+    const obj: any = {};
+    if (message.signer !== "") {
+      obj.signer = message.signer;
+    }
+    if (message.account !== "") {
+      obj.account = message.account;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgUpdateSuperior>, I>>(base?: I): MsgUpdateSuperior {
+    return MsgUpdateSuperior.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateSuperior>, I>>(object: I): MsgUpdateSuperior {
+    const message = createBaseMsgUpdateSuperior();
+    message.signer = object.signer ?? "";
+    message.account = object.account ?? "";
+    return message;
+  },
+};
+
+function createBaseMsgUpdateSuperiorResponse(): MsgUpdateSuperiorResponse {
+  return {};
+}
+
+export const MsgUpdateSuperiorResponse = {
+  encode(_: MsgUpdateSuperiorResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateSuperiorResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgUpdateSuperiorResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgUpdateSuperiorResponse {
+    return {};
+  },
+
+  toJSON(_: MsgUpdateSuperiorResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgUpdateSuperiorResponse>, I>>(base?: I): MsgUpdateSuperiorResponse {
+    return MsgUpdateSuperiorResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateSuperiorResponse>, I>>(_: I): MsgUpdateSuperiorResponse {
+    const message = createBaseMsgUpdateSuperiorResponse();
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   /**
@@ -1519,6 +1769,8 @@ export interface Msg {
   UpdateOperatorBasicInfo(request: MsgUpdateOperatorBasicInfo): Promise<MsgUpdateOperatorBasicInfoResponse>;
   RegisterManager(request: MsgRegisterManager): Promise<MsgRegisterManagerResponse>;
   GoWorking(request: MsgGoWorking): Promise<MsgGoWorkingResponse>;
+  CreateSuperior(request: MsgCreateSuperior): Promise<MsgCreateSuperiorResponse>;
+  UpdateSuperior(request: MsgUpdateSuperior): Promise<MsgUpdateSuperiorResponse>;
 }
 
 export const MsgServiceName = "enreach.manager.Msg";
@@ -1538,6 +1790,8 @@ export class MsgClientImpl implements Msg {
     this.UpdateOperatorBasicInfo = this.UpdateOperatorBasicInfo.bind(this);
     this.RegisterManager = this.RegisterManager.bind(this);
     this.GoWorking = this.GoWorking.bind(this);
+    this.CreateSuperior = this.CreateSuperior.bind(this);
+    this.UpdateSuperior = this.UpdateSuperior.bind(this);
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
@@ -1597,6 +1851,18 @@ export class MsgClientImpl implements Msg {
     const data = MsgGoWorking.encode(request).finish();
     const promise = this.rpc.request(this.service, "GoWorking", data);
     return promise.then((data) => MsgGoWorkingResponse.decode(_m0.Reader.create(data)));
+  }
+
+  CreateSuperior(request: MsgCreateSuperior): Promise<MsgCreateSuperiorResponse> {
+    const data = MsgCreateSuperior.encode(request).finish();
+    const promise = this.rpc.request(this.service, "CreateSuperior", data);
+    return promise.then((data) => MsgCreateSuperiorResponse.decode(_m0.Reader.create(data)));
+  }
+
+  UpdateSuperior(request: MsgUpdateSuperior): Promise<MsgUpdateSuperiorResponse> {
+    const data = MsgUpdateSuperior.encode(request).finish();
+    const promise = this.rpc.request(this.service, "UpdateSuperior", data);
+    return promise.then((data) => MsgUpdateSuperiorResponse.decode(_m0.Reader.create(data)));
   }
 }
 

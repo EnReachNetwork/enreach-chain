@@ -10,9 +10,17 @@ const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const manager_1 = require("./manager");
 const operator_1 = require("./operator");
 const params_1 = require("./params");
+const superior_1 = require("./superior");
 exports.protobufPackage = "enreach.manager";
 function createBaseGenesisState() {
-    return { params: undefined, managerList: [], managerCount: 0, operatorList: [], operatorCount: 0 };
+    return {
+        params: undefined,
+        managerList: [],
+        managerCount: 0,
+        operatorList: [],
+        operatorCount: 0,
+        superior: undefined,
+    };
 }
 exports.GenesisState = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -30,6 +38,9 @@ exports.GenesisState = {
         }
         if (message.operatorCount !== 0) {
             writer.uint32(40).uint64(message.operatorCount);
+        }
+        if (message.superior !== undefined) {
+            superior_1.Superior.encode(message.superior, writer.uint32(50).fork()).ldelim();
         }
         return writer;
     },
@@ -70,6 +81,12 @@ exports.GenesisState = {
                     }
                     message.operatorCount = longToNumber(reader.uint64());
                     continue;
+                case 6:
+                    if (tag !== 50) {
+                        break;
+                    }
+                    message.superior = superior_1.Superior.decode(reader, reader.uint32());
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -87,6 +104,7 @@ exports.GenesisState = {
                 ? object.operatorList.map((e) => operator_1.Operator.fromJSON(e))
                 : [],
             operatorCount: isSet(object.operatorCount) ? Number(object.operatorCount) : 0,
+            superior: isSet(object.superior) ? superior_1.Superior.fromJSON(object.superior) : undefined,
         };
     },
     toJSON(message) {
@@ -106,6 +124,9 @@ exports.GenesisState = {
         if (message.operatorCount !== 0) {
             obj.operatorCount = Math.round(message.operatorCount);
         }
+        if (message.superior !== undefined) {
+            obj.superior = superior_1.Superior.toJSON(message.superior);
+        }
         return obj;
     },
     create(base) {
@@ -120,6 +141,9 @@ exports.GenesisState = {
         message.managerCount = object.managerCount ?? 0;
         message.operatorList = object.operatorList?.map((e) => operator_1.Operator.fromPartial(e)) || [];
         message.operatorCount = object.operatorCount ?? 0;
+        message.superior = (object.superior !== undefined && object.superior !== null)
+            ? superior_1.Superior.fromPartial(object.superior)
+            : undefined;
         return message;
     },
 };

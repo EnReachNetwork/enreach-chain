@@ -140,6 +140,17 @@ export interface QueryGetOperatorResponse {
   };
 }
 
+export interface QueryGetSuperiorResponse {
+  Superior?: {
+    account?: string;
+    creator?: string;
+    createAt?: string;
+    updator?: string;
+    updateAt?: string;
+    signer?: string;
+  };
+}
+
 export interface QueryParamsResponse {
   params?: object;
 }
@@ -192,6 +203,19 @@ export interface ManagerOperator {
 
 export type ManagerParams = object;
 
+export interface ManagerSuperior {
+  account?: string;
+  creator?: string;
+
+  /** @format uint64 */
+  createAt?: string;
+  updator?: string;
+
+  /** @format uint64 */
+  updateAt?: string;
+  signer?: string;
+}
+
 export type MsgActivateManagerResponse = object;
 
 export type MsgBindOperatorEVMAccountResponse = object;
@@ -199,6 +223,8 @@ export type MsgBindOperatorEVMAccountResponse = object;
 export type MsgBindOperatorManagerAccountResponse = object;
 
 export type MsgCreateOperatorResponse = object;
+
+export type MsgCreateSuperiorResponse = object;
 
 export type MsgGoWorkingResponse = object;
 
@@ -211,6 +237,8 @@ export type MsgUpdateManagerConnParamsResponse = object;
 export type MsgUpdateOperatorBasicInfoResponse = object;
 
 export type MsgUpdateParamsResponse = object;
+
+export type MsgUpdateSuperiorResponse = object;
 
 export type Params = object;
 
@@ -560,6 +588,32 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryParams = (params: RequestParams = {}) =>
     this.request<{ params?: object }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
       path: `/enreach/manager/params`,
+      method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QuerySuperior
+   * @request GET:/enreach/manager/superior
+   */
+  querySuperior = (params: RequestParams = {}) =>
+    this.request<
+      {
+        Superior?: {
+          account?: string;
+          creator?: string;
+          createAt?: string;
+          updator?: string;
+          updateAt?: string;
+          signer?: string;
+        };
+      },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/manager/superior`,
       method: "GET",
       ...params,
     });

@@ -123,6 +123,16 @@ export interface QueryGetOperatorResponse {
         updateAt?: string;
     };
 }
+export interface QueryGetSuperiorResponse {
+    Superior?: {
+        account?: string;
+        creator?: string;
+        createAt?: string;
+        updator?: string;
+        updateAt?: string;
+        signer?: string;
+    };
+}
 export interface QueryParamsResponse {
     params?: object;
 }
@@ -163,16 +173,28 @@ export interface ManagerOperator {
     updateAt?: string;
 }
 export type ManagerParams = object;
+export interface ManagerSuperior {
+    account?: string;
+    creator?: string;
+    /** @format uint64 */
+    createAt?: string;
+    updator?: string;
+    /** @format uint64 */
+    updateAt?: string;
+    signer?: string;
+}
 export type MsgActivateManagerResponse = object;
 export type MsgBindOperatorEVMAccountResponse = object;
 export type MsgBindOperatorManagerAccountResponse = object;
 export type MsgCreateOperatorResponse = object;
+export type MsgCreateSuperiorResponse = object;
 export type MsgGoWorkingResponse = object;
 export type MsgRegisterManagerResponse = object;
 export type MsgSetManagerRegionResponse = object;
 export type MsgUpdateManagerConnParamsResponse = object;
 export type MsgUpdateOperatorBasicInfoResponse = object;
 export type MsgUpdateParamsResponse = object;
+export type MsgUpdateSuperiorResponse = object;
 export type Params = object;
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
 export type QueryParamsType = Record<string | number, any>;
@@ -293,4 +315,12 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * @request GET:/enreach/manager/params
      */
     queryParams: (params?: RequestParams) => Promise<AxiosResponse<T>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QuerySuperior
+     * @request GET:/enreach/manager/superior
+     */
+    querySuperior: (params?: RequestParams) => Promise<AxiosResponse<T>>;
 }

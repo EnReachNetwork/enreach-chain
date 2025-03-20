@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MsgClientImpl = exports.MsgServiceName = exports.MsgGoWorkingResponse = exports.MsgGoWorking = exports.MsgRegisterManagerResponse = exports.MsgRegisterManager = exports.MsgUpdateOperatorBasicInfoResponse = exports.MsgUpdateOperatorBasicInfo = exports.MsgBindOperatorEVMAccountResponse = exports.MsgBindOperatorEVMAccount = exports.MsgActivateManagerResponse = exports.MsgActivateManager = exports.MsgUpdateManagerConnParamsResponse = exports.MsgUpdateManagerConnParams = exports.MsgSetManagerRegionResponse = exports.MsgSetManagerRegion = exports.MsgBindOperatorManagerAccountResponse = exports.MsgBindOperatorManagerAccount = exports.MsgCreateOperatorResponse = exports.MsgCreateOperator = exports.MsgUpdateParamsResponse = exports.MsgUpdateParams = exports.protobufPackage = void 0;
+exports.MsgClientImpl = exports.MsgServiceName = exports.MsgUpdateSuperiorResponse = exports.MsgUpdateSuperior = exports.MsgCreateSuperiorResponse = exports.MsgCreateSuperior = exports.MsgGoWorkingResponse = exports.MsgGoWorking = exports.MsgRegisterManagerResponse = exports.MsgRegisterManager = exports.MsgUpdateOperatorBasicInfoResponse = exports.MsgUpdateOperatorBasicInfo = exports.MsgBindOperatorEVMAccountResponse = exports.MsgBindOperatorEVMAccount = exports.MsgActivateManagerResponse = exports.MsgActivateManager = exports.MsgUpdateManagerConnParamsResponse = exports.MsgUpdateManagerConnParams = exports.MsgSetManagerRegionResponse = exports.MsgSetManagerRegion = exports.MsgBindOperatorManagerAccountResponse = exports.MsgBindOperatorManagerAccount = exports.MsgCreateOperatorResponse = exports.MsgCreateOperator = exports.MsgUpdateParamsResponse = exports.MsgUpdateParams = exports.protobufPackage = void 0;
 /* eslint-disable */
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const params_1 = require("./params");
@@ -1234,6 +1234,212 @@ exports.MsgGoWorkingResponse = {
         return message;
     },
 };
+function createBaseMsgCreateSuperior() {
+    return { signer: "", account: "" };
+}
+exports.MsgCreateSuperior = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.signer !== "") {
+            writer.uint32(10).string(message.signer);
+        }
+        if (message.account !== "") {
+            writer.uint32(18).string(message.account);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseMsgCreateSuperior();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.signer = reader.string();
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.account = reader.string();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            signer: isSet(object.signer) ? String(object.signer) : "",
+            account: isSet(object.account) ? String(object.account) : "",
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.signer !== "") {
+            obj.signer = message.signer;
+        }
+        if (message.account !== "") {
+            obj.account = message.account;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.MsgCreateSuperior.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseMsgCreateSuperior();
+        message.signer = object.signer ?? "";
+        message.account = object.account ?? "";
+        return message;
+    },
+};
+function createBaseMsgCreateSuperiorResponse() {
+    return {};
+}
+exports.MsgCreateSuperiorResponse = {
+    encode(_, writer = minimal_1.default.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseMsgCreateSuperiorResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(_) {
+        return {};
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    create(base) {
+        return exports.MsgCreateSuperiorResponse.fromPartial(base ?? {});
+    },
+    fromPartial(_) {
+        const message = createBaseMsgCreateSuperiorResponse();
+        return message;
+    },
+};
+function createBaseMsgUpdateSuperior() {
+    return { signer: "", account: "" };
+}
+exports.MsgUpdateSuperior = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.signer !== "") {
+            writer.uint32(10).string(message.signer);
+        }
+        if (message.account !== "") {
+            writer.uint32(18).string(message.account);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseMsgUpdateSuperior();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.signer = reader.string();
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.account = reader.string();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            signer: isSet(object.signer) ? String(object.signer) : "",
+            account: isSet(object.account) ? String(object.account) : "",
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.signer !== "") {
+            obj.signer = message.signer;
+        }
+        if (message.account !== "") {
+            obj.account = message.account;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.MsgUpdateSuperior.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseMsgUpdateSuperior();
+        message.signer = object.signer ?? "";
+        message.account = object.account ?? "";
+        return message;
+    },
+};
+function createBaseMsgUpdateSuperiorResponse() {
+    return {};
+}
+exports.MsgUpdateSuperiorResponse = {
+    encode(_, writer = minimal_1.default.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseMsgUpdateSuperiorResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(_) {
+        return {};
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    create(base) {
+        return exports.MsgUpdateSuperiorResponse.fromPartial(base ?? {});
+    },
+    fromPartial(_) {
+        const message = createBaseMsgUpdateSuperiorResponse();
+        return message;
+    },
+};
 exports.MsgServiceName = "enreach.manager.Msg";
 class MsgClientImpl {
     constructor(rpc, opts) {
@@ -1249,6 +1455,8 @@ class MsgClientImpl {
         this.UpdateOperatorBasicInfo = this.UpdateOperatorBasicInfo.bind(this);
         this.RegisterManager = this.RegisterManager.bind(this);
         this.GoWorking = this.GoWorking.bind(this);
+        this.CreateSuperior = this.CreateSuperior.bind(this);
+        this.UpdateSuperior = this.UpdateSuperior.bind(this);
     }
     UpdateParams(request) {
         const data = exports.MsgUpdateParams.encode(request).finish();
@@ -1299,6 +1507,16 @@ class MsgClientImpl {
         const data = exports.MsgGoWorking.encode(request).finish();
         const promise = this.rpc.request(this.service, "GoWorking", data);
         return promise.then((data) => exports.MsgGoWorkingResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    CreateSuperior(request) {
+        const data = exports.MsgCreateSuperior.encode(request).finish();
+        const promise = this.rpc.request(this.service, "CreateSuperior", data);
+        return promise.then((data) => exports.MsgCreateSuperiorResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    UpdateSuperior(request) {
+        const data = exports.MsgUpdateSuperior.encode(request).finish();
+        const promise = this.rpc.request(this.service, "UpdateSuperior", data);
+        return promise.then((data) => exports.MsgUpdateSuperiorResponse.decode(minimal_1.default.Reader.create(data)));
     }
 }
 exports.MsgClientImpl = MsgClientImpl;

@@ -9,17 +9,17 @@ import { Api } from "./rest";
 import { QueryAnnualProvisionsRequest } from "./types/cosmos/mint/v1beta1/query";
 import { QueryAnnualProvisionsResponse } from "./types/cosmos/mint/v1beta1/query";
 import { GenesisState } from "./types/cosmos/mint/v1beta1/genesis";
-import { Minter } from "./types/cosmos/mint/v1beta1/mint";
 import { QueryInflationRequest } from "./types/cosmos/mint/v1beta1/query";
-import { Params } from "./types/cosmos/mint/v1beta1/mint";
+import { MsgUpdateParams } from "./types/cosmos/mint/v1beta1/tx";
+import { Minter } from "./types/cosmos/mint/v1beta1/mint";
+import { QueryParamsRequest } from "./types/cosmos/mint/v1beta1/query";
 import { QueryParamsResponse } from "./types/cosmos/mint/v1beta1/query";
 import { QueryInflationResponse } from "./types/cosmos/mint/v1beta1/query";
-import { MsgUpdateParams } from "./types/cosmos/mint/v1beta1/tx";
 import { MsgUpdateParamsResponse } from "./types/cosmos/mint/v1beta1/tx";
-import { QueryParamsRequest } from "./types/cosmos/mint/v1beta1/query";
+import { Params } from "./types/cosmos/mint/v1beta1/mint";
 
 
-export { QueryAnnualProvisionsRequest, QueryAnnualProvisionsResponse, GenesisState, Minter, QueryInflationRequest, Params, QueryParamsResponse, QueryInflationResponse, MsgUpdateParams, MsgUpdateParamsResponse, QueryParamsRequest };
+export { QueryAnnualProvisionsRequest, QueryAnnualProvisionsResponse, GenesisState, QueryInflationRequest, MsgUpdateParams, Minter, QueryParamsRequest, QueryParamsResponse, QueryInflationResponse, MsgUpdateParamsResponse, Params };
 
 type sendQueryAnnualProvisionsRequestParams = {
   value: QueryAnnualProvisionsRequest,
@@ -39,20 +39,26 @@ type sendGenesisStateParams = {
   memo?: string
 };
 
-type sendMinterParams = {
-  value: Minter,
-  fee?: StdFee,
-  memo?: string
-};
-
 type sendQueryInflationRequestParams = {
   value: QueryInflationRequest,
   fee?: StdFee,
   memo?: string
 };
 
-type sendParamsParams = {
-  value: Params,
+type sendMsgUpdateParamsParams = {
+  value: MsgUpdateParams,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMinterParams = {
+  value: Minter,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryParamsRequestParams = {
+  value: QueryParamsRequest,
   fee?: StdFee,
   memo?: string
 };
@@ -69,20 +75,14 @@ type sendQueryInflationResponseParams = {
   memo?: string
 };
 
-type sendMsgUpdateParamsParams = {
-  value: MsgUpdateParams,
-  fee?: StdFee,
-  memo?: string
-};
-
 type sendMsgUpdateParamsResponseParams = {
   value: MsgUpdateParamsResponse,
   fee?: StdFee,
   memo?: string
 };
 
-type sendQueryParamsRequestParams = {
-  value: QueryParamsRequest,
+type sendParamsParams = {
+  value: Params,
   fee?: StdFee,
   memo?: string
 };
@@ -100,16 +100,20 @@ type genesisStateParams = {
   value: GenesisState,
 };
 
-type minterParams = {
-  value: Minter,
-};
-
 type queryInflationRequestParams = {
   value: QueryInflationRequest,
 };
 
-type paramsParams = {
-  value: Params,
+type msgUpdateParamsParams = {
+  value: MsgUpdateParams,
+};
+
+type minterParams = {
+  value: Minter,
+};
+
+type queryParamsRequestParams = {
+  value: QueryParamsRequest,
 };
 
 type queryParamsResponseParams = {
@@ -120,16 +124,12 @@ type queryInflationResponseParams = {
   value: QueryInflationResponse,
 };
 
-type msgUpdateParamsParams = {
-  value: MsgUpdateParams,
-};
-
 type msgUpdateParamsResponseParams = {
   value: MsgUpdateParamsResponse,
 };
 
-type queryParamsRequestParams = {
-  value: QueryParamsRequest,
+type paramsParams = {
+  value: Params,
 };
 
 
@@ -204,20 +204,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendMinter({ value, fee, memo }: sendMinterParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMinter: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.minter({ value: Minter.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMinter: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
 		async sendQueryInflationRequest({ value, fee, memo }: sendQueryInflationRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendQueryInflationRequest: Unable to sign Tx. Signer is not present.')
@@ -232,17 +218,45 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse> {
+		async sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendParams: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.params({ value: Params.fromPartial(value) })
+				let msg = this.msgUpdateParams({ value: MsgUpdateParams.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendParams: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMinter({ value, fee, memo }: sendMinterParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMinter: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.minter({ value: Minter.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMinter: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryParamsRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryParamsRequest({ value: QueryParamsRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryParamsRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -274,20 +288,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateParams({ value: MsgUpdateParams.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
 		async sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.')
@@ -302,17 +302,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse> {
+		async sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryParamsRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendParams: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryParamsRequest({ value: QueryParamsRequest.fromPartial(value) })
+				let msg = this.params({ value: Params.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryParamsRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendParams: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -341,14 +341,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		minter({ value }: minterParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.mint.v1beta1.Minter", value: Minter.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:Minter: Could not create message: ' + e.message)
-			}
-		},
-		
 		queryInflationRequest({ value }: queryInflationRequestParams): EncodeObject {
 			try {
 				return { typeUrl: "/cosmos.mint.v1beta1.QueryInflationRequest", value: QueryInflationRequest.fromPartial( value ) }  
@@ -357,11 +349,27 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		params({ value }: paramsParams): EncodeObject {
+		msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.mint.v1beta1.Params", value: Params.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.mint.v1beta1.MsgUpdateParams", value: MsgUpdateParams.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:Params: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message)
+			}
+		},
+		
+		minter({ value }: minterParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.mint.v1beta1.Minter", value: Minter.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:Minter: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.mint.v1beta1.QueryParamsRequest", value: QueryParamsRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryParamsRequest: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -381,14 +389,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.mint.v1beta1.MsgUpdateParams", value: MsgUpdateParams.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message)
-			}
-		},
-		
 		msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject {
 			try {
 				return { typeUrl: "/cosmos.mint.v1beta1.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial( value ) }  
@@ -397,11 +397,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject {
+		params({ value }: paramsParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.mint.v1beta1.QueryParamsRequest", value: QueryParamsRequest.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.mint.v1beta1.Params", value: Params.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryParamsRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:Params: Could not create message: ' + e.message)
 			}
 		},
 		

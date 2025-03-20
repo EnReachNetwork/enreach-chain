@@ -492,6 +492,52 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
+  /enreach/manager/superior:
+    get:
+      operationId: Query_Superior
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              Superior:
+                type: object
+                properties:
+                  account:
+                    type: string
+                  creator:
+                    type: string
+                  createAt:
+                    type: string
+                    format: uint64
+                  updator:
+                    type: string
+                  updateAt:
+                    type: string
+                    format: uint64
+                  signer:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
 definitions:
   Any:
     type: object
@@ -752,6 +798,26 @@ definitions:
           updateAt:
             type: string
             format: uint64
+  QueryGetSuperiorResponse:
+    type: object
+    properties:
+      Superior:
+        type: object
+        properties:
+          account:
+            type: string
+          creator:
+            type: string
+          createAt:
+            type: string
+            format: uint64
+          updator:
+            type: string
+          updateAt:
+            type: string
+            format: uint64
+          signer:
+            type: string
   QueryParamsResponse:
     type: object
     properties:
@@ -821,6 +887,23 @@ definitions:
         format: uint64
   manager.Params:
     type: object
+  manager.Superior:
+    type: object
+    properties:
+      account:
+        type: string
+      creator:
+        type: string
+      createAt:
+        type: string
+        format: uint64
+      updator:
+        type: string
+      updateAt:
+        type: string
+        format: uint64
+      signer:
+        type: string
   MsgActivateManagerResponse:
     type: object
   MsgBindOperatorEVMAccountResponse:
@@ -828,6 +911,8 @@ definitions:
   MsgBindOperatorManagerAccountResponse:
     type: object
   MsgCreateOperatorResponse:
+    type: object
+  MsgCreateSuperiorResponse:
     type: object
   MsgGoWorkingResponse:
     type: object
@@ -840,6 +925,8 @@ definitions:
   MsgUpdateOperatorBasicInfoResponse:
     type: object
   MsgUpdateParamsResponse:
+    type: object
+  MsgUpdateSuperiorResponse:
     type: object
   Params:
     type: object

@@ -2,6 +2,7 @@ import _m0 from "protobufjs/minimal";
 import { Manager } from "./manager";
 import { Operator } from "./operator";
 import { Params } from "./params";
+import { Superior } from "./superior";
 export declare const protobufPackage = "enreach.manager";
 /** GenesisState defines the manager module's genesis state. */
 export interface GenesisState {
@@ -11,6 +12,7 @@ export interface GenesisState {
     managerCount: number;
     operatorList: Operator[];
     operatorCount: number;
+    superior: Superior | undefined;
 }
 export declare const GenesisState: {
     encode(message: GenesisState, writer?: _m0.Writer): _m0.Writer;

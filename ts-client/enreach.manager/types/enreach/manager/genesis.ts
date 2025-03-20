@@ -4,6 +4,7 @@ import _m0 from "protobufjs/minimal";
 import { Manager } from "./manager";
 import { Operator } from "./operator";
 import { Params } from "./params";
+import { Superior } from "./superior";
 
 export const protobufPackage = "enreach.manager";
 
@@ -15,10 +16,18 @@ export interface GenesisState {
   managerCount: number;
   operatorList: Operator[];
   operatorCount: number;
+  superior: Superior | undefined;
 }
 
 function createBaseGenesisState(): GenesisState {
-  return { params: undefined, managerList: [], managerCount: 0, operatorList: [], operatorCount: 0 };
+  return {
+    params: undefined,
+    managerList: [],
+    managerCount: 0,
+    operatorList: [],
+    operatorCount: 0,
+    superior: undefined,
+  };
 }
 
 export const GenesisState = {
@@ -37,6 +46,9 @@ export const GenesisState = {
     }
     if (message.operatorCount !== 0) {
       writer.uint32(40).uint64(message.operatorCount);
+    }
+    if (message.superior !== undefined) {
+      Superior.encode(message.superior, writer.uint32(50).fork()).ldelim();
     }
     return writer;
   },
@@ -83,6 +95,13 @@ export const GenesisState = {
 
           message.operatorCount = longToNumber(reader.uint64() as Long);
           continue;
+        case 6:
+          if (tag !== 50) {
+            break;
+          }
+
+          message.superior = Superior.decode(reader, reader.uint32());
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -101,6 +120,7 @@ export const GenesisState = {
         ? object.operatorList.map((e: any) => Operator.fromJSON(e))
         : [],
       operatorCount: isSet(object.operatorCount) ? Number(object.operatorCount) : 0,
+      superior: isSet(object.superior) ? Superior.fromJSON(object.superior) : undefined,
     };
   },
 
@@ -121,6 +141,9 @@ export const GenesisState = {
     if (message.operatorCount !== 0) {
       obj.operatorCount = Math.round(message.operatorCount);
     }
+    if (message.superior !== undefined) {
+      obj.superior = Superior.toJSON(message.superior);
+    }
     return obj;
   },
 
@@ -136,6 +159,9 @@ export const GenesisState = {
     message.managerCount = object.managerCount ?? 0;
     message.operatorList = object.operatorList?.map((e) => Operator.fromPartial(e)) || [];
     message.operatorCount = object.operatorCount ?? 0;
+    message.superior = (object.superior !== undefined && object.superior !== null)
+      ? Superior.fromPartial(object.superior)
+      : undefined;
     return message;
   },
 };
