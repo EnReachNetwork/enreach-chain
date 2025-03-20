@@ -2,27 +2,17 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { GenesisState } from "./types/cosmos/evidence/v1beta1/genesis";
-import { QueryEvidenceRequest } from "./types/cosmos/evidence/v1beta1/query";
-import { Equivocation } from "./types/cosmos/evidence/v1beta1/evidence";
-import { MsgSubmitEvidence } from "./types/cosmos/evidence/v1beta1/tx";
 import { QueryEvidenceResponse } from "./types/cosmos/evidence/v1beta1/query";
+import { MsgSubmitEvidence } from "./types/cosmos/evidence/v1beta1/tx";
 import { MsgSubmitEvidenceResponse } from "./types/cosmos/evidence/v1beta1/tx";
+import { Equivocation } from "./types/cosmos/evidence/v1beta1/evidence";
+import { QueryEvidenceRequest } from "./types/cosmos/evidence/v1beta1/query";
 import { QueryAllEvidenceRequest } from "./types/cosmos/evidence/v1beta1/query";
+import { GenesisState } from "./types/cosmos/evidence/v1beta1/genesis";
 import { QueryAllEvidenceResponse } from "./types/cosmos/evidence/v1beta1/query";
-export { GenesisState, QueryEvidenceRequest, Equivocation, MsgSubmitEvidence, QueryEvidenceResponse, MsgSubmitEvidenceResponse, QueryAllEvidenceRequest, QueryAllEvidenceResponse };
-type sendGenesisStateParams = {
-    value: GenesisState;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryEvidenceRequestParams = {
-    value: QueryEvidenceRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendEquivocationParams = {
-    value: Equivocation;
+export { QueryEvidenceResponse, MsgSubmitEvidence, MsgSubmitEvidenceResponse, Equivocation, QueryEvidenceRequest, QueryAllEvidenceRequest, GenesisState, QueryAllEvidenceResponse };
+type sendQueryEvidenceResponseParams = {
+    value: QueryEvidenceResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -31,13 +21,18 @@ type sendMsgSubmitEvidenceParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryEvidenceResponseParams = {
-    value: QueryEvidenceResponse;
+type sendMsgSubmitEvidenceResponseParams = {
+    value: MsgSubmitEvidenceResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgSubmitEvidenceResponseParams = {
-    value: MsgSubmitEvidenceResponse;
+type sendEquivocationParams = {
+    value: Equivocation;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryEvidenceRequestParams = {
+    value: QueryEvidenceRequest;
     fee?: StdFee;
     memo?: string;
 };
@@ -46,31 +41,36 @@ type sendQueryAllEvidenceRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
+type sendGenesisStateParams = {
+    value: GenesisState;
+    fee?: StdFee;
+    memo?: string;
+};
 type sendQueryAllEvidenceResponseParams = {
     value: QueryAllEvidenceResponse;
     fee?: StdFee;
     memo?: string;
 };
-type genesisStateParams = {
-    value: GenesisState;
-};
-type queryEvidenceRequestParams = {
-    value: QueryEvidenceRequest;
-};
-type equivocationParams = {
-    value: Equivocation;
+type queryEvidenceResponseParams = {
+    value: QueryEvidenceResponse;
 };
 type msgSubmitEvidenceParams = {
     value: MsgSubmitEvidence;
 };
-type queryEvidenceResponseParams = {
-    value: QueryEvidenceResponse;
-};
 type msgSubmitEvidenceResponseParams = {
     value: MsgSubmitEvidenceResponse;
 };
+type equivocationParams = {
+    value: Equivocation;
+};
+type queryEvidenceRequestParams = {
+    value: QueryEvidenceRequest;
+};
 type queryAllEvidenceRequestParams = {
     value: QueryAllEvidenceRequest;
+};
+type genesisStateParams = {
+    value: GenesisState;
 };
 type queryAllEvidenceResponseParams = {
     value: QueryAllEvidenceResponse;
@@ -82,21 +82,21 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
-    sendQueryEvidenceRequest({ value, fee, memo }: sendQueryEvidenceRequestParams): Promise<DeliverTxResponse>;
-    sendEquivocation({ value, fee, memo }: sendEquivocationParams): Promise<DeliverTxResponse>;
-    sendMsgSubmitEvidence({ value, fee, memo }: sendMsgSubmitEvidenceParams): Promise<DeliverTxResponse>;
     sendQueryEvidenceResponse({ value, fee, memo }: sendQueryEvidenceResponseParams): Promise<DeliverTxResponse>;
+    sendMsgSubmitEvidence({ value, fee, memo }: sendMsgSubmitEvidenceParams): Promise<DeliverTxResponse>;
     sendMsgSubmitEvidenceResponse({ value, fee, memo }: sendMsgSubmitEvidenceResponseParams): Promise<DeliverTxResponse>;
+    sendEquivocation({ value, fee, memo }: sendEquivocationParams): Promise<DeliverTxResponse>;
+    sendQueryEvidenceRequest({ value, fee, memo }: sendQueryEvidenceRequestParams): Promise<DeliverTxResponse>;
     sendQueryAllEvidenceRequest({ value, fee, memo }: sendQueryAllEvidenceRequestParams): Promise<DeliverTxResponse>;
+    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
     sendQueryAllEvidenceResponse({ value, fee, memo }: sendQueryAllEvidenceResponseParams): Promise<DeliverTxResponse>;
-    genesisState({ value }: genesisStateParams): EncodeObject;
-    queryEvidenceRequest({ value }: queryEvidenceRequestParams): EncodeObject;
-    equivocation({ value }: equivocationParams): EncodeObject;
-    msgSubmitEvidence({ value }: msgSubmitEvidenceParams): EncodeObject;
     queryEvidenceResponse({ value }: queryEvidenceResponseParams): EncodeObject;
+    msgSubmitEvidence({ value }: msgSubmitEvidenceParams): EncodeObject;
     msgSubmitEvidenceResponse({ value }: msgSubmitEvidenceResponseParams): EncodeObject;
+    equivocation({ value }: equivocationParams): EncodeObject;
+    queryEvidenceRequest({ value }: queryEvidenceRequestParams): EncodeObject;
     queryAllEvidenceRequest({ value }: queryAllEvidenceRequestParams): EncodeObject;
+    genesisState({ value }: genesisStateParams): EncodeObject;
     queryAllEvidenceResponse({ value }: queryAllEvidenceResponseParams): EncodeObject;
 };
 interface QueryClientOptions {

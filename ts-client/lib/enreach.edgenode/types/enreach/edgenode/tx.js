@@ -217,7 +217,7 @@ exports.MsgCreateUserResponse = {
     },
 };
 function createBaseMsgBindUserEVMAccount() {
-    return { signer: "", userID: "", evmAccount: "", evmPubkey: new Uint8Array(0), evmSignature: new Uint8Array(0) };
+    return { signer: "", userID: "", evmAccount: "", evmSignature: new Uint8Array(0) };
 }
 exports.MsgBindUserEVMAccount = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -230,11 +230,8 @@ exports.MsgBindUserEVMAccount = {
         if (message.evmAccount !== "") {
             writer.uint32(26).string(message.evmAccount);
         }
-        if (message.evmPubkey.length !== 0) {
-            writer.uint32(34).bytes(message.evmPubkey);
-        }
         if (message.evmSignature.length !== 0) {
-            writer.uint32(42).bytes(message.evmSignature);
+            writer.uint32(34).bytes(message.evmSignature);
         }
         return writer;
     },
@@ -267,12 +264,6 @@ exports.MsgBindUserEVMAccount = {
                     if (tag !== 34) {
                         break;
                     }
-                    message.evmPubkey = reader.bytes();
-                    continue;
-                case 5:
-                    if (tag !== 42) {
-                        break;
-                    }
                     message.evmSignature = reader.bytes();
                     continue;
             }
@@ -288,7 +279,6 @@ exports.MsgBindUserEVMAccount = {
             signer: isSet(object.signer) ? String(object.signer) : "",
             userID: isSet(object.userID) ? String(object.userID) : "",
             evmAccount: isSet(object.evmAccount) ? String(object.evmAccount) : "",
-            evmPubkey: isSet(object.evmPubkey) ? bytesFromBase64(object.evmPubkey) : new Uint8Array(0),
             evmSignature: isSet(object.evmSignature) ? bytesFromBase64(object.evmSignature) : new Uint8Array(0),
         };
     },
@@ -303,9 +293,6 @@ exports.MsgBindUserEVMAccount = {
         if (message.evmAccount !== "") {
             obj.evmAccount = message.evmAccount;
         }
-        if (message.evmPubkey.length !== 0) {
-            obj.evmPubkey = base64FromBytes(message.evmPubkey);
-        }
         if (message.evmSignature.length !== 0) {
             obj.evmSignature = base64FromBytes(message.evmSignature);
         }
@@ -319,7 +306,6 @@ exports.MsgBindUserEVMAccount = {
         message.signer = object.signer ?? "";
         message.userID = object.userID ?? "";
         message.evmAccount = object.evmAccount ?? "";
-        message.evmPubkey = object.evmPubkey ?? new Uint8Array(0);
         message.evmSignature = object.evmSignature ?? new Uint8Array(0);
         return message;
     },

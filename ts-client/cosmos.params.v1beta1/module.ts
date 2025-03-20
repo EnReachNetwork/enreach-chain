@@ -6,25 +6,25 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
-import { QueryParamsResponse } from "./types/cosmos/params/v1beta1/query";
-import { QuerySubspacesRequest } from "./types/cosmos/params/v1beta1/query";
+import { ParamChange } from "./types/cosmos/params/v1beta1/params";
+import { Subspace } from "./types/cosmos/params/v1beta1/query";
 import { QuerySubspacesResponse } from "./types/cosmos/params/v1beta1/query";
 import { ParameterChangeProposal } from "./types/cosmos/params/v1beta1/params";
 import { QueryParamsRequest } from "./types/cosmos/params/v1beta1/query";
-import { Subspace } from "./types/cosmos/params/v1beta1/query";
-import { ParamChange } from "./types/cosmos/params/v1beta1/params";
+import { QueryParamsResponse } from "./types/cosmos/params/v1beta1/query";
+import { QuerySubspacesRequest } from "./types/cosmos/params/v1beta1/query";
 
 
-export { QueryParamsResponse, QuerySubspacesRequest, QuerySubspacesResponse, ParameterChangeProposal, QueryParamsRequest, Subspace, ParamChange };
+export { ParamChange, Subspace, QuerySubspacesResponse, ParameterChangeProposal, QueryParamsRequest, QueryParamsResponse, QuerySubspacesRequest };
 
-type sendQueryParamsResponseParams = {
-  value: QueryParamsResponse,
+type sendParamChangeParams = {
+  value: ParamChange,
   fee?: StdFee,
   memo?: string
 };
 
-type sendQuerySubspacesRequestParams = {
-  value: QuerySubspacesRequest,
+type sendSubspaceParams = {
+  value: Subspace,
   fee?: StdFee,
   memo?: string
 };
@@ -47,25 +47,25 @@ type sendQueryParamsRequestParams = {
   memo?: string
 };
 
-type sendSubspaceParams = {
-  value: Subspace,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendParamChangeParams = {
-  value: ParamChange,
-  fee?: StdFee,
-  memo?: string
-};
-
-
-type queryParamsResponseParams = {
+type sendQueryParamsResponseParams = {
   value: QueryParamsResponse,
+  fee?: StdFee,
+  memo?: string
 };
 
-type querySubspacesRequestParams = {
+type sendQuerySubspacesRequestParams = {
   value: QuerySubspacesRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+
+type paramChangeParams = {
+  value: ParamChange,
+};
+
+type subspaceParams = {
+  value: Subspace,
 };
 
 type querySubspacesResponseParams = {
@@ -80,12 +80,12 @@ type queryParamsRequestParams = {
   value: QueryParamsRequest,
 };
 
-type subspaceParams = {
-  value: Subspace,
+type queryParamsResponseParams = {
+  value: QueryParamsResponse,
 };
 
-type paramChangeParams = {
-  value: ParamChange,
+type querySubspacesRequestParams = {
+  value: QuerySubspacesRequest,
 };
 
 
@@ -118,31 +118,31 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 
   return {
 		
-		async sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse> {
+		async sendParamChange({ value, fee, memo }: sendParamChangeParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryParamsResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendParamChange: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryParamsResponse({ value: QueryParamsResponse.fromPartial(value) })
+				let msg = this.paramChange({ value: ParamChange.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryParamsResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendParamChange: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendQuerySubspacesRequest({ value, fee, memo }: sendQuerySubspacesRequestParams): Promise<DeliverTxResponse> {
+		async sendSubspace({ value, fee, memo }: sendSubspaceParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQuerySubspacesRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendSubspace: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.querySubspacesRequest({ value: QuerySubspacesRequest.fromPartial(value) })
+				let msg = this.subspace({ value: Subspace.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQuerySubspacesRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendSubspace: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -188,48 +188,48 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendSubspace({ value, fee, memo }: sendSubspaceParams): Promise<DeliverTxResponse> {
+		async sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendSubspace: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryParamsResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.subspace({ value: Subspace.fromPartial(value) })
+				let msg = this.queryParamsResponse({ value: QueryParamsResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendSubspace: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryParamsResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendParamChange({ value, fee, memo }: sendParamChangeParams): Promise<DeliverTxResponse> {
+		async sendQuerySubspacesRequest({ value, fee, memo }: sendQuerySubspacesRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendParamChange: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQuerySubspacesRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.paramChange({ value: ParamChange.fromPartial(value) })
+				let msg = this.querySubspacesRequest({ value: QuerySubspacesRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendParamChange: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQuerySubspacesRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
 		
-		queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject {
+		paramChange({ value }: paramChangeParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.params.v1beta1.QueryParamsResponse", value: QueryParamsResponse.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.params.v1beta1.ParamChange", value: ParamChange.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryParamsResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:ParamChange: Could not create message: ' + e.message)
 			}
 		},
 		
-		querySubspacesRequest({ value }: querySubspacesRequestParams): EncodeObject {
+		subspace({ value }: subspaceParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.params.v1beta1.QuerySubspacesRequest", value: QuerySubspacesRequest.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.params.v1beta1.Subspace", value: Subspace.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QuerySubspacesRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:Subspace: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -257,19 +257,19 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		subspace({ value }: subspaceParams): EncodeObject {
+		queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.params.v1beta1.Subspace", value: Subspace.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.params.v1beta1.QueryParamsResponse", value: QueryParamsResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:Subspace: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryParamsResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		paramChange({ value }: paramChangeParams): EncodeObject {
+		querySubspacesRequest({ value }: querySubspacesRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.params.v1beta1.ParamChange", value: ParamChange.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.params.v1beta1.QuerySubspacesRequest", value: QuerySubspacesRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:ParamChange: Could not create message: ' + e.message)
+				throw new Error('TxClient:QuerySubspacesRequest: Could not create message: ' + e.message)
 			}
 		},
 		

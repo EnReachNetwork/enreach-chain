@@ -24,7 +24,6 @@ export interface MsgBindUserEVMAccount {
     signer: string;
     userID: string;
     evmAccount: string;
-    evmPubkey: Uint8Array;
     evmSignature: Uint8Array;
 }
 export interface MsgBindUserEVMAccountResponse {
