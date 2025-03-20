@@ -16,7 +16,7 @@ func (k msgServer) CreateRegion(goCtx context.Context, msg *types.MsgCreateRegio
 	// tx caller must be superior
 	superior, isFound := k.GetSuperior(ctx)
 	if !isFound {
-		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, "superior not set")
+		return nil, types.ErrSuperiorNotSet
 	}
 	if superior.Account != msg.Signer {
 		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only superior can execute this call")
@@ -58,7 +58,7 @@ func (k msgServer) UpdateRegion(goCtx context.Context, msg *types.MsgUpdateRegio
 	// tx caller must be superior
 	superior, isFound := k.GetSuperior(ctx)
 	if !isFound {
-		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, "superior not set")
+		return nil, types.ErrSuperiorNotSet
 	}
 	if superior.Account != msg.Signer {
 		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only superior can execute this call")
@@ -94,7 +94,7 @@ func (k msgServer) DeleteRegion(goCtx context.Context, msg *types.MsgDeleteRegio
 	// tx caller must be superior
 	superior, isFound := k.GetSuperior(ctx)
 	if !isFound {
-		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, "superior not set")
+		return nil, types.ErrSuperiorNotSet
 	}
 	if superior.Account != msg.Signer {
 		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only superior can execute this call")

@@ -17,7 +17,7 @@ func (k msgServer) RegisterNode(goCtx context.Context, msg *types.MsgRegisterNod
 	// tx caller must be superior
 	superior, isFound := k.GetSuperior(ctx)
 	if !isFound {
-		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, "superior not set")
+		return nil, types.ErrSuperiorNotSet
 	}
 	if superior.Account != msg.Signer {
 		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only superior can execute this call")
@@ -59,7 +59,7 @@ func (k msgServer) BindAndActivateNode(goCtx context.Context, msg *types.MsgBind
 	// tx caller must be superior
 	superior, isFound := k.GetSuperior(ctx)
 	if !isFound {
-		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, "superior not set")
+		return nil, types.ErrSuperiorNotSet
 	}
 	if superior.Account != msg.Signer {
 		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only superior can execute this call")
@@ -121,7 +121,7 @@ func (k msgServer) UnbindNode(goCtx context.Context, msg *types.MsgUnbindNode) (
 	// tx caller must be superior
 	superior, isFound := k.GetSuperior(ctx)
 	if !isFound {
-		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, "superior not set")
+		return nil, types.ErrSuperiorNotSet
 	}
 	if superior.Account != msg.Signer {
 		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only superior can execute this call")

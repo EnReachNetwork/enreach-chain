@@ -16,7 +16,7 @@ func (k msgServer) CreateUser(goCtx context.Context, msg *types.MsgCreateUser) (
 	// tx caller must be superior
 	superior, isFound := k.GetSuperior(ctx)
 	if !isFound {
-		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, "superior not set")
+		return nil, types.ErrSuperiorNotSet
 	}
 	if superior.Account != msg.Signer {
 		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only superior can execute this call")
@@ -55,7 +55,7 @@ func (k msgServer) BindUserEVMAccount(goCtx context.Context, msg *types.MsgBindU
 	// tx caller must be superior
 	superior, isFound := k.GetSuperior(ctx)
 	if !isFound {
-		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, "superior not set")
+		return nil, types.ErrSuperiorNotSet
 	}
 	if superior.Account != msg.Signer {
 		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only superior can execute this call")

@@ -16,4 +16,5 @@ var (
 	ErrNodeNotBindYet             = sdkerrors.Register(ModuleName, 1105, "node not bound yet")
 	ErrUnbindUserIDNotMatch       = sdkerrors.Register(ModuleName, 1106, "unbind userID not match")
 	ErrInvalidRegion              = sdkerrors.Register(ModuleName, 1107, "invalid region")
+	ErrSuperiorNotSet             = sdkerrors.Register(ModuleName, 1108, "superior not set")
 )
