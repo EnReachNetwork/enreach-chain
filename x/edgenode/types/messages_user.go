@@ -35,12 +35,11 @@ func (msg *MsgCreateUser) ValidateBasic() error {
 
 var _ sdk.Msg = &MsgBindUserEVMAccount{}
 
-func NewMsgBindUserEVMAccount(signer string, userID string, evmAccount string, evmPubkey []byte, evmSignature []byte) *MsgBindUserEVMAccount {
+func NewMsgBindUserEVMAccount(signer string, userID string, evmAccount string, evmSignature []byte) *MsgBindUserEVMAccount {
 	return &MsgBindUserEVMAccount{
 		Signer:       signer,
 		UserID:       userID,
 		EvmAccount:   evmAccount,
-		EvmPubkey:    evmPubkey,
 		EvmSignature: evmSignature,
 	}
 }
@@ -63,9 +62,6 @@ func (msg *MsgBindUserEVMAccount) ValidateBasic() error {
 		return errorsmod.Wrap(sdkerrors.ErrInvalidAddress, "EvmAccount is not a valid etherum address")
 	}
 
-	if len(msg.EvmPubkey) != EVM_PUBKEY_LENGTH {
-		return errorsmod.Wrapf(ErrInvalidParamLength, "EvmPubkey should be %d bytes long", EVM_PUBKEY_LENGTH)
-	}
 	if len(msg.EvmSignature) != EVM_SIGNATURE_LENGTH {
 		return errorsmod.Wrapf(ErrInvalidParamLength, "EvmSignature should be %d bytes long", EVM_SIGNATURE_LENGTH)
 	}

@@ -2,12 +2,15 @@ package keeper
 
 import (
 	"context"
+	"fmt"
 
 	"enreach/x/edgenode/types"
 
 	errorsmod "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/crypto"
 )
 
 func (k msgServer) CreateUser(goCtx context.Context, msg *types.MsgCreateUser) (*types.MsgCreateUserResponse, error) {
@@ -67,7 +70,10 @@ func (k msgServer) BindUserEVMAccount(goCtx context.Context, msg *types.MsgBindU
 		return nil, errorsmod.Wrapf(sdkerrors.ErrKeyNotFound, "key %s doesn't exist", msg.UserID)
 	}
 
-	/// TODO: Verify EVM signature
+	// Verify the EVM Signature to make sure the caller owns the EVM account
+	if err := verifyEvmSignature(msg.UserID, msg.EvmAccount, msg.EvmSignature); err != nil {
+		return nil, errorsmod.Wrapf(types.ErrInvalidSignature, "Invalid evm signature: %s", err)
+	}
 
 	// Update to the store
 	user.EvmAccount = msg.EvmAccount
@@ -84,4 +90,40 @@ func (k msgServer) BindUserEVMAccount(goCtx context.Context, msg *types.MsgBindU
 		),
 	)
 	return &types.MsgBindUserEVMAccountResponse{}, nil
+}
+
+func verifyEvmSignature(userID string, evmAccount string, evmSignature []byte) error {
+
+	// Build the original sig raw message
+	rawMessage := userID + ":" + evmAccount
+
+	// Check and adjust the signature recovery byte
+	v := evmSignature[64]
+	evmSignatureAdjust := append([]byte{}, evmSignature...)
+	if v == 27 || v == 28 {
+		evmSignatureAdjust[64] = v - 27 // Convert to 0 or 1
+	} else if v >= 35 {
+		evmSignatureAdjust[64] = (v - 35) % 2 // Process EIP-155 'v' value: v = chainId * 2 + 35 + 0/1
+	}
+
+	// Build the final signed message
+	prefix := fmt.Sprintf("\x19Ethereum Signed Message:\n%d", len([]byte(rawMessage)))
+	toSignedMessage := append([]byte(prefix), []byte(rawMessage)...)
+	msgHash := crypto.Keccak256([]byte(toSignedMessage))
+
+	// Recover the evm account pubkey from the signature
+	pubKey, err := crypto.SigToPub(msgHash, evmSignatureAdjust)
+	if err != nil {
+		return errorsmod.Wrapf(types.ErrInvalidSignature, "Failed to recover public key: %s", err)
+	}
+
+	// Verify the pubkey matchs the designated evm account
+	recoveredAddr := crypto.PubkeyToAddress(*pubKey)
+	evmAddr := common.HexToAddress(evmAccount)
+	if recoveredAddr != evmAddr {
+		return errorsmod.Wrapf(types.ErrInvalidSignature,
+			"Address mismatch: expected %s, got %s", evmAddr.Hex(), recoveredAddr.Hex())
+	}
+
+	return nil
 }

@@ -63,9 +63,9 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				},
 				{
 					RpcMethod:      "BindUserEVMAccount",
-					Use:            "bind-user-evm-account [userID] [evmAccount] [evmPubkey] [evmSignature]",
+					Use:            "bind-user-evm-account [userID] [evmAccount] [evmSignature]",
 					Short:          "Bind user EVM account",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "userID"}, {ProtoField: "evmAccount"}, {ProtoField: "evmPubkey"}, {ProtoField: "evmSignature"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "userID"}, {ProtoField: "evmAccount"}, {ProtoField: "evmSignature"}},
 				},
 				{
 					RpcMethod:      "RegisterNode",

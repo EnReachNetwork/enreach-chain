@@ -59,8 +59,7 @@ message MsgBindUserEVMAccount {
   string signer     = 1;
   string userID     = 2;
   string evmAccount = 3;
-  bytes  evmPubkey   = 4;
-  bytes  evmSignature = 5;
+  bytes  evmSignature = 4;
 }
 
 message MsgBindUserEVMAccountResponse {}

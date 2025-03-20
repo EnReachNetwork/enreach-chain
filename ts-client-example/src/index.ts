@@ -75,12 +75,12 @@ async function testManager(regionApi: RegionApi, operatorApi: OperatorApi, manag
   console.log("Managers:", allManagers);
 }
 
-async function getEvmSignature(operatorAccount: string) {
+async function getEvmSignature(data: string) {
 
   const pair = ethers.Wallet.createRandom();
   const evmAccount = pair.address;
   
-  const toSignedMessage = `${operatorAccount}:${evmAccount}`;
+  const toSignedMessage = `${data}:${evmAccount}`;
   const sig = await pair.signMessage(toSignedMessage);
 
   return [evmAccount, sig];
