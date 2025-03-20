@@ -2,7 +2,7 @@ import { DirectSecp256k1HdWallet } from '@cosmjs/proto-signing'
 import RegionApi from "./region";
 import OperatorApi from './operator';
 import ManagerApi from './manager';
-import { ADMIN_MNEMONIC, OPERATOR_MNEMONIC, MANAGER_MNEMONIC, SUPERIOR_MENMONIC, CHAIN_WS_URL } from './consts';
+import { ADMIN_MNEMONIC, OPERATOR_MNEMONIC, MANAGER_MNEMONIC, SUPERIOR_MENMONIC, CHAIN_WS_URL, CHAIN_PREFIX } from './consts';
 import { Secp256k1, sha256, Bip39, Slip10,Slip10Curve, EnglishMnemonic, stringToPath } from "@cosmjs/crypto";
 import EdgenodeApi from './edgenode';
 import WorkloadApi from './workload';
@@ -11,6 +11,7 @@ async function main() {
   const regionAdminApi = new RegionApi(ADMIN_MNEMONIC);
   const regionApi = new RegionApi(SUPERIOR_MENMONIC);
   const operatorApi = new OperatorApi(OPERATOR_MNEMONIC);
+  const managerAdminApi = new ManagerApi(ADMIN_MNEMONIC);
   const managerApi = new ManagerApi(MANAGER_MNEMONIC);
   const edgenodeAdminApi = new EdgenodeApi(ADMIN_MNEMONIC);
   const edgenodeApi = new EdgenodeApi(SUPERIOR_MENMONIC);
@@ -20,6 +21,7 @@ async function main() {
   await regionAdminApi.initApi();
   await regionApi.initApi();
   await operatorApi.initApi();
+  await managerAdminApi.initApi();
   await managerApi.initApi();
   await edgenodeAdminApi.initApi();
   await edgenodeApi.initApi();
@@ -27,8 +29,9 @@ async function main() {
 
   // Listen and log events
   listenEvents();
-
   await regionAdminApi.createSuperior({signer: regionAdminApi.account, account: regionApi.account});
+  // The superior we used in this example are the same, so use regionApi.account as the superior account of the manager module
+  await managerAdminApi.createSuperior({signer: managerAdminApi.account, account: regionApi.account});
   await edgenodeAdminApi.createSuperior({signer: edgenodeAdminApi.account, account: edgenodeApi.account});
 
   await regionApi.createRegion({signer: regionApi.account, code: "US", name: "United State", description: "US Region"});
@@ -54,7 +57,8 @@ async function testManager(regionApi: RegionApi, operatorApi: OperatorApi, manag
   
   await operatorApi.setManagerRegion({operatorAccount: operatorApi.account, regionCode:"US"});
   
-  await operatorApi.activateManager({operatorAccount: operatorApi.account, license:"aaaaaa"});
+  const license = await getActivateLicense(operatorApi.account, managerApi.account);
+  await operatorApi.activateManager({operatorAccount: operatorApi.account, license: license});
   
   await managerApi.goWorking({managerAccount: managerApi.account});
 
@@ -80,6 +84,24 @@ async function getManagerSignature(operatorAccount: string, managerWallet: Direc
   const signature = await Secp256k1.createSignature(messageHash, privateKey);
 
   return signature.toFixedLength();
+}
+
+async function getActivateLicense(operatorAccount: string, managerAccount: string) {
+  const superiorWallet = await DirectSecp256k1HdWallet.fromMnemonic(SUPERIOR_MENMONIC, { prefix: CHAIN_PREFIX });
+  const superiorAccount = (await superiorWallet.getAccounts())[0].address;
+  
+  const toSignedMessage = `${superiorAccount}:${operatorAccount}:${managerAccount}`;
+  const messageBytes = new TextEncoder().encode(toSignedMessage);
+  const messageHash = sha256(messageBytes);
+
+  const seed = await Bip39.mnemonicToSeed(new EnglishMnemonic(SUPERIOR_MENMONIC));
+  const slip10 = Slip10.derivePath(Slip10Curve.Secp256k1, seed, stringToPath("m/44'/118'/0'/0/0")); 
+  const privateKey = slip10.privkey;
+
+  const signature = await Secp256k1.createSignature(messageHash, privateKey);
+  const license = Buffer.from(signature.toFixedLength()).toString('base64');
+
+  return license;
 }
 
 async function testEdgenode(edgenodeApi: EdgenodeApi) {
