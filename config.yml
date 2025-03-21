@@ -34,3 +34,5 @@ client:
 validators:
 - name: alice
   bonded: 100000000stake
+  app:
+      pruning: "nothing"
