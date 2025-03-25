@@ -4,8 +4,6 @@ import (
 	"context"
 
 	"enreach/x/workload/types"
-
-	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
 func (k Keeper) GetEpochLength(goCtx context.Context, req *types.QueryGetEpochLengthRequest) (*types.QueryGetEpochLengthResponse, error) {
@@ -15,9 +13,7 @@ func (k Keeper) GetEpochLength(goCtx context.Context, req *types.QueryGetEpochLe
 
 func (k Keeper) GetCurrentEpoch(goCtx context.Context, req *types.QueryGetCurrentEpochRequest) (*types.QueryGetCurrentEpochResponse, error) {
 
-	ctx := sdk.UnwrapSDKContext(goCtx)
-
-	currentEpoch := uint64(ctx.BlockHeight())/types.EPOCH_LENGTH + 1
+	currentEpoch := types.GetCurrentEpoch(goCtx)
 
 	return &types.QueryGetCurrentEpochResponse{CurrentEpoch: currentEpoch}, nil
 }

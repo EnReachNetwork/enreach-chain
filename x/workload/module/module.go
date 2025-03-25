@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"strconv"
 
 	"cosmossdk.io/core/appmodule"
 	"cosmossdk.io/core/store"
@@ -151,13 +152,41 @@ func (AppModule) ConsensusVersion() uint64 { return 1 }
 
 // BeginBlock contains the logic that is automatically triggered at the beginning of each block.
 // The begin block implementation is optional.
-func (am AppModule) BeginBlock(_ context.Context) error {
+func (am AppModule) BeginBlock(goCtx context.Context) error {
+	ctx := sdk.UnwrapSDKContext(goCtx)
+
+	if types.IsEpochStart(ctx) {
+		currentEpoch := types.GetCurrentEpoch(goCtx)
+
+		/// TODO: Necessary logic to process at the start of epoch
+
+		ctx.EventManager().EmitEvent(
+			sdk.NewEvent(types.EventTypeEpochStart,
+				sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+				sdk.NewAttribute(types.AttributeKeyEpoch, strconv.FormatUint(currentEpoch, 10)),
+			),
+		)
+	}
 	return nil
 }
 
 // EndBlock contains the logic that is automatically triggered at the end of each block.
 // The end block implementation is optional.
-func (am AppModule) EndBlock(_ context.Context) error {
+func (am AppModule) EndBlock(goCtx context.Context) error {
+	ctx := sdk.UnwrapSDKContext(goCtx)
+
+	if types.IsEpochEnd(ctx) {
+		currentEpoch := types.GetCurrentEpoch(goCtx)
+
+		/// TODO: Necessary logic to process at the end of epoch
+
+		ctx.EventManager().EmitEvent(
+			sdk.NewEvent(types.EventTypeEpochEnd,
+				sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+				sdk.NewAttribute(types.AttributeKeyEpoch, strconv.FormatUint(currentEpoch, 10)),
+			),
+		)
+	}
 	return nil
 }
 
