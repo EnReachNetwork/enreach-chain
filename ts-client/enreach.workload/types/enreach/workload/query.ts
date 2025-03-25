@@ -4,6 +4,7 @@ import _m0 from "protobufjs/minimal";
 import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
 import { Params } from "./params";
 import { Workload } from "./workload";
+import { Workreport } from "./workreport";
 
 export const protobufPackage = "enreach.workload";
 
@@ -31,6 +32,25 @@ export interface QueryAllWorkloadRequest {
 
 export interface QueryAllWorkloadResponse {
   Workload: Workload[];
+  pagination: PageResponse | undefined;
+}
+
+export interface QueryGetWorkreportRequest {
+  epoch: number;
+  nodeID: string;
+}
+
+export interface QueryGetWorkreportResponse {
+  Workreport: Workreport | undefined;
+}
+
+export interface QueryGetAllWorkreportByEpochRequest {
+  epoch: number;
+  pagination: PageRequest | undefined;
+}
+
+export interface QueryGetAllWorkreportByEpochResponse {
+  Workreport: Workreport[];
   pagination: PageResponse | undefined;
 }
 
@@ -387,6 +407,299 @@ export const QueryAllWorkloadResponse = {
   },
 };
 
+function createBaseQueryGetWorkreportRequest(): QueryGetWorkreportRequest {
+  return { epoch: 0, nodeID: "" };
+}
+
+export const QueryGetWorkreportRequest = {
+  encode(message: QueryGetWorkreportRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.epoch !== 0) {
+      writer.uint32(8).uint64(message.epoch);
+    }
+    if (message.nodeID !== "") {
+      writer.uint32(18).string(message.nodeID);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetWorkreportRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetWorkreportRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.epoch = longToNumber(reader.uint64() as Long);
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.nodeID = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetWorkreportRequest {
+    return {
+      epoch: isSet(object.epoch) ? Number(object.epoch) : 0,
+      nodeID: isSet(object.nodeID) ? String(object.nodeID) : "",
+    };
+  },
+
+  toJSON(message: QueryGetWorkreportRequest): unknown {
+    const obj: any = {};
+    if (message.epoch !== 0) {
+      obj.epoch = Math.round(message.epoch);
+    }
+    if (message.nodeID !== "") {
+      obj.nodeID = message.nodeID;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetWorkreportRequest>, I>>(base?: I): QueryGetWorkreportRequest {
+    return QueryGetWorkreportRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetWorkreportRequest>, I>>(object: I): QueryGetWorkreportRequest {
+    const message = createBaseQueryGetWorkreportRequest();
+    message.epoch = object.epoch ?? 0;
+    message.nodeID = object.nodeID ?? "";
+    return message;
+  },
+};
+
+function createBaseQueryGetWorkreportResponse(): QueryGetWorkreportResponse {
+  return { Workreport: undefined };
+}
+
+export const QueryGetWorkreportResponse = {
+  encode(message: QueryGetWorkreportResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.Workreport !== undefined) {
+      Workreport.encode(message.Workreport, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetWorkreportResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetWorkreportResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.Workreport = Workreport.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetWorkreportResponse {
+    return { Workreport: isSet(object.Workreport) ? Workreport.fromJSON(object.Workreport) : undefined };
+  },
+
+  toJSON(message: QueryGetWorkreportResponse): unknown {
+    const obj: any = {};
+    if (message.Workreport !== undefined) {
+      obj.Workreport = Workreport.toJSON(message.Workreport);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetWorkreportResponse>, I>>(base?: I): QueryGetWorkreportResponse {
+    return QueryGetWorkreportResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetWorkreportResponse>, I>>(object: I): QueryGetWorkreportResponse {
+    const message = createBaseQueryGetWorkreportResponse();
+    message.Workreport = (object.Workreport !== undefined && object.Workreport !== null)
+      ? Workreport.fromPartial(object.Workreport)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllWorkreportByEpochRequest(): QueryGetAllWorkreportByEpochRequest {
+  return { epoch: 0, pagination: undefined };
+}
+
+export const QueryGetAllWorkreportByEpochRequest = {
+  encode(message: QueryGetAllWorkreportByEpochRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.epoch !== 0) {
+      writer.uint32(8).uint64(message.epoch);
+    }
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllWorkreportByEpochRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllWorkreportByEpochRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.epoch = longToNumber(reader.uint64() as Long);
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllWorkreportByEpochRequest {
+    return {
+      epoch: isSet(object.epoch) ? Number(object.epoch) : 0,
+      pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetAllWorkreportByEpochRequest): unknown {
+    const obj: any = {};
+    if (message.epoch !== 0) {
+      obj.epoch = Math.round(message.epoch);
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageRequest.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllWorkreportByEpochRequest>, I>>(
+    base?: I,
+  ): QueryGetAllWorkreportByEpochRequest {
+    return QueryGetAllWorkreportByEpochRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllWorkreportByEpochRequest>, I>>(
+    object: I,
+  ): QueryGetAllWorkreportByEpochRequest {
+    const message = createBaseQueryGetAllWorkreportByEpochRequest();
+    message.epoch = object.epoch ?? 0;
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageRequest.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllWorkreportByEpochResponse(): QueryGetAllWorkreportByEpochResponse {
+  return { Workreport: [], pagination: undefined };
+}
+
+export const QueryGetAllWorkreportByEpochResponse = {
+  encode(message: QueryGetAllWorkreportByEpochResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.Workreport) {
+      Workreport.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllWorkreportByEpochResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllWorkreportByEpochResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.Workreport.push(Workreport.decode(reader, reader.uint32()));
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllWorkreportByEpochResponse {
+    return {
+      Workreport: Array.isArray(object?.Workreport) ? object.Workreport.map((e: any) => Workreport.fromJSON(e)) : [],
+      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetAllWorkreportByEpochResponse): unknown {
+    const obj: any = {};
+    if (message.Workreport?.length) {
+      obj.Workreport = message.Workreport.map((e) => Workreport.toJSON(e));
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllWorkreportByEpochResponse>, I>>(
+    base?: I,
+  ): QueryGetAllWorkreportByEpochResponse {
+    return QueryGetAllWorkreportByEpochResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllWorkreportByEpochResponse>, I>>(
+    object: I,
+  ): QueryGetAllWorkreportByEpochResponse {
+    const message = createBaseQueryGetAllWorkreportByEpochResponse();
+    message.Workreport = object.Workreport?.map((e) => Workreport.fromPartial(e)) || [];
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageResponse.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Parameters queries the parameters of the module. */
@@ -394,6 +707,9 @@ export interface Query {
   /** Queries a list of Workload items. */
   Workload(request: QueryGetWorkloadRequest): Promise<QueryGetWorkloadResponse>;
   WorkloadAll(request: QueryAllWorkloadRequest): Promise<QueryAllWorkloadResponse>;
+  /** Queries a list of Workreport items. */
+  GetWorkreport(request: QueryGetWorkreportRequest): Promise<QueryGetWorkreportResponse>;
+  GetAllWorkreportByEpoch(request: QueryGetAllWorkreportByEpochRequest): Promise<QueryGetAllWorkreportByEpochResponse>;
 }
 
 export const QueryServiceName = "enreach.workload.Query";
@@ -406,6 +722,8 @@ export class QueryClientImpl implements Query {
     this.Params = this.Params.bind(this);
     this.Workload = this.Workload.bind(this);
     this.WorkloadAll = this.WorkloadAll.bind(this);
+    this.GetWorkreport = this.GetWorkreport.bind(this);
+    this.GetAllWorkreportByEpoch = this.GetAllWorkreportByEpoch.bind(this);
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
@@ -423,6 +741,18 @@ export class QueryClientImpl implements Query {
     const data = QueryAllWorkloadRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "WorkloadAll", data);
     return promise.then((data) => QueryAllWorkloadResponse.decode(_m0.Reader.create(data)));
+  }
+
+  GetWorkreport(request: QueryGetWorkreportRequest): Promise<QueryGetWorkreportResponse> {
+    const data = QueryGetWorkreportRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "GetWorkreport", data);
+    return promise.then((data) => QueryGetWorkreportResponse.decode(_m0.Reader.create(data)));
+  }
+
+  GetAllWorkreportByEpoch(request: QueryGetAllWorkreportByEpochRequest): Promise<QueryGetAllWorkreportByEpochResponse> {
+    const data = QueryGetAllWorkreportByEpochRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "GetAllWorkreportByEpoch", data);
+    return promise.then((data) => QueryGetAllWorkreportByEpochResponse.decode(_m0.Reader.create(data)));
   }
 }
 

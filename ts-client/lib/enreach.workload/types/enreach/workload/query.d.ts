@@ -2,6 +2,7 @@ import _m0 from "protobufjs/minimal";
 import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
 import { Params } from "./params";
 import { Workload } from "./workload";
+import { Workreport } from "./workreport";
 export declare const protobufPackage = "enreach.workload";
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {
@@ -22,6 +23,21 @@ export interface QueryAllWorkloadRequest {
 }
 export interface QueryAllWorkloadResponse {
     Workload: Workload[];
+    pagination: PageResponse | undefined;
+}
+export interface QueryGetWorkreportRequest {
+    epoch: number;
+    nodeID: string;
+}
+export interface QueryGetWorkreportResponse {
+    Workreport: Workreport | undefined;
+}
+export interface QueryGetAllWorkreportByEpochRequest {
+    epoch: number;
+    pagination: PageRequest | undefined;
+}
+export interface QueryGetAllWorkreportByEpochResponse {
+    Workreport: Workreport[];
     pagination: PageResponse | undefined;
 }
 export declare const QueryParamsRequest: {
@@ -72,6 +88,38 @@ export declare const QueryAllWorkloadResponse: {
     create<I extends Exact<DeepPartial<QueryAllWorkloadResponse>, I>>(base?: I): QueryAllWorkloadResponse;
     fromPartial<I extends Exact<DeepPartial<QueryAllWorkloadResponse>, I>>(object: I): QueryAllWorkloadResponse;
 };
+export declare const QueryGetWorkreportRequest: {
+    encode(message: QueryGetWorkreportRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetWorkreportRequest;
+    fromJSON(object: any): QueryGetWorkreportRequest;
+    toJSON(message: QueryGetWorkreportRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryGetWorkreportRequest>, I>>(base?: I): QueryGetWorkreportRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryGetWorkreportRequest>, I>>(object: I): QueryGetWorkreportRequest;
+};
+export declare const QueryGetWorkreportResponse: {
+    encode(message: QueryGetWorkreportResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetWorkreportResponse;
+    fromJSON(object: any): QueryGetWorkreportResponse;
+    toJSON(message: QueryGetWorkreportResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryGetWorkreportResponse>, I>>(base?: I): QueryGetWorkreportResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryGetWorkreportResponse>, I>>(object: I): QueryGetWorkreportResponse;
+};
+export declare const QueryGetAllWorkreportByEpochRequest: {
+    encode(message: QueryGetAllWorkreportByEpochRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllWorkreportByEpochRequest;
+    fromJSON(object: any): QueryGetAllWorkreportByEpochRequest;
+    toJSON(message: QueryGetAllWorkreportByEpochRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryGetAllWorkreportByEpochRequest>, I>>(base?: I): QueryGetAllWorkreportByEpochRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryGetAllWorkreportByEpochRequest>, I>>(object: I): QueryGetAllWorkreportByEpochRequest;
+};
+export declare const QueryGetAllWorkreportByEpochResponse: {
+    encode(message: QueryGetAllWorkreportByEpochResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllWorkreportByEpochResponse;
+    fromJSON(object: any): QueryGetAllWorkreportByEpochResponse;
+    toJSON(message: QueryGetAllWorkreportByEpochResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryGetAllWorkreportByEpochResponse>, I>>(base?: I): QueryGetAllWorkreportByEpochResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryGetAllWorkreportByEpochResponse>, I>>(object: I): QueryGetAllWorkreportByEpochResponse;
+};
 /** Query defines the gRPC querier service. */
 export interface Query {
     /** Parameters queries the parameters of the module. */
@@ -79,6 +127,9 @@ export interface Query {
     /** Queries a list of Workload items. */
     Workload(request: QueryGetWorkloadRequest): Promise<QueryGetWorkloadResponse>;
     WorkloadAll(request: QueryAllWorkloadRequest): Promise<QueryAllWorkloadResponse>;
+    /** Queries a list of Workreport items. */
+    GetWorkreport(request: QueryGetWorkreportRequest): Promise<QueryGetWorkreportResponse>;
+    GetAllWorkreportByEpoch(request: QueryGetAllWorkreportByEpochRequest): Promise<QueryGetAllWorkreportByEpochResponse>;
 }
 export declare const QueryServiceName = "enreach.workload.Query";
 export declare class QueryClientImpl implements Query {
@@ -90,6 +141,8 @@ export declare class QueryClientImpl implements Query {
     Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
     Workload(request: QueryGetWorkloadRequest): Promise<QueryGetWorkloadResponse>;
     WorkloadAll(request: QueryAllWorkloadRequest): Promise<QueryAllWorkloadResponse>;
+    GetWorkreport(request: QueryGetWorkreportRequest): Promise<QueryGetWorkreportResponse>;
+    GetAllWorkreportByEpoch(request: QueryGetAllWorkreportByEpochRequest): Promise<QueryGetAllWorkreportByEpochResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

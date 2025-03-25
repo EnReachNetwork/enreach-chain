@@ -125,6 +125,31 @@ class Api extends HttpClient {
             query: query,
             ...params,
         });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryGetWorkreport
+         * @request GET:/enreach/workload/workreport/{epoch}/{nodeID}
+         */
+        this.queryGetWorkreport = (epoch, nodeId, params = {}) => this.request({
+            path: `/enreach/workload/workreport/${epoch}/${nodeId}`,
+            method: "GET",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryGetAllWorkreportByEpoch
+         * @request GET:/enreach/workload/workreports/{epoch}
+         */
+        this.queryGetAllWorkreportByEpoch = (epoch, query, params = {}) => this.request({
+            path: `/enreach/workload/workreports/${epoch}`,
+            method: "GET",
+            query: query,
+            ...params,
+        });
     }
 }
 exports.Api = Api;

@@ -2,6 +2,7 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Params } from "./params";
+import { NodeScore } from "./workreport";
 
 export const protobufPackage = "enreach.workload";
 
@@ -20,15 +21,13 @@ export interface MsgUpdateParams {
 export interface MsgUpdateParamsResponse {
 }
 
-export interface MsgCreateWorkload {
+export interface MsgSubmitWorkreports {
   managerAccount: string;
   epoch: number;
-  nodeID: string;
-  score: number;
+  nodeScores: NodeScore[];
 }
 
-export interface MsgCreateWorkloadResponse {
-  id: number;
+export interface MsgSubmitWorkreportsResponse {
 }
 
 function createBaseMsgUpdateParams(): MsgUpdateParams {
@@ -150,31 +149,28 @@ export const MsgUpdateParamsResponse = {
   },
 };
 
-function createBaseMsgCreateWorkload(): MsgCreateWorkload {
-  return { managerAccount: "", epoch: 0, nodeID: "", score: 0 };
+function createBaseMsgSubmitWorkreports(): MsgSubmitWorkreports {
+  return { managerAccount: "", epoch: 0, nodeScores: [] };
 }
 
-export const MsgCreateWorkload = {
-  encode(message: MsgCreateWorkload, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const MsgSubmitWorkreports = {
+  encode(message: MsgSubmitWorkreports, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.managerAccount !== "") {
       writer.uint32(10).string(message.managerAccount);
     }
     if (message.epoch !== 0) {
       writer.uint32(16).uint64(message.epoch);
     }
-    if (message.nodeID !== "") {
-      writer.uint32(26).string(message.nodeID);
-    }
-    if (message.score !== 0) {
-      writer.uint32(32).uint64(message.score);
+    for (const v of message.nodeScores) {
+      NodeScore.encode(v!, writer.uint32(26).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateWorkload {
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitWorkreports {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgCreateWorkload();
+    const message = createBaseMsgSubmitWorkreports();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -197,14 +193,7 @@ export const MsgCreateWorkload = {
             break;
           }
 
-          message.nodeID = reader.string();
-          continue;
-        case 4:
-          if (tag !== 32) {
-            break;
-          }
-
-          message.score = longToNumber(reader.uint64() as Long);
+          message.nodeScores.push(NodeScore.decode(reader, reader.uint32()));
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -215,16 +204,15 @@ export const MsgCreateWorkload = {
     return message;
   },
 
-  fromJSON(object: any): MsgCreateWorkload {
+  fromJSON(object: any): MsgSubmitWorkreports {
     return {
       managerAccount: isSet(object.managerAccount) ? String(object.managerAccount) : "",
       epoch: isSet(object.epoch) ? Number(object.epoch) : 0,
-      nodeID: isSet(object.nodeID) ? String(object.nodeID) : "",
-      score: isSet(object.score) ? Number(object.score) : 0,
+      nodeScores: Array.isArray(object?.nodeScores) ? object.nodeScores.map((e: any) => NodeScore.fromJSON(e)) : [],
     };
   },
 
-  toJSON(message: MsgCreateWorkload): unknown {
+  toJSON(message: MsgSubmitWorkreports): unknown {
     const obj: any = {};
     if (message.managerAccount !== "") {
       obj.managerAccount = message.managerAccount;
@@ -232,54 +220,40 @@ export const MsgCreateWorkload = {
     if (message.epoch !== 0) {
       obj.epoch = Math.round(message.epoch);
     }
-    if (message.nodeID !== "") {
-      obj.nodeID = message.nodeID;
-    }
-    if (message.score !== 0) {
-      obj.score = Math.round(message.score);
+    if (message.nodeScores?.length) {
+      obj.nodeScores = message.nodeScores.map((e) => NodeScore.toJSON(e));
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgCreateWorkload>, I>>(base?: I): MsgCreateWorkload {
-    return MsgCreateWorkload.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<MsgSubmitWorkreports>, I>>(base?: I): MsgSubmitWorkreports {
+    return MsgSubmitWorkreports.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<MsgCreateWorkload>, I>>(object: I): MsgCreateWorkload {
-    const message = createBaseMsgCreateWorkload();
+  fromPartial<I extends Exact<DeepPartial<MsgSubmitWorkreports>, I>>(object: I): MsgSubmitWorkreports {
+    const message = createBaseMsgSubmitWorkreports();
     message.managerAccount = object.managerAccount ?? "";
     message.epoch = object.epoch ?? 0;
-    message.nodeID = object.nodeID ?? "";
-    message.score = object.score ?? 0;
+    message.nodeScores = object.nodeScores?.map((e) => NodeScore.fromPartial(e)) || [];
     return message;
   },
 };
 
-function createBaseMsgCreateWorkloadResponse(): MsgCreateWorkloadResponse {
-  return { id: 0 };
+function createBaseMsgSubmitWorkreportsResponse(): MsgSubmitWorkreportsResponse {
+  return {};
 }
 
-export const MsgCreateWorkloadResponse = {
-  encode(message: MsgCreateWorkloadResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.id !== 0) {
-      writer.uint32(8).uint64(message.id);
-    }
+export const MsgSubmitWorkreportsResponse = {
+  encode(_: MsgSubmitWorkreportsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateWorkloadResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitWorkreportsResponse {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgCreateWorkloadResponse();
+    const message = createBaseMsgSubmitWorkreportsResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        case 1:
-          if (tag !== 8) {
-            break;
-          }
-
-          message.id = longToNumber(reader.uint64() as Long);
-          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -289,24 +263,20 @@ export const MsgCreateWorkloadResponse = {
     return message;
   },
 
-  fromJSON(object: any): MsgCreateWorkloadResponse {
-    return { id: isSet(object.id) ? Number(object.id) : 0 };
+  fromJSON(_: any): MsgSubmitWorkreportsResponse {
+    return {};
   },
 
-  toJSON(message: MsgCreateWorkloadResponse): unknown {
+  toJSON(_: MsgSubmitWorkreportsResponse): unknown {
     const obj: any = {};
-    if (message.id !== 0) {
-      obj.id = Math.round(message.id);
-    }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgCreateWorkloadResponse>, I>>(base?: I): MsgCreateWorkloadResponse {
-    return MsgCreateWorkloadResponse.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<MsgSubmitWorkreportsResponse>, I>>(base?: I): MsgSubmitWorkreportsResponse {
+    return MsgSubmitWorkreportsResponse.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<MsgCreateWorkloadResponse>, I>>(object: I): MsgCreateWorkloadResponse {
-    const message = createBaseMsgCreateWorkloadResponse();
-    message.id = object.id ?? 0;
+  fromPartial<I extends Exact<DeepPartial<MsgSubmitWorkreportsResponse>, I>>(_: I): MsgSubmitWorkreportsResponse {
+    const message = createBaseMsgSubmitWorkreportsResponse();
     return message;
   },
 };
@@ -318,7 +288,7 @@ export interface Msg {
    * parameters. The authority defaults to the x/gov module account.
    */
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
-  CreateWorkload(request: MsgCreateWorkload): Promise<MsgCreateWorkloadResponse>;
+  SubmitWorkreports(request: MsgSubmitWorkreports): Promise<MsgSubmitWorkreportsResponse>;
 }
 
 export const MsgServiceName = "enreach.workload.Msg";
@@ -329,7 +299,7 @@ export class MsgClientImpl implements Msg {
     this.service = opts?.service || MsgServiceName;
     this.rpc = rpc;
     this.UpdateParams = this.UpdateParams.bind(this);
-    this.CreateWorkload = this.CreateWorkload.bind(this);
+    this.SubmitWorkreports = this.SubmitWorkreports.bind(this);
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
@@ -337,10 +307,10 @@ export class MsgClientImpl implements Msg {
     return promise.then((data) => MsgUpdateParamsResponse.decode(_m0.Reader.create(data)));
   }
 
-  CreateWorkload(request: MsgCreateWorkload): Promise<MsgCreateWorkloadResponse> {
-    const data = MsgCreateWorkload.encode(request).finish();
-    const promise = this.rpc.request(this.service, "CreateWorkload", data);
-    return promise.then((data) => MsgCreateWorkloadResponse.decode(_m0.Reader.create(data)));
+  SubmitWorkreports(request: MsgSubmitWorkreports): Promise<MsgSubmitWorkreportsResponse> {
+    const data = MsgSubmitWorkreports.encode(request).finish();
+    const promise = this.rpc.request(this.service, "SubmitWorkreports", data);
+    return promise.then((data) => MsgSubmitWorkreportsResponse.decode(_m0.Reader.create(data)));
   }
 }
 

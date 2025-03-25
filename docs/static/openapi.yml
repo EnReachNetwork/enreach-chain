@@ -10217,22 +10217,18 @@ paths:
                     type: string
                   managerScoreMap:
                     type: object
-                    properties:
-                      managerScoreMap:
-                        type: object
-                        additionalProperties:
-                          type: object
-                          properties:
-                            score:
-                              type: string
-                              format: uint64
-                            createAt:
-                              type: string
-                              format: uint64
-                            updateAt:
-                              type: string
-                              format: uint64
-                        title: manager_account => score
+                    additionalProperties:
+                      type: object
+                      properties:
+                        score:
+                          type: string
+                          format: uint64
+                        createAt:
+                          type: string
+                          format: uint64
+                        updateAt:
+                          type: string
+                          format: uint64
         default:
           description: An unexpected error response.
           schema:
@@ -10284,22 +10280,18 @@ paths:
                       type: string
                     managerScoreMap:
                       type: object
-                      properties:
-                        managerScoreMap:
-                          type: object
-                          additionalProperties:
-                            type: object
-                            properties:
-                              score:
-                                type: string
-                                format: uint64
-                              createAt:
-                                type: string
-                                format: uint64
-                              updateAt:
-                                type: string
-                                format: uint64
-                          title: manager_account => score
+                      additionalProperties:
+                        type: object
+                        properties:
+                          score:
+                            type: string
+                            format: uint64
+                          createAt:
+                            type: string
+                            format: uint64
+                          updateAt:
+                            type: string
+                            format: uint64
               pagination:
                 type: object
                 properties:
@@ -21575,24 +21567,6 @@ definitions:
                repeated Bar results = 1;
                PageResponse page = 2;
        }
-  enreach.workload.ManagerNodeScoreMap:
-    type: object
-    properties:
-      managerScoreMap:
-        type: object
-        additionalProperties:
-          type: object
-          properties:
-            score:
-              type: string
-              format: uint64
-            createAt:
-              type: string
-              format: uint64
-            updateAt:
-              type: string
-              format: uint64
-        title: manager_account => score
   enreach.workload.NodeScoreDB:
     type: object
     properties:
@@ -21673,22 +21647,18 @@ definitions:
               type: string
             managerScoreMap:
               type: object
-              properties:
-                managerScoreMap:
-                  type: object
-                  additionalProperties:
-                    type: object
-                    properties:
-                      score:
-                        type: string
-                        format: uint64
-                      createAt:
-                        type: string
-                        format: uint64
-                      updateAt:
-                        type: string
-                        format: uint64
-                  title: manager_account => score
+              additionalProperties:
+                type: object
+                properties:
+                  score:
+                    type: string
+                    format: uint64
+                  createAt:
+                    type: string
+                    format: uint64
+                  updateAt:
+                    type: string
+                    format: uint64
       pagination:
         type: object
         properties:
@@ -21750,22 +21720,18 @@ definitions:
             type: string
           managerScoreMap:
             type: object
-            properties:
-              managerScoreMap:
-                type: object
-                additionalProperties:
-                  type: object
-                  properties:
-                    score:
-                      type: string
-                      format: uint64
-                    createAt:
-                      type: string
-                      format: uint64
-                    updateAt:
-                      type: string
-                      format: uint64
-                title: manager_account => score
+            additionalProperties:
+              type: object
+              properties:
+                score:
+                  type: string
+                  format: uint64
+                createAt:
+                  type: string
+                  format: uint64
+                updateAt:
+                  type: string
+                  format: uint64
   enreach.workload.QueryParamsResponse:
     type: object
     properties:
@@ -21802,22 +21768,18 @@ definitions:
         type: string
       managerScoreMap:
         type: object
-        properties:
-          managerScoreMap:
-            type: object
-            additionalProperties:
-              type: object
-              properties:
-                score:
-                  type: string
-                  format: uint64
-                createAt:
-                  type: string
-                  format: uint64
-                updateAt:
-                  type: string
-                  format: uint64
-            title: manager_account => score
+        additionalProperties:
+          type: object
+          properties:
+            score:
+              type: string
+              format: uint64
+            createAt:
+              type: string
+              format: uint64
+            updateAt:
+              type: string
+              format: uint64
   enreach.workload.MsgSubmitWorkreports:
     type: object
     properties:

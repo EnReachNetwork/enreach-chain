@@ -1,5 +1,6 @@
 import _m0 from "protobufjs/minimal";
 import { Params } from "./params";
+import { NodeScore } from "./workreport";
 export declare const protobufPackage = "enreach.workload";
 /** MsgUpdateParams is the Msg/UpdateParams request type. */
 export interface MsgUpdateParams {
@@ -14,14 +15,12 @@ export interface MsgUpdateParams {
  */
 export interface MsgUpdateParamsResponse {
 }
-export interface MsgCreateWorkload {
+export interface MsgSubmitWorkreports {
     managerAccount: string;
     epoch: number;
-    nodeID: string;
-    score: number;
+    nodeScores: NodeScore[];
 }
-export interface MsgCreateWorkloadResponse {
-    id: number;
+export interface MsgSubmitWorkreportsResponse {
 }
 export declare const MsgUpdateParams: {
     encode(message: MsgUpdateParams, writer?: _m0.Writer): _m0.Writer;
@@ -39,21 +38,21 @@ export declare const MsgUpdateParamsResponse: {
     create<I extends Exact<DeepPartial<MsgUpdateParamsResponse>, I>>(base?: I): MsgUpdateParamsResponse;
     fromPartial<I extends Exact<DeepPartial<MsgUpdateParamsResponse>, I>>(_: I): MsgUpdateParamsResponse;
 };
-export declare const MsgCreateWorkload: {
-    encode(message: MsgCreateWorkload, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateWorkload;
-    fromJSON(object: any): MsgCreateWorkload;
-    toJSON(message: MsgCreateWorkload): unknown;
-    create<I extends Exact<DeepPartial<MsgCreateWorkload>, I>>(base?: I): MsgCreateWorkload;
-    fromPartial<I extends Exact<DeepPartial<MsgCreateWorkload>, I>>(object: I): MsgCreateWorkload;
+export declare const MsgSubmitWorkreports: {
+    encode(message: MsgSubmitWorkreports, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitWorkreports;
+    fromJSON(object: any): MsgSubmitWorkreports;
+    toJSON(message: MsgSubmitWorkreports): unknown;
+    create<I extends Exact<DeepPartial<MsgSubmitWorkreports>, I>>(base?: I): MsgSubmitWorkreports;
+    fromPartial<I extends Exact<DeepPartial<MsgSubmitWorkreports>, I>>(object: I): MsgSubmitWorkreports;
 };
-export declare const MsgCreateWorkloadResponse: {
-    encode(message: MsgCreateWorkloadResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateWorkloadResponse;
-    fromJSON(object: any): MsgCreateWorkloadResponse;
-    toJSON(message: MsgCreateWorkloadResponse): unknown;
-    create<I extends Exact<DeepPartial<MsgCreateWorkloadResponse>, I>>(base?: I): MsgCreateWorkloadResponse;
-    fromPartial<I extends Exact<DeepPartial<MsgCreateWorkloadResponse>, I>>(object: I): MsgCreateWorkloadResponse;
+export declare const MsgSubmitWorkreportsResponse: {
+    encode(_: MsgSubmitWorkreportsResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitWorkreportsResponse;
+    fromJSON(_: any): MsgSubmitWorkreportsResponse;
+    toJSON(_: MsgSubmitWorkreportsResponse): unknown;
+    create<I extends Exact<DeepPartial<MsgSubmitWorkreportsResponse>, I>>(base?: I): MsgSubmitWorkreportsResponse;
+    fromPartial<I extends Exact<DeepPartial<MsgSubmitWorkreportsResponse>, I>>(_: I): MsgSubmitWorkreportsResponse;
 };
 /** Msg defines the Msg service. */
 export interface Msg {
@@ -62,7 +61,7 @@ export interface Msg {
      * parameters. The authority defaults to the x/gov module account.
      */
     UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
-    CreateWorkload(request: MsgCreateWorkload): Promise<MsgCreateWorkloadResponse>;
+    SubmitWorkreports(request: MsgSubmitWorkreports): Promise<MsgSubmitWorkreportsResponse>;
 }
 export declare const MsgServiceName = "enreach.workload.Msg";
 export declare class MsgClientImpl implements Msg {
@@ -72,7 +71,7 @@ export declare class MsgClientImpl implements Msg {
         service?: string;
     });
     UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
-    CreateWorkload(request: MsgCreateWorkload): Promise<MsgCreateWorkloadResponse>;
+    SubmitWorkreports(request: MsgSubmitWorkreports): Promise<MsgSubmitWorkreportsResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

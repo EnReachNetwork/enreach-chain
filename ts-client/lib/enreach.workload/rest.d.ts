@@ -9,6 +9,14 @@ export interface Status {
         "@type"?: string;
     }[];
 }
+export interface NodeScoreDB {
+    /** @format uint64 */
+    score?: string;
+    /** @format uint64 */
+    createAt?: string;
+    /** @format uint64 */
+    updateAt?: string;
+}
 export interface PageRequest {
     /** @format byte */
     key?: string;
@@ -39,6 +47,21 @@ export interface QueryAllWorkloadResponse {
         total?: string;
     };
 }
+export interface QueryGetAllWorkreportByEpochResponse {
+    Workreport?: {
+        epoch?: string;
+        nodeID?: string;
+        managerScoreMap?: Record<string, {
+            score?: string;
+            createAt?: string;
+            updateAt?: string;
+        }>;
+    }[];
+    pagination?: {
+        next_key?: string;
+        total?: string;
+    };
+}
 export interface QueryGetWorkloadResponse {
     Workload?: {
         id?: string;
@@ -49,8 +72,29 @@ export interface QueryGetWorkloadResponse {
         createAt?: string;
     };
 }
+export interface QueryGetWorkreportResponse {
+    Workreport?: {
+        epoch?: string;
+        nodeID?: string;
+        managerScoreMap?: Record<string, {
+            score?: string;
+            createAt?: string;
+            updateAt?: string;
+        }>;
+    };
+}
 export interface QueryParamsResponse {
     params?: object;
+}
+export interface Workreport {
+    /** @format uint64 */
+    epoch?: string;
+    nodeID?: string;
+    managerScoreMap?: Record<string, {
+        score?: string;
+        createAt?: string;
+        updateAt?: string;
+    }>;
 }
 export type WorkloadParams = object;
 export interface WorkloadWorkload {
@@ -65,11 +109,13 @@ export interface WorkloadWorkload {
     /** @format uint64 */
     createAt?: string;
 }
-export interface MsgCreateWorkloadResponse {
-    /** @format uint64 */
-    id?: string;
-}
+export type MsgSubmitWorkreportsResponse = object;
 export type MsgUpdateParamsResponse = object;
+export interface NodeScore {
+    nodeID?: string;
+    /** @format uint64 */
+    score?: string;
+}
 export type Params = object;
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
 export type QueryParamsType = Record<string | number, any>;
@@ -138,6 +184,28 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * @request GET:/enreach/workload/workloads
      */
     queryWorkloadAll: (query?: {
+        "pagination.key"?: string;
+        "pagination.offset"?: string;
+        "pagination.limit"?: string;
+        "pagination.count_total"?: boolean;
+        "pagination.reverse"?: boolean;
+    }, params?: RequestParams) => Promise<AxiosResponse<T>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryGetWorkreport
+     * @request GET:/enreach/workload/workreport/{epoch}/{nodeID}
+     */
+    queryGetWorkreport: (epoch: string, nodeId: string, params?: RequestParams) => Promise<AxiosResponse<T>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryGetAllWorkreportByEpoch
+     * @request GET:/enreach/workload/workreports/{epoch}
+     */
+    queryGetAllWorkreportByEpoch: (epoch: string, query?: {
         "pagination.key"?: string;
         "pagination.offset"?: string;
         "pagination.limit"?: string;

@@ -3,11 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MsgClientImpl = exports.MsgServiceName = exports.MsgCreateWorkloadResponse = exports.MsgCreateWorkload = exports.MsgUpdateParamsResponse = exports.MsgUpdateParams = exports.protobufPackage = void 0;
+exports.MsgClientImpl = exports.MsgServiceName = exports.MsgSubmitWorkreportsResponse = exports.MsgSubmitWorkreports = exports.MsgUpdateParamsResponse = exports.MsgUpdateParams = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const params_1 = require("./params");
+const workreport_1 = require("./workreport");
 exports.protobufPackage = "enreach.workload";
 function createBaseMsgUpdateParams() {
     return { authority: "", params: undefined };
@@ -114,10 +115,10 @@ exports.MsgUpdateParamsResponse = {
         return message;
     },
 };
-function createBaseMsgCreateWorkload() {
-    return { managerAccount: "", epoch: 0, nodeID: "", score: 0 };
+function createBaseMsgSubmitWorkreports() {
+    return { managerAccount: "", epoch: 0, nodeScores: [] };
 }
-exports.MsgCreateWorkload = {
+exports.MsgSubmitWorkreports = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.managerAccount !== "") {
             writer.uint32(10).string(message.managerAccount);
@@ -125,18 +126,15 @@ exports.MsgCreateWorkload = {
         if (message.epoch !== 0) {
             writer.uint32(16).uint64(message.epoch);
         }
-        if (message.nodeID !== "") {
-            writer.uint32(26).string(message.nodeID);
-        }
-        if (message.score !== 0) {
-            writer.uint32(32).uint64(message.score);
+        for (const v of message.nodeScores) {
+            workreport_1.NodeScore.encode(v, writer.uint32(26).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseMsgCreateWorkload();
+        const message = createBaseMsgSubmitWorkreports();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -156,13 +154,7 @@ exports.MsgCreateWorkload = {
                     if (tag !== 26) {
                         break;
                     }
-                    message.nodeID = reader.string();
-                    continue;
-                case 4:
-                    if (tag !== 32) {
-                        break;
-                    }
-                    message.score = longToNumber(reader.uint64());
+                    message.nodeScores.push(workreport_1.NodeScore.decode(reader, reader.uint32()));
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -176,8 +168,7 @@ exports.MsgCreateWorkload = {
         return {
             managerAccount: isSet(object.managerAccount) ? String(object.managerAccount) : "",
             epoch: isSet(object.epoch) ? Number(object.epoch) : 0,
-            nodeID: isSet(object.nodeID) ? String(object.nodeID) : "",
-            score: isSet(object.score) ? Number(object.score) : 0,
+            nodeScores: Array.isArray(object?.nodeScores) ? object.nodeScores.map((e) => workreport_1.NodeScore.fromJSON(e)) : [],
         };
     },
     toJSON(message) {
@@ -188,49 +179,36 @@ exports.MsgCreateWorkload = {
         if (message.epoch !== 0) {
             obj.epoch = Math.round(message.epoch);
         }
-        if (message.nodeID !== "") {
-            obj.nodeID = message.nodeID;
-        }
-        if (message.score !== 0) {
-            obj.score = Math.round(message.score);
+        if (message.nodeScores?.length) {
+            obj.nodeScores = message.nodeScores.map((e) => workreport_1.NodeScore.toJSON(e));
         }
         return obj;
     },
     create(base) {
-        return exports.MsgCreateWorkload.fromPartial(base ?? {});
+        return exports.MsgSubmitWorkreports.fromPartial(base ?? {});
     },
     fromPartial(object) {
-        const message = createBaseMsgCreateWorkload();
+        const message = createBaseMsgSubmitWorkreports();
         message.managerAccount = object.managerAccount ?? "";
         message.epoch = object.epoch ?? 0;
-        message.nodeID = object.nodeID ?? "";
-        message.score = object.score ?? 0;
+        message.nodeScores = object.nodeScores?.map((e) => workreport_1.NodeScore.fromPartial(e)) || [];
         return message;
     },
 };
-function createBaseMsgCreateWorkloadResponse() {
-    return { id: 0 };
+function createBaseMsgSubmitWorkreportsResponse() {
+    return {};
 }
-exports.MsgCreateWorkloadResponse = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.id !== 0) {
-            writer.uint32(8).uint64(message.id);
-        }
+exports.MsgSubmitWorkreportsResponse = {
+    encode(_, writer = minimal_1.default.Writer.create()) {
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseMsgCreateWorkloadResponse();
+        const message = createBaseMsgSubmitWorkreportsResponse();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 8) {
-                        break;
-                    }
-                    message.id = longToNumber(reader.uint64());
-                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -239,22 +217,18 @@ exports.MsgCreateWorkloadResponse = {
         }
         return message;
     },
-    fromJSON(object) {
-        return { id: isSet(object.id) ? Number(object.id) : 0 };
+    fromJSON(_) {
+        return {};
     },
-    toJSON(message) {
+    toJSON(_) {
         const obj = {};
-        if (message.id !== 0) {
-            obj.id = Math.round(message.id);
-        }
         return obj;
     },
     create(base) {
-        return exports.MsgCreateWorkloadResponse.fromPartial(base ?? {});
+        return exports.MsgSubmitWorkreportsResponse.fromPartial(base ?? {});
     },
-    fromPartial(object) {
-        const message = createBaseMsgCreateWorkloadResponse();
-        message.id = object.id ?? 0;
+    fromPartial(_) {
+        const message = createBaseMsgSubmitWorkreportsResponse();
         return message;
     },
 };
@@ -264,17 +238,17 @@ class MsgClientImpl {
         this.service = opts?.service || exports.MsgServiceName;
         this.rpc = rpc;
         this.UpdateParams = this.UpdateParams.bind(this);
-        this.CreateWorkload = this.CreateWorkload.bind(this);
+        this.SubmitWorkreports = this.SubmitWorkreports.bind(this);
     }
     UpdateParams(request) {
         const data = exports.MsgUpdateParams.encode(request).finish();
         const promise = this.rpc.request(this.service, "UpdateParams", data);
         return promise.then((data) => exports.MsgUpdateParamsResponse.decode(minimal_1.default.Reader.create(data)));
     }
-    CreateWorkload(request) {
-        const data = exports.MsgCreateWorkload.encode(request).finish();
-        const promise = this.rpc.request(this.service, "CreateWorkload", data);
-        return promise.then((data) => exports.MsgCreateWorkloadResponse.decode(minimal_1.default.Reader.create(data)));
+    SubmitWorkreports(request) {
+        const data = exports.MsgSubmitWorkreports.encode(request).finish();
+        const promise = this.rpc.request(this.service, "SubmitWorkreports", data);
+        return promise.then((data) => exports.MsgSubmitWorkreportsResponse.decode(minimal_1.default.Reader.create(data)));
     }
 }
 exports.MsgClientImpl = MsgClientImpl;

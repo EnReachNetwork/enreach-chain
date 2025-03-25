@@ -172,6 +172,158 @@ paths:
           type: boolean
       tags:
         - Query
+  /enreach/workload/workreport/{epoch}/{nodeID}:
+    get:
+      operationId: Query_GetWorkreport
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              Workreport:
+                type: object
+                properties:
+                  epoch:
+                    type: string
+                    format: uint64
+                  nodeID:
+                    type: string
+                  managerScoreMap:
+                    type: object
+                    additionalProperties:
+                      type: object
+                      properties:
+                        score:
+                          type: string
+                          format: uint64
+                        createAt:
+                          type: string
+                          format: uint64
+                        updateAt:
+                          type: string
+                          format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: epoch
+          in: path
+          required: true
+          type: string
+          format: uint64
+        - name: nodeID
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /enreach/workload/workreports/{epoch}:
+    get:
+      operationId: Query_GetAllWorkreportByEpoch
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              Workreport:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    epoch:
+                      type: string
+                      format: uint64
+                    nodeID:
+                      type: string
+                    managerScoreMap:
+                      type: object
+                      additionalProperties:
+                        type: object
+                        properties:
+                          score:
+                            type: string
+                            format: uint64
+                          createAt:
+                            type: string
+                            format: uint64
+                          updateAt:
+                            type: string
+                            format: uint64
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                  total:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: epoch
+          in: path
+          required: true
+          type: string
+          format: uint64
+        - name: pagination.key
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
 definitions:
   Any:
     type: object
@@ -195,6 +347,18 @@ definitions:
             '@type':
               type: string
           additionalProperties: {}
+  NodeScoreDB:
+    type: object
+    properties:
+      score:
+        type: string
+        format: uint64
+      createAt:
+        type: string
+        format: uint64
+      updateAt:
+        type: string
+        format: uint64
   PageRequest:
     type: object
     properties:
@@ -253,6 +417,42 @@ definitions:
           total:
             type: string
             format: uint64
+  QueryGetAllWorkreportByEpochResponse:
+    type: object
+    properties:
+      Workreport:
+        type: array
+        items:
+          type: object
+          properties:
+            epoch:
+              type: string
+              format: uint64
+            nodeID:
+              type: string
+            managerScoreMap:
+              type: object
+              additionalProperties:
+                type: object
+                properties:
+                  score:
+                    type: string
+                    format: uint64
+                  createAt:
+                    type: string
+                    format: uint64
+                  updateAt:
+                    type: string
+                    format: uint64
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+          total:
+            type: string
+            format: uint64
   QueryGetWorkloadResponse:
     type: object
     properties:
@@ -275,11 +475,58 @@ definitions:
           createAt:
             type: string
             format: uint64
+  QueryGetWorkreportResponse:
+    type: object
+    properties:
+      Workreport:
+        type: object
+        properties:
+          epoch:
+            type: string
+            format: uint64
+          nodeID:
+            type: string
+          managerScoreMap:
+            type: object
+            additionalProperties:
+              type: object
+              properties:
+                score:
+                  type: string
+                  format: uint64
+                createAt:
+                  type: string
+                  format: uint64
+                updateAt:
+                  type: string
+                  format: uint64
   QueryParamsResponse:
     type: object
     properties:
       params:
         type: object
+  Workreport:
+    type: object
+    properties:
+      epoch:
+        type: string
+        format: uint64
+      nodeID:
+        type: string
+      managerScoreMap:
+        type: object
+        additionalProperties:
+          type: object
+          properties:
+            score:
+              type: string
+              format: uint64
+            createAt:
+              type: string
+              format: uint64
+            updateAt:
+              type: string
+              format: uint64
   workload.Params:
     type: object
   workload.Workload:
@@ -301,13 +548,17 @@ definitions:
       createAt:
         type: string
         format: uint64
-  MsgCreateWorkloadResponse:
+  MsgSubmitWorkreportsResponse:
     type: object
-    properties:
-      id:
-        type: string
-        format: uint64
   MsgUpdateParamsResponse:
     type: object
+  NodeScore:
+    type: object
+    properties:
+      nodeID:
+        type: string
+      score:
+        type: string
+        format: uint64
   Params:
     type: object

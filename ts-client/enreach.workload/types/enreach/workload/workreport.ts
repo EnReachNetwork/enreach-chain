@@ -4,19 +4,46 @@ import _m0 from "protobufjs/minimal";
 
 export const protobufPackage = "enreach.workload";
 
-export interface Workreport {
-  nodeId: string;
+export interface NodeScore {
+  nodeID: string;
   score: number;
 }
 
-function createBaseWorkreport(): Workreport {
-  return { nodeId: "", score: 0 };
+export interface NodeScoreDB {
+  score: number;
+  createAt: number;
+  updateAt: number;
 }
 
-export const Workreport = {
-  encode(message: Workreport, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.nodeId !== "") {
-      writer.uint32(10).string(message.nodeId);
+export interface ManagerNodeScoreMap {
+  /** manager_account => score */
+  managerScoreMap: { [key: string]: NodeScoreDB };
+}
+
+export interface ManagerNodeScoreMap_ManagerScoreMapEntry {
+  key: string;
+  value: NodeScoreDB | undefined;
+}
+
+export interface Workreport {
+  epoch: number;
+  nodeID: string;
+  managerScoreMap: { [key: string]: NodeScoreDB };
+}
+
+export interface Workreport_ManagerScoreMapEntry {
+  key: string;
+  value: NodeScoreDB | undefined;
+}
+
+function createBaseNodeScore(): NodeScore {
+  return { nodeID: "", score: 0 };
+}
+
+export const NodeScore = {
+  encode(message: NodeScore, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.nodeID !== "") {
+      writer.uint32(10).string(message.nodeID);
     }
     if (message.score !== 0) {
       writer.uint32(16).uint64(message.score);
@@ -24,10 +51,10 @@ export const Workreport = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Workreport {
+  decode(input: _m0.Reader | Uint8Array, length?: number): NodeScore {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseWorkreport();
+    const message = createBaseNodeScore();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -36,7 +63,7 @@ export const Workreport = {
             break;
           }
 
-          message.nodeId = reader.string();
+          message.nodeID = reader.string();
           continue;
         case 2:
           if (tag !== 16) {
@@ -54,20 +81,372 @@ export const Workreport = {
     return message;
   },
 
+  fromJSON(object: any): NodeScore {
+    return {
+      nodeID: isSet(object.nodeID) ? String(object.nodeID) : "",
+      score: isSet(object.score) ? Number(object.score) : 0,
+    };
+  },
+
+  toJSON(message: NodeScore): unknown {
+    const obj: any = {};
+    if (message.nodeID !== "") {
+      obj.nodeID = message.nodeID;
+    }
+    if (message.score !== 0) {
+      obj.score = Math.round(message.score);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<NodeScore>, I>>(base?: I): NodeScore {
+    return NodeScore.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<NodeScore>, I>>(object: I): NodeScore {
+    const message = createBaseNodeScore();
+    message.nodeID = object.nodeID ?? "";
+    message.score = object.score ?? 0;
+    return message;
+  },
+};
+
+function createBaseNodeScoreDB(): NodeScoreDB {
+  return { score: 0, createAt: 0, updateAt: 0 };
+}
+
+export const NodeScoreDB = {
+  encode(message: NodeScoreDB, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.score !== 0) {
+      writer.uint32(8).uint64(message.score);
+    }
+    if (message.createAt !== 0) {
+      writer.uint32(16).uint64(message.createAt);
+    }
+    if (message.updateAt !== 0) {
+      writer.uint32(24).uint64(message.updateAt);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): NodeScoreDB {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseNodeScoreDB();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.score = longToNumber(reader.uint64() as Long);
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.createAt = longToNumber(reader.uint64() as Long);
+          continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+
+          message.updateAt = longToNumber(reader.uint64() as Long);
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): NodeScoreDB {
+    return {
+      score: isSet(object.score) ? Number(object.score) : 0,
+      createAt: isSet(object.createAt) ? Number(object.createAt) : 0,
+      updateAt: isSet(object.updateAt) ? Number(object.updateAt) : 0,
+    };
+  },
+
+  toJSON(message: NodeScoreDB): unknown {
+    const obj: any = {};
+    if (message.score !== 0) {
+      obj.score = Math.round(message.score);
+    }
+    if (message.createAt !== 0) {
+      obj.createAt = Math.round(message.createAt);
+    }
+    if (message.updateAt !== 0) {
+      obj.updateAt = Math.round(message.updateAt);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<NodeScoreDB>, I>>(base?: I): NodeScoreDB {
+    return NodeScoreDB.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<NodeScoreDB>, I>>(object: I): NodeScoreDB {
+    const message = createBaseNodeScoreDB();
+    message.score = object.score ?? 0;
+    message.createAt = object.createAt ?? 0;
+    message.updateAt = object.updateAt ?? 0;
+    return message;
+  },
+};
+
+function createBaseManagerNodeScoreMap(): ManagerNodeScoreMap {
+  return { managerScoreMap: {} };
+}
+
+export const ManagerNodeScoreMap = {
+  encode(message: ManagerNodeScoreMap, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    Object.entries(message.managerScoreMap).forEach(([key, value]) => {
+      ManagerNodeScoreMap_ManagerScoreMapEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).ldelim();
+    });
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ManagerNodeScoreMap {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseManagerNodeScoreMap();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          const entry1 = ManagerNodeScoreMap_ManagerScoreMapEntry.decode(reader, reader.uint32());
+          if (entry1.value !== undefined) {
+            message.managerScoreMap[entry1.key] = entry1.value;
+          }
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ManagerNodeScoreMap {
+    return {
+      managerScoreMap: isObject(object.managerScoreMap)
+        ? Object.entries(object.managerScoreMap).reduce<{ [key: string]: NodeScoreDB }>((acc, [key, value]) => {
+          acc[key] = NodeScoreDB.fromJSON(value);
+          return acc;
+        }, {})
+        : {},
+    };
+  },
+
+  toJSON(message: ManagerNodeScoreMap): unknown {
+    const obj: any = {};
+    if (message.managerScoreMap) {
+      const entries = Object.entries(message.managerScoreMap);
+      if (entries.length > 0) {
+        obj.managerScoreMap = {};
+        entries.forEach(([k, v]) => {
+          obj.managerScoreMap[k] = NodeScoreDB.toJSON(v);
+        });
+      }
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ManagerNodeScoreMap>, I>>(base?: I): ManagerNodeScoreMap {
+    return ManagerNodeScoreMap.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ManagerNodeScoreMap>, I>>(object: I): ManagerNodeScoreMap {
+    const message = createBaseManagerNodeScoreMap();
+    message.managerScoreMap = Object.entries(object.managerScoreMap ?? {}).reduce<{ [key: string]: NodeScoreDB }>(
+      (acc, [key, value]) => {
+        if (value !== undefined) {
+          acc[key] = NodeScoreDB.fromPartial(value);
+        }
+        return acc;
+      },
+      {},
+    );
+    return message;
+  },
+};
+
+function createBaseManagerNodeScoreMap_ManagerScoreMapEntry(): ManagerNodeScoreMap_ManagerScoreMapEntry {
+  return { key: "", value: undefined };
+}
+
+export const ManagerNodeScoreMap_ManagerScoreMapEntry = {
+  encode(message: ManagerNodeScoreMap_ManagerScoreMapEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.key !== "") {
+      writer.uint32(10).string(message.key);
+    }
+    if (message.value !== undefined) {
+      NodeScoreDB.encode(message.value, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ManagerNodeScoreMap_ManagerScoreMapEntry {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseManagerNodeScoreMap_ManagerScoreMapEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.key = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.value = NodeScoreDB.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ManagerNodeScoreMap_ManagerScoreMapEntry {
+    return {
+      key: isSet(object.key) ? String(object.key) : "",
+      value: isSet(object.value) ? NodeScoreDB.fromJSON(object.value) : undefined,
+    };
+  },
+
+  toJSON(message: ManagerNodeScoreMap_ManagerScoreMapEntry): unknown {
+    const obj: any = {};
+    if (message.key !== "") {
+      obj.key = message.key;
+    }
+    if (message.value !== undefined) {
+      obj.value = NodeScoreDB.toJSON(message.value);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ManagerNodeScoreMap_ManagerScoreMapEntry>, I>>(
+    base?: I,
+  ): ManagerNodeScoreMap_ManagerScoreMapEntry {
+    return ManagerNodeScoreMap_ManagerScoreMapEntry.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ManagerNodeScoreMap_ManagerScoreMapEntry>, I>>(
+    object: I,
+  ): ManagerNodeScoreMap_ManagerScoreMapEntry {
+    const message = createBaseManagerNodeScoreMap_ManagerScoreMapEntry();
+    message.key = object.key ?? "";
+    message.value = (object.value !== undefined && object.value !== null)
+      ? NodeScoreDB.fromPartial(object.value)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseWorkreport(): Workreport {
+  return { epoch: 0, nodeID: "", managerScoreMap: {} };
+}
+
+export const Workreport = {
+  encode(message: Workreport, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.epoch !== 0) {
+      writer.uint32(8).uint64(message.epoch);
+    }
+    if (message.nodeID !== "") {
+      writer.uint32(18).string(message.nodeID);
+    }
+    Object.entries(message.managerScoreMap).forEach(([key, value]) => {
+      Workreport_ManagerScoreMapEntry.encode({ key: key as any, value }, writer.uint32(26).fork()).ldelim();
+    });
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Workreport {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseWorkreport();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.epoch = longToNumber(reader.uint64() as Long);
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.nodeID = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          const entry3 = Workreport_ManagerScoreMapEntry.decode(reader, reader.uint32());
+          if (entry3.value !== undefined) {
+            message.managerScoreMap[entry3.key] = entry3.value;
+          }
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
   fromJSON(object: any): Workreport {
     return {
-      nodeId: isSet(object.nodeId) ? String(object.nodeId) : "",
-      score: isSet(object.score) ? Number(object.score) : 0,
+      epoch: isSet(object.epoch) ? Number(object.epoch) : 0,
+      nodeID: isSet(object.nodeID) ? String(object.nodeID) : "",
+      managerScoreMap: isObject(object.managerScoreMap)
+        ? Object.entries(object.managerScoreMap).reduce<{ [key: string]: NodeScoreDB }>((acc, [key, value]) => {
+          acc[key] = NodeScoreDB.fromJSON(value);
+          return acc;
+        }, {})
+        : {},
     };
   },
 
   toJSON(message: Workreport): unknown {
     const obj: any = {};
-    if (message.nodeId !== "") {
-      obj.nodeId = message.nodeId;
+    if (message.epoch !== 0) {
+      obj.epoch = Math.round(message.epoch);
     }
-    if (message.score !== 0) {
-      obj.score = Math.round(message.score);
+    if (message.nodeID !== "") {
+      obj.nodeID = message.nodeID;
+    }
+    if (message.managerScoreMap) {
+      const entries = Object.entries(message.managerScoreMap);
+      if (entries.length > 0) {
+        obj.managerScoreMap = {};
+        entries.forEach(([k, v]) => {
+          obj.managerScoreMap[k] = NodeScoreDB.toJSON(v);
+        });
+      }
     }
     return obj;
   },
@@ -77,8 +456,95 @@ export const Workreport = {
   },
   fromPartial<I extends Exact<DeepPartial<Workreport>, I>>(object: I): Workreport {
     const message = createBaseWorkreport();
-    message.nodeId = object.nodeId ?? "";
-    message.score = object.score ?? 0;
+    message.epoch = object.epoch ?? 0;
+    message.nodeID = object.nodeID ?? "";
+    message.managerScoreMap = Object.entries(object.managerScoreMap ?? {}).reduce<{ [key: string]: NodeScoreDB }>(
+      (acc, [key, value]) => {
+        if (value !== undefined) {
+          acc[key] = NodeScoreDB.fromPartial(value);
+        }
+        return acc;
+      },
+      {},
+    );
+    return message;
+  },
+};
+
+function createBaseWorkreport_ManagerScoreMapEntry(): Workreport_ManagerScoreMapEntry {
+  return { key: "", value: undefined };
+}
+
+export const Workreport_ManagerScoreMapEntry = {
+  encode(message: Workreport_ManagerScoreMapEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.key !== "") {
+      writer.uint32(10).string(message.key);
+    }
+    if (message.value !== undefined) {
+      NodeScoreDB.encode(message.value, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Workreport_ManagerScoreMapEntry {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseWorkreport_ManagerScoreMapEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.key = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.value = NodeScoreDB.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Workreport_ManagerScoreMapEntry {
+    return {
+      key: isSet(object.key) ? String(object.key) : "",
+      value: isSet(object.value) ? NodeScoreDB.fromJSON(object.value) : undefined,
+    };
+  },
+
+  toJSON(message: Workreport_ManagerScoreMapEntry): unknown {
+    const obj: any = {};
+    if (message.key !== "") {
+      obj.key = message.key;
+    }
+    if (message.value !== undefined) {
+      obj.value = NodeScoreDB.toJSON(message.value);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Workreport_ManagerScoreMapEntry>, I>>(base?: I): Workreport_ManagerScoreMapEntry {
+    return Workreport_ManagerScoreMapEntry.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<Workreport_ManagerScoreMapEntry>, I>>(
+    object: I,
+  ): Workreport_ManagerScoreMapEntry {
+    const message = createBaseWorkreport_ManagerScoreMapEntry();
+    message.key = object.key ?? "";
+    message.value = (object.value !== undefined && object.value !== null)
+      ? NodeScoreDB.fromPartial(object.value)
+      : undefined;
     return message;
   },
 };
@@ -123,6 +589,10 @@ function longToNumber(long: Long): number {
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
+}
+
+function isObject(value: any): boolean {
+  return typeof value === "object" && value !== null;
 }
 
 function isSet(value: any): boolean {
