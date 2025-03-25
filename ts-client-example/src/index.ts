@@ -8,6 +8,7 @@ import EdgenodeApi from './edgenode';
 import WorkloadApi from './workload';
 import { Tendermint37Client } from "@cosmjs/tendermint-rpc";
 import { ethers } from 'ethers';
+import { MsgSubmitWorkreports } from 'enreach-client-ts/lib/enreach.workload/types/enreach/workload/tx';
 
 async function main() {
   const regionAdminApi = new RegionApi(ADMIN_MNEMONIC);
@@ -37,7 +38,6 @@ async function main() {
   await edgenodeAdminApi.createSuperior({signer: edgenodeAdminApi.account, account: edgenodeApi.account});
 
   await regionApi.createRegion({signer: regionApi.account, code: "US", name: "United State", description: "US Region"});
-  //console.log("Create Region Result:", JSON.stringify(result, (key, value) => typeof value === 'bigint' ? value.toString() : value, 2));
   const allRegions = await regionApi.queryAllRegion();
   console.log("Regions:", allRegions);
 
@@ -45,7 +45,7 @@ async function main() {
 
   await testEdgenode(edgenodeApi);
 
-  await testWorkload(workloadApi);
+  await testWorkload(workloadApi, managerApi);
 }
 
 async function testManager(regionApi: RegionApi, operatorApi: OperatorApi, managerApi: ManagerApi) {
@@ -123,15 +123,19 @@ async function getActivateLicense(operatorAccount: string, managerAccount: strin
 
 async function testEdgenode(edgenodeApi: EdgenodeApi) {
   const userID = "user1";
-  const nodeID = "node1";
+  const nodeID1 = "node1";
+  const nodeID2 = "node2";
   await edgenodeApi.createUser({signer:edgenodeApi.account, userID: userID});
 
   const [evmAccount, sig] = await getEvmSignature(userID);
   await edgenodeApi.bindUserEVMAccount({signer:edgenodeApi.account, userID: userID, evmAccount: evmAccount, evmSignature: ethers.utils.arrayify(sig)});
 
-  await edgenodeApi.registerNode({signer:edgenodeApi.account, nodeID: nodeID, deviceType: "Box"});
-  
-  await edgenodeApi.bindAndActivateNode({signer:edgenodeApi.account, nodeID: nodeID, userID: userID, nodeName: "My Home Node", regionCode: "US"});
+  await edgenodeApi.registerNode({signer:edgenodeApi.account, nodeID: nodeID1, deviceType: "Box"});
+  await edgenodeApi.bindAndActivateNode({signer:edgenodeApi.account, nodeID: nodeID1, userID: userID, nodeName: "My Home Box", regionCode: "US"});
+
+  await edgenodeApi.registerNode({signer:edgenodeApi.account, nodeID: nodeID2, deviceType: "X86"});
+  await edgenodeApi.bindAndActivateNode({signer:edgenodeApi.account, nodeID: nodeID2, userID: userID, nodeName: "My X86 Node", regionCode: "US"});
+
 
   console.log("===Query all data");
   const allUsers = await edgenodeApi.queryAllUser();
@@ -141,13 +145,46 @@ async function testEdgenode(edgenodeApi: EdgenodeApi) {
   console.log("Nodes:", allNodes);
 }
 
-async function testWorkload(workloadApi: WorkloadApi) {
+async function testWorkload(workloadApi: WorkloadApi, managerApi: ManagerApi) {
 
-  await workloadApi.createWorkload({managerAccount: workloadApi.account, epoch: 1, nodeID: "node1", score: 100});
+  const currentEpoch = (await managerApi.getCurrentEpoch()).currentEpoch;
+  const previsouEpoch = currentEpoch - 1;
+
+  const workreports = {
+    managerAccount: managerApi.account,
+    epoch: previsouEpoch,
+    nodeScores: [
+      {
+        nodeID: "node1",
+        score: 100,
+      },
+      {
+        nodeID: "node2",
+        score: 200,
+      },
+    ],
+  };
+
+  await workloadApi.submitWorkreports(workreports);
+  const workreports2 = {
+    managerAccount: managerApi.account,
+    epoch: previsouEpoch,
+    nodeScores: [
+      {
+        nodeID: "node1",
+        score: 168,
+      },
+      {
+        nodeID: "node2",
+        score: 268,
+      },
+    ],
+  };
+  await workloadApi.submitWorkreports(workreports2);
 
   console.log("===Query all data");
-  const allWorkloads = await workloadApi.queryAllWorkload();
-  console.log("Workloads:", allWorkloads);
+  const allWorkreports = await workloadApi.queryAllWorkreporthByEpoch(previsouEpoch);
+  console.log("Workreports:", JSON.stringify(allWorkreports, (key, value) => typeof value === 'bigint' ? value.toString() : value, 2));
 } 
 
 async function listenEvents() {
@@ -173,6 +210,10 @@ async function listenEvents() {
       error: (err) => console.error("Subsription Failed:", err),
       complete: () => console.log("Subscription Complete"),
   });
+}
+
+function sleep(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 main().catch(console.error);

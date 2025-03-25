@@ -2,7 +2,7 @@ import { DirectSecp256k1HdWallet } from '@cosmjs/proto-signing'
 import { txClient } from 'enreach-client-ts/lib/enreach.workload';
 import { queryClient } from "enreach-client-ts/lib/enreach.workload";
 import { CHAIN_API_URL, CHAIN_PREFIX, CHAIN_RPC_URL } from './consts';
-import { MsgCreateWorkload, QueryAllWorkloadResponse } from 'enreach-client-ts/lib/enreach.workload/module';
+import { MsgSubmitWorkreports, QueryAllWorkloadResponse } from 'enreach-client-ts/lib/enreach.workload/module';
 
 export default class WorkloadApi {
     private mnemonic: string;
@@ -19,9 +19,9 @@ export default class WorkloadApi {
         this.account = accounts[0].address;
     }
 
-    async createWorkload(msg: MsgCreateWorkload) {
+    async submitWorkreports(msg: MsgSubmitWorkreports) {
         let tClient = txClient({ signer: this.wallet, prefix: CHAIN_PREFIX, addr: CHAIN_RPC_URL });
-        const result = await tClient.sendMsgCreateWorkload({
+        const result = await tClient.sendMsgSubmitWorkreports({
             value: {
                 ...msg,
             }
@@ -30,6 +30,12 @@ export default class WorkloadApi {
         if (result.code != 0) {
             throw new Error(`Transaction failed: ${result.rawLog}`)
         }
+    }
+
+    async queryAllWorkreporthByEpoch(epoch: number): Promise<QueryAllWorkloadResponse> {
+        let qClient = queryClient({ addr: CHAIN_API_URL });
+        const regions = await qClient.queryGetAllWorkreportByEpoch(epoch.toString());
+        return regions.data;
     }
 
     async queryAllWorkload(): Promise<QueryAllWorkloadResponse> {
