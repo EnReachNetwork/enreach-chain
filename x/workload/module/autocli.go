@@ -18,6 +18,16 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:     "Shows the parameters of the module",
 				},
 				{
+					RpcMethod: "GetEpochLength",
+					Use:       "get-epoch-length",
+					Short:     "Get epoch length",
+				},
+				{
+					RpcMethod: "GetCurrentEpoch",
+					Use:       "get-current-epoch",
+					Short:     "Get current epoch",
+				},
+				{
 					RpcMethod: "WorkloadAll",
 					Use:       "list-workload",
 					Short:     "List all workload",

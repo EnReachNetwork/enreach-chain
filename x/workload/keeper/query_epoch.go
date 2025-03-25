@@ -3,7 +3,7 @@ package keeper
 import (
 	"context"
 
-	"enreach/x/manager/types"
+	"enreach/x/workload/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )

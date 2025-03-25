@@ -25,8 +25,6 @@ const (
 	Query_Manager_FullMethodName            = "/enreach.manager.Query/Manager"
 	Query_ManagerAll_FullMethodName         = "/enreach.manager.Query/ManagerAll"
 	Query_GetManagerByRegion_FullMethodName = "/enreach.manager.Query/GetManagerByRegion"
-	Query_GetEpochLength_FullMethodName     = "/enreach.manager.Query/GetEpochLength"
-	Query_GetCurrentEpoch_FullMethodName    = "/enreach.manager.Query/GetCurrentEpoch"
 	Query_Superior_FullMethodName           = "/enreach.manager.Query/Superior"
 )
 
@@ -44,9 +42,6 @@ type QueryClient interface {
 	ManagerAll(ctx context.Context, in *QueryAllManagerRequest, opts ...grpc.CallOption) (*QueryAllManagerResponse, error)
 	// Queries a list of GetManagerByRegion items.
 	GetManagerByRegion(ctx context.Context, in *QueryGetManagerByRegionRequest, opts ...grpc.CallOption) (*QueryGetManagerByRegionResponse, error)
-	// Queries epoch
-	GetEpochLength(ctx context.Context, in *QueryGetEpochLengthRequest, opts ...grpc.CallOption) (*QueryGetEpochLengthResponse, error)
-	GetCurrentEpoch(ctx context.Context, in *QueryGetCurrentEpochRequest, opts ...grpc.CallOption) (*QueryGetCurrentEpochResponse, error)
 	// Queries a Superior by index.
 	Superior(ctx context.Context, in *QueryGetSuperiorRequest, opts ...grpc.CallOption) (*QueryGetSuperiorResponse, error)
 }
@@ -113,24 +108,6 @@ func (c *queryClient) GetManagerByRegion(ctx context.Context, in *QueryGetManage
 	return out, nil
 }
 
-func (c *queryClient) GetEpochLength(ctx context.Context, in *QueryGetEpochLengthRequest, opts ...grpc.CallOption) (*QueryGetEpochLengthResponse, error) {
-	out := new(QueryGetEpochLengthResponse)
-	err := c.cc.Invoke(ctx, Query_GetEpochLength_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *queryClient) GetCurrentEpoch(ctx context.Context, in *QueryGetCurrentEpochRequest, opts ...grpc.CallOption) (*QueryGetCurrentEpochResponse, error) {
-	out := new(QueryGetCurrentEpochResponse)
-	err := c.cc.Invoke(ctx, Query_GetCurrentEpoch_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *queryClient) Superior(ctx context.Context, in *QueryGetSuperiorRequest, opts ...grpc.CallOption) (*QueryGetSuperiorResponse, error) {
 	out := new(QueryGetSuperiorResponse)
 	err := c.cc.Invoke(ctx, Query_Superior_FullMethodName, in, out, opts...)
@@ -154,9 +131,6 @@ type QueryServer interface {
 	ManagerAll(context.Context, *QueryAllManagerRequest) (*QueryAllManagerResponse, error)
 	// Queries a list of GetManagerByRegion items.
 	GetManagerByRegion(context.Context, *QueryGetManagerByRegionRequest) (*QueryGetManagerByRegionResponse, error)
-	// Queries epoch
-	GetEpochLength(context.Context, *QueryGetEpochLengthRequest) (*QueryGetEpochLengthResponse, error)
-	GetCurrentEpoch(context.Context, *QueryGetCurrentEpochRequest) (*QueryGetCurrentEpochResponse, error)
 	// Queries a Superior by index.
 	Superior(context.Context, *QueryGetSuperiorRequest) (*QueryGetSuperiorResponse, error)
 	mustEmbedUnimplementedQueryServer()
@@ -183,12 +157,6 @@ func (UnimplementedQueryServer) ManagerAll(context.Context, *QueryAllManagerRequ
 }
 func (UnimplementedQueryServer) GetManagerByRegion(context.Context, *QueryGetManagerByRegionRequest) (*QueryGetManagerByRegionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetManagerByRegion not implemented")
-}
-func (UnimplementedQueryServer) GetEpochLength(context.Context, *QueryGetEpochLengthRequest) (*QueryGetEpochLengthResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetEpochLength not implemented")
-}
-func (UnimplementedQueryServer) GetCurrentEpoch(context.Context, *QueryGetCurrentEpochRequest) (*QueryGetCurrentEpochResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCurrentEpoch not implemented")
 }
 func (UnimplementedQueryServer) Superior(context.Context, *QueryGetSuperiorRequest) (*QueryGetSuperiorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Superior not implemented")
@@ -314,42 +282,6 @@ func _Query_GetManagerByRegion_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_GetEpochLength_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetEpochLengthRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(QueryServer).GetEpochLength(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Query_GetEpochLength_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).GetEpochLength(ctx, req.(*QueryGetEpochLengthRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Query_GetCurrentEpoch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetCurrentEpochRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(QueryServer).GetCurrentEpoch(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Query_GetCurrentEpoch_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).GetCurrentEpoch(ctx, req.(*QueryGetCurrentEpochRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Query_Superior_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryGetSuperiorRequest)
 	if err := dec(in); err != nil {
@@ -398,14 +330,6 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetManagerByRegion",
 			Handler:    _Query_GetManagerByRegion_Handler,
-		},
-		{
-			MethodName: "GetEpochLength",
-			Handler:    _Query_GetEpochLength_Handler,
-		},
-		{
-			MethodName: "GetCurrentEpoch",
-			Handler:    _Query_GetCurrentEpoch_Handler,
 		},
 		{
 			MethodName: "Superior",

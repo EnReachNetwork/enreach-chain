@@ -20,6 +20,8 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	Query_Params_FullMethodName                  = "/enreach.workload.Query/Params"
+	Query_GetEpochLength_FullMethodName          = "/enreach.workload.Query/GetEpochLength"
+	Query_GetCurrentEpoch_FullMethodName         = "/enreach.workload.Query/GetCurrentEpoch"
 	Query_Workload_FullMethodName                = "/enreach.workload.Query/Workload"
 	Query_WorkloadAll_FullMethodName             = "/enreach.workload.Query/WorkloadAll"
 	Query_GetWorkreport_FullMethodName           = "/enreach.workload.Query/GetWorkreport"
@@ -32,6 +34,9 @@ const (
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
+	// Queries epoch
+	GetEpochLength(ctx context.Context, in *QueryGetEpochLengthRequest, opts ...grpc.CallOption) (*QueryGetEpochLengthResponse, error)
+	GetCurrentEpoch(ctx context.Context, in *QueryGetCurrentEpochRequest, opts ...grpc.CallOption) (*QueryGetCurrentEpochResponse, error)
 	// Queries a list of Workload items.
 	Workload(ctx context.Context, in *QueryGetWorkloadRequest, opts ...grpc.CallOption) (*QueryGetWorkloadResponse, error)
 	WorkloadAll(ctx context.Context, in *QueryAllWorkloadRequest, opts ...grpc.CallOption) (*QueryAllWorkloadResponse, error)
@@ -51,6 +56,24 @@ func NewQueryClient(cc grpc.ClientConnInterface) QueryClient {
 func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error) {
 	out := new(QueryParamsResponse)
 	err := c.cc.Invoke(ctx, Query_Params_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) GetEpochLength(ctx context.Context, in *QueryGetEpochLengthRequest, opts ...grpc.CallOption) (*QueryGetEpochLengthResponse, error) {
+	out := new(QueryGetEpochLengthResponse)
+	err := c.cc.Invoke(ctx, Query_GetEpochLength_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) GetCurrentEpoch(ctx context.Context, in *QueryGetCurrentEpochRequest, opts ...grpc.CallOption) (*QueryGetCurrentEpochResponse, error) {
+	out := new(QueryGetCurrentEpochResponse)
+	err := c.cc.Invoke(ctx, Query_GetCurrentEpoch_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -99,6 +122,9 @@ func (c *queryClient) GetAllWorkreportByEpoch(ctx context.Context, in *QueryGetA
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
+	// Queries epoch
+	GetEpochLength(context.Context, *QueryGetEpochLengthRequest) (*QueryGetEpochLengthResponse, error)
+	GetCurrentEpoch(context.Context, *QueryGetCurrentEpochRequest) (*QueryGetCurrentEpochResponse, error)
 	// Queries a list of Workload items.
 	Workload(context.Context, *QueryGetWorkloadRequest) (*QueryGetWorkloadResponse, error)
 	WorkloadAll(context.Context, *QueryAllWorkloadRequest) (*QueryAllWorkloadResponse, error)
@@ -114,6 +140,12 @@ type UnimplementedQueryServer struct {
 
 func (UnimplementedQueryServer) Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
+}
+func (UnimplementedQueryServer) GetEpochLength(context.Context, *QueryGetEpochLengthRequest) (*QueryGetEpochLengthResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetEpochLength not implemented")
+}
+func (UnimplementedQueryServer) GetCurrentEpoch(context.Context, *QueryGetCurrentEpochRequest) (*QueryGetCurrentEpochResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCurrentEpoch not implemented")
 }
 func (UnimplementedQueryServer) Workload(context.Context, *QueryGetWorkloadRequest) (*QueryGetWorkloadResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Workload not implemented")
@@ -154,6 +186,42 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(QueryServer).Params(ctx, req.(*QueryParamsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_GetEpochLength_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetEpochLengthRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).GetEpochLength(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_GetEpochLength_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).GetEpochLength(ctx, req.(*QueryGetEpochLengthRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_GetCurrentEpoch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetCurrentEpochRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).GetCurrentEpoch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_GetCurrentEpoch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).GetCurrentEpoch(ctx, req.(*QueryGetCurrentEpochRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -240,6 +308,14 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Params",
 			Handler:    _Query_Params_Handler,
+		},
+		{
+			MethodName: "GetEpochLength",
+			Handler:    _Query_GetEpochLength_Handler,
+		},
+		{
+			MethodName: "GetCurrentEpoch",
+			Handler:    _Query_GetCurrentEpoch_Handler,
 		},
 		{
 			MethodName: "Workload",

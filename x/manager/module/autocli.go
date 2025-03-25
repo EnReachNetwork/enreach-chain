@@ -47,16 +47,6 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "operatorAccount"}},
 				},
 				{
-					RpcMethod: "GetEpochLength",
-					Use:       "get-epoch-length",
-					Short:     "Get epoch length",
-				},
-				{
-					RpcMethod: "GetCurrentEpoch",
-					Use:       "get-current-epoch",
-					Short:     "Get current epoch",
-				},
-				{
 					RpcMethod: "Superior",
 					Use:       "show-superior",
 					Short:     "show superior",

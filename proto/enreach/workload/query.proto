@@ -20,6 +20,16 @@ service Query {
     option (google.api.http).get = "/enreach/workload/params";
   
   }
+
+  // Queries epoch
+  rpc GetEpochLength  (QueryGetEpochLengthRequest ) returns (QueryGetEpochLengthResponse ) {
+    option (google.api.http).get = "/enreach/manager/epoch/length";
+  
+  }
+  rpc GetCurrentEpoch (QueryGetCurrentEpochRequest) returns (QueryGetCurrentEpochResponse) {
+    option (google.api.http).get = "/enreach/manager/epoch/currentepoch";
+  
+  }
   
   // Queries a list of Workload items.
   rpc Workload    (QueryGetWorkloadRequest) returns (QueryGetWorkloadResponse) {
@@ -49,6 +59,18 @@ message QueryParamsResponse {
   
   // params holds all the parameters of this module.
   Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+message QueryGetEpochLengthRequest {}
+
+message QueryGetEpochLengthResponse {
+  uint64 epochLength = 1;
+}
+
+message QueryGetCurrentEpochRequest {}
+
+message QueryGetCurrentEpochResponse {
+  uint64 currentEpoch = 1;
 }
 
 message QueryGetWorkloadRequest {

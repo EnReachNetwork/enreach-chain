@@ -35,7 +35,7 @@ func (k msgServer) SubmitWorkreports(goCtx context.Context, msg *types.MsgSubmit
 	}
 
 	// Check epoch validity
-	currentEpochResp, err := k.managerKeeper.GetCurrentEpoch(ctx, &managertypes.QueryGetCurrentEpochRequest{})
+	currentEpochResp, err := k.GetCurrentEpoch(ctx, &types.QueryGetCurrentEpochRequest{})
 	if err != nil {
 		return nil, errorsmod.Wrapf(sdkerrors.ErrLogic, "Failed to get current epoch: %s", err.Error())
 	}
