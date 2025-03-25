@@ -76,21 +76,32 @@ func (k Keeper) GetNodeWorkreport(ctx context.Context, epochID uint64, nodeID st
 }
 
 // GetNodeWorkreportPaginated get the workreports of all nodes in a dedicated epoch
-func (k Keeper) GetNodeWorkreportsPaginated(ctx context.Context, epochID uint64, pageReq *query.PageRequest) ([]types.ManagerNodeScoreMap, *query.PageResponse, error) {
+func (k Keeper) GetNodeWorkreportsPaginated(ctx context.Context, epochID uint64, pageReq *query.PageRequest) ([]types.Workreport, *query.PageResponse, error) {
 	// Build the partial key: Prefix + epochID (8 bytes BigEndian)
 	prefixBytes := binary.BigEndian.AppendUint64([]byte(types.WorkreportKey), epochID)
 
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, prefixBytes)
 
-	var scoresMapList []types.ManagerNodeScoreMap
+	var workreports []types.Workreport
 	pageRes, err := query.Paginate(store, pageReq, func(key []byte, value []byte) error {
 		var scoresMap types.ManagerNodeScoreMap
 		if err := k.cdc.Unmarshal(value, &scoresMap); err != nil {
 			return err
 		}
 
-		scoresMapList = append(scoresMapList, scoresMap)
+		_, nodeID, err := DecodeWorkreportKey(key)
+		if err != nil {
+			return err
+		}
+
+		workreport := types.Workreport{
+			Epoch:           epochID,
+			NodeID:          nodeID,
+			ManagerScoreMap: &scoresMap,
+		}
+		workreports = append(workreports, workreport)
+
 		return nil
 	})
 
@@ -98,7 +109,7 @@ func (k Keeper) GetNodeWorkreportsPaginated(ctx context.Context, epochID uint64,
 		return nil, nil, status.Error(codes.Internal, err.Error())
 	}
 
-	return scoresMapList, pageRes, nil
+	return workreports, pageRes, nil
 }
 
 func GetWorkreportCountKey(epochID uint64) []byte {

@@ -83,7 +83,6 @@ func (k msgServer) SubmitWorkreports(goCtx context.Context, msg *types.MsgSubmit
 			} else {
 				// There are no existing entry for this manager, append a new entry
 				managerNodeScoreMap.ManagerScoreMap[msg.ManagerAccount] = &types.NodeScoreDB{
-					NodeID:   nodescore.NodeID,
 					Score:    nodescore.Score,
 					CreateAt: blockHeight,
 					UpdateAt: blockHeight,
@@ -96,7 +95,6 @@ func (k msgServer) SubmitWorkreports(goCtx context.Context, msg *types.MsgSubmit
 			// No existing entry, create a new scores map
 			nodeScoresMap := make(map[string]*types.NodeScoreDB)
 			nodeScoresMap[msg.ManagerAccount] = &types.NodeScoreDB{
-				NodeID:   nodescore.NodeID,
 				Score:    nodescore.Score,
 				CreateAt: blockHeight,
 				UpdateAt: blockHeight,

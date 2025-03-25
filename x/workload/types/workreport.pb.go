@@ -75,10 +75,9 @@ func (m *NodeScore) GetScore() uint64 {
 }
 
 type NodeScoreDB struct {
-	NodeID   string `protobuf:"bytes,1,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
-	Score    uint64 `protobuf:"varint,2,opt,name=score,proto3" json:"score,omitempty"`
-	CreateAt uint64 `protobuf:"varint,3,opt,name=createAt,proto3" json:"createAt,omitempty"`
-	UpdateAt uint64 `protobuf:"varint,4,opt,name=updateAt,proto3" json:"updateAt,omitempty"`
+	Score    uint64 `protobuf:"varint,1,opt,name=score,proto3" json:"score,omitempty"`
+	CreateAt uint64 `protobuf:"varint,2,opt,name=createAt,proto3" json:"createAt,omitempty"`
+	UpdateAt uint64 `protobuf:"varint,3,opt,name=updateAt,proto3" json:"updateAt,omitempty"`
 }
 
 func (m *NodeScoreDB) Reset()         { *m = NodeScoreDB{} }
@@ -114,13 +113,6 @@ func (m *NodeScoreDB) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_NodeScoreDB proto.InternalMessageInfo
 
-func (m *NodeScoreDB) GetNodeID() string {
-	if m != nil {
-		return m.NodeID
-	}
-	return ""
-}
-
 func (m *NodeScoreDB) GetScore() uint64 {
 	if m != nil {
 		return m.Score
@@ -143,7 +135,7 @@ func (m *NodeScoreDB) GetUpdateAt() uint64 {
 }
 
 type ManagerNodeScoreMap struct {
-	ManagerScoreMap map[string]*NodeScoreDB `protobuf:"bytes,1,rep,name=manager_score_map,json=managerScoreMap,proto3" json:"manager_score_map,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	ManagerScoreMap map[string]*NodeScoreDB `protobuf:"bytes,1,rep,name=managerScoreMap,proto3" json:"managerScoreMap,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }
 
 func (m *ManagerNodeScoreMap) Reset()         { *m = ManagerNodeScoreMap{} }
@@ -186,36 +178,99 @@ func (m *ManagerNodeScoreMap) GetManagerScoreMap() map[string]*NodeScoreDB {
 	return nil
 }
 
+type Workreport struct {
+	Epoch           uint64               `protobuf:"varint,1,opt,name=epoch,proto3" json:"epoch,omitempty"`
+	NodeID          string               `protobuf:"bytes,2,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
+	ManagerScoreMap *ManagerNodeScoreMap `protobuf:"bytes,3,opt,name=managerScoreMap,proto3" json:"managerScoreMap,omitempty"`
+}
+
+func (m *Workreport) Reset()         { *m = Workreport{} }
+func (m *Workreport) String() string { return proto.CompactTextString(m) }
+func (*Workreport) ProtoMessage()    {}
+func (*Workreport) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f9ac088b512d79e6, []int{3}
+}
+func (m *Workreport) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Workreport) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Workreport.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Workreport) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Workreport.Merge(m, src)
+}
+func (m *Workreport) XXX_Size() int {
+	return m.Size()
+}
+func (m *Workreport) XXX_DiscardUnknown() {
+	xxx_messageInfo_Workreport.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Workreport proto.InternalMessageInfo
+
+func (m *Workreport) GetEpoch() uint64 {
+	if m != nil {
+		return m.Epoch
+	}
+	return 0
+}
+
+func (m *Workreport) GetNodeID() string {
+	if m != nil {
+		return m.NodeID
+	}
+	return ""
+}
+
+func (m *Workreport) GetManagerScoreMap() *ManagerNodeScoreMap {
+	if m != nil {
+		return m.ManagerScoreMap
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*NodeScore)(nil), "enreach.workload.NodeScore")
 	proto.RegisterType((*NodeScoreDB)(nil), "enreach.workload.NodeScoreDB")
 	proto.RegisterType((*ManagerNodeScoreMap)(nil), "enreach.workload.ManagerNodeScoreMap")
 	proto.RegisterMapType((map[string]*NodeScoreDB)(nil), "enreach.workload.ManagerNodeScoreMap.ManagerScoreMapEntry")
+	proto.RegisterType((*Workreport)(nil), "enreach.workload.Workreport")
 }
 
 func init() { proto.RegisterFile("enreach/workload/workreport.proto", fileDescriptor_f9ac088b512d79e6) }
 
 var fileDescriptor_f9ac088b512d79e6 = []byte{
-	// 297 bytes of a gzipped FileDescriptorProto
+	// 330 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x52, 0x4c, 0xcd, 0x2b, 0x4a,
 	0x4d, 0x4c, 0xce, 0xd0, 0x2f, 0xcf, 0x2f, 0xca, 0xce, 0xc9, 0x4f, 0x4c, 0x01, 0x33, 0x8a, 0x52,
 	0x0b, 0xf2, 0x8b, 0x4a, 0xf4, 0x0a, 0x8a, 0xf2, 0x4b, 0xf2, 0x85, 0x04, 0xa0, 0x4a, 0xf4, 0x60,
 	0x4a, 0x94, 0x2c, 0xb9, 0x38, 0xfd, 0xf2, 0x53, 0x52, 0x83, 0x93, 0xf3, 0x8b, 0x52, 0x85, 0xc4,
 	0xb8, 0xd8, 0xf2, 0xf2, 0x53, 0x52, 0x3d, 0x5d, 0x24, 0x18, 0x15, 0x18, 0x35, 0x38, 0x83, 0xa0,
 	0x3c, 0x21, 0x11, 0x2e, 0xd6, 0x62, 0x90, 0x02, 0x09, 0x26, 0x05, 0x46, 0x0d, 0x96, 0x20, 0x08,
-	0x47, 0xa9, 0x98, 0x8b, 0x1b, 0xae, 0xd5, 0xc5, 0x89, 0x34, 0xcd, 0x42, 0x52, 0x5c, 0x1c, 0xc9,
-	0x45, 0xa9, 0x89, 0x25, 0xa9, 0x8e, 0x25, 0x12, 0xcc, 0x60, 0x09, 0x38, 0x1f, 0x24, 0x57, 0x5a,
-	0x90, 0x02, 0x91, 0x63, 0x81, 0xc8, 0xc1, 0xf8, 0x4a, 0x0f, 0x18, 0xb9, 0x84, 0x7d, 0x13, 0xf3,
-	0x12, 0xd3, 0x53, 0x8b, 0xe0, 0x96, 0xfb, 0x26, 0x16, 0x08, 0xa5, 0x71, 0x09, 0xe6, 0x42, 0x84,
-	0xe3, 0xc1, 0x16, 0xc4, 0xe7, 0x26, 0x16, 0x48, 0x30, 0x2a, 0x30, 0x6b, 0x70, 0x1b, 0x59, 0xe9,
-	0xa1, 0xfb, 0x5a, 0x0f, 0x8b, 0x09, 0x30, 0x31, 0x18, 0xdf, 0x35, 0xaf, 0xa4, 0xa8, 0x32, 0x88,
-	0x3f, 0x17, 0x55, 0x54, 0x2a, 0x91, 0x4b, 0x04, 0x9b, 0x42, 0x21, 0x01, 0x2e, 0xe6, 0xec, 0xd4,
-	0x4a, 0xa8, 0xd7, 0x41, 0x4c, 0x21, 0x63, 0x2e, 0xd6, 0xb2, 0xc4, 0x9c, 0x52, 0x88, 0xbf, 0xb9,
-	0x8d, 0x64, 0x31, 0x5d, 0x81, 0x14, 0x7a, 0x41, 0x10, 0xb5, 0x56, 0x4c, 0x16, 0x8c, 0x4e, 0x46,
-	0x27, 0x1e, 0xc9, 0x31, 0x5e, 0x78, 0x24, 0xc7, 0xf8, 0xe0, 0x91, 0x1c, 0xe3, 0x84, 0xc7, 0x72,
-	0x0c, 0x17, 0x1e, 0xcb, 0x31, 0xdc, 0x78, 0x2c, 0xc7, 0x10, 0x25, 0x01, 0x8b, 0xe1, 0x0a, 0x44,
-	0x1c, 0x97, 0x54, 0x16, 0xa4, 0x16, 0x27, 0xb1, 0x81, 0xe3, 0xd7, 0x18, 0x10, 0x00, 0x00, 0xff,
-	0xff, 0x47, 0xe3, 0x72, 0x4e, 0x04, 0x02, 0x00, 0x00,
+	0x47, 0x29, 0x9a, 0x8b, 0x1b, 0xae, 0xd5, 0xc5, 0x09, 0xa1, 0x88, 0x11, 0x49, 0x91, 0x90, 0x14,
+	0x17, 0x47, 0x72, 0x51, 0x6a, 0x62, 0x49, 0xaa, 0x63, 0x09, 0x54, 0x37, 0x9c, 0x0f, 0x92, 0x2b,
+	0x2d, 0x48, 0x81, 0xc8, 0x31, 0x43, 0xe4, 0x60, 0x7c, 0xa5, 0x7b, 0x8c, 0x5c, 0xc2, 0xbe, 0x89,
+	0x79, 0x89, 0xe9, 0xa9, 0x45, 0x70, 0x4b, 0x7c, 0x13, 0x0b, 0x84, 0x52, 0xb8, 0xf8, 0x73, 0x21,
+	0xc2, 0x30, 0x21, 0x09, 0x46, 0x05, 0x66, 0x0d, 0x6e, 0x23, 0x2b, 0x3d, 0x74, 0xbf, 0xe9, 0x61,
+	0xd1, 0x0f, 0x13, 0x83, 0xf1, 0x5d, 0xf3, 0x4a, 0x8a, 0x2a, 0x83, 0xd0, 0x8d, 0x94, 0x4a, 0xe4,
+	0x12, 0xc1, 0xa6, 0x50, 0x48, 0x80, 0x8b, 0x39, 0x3b, 0xb5, 0x12, 0x1a, 0x3a, 0x20, 0xa6, 0x90,
+	0x31, 0x17, 0x6b, 0x59, 0x62, 0x4e, 0x29, 0x24, 0x68, 0xb8, 0x8d, 0x64, 0x31, 0x5d, 0x81, 0x14,
+	0x46, 0x41, 0x10, 0xb5, 0x56, 0x4c, 0x16, 0x8c, 0x4a, 0xdd, 0x8c, 0x5c, 0x5c, 0xe1, 0xf0, 0xf8,
+	0x01, 0x85, 0x5e, 0x6a, 0x41, 0x7e, 0x72, 0x06, 0x2c, 0xf4, 0xc0, 0x1c, 0xa4, 0x08, 0x61, 0x42,
+	0x89, 0x10, 0x7f, 0xcc, 0x50, 0x60, 0x06, 0xdb, 0xaf, 0x4a, 0x54, 0x28, 0x60, 0x78, 0xd8, 0xc9,
+	0xe8, 0xc4, 0x23, 0x39, 0xc6, 0x0b, 0x8f, 0xe4, 0x18, 0x1f, 0x3c, 0x92, 0x63, 0x9c, 0xf0, 0x58,
+	0x8e, 0xe1, 0xc2, 0x63, 0x39, 0x86, 0x1b, 0x8f, 0xe5, 0x18, 0xa2, 0x24, 0x60, 0xa9, 0xaa, 0x02,
+	0x91, 0xae, 0x4a, 0x2a, 0x0b, 0x52, 0x8b, 0x93, 0xd8, 0xc0, 0x69, 0xca, 0x18, 0x10, 0x00, 0x00,
+	0xff, 0xff, 0xed, 0xe0, 0x5b, 0xae, 0x78, 0x02, 0x00, 0x00,
 }
 
 func (m *NodeScore) Marshal() (dAtA []byte, err error) {
@@ -276,24 +331,17 @@ func (m *NodeScoreDB) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	if m.UpdateAt != 0 {
 		i = encodeVarintWorkreport(dAtA, i, uint64(m.UpdateAt))
 		i--
-		dAtA[i] = 0x20
+		dAtA[i] = 0x18
 	}
 	if m.CreateAt != 0 {
 		i = encodeVarintWorkreport(dAtA, i, uint64(m.CreateAt))
 		i--
-		dAtA[i] = 0x18
+		dAtA[i] = 0x10
 	}
 	if m.Score != 0 {
 		i = encodeVarintWorkreport(dAtA, i, uint64(m.Score))
 		i--
-		dAtA[i] = 0x10
-	}
-	if len(m.NodeID) > 0 {
-		i -= len(m.NodeID)
-		copy(dAtA[i:], m.NodeID)
-		i = encodeVarintWorkreport(dAtA, i, uint64(len(m.NodeID)))
-		i--
-		dAtA[i] = 0xa
+		dAtA[i] = 0x8
 	}
 	return len(dAtA) - i, nil
 }
@@ -347,6 +395,53 @@ func (m *ManagerNodeScoreMap) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
+func (m *Workreport) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Workreport) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Workreport) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.ManagerScoreMap != nil {
+		{
+			size, err := m.ManagerScoreMap.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintWorkreport(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.NodeID) > 0 {
+		i -= len(m.NodeID)
+		copy(dAtA[i:], m.NodeID)
+		i = encodeVarintWorkreport(dAtA, i, uint64(len(m.NodeID)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Epoch != 0 {
+		i = encodeVarintWorkreport(dAtA, i, uint64(m.Epoch))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintWorkreport(dAtA []byte, offset int, v uint64) int {
 	offset -= sovWorkreport(v)
 	base := offset
@@ -380,10 +475,6 @@ func (m *NodeScoreDB) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.NodeID)
-	if l > 0 {
-		n += 1 + l + sovWorkreport(uint64(l))
-	}
 	if m.Score != 0 {
 		n += 1 + sovWorkreport(uint64(m.Score))
 	}
@@ -414,6 +505,26 @@ func (m *ManagerNodeScoreMap) Size() (n int) {
 			mapEntrySize := 1 + len(k) + sovWorkreport(uint64(len(k))) + l
 			n += mapEntrySize + 1 + sovWorkreport(uint64(mapEntrySize))
 		}
+	}
+	return n
+}
+
+func (m *Workreport) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Epoch != 0 {
+		n += 1 + sovWorkreport(uint64(m.Epoch))
+	}
+	l = len(m.NodeID)
+	if l > 0 {
+		n += 1 + l + sovWorkreport(uint64(l))
+	}
+	if m.ManagerScoreMap != nil {
+		l = m.ManagerScoreMap.Size()
+		n += 1 + l + sovWorkreport(uint64(l))
 	}
 	return n
 }
@@ -555,38 +666,6 @@ func (m *NodeScoreDB) Unmarshal(dAtA []byte) error {
 		}
 		switch fieldNum {
 		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field NodeID", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowWorkreport
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthWorkreport
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthWorkreport
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.NodeID = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Score", wireType)
 			}
@@ -605,7 +684,7 @@ func (m *NodeScoreDB) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-		case 3:
+		case 2:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field CreateAt", wireType)
 			}
@@ -624,7 +703,7 @@ func (m *NodeScoreDB) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-		case 4:
+		case 3:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field UpdateAt", wireType)
 			}
@@ -821,6 +900,143 @@ func (m *ManagerNodeScoreMap) Unmarshal(dAtA []byte) error {
 				}
 			}
 			m.ManagerScoreMap[mapkey] = mapvalue
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipWorkreport(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthWorkreport
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Workreport) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowWorkreport
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Workreport: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Workreport: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Epoch", wireType)
+			}
+			m.Epoch = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowWorkreport
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Epoch |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field NodeID", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowWorkreport
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthWorkreport
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthWorkreport
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.NodeID = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ManagerScoreMap", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowWorkreport
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthWorkreport
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthWorkreport
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.ManagerScoreMap == nil {
+				m.ManagerScoreMap = &ManagerNodeScoreMap{}
+			}
+			if err := m.ManagerScoreMap.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

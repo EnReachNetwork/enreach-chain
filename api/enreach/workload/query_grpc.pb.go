@@ -19,9 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Query_Params_FullMethodName      = "/enreach.workload.Query/Params"
-	Query_Workload_FullMethodName    = "/enreach.workload.Query/Workload"
-	Query_WorkloadAll_FullMethodName = "/enreach.workload.Query/WorkloadAll"
+	Query_Params_FullMethodName                  = "/enreach.workload.Query/Params"
+	Query_Workload_FullMethodName                = "/enreach.workload.Query/Workload"
+	Query_WorkloadAll_FullMethodName             = "/enreach.workload.Query/WorkloadAll"
+	Query_GetWorkreport_FullMethodName           = "/enreach.workload.Query/GetWorkreport"
+	Query_GetAllWorkreportByEpoch_FullMethodName = "/enreach.workload.Query/GetAllWorkreportByEpoch"
 )
 
 // QueryClient is the client API for Query service.
@@ -33,6 +35,9 @@ type QueryClient interface {
 	// Queries a list of Workload items.
 	Workload(ctx context.Context, in *QueryGetWorkloadRequest, opts ...grpc.CallOption) (*QueryGetWorkloadResponse, error)
 	WorkloadAll(ctx context.Context, in *QueryAllWorkloadRequest, opts ...grpc.CallOption) (*QueryAllWorkloadResponse, error)
+	// Queries a list of Workreport items.
+	GetWorkreport(ctx context.Context, in *QueryGetWorkreportRequest, opts ...grpc.CallOption) (*QueryGetWorkreportResponse, error)
+	GetAllWorkreportByEpoch(ctx context.Context, in *QueryGetAllWorkreportByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllWorkreportByEpochResponse, error)
 }
 
 type queryClient struct {
@@ -70,6 +75,24 @@ func (c *queryClient) WorkloadAll(ctx context.Context, in *QueryAllWorkloadReque
 	return out, nil
 }
 
+func (c *queryClient) GetWorkreport(ctx context.Context, in *QueryGetWorkreportRequest, opts ...grpc.CallOption) (*QueryGetWorkreportResponse, error) {
+	out := new(QueryGetWorkreportResponse)
+	err := c.cc.Invoke(ctx, Query_GetWorkreport_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) GetAllWorkreportByEpoch(ctx context.Context, in *QueryGetAllWorkreportByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllWorkreportByEpochResponse, error) {
+	out := new(QueryGetAllWorkreportByEpochResponse)
+	err := c.cc.Invoke(ctx, Query_GetAllWorkreportByEpoch_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
@@ -79,6 +102,9 @@ type QueryServer interface {
 	// Queries a list of Workload items.
 	Workload(context.Context, *QueryGetWorkloadRequest) (*QueryGetWorkloadResponse, error)
 	WorkloadAll(context.Context, *QueryAllWorkloadRequest) (*QueryAllWorkloadResponse, error)
+	// Queries a list of Workreport items.
+	GetWorkreport(context.Context, *QueryGetWorkreportRequest) (*QueryGetWorkreportResponse, error)
+	GetAllWorkreportByEpoch(context.Context, *QueryGetAllWorkreportByEpochRequest) (*QueryGetAllWorkreportByEpochResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -94,6 +120,12 @@ func (UnimplementedQueryServer) Workload(context.Context, *QueryGetWorkloadReque
 }
 func (UnimplementedQueryServer) WorkloadAll(context.Context, *QueryAllWorkloadRequest) (*QueryAllWorkloadResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WorkloadAll not implemented")
+}
+func (UnimplementedQueryServer) GetWorkreport(context.Context, *QueryGetWorkreportRequest) (*QueryGetWorkreportResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWorkreport not implemented")
+}
+func (UnimplementedQueryServer) GetAllWorkreportByEpoch(context.Context, *QueryGetAllWorkreportByEpochRequest) (*QueryGetAllWorkreportByEpochResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllWorkreportByEpoch not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -162,6 +194,42 @@ func _Query_WorkloadAll_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_GetWorkreport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetWorkreportRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).GetWorkreport(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_GetWorkreport_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).GetWorkreport(ctx, req.(*QueryGetWorkreportRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_GetAllWorkreportByEpoch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAllWorkreportByEpochRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).GetAllWorkreportByEpoch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_GetAllWorkreportByEpoch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).GetAllWorkreportByEpoch(ctx, req.(*QueryGetAllWorkreportByEpochRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -180,6 +248,14 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "WorkloadAll",
 			Handler:    _Query_WorkloadAll_Handler,
+		},
+		{
+			MethodName: "GetWorkreport",
+			Handler:    _Query_GetWorkreport_Handler,
+		},
+		{
+			MethodName: "GetAllWorkreportByEpoch",
+			Handler:    _Query_GetAllWorkreportByEpoch_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -28,6 +28,18 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Shows a workload by id",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}},
 				},
+				{
+					RpcMethod:      "GetWorkreport",
+					Use:            "get-workreport [epoch] [nodeID]",
+					Short:          "Get workload by epoch and nodeID",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "epoch"}, {ProtoField: "nodeID"}},
+				},
+				{
+					RpcMethod:      "GetAllWorkreportByEpoch",
+					Use:            "get-all-workreport-by-epoch [epoch]",
+					Short:          "Get all workreport by epoch",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "epoch"}},
+				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},

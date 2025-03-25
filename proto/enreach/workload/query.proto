@@ -8,6 +8,7 @@ import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "enreach/workload/params.proto";
 import "enreach/workload/workload.proto";
+import "enreach/workload/workreport.proto";
 
 option go_package = "enreach/x/workload/types";
 
@@ -27,6 +28,16 @@ service Query {
   }
   rpc WorkloadAll (QueryAllWorkloadRequest) returns (QueryAllWorkloadResponse) {
     option (google.api.http).get = "/enreach/workload/workloads";
+  
+  }
+
+  // Queries a list of Workreport items.
+  rpc GetWorkreport    (QueryGetWorkreportRequest) returns (QueryGetWorkreportResponse) {
+    option (google.api.http).get = "/enreach/workload/workreport/{epoch}/{nodeID}";
+  
+  }
+  rpc GetAllWorkreportByEpoch (QueryGetAllWorkreportByEpochRequest) returns (QueryGetAllWorkreportByEpochResponse) {
+    option (google.api.http).get = "/enreach/workload/workreports/{epoch}";
   
   }
 }
@@ -57,3 +68,21 @@ message QueryAllWorkloadResponse {
            cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
+message QueryGetWorkreportRequest {
+  uint64 epoch = 1;
+  string nodeID = 2;
+}
+
+message QueryGetWorkreportResponse {
+  Workreport Workreport = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetAllWorkreportByEpochRequest {
+  uint64 epoch = 1;
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
+}
+
+message QueryGetAllWorkreportByEpochResponse {
+  repeated Workreport                               Workreport   = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}

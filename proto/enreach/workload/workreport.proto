@@ -9,12 +9,17 @@ message NodeScore {
 }
 
 message NodeScoreDB {
-  string nodeID = 1; 
-  uint64 score = 2; 
-  uint64 createAt = 3;
-  uint64 updateAt = 4;
+  uint64 score = 1; 
+  uint64 createAt = 2;
+  uint64 updateAt = 3;
 }
 
 message ManagerNodeScoreMap {
-  map<string, NodeScoreDB> manager_score_map = 1;  // manager_account => score
+  map<string, NodeScoreDB> managerScoreMap = 1;  // manager_account => score
+}
+
+message Workreport {
+  uint64 epoch = 1;
+  string nodeID = 2; 
+  ManagerNodeScoreMap managerScoreMap = 3;
 }
