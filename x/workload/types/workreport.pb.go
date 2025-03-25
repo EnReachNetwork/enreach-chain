@@ -179,9 +179,9 @@ func (m *ManagerNodeScoreMap) GetManagerScoreMap() map[string]*NodeScoreDB {
 }
 
 type Workreport struct {
-	Epoch           uint64               `protobuf:"varint,1,opt,name=epoch,proto3" json:"epoch,omitempty"`
-	NodeID          string               `protobuf:"bytes,2,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
-	ManagerScoreMap *ManagerNodeScoreMap `protobuf:"bytes,3,opt,name=managerScoreMap,proto3" json:"managerScoreMap,omitempty"`
+	Epoch           uint64                  `protobuf:"varint,1,opt,name=epoch,proto3" json:"epoch,omitempty"`
+	NodeID          string                  `protobuf:"bytes,2,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
+	ManagerScoreMap map[string]*NodeScoreDB `protobuf:"bytes,3,rep,name=managerScoreMap,proto3" json:"managerScoreMap,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }
 
 func (m *Workreport) Reset()         { *m = Workreport{} }
@@ -231,7 +231,7 @@ func (m *Workreport) GetNodeID() string {
 	return ""
 }
 
-func (m *Workreport) GetManagerScoreMap() *ManagerNodeScoreMap {
+func (m *Workreport) GetManagerScoreMap() map[string]*NodeScoreDB {
 	if m != nil {
 		return m.ManagerScoreMap
 	}
@@ -244,12 +244,13 @@ func init() {
 	proto.RegisterType((*ManagerNodeScoreMap)(nil), "enreach.workload.ManagerNodeScoreMap")
 	proto.RegisterMapType((map[string]*NodeScoreDB)(nil), "enreach.workload.ManagerNodeScoreMap.ManagerScoreMapEntry")
 	proto.RegisterType((*Workreport)(nil), "enreach.workload.Workreport")
+	proto.RegisterMapType((map[string]*NodeScoreDB)(nil), "enreach.workload.Workreport.ManagerScoreMapEntry")
 }
 
 func init() { proto.RegisterFile("enreach/workload/workreport.proto", fileDescriptor_f9ac088b512d79e6) }
 
 var fileDescriptor_f9ac088b512d79e6 = []byte{
-	// 330 bytes of a gzipped FileDescriptorProto
+	// 333 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x52, 0x4c, 0xcd, 0x2b, 0x4a,
 	0x4d, 0x4c, 0xce, 0xd0, 0x2f, 0xcf, 0x2f, 0xca, 0xce, 0xc9, 0x4f, 0x4c, 0x01, 0x33, 0x8a, 0x52,
 	0x0b, 0xf2, 0x8b, 0x4a, 0xf4, 0x0a, 0x8a, 0xf2, 0x4b, 0xf2, 0x85, 0x04, 0xa0, 0x4a, 0xf4, 0x60,
@@ -264,13 +265,13 @@ var fileDescriptor_f9ac088b512d79e6 = []byte{
 	0xd1, 0x0f, 0x13, 0x83, 0xf1, 0x5d, 0xf3, 0x4a, 0x8a, 0x2a, 0x83, 0xd0, 0x8d, 0x94, 0x4a, 0xe4,
 	0x12, 0xc1, 0xa6, 0x50, 0x48, 0x80, 0x8b, 0x39, 0x3b, 0xb5, 0x12, 0x1a, 0x3a, 0x20, 0xa6, 0x90,
 	0x31, 0x17, 0x6b, 0x59, 0x62, 0x4e, 0x29, 0x24, 0x68, 0xb8, 0x8d, 0x64, 0x31, 0x5d, 0x81, 0x14,
-	0x46, 0x41, 0x10, 0xb5, 0x56, 0x4c, 0x16, 0x8c, 0x4a, 0xdd, 0x8c, 0x5c, 0x5c, 0xe1, 0xf0, 0xf8,
-	0x01, 0x85, 0x5e, 0x6a, 0x41, 0x7e, 0x72, 0x06, 0x2c, 0xf4, 0xc0, 0x1c, 0xa4, 0x08, 0x61, 0x42,
-	0x89, 0x10, 0x7f, 0xcc, 0x50, 0x60, 0x06, 0xdb, 0xaf, 0x4a, 0x54, 0x28, 0x60, 0x78, 0xd8, 0xc9,
-	0xe8, 0xc4, 0x23, 0x39, 0xc6, 0x0b, 0x8f, 0xe4, 0x18, 0x1f, 0x3c, 0x92, 0x63, 0x9c, 0xf0, 0x58,
-	0x8e, 0xe1, 0xc2, 0x63, 0x39, 0x86, 0x1b, 0x8f, 0xe5, 0x18, 0xa2, 0x24, 0x60, 0xa9, 0xaa, 0x02,
-	0x91, 0xae, 0x4a, 0x2a, 0x0b, 0x52, 0x8b, 0x93, 0xd8, 0xc0, 0x69, 0xca, 0x18, 0x10, 0x00, 0x00,
-	0xff, 0xff, 0xed, 0xe0, 0x5b, 0xae, 0x78, 0x02, 0x00, 0x00,
+	0x46, 0x41, 0x10, 0xb5, 0x56, 0x4c, 0x16, 0x8c, 0x4a, 0xbf, 0x18, 0xb9, 0xb8, 0xc2, 0xe1, 0xf1,
+	0x03, 0x0a, 0xbd, 0xd4, 0x82, 0xfc, 0xe4, 0x0c, 0x58, 0xe8, 0x81, 0x39, 0x48, 0x11, 0xc2, 0x84,
+	0x12, 0x21, 0xd1, 0x98, 0xa1, 0xc0, 0x0c, 0x0e, 0x05, 0x43, 0x4c, 0xfb, 0x11, 0x96, 0x0c, 0x1a,
+	0xcf, 0x3b, 0x19, 0x9d, 0x78, 0x24, 0xc7, 0x78, 0xe1, 0x91, 0x1c, 0xe3, 0x83, 0x47, 0x72, 0x8c,
+	0x13, 0x1e, 0xcb, 0x31, 0x5c, 0x78, 0x2c, 0xc7, 0x70, 0xe3, 0xb1, 0x1c, 0x43, 0x94, 0x04, 0x2c,
+	0x11, 0x57, 0x20, 0x92, 0x71, 0x49, 0x65, 0x41, 0x6a, 0x71, 0x12, 0x1b, 0x38, 0x09, 0x1b, 0x03,
+	0x02, 0x00, 0x00, 0xff, 0xff, 0x4e, 0x0e, 0xbb, 0x23, 0xe7, 0x02, 0x00, 0x00,
 }
 
 func (m *NodeScore) Marshal() (dAtA []byte, err error) {
@@ -415,17 +416,31 @@ func (m *Workreport) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.ManagerScoreMap != nil {
-		{
-			size, err := m.ManagerScoreMap.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
+	if len(m.ManagerScoreMap) > 0 {
+		for k := range m.ManagerScoreMap {
+			v := m.ManagerScoreMap[k]
+			baseI := i
+			if v != nil {
+				{
+					size, err := v.MarshalToSizedBuffer(dAtA[:i])
+					if err != nil {
+						return 0, err
+					}
+					i -= size
+					i = encodeVarintWorkreport(dAtA, i, uint64(size))
+				}
+				i--
+				dAtA[i] = 0x12
 			}
-			i -= size
-			i = encodeVarintWorkreport(dAtA, i, uint64(size))
+			i -= len(k)
+			copy(dAtA[i:], k)
+			i = encodeVarintWorkreport(dAtA, i, uint64(len(k)))
+			i--
+			dAtA[i] = 0xa
+			i = encodeVarintWorkreport(dAtA, i, uint64(baseI-i))
+			i--
+			dAtA[i] = 0x1a
 		}
-		i--
-		dAtA[i] = 0x1a
 	}
 	if len(m.NodeID) > 0 {
 		i -= len(m.NodeID)
@@ -522,9 +537,18 @@ func (m *Workreport) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovWorkreport(uint64(l))
 	}
-	if m.ManagerScoreMap != nil {
-		l = m.ManagerScoreMap.Size()
-		n += 1 + l + sovWorkreport(uint64(l))
+	if len(m.ManagerScoreMap) > 0 {
+		for k, v := range m.ManagerScoreMap {
+			_ = k
+			_ = v
+			l = 0
+			if v != nil {
+				l = v.Size()
+				l += 1 + sovWorkreport(uint64(l))
+			}
+			mapEntrySize := 1 + len(k) + sovWorkreport(uint64(len(k))) + l
+			n += mapEntrySize + 1 + sovWorkreport(uint64(mapEntrySize))
+		}
 	}
 	return n
 }
@@ -1032,11 +1056,104 @@ func (m *Workreport) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			if m.ManagerScoreMap == nil {
-				m.ManagerScoreMap = &ManagerNodeScoreMap{}
+				m.ManagerScoreMap = make(map[string]*NodeScoreDB)
 			}
-			if err := m.ManagerScoreMap.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
+			var mapkey string
+			var mapvalue *NodeScoreDB
+			for iNdEx < postIndex {
+				entryPreIndex := iNdEx
+				var wire uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return ErrIntOverflowWorkreport
+					}
+					if iNdEx >= l {
+						return io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					wire |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				fieldNum := int32(wire >> 3)
+				if fieldNum == 1 {
+					var stringLenmapkey uint64
+					for shift := uint(0); ; shift += 7 {
+						if shift >= 64 {
+							return ErrIntOverflowWorkreport
+						}
+						if iNdEx >= l {
+							return io.ErrUnexpectedEOF
+						}
+						b := dAtA[iNdEx]
+						iNdEx++
+						stringLenmapkey |= uint64(b&0x7F) << shift
+						if b < 0x80 {
+							break
+						}
+					}
+					intStringLenmapkey := int(stringLenmapkey)
+					if intStringLenmapkey < 0 {
+						return ErrInvalidLengthWorkreport
+					}
+					postStringIndexmapkey := iNdEx + intStringLenmapkey
+					if postStringIndexmapkey < 0 {
+						return ErrInvalidLengthWorkreport
+					}
+					if postStringIndexmapkey > l {
+						return io.ErrUnexpectedEOF
+					}
+					mapkey = string(dAtA[iNdEx:postStringIndexmapkey])
+					iNdEx = postStringIndexmapkey
+				} else if fieldNum == 2 {
+					var mapmsglen int
+					for shift := uint(0); ; shift += 7 {
+						if shift >= 64 {
+							return ErrIntOverflowWorkreport
+						}
+						if iNdEx >= l {
+							return io.ErrUnexpectedEOF
+						}
+						b := dAtA[iNdEx]
+						iNdEx++
+						mapmsglen |= int(b&0x7F) << shift
+						if b < 0x80 {
+							break
+						}
+					}
+					if mapmsglen < 0 {
+						return ErrInvalidLengthWorkreport
+					}
+					postmsgIndex := iNdEx + mapmsglen
+					if postmsgIndex < 0 {
+						return ErrInvalidLengthWorkreport
+					}
+					if postmsgIndex > l {
+						return io.ErrUnexpectedEOF
+					}
+					mapvalue = &NodeScoreDB{}
+					if err := mapvalue.Unmarshal(dAtA[iNdEx:postmsgIndex]); err != nil {
+						return err
+					}
+					iNdEx = postmsgIndex
+				} else {
+					iNdEx = entryPreIndex
+					skippy, err := skipWorkreport(dAtA[iNdEx:])
+					if err != nil {
+						return err
+					}
+					if (skippy < 0) || (iNdEx+skippy) < 0 {
+						return ErrInvalidLengthWorkreport
+					}
+					if (iNdEx + skippy) > postIndex {
+						return io.ErrUnexpectedEOF
+					}
+					iNdEx += skippy
+				}
 			}
+			m.ManagerScoreMap[mapkey] = mapvalue
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

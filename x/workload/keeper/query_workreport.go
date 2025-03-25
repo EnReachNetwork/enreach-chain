@@ -23,7 +23,7 @@ func (k Keeper) GetWorkreport(ctx context.Context, req *types.QueryGetWorkreport
 	workreport := types.Workreport{
 		Epoch:           req.Epoch,
 		NodeID:          req.NodeID,
-		ManagerScoreMap: &managerNodeScoreMap,
+		ManagerScoreMap: managerNodeScoreMap.ManagerScoreMap,
 	}
 
 	return &types.QueryGetWorkreportResponse{Workreport: workreport}, nil

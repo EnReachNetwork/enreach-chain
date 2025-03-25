@@ -1663,6 +1663,96 @@ func (x *fastReflection_ManagerNodeScoreMap) ProtoMethods() *protoiface.Methods 
 	}
 }
 
+var _ protoreflect.Map = (*_Workreport_3_map)(nil)
+
+type _Workreport_3_map struct {
+	m *map[string]*NodeScoreDB
+}
+
+func (x *_Workreport_3_map) Len() int {
+	if x.m == nil {
+		return 0
+	}
+	return len(*x.m)
+}
+
+func (x *_Workreport_3_map) Range(f func(protoreflect.MapKey, protoreflect.Value) bool) {
+	if x.m == nil {
+		return
+	}
+	for k, v := range *x.m {
+		mapKey := (protoreflect.MapKey)(protoreflect.ValueOfString(k))
+		mapValue := protoreflect.ValueOfMessage(v.ProtoReflect())
+		if !f(mapKey, mapValue) {
+			break
+		}
+	}
+}
+
+func (x *_Workreport_3_map) Has(key protoreflect.MapKey) bool {
+	if x.m == nil {
+		return false
+	}
+	keyUnwrapped := key.String()
+	concreteValue := keyUnwrapped
+	_, ok := (*x.m)[concreteValue]
+	return ok
+}
+
+func (x *_Workreport_3_map) Clear(key protoreflect.MapKey) {
+	if x.m == nil {
+		return
+	}
+	keyUnwrapped := key.String()
+	concreteKey := keyUnwrapped
+	delete(*x.m, concreteKey)
+}
+
+func (x *_Workreport_3_map) Get(key protoreflect.MapKey) protoreflect.Value {
+	if x.m == nil {
+		return protoreflect.Value{}
+	}
+	keyUnwrapped := key.String()
+	concreteKey := keyUnwrapped
+	v, ok := (*x.m)[concreteKey]
+	if !ok {
+		return protoreflect.Value{}
+	}
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_Workreport_3_map) Set(key protoreflect.MapKey, value protoreflect.Value) {
+	if !key.IsValid() || !value.IsValid() {
+		panic("invalid key or value provided")
+	}
+	keyUnwrapped := key.String()
+	concreteKey := keyUnwrapped
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*NodeScoreDB)
+	(*x.m)[concreteKey] = concreteValue
+}
+
+func (x *_Workreport_3_map) Mutable(key protoreflect.MapKey) protoreflect.Value {
+	keyUnwrapped := key.String()
+	concreteKey := keyUnwrapped
+	v, ok := (*x.m)[concreteKey]
+	if ok {
+		return protoreflect.ValueOfMessage(v.ProtoReflect())
+	}
+	newValue := new(NodeScoreDB)
+	(*x.m)[concreteKey] = newValue
+	return protoreflect.ValueOfMessage(newValue.ProtoReflect())
+}
+
+func (x *_Workreport_3_map) NewValue() protoreflect.Value {
+	v := new(NodeScoreDB)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_Workreport_3_map) IsValid() bool {
+	return x.m != nil
+}
+
 var (
 	md_Workreport                 protoreflect.MessageDescriptor
 	fd_Workreport_epoch           protoreflect.FieldDescriptor
@@ -1755,8 +1845,8 @@ func (x *fastReflection_Workreport) Range(f func(protoreflect.FieldDescriptor, p
 			return
 		}
 	}
-	if x.ManagerScoreMap != nil {
-		value := protoreflect.ValueOfMessage(x.ManagerScoreMap.ProtoReflect())
+	if len(x.ManagerScoreMap) != 0 {
+		value := protoreflect.ValueOfMap(&_Workreport_3_map{m: &x.ManagerScoreMap})
 		if !f(fd_Workreport_managerScoreMap, value) {
 			return
 		}
@@ -1781,7 +1871,7 @@ func (x *fastReflection_Workreport) Has(fd protoreflect.FieldDescriptor) bool {
 	case "enreach.workload.Workreport.nodeID":
 		return x.NodeID != ""
 	case "enreach.workload.Workreport.managerScoreMap":
-		return x.ManagerScoreMap != nil
+		return len(x.ManagerScoreMap) != 0
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.Workreport"))
@@ -1827,8 +1917,11 @@ func (x *fastReflection_Workreport) Get(descriptor protoreflect.FieldDescriptor)
 		value := x.NodeID
 		return protoreflect.ValueOfString(value)
 	case "enreach.workload.Workreport.managerScoreMap":
-		value := x.ManagerScoreMap
-		return protoreflect.ValueOfMessage(value.ProtoReflect())
+		if len(x.ManagerScoreMap) == 0 {
+			return protoreflect.ValueOfMap(&_Workreport_3_map{})
+		}
+		mapValue := &_Workreport_3_map{m: &x.ManagerScoreMap}
+		return protoreflect.ValueOfMap(mapValue)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.Workreport"))
@@ -1854,7 +1947,9 @@ func (x *fastReflection_Workreport) Set(fd protoreflect.FieldDescriptor, value p
 	case "enreach.workload.Workreport.nodeID":
 		x.NodeID = value.Interface().(string)
 	case "enreach.workload.Workreport.managerScoreMap":
-		x.ManagerScoreMap = value.Message().Interface().(*ManagerNodeScoreMap)
+		mv := value.Map()
+		cmv := mv.(*_Workreport_3_map)
+		x.ManagerScoreMap = *cmv.m
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.Workreport"))
@@ -1877,9 +1972,10 @@ func (x *fastReflection_Workreport) Mutable(fd protoreflect.FieldDescriptor) pro
 	switch fd.FullName() {
 	case "enreach.workload.Workreport.managerScoreMap":
 		if x.ManagerScoreMap == nil {
-			x.ManagerScoreMap = new(ManagerNodeScoreMap)
+			x.ManagerScoreMap = make(map[string]*NodeScoreDB)
 		}
-		return protoreflect.ValueOfMessage(x.ManagerScoreMap.ProtoReflect())
+		value := &_Workreport_3_map{m: &x.ManagerScoreMap}
+		return protoreflect.ValueOfMap(value)
 	case "enreach.workload.Workreport.epoch":
 		panic(fmt.Errorf("field epoch of message enreach.workload.Workreport is not mutable"))
 	case "enreach.workload.Workreport.nodeID":
@@ -1902,8 +1998,8 @@ func (x *fastReflection_Workreport) NewField(fd protoreflect.FieldDescriptor) pr
 	case "enreach.workload.Workreport.nodeID":
 		return protoreflect.ValueOfString("")
 	case "enreach.workload.Workreport.managerScoreMap":
-		m := new(ManagerNodeScoreMap)
-		return protoreflect.ValueOfMessage(m.ProtoReflect())
+		m := make(map[string]*NodeScoreDB)
+		return protoreflect.ValueOfMap(&_Workreport_3_map{m: &m})
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.Workreport"))
@@ -1980,9 +2076,31 @@ func (x *fastReflection_Workreport) ProtoMethods() *protoiface.Methods {
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		if x.ManagerScoreMap != nil {
-			l = options.Size(x.ManagerScoreMap)
-			n += 1 + l + runtime.Sov(uint64(l))
+		if len(x.ManagerScoreMap) > 0 {
+			SiZeMaP := func(k string, v *NodeScoreDB) {
+				l := 0
+				if v != nil {
+					l = options.Size(v)
+				}
+				l += 1 + runtime.Sov(uint64(l))
+				mapEntrySize := 1 + len(k) + runtime.Sov(uint64(len(k))) + l
+				n += mapEntrySize + 1 + runtime.Sov(uint64(mapEntrySize))
+			}
+			if options.Deterministic {
+				sortme := make([]string, 0, len(x.ManagerScoreMap))
+				for k := range x.ManagerScoreMap {
+					sortme = append(sortme, k)
+				}
+				sort.Strings(sortme)
+				for _, k := range sortme {
+					v := x.ManagerScoreMap[k]
+					SiZeMaP(k, v)
+				}
+			} else {
+				for k, v := range x.ManagerScoreMap {
+					SiZeMaP(k, v)
+				}
+			}
 		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
@@ -2013,19 +2131,55 @@ func (x *fastReflection_Workreport) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if x.ManagerScoreMap != nil {
-			encoded, err := options.Marshal(x.ManagerScoreMap)
-			if err != nil {
-				return protoiface.MarshalOutput{
-					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-					Buf:               input.Buf,
-				}, err
+		if len(x.ManagerScoreMap) > 0 {
+			MaRsHaLmAp := func(k string, v *NodeScoreDB) (protoiface.MarshalOutput, error) {
+				baseI := i
+				encoded, err := options.Marshal(v)
+				if err != nil {
+					return protoiface.MarshalOutput{
+						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+						Buf:               input.Buf,
+					}, err
+				}
+				i -= len(encoded)
+				copy(dAtA[i:], encoded)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0x12
+				i -= len(k)
+				copy(dAtA[i:], k)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(k)))
+				i--
+				dAtA[i] = 0xa
+				i = runtime.EncodeVarint(dAtA, i, uint64(baseI-i))
+				i--
+				dAtA[i] = 0x1a
+				return protoiface.MarshalOutput{}, nil
 			}
-			i -= len(encoded)
-			copy(dAtA[i:], encoded)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
-			i--
-			dAtA[i] = 0x1a
+			if options.Deterministic {
+				keysForManagerScoreMap := make([]string, 0, len(x.ManagerScoreMap))
+				for k := range x.ManagerScoreMap {
+					keysForManagerScoreMap = append(keysForManagerScoreMap, string(k))
+				}
+				sort.Slice(keysForManagerScoreMap, func(i, j int) bool {
+					return keysForManagerScoreMap[i] < keysForManagerScoreMap[j]
+				})
+				for iNdEx := len(keysForManagerScoreMap) - 1; iNdEx >= 0; iNdEx-- {
+					v := x.ManagerScoreMap[string(keysForManagerScoreMap[iNdEx])]
+					out, err := MaRsHaLmAp(keysForManagerScoreMap[iNdEx], v)
+					if err != nil {
+						return out, err
+					}
+				}
+			} else {
+				for k := range x.ManagerScoreMap {
+					v := x.ManagerScoreMap[k]
+					out, err := MaRsHaLmAp(k, v)
+					if err != nil {
+						return out, err
+					}
+				}
+			}
 		}
 		if len(x.NodeID) > 0 {
 			i -= len(x.NodeID)
@@ -2169,11 +2323,104 @@ func (x *fastReflection_Workreport) ProtoMethods() *protoiface.Methods {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
 				if x.ManagerScoreMap == nil {
-					x.ManagerScoreMap = &ManagerNodeScoreMap{}
+					x.ManagerScoreMap = make(map[string]*NodeScoreDB)
 				}
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.ManagerScoreMap); err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				var mapkey string
+				var mapvalue *NodeScoreDB
+				for iNdEx < postIndex {
+					entryPreIndex := iNdEx
+					var wire uint64
+					for shift := uint(0); ; shift += 7 {
+						if shift >= 64 {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+						}
+						if iNdEx >= l {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+						}
+						b := dAtA[iNdEx]
+						iNdEx++
+						wire |= uint64(b&0x7F) << shift
+						if b < 0x80 {
+							break
+						}
+					}
+					fieldNum := int32(wire >> 3)
+					if fieldNum == 1 {
+						var stringLenmapkey uint64
+						for shift := uint(0); ; shift += 7 {
+							if shift >= 64 {
+								return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+							}
+							if iNdEx >= l {
+								return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+							}
+							b := dAtA[iNdEx]
+							iNdEx++
+							stringLenmapkey |= uint64(b&0x7F) << shift
+							if b < 0x80 {
+								break
+							}
+						}
+						intStringLenmapkey := int(stringLenmapkey)
+						if intStringLenmapkey < 0 {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+						}
+						postStringIndexmapkey := iNdEx + intStringLenmapkey
+						if postStringIndexmapkey < 0 {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+						}
+						if postStringIndexmapkey > l {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+						}
+						mapkey = string(dAtA[iNdEx:postStringIndexmapkey])
+						iNdEx = postStringIndexmapkey
+					} else if fieldNum == 2 {
+						var mapmsglen int
+						for shift := uint(0); ; shift += 7 {
+							if shift >= 64 {
+								return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+							}
+							if iNdEx >= l {
+								return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+							}
+							b := dAtA[iNdEx]
+							iNdEx++
+							mapmsglen |= int(b&0x7F) << shift
+							if b < 0x80 {
+								break
+							}
+						}
+						if mapmsglen < 0 {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+						}
+						postmsgIndex := iNdEx + mapmsglen
+						if postmsgIndex < 0 {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+						}
+						if postmsgIndex > l {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+						}
+						mapvalue = &NodeScoreDB{}
+						if err := options.Unmarshal(dAtA[iNdEx:postmsgIndex], mapvalue); err != nil {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+						}
+						iNdEx = postmsgIndex
+					} else {
+						iNdEx = entryPreIndex
+						skippy, err := runtime.Skip(dAtA[iNdEx:])
+						if err != nil {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+						}
+						if (skippy < 0) || (iNdEx+skippy) < 0 {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+						}
+						if (iNdEx + skippy) > postIndex {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+						}
+						iNdEx += skippy
+					}
 				}
+				x.ManagerScoreMap[mapkey] = mapvalue
 				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
@@ -2357,9 +2604,9 @@ type Workreport struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Epoch           uint64               `protobuf:"varint,1,opt,name=epoch,proto3" json:"epoch,omitempty"`
-	NodeID          string               `protobuf:"bytes,2,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
-	ManagerScoreMap *ManagerNodeScoreMap `protobuf:"bytes,3,opt,name=managerScoreMap,proto3" json:"managerScoreMap,omitempty"`
+	Epoch           uint64                  `protobuf:"varint,1,opt,name=epoch,proto3" json:"epoch,omitempty"`
+	NodeID          string                  `protobuf:"bytes,2,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
+	ManagerScoreMap map[string]*NodeScoreDB `protobuf:"bytes,3,rep,name=managerScoreMap,proto3" json:"managerScoreMap,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }
 
 func (x *Workreport) Reset() {
@@ -2396,7 +2643,7 @@ func (x *Workreport) GetNodeID() string {
 	return ""
 }
 
-func (x *Workreport) GetManagerScoreMap() *ManagerNodeScoreMap {
+func (x *Workreport) GetManagerScoreMap() map[string]*NodeScoreDB {
 	if x != nil {
 		return x.ManagerScoreMap
 	}
@@ -2432,28 +2679,35 @@ var file_enreach_workload_workreport_proto_rawDesc = []byte{
 	0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x33, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02,
 	0x20, 0x01, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77,
 	0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x4e, 0x6f, 0x64, 0x65, 0x53, 0x63, 0x6f, 0x72,
-	0x65, 0x44, 0x42, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0x8b,
+	0x65, 0x44, 0x42, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0xfa,
 	0x01, 0x0a, 0x0a, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x12, 0x14, 0x0a,
 	0x05, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x05, 0x65, 0x70,
 	0x6f, 0x63, 0x68, 0x12, 0x16, 0x0a, 0x06, 0x6e, 0x6f, 0x64, 0x65, 0x49, 0x44, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x06, 0x6e, 0x6f, 0x64, 0x65, 0x49, 0x44, 0x12, 0x4f, 0x0a, 0x0f, 0x6d,
+	0x01, 0x28, 0x09, 0x52, 0x06, 0x6e, 0x6f, 0x64, 0x65, 0x49, 0x44, 0x12, 0x5b, 0x0a, 0x0f, 0x6d,
 	0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x4d, 0x61, 0x70, 0x18, 0x03,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x25, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77,
-	0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x4e,
-	0x6f, 0x64, 0x65, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x4d, 0x61, 0x70, 0x52, 0x0f, 0x6d, 0x61, 0x6e,
-	0x61, 0x67, 0x65, 0x72, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x4d, 0x61, 0x70, 0x42, 0xab, 0x01, 0x0a,
-	0x14, 0x63, 0x6f, 0x6d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72,
-	0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x42, 0x0f, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72,
-	0x74, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x21, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
-	0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61,
-	0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xa2, 0x02, 0x03, 0x45, 0x57,
-	0x58, 0xaa, 0x02, 0x10, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x57, 0x6f, 0x72, 0x6b,
-	0x6c, 0x6f, 0x61, 0x64, 0xca, 0x02, 0x10, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x57,
-	0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xe2, 0x02, 0x1c, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63,
-	0x68, 0x5c, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65,
-	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x11, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68,
-	0x3a, 0x3a, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x33,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x31, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77,
+	0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f,
+	0x72, 0x74, 0x2e, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x4d,
+	0x61, 0x70, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x0f, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72,
+	0x53, 0x63, 0x6f, 0x72, 0x65, 0x4d, 0x61, 0x70, 0x1a, 0x61, 0x0a, 0x14, 0x4d, 0x61, 0x6e, 0x61,
+	0x67, 0x65, 0x72, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x4d, 0x61, 0x70, 0x45, 0x6e, 0x74, 0x72, 0x79,
+	0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b,
+	0x65, 0x79, 0x12, 0x33, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x1d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b,
+	0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x4e, 0x6f, 0x64, 0x65, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x44, 0x42,
+	0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x42, 0xab, 0x01, 0x0a, 0x14,
+	0x63, 0x6f, 0x6d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b,
+	0x6c, 0x6f, 0x61, 0x64, 0x42, 0x0f, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74,
+	0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x21, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73,
+	0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63,
+	0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xa2, 0x02, 0x03, 0x45, 0x57, 0x58,
+	0xaa, 0x02, 0x10, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x57, 0x6f, 0x72, 0x6b, 0x6c,
+	0x6f, 0x61, 0x64, 0xca, 0x02, 0x10, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x57, 0x6f,
+	0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xe2, 0x02, 0x1c, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68,
+	0x5c, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74,
+	0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x11, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x3a,
+	0x3a, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x33,
 }
 
 var (
@@ -2468,23 +2722,25 @@ func file_enreach_workload_workreport_proto_rawDescGZIP() []byte {
 	return file_enreach_workload_workreport_proto_rawDescData
 }
 
-var file_enreach_workload_workreport_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_enreach_workload_workreport_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_enreach_workload_workreport_proto_goTypes = []interface{}{
 	(*NodeScore)(nil),           // 0: enreach.workload.NodeScore
 	(*NodeScoreDB)(nil),         // 1: enreach.workload.NodeScoreDB
 	(*ManagerNodeScoreMap)(nil), // 2: enreach.workload.ManagerNodeScoreMap
 	(*Workreport)(nil),          // 3: enreach.workload.Workreport
 	nil,                         // 4: enreach.workload.ManagerNodeScoreMap.ManagerScoreMapEntry
+	nil,                         // 5: enreach.workload.Workreport.ManagerScoreMapEntry
 }
 var file_enreach_workload_workreport_proto_depIdxs = []int32{
 	4, // 0: enreach.workload.ManagerNodeScoreMap.managerScoreMap:type_name -> enreach.workload.ManagerNodeScoreMap.ManagerScoreMapEntry
-	2, // 1: enreach.workload.Workreport.managerScoreMap:type_name -> enreach.workload.ManagerNodeScoreMap
+	5, // 1: enreach.workload.Workreport.managerScoreMap:type_name -> enreach.workload.Workreport.ManagerScoreMapEntry
 	1, // 2: enreach.workload.ManagerNodeScoreMap.ManagerScoreMapEntry.value:type_name -> enreach.workload.NodeScoreDB
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	1, // 3: enreach.workload.Workreport.ManagerScoreMapEntry.value:type_name -> enreach.workload.NodeScoreDB
+	4, // [4:4] is the sub-list for method output_type
+	4, // [4:4] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_enreach_workload_workreport_proto_init() }
@@ -2548,7 +2804,7 @@ func file_enreach_workload_workreport_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_enreach_workload_workreport_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
