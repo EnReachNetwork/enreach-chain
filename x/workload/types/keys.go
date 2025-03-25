@@ -22,4 +22,7 @@ func KeyPrefix(p string) []byte {
 const (
 	WorkloadKey      = "Workload/value/"
 	WorkloadCountKey = "Workload/count/"
+
+	WorkreportKey      = "Workreport/value/"
+	WorkreportCountKey = "Workreport/count/"
 )

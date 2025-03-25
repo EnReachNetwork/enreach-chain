@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Msg_UpdateParams_FullMethodName   = "/enreach.workload.Msg/UpdateParams"
-	Msg_CreateWorkload_FullMethodName = "/enreach.workload.Msg/CreateWorkload"
+	Msg_UpdateParams_FullMethodName      = "/enreach.workload.Msg/UpdateParams"
+	Msg_SubmitWorkreports_FullMethodName = "/enreach.workload.Msg/SubmitWorkreports"
 )
 
 // MsgClient is the client API for Msg service.
@@ -30,7 +30,7 @@ type MsgClient interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
-	CreateWorkload(ctx context.Context, in *MsgCreateWorkload, opts ...grpc.CallOption) (*MsgCreateWorkloadResponse, error)
+	SubmitWorkreports(ctx context.Context, in *MsgSubmitWorkreports, opts ...grpc.CallOption) (*MsgSubmitWorkreportsResponse, error)
 }
 
 type msgClient struct {
@@ -50,9 +50,9 @@ func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts 
 	return out, nil
 }
 
-func (c *msgClient) CreateWorkload(ctx context.Context, in *MsgCreateWorkload, opts ...grpc.CallOption) (*MsgCreateWorkloadResponse, error) {
-	out := new(MsgCreateWorkloadResponse)
-	err := c.cc.Invoke(ctx, Msg_CreateWorkload_FullMethodName, in, out, opts...)
+func (c *msgClient) SubmitWorkreports(ctx context.Context, in *MsgSubmitWorkreports, opts ...grpc.CallOption) (*MsgSubmitWorkreportsResponse, error) {
+	out := new(MsgSubmitWorkreportsResponse)
+	err := c.cc.Invoke(ctx, Msg_SubmitWorkreports_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -66,7 +66,7 @@ type MsgServer interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
-	CreateWorkload(context.Context, *MsgCreateWorkload) (*MsgCreateWorkloadResponse, error)
+	SubmitWorkreports(context.Context, *MsgSubmitWorkreports) (*MsgSubmitWorkreportsResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -77,8 +77,8 @@ type UnimplementedMsgServer struct {
 func (UnimplementedMsgServer) UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateParams not implemented")
 }
-func (UnimplementedMsgServer) CreateWorkload(context.Context, *MsgCreateWorkload) (*MsgCreateWorkloadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateWorkload not implemented")
+func (UnimplementedMsgServer) SubmitWorkreports(context.Context, *MsgSubmitWorkreports) (*MsgSubmitWorkreportsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SubmitWorkreports not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -111,20 +111,20 @@ func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_CreateWorkload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgCreateWorkload)
+func _Msg_SubmitWorkreports_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgSubmitWorkreports)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MsgServer).CreateWorkload(ctx, in)
+		return srv.(MsgServer).SubmitWorkreports(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Msg_CreateWorkload_FullMethodName,
+		FullMethod: Msg_SubmitWorkreports_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).CreateWorkload(ctx, req.(*MsgCreateWorkload))
+		return srv.(MsgServer).SubmitWorkreports(ctx, req.(*MsgSubmitWorkreports))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -141,8 +141,8 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Msg_UpdateParams_Handler,
 		},
 		{
-			MethodName: "CreateWorkload",
-			Handler:    _Msg_CreateWorkload_Handler,
+			MethodName: "SubmitWorkreports",
+			Handler:    _Msg_SubmitWorkreports_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

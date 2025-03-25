@@ -13,7 +13,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/simulation"
 )
 
-func SimulateMsgCreateWorkload(
+func SimulateMsgSubmitWorkreports(
 	ak types.AccountKeeper,
 	bk types.BankKeeper,
 	k keeper.Keeper,
@@ -22,7 +22,7 @@ func SimulateMsgCreateWorkload(
 	) (simtypes.OperationMsg, []simtypes.FutureOperation, error) {
 		simAccount, _ := simtypes.RandomAcc(r, accs)
 
-		msg := &types.MsgCreateWorkload{
+		msg := &types.MsgSubmitWorkreports{
 			ManagerAccount: simAccount.Address.String(),
 		}
 

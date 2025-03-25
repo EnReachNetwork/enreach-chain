@@ -1,12 +1,10 @@
 package types
 
 const (
-	EventTypeWorkloadCreated = "EventWorkloadCreated"
+	EventTypeWorkreportsSubmitted = "EventWorkreportsSubmitted"
 
-	AttributeKeyTxSigner       = "signer"
-	AttributeKeyManagerAccount = "managerAccount"
-	AttributeKeyNodeID         = "nodeID"
-	AttributeKeyEpoch          = "epoch"
-	AttributeKeyScore          = "score"
-	AttributeKeyWorkloadID     = "workloadID"
+	AttributeKeyTxSigner        = "signer"
+	AttributeKeyManagerAccount  = "managerAccount"
+	AttributeKeyEpoch           = "epoch"
+	AttributeKeyNodeScoresCount = "nodeScoresCount"
 )

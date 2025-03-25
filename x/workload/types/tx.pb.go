@@ -124,25 +124,24 @@ func (m *MsgUpdateParamsResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgUpdateParamsResponse proto.InternalMessageInfo
 
-type MsgCreateWorkload struct {
-	ManagerAccount string `protobuf:"bytes,1,opt,name=managerAccount,proto3" json:"managerAccount,omitempty"`
-	Epoch          uint64 `protobuf:"varint,2,opt,name=epoch,proto3" json:"epoch,omitempty"`
-	NodeID         string `protobuf:"bytes,3,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
-	Score          uint64 `protobuf:"varint,4,opt,name=score,proto3" json:"score,omitempty"`
+type MsgSubmitWorkreports struct {
+	ManagerAccount string       `protobuf:"bytes,1,opt,name=managerAccount,proto3" json:"managerAccount,omitempty"`
+	Epoch          uint64       `protobuf:"varint,2,opt,name=epoch,proto3" json:"epoch,omitempty"`
+	NodeScores     []*NodeScore `protobuf:"bytes,3,rep,name=nodeScores,proto3" json:"nodeScores,omitempty"`
 }
 
-func (m *MsgCreateWorkload) Reset()         { *m = MsgCreateWorkload{} }
-func (m *MsgCreateWorkload) String() string { return proto.CompactTextString(m) }
-func (*MsgCreateWorkload) ProtoMessage()    {}
-func (*MsgCreateWorkload) Descriptor() ([]byte, []int) {
+func (m *MsgSubmitWorkreports) Reset()         { *m = MsgSubmitWorkreports{} }
+func (m *MsgSubmitWorkreports) String() string { return proto.CompactTextString(m) }
+func (*MsgSubmitWorkreports) ProtoMessage()    {}
+func (*MsgSubmitWorkreports) Descriptor() ([]byte, []int) {
 	return fileDescriptor_4f9ce97a9c861bfc, []int{2}
 }
-func (m *MsgCreateWorkload) XXX_Unmarshal(b []byte) error {
+func (m *MsgSubmitWorkreports) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *MsgCreateWorkload) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *MsgSubmitWorkreports) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_MsgCreateWorkload.Marshal(b, m, deterministic)
+		return xxx_messageInfo_MsgSubmitWorkreports.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -152,62 +151,54 @@ func (m *MsgCreateWorkload) XXX_Marshal(b []byte, deterministic bool) ([]byte, e
 		return b[:n], nil
 	}
 }
-func (m *MsgCreateWorkload) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MsgCreateWorkload.Merge(m, src)
+func (m *MsgSubmitWorkreports) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgSubmitWorkreports.Merge(m, src)
 }
-func (m *MsgCreateWorkload) XXX_Size() int {
+func (m *MsgSubmitWorkreports) XXX_Size() int {
 	return m.Size()
 }
-func (m *MsgCreateWorkload) XXX_DiscardUnknown() {
-	xxx_messageInfo_MsgCreateWorkload.DiscardUnknown(m)
+func (m *MsgSubmitWorkreports) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgSubmitWorkreports.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_MsgCreateWorkload proto.InternalMessageInfo
+var xxx_messageInfo_MsgSubmitWorkreports proto.InternalMessageInfo
 
-func (m *MsgCreateWorkload) GetManagerAccount() string {
+func (m *MsgSubmitWorkreports) GetManagerAccount() string {
 	if m != nil {
 		return m.ManagerAccount
 	}
 	return ""
 }
 
-func (m *MsgCreateWorkload) GetEpoch() uint64 {
+func (m *MsgSubmitWorkreports) GetEpoch() uint64 {
 	if m != nil {
 		return m.Epoch
 	}
 	return 0
 }
 
-func (m *MsgCreateWorkload) GetNodeID() string {
+func (m *MsgSubmitWorkreports) GetNodeScores() []*NodeScore {
 	if m != nil {
-		return m.NodeID
+		return m.NodeScores
 	}
-	return ""
+	return nil
 }
 
-func (m *MsgCreateWorkload) GetScore() uint64 {
-	if m != nil {
-		return m.Score
-	}
-	return 0
+type MsgSubmitWorkreportsResponse struct {
 }
 
-type MsgCreateWorkloadResponse struct {
-	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-}
-
-func (m *MsgCreateWorkloadResponse) Reset()         { *m = MsgCreateWorkloadResponse{} }
-func (m *MsgCreateWorkloadResponse) String() string { return proto.CompactTextString(m) }
-func (*MsgCreateWorkloadResponse) ProtoMessage()    {}
-func (*MsgCreateWorkloadResponse) Descriptor() ([]byte, []int) {
+func (m *MsgSubmitWorkreportsResponse) Reset()         { *m = MsgSubmitWorkreportsResponse{} }
+func (m *MsgSubmitWorkreportsResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgSubmitWorkreportsResponse) ProtoMessage()    {}
+func (*MsgSubmitWorkreportsResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_4f9ce97a9c861bfc, []int{3}
 }
-func (m *MsgCreateWorkloadResponse) XXX_Unmarshal(b []byte) error {
+func (m *MsgSubmitWorkreportsResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *MsgCreateWorkloadResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *MsgSubmitWorkreportsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_MsgCreateWorkloadResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_MsgSubmitWorkreportsResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -217,65 +208,58 @@ func (m *MsgCreateWorkloadResponse) XXX_Marshal(b []byte, deterministic bool) ([
 		return b[:n], nil
 	}
 }
-func (m *MsgCreateWorkloadResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MsgCreateWorkloadResponse.Merge(m, src)
+func (m *MsgSubmitWorkreportsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgSubmitWorkreportsResponse.Merge(m, src)
 }
-func (m *MsgCreateWorkloadResponse) XXX_Size() int {
+func (m *MsgSubmitWorkreportsResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *MsgCreateWorkloadResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_MsgCreateWorkloadResponse.DiscardUnknown(m)
+func (m *MsgSubmitWorkreportsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgSubmitWorkreportsResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_MsgCreateWorkloadResponse proto.InternalMessageInfo
-
-func (m *MsgCreateWorkloadResponse) GetId() uint64 {
-	if m != nil {
-		return m.Id
-	}
-	return 0
-}
+var xxx_messageInfo_MsgSubmitWorkreportsResponse proto.InternalMessageInfo
 
 func init() {
 	proto.RegisterType((*MsgUpdateParams)(nil), "enreach.workload.MsgUpdateParams")
 	proto.RegisterType((*MsgUpdateParamsResponse)(nil), "enreach.workload.MsgUpdateParamsResponse")
-	proto.RegisterType((*MsgCreateWorkload)(nil), "enreach.workload.MsgCreateWorkload")
-	proto.RegisterType((*MsgCreateWorkloadResponse)(nil), "enreach.workload.MsgCreateWorkloadResponse")
+	proto.RegisterType((*MsgSubmitWorkreports)(nil), "enreach.workload.MsgSubmitWorkreports")
+	proto.RegisterType((*MsgSubmitWorkreportsResponse)(nil), "enreach.workload.MsgSubmitWorkreportsResponse")
 }
 
 func init() { proto.RegisterFile("enreach/workload/tx.proto", fileDescriptor_4f9ce97a9c861bfc) }
 
 var fileDescriptor_4f9ce97a9c861bfc = []byte{
-	// 462 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x4c, 0xcd, 0x2b, 0x4a,
-	0x4d, 0x4c, 0xce, 0xd0, 0x2f, 0xcf, 0x2f, 0xca, 0xce, 0xc9, 0x4f, 0x4c, 0xd1, 0x2f, 0xa9, 0xd0,
-	0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x12, 0x80, 0x4a, 0xe9, 0xc1, 0xa4, 0xa4, 0x04, 0x13, 0x73,
-	0x33, 0xf3, 0xf2, 0xf5, 0xc1, 0x24, 0x44, 0x91, 0x94, 0x78, 0x72, 0x7e, 0x71, 0x6e, 0x7e, 0xb1,
-	0x7e, 0x6e, 0x71, 0xba, 0x7e, 0x99, 0x21, 0x88, 0x82, 0x4a, 0x48, 0x42, 0x24, 0xe2, 0xc1, 0x3c,
-	0x7d, 0x08, 0x07, 0x2a, 0x25, 0x92, 0x9e, 0x9f, 0x9e, 0x0f, 0x11, 0x07, 0xb1, 0xa0, 0xa2, 0xb2,
-	0x18, 0x2e, 0x29, 0x48, 0x2c, 0x4a, 0xcc, 0x85, 0x69, 0x92, 0xc7, 0x90, 0x86, 0x31, 0x20, 0x0a,
-	0x94, 0xf6, 0x32, 0x72, 0xf1, 0xfb, 0x16, 0xa7, 0x87, 0x16, 0xa4, 0x24, 0x96, 0xa4, 0x06, 0x80,
-	0xb5, 0x0a, 0x99, 0x71, 0x71, 0x26, 0x96, 0x96, 0x64, 0xe4, 0x17, 0x65, 0x96, 0x54, 0x4a, 0x30,
-	0x2a, 0x30, 0x6a, 0x70, 0x3a, 0x49, 0x5c, 0xda, 0xa2, 0x2b, 0x02, 0x75, 0x8e, 0x63, 0x4a, 0x4a,
-	0x51, 0x6a, 0x71, 0x71, 0x70, 0x49, 0x51, 0x66, 0x5e, 0x7a, 0x10, 0x42, 0xa9, 0x90, 0x35, 0x17,
-	0x1b, 0xc4, 0x72, 0x09, 0x26, 0x05, 0x46, 0x0d, 0x6e, 0x23, 0x09, 0x3d, 0xf4, 0xb0, 0xd0, 0x83,
-	0xd8, 0xe0, 0xc4, 0x79, 0xe2, 0x9e, 0x3c, 0xc3, 0x8a, 0xe7, 0x1b, 0xb4, 0x18, 0x83, 0xa0, 0x5a,
-	0xac, 0x4c, 0x9b, 0x9e, 0x6f, 0xd0, 0x42, 0x18, 0xd6, 0xf5, 0x7c, 0x83, 0x96, 0x12, 0xcc, 0xf1,
-	0x15, 0x08, 0xe7, 0xa3, 0xb9, 0x55, 0x49, 0x92, 0x4b, 0x1c, 0x4d, 0x28, 0x28, 0xb5, 0xb8, 0x20,
-	0x3f, 0xaf, 0x38, 0x55, 0x69, 0x0a, 0x23, 0x97, 0xa0, 0x6f, 0x71, 0xba, 0x73, 0x51, 0x6a, 0x62,
-	0x49, 0x6a, 0x38, 0xd4, 0x00, 0x21, 0x35, 0x2e, 0xbe, 0xdc, 0xc4, 0xbc, 0xc4, 0xf4, 0xd4, 0x22,
-	0xc7, 0xe4, 0xe4, 0xfc, 0xd2, 0xbc, 0x12, 0x88, 0x0f, 0x83, 0xd0, 0x44, 0x85, 0x44, 0xb8, 0x58,
-	0x53, 0x0b, 0xf2, 0x93, 0x33, 0xc0, 0x7e, 0x61, 0x09, 0x82, 0x70, 0x84, 0xc4, 0xb8, 0xd8, 0xf2,
-	0xf2, 0x53, 0x52, 0x3d, 0x5d, 0x24, 0x98, 0xc1, 0xba, 0xa0, 0x3c, 0x90, 0xea, 0xe2, 0xe4, 0xfc,
-	0xa2, 0x54, 0x09, 0x16, 0x88, 0x6a, 0x30, 0xc7, 0x4a, 0x18, 0xe4, 0x27, 0x34, 0x83, 0x95, 0xb4,
-	0xb9, 0x24, 0x31, 0x5c, 0x05, 0x73, 0xb3, 0x10, 0x1f, 0x17, 0x53, 0x66, 0x0a, 0xd8, 0x45, 0x2c,
-	0x41, 0x4c, 0x99, 0x29, 0x46, 0xe7, 0x18, 0xb9, 0x98, 0x7d, 0x8b, 0xd3, 0x85, 0x62, 0xb8, 0x78,
-	0x50, 0xa2, 0x48, 0x11, 0x33, 0x68, 0xd1, 0x82, 0x41, 0x4a, 0x93, 0xa0, 0x12, 0xb8, 0xad, 0x49,
-	0x5c, 0x7c, 0x68, 0xa1, 0xa4, 0x8c, 0x55, 0x33, 0xaa, 0x22, 0x29, 0x6d, 0x22, 0x14, 0xc1, 0xec,
-	0x90, 0x62, 0x6d, 0x00, 0x45, 0xb7, 0x93, 0xd1, 0x89, 0x47, 0x72, 0x8c, 0x17, 0x1e, 0xc9, 0x31,
-	0x3e, 0x78, 0x24, 0xc7, 0x38, 0xe1, 0xb1, 0x1c, 0xc3, 0x85, 0xc7, 0x72, 0x0c, 0x37, 0x1e, 0xcb,
-	0x31, 0x44, 0x49, 0x60, 0x89, 0xed, 0x92, 0xca, 0x82, 0xd4, 0xe2, 0x24, 0x36, 0x70, 0x52, 0x35,
-	0x06, 0x04, 0x00, 0x00, 0xff, 0xff, 0x3e, 0xe0, 0x91, 0x07, 0x76, 0x03, 0x00, 0x00,
+	// 460 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x52, 0x41, 0x8b, 0xd3, 0x40,
+	0x14, 0xee, 0x58, 0x77, 0xa1, 0xb3, 0xa2, 0xee, 0x58, 0xd8, 0x34, 0x6a, 0xb6, 0x9b, 0x83, 0xd4,
+	0x82, 0x09, 0x56, 0xf4, 0xb0, 0x7b, 0xda, 0xde, 0x2b, 0x92, 0x22, 0x82, 0x08, 0x32, 0x9b, 0x0c,
+	0xd3, 0xb2, 0x26, 0x2f, 0xcc, 0x4c, 0x75, 0xf7, 0x26, 0x1e, 0x3d, 0xf9, 0x2b, 0xc4, 0x63, 0x0f,
+	0x5e, 0xbd, 0xef, 0xb1, 0x78, 0xd1, 0x93, 0x48, 0x7b, 0xe8, 0xdf, 0x90, 0x64, 0x32, 0x56, 0x93,
+	0x80, 0x5e, 0x92, 0x79, 0xef, 0xfb, 0xde, 0xbc, 0xef, 0x7b, 0x6f, 0x70, 0x87, 0x25, 0x82, 0xd1,
+	0x70, 0xe2, 0xbf, 0x01, 0x71, 0xfa, 0x0a, 0x68, 0xe4, 0xab, 0x33, 0x2f, 0x15, 0xa0, 0x80, 0x5c,
+	0x2f, 0x20, 0xcf, 0x40, 0xf6, 0x2e, 0x8d, 0xa7, 0x09, 0xf8, 0xf9, 0x57, 0x93, 0xec, 0xbd, 0x10,
+	0x64, 0x0c, 0xd2, 0x8f, 0x25, 0xf7, 0x5f, 0xdf, 0xcf, 0x7e, 0x05, 0xd0, 0xd1, 0xc0, 0xcb, 0x3c,
+	0xf2, 0x75, 0x50, 0x40, 0x6d, 0x0e, 0x1c, 0x74, 0x3e, 0x3b, 0x15, 0xd9, 0xdb, 0x15, 0x25, 0x29,
+	0x15, 0x34, 0x36, 0x45, 0xfb, 0x15, 0xd8, 0x1c, 0x0a, 0xc2, 0x41, 0x2d, 0x41, 0xb0, 0x14, 0x84,
+	0xd2, 0x14, 0xf7, 0x0b, 0xc2, 0xd7, 0x46, 0x92, 0x3f, 0x4d, 0x23, 0xaa, 0xd8, 0x93, 0xfc, 0x76,
+	0xf2, 0x08, 0xb7, 0xe8, 0x4c, 0x4d, 0x40, 0x4c, 0xd5, 0xb9, 0x85, 0xba, 0xa8, 0xd7, 0x1a, 0x5a,
+	0x5f, 0x3f, 0xdf, 0x6b, 0x17, 0x8a, 0x8f, 0xa3, 0x48, 0x30, 0x29, 0xc7, 0x4a, 0x4c, 0x13, 0x1e,
+	0x6c, 0xa8, 0xe4, 0x08, 0x6f, 0x6b, 0x7d, 0xd6, 0xa5, 0x2e, 0xea, 0xed, 0x0c, 0x2c, 0xaf, 0x3c,
+	0x2e, 0x4f, 0x77, 0x18, 0xb6, 0x2e, 0x7e, 0xec, 0x37, 0x3e, 0xad, 0xe7, 0x7d, 0x14, 0x14, 0x25,
+	0x87, 0x0f, 0xdf, 0xad, 0xe7, 0xfd, 0xcd, 0x65, 0xef, 0xd7, 0xf3, 0xbe, 0x6b, 0xe4, 0x9f, 0x6d,
+	0x0c, 0x94, 0xb4, 0xba, 0x1d, 0xbc, 0x57, 0x4a, 0x05, 0x4c, 0xa6, 0x90, 0x48, 0xe6, 0x7e, 0x44,
+	0xb8, 0x3d, 0x92, 0x7c, 0x3c, 0x3b, 0x89, 0xa7, 0xea, 0xd9, 0x6f, 0xe3, 0x92, 0xdc, 0xc1, 0x57,
+	0x63, 0x9a, 0x50, 0xce, 0xc4, 0x71, 0x18, 0xc2, 0x2c, 0x51, 0xda, 0x64, 0x50, 0xca, 0x92, 0x36,
+	0xde, 0x62, 0x29, 0x84, 0x93, 0xdc, 0xce, 0xe5, 0x40, 0x07, 0xe4, 0x08, 0xe3, 0x04, 0x22, 0x36,
+	0x0e, 0x41, 0x30, 0x69, 0x35, 0xbb, 0xcd, 0xde, 0xce, 0xe0, 0x66, 0xd5, 0xe9, 0x63, 0xc3, 0x09,
+	0xfe, 0xa0, 0x1f, 0xde, 0xc8, 0x5c, 0x96, 0xfa, 0xb8, 0x0e, 0xbe, 0x55, 0xa7, 0xd3, 0x18, 0x19,
+	0x7c, 0x43, 0xb8, 0x39, 0x92, 0x9c, 0xbc, 0xc0, 0x57, 0xfe, 0xda, 0xd3, 0x41, 0xb5, 0x6b, 0x69,
+	0x16, 0xf6, 0xdd, 0x7f, 0x52, 0x4c, 0x17, 0x72, 0x8a, 0x77, 0x6b, 0x46, 0x55, 0x5b, 0x5f, 0xe1,
+	0xd9, 0xde, 0xff, 0xf1, 0x4c, 0x33, 0x7b, 0xeb, 0x6d, 0xb6, 0xfc, 0xe1, 0xe0, 0x62, 0xe9, 0xa0,
+	0xc5, 0xd2, 0x41, 0x3f, 0x97, 0x0e, 0xfa, 0xb0, 0x72, 0x1a, 0x8b, 0x95, 0xd3, 0xf8, 0xbe, 0x72,
+	0x1a, 0xcf, 0xad, 0x9a, 0xdd, 0xab, 0xf3, 0x94, 0xc9, 0x93, 0xed, 0xfc, 0xe1, 0x3e, 0xf8, 0x15,
+	0x00, 0x00, 0xff, 0xff, 0xaf, 0x7e, 0xee, 0x68, 0xa7, 0x03, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -293,7 +277,7 @@ type MsgClient interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
-	CreateWorkload(ctx context.Context, in *MsgCreateWorkload, opts ...grpc.CallOption) (*MsgCreateWorkloadResponse, error)
+	SubmitWorkreports(ctx context.Context, in *MsgSubmitWorkreports, opts ...grpc.CallOption) (*MsgSubmitWorkreportsResponse, error)
 }
 
 type msgClient struct {
@@ -313,9 +297,9 @@ func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts 
 	return out, nil
 }
 
-func (c *msgClient) CreateWorkload(ctx context.Context, in *MsgCreateWorkload, opts ...grpc.CallOption) (*MsgCreateWorkloadResponse, error) {
-	out := new(MsgCreateWorkloadResponse)
-	err := c.cc.Invoke(ctx, "/enreach.workload.Msg/CreateWorkload", in, out, opts...)
+func (c *msgClient) SubmitWorkreports(ctx context.Context, in *MsgSubmitWorkreports, opts ...grpc.CallOption) (*MsgSubmitWorkreportsResponse, error) {
+	out := new(MsgSubmitWorkreportsResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Msg/SubmitWorkreports", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -327,7 +311,7 @@ type MsgServer interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
-	CreateWorkload(context.Context, *MsgCreateWorkload) (*MsgCreateWorkloadResponse, error)
+	SubmitWorkreports(context.Context, *MsgSubmitWorkreports) (*MsgSubmitWorkreportsResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -337,8 +321,8 @@ type UnimplementedMsgServer struct {
 func (*UnimplementedMsgServer) UpdateParams(ctx context.Context, req *MsgUpdateParams) (*MsgUpdateParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateParams not implemented")
 }
-func (*UnimplementedMsgServer) CreateWorkload(ctx context.Context, req *MsgCreateWorkload) (*MsgCreateWorkloadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateWorkload not implemented")
+func (*UnimplementedMsgServer) SubmitWorkreports(ctx context.Context, req *MsgSubmitWorkreports) (*MsgSubmitWorkreportsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SubmitWorkreports not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -363,20 +347,20 @@ func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_CreateWorkload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgCreateWorkload)
+func _Msg_SubmitWorkreports_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgSubmitWorkreports)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MsgServer).CreateWorkload(ctx, in)
+		return srv.(MsgServer).SubmitWorkreports(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/enreach.workload.Msg/CreateWorkload",
+		FullMethod: "/enreach.workload.Msg/SubmitWorkreports",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).CreateWorkload(ctx, req.(*MsgCreateWorkload))
+		return srv.(MsgServer).SubmitWorkreports(ctx, req.(*MsgSubmitWorkreports))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -390,8 +374,8 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Msg_UpdateParams_Handler,
 		},
 		{
-			MethodName: "CreateWorkload",
-			Handler:    _Msg_CreateWorkload_Handler,
+			MethodName: "SubmitWorkreports",
+			Handler:    _Msg_SubmitWorkreports_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -461,7 +445,7 @@ func (m *MsgUpdateParamsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error)
 	return len(dAtA) - i, nil
 }
 
-func (m *MsgCreateWorkload) Marshal() (dAtA []byte, err error) {
+func (m *MsgSubmitWorkreports) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -471,27 +455,29 @@ func (m *MsgCreateWorkload) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *MsgCreateWorkload) MarshalTo(dAtA []byte) (int, error) {
+func (m *MsgSubmitWorkreports) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *MsgCreateWorkload) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *MsgSubmitWorkreports) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.Score != 0 {
-		i = encodeVarintTx(dAtA, i, uint64(m.Score))
-		i--
-		dAtA[i] = 0x20
-	}
-	if len(m.NodeID) > 0 {
-		i -= len(m.NodeID)
-		copy(dAtA[i:], m.NodeID)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.NodeID)))
-		i--
-		dAtA[i] = 0x1a
+	if len(m.NodeScores) > 0 {
+		for iNdEx := len(m.NodeScores) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.NodeScores[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintTx(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x1a
+		}
 	}
 	if m.Epoch != 0 {
 		i = encodeVarintTx(dAtA, i, uint64(m.Epoch))
@@ -508,7 +494,7 @@ func (m *MsgCreateWorkload) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *MsgCreateWorkloadResponse) Marshal() (dAtA []byte, err error) {
+func (m *MsgSubmitWorkreportsResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -518,21 +504,16 @@ func (m *MsgCreateWorkloadResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *MsgCreateWorkloadResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *MsgSubmitWorkreportsResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *MsgCreateWorkloadResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *MsgSubmitWorkreportsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.Id != 0 {
-		i = encodeVarintTx(dAtA, i, uint64(m.Id))
-		i--
-		dAtA[i] = 0x8
-	}
 	return len(dAtA) - i, nil
 }
 
@@ -571,7 +552,7 @@ func (m *MsgUpdateParamsResponse) Size() (n int) {
 	return n
 }
 
-func (m *MsgCreateWorkload) Size() (n int) {
+func (m *MsgSubmitWorkreports) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -584,25 +565,21 @@ func (m *MsgCreateWorkload) Size() (n int) {
 	if m.Epoch != 0 {
 		n += 1 + sovTx(uint64(m.Epoch))
 	}
-	l = len(m.NodeID)
-	if l > 0 {
-		n += 1 + l + sovTx(uint64(l))
-	}
-	if m.Score != 0 {
-		n += 1 + sovTx(uint64(m.Score))
+	if len(m.NodeScores) > 0 {
+		for _, e := range m.NodeScores {
+			l = e.Size()
+			n += 1 + l + sovTx(uint64(l))
+		}
 	}
 	return n
 }
 
-func (m *MsgCreateWorkloadResponse) Size() (n int) {
+func (m *MsgSubmitWorkreportsResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if m.Id != 0 {
-		n += 1 + sovTx(uint64(m.Id))
-	}
 	return n
 }
 
@@ -777,7 +754,7 @@ func (m *MsgUpdateParamsResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *MsgCreateWorkload) Unmarshal(dAtA []byte) error {
+func (m *MsgSubmitWorkreports) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -800,10 +777,10 @@ func (m *MsgCreateWorkload) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: MsgCreateWorkload: wiretype end group for non-group")
+			return fmt.Errorf("proto: MsgSubmitWorkreports: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: MsgCreateWorkload: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: MsgSubmitWorkreports: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -859,9 +836,9 @@ func (m *MsgCreateWorkload) Unmarshal(dAtA []byte) error {
 			}
 		case 3:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field NodeID", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field NodeScores", wireType)
 			}
-			var stringLen uint64
+			var msglen int
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowTx
@@ -871,43 +848,26 @@ func (m *MsgCreateWorkload) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
+				msglen |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
+			if msglen < 0 {
 				return ErrInvalidLengthTx
 			}
-			postIndex := iNdEx + intStringLen
+			postIndex := iNdEx + msglen
 			if postIndex < 0 {
 				return ErrInvalidLengthTx
 			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.NodeID = string(dAtA[iNdEx:postIndex])
+			m.NodeScores = append(m.NodeScores, &NodeScore{})
+			if err := m.NodeScores[len(m.NodeScores)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
 			iNdEx = postIndex
-		case 4:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Score", wireType)
-			}
-			m.Score = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Score |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipTx(dAtA[iNdEx:])
@@ -929,7 +889,7 @@ func (m *MsgCreateWorkload) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *MsgCreateWorkloadResponse) Unmarshal(dAtA []byte) error {
+func (m *MsgSubmitWorkreportsResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -952,31 +912,12 @@ func (m *MsgCreateWorkloadResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: MsgCreateWorkloadResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: MsgSubmitWorkreportsResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: MsgCreateWorkloadResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: MsgSubmitWorkreportsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
-			}
-			m.Id = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Id |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipTx(dAtA[iNdEx:])

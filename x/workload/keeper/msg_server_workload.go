@@ -10,9 +10,10 @@ import (
 
 	errorsmod "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
 
-func (k msgServer) CreateWorkload(goCtx context.Context, msg *types.MsgCreateWorkload) (*types.MsgCreateWorkloadResponse, error) {
+func (k msgServer) SubmitWorkreports(goCtx context.Context, msg *types.MsgSubmitWorkreports) (*types.MsgSubmitWorkreportsResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	// Check whether the manager account exist
@@ -28,51 +29,93 @@ func (k msgServer) CreateWorkload(goCtx context.Context, msg *types.MsgCreateWor
 		return nil, errorsmod.Wrapf(types.ErrManagerNotActivate, "Manager '%s' is not activate yet", msg.ManagerAccount)
 	}
 
-	// Check whether the manager account is allowed to create workload
+	// Check whether the manager account is allowed to submit workreports
 	if manager.WorkingStatus == string(managertypes.WS_BLOCK) {
 		return nil, errorsmod.Wrapf(types.ErrManagerBlocked, "Manager '%s' is blocked", msg.ManagerAccount)
 	}
 
-	// Check whether the nodeID exist
-	nodeResp, err := k.edgenodeKeeper.Node(ctx, &edgenodetypes.QueryGetNodeRequest{NodeID: msg.NodeID})
+	// Check epoch validity
+	currentEpochResp, err := k.managerKeeper.GetCurrentEpoch(ctx, &managertypes.QueryGetCurrentEpochRequest{})
 	if err != nil {
-		return nil, errorsmod.Wrapf(types.ErrNodeNotExist, "Node '%s' doesn't exist", msg.NodeID)
+		return nil, errorsmod.Wrapf(sdkerrors.ErrLogic, "Failed to get current epoch: %s", err.Error())
 	}
 
-	// Node should have been activate
-	node := nodeResp.Node
-	if node.RegisterStatus != string(edgenodetypes.RS_ACTIVATE) {
-		return nil, errorsmod.Wrapf(types.ErrNodeNotActivate, "Node '%s' is not activate yet", msg.NodeID)
+	// The submitted epoch must be the previous epoch, since the current epoch is not yet finalized.
+	currentEpoch := currentEpochResp.CurrentEpoch
+	previousEpoch := currentEpoch - 1
+	if previousEpoch != msg.Epoch {
+		return nil, errorsmod.Wrapf(types.ErrInvalidEpoch, "Epoch must be the previous epoch (%d)", previousEpoch)
 	}
 
-	// Check whether the manager region and node region is match
-	if manager.RegionCode != node.RegionCode {
-		return nil, errorsmod.Wrapf(types.ErrRegionNotMatch,
-			"Node region code '%s' doesn't match with manager region code '%s'",
-			node.RegionCode, manager.RegionCode)
+	// Validate all nodes status
+	for _, nodescore := range msg.NodeScores {
+		// Check whether the nodeID exist
+		nodeResp, err := k.edgenodeKeeper.Node(ctx, &edgenodetypes.QueryGetNodeRequest{NodeID: nodescore.NodeID})
+		if err != nil {
+			return nil, errorsmod.Wrapf(types.ErrNodeNotExist, "Node '%s' doesn't exist", nodescore.NodeID)
+		}
+
+		// Node should have been activate
+		node := nodeResp.Node
+		if node.RegisterStatus != string(edgenodetypes.RS_ACTIVATE) {
+			return nil, errorsmod.Wrapf(types.ErrNodeNotActivate, "Node '%s' is not activate yet", nodescore.NodeID)
+		}
+
+		// Check whether the manager region and node region is match
+		if manager.RegionCode != node.RegionCode {
+			return nil, errorsmod.Wrapf(types.ErrRegionNotMatch,
+				"Node region code '%s' doesn't match with manager region code '%s'",
+				node.RegionCode, manager.RegionCode)
+		}
 	}
 
+	// Append or update workreport for every node
 	blockHeight := uint64(ctx.BlockHeight())
-	var workload = types.Workload{
-		ManagerAccount: msg.ManagerAccount,
-		Epoch:          msg.Epoch,
-		NodeID:         msg.NodeID,
-		Score:          msg.Score,
-		CreateAt:       blockHeight,
+	for _, nodescore := range msg.NodeScores {
+
+		managerNodeScoreMap, found := k.GetNodeWorkreport(ctx, msg.Epoch, nodescore.NodeID)
+		if found {
+			// There are existing entry for this node
+			if nodeScoreEntry, ok := managerNodeScoreMap.ManagerScoreMap[msg.ManagerAccount]; ok {
+				// There are existing entry for this manager, update the score and updateAt field
+				nodeScoreEntry.Score = nodescore.Score
+				nodeScoreEntry.UpdateAt = blockHeight
+			} else {
+				// There are no existing entry for this manager, append a new entry
+				managerNodeScoreMap.ManagerScoreMap[msg.ManagerAccount] = &types.NodeScoreDB{
+					NodeID:   nodescore.NodeID,
+					Score:    nodescore.Score,
+					CreateAt: blockHeight,
+					UpdateAt: blockHeight,
+				}
+			}
+
+			// Update to the store
+			k.SetNodeWorkreport(ctx, msg.Epoch, nodescore.NodeID, &managerNodeScoreMap)
+		} else {
+			// No existing entry, create a new scores map
+			nodeScoresMap := make(map[string]*types.NodeScoreDB)
+			nodeScoresMap[msg.ManagerAccount] = &types.NodeScoreDB{
+				NodeID:   nodescore.NodeID,
+				Score:    nodescore.Score,
+				CreateAt: blockHeight,
+				UpdateAt: blockHeight,
+			}
+
+			// Append to the store
+			k.AppendNodeWorkreport(ctx, msg.Epoch, nodescore.NodeID, &types.ManagerNodeScoreMap{ManagerScoreMap: nodeScoresMap})
+		}
 	}
 
-	id := k.AppendWorkload(ctx, workload)
-
+	// Emit event
 	ctx.EventManager().EmitEvent(
-		sdk.NewEvent(types.EventTypeWorkloadCreated,
+		sdk.NewEvent(types.EventTypeWorkreportsSubmitted,
 			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
 			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.ManagerAccount),
-			sdk.NewAttribute(types.AttributeKeyNodeID, msg.NodeID),
 			sdk.NewAttribute(types.AttributeKeyEpoch, strconv.FormatUint(msg.Epoch, 10)),
-			sdk.NewAttribute(types.AttributeKeyScore, strconv.FormatUint(msg.Score, 10)),
-			sdk.NewAttribute(types.AttributeKeyWorkloadID, strconv.FormatUint(id, 10)),
+			sdk.NewAttribute(types.AttributeKeyNodeScoresCount, strconv.FormatUint(uint64(len(msg.NodeScores)), 10)),
 		),
 	)
 
-	return &types.MsgCreateWorkloadResponse{Id: id}, nil
+	return &types.MsgSubmitWorkreportsResponse{}, nil
 }

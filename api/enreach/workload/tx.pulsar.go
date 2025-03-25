@@ -871,32 +871,81 @@ func (x *fastReflection_MsgUpdateParamsResponse) ProtoMethods() *protoiface.Meth
 	}
 }
 
+var _ protoreflect.List = (*_MsgSubmitWorkreports_3_list)(nil)
+
+type _MsgSubmitWorkreports_3_list struct {
+	list *[]*NodeScore
+}
+
+func (x *_MsgSubmitWorkreports_3_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_MsgSubmitWorkreports_3_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
+}
+
+func (x *_MsgSubmitWorkreports_3_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*NodeScore)
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_MsgSubmitWorkreports_3_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*NodeScore)
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_MsgSubmitWorkreports_3_list) AppendMutable() protoreflect.Value {
+	v := new(NodeScore)
+	*x.list = append(*x.list, v)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_MsgSubmitWorkreports_3_list) Truncate(n int) {
+	for i := n; i < len(*x.list); i++ {
+		(*x.list)[i] = nil
+	}
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_MsgSubmitWorkreports_3_list) NewElement() protoreflect.Value {
+	v := new(NodeScore)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_MsgSubmitWorkreports_3_list) IsValid() bool {
+	return x.list != nil
+}
+
 var (
-	md_MsgCreateWorkload                protoreflect.MessageDescriptor
-	fd_MsgCreateWorkload_managerAccount protoreflect.FieldDescriptor
-	fd_MsgCreateWorkload_epoch          protoreflect.FieldDescriptor
-	fd_MsgCreateWorkload_nodeID         protoreflect.FieldDescriptor
-	fd_MsgCreateWorkload_score          protoreflect.FieldDescriptor
+	md_MsgSubmitWorkreports                protoreflect.MessageDescriptor
+	fd_MsgSubmitWorkreports_managerAccount protoreflect.FieldDescriptor
+	fd_MsgSubmitWorkreports_epoch          protoreflect.FieldDescriptor
+	fd_MsgSubmitWorkreports_nodeScores     protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_enreach_workload_tx_proto_init()
-	md_MsgCreateWorkload = File_enreach_workload_tx_proto.Messages().ByName("MsgCreateWorkload")
-	fd_MsgCreateWorkload_managerAccount = md_MsgCreateWorkload.Fields().ByName("managerAccount")
-	fd_MsgCreateWorkload_epoch = md_MsgCreateWorkload.Fields().ByName("epoch")
-	fd_MsgCreateWorkload_nodeID = md_MsgCreateWorkload.Fields().ByName("nodeID")
-	fd_MsgCreateWorkload_score = md_MsgCreateWorkload.Fields().ByName("score")
+	md_MsgSubmitWorkreports = File_enreach_workload_tx_proto.Messages().ByName("MsgSubmitWorkreports")
+	fd_MsgSubmitWorkreports_managerAccount = md_MsgSubmitWorkreports.Fields().ByName("managerAccount")
+	fd_MsgSubmitWorkreports_epoch = md_MsgSubmitWorkreports.Fields().ByName("epoch")
+	fd_MsgSubmitWorkreports_nodeScores = md_MsgSubmitWorkreports.Fields().ByName("nodeScores")
 }
 
-var _ protoreflect.Message = (*fastReflection_MsgCreateWorkload)(nil)
+var _ protoreflect.Message = (*fastReflection_MsgSubmitWorkreports)(nil)
 
-type fastReflection_MsgCreateWorkload MsgCreateWorkload
+type fastReflection_MsgSubmitWorkreports MsgSubmitWorkreports
 
-func (x *MsgCreateWorkload) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_MsgCreateWorkload)(x)
+func (x *MsgSubmitWorkreports) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgSubmitWorkreports)(x)
 }
 
-func (x *MsgCreateWorkload) slowProtoReflect() protoreflect.Message {
+func (x *MsgSubmitWorkreports) slowProtoReflect() protoreflect.Message {
 	mi := &file_enreach_workload_tx_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -908,43 +957,43 @@ func (x *MsgCreateWorkload) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_MsgCreateWorkload_messageType fastReflection_MsgCreateWorkload_messageType
-var _ protoreflect.MessageType = fastReflection_MsgCreateWorkload_messageType{}
+var _fastReflection_MsgSubmitWorkreports_messageType fastReflection_MsgSubmitWorkreports_messageType
+var _ protoreflect.MessageType = fastReflection_MsgSubmitWorkreports_messageType{}
 
-type fastReflection_MsgCreateWorkload_messageType struct{}
+type fastReflection_MsgSubmitWorkreports_messageType struct{}
 
-func (x fastReflection_MsgCreateWorkload_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_MsgCreateWorkload)(nil)
+func (x fastReflection_MsgSubmitWorkreports_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgSubmitWorkreports)(nil)
 }
-func (x fastReflection_MsgCreateWorkload_messageType) New() protoreflect.Message {
-	return new(fastReflection_MsgCreateWorkload)
+func (x fastReflection_MsgSubmitWorkreports_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgSubmitWorkreports)
 }
-func (x fastReflection_MsgCreateWorkload_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgCreateWorkload
+func (x fastReflection_MsgSubmitWorkreports_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgSubmitWorkreports
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_MsgCreateWorkload) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgCreateWorkload
+func (x *fastReflection_MsgSubmitWorkreports) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgSubmitWorkreports
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_MsgCreateWorkload) Type() protoreflect.MessageType {
-	return _fastReflection_MsgCreateWorkload_messageType
+func (x *fastReflection_MsgSubmitWorkreports) Type() protoreflect.MessageType {
+	return _fastReflection_MsgSubmitWorkreports_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_MsgCreateWorkload) New() protoreflect.Message {
-	return new(fastReflection_MsgCreateWorkload)
+func (x *fastReflection_MsgSubmitWorkreports) New() protoreflect.Message {
+	return new(fastReflection_MsgSubmitWorkreports)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_MsgCreateWorkload) Interface() protoreflect.ProtoMessage {
-	return (*MsgCreateWorkload)(x)
+func (x *fastReflection_MsgSubmitWorkreports) Interface() protoreflect.ProtoMessage {
+	return (*MsgSubmitWorkreports)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -952,28 +1001,22 @@ func (x *fastReflection_MsgCreateWorkload) Interface() protoreflect.ProtoMessage
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_MsgCreateWorkload) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_MsgSubmitWorkreports) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 	if x.ManagerAccount != "" {
 		value := protoreflect.ValueOfString(x.ManagerAccount)
-		if !f(fd_MsgCreateWorkload_managerAccount, value) {
+		if !f(fd_MsgSubmitWorkreports_managerAccount, value) {
 			return
 		}
 	}
 	if x.Epoch != uint64(0) {
 		value := protoreflect.ValueOfUint64(x.Epoch)
-		if !f(fd_MsgCreateWorkload_epoch, value) {
+		if !f(fd_MsgSubmitWorkreports_epoch, value) {
 			return
 		}
 	}
-	if x.NodeID != "" {
-		value := protoreflect.ValueOfString(x.NodeID)
-		if !f(fd_MsgCreateWorkload_nodeID, value) {
-			return
-		}
-	}
-	if x.Score != uint64(0) {
-		value := protoreflect.ValueOfUint64(x.Score)
-		if !f(fd_MsgCreateWorkload_score, value) {
+	if len(x.NodeScores) != 0 {
+		value := protoreflect.ValueOfList(&_MsgSubmitWorkreports_3_list{list: &x.NodeScores})
+		if !f(fd_MsgSubmitWorkreports_nodeScores, value) {
 			return
 		}
 	}
@@ -990,21 +1033,19 @@ func (x *fastReflection_MsgCreateWorkload) Range(f func(protoreflect.FieldDescri
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_MsgCreateWorkload) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_MsgSubmitWorkreports) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "enreach.workload.MsgCreateWorkload.managerAccount":
+	case "enreach.workload.MsgSubmitWorkreports.managerAccount":
 		return x.ManagerAccount != ""
-	case "enreach.workload.MsgCreateWorkload.epoch":
+	case "enreach.workload.MsgSubmitWorkreports.epoch":
 		return x.Epoch != uint64(0)
-	case "enreach.workload.MsgCreateWorkload.nodeID":
-		return x.NodeID != ""
-	case "enreach.workload.MsgCreateWorkload.score":
-		return x.Score != uint64(0)
+	case "enreach.workload.MsgSubmitWorkreports.nodeScores":
+		return len(x.NodeScores) != 0
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgCreateWorkload"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgSubmitWorkreports"))
 		}
-		panic(fmt.Errorf("message enreach.workload.MsgCreateWorkload does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.MsgSubmitWorkreports does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1014,21 +1055,19 @@ func (x *fastReflection_MsgCreateWorkload) Has(fd protoreflect.FieldDescriptor) 
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateWorkload) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_MsgSubmitWorkreports) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "enreach.workload.MsgCreateWorkload.managerAccount":
+	case "enreach.workload.MsgSubmitWorkreports.managerAccount":
 		x.ManagerAccount = ""
-	case "enreach.workload.MsgCreateWorkload.epoch":
+	case "enreach.workload.MsgSubmitWorkreports.epoch":
 		x.Epoch = uint64(0)
-	case "enreach.workload.MsgCreateWorkload.nodeID":
-		x.NodeID = ""
-	case "enreach.workload.MsgCreateWorkload.score":
-		x.Score = uint64(0)
+	case "enreach.workload.MsgSubmitWorkreports.nodeScores":
+		x.NodeScores = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgCreateWorkload"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgSubmitWorkreports"))
 		}
-		panic(fmt.Errorf("message enreach.workload.MsgCreateWorkload does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.MsgSubmitWorkreports does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1038,25 +1077,25 @@ func (x *fastReflection_MsgCreateWorkload) Clear(fd protoreflect.FieldDescriptor
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_MsgCreateWorkload) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgSubmitWorkreports) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "enreach.workload.MsgCreateWorkload.managerAccount":
+	case "enreach.workload.MsgSubmitWorkreports.managerAccount":
 		value := x.ManagerAccount
 		return protoreflect.ValueOfString(value)
-	case "enreach.workload.MsgCreateWorkload.epoch":
+	case "enreach.workload.MsgSubmitWorkreports.epoch":
 		value := x.Epoch
 		return protoreflect.ValueOfUint64(value)
-	case "enreach.workload.MsgCreateWorkload.nodeID":
-		value := x.NodeID
-		return protoreflect.ValueOfString(value)
-	case "enreach.workload.MsgCreateWorkload.score":
-		value := x.Score
-		return protoreflect.ValueOfUint64(value)
+	case "enreach.workload.MsgSubmitWorkreports.nodeScores":
+		if len(x.NodeScores) == 0 {
+			return protoreflect.ValueOfList(&_MsgSubmitWorkreports_3_list{})
+		}
+		listValue := &_MsgSubmitWorkreports_3_list{list: &x.NodeScores}
+		return protoreflect.ValueOfList(listValue)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgCreateWorkload"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgSubmitWorkreports"))
 		}
-		panic(fmt.Errorf("message enreach.workload.MsgCreateWorkload does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message enreach.workload.MsgSubmitWorkreports does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -1070,21 +1109,21 @@ func (x *fastReflection_MsgCreateWorkload) Get(descriptor protoreflect.FieldDesc
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateWorkload) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_MsgSubmitWorkreports) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "enreach.workload.MsgCreateWorkload.managerAccount":
+	case "enreach.workload.MsgSubmitWorkreports.managerAccount":
 		x.ManagerAccount = value.Interface().(string)
-	case "enreach.workload.MsgCreateWorkload.epoch":
+	case "enreach.workload.MsgSubmitWorkreports.epoch":
 		x.Epoch = value.Uint()
-	case "enreach.workload.MsgCreateWorkload.nodeID":
-		x.NodeID = value.Interface().(string)
-	case "enreach.workload.MsgCreateWorkload.score":
-		x.Score = value.Uint()
+	case "enreach.workload.MsgSubmitWorkreports.nodeScores":
+		lv := value.List()
+		clv := lv.(*_MsgSubmitWorkreports_3_list)
+		x.NodeScores = *clv.list
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgCreateWorkload"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgSubmitWorkreports"))
 		}
-		panic(fmt.Errorf("message enreach.workload.MsgCreateWorkload does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.MsgSubmitWorkreports does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1098,52 +1137,53 @@ func (x *fastReflection_MsgCreateWorkload) Set(fd protoreflect.FieldDescriptor, 
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateWorkload) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgSubmitWorkreports) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "enreach.workload.MsgCreateWorkload.managerAccount":
-		panic(fmt.Errorf("field managerAccount of message enreach.workload.MsgCreateWorkload is not mutable"))
-	case "enreach.workload.MsgCreateWorkload.epoch":
-		panic(fmt.Errorf("field epoch of message enreach.workload.MsgCreateWorkload is not mutable"))
-	case "enreach.workload.MsgCreateWorkload.nodeID":
-		panic(fmt.Errorf("field nodeID of message enreach.workload.MsgCreateWorkload is not mutable"))
-	case "enreach.workload.MsgCreateWorkload.score":
-		panic(fmt.Errorf("field score of message enreach.workload.MsgCreateWorkload is not mutable"))
+	case "enreach.workload.MsgSubmitWorkreports.nodeScores":
+		if x.NodeScores == nil {
+			x.NodeScores = []*NodeScore{}
+		}
+		value := &_MsgSubmitWorkreports_3_list{list: &x.NodeScores}
+		return protoreflect.ValueOfList(value)
+	case "enreach.workload.MsgSubmitWorkreports.managerAccount":
+		panic(fmt.Errorf("field managerAccount of message enreach.workload.MsgSubmitWorkreports is not mutable"))
+	case "enreach.workload.MsgSubmitWorkreports.epoch":
+		panic(fmt.Errorf("field epoch of message enreach.workload.MsgSubmitWorkreports is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgCreateWorkload"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgSubmitWorkreports"))
 		}
-		panic(fmt.Errorf("message enreach.workload.MsgCreateWorkload does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.MsgSubmitWorkreports does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_MsgCreateWorkload) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgSubmitWorkreports) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "enreach.workload.MsgCreateWorkload.managerAccount":
+	case "enreach.workload.MsgSubmitWorkreports.managerAccount":
 		return protoreflect.ValueOfString("")
-	case "enreach.workload.MsgCreateWorkload.epoch":
+	case "enreach.workload.MsgSubmitWorkreports.epoch":
 		return protoreflect.ValueOfUint64(uint64(0))
-	case "enreach.workload.MsgCreateWorkload.nodeID":
-		return protoreflect.ValueOfString("")
-	case "enreach.workload.MsgCreateWorkload.score":
-		return protoreflect.ValueOfUint64(uint64(0))
+	case "enreach.workload.MsgSubmitWorkreports.nodeScores":
+		list := []*NodeScore{}
+		return protoreflect.ValueOfList(&_MsgSubmitWorkreports_3_list{list: &list})
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgCreateWorkload"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgSubmitWorkreports"))
 		}
-		panic(fmt.Errorf("message enreach.workload.MsgCreateWorkload does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.MsgSubmitWorkreports does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_MsgCreateWorkload) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_MsgSubmitWorkreports) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in enreach.workload.MsgCreateWorkload", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in enreach.workload.MsgSubmitWorkreports", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1151,7 +1191,7 @@ func (x *fastReflection_MsgCreateWorkload) WhichOneof(d protoreflect.OneofDescri
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_MsgCreateWorkload) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_MsgSubmitWorkreports) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -1162,7 +1202,7 @@ func (x *fastReflection_MsgCreateWorkload) GetUnknown() protoreflect.RawFields {
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateWorkload) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_MsgSubmitWorkreports) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -1174,7 +1214,7 @@ func (x *fastReflection_MsgCreateWorkload) SetUnknown(fields protoreflect.RawFie
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_MsgCreateWorkload) IsValid() bool {
+func (x *fastReflection_MsgSubmitWorkreports) IsValid() bool {
 	return x != nil
 }
 
@@ -1184,9 +1224,9 @@ func (x *fastReflection_MsgCreateWorkload) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_MsgCreateWorkload) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_MsgSubmitWorkreports) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*MsgCreateWorkload)
+		x := input.Message.Interface().(*MsgSubmitWorkreports)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1205,12 +1245,11 @@ func (x *fastReflection_MsgCreateWorkload) ProtoMethods() *protoiface.Methods {
 		if x.Epoch != 0 {
 			n += 1 + runtime.Sov(uint64(x.Epoch))
 		}
-		l = len(x.NodeID)
-		if l > 0 {
-			n += 1 + l + runtime.Sov(uint64(l))
-		}
-		if x.Score != 0 {
-			n += 1 + runtime.Sov(uint64(x.Score))
+		if len(x.NodeScores) > 0 {
+			for _, e := range x.NodeScores {
+				l = options.Size(e)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
 		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
@@ -1222,7 +1261,7 @@ func (x *fastReflection_MsgCreateWorkload) ProtoMethods() *protoiface.Methods {
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*MsgCreateWorkload)
+		x := input.Message.Interface().(*MsgSubmitWorkreports)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1241,17 +1280,21 @@ func (x *fastReflection_MsgCreateWorkload) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if x.Score != 0 {
-			i = runtime.EncodeVarint(dAtA, i, uint64(x.Score))
-			i--
-			dAtA[i] = 0x20
-		}
-		if len(x.NodeID) > 0 {
-			i -= len(x.NodeID)
-			copy(dAtA[i:], x.NodeID)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.NodeID)))
-			i--
-			dAtA[i] = 0x1a
+		if len(x.NodeScores) > 0 {
+			for iNdEx := len(x.NodeScores) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.NodeScores[iNdEx])
+				if err != nil {
+					return protoiface.MarshalOutput{
+						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+						Buf:               input.Buf,
+					}, err
+				}
+				i -= len(encoded)
+				copy(dAtA[i:], encoded)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0x1a
+			}
 		}
 		if x.Epoch != 0 {
 			i = runtime.EncodeVarint(dAtA, i, uint64(x.Epoch))
@@ -1276,7 +1319,7 @@ func (x *fastReflection_MsgCreateWorkload) ProtoMethods() *protoiface.Methods {
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*MsgCreateWorkload)
+		x := input.Message.Interface().(*MsgSubmitWorkreports)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1308,10 +1351,10 @@ func (x *fastReflection_MsgCreateWorkload) ProtoMethods() *protoiface.Methods {
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateWorkload: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgSubmitWorkreports: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateWorkload: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgSubmitWorkreports: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
@@ -1367,9 +1410,9 @@ func (x *fastReflection_MsgCreateWorkload) ProtoMethods() *protoiface.Methods {
 				}
 			case 3:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field NodeID", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field NodeScores", wireType)
 				}
-				var stringLen uint64
+				var msglen int
 				for shift := uint(0); ; shift += 7 {
 					if shift >= 64 {
 						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
@@ -1379,43 +1422,26 @@ func (x *fastReflection_MsgCreateWorkload) ProtoMethods() *protoiface.Methods {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
+					msglen |= int(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
 				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
+				if msglen < 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
 				}
-				postIndex := iNdEx + intStringLen
+				postIndex := iNdEx + msglen
 				if postIndex < 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
 				}
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.NodeID = string(dAtA[iNdEx:postIndex])
+				x.NodeScores = append(x.NodeScores, &NodeScore{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.NodeScores[len(x.NodeScores)-1]); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
 				iNdEx = postIndex
-			case 4:
-				if wireType != 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Score", wireType)
-				}
-				x.Score = 0
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					x.Score |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -1452,25 +1478,23 @@ func (x *fastReflection_MsgCreateWorkload) ProtoMethods() *protoiface.Methods {
 }
 
 var (
-	md_MsgCreateWorkloadResponse    protoreflect.MessageDescriptor
-	fd_MsgCreateWorkloadResponse_id protoreflect.FieldDescriptor
+	md_MsgSubmitWorkreportsResponse protoreflect.MessageDescriptor
 )
 
 func init() {
 	file_enreach_workload_tx_proto_init()
-	md_MsgCreateWorkloadResponse = File_enreach_workload_tx_proto.Messages().ByName("MsgCreateWorkloadResponse")
-	fd_MsgCreateWorkloadResponse_id = md_MsgCreateWorkloadResponse.Fields().ByName("id")
+	md_MsgSubmitWorkreportsResponse = File_enreach_workload_tx_proto.Messages().ByName("MsgSubmitWorkreportsResponse")
 }
 
-var _ protoreflect.Message = (*fastReflection_MsgCreateWorkloadResponse)(nil)
+var _ protoreflect.Message = (*fastReflection_MsgSubmitWorkreportsResponse)(nil)
 
-type fastReflection_MsgCreateWorkloadResponse MsgCreateWorkloadResponse
+type fastReflection_MsgSubmitWorkreportsResponse MsgSubmitWorkreportsResponse
 
-func (x *MsgCreateWorkloadResponse) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_MsgCreateWorkloadResponse)(x)
+func (x *MsgSubmitWorkreportsResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgSubmitWorkreportsResponse)(x)
 }
 
-func (x *MsgCreateWorkloadResponse) slowProtoReflect() protoreflect.Message {
+func (x *MsgSubmitWorkreportsResponse) slowProtoReflect() protoreflect.Message {
 	mi := &file_enreach_workload_tx_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1482,43 +1506,43 @@ func (x *MsgCreateWorkloadResponse) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_MsgCreateWorkloadResponse_messageType fastReflection_MsgCreateWorkloadResponse_messageType
-var _ protoreflect.MessageType = fastReflection_MsgCreateWorkloadResponse_messageType{}
+var _fastReflection_MsgSubmitWorkreportsResponse_messageType fastReflection_MsgSubmitWorkreportsResponse_messageType
+var _ protoreflect.MessageType = fastReflection_MsgSubmitWorkreportsResponse_messageType{}
 
-type fastReflection_MsgCreateWorkloadResponse_messageType struct{}
+type fastReflection_MsgSubmitWorkreportsResponse_messageType struct{}
 
-func (x fastReflection_MsgCreateWorkloadResponse_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_MsgCreateWorkloadResponse)(nil)
+func (x fastReflection_MsgSubmitWorkreportsResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgSubmitWorkreportsResponse)(nil)
 }
-func (x fastReflection_MsgCreateWorkloadResponse_messageType) New() protoreflect.Message {
-	return new(fastReflection_MsgCreateWorkloadResponse)
+func (x fastReflection_MsgSubmitWorkreportsResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgSubmitWorkreportsResponse)
 }
-func (x fastReflection_MsgCreateWorkloadResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgCreateWorkloadResponse
+func (x fastReflection_MsgSubmitWorkreportsResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgSubmitWorkreportsResponse
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_MsgCreateWorkloadResponse) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgCreateWorkloadResponse
+func (x *fastReflection_MsgSubmitWorkreportsResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgSubmitWorkreportsResponse
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_MsgCreateWorkloadResponse) Type() protoreflect.MessageType {
-	return _fastReflection_MsgCreateWorkloadResponse_messageType
+func (x *fastReflection_MsgSubmitWorkreportsResponse) Type() protoreflect.MessageType {
+	return _fastReflection_MsgSubmitWorkreportsResponse_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_MsgCreateWorkloadResponse) New() protoreflect.Message {
-	return new(fastReflection_MsgCreateWorkloadResponse)
+func (x *fastReflection_MsgSubmitWorkreportsResponse) New() protoreflect.Message {
+	return new(fastReflection_MsgSubmitWorkreportsResponse)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_MsgCreateWorkloadResponse) Interface() protoreflect.ProtoMessage {
-	return (*MsgCreateWorkloadResponse)(x)
+func (x *fastReflection_MsgSubmitWorkreportsResponse) Interface() protoreflect.ProtoMessage {
+	return (*MsgSubmitWorkreportsResponse)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -1526,13 +1550,7 @@ func (x *fastReflection_MsgCreateWorkloadResponse) Interface() protoreflect.Prot
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_MsgCreateWorkloadResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Id != uint64(0) {
-		value := protoreflect.ValueOfUint64(x.Id)
-		if !f(fd_MsgCreateWorkloadResponse_id, value) {
-			return
-		}
-	}
+func (x *fastReflection_MsgSubmitWorkreportsResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 }
 
 // Has reports whether a field is populated.
@@ -1546,15 +1564,13 @@ func (x *fastReflection_MsgCreateWorkloadResponse) Range(f func(protoreflect.Fie
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_MsgCreateWorkloadResponse) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_MsgSubmitWorkreportsResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "enreach.workload.MsgCreateWorkloadResponse.id":
-		return x.Id != uint64(0)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgCreateWorkloadResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgSubmitWorkreportsResponse"))
 		}
-		panic(fmt.Errorf("message enreach.workload.MsgCreateWorkloadResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.MsgSubmitWorkreportsResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1564,15 +1580,13 @@ func (x *fastReflection_MsgCreateWorkloadResponse) Has(fd protoreflect.FieldDesc
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateWorkloadResponse) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_MsgSubmitWorkreportsResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "enreach.workload.MsgCreateWorkloadResponse.id":
-		x.Id = uint64(0)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgCreateWorkloadResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgSubmitWorkreportsResponse"))
 		}
-		panic(fmt.Errorf("message enreach.workload.MsgCreateWorkloadResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.MsgSubmitWorkreportsResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1582,16 +1596,13 @@ func (x *fastReflection_MsgCreateWorkloadResponse) Clear(fd protoreflect.FieldDe
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_MsgCreateWorkloadResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgSubmitWorkreportsResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "enreach.workload.MsgCreateWorkloadResponse.id":
-		value := x.Id
-		return protoreflect.ValueOfUint64(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgCreateWorkloadResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgSubmitWorkreportsResponse"))
 		}
-		panic(fmt.Errorf("message enreach.workload.MsgCreateWorkloadResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message enreach.workload.MsgSubmitWorkreportsResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -1605,15 +1616,13 @@ func (x *fastReflection_MsgCreateWorkloadResponse) Get(descriptor protoreflect.F
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateWorkloadResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_MsgSubmitWorkreportsResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "enreach.workload.MsgCreateWorkloadResponse.id":
-		x.Id = value.Uint()
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgCreateWorkloadResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgSubmitWorkreportsResponse"))
 		}
-		panic(fmt.Errorf("message enreach.workload.MsgCreateWorkloadResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.MsgSubmitWorkreportsResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1627,40 +1636,36 @@ func (x *fastReflection_MsgCreateWorkloadResponse) Set(fd protoreflect.FieldDesc
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateWorkloadResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgSubmitWorkreportsResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "enreach.workload.MsgCreateWorkloadResponse.id":
-		panic(fmt.Errorf("field id of message enreach.workload.MsgCreateWorkloadResponse is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgCreateWorkloadResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgSubmitWorkreportsResponse"))
 		}
-		panic(fmt.Errorf("message enreach.workload.MsgCreateWorkloadResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.MsgSubmitWorkreportsResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_MsgCreateWorkloadResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgSubmitWorkreportsResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "enreach.workload.MsgCreateWorkloadResponse.id":
-		return protoreflect.ValueOfUint64(uint64(0))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgCreateWorkloadResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.MsgSubmitWorkreportsResponse"))
 		}
-		panic(fmt.Errorf("message enreach.workload.MsgCreateWorkloadResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.MsgSubmitWorkreportsResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_MsgCreateWorkloadResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_MsgSubmitWorkreportsResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in enreach.workload.MsgCreateWorkloadResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in enreach.workload.MsgSubmitWorkreportsResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1668,7 +1673,7 @@ func (x *fastReflection_MsgCreateWorkloadResponse) WhichOneof(d protoreflect.One
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_MsgCreateWorkloadResponse) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_MsgSubmitWorkreportsResponse) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -1679,7 +1684,7 @@ func (x *fastReflection_MsgCreateWorkloadResponse) GetUnknown() protoreflect.Raw
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateWorkloadResponse) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_MsgSubmitWorkreportsResponse) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -1691,7 +1696,7 @@ func (x *fastReflection_MsgCreateWorkloadResponse) SetUnknown(fields protoreflec
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_MsgCreateWorkloadResponse) IsValid() bool {
+func (x *fastReflection_MsgSubmitWorkreportsResponse) IsValid() bool {
 	return x != nil
 }
 
@@ -1701,9 +1706,9 @@ func (x *fastReflection_MsgCreateWorkloadResponse) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_MsgCreateWorkloadResponse) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_MsgSubmitWorkreportsResponse) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*MsgCreateWorkloadResponse)
+		x := input.Message.Interface().(*MsgSubmitWorkreportsResponse)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1715,9 +1720,6 @@ func (x *fastReflection_MsgCreateWorkloadResponse) ProtoMethods() *protoiface.Me
 		var n int
 		var l int
 		_ = l
-		if x.Id != 0 {
-			n += 1 + runtime.Sov(uint64(x.Id))
-		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -1728,7 +1730,7 @@ func (x *fastReflection_MsgCreateWorkloadResponse) ProtoMethods() *protoiface.Me
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*MsgCreateWorkloadResponse)
+		x := input.Message.Interface().(*MsgSubmitWorkreportsResponse)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1747,11 +1749,6 @@ func (x *fastReflection_MsgCreateWorkloadResponse) ProtoMethods() *protoiface.Me
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if x.Id != 0 {
-			i = runtime.EncodeVarint(dAtA, i, uint64(x.Id))
-			i--
-			dAtA[i] = 0x8
-		}
 		if input.Buf != nil {
 			input.Buf = append(input.Buf, dAtA...)
 		} else {
@@ -1763,7 +1760,7 @@ func (x *fastReflection_MsgCreateWorkloadResponse) ProtoMethods() *protoiface.Me
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*MsgCreateWorkloadResponse)
+		x := input.Message.Interface().(*MsgSubmitWorkreportsResponse)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1795,31 +1792,12 @@ func (x *fastReflection_MsgCreateWorkloadResponse) ProtoMethods() *protoiface.Me
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateWorkloadResponse: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgSubmitWorkreportsResponse: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateWorkloadResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgSubmitWorkreportsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
-			case 1:
-				if wireType != 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
-				}
-				x.Id = 0
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					x.Id |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -1942,19 +1920,18 @@ func (*MsgUpdateParamsResponse) Descriptor() ([]byte, []int) {
 	return file_enreach_workload_tx_proto_rawDescGZIP(), []int{1}
 }
 
-type MsgCreateWorkload struct {
+type MsgSubmitWorkreports struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ManagerAccount string `protobuf:"bytes,1,opt,name=managerAccount,proto3" json:"managerAccount,omitempty"`
-	Epoch          uint64 `protobuf:"varint,2,opt,name=epoch,proto3" json:"epoch,omitempty"`
-	NodeID         string `protobuf:"bytes,3,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
-	Score          uint64 `protobuf:"varint,4,opt,name=score,proto3" json:"score,omitempty"`
+	ManagerAccount string       `protobuf:"bytes,1,opt,name=managerAccount,proto3" json:"managerAccount,omitempty"`
+	Epoch          uint64       `protobuf:"varint,2,opt,name=epoch,proto3" json:"epoch,omitempty"`
+	NodeScores     []*NodeScore `protobuf:"bytes,3,rep,name=nodeScores,proto3" json:"nodeScores,omitempty"`
 }
 
-func (x *MsgCreateWorkload) Reset() {
-	*x = MsgCreateWorkload{}
+func (x *MsgSubmitWorkreports) Reset() {
+	*x = MsgSubmitWorkreports{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_enreach_workload_tx_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1962,55 +1939,46 @@ func (x *MsgCreateWorkload) Reset() {
 	}
 }
 
-func (x *MsgCreateWorkload) String() string {
+func (x *MsgSubmitWorkreports) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MsgCreateWorkload) ProtoMessage() {}
+func (*MsgSubmitWorkreports) ProtoMessage() {}
 
-// Deprecated: Use MsgCreateWorkload.ProtoReflect.Descriptor instead.
-func (*MsgCreateWorkload) Descriptor() ([]byte, []int) {
+// Deprecated: Use MsgSubmitWorkreports.ProtoReflect.Descriptor instead.
+func (*MsgSubmitWorkreports) Descriptor() ([]byte, []int) {
 	return file_enreach_workload_tx_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *MsgCreateWorkload) GetManagerAccount() string {
+func (x *MsgSubmitWorkreports) GetManagerAccount() string {
 	if x != nil {
 		return x.ManagerAccount
 	}
 	return ""
 }
 
-func (x *MsgCreateWorkload) GetEpoch() uint64 {
+func (x *MsgSubmitWorkreports) GetEpoch() uint64 {
 	if x != nil {
 		return x.Epoch
 	}
 	return 0
 }
 
-func (x *MsgCreateWorkload) GetNodeID() string {
+func (x *MsgSubmitWorkreports) GetNodeScores() []*NodeScore {
 	if x != nil {
-		return x.NodeID
+		return x.NodeScores
 	}
-	return ""
+	return nil
 }
 
-func (x *MsgCreateWorkload) GetScore() uint64 {
-	if x != nil {
-		return x.Score
-	}
-	return 0
-}
-
-type MsgCreateWorkloadResponse struct {
+type MsgSubmitWorkreportsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-
-	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (x *MsgCreateWorkloadResponse) Reset() {
-	*x = MsgCreateWorkloadResponse{}
+func (x *MsgSubmitWorkreportsResponse) Reset() {
+	*x = MsgSubmitWorkreportsResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_enreach_workload_tx_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2018,22 +1986,15 @@ func (x *MsgCreateWorkloadResponse) Reset() {
 	}
 }
 
-func (x *MsgCreateWorkloadResponse) String() string {
+func (x *MsgSubmitWorkreportsResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MsgCreateWorkloadResponse) ProtoMessage() {}
+func (*MsgSubmitWorkreportsResponse) ProtoMessage() {}
 
-// Deprecated: Use MsgCreateWorkloadResponse.ProtoReflect.Descriptor instead.
-func (*MsgCreateWorkloadResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use MsgSubmitWorkreportsResponse.ProtoReflect.Descriptor instead.
+func (*MsgSubmitWorkreportsResponse) Descriptor() ([]byte, []int) {
 	return file_enreach_workload_tx_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *MsgCreateWorkloadResponse) GetId() uint64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
 }
 
 var File_enreach_workload_tx_proto protoreflect.FileDescriptor
@@ -2051,57 +2012,60 @@ var file_enreach_workload_tx_proto_rawDesc = []byte{
 	0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x70, 0x61, 0x72,
 	0x61, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1f, 0x65, 0x6e, 0x72, 0x65, 0x61,
 	0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x77, 0x6f, 0x72, 0x6b,
-	0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xbd, 0x01, 0x0a, 0x0f, 0x4d,
-	0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x36,
-	0x0a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64,
-	0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x09, 0x61, 0x75, 0x74,
-	0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x3b, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73,
-	0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68,
-	0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73,
-	0x42, 0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72,
-	0x61, 0x6d, 0x73, 0x3a, 0x35, 0x82, 0xe7, 0xb0, 0x2a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72,
-	0x69, 0x74, 0x79, 0x8a, 0xe7, 0xb0, 0x2a, 0x22, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f,
-	0x78, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x4d, 0x73, 0x67, 0x55, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x22, 0x19, 0x0a, 0x17, 0x4d, 0x73,
-	0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x94, 0x01, 0x0a, 0x11, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65,
-	0x61, 0x74, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x12, 0x26, 0x0a, 0x0e, 0x6d,
-	0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x0e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x41, 0x63, 0x63, 0x6f,
-	0x75, 0x6e, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x04, 0x52, 0x05, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x12, 0x16, 0x0a, 0x06, 0x6e, 0x6f, 0x64,
-	0x65, 0x49, 0x44, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x6e, 0x6f, 0x64, 0x65, 0x49,
-	0x44, 0x12, 0x14, 0x0a, 0x05, 0x73, 0x63, 0x6f, 0x72, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x04,
-	0x52, 0x05, 0x73, 0x63, 0x6f, 0x72, 0x65, 0x3a, 0x13, 0x82, 0xe7, 0xb0, 0x2a, 0x0e, 0x6d, 0x61,
-	0x6e, 0x61, 0x67, 0x65, 0x72, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0x2b, 0x0a, 0x19,
-	0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61,
-	0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x32, 0xce, 0x01, 0x0a, 0x03, 0x4d, 0x73,
-	0x67, 0x12, 0x5c, 0x0a, 0x0c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d,
-	0x73, 0x12, 0x21, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b,
-	0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61,
-	0x72, 0x61, 0x6d, 0x73, 0x1a, 0x29, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77,
-	0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74,
-	0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x62, 0x0a, 0x0e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61,
-	0x64, 0x12, 0x23, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b,
-	0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x57, 0x6f,
-	0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x1a, 0x2b, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68,
-	0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65,
-	0x61, 0x74, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x1a, 0x05, 0x80, 0xe7, 0xb0, 0x2a, 0x01, 0x42, 0xa3, 0x01, 0x0a, 0x14, 0x63,
-	0x6f, 0x6d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c,
-	0x6f, 0x61, 0x64, 0x42, 0x07, 0x54, 0x78, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x21,
-	0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69,
-	0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61,
-	0x64, 0xa2, 0x02, 0x03, 0x45, 0x57, 0x58, 0xaa, 0x02, 0x10, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63,
-	0x68, 0x2e, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xca, 0x02, 0x10, 0x45, 0x6e, 0x72,
-	0x65, 0x61, 0x63, 0x68, 0x5c, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xe2, 0x02, 0x1c,
-	0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64,
-	0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x11, 0x45,
-	0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x3a, 0x3a, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x21, 0x65, 0x6e, 0x72, 0x65,
+	0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x77, 0x6f, 0x72,
+	0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xbd, 0x01,
+	0x0a, 0x0f, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d,
+	0x73, 0x12, 0x36, 0x0a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
+	0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x09,
+	0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x3b, 0x0a, 0x06, 0x70, 0x61, 0x72,
+	0x61, 0x6d, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x65, 0x6e, 0x72, 0x65,
+	0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x50, 0x61, 0x72,
+	0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06,
+	0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x3a, 0x35, 0x82, 0xe7, 0xb0, 0x2a, 0x09, 0x61, 0x75, 0x74,
+	0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x8a, 0xe7, 0xb0, 0x2a, 0x22, 0x65, 0x6e, 0x72, 0x65, 0x61,
+	0x63, 0x68, 0x2f, 0x78, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x4d, 0x73,
+	0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x22, 0x19, 0x0a,
+	0x17, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xa6, 0x01, 0x0a, 0x14, 0x4d, 0x73, 0x67,
+	0x53, 0x75, 0x62, 0x6d, 0x69, 0x74, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74,
+	0x73, 0x12, 0x26, 0x0a, 0x0e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x41, 0x63, 0x63, 0x6f,
+	0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x6d, 0x61, 0x6e, 0x61, 0x67,
+	0x65, 0x72, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x70, 0x6f,
+	0x63, 0x68, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x05, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x12,
+	0x3b, 0x0a, 0x0a, 0x6e, 0x6f, 0x64, 0x65, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x73, 0x18, 0x03, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f,
+	0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x4e, 0x6f, 0x64, 0x65, 0x53, 0x63, 0x6f, 0x72, 0x65,
+	0x52, 0x0a, 0x6e, 0x6f, 0x64, 0x65, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x73, 0x3a, 0x13, 0x82, 0xe7,
+	0xb0, 0x2a, 0x0e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e,
+	0x74, 0x22, 0x1e, 0x0a, 0x1c, 0x4d, 0x73, 0x67, 0x53, 0x75, 0x62, 0x6d, 0x69, 0x74, 0x57, 0x6f,
+	0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x32, 0xd7, 0x01, 0x0a, 0x03, 0x4d, 0x73, 0x67, 0x12, 0x5c, 0x0a, 0x0c, 0x55, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x21, 0x2e, 0x65, 0x6e, 0x72, 0x65,
+	0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x4d, 0x73, 0x67,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x29, 0x2e, 0x65,
+	0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e,
+	0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6b, 0x0a, 0x11, 0x53, 0x75, 0x62, 0x6d, 0x69,
+	0x74, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x73, 0x12, 0x26, 0x2e, 0x65,
+	0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e,
+	0x4d, 0x73, 0x67, 0x53, 0x75, 0x62, 0x6d, 0x69, 0x74, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70,
+	0x6f, 0x72, 0x74, 0x73, 0x1a, 0x2e, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77,
+	0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x4d, 0x73, 0x67, 0x53, 0x75, 0x62, 0x6d, 0x69,
+	0x74, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x05, 0x80, 0xe7, 0xb0, 0x2a, 0x01, 0x42, 0xa3, 0x01, 0x0a, 0x14,
+	0x63, 0x6f, 0x6d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b,
+	0x6c, 0x6f, 0x61, 0x64, 0x42, 0x07, 0x54, 0x78, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a,
+	0x21, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70,
+	0x69, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f,
+	0x61, 0x64, 0xa2, 0x02, 0x03, 0x45, 0x57, 0x58, 0xaa, 0x02, 0x10, 0x45, 0x6e, 0x72, 0x65, 0x61,
+	0x63, 0x68, 0x2e, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xca, 0x02, 0x10, 0x45, 0x6e,
+	0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xe2, 0x02,
+	0x1c, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61,
+	0x64, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x11,
+	0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x3a, 0x3a, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61,
+	0x64, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -2118,23 +2082,25 @@ func file_enreach_workload_tx_proto_rawDescGZIP() []byte {
 
 var file_enreach_workload_tx_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_enreach_workload_tx_proto_goTypes = []interface{}{
-	(*MsgUpdateParams)(nil),           // 0: enreach.workload.MsgUpdateParams
-	(*MsgUpdateParamsResponse)(nil),   // 1: enreach.workload.MsgUpdateParamsResponse
-	(*MsgCreateWorkload)(nil),         // 2: enreach.workload.MsgCreateWorkload
-	(*MsgCreateWorkloadResponse)(nil), // 3: enreach.workload.MsgCreateWorkloadResponse
-	(*Params)(nil),                    // 4: enreach.workload.Params
+	(*MsgUpdateParams)(nil),              // 0: enreach.workload.MsgUpdateParams
+	(*MsgUpdateParamsResponse)(nil),      // 1: enreach.workload.MsgUpdateParamsResponse
+	(*MsgSubmitWorkreports)(nil),         // 2: enreach.workload.MsgSubmitWorkreports
+	(*MsgSubmitWorkreportsResponse)(nil), // 3: enreach.workload.MsgSubmitWorkreportsResponse
+	(*Params)(nil),                       // 4: enreach.workload.Params
+	(*NodeScore)(nil),                    // 5: enreach.workload.NodeScore
 }
 var file_enreach_workload_tx_proto_depIdxs = []int32{
 	4, // 0: enreach.workload.MsgUpdateParams.params:type_name -> enreach.workload.Params
-	0, // 1: enreach.workload.Msg.UpdateParams:input_type -> enreach.workload.MsgUpdateParams
-	2, // 2: enreach.workload.Msg.CreateWorkload:input_type -> enreach.workload.MsgCreateWorkload
-	1, // 3: enreach.workload.Msg.UpdateParams:output_type -> enreach.workload.MsgUpdateParamsResponse
-	3, // 4: enreach.workload.Msg.CreateWorkload:output_type -> enreach.workload.MsgCreateWorkloadResponse
-	3, // [3:5] is the sub-list for method output_type
-	1, // [1:3] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	5, // 1: enreach.workload.MsgSubmitWorkreports.nodeScores:type_name -> enreach.workload.NodeScore
+	0, // 2: enreach.workload.Msg.UpdateParams:input_type -> enreach.workload.MsgUpdateParams
+	2, // 3: enreach.workload.Msg.SubmitWorkreports:input_type -> enreach.workload.MsgSubmitWorkreports
+	1, // 4: enreach.workload.Msg.UpdateParams:output_type -> enreach.workload.MsgUpdateParamsResponse
+	3, // 5: enreach.workload.Msg.SubmitWorkreports:output_type -> enreach.workload.MsgSubmitWorkreportsResponse
+	4, // [4:6] is the sub-list for method output_type
+	2, // [2:4] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_enreach_workload_tx_proto_init() }
@@ -2144,6 +2110,7 @@ func file_enreach_workload_tx_proto_init() {
 	}
 	file_enreach_workload_params_proto_init()
 	file_enreach_workload_workload_proto_init()
+	file_enreach_workload_workreport_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_enreach_workload_tx_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MsgUpdateParams); i {
@@ -2170,7 +2137,7 @@ func file_enreach_workload_tx_proto_init() {
 			}
 		}
 		file_enreach_workload_tx_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgCreateWorkload); i {
+			switch v := v.(*MsgSubmitWorkreports); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2182,7 +2149,7 @@ func file_enreach_workload_tx_proto_init() {
 			}
 		}
 		file_enreach_workload_tx_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgCreateWorkloadResponse); i {
+			switch v := v.(*MsgSubmitWorkreportsResponse); i {
 			case 0:
 				return &v.state
 			case 1:

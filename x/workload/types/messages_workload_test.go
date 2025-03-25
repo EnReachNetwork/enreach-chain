@@ -9,21 +9,21 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestMsgCreateWorkload_ValidateBasic(t *testing.T) {
+func TestMsgSubmitWorkreports_ValidateBasic(t *testing.T) {
 	tests := []struct {
 		name string
-		msg  MsgCreateWorkload
+		msg  MsgSubmitWorkreports
 		err  error
 	}{
 		{
 			name: "invalid address",
-			msg: MsgCreateWorkload{
+			msg: MsgSubmitWorkreports{
 				ManagerAccount: "invalid_address",
 			},
 			err: sdkerrors.ErrInvalidAddress,
 		}, {
 			name: "valid address",
-			msg: MsgCreateWorkload{
+			msg: MsgSubmitWorkreports{
 				ManagerAccount: sample.AccAddress(),
 			},
 		},

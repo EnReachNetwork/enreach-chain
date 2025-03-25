@@ -1,6 +1,7 @@
 vue/node_modules
 vue/dist
 release/
+dist/
 .idea/
 .DS_Store
 *.dot

@@ -6,25 +6,24 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
 
-var _ sdk.Msg = &MsgCreateWorkload{}
+var _ sdk.Msg = &MsgSubmitWorkreports{}
 
-func NewMsgCreateWorkload(managerAccount string, epoch uint64, nodeID string, score uint64) *MsgCreateWorkload {
-	return &MsgCreateWorkload{
+func NewMsgSubmitWorkreports(managerAccount string, epoch uint64, nodescores []*NodeScore) *MsgSubmitWorkreports {
+	return &MsgSubmitWorkreports{
 		ManagerAccount: managerAccount,
 		Epoch:          epoch,
-		NodeID:         nodeID,
-		Score:          score,
+		NodeScores:     nodescores,
 	}
 }
 
-func (msg *MsgCreateWorkload) ValidateBasic() error {
+func (msg *MsgSubmitWorkreports) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(msg.ManagerAccount)
 	if err != nil {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid manager account (%s)", err)
 	}
 
-	if len(msg.NodeID) > NODEID_MAX_LENGTH {
-		return errorsmod.Wrapf(ErrInvalidParamLength, "parameter 'nodeID' exceed max length %d", NODEID_MAX_LENGTH)
+	if len(msg.NodeScores) > NODESCORES_COUNT_PER_REQ {
+		return errorsmod.Wrapf(ErrNodeScoresCountExceedPerReqLimit, "NodeScores count per request exceed limit %d", NODESCORES_COUNT_PER_REQ)
 	}
 	return nil
 }

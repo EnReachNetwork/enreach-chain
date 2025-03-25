@@ -1,0 +1,20 @@
+syntax = "proto3";
+package enreach.workload;
+
+option go_package = "enreach/x/workload/types";
+
+message NodeScore {
+  string nodeID = 1; 
+  uint64 score = 2; 
+}
+
+message NodeScoreDB {
+  string nodeID = 1; 
+  uint64 score = 2; 
+  uint64 createAt = 3;
+  uint64 updateAt = 4;
+}
+
+message ManagerNodeScoreMap {
+  map<string, NodeScoreDB> manager_score_map = 1;  // manager_account => score
+}

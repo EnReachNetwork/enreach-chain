@@ -23,9 +23,9 @@ var (
 )
 
 const (
-	opWeightMsgCreateWorkload = "op_weight_msg_workload"
+	opWeightMsgSubmitWorkreports = "op_weight_msg_workreports"
 	// TODO: Determine the simulation weight value
-	defaultWeightMsgCreateWorkload int = 100
+	defaultWeightMsgSubmitWorkreports int = 100
 
 	// this line is used by starport scaffolding # simapp/module/const
 )
@@ -61,15 +61,15 @@ func (am AppModule) RegisterStoreDecoder(_ simtypes.StoreDecoderRegistry) {}
 func (am AppModule) WeightedOperations(simState module.SimulationState) []simtypes.WeightedOperation {
 	operations := make([]simtypes.WeightedOperation, 0)
 
-	var weightMsgCreateWorkload int
-	simState.AppParams.GetOrGenerate(opWeightMsgCreateWorkload, &weightMsgCreateWorkload, nil,
+	var weightMsgSubmitWorkreports int
+	simState.AppParams.GetOrGenerate(opWeightMsgSubmitWorkreports, &weightMsgSubmitWorkreports, nil,
 		func(_ *rand.Rand) {
-			weightMsgCreateWorkload = defaultWeightMsgCreateWorkload
+			weightMsgSubmitWorkreports = defaultWeightMsgSubmitWorkreports
 		},
 	)
 	operations = append(operations, simulation.NewWeightedOperation(
-		weightMsgCreateWorkload,
-		workloadsimulation.SimulateMsgCreateWorkload(am.accountKeeper, am.bankKeeper, am.keeper),
+		weightMsgSubmitWorkreports,
+		workloadsimulation.SimulateMsgSubmitWorkreports(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
 	// this line is used by starport scaffolding # simapp/module/operation
@@ -81,10 +81,10 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.WeightedProposalMsg {
 	return []simtypes.WeightedProposalMsg{
 		simulation.NewWeightedProposalMsg(
-			opWeightMsgCreateWorkload,
-			defaultWeightMsgCreateWorkload,
+			opWeightMsgSubmitWorkreports,
+			defaultWeightMsgSubmitWorkreports,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
-				workloadsimulation.SimulateMsgCreateWorkload(am.accountKeeper, am.bankKeeper, am.keeper)
+				workloadsimulation.SimulateMsgSubmitWorkreports(am.accountKeeper, am.bankKeeper, am.keeper)
 				return nil
 			},
 		),

@@ -40,10 +40,10 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Skip:      true, // skipped because authority gated
 				},
 				{
-					RpcMethod:      "CreateWorkload",
-					Use:            "create-workload [managerAccount] [epoch] [nodeID] [score]",
-					Short:          "Create workload",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "managerAccount"}, {ProtoField: "epoch"}, {ProtoField: "nodeID"}, {ProtoField: "score"}},
+					RpcMethod:      "SubmitWorkreports",
+					Use:            "submit-workreports [managerAccount] [epoch] [nodeScores]",
+					Short:          "Submit workreports",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "managerAccount"}, {ProtoField: "epoch"}, {ProtoField: "nodeScores"}},
 				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},

@@ -29,6 +29,7 @@ type ParamSubspace interface {
 
 type ManagerKeeper interface {
 	Manager(context.Context, *managertypes.QueryGetManagerRequest) (*managertypes.QueryGetManagerResponse, error)
+	GetCurrentEpoch(context.Context, *managertypes.QueryGetCurrentEpochRequest) (*managertypes.QueryGetCurrentEpochResponse, error)
 }
 
 type EdgenodeKeeper interface {

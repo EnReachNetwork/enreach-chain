@@ -9,14 +9,13 @@ import (
 	"enreach/x/workload/types"
 )
 
-func TestWorkloadMsgServerCreate(t *testing.T) {
+func TestMsgSubmitWorkreports(t *testing.T) {
 	_, srv, ctx := setupMsgServer(t)
 	wctx := sdk.UnwrapSDKContext(ctx)
 
 	managerAccount := "A"
 	for i := 0; i < 5; i++ {
-		resp, err := srv.CreateWorkload(wctx, &types.MsgCreateWorkload{ManagerAccount: managerAccount})
+		_, err := srv.SubmitWorkreports(wctx, &types.MsgSubmitWorkreports{ManagerAccount: managerAccount})
 		require.NoError(t, err)
-		require.Equal(t, i, int(resp.Id))
 	}
 }

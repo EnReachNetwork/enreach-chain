@@ -1,5 +1,5 @@
 package types
 
 const (
-	NODEID_MAX_LENGTH = 50
+	NODESCORES_COUNT_PER_REQ = 5000
 )

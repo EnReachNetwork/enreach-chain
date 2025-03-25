@@ -8,6 +8,7 @@ import "cosmos_proto/cosmos.proto";
 import "gogoproto/gogo.proto";
 import "enreach/workload/params.proto";
 import "enreach/workload/workload.proto";
+import "enreach/workload/workreport.proto";
 
 option go_package = "enreach/x/workload/types";
 
@@ -18,7 +19,7 @@ service Msg {
   // UpdateParams defines a (governance) operation for updating the module
   // parameters. The authority defaults to the x/gov module account.
   rpc UpdateParams   (MsgUpdateParams  ) returns (MsgUpdateParamsResponse  );
-  rpc CreateWorkload (MsgCreateWorkload) returns (MsgCreateWorkloadResponse);
+  rpc SubmitWorkreports (MsgSubmitWorkreports) returns (MsgSubmitWorkreportsResponse);
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -38,16 +39,14 @@ message MsgUpdateParams {
 // MsgUpdateParams message.
 message MsgUpdateParamsResponse {}
 
-message MsgCreateWorkload {
-  option (cosmos.msg.v1.signer) = "managerAccount";
-  string managerAccount = 1;
-  uint64 epoch     = 2;
-  string nodeID   = 3;
-  uint64 score     = 4;
+message MsgSubmitWorkreports {
+  option (cosmos.msg.v1.signer)   = "managerAccount";
+  string managerAccount           = 1;
+  uint64 epoch                    = 2;
+  repeated NodeScore nodeScores   = 3;
 }
 
-message MsgCreateWorkloadResponse {
-  uint64 id = 1;
+message MsgSubmitWorkreportsResponse {
 }
 
 
