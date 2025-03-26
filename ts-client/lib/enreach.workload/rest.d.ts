@@ -62,6 +62,14 @@ export interface QueryGetAllWorkreportByEpochResponse {
         total?: string;
     };
 }
+export interface QueryGetCurrentEpochResponse {
+    /** @format uint64 */
+    currentEpoch?: string;
+}
+export interface QueryGetEpochLengthResponse {
+    /** @format uint64 */
+    epochLength?: string;
+}
 export interface QueryGetWorkloadResponse {
     Workload?: {
         id?: string;
@@ -160,6 +168,22 @@ export declare class HttpClient<SecurityDataType = unknown> {
  * @title HTTP API Console enreach.workload
  */
 export declare class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryGetCurrentEpoch
+     * @request GET:/enreach/manager/epoch/currentepoch
+     */
+    queryGetCurrentEpoch: (params?: RequestParams) => Promise<AxiosResponse<T>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryGetEpochLength
+     * @request GET:/enreach/manager/epoch/length
+     */
+    queryGetEpochLength: (params?: RequestParams) => Promise<AxiosResponse<T>>;
     /**
      * No description
      *

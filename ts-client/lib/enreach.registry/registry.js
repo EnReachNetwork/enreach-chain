@@ -1,54 +1,54 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.msgTypes = void 0;
-const genesis_1 = require("./types/enreach/registry/genesis");
+const tx_1 = require("./types/enreach/registry/tx");
+const region_1 = require("./types/enreach/registry/region");
+const tx_2 = require("./types/enreach/registry/tx");
+const superior_1 = require("./types/enreach/registry/superior");
+const tx_3 = require("./types/enreach/registry/tx");
 const query_1 = require("./types/enreach/registry/query");
 const query_2 = require("./types/enreach/registry/query");
-const tx_1 = require("./types/enreach/registry/tx");
-const query_3 = require("./types/enreach/registry/query");
-const tx_2 = require("./types/enreach/registry/tx");
-const tx_3 = require("./types/enreach/registry/tx");
 const tx_4 = require("./types/enreach/registry/tx");
 const tx_5 = require("./types/enreach/registry/tx");
+const genesis_1 = require("./types/enreach/registry/genesis");
 const tx_6 = require("./types/enreach/registry/tx");
 const tx_7 = require("./types/enreach/registry/tx");
+const tx_8 = require("./types/enreach/registry/tx");
+const query_3 = require("./types/enreach/registry/query");
 const params_1 = require("./types/enreach/registry/params");
 const query_4 = require("./types/enreach/registry/query");
+const tx_9 = require("./types/enreach/registry/tx");
 const query_5 = require("./types/enreach/registry/query");
 const query_6 = require("./types/enreach/registry/query");
 const query_7 = require("./types/enreach/registry/query");
-const superior_1 = require("./types/enreach/registry/superior");
-const tx_8 = require("./types/enreach/registry/tx");
-const region_1 = require("./types/enreach/registry/region");
-const query_8 = require("./types/enreach/registry/query");
-const tx_9 = require("./types/enreach/registry/tx");
 const tx_10 = require("./types/enreach/registry/tx");
 const tx_11 = require("./types/enreach/registry/tx");
 const tx_12 = require("./types/enreach/registry/tx");
+const query_8 = require("./types/enreach/registry/query");
 const msgTypes = [
-    ["/enreach.registry.GenesisState", genesis_1.GenesisState],
-    ["/enreach.registry.QueryAllRegionRequest", query_1.QueryAllRegionRequest],
-    ["/enreach.registry.QueryAllRegionResponse", query_2.QueryAllRegionResponse],
-    ["/enreach.registry.MsgUpdateRegion", tx_1.MsgUpdateRegion],
-    ["/enreach.registry.QueryGetRegionRequest", query_3.QueryGetRegionRequest],
-    ["/enreach.registry.MsgCreateRegion", tx_2.MsgCreateRegion],
-    ["/enreach.registry.MsgUpdateRegionResponse", tx_3.MsgUpdateRegionResponse],
-    ["/enreach.registry.MsgDeleteRegionResponse", tx_4.MsgDeleteRegionResponse],
-    ["/enreach.registry.MsgCreateSuperiorResponse", tx_5.MsgCreateSuperiorResponse],
-    ["/enreach.registry.MsgUpdateSuperior", tx_6.MsgUpdateSuperior],
-    ["/enreach.registry.MsgUpdateSuperiorResponse", tx_7.MsgUpdateSuperiorResponse],
-    ["/enreach.registry.Params", params_1.Params],
-    ["/enreach.registry.QueryParamsRequest", query_4.QueryParamsRequest],
-    ["/enreach.registry.QueryGetRegionResponse", query_5.QueryGetRegionResponse],
-    ["/enreach.registry.QueryGetSuperiorRequest", query_6.QueryGetSuperiorRequest],
-    ["/enreach.registry.QueryGetSuperiorResponse", query_7.QueryGetSuperiorResponse],
-    ["/enreach.registry.Superior", superior_1.Superior],
-    ["/enreach.registry.MsgCreateRegionResponse", tx_8.MsgCreateRegionResponse],
+    ["/enreach.registry.MsgDeleteRegion", tx_1.MsgDeleteRegion],
     ["/enreach.registry.Region", region_1.Region],
-    ["/enreach.registry.QueryParamsResponse", query_8.QueryParamsResponse],
+    ["/enreach.registry.MsgDeleteRegionResponse", tx_2.MsgDeleteRegionResponse],
+    ["/enreach.registry.Superior", superior_1.Superior],
+    ["/enreach.registry.MsgUpdateRegion", tx_3.MsgUpdateRegion],
+    ["/enreach.registry.QueryGetRegionResponse", query_1.QueryGetRegionResponse],
+    ["/enreach.registry.QueryAllRegionResponse", query_2.QueryAllRegionResponse],
+    ["/enreach.registry.MsgCreateRegion", tx_4.MsgCreateRegion],
+    ["/enreach.registry.MsgCreateSuperior", tx_5.MsgCreateSuperior],
+    ["/enreach.registry.GenesisState", genesis_1.GenesisState],
+    ["/enreach.registry.MsgCreateRegionResponse", tx_6.MsgCreateRegionResponse],
+    ["/enreach.registry.MsgUpdateRegionResponse", tx_7.MsgUpdateRegionResponse],
+    ["/enreach.registry.MsgCreateSuperiorResponse", tx_8.MsgCreateSuperiorResponse],
+    ["/enreach.registry.QueryParamsRequest", query_3.QueryParamsRequest],
+    ["/enreach.registry.Params", params_1.Params],
+    ["/enreach.registry.QueryParamsResponse", query_4.QueryParamsResponse],
     ["/enreach.registry.MsgUpdateParams", tx_9.MsgUpdateParams],
-    ["/enreach.registry.MsgCreateSuperior", tx_10.MsgCreateSuperior],
-    ["/enreach.registry.MsgUpdateParamsResponse", tx_11.MsgUpdateParamsResponse],
-    ["/enreach.registry.MsgDeleteRegion", tx_12.MsgDeleteRegion],
+    ["/enreach.registry.QueryGetRegionRequest", query_5.QueryGetRegionRequest],
+    ["/enreach.registry.QueryAllRegionRequest", query_6.QueryAllRegionRequest],
+    ["/enreach.registry.QueryGetSuperiorResponse", query_7.QueryGetSuperiorResponse],
+    ["/enreach.registry.MsgUpdateParamsResponse", tx_10.MsgUpdateParamsResponse],
+    ["/enreach.registry.MsgUpdateSuperior", tx_11.MsgUpdateSuperior],
+    ["/enreach.registry.MsgUpdateSuperiorResponse", tx_12.MsgUpdateSuperiorResponse],
+    ["/enreach.registry.QueryGetSuperiorRequest", query_8.QueryGetSuperiorRequest],
 ];
 exports.msgTypes = msgTypes;

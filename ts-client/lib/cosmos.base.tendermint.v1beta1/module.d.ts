@@ -2,45 +2,55 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { GetNodeInfoResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
 import { VersionInfo } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { GetNodeInfoRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { GetSyncingResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { ProofOps } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { GetLatestValidatorSetRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { Validator } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { GetBlockByHeightResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { GetValidatorSetByHeightResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
 import { GetBlockByHeightRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { GetNodeInfoRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { ProofOp } from "./types/cosmos/base/tendermint/v1beta1/query";
 import { GetLatestBlockRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { ABCIQueryResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { Module } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { GetValidatorSetByHeightRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { GetSyncingRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { GetSyncingResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
 import { Block } from "./types/cosmos/base/tendermint/v1beta1/types";
 import { GetLatestValidatorSetResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { GetValidatorSetByHeightResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { GetLatestValidatorSetRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { ABCIQueryResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { Header } from "./types/cosmos/base/tendermint/v1beta1/types";
-import { GetValidatorSetByHeightRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { Module } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { GetSyncingRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { GetBlockByHeightResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { GetNodeInfoResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
 import { GetLatestBlockResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
 import { ABCIQueryRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { ProofOp } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { Validator } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { ProofOps } from "./types/cosmos/base/tendermint/v1beta1/query";
-export { GetNodeInfoResponse, VersionInfo, GetNodeInfoRequest, GetSyncingResponse, GetBlockByHeightRequest, GetLatestBlockRequest, Block, GetLatestValidatorSetResponse, GetValidatorSetByHeightResponse, GetLatestValidatorSetRequest, ABCIQueryResponse, Header, GetValidatorSetByHeightRequest, Module, GetSyncingRequest, GetBlockByHeightResponse, GetLatestBlockResponse, ABCIQueryRequest, ProofOp, Validator, ProofOps };
-type sendGetNodeInfoResponseParams = {
-    value: GetNodeInfoResponse;
-    fee?: StdFee;
-    memo?: string;
-};
+import { Header } from "./types/cosmos/base/tendermint/v1beta1/types";
+export { VersionInfo, ProofOps, GetLatestValidatorSetRequest, Validator, GetBlockByHeightResponse, GetValidatorSetByHeightResponse, GetBlockByHeightRequest, GetNodeInfoRequest, ProofOp, GetLatestBlockRequest, ABCIQueryResponse, Module, GetValidatorSetByHeightRequest, GetSyncingRequest, GetSyncingResponse, Block, GetLatestValidatorSetResponse, GetNodeInfoResponse, GetLatestBlockResponse, ABCIQueryRequest, Header };
 type sendVersionInfoParams = {
     value: VersionInfo;
     fee?: StdFee;
     memo?: string;
 };
-type sendGetNodeInfoRequestParams = {
-    value: GetNodeInfoRequest;
+type sendProofOpsParams = {
+    value: ProofOps;
     fee?: StdFee;
     memo?: string;
 };
-type sendGetSyncingResponseParams = {
-    value: GetSyncingResponse;
+type sendGetLatestValidatorSetRequestParams = {
+    value: GetLatestValidatorSetRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendValidatorParams = {
+    value: Validator;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendGetBlockByHeightResponseParams = {
+    value: GetBlockByHeightResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendGetValidatorSetByHeightResponseParams = {
+    value: GetValidatorSetByHeightResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -49,8 +59,43 @@ type sendGetBlockByHeightRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
+type sendGetNodeInfoRequestParams = {
+    value: GetNodeInfoRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendProofOpParams = {
+    value: ProofOp;
+    fee?: StdFee;
+    memo?: string;
+};
 type sendGetLatestBlockRequestParams = {
     value: GetLatestBlockRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendABCIQueryResponseParams = {
+    value: ABCIQueryResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendModuleParams = {
+    value: Module;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendGetValidatorSetByHeightRequestParams = {
+    value: GetValidatorSetByHeightRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendGetSyncingRequestParams = {
+    value: GetSyncingRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendGetSyncingResponseParams = {
+    value: GetSyncingResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -64,43 +109,8 @@ type sendGetLatestValidatorSetResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendGetValidatorSetByHeightResponseParams = {
-    value: GetValidatorSetByHeightResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendGetLatestValidatorSetRequestParams = {
-    value: GetLatestValidatorSetRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendABCIQueryResponseParams = {
-    value: ABCIQueryResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendHeaderParams = {
-    value: Header;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendGetValidatorSetByHeightRequestParams = {
-    value: GetValidatorSetByHeightRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendModuleParams = {
-    value: Module;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendGetSyncingRequestParams = {
-    value: GetSyncingRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendGetBlockByHeightResponseParams = {
-    value: GetBlockByHeightResponse;
+type sendGetNodeInfoResponseParams = {
+    value: GetNodeInfoResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -114,38 +124,55 @@ type sendABCIQueryRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendProofOpParams = {
-    value: ProofOp;
+type sendHeaderParams = {
+    value: Header;
     fee?: StdFee;
     memo?: string;
-};
-type sendValidatorParams = {
-    value: Validator;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendProofOpsParams = {
-    value: ProofOps;
-    fee?: StdFee;
-    memo?: string;
-};
-type getNodeInfoResponseParams = {
-    value: GetNodeInfoResponse;
 };
 type versionInfoParams = {
     value: VersionInfo;
 };
-type getNodeInfoRequestParams = {
-    value: GetNodeInfoRequest;
+type proofOpsParams = {
+    value: ProofOps;
 };
-type getSyncingResponseParams = {
-    value: GetSyncingResponse;
+type getLatestValidatorSetRequestParams = {
+    value: GetLatestValidatorSetRequest;
+};
+type validatorParams = {
+    value: Validator;
+};
+type getBlockByHeightResponseParams = {
+    value: GetBlockByHeightResponse;
+};
+type getValidatorSetByHeightResponseParams = {
+    value: GetValidatorSetByHeightResponse;
 };
 type getBlockByHeightRequestParams = {
     value: GetBlockByHeightRequest;
 };
+type getNodeInfoRequestParams = {
+    value: GetNodeInfoRequest;
+};
+type proofOpParams = {
+    value: ProofOp;
+};
 type getLatestBlockRequestParams = {
     value: GetLatestBlockRequest;
+};
+type abciqueryResponseParams = {
+    value: ABCIQueryResponse;
+};
+type moduleParams = {
+    value: Module;
+};
+type getValidatorSetByHeightRequestParams = {
+    value: GetValidatorSetByHeightRequest;
+};
+type getSyncingRequestParams = {
+    value: GetSyncingRequest;
+};
+type getSyncingResponseParams = {
+    value: GetSyncingResponse;
 };
 type blockParams = {
     value: Block;
@@ -153,29 +180,8 @@ type blockParams = {
 type getLatestValidatorSetResponseParams = {
     value: GetLatestValidatorSetResponse;
 };
-type getValidatorSetByHeightResponseParams = {
-    value: GetValidatorSetByHeightResponse;
-};
-type getLatestValidatorSetRequestParams = {
-    value: GetLatestValidatorSetRequest;
-};
-type abciqueryResponseParams = {
-    value: ABCIQueryResponse;
-};
-type headerParams = {
-    value: Header;
-};
-type getValidatorSetByHeightRequestParams = {
-    value: GetValidatorSetByHeightRequest;
-};
-type moduleParams = {
-    value: Module;
-};
-type getSyncingRequestParams = {
-    value: GetSyncingRequest;
-};
-type getBlockByHeightResponseParams = {
-    value: GetBlockByHeightResponse;
+type getNodeInfoResponseParams = {
+    value: GetNodeInfoResponse;
 };
 type getLatestBlockResponseParams = {
     value: GetLatestBlockResponse;
@@ -183,14 +189,8 @@ type getLatestBlockResponseParams = {
 type abciqueryRequestParams = {
     value: ABCIQueryRequest;
 };
-type proofOpParams = {
-    value: ProofOp;
-};
-type validatorParams = {
-    value: Validator;
-};
-type proofOpsParams = {
-    value: ProofOps;
+type headerParams = {
+    value: Header;
 };
 export declare const registry: any;
 interface TxClientOptions {
@@ -199,48 +199,48 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendGetNodeInfoResponse({ value, fee, memo }: sendGetNodeInfoResponseParams): Promise<DeliverTxResponse>;
     sendVersionInfo({ value, fee, memo }: sendVersionInfoParams): Promise<DeliverTxResponse>;
-    sendGetNodeInfoRequest({ value, fee, memo }: sendGetNodeInfoRequestParams): Promise<DeliverTxResponse>;
-    sendGetSyncingResponse({ value, fee, memo }: sendGetSyncingResponseParams): Promise<DeliverTxResponse>;
+    sendProofOps({ value, fee, memo }: sendProofOpsParams): Promise<DeliverTxResponse>;
+    sendGetLatestValidatorSetRequest({ value, fee, memo }: sendGetLatestValidatorSetRequestParams): Promise<DeliverTxResponse>;
+    sendValidator({ value, fee, memo }: sendValidatorParams): Promise<DeliverTxResponse>;
+    sendGetBlockByHeightResponse({ value, fee, memo }: sendGetBlockByHeightResponseParams): Promise<DeliverTxResponse>;
+    sendGetValidatorSetByHeightResponse({ value, fee, memo }: sendGetValidatorSetByHeightResponseParams): Promise<DeliverTxResponse>;
     sendGetBlockByHeightRequest({ value, fee, memo }: sendGetBlockByHeightRequestParams): Promise<DeliverTxResponse>;
+    sendGetNodeInfoRequest({ value, fee, memo }: sendGetNodeInfoRequestParams): Promise<DeliverTxResponse>;
+    sendProofOp({ value, fee, memo }: sendProofOpParams): Promise<DeliverTxResponse>;
     sendGetLatestBlockRequest({ value, fee, memo }: sendGetLatestBlockRequestParams): Promise<DeliverTxResponse>;
+    sendABCIQueryResponse({ value, fee, memo }: sendABCIQueryResponseParams): Promise<DeliverTxResponse>;
+    sendModule({ value, fee, memo }: sendModuleParams): Promise<DeliverTxResponse>;
+    sendGetValidatorSetByHeightRequest({ value, fee, memo }: sendGetValidatorSetByHeightRequestParams): Promise<DeliverTxResponse>;
+    sendGetSyncingRequest({ value, fee, memo }: sendGetSyncingRequestParams): Promise<DeliverTxResponse>;
+    sendGetSyncingResponse({ value, fee, memo }: sendGetSyncingResponseParams): Promise<DeliverTxResponse>;
     sendBlock({ value, fee, memo }: sendBlockParams): Promise<DeliverTxResponse>;
     sendGetLatestValidatorSetResponse({ value, fee, memo }: sendGetLatestValidatorSetResponseParams): Promise<DeliverTxResponse>;
-    sendGetValidatorSetByHeightResponse({ value, fee, memo }: sendGetValidatorSetByHeightResponseParams): Promise<DeliverTxResponse>;
-    sendGetLatestValidatorSetRequest({ value, fee, memo }: sendGetLatestValidatorSetRequestParams): Promise<DeliverTxResponse>;
-    sendABCIQueryResponse({ value, fee, memo }: sendABCIQueryResponseParams): Promise<DeliverTxResponse>;
-    sendHeader({ value, fee, memo }: sendHeaderParams): Promise<DeliverTxResponse>;
-    sendGetValidatorSetByHeightRequest({ value, fee, memo }: sendGetValidatorSetByHeightRequestParams): Promise<DeliverTxResponse>;
-    sendModule({ value, fee, memo }: sendModuleParams): Promise<DeliverTxResponse>;
-    sendGetSyncingRequest({ value, fee, memo }: sendGetSyncingRequestParams): Promise<DeliverTxResponse>;
-    sendGetBlockByHeightResponse({ value, fee, memo }: sendGetBlockByHeightResponseParams): Promise<DeliverTxResponse>;
+    sendGetNodeInfoResponse({ value, fee, memo }: sendGetNodeInfoResponseParams): Promise<DeliverTxResponse>;
     sendGetLatestBlockResponse({ value, fee, memo }: sendGetLatestBlockResponseParams): Promise<DeliverTxResponse>;
     sendABCIQueryRequest({ value, fee, memo }: sendABCIQueryRequestParams): Promise<DeliverTxResponse>;
-    sendProofOp({ value, fee, memo }: sendProofOpParams): Promise<DeliverTxResponse>;
-    sendValidator({ value, fee, memo }: sendValidatorParams): Promise<DeliverTxResponse>;
-    sendProofOps({ value, fee, memo }: sendProofOpsParams): Promise<DeliverTxResponse>;
-    getNodeInfoResponse({ value }: getNodeInfoResponseParams): EncodeObject;
+    sendHeader({ value, fee, memo }: sendHeaderParams): Promise<DeliverTxResponse>;
     versionInfo({ value }: versionInfoParams): EncodeObject;
-    getNodeInfoRequest({ value }: getNodeInfoRequestParams): EncodeObject;
-    getSyncingResponse({ value }: getSyncingResponseParams): EncodeObject;
+    proofOps({ value }: proofOpsParams): EncodeObject;
+    getLatestValidatorSetRequest({ value }: getLatestValidatorSetRequestParams): EncodeObject;
+    validator({ value }: validatorParams): EncodeObject;
+    getBlockByHeightResponse({ value }: getBlockByHeightResponseParams): EncodeObject;
+    getValidatorSetByHeightResponse({ value }: getValidatorSetByHeightResponseParams): EncodeObject;
     getBlockByHeightRequest({ value }: getBlockByHeightRequestParams): EncodeObject;
+    getNodeInfoRequest({ value }: getNodeInfoRequestParams): EncodeObject;
+    proofOp({ value }: proofOpParams): EncodeObject;
     getLatestBlockRequest({ value }: getLatestBlockRequestParams): EncodeObject;
+    abciqueryResponse({ value }: abciqueryResponseParams): EncodeObject;
+    module({ value }: moduleParams): EncodeObject;
+    getValidatorSetByHeightRequest({ value }: getValidatorSetByHeightRequestParams): EncodeObject;
+    getSyncingRequest({ value }: getSyncingRequestParams): EncodeObject;
+    getSyncingResponse({ value }: getSyncingResponseParams): EncodeObject;
     block({ value }: blockParams): EncodeObject;
     getLatestValidatorSetResponse({ value }: getLatestValidatorSetResponseParams): EncodeObject;
-    getValidatorSetByHeightResponse({ value }: getValidatorSetByHeightResponseParams): EncodeObject;
-    getLatestValidatorSetRequest({ value }: getLatestValidatorSetRequestParams): EncodeObject;
-    abciqueryResponse({ value }: abciqueryResponseParams): EncodeObject;
-    header({ value }: headerParams): EncodeObject;
-    getValidatorSetByHeightRequest({ value }: getValidatorSetByHeightRequestParams): EncodeObject;
-    module({ value }: moduleParams): EncodeObject;
-    getSyncingRequest({ value }: getSyncingRequestParams): EncodeObject;
-    getBlockByHeightResponse({ value }: getBlockByHeightResponseParams): EncodeObject;
+    getNodeInfoResponse({ value }: getNodeInfoResponseParams): EncodeObject;
     getLatestBlockResponse({ value }: getLatestBlockResponseParams): EncodeObject;
     abciqueryRequest({ value }: abciqueryRequestParams): EncodeObject;
-    proofOp({ value }: proofOpParams): EncodeObject;
-    validator({ value }: validatorParams): EncodeObject;
-    proofOps({ value }: proofOpsParams): EncodeObject;
+    header({ value }: headerParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

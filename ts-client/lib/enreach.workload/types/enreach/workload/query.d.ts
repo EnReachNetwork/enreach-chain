@@ -12,6 +12,16 @@ export interface QueryParamsResponse {
     /** params holds all the parameters of this module. */
     params: Params | undefined;
 }
+export interface QueryGetEpochLengthRequest {
+}
+export interface QueryGetEpochLengthResponse {
+    epochLength: number;
+}
+export interface QueryGetCurrentEpochRequest {
+}
+export interface QueryGetCurrentEpochResponse {
+    currentEpoch: number;
+}
 export interface QueryGetWorkloadRequest {
     id: number;
 }
@@ -55,6 +65,38 @@ export declare const QueryParamsResponse: {
     toJSON(message: QueryParamsResponse): unknown;
     create<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(base?: I): QueryParamsResponse;
     fromPartial<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(object: I): QueryParamsResponse;
+};
+export declare const QueryGetEpochLengthRequest: {
+    encode(_: QueryGetEpochLengthRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEpochLengthRequest;
+    fromJSON(_: any): QueryGetEpochLengthRequest;
+    toJSON(_: QueryGetEpochLengthRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryGetEpochLengthRequest>, I>>(base?: I): QueryGetEpochLengthRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryGetEpochLengthRequest>, I>>(_: I): QueryGetEpochLengthRequest;
+};
+export declare const QueryGetEpochLengthResponse: {
+    encode(message: QueryGetEpochLengthResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEpochLengthResponse;
+    fromJSON(object: any): QueryGetEpochLengthResponse;
+    toJSON(message: QueryGetEpochLengthResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryGetEpochLengthResponse>, I>>(base?: I): QueryGetEpochLengthResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryGetEpochLengthResponse>, I>>(object: I): QueryGetEpochLengthResponse;
+};
+export declare const QueryGetCurrentEpochRequest: {
+    encode(_: QueryGetCurrentEpochRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetCurrentEpochRequest;
+    fromJSON(_: any): QueryGetCurrentEpochRequest;
+    toJSON(_: QueryGetCurrentEpochRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryGetCurrentEpochRequest>, I>>(base?: I): QueryGetCurrentEpochRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryGetCurrentEpochRequest>, I>>(_: I): QueryGetCurrentEpochRequest;
+};
+export declare const QueryGetCurrentEpochResponse: {
+    encode(message: QueryGetCurrentEpochResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetCurrentEpochResponse;
+    fromJSON(object: any): QueryGetCurrentEpochResponse;
+    toJSON(message: QueryGetCurrentEpochResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryGetCurrentEpochResponse>, I>>(base?: I): QueryGetCurrentEpochResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryGetCurrentEpochResponse>, I>>(object: I): QueryGetCurrentEpochResponse;
 };
 export declare const QueryGetWorkloadRequest: {
     encode(message: QueryGetWorkloadRequest, writer?: _m0.Writer): _m0.Writer;
@@ -124,6 +166,9 @@ export declare const QueryGetAllWorkreportByEpochResponse: {
 export interface Query {
     /** Parameters queries the parameters of the module. */
     Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
+    /** Queries epoch */
+    GetEpochLength(request: QueryGetEpochLengthRequest): Promise<QueryGetEpochLengthResponse>;
+    GetCurrentEpoch(request: QueryGetCurrentEpochRequest): Promise<QueryGetCurrentEpochResponse>;
     /** Queries a list of Workload items. */
     Workload(request: QueryGetWorkloadRequest): Promise<QueryGetWorkloadResponse>;
     WorkloadAll(request: QueryAllWorkloadRequest): Promise<QueryAllWorkloadResponse>;
@@ -139,6 +184,8 @@ export declare class QueryClientImpl implements Query {
         service?: string;
     });
     Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
+    GetEpochLength(request: QueryGetEpochLengthRequest): Promise<QueryGetEpochLengthResponse>;
+    GetCurrentEpoch(request: QueryGetCurrentEpochRequest): Promise<QueryGetCurrentEpochResponse>;
     Workload(request: QueryGetWorkloadRequest): Promise<QueryGetWorkloadResponse>;
     WorkloadAll(request: QueryAllWorkloadRequest): Promise<QueryAllWorkloadResponse>;
     GetWorkreport(request: QueryGetWorkreportRequest): Promise<QueryGetWorkreportResponse>;

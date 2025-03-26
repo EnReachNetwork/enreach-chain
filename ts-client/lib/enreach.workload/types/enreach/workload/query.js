@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.QueryClientImpl = exports.QueryServiceName = exports.QueryGetAllWorkreportByEpochResponse = exports.QueryGetAllWorkreportByEpochRequest = exports.QueryGetWorkreportResponse = exports.QueryGetWorkreportRequest = exports.QueryAllWorkloadResponse = exports.QueryAllWorkloadRequest = exports.QueryGetWorkloadResponse = exports.QueryGetWorkloadRequest = exports.QueryParamsResponse = exports.QueryParamsRequest = exports.protobufPackage = void 0;
+exports.QueryClientImpl = exports.QueryServiceName = exports.QueryGetAllWorkreportByEpochResponse = exports.QueryGetAllWorkreportByEpochRequest = exports.QueryGetWorkreportResponse = exports.QueryGetWorkreportRequest = exports.QueryAllWorkloadResponse = exports.QueryAllWorkloadRequest = exports.QueryGetWorkloadResponse = exports.QueryGetWorkloadRequest = exports.QueryGetCurrentEpochResponse = exports.QueryGetCurrentEpochRequest = exports.QueryGetEpochLengthResponse = exports.QueryGetEpochLengthRequest = exports.QueryParamsResponse = exports.QueryParamsRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -98,6 +98,180 @@ exports.QueryParamsResponse = {
         message.params = (object.params !== undefined && object.params !== null)
             ? params_1.Params.fromPartial(object.params)
             : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetEpochLengthRequest() {
+    return {};
+}
+exports.QueryGetEpochLengthRequest = {
+    encode(_, writer = minimal_1.default.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetEpochLengthRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(_) {
+        return {};
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetEpochLengthRequest.fromPartial(base ?? {});
+    },
+    fromPartial(_) {
+        const message = createBaseQueryGetEpochLengthRequest();
+        return message;
+    },
+};
+function createBaseQueryGetEpochLengthResponse() {
+    return { epochLength: 0 };
+}
+exports.QueryGetEpochLengthResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.epochLength !== 0) {
+            writer.uint32(8).uint64(message.epochLength);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetEpochLengthResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 8) {
+                        break;
+                    }
+                    message.epochLength = longToNumber(reader.uint64());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { epochLength: isSet(object.epochLength) ? Number(object.epochLength) : 0 };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.epochLength !== 0) {
+            obj.epochLength = Math.round(message.epochLength);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetEpochLengthResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetEpochLengthResponse();
+        message.epochLength = object.epochLength ?? 0;
+        return message;
+    },
+};
+function createBaseQueryGetCurrentEpochRequest() {
+    return {};
+}
+exports.QueryGetCurrentEpochRequest = {
+    encode(_, writer = minimal_1.default.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetCurrentEpochRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(_) {
+        return {};
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetCurrentEpochRequest.fromPartial(base ?? {});
+    },
+    fromPartial(_) {
+        const message = createBaseQueryGetCurrentEpochRequest();
+        return message;
+    },
+};
+function createBaseQueryGetCurrentEpochResponse() {
+    return { currentEpoch: 0 };
+}
+exports.QueryGetCurrentEpochResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.currentEpoch !== 0) {
+            writer.uint32(8).uint64(message.currentEpoch);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetCurrentEpochResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 8) {
+                        break;
+                    }
+                    message.currentEpoch = longToNumber(reader.uint64());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { currentEpoch: isSet(object.currentEpoch) ? Number(object.currentEpoch) : 0 };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.currentEpoch !== 0) {
+            obj.currentEpoch = Math.round(message.currentEpoch);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetCurrentEpochResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetCurrentEpochResponse();
+        message.currentEpoch = object.currentEpoch ?? 0;
         return message;
     },
 };
@@ -583,6 +757,8 @@ class QueryClientImpl {
         this.service = opts?.service || exports.QueryServiceName;
         this.rpc = rpc;
         this.Params = this.Params.bind(this);
+        this.GetEpochLength = this.GetEpochLength.bind(this);
+        this.GetCurrentEpoch = this.GetCurrentEpoch.bind(this);
         this.Workload = this.Workload.bind(this);
         this.WorkloadAll = this.WorkloadAll.bind(this);
         this.GetWorkreport = this.GetWorkreport.bind(this);
@@ -592,6 +768,16 @@ class QueryClientImpl {
         const data = exports.QueryParamsRequest.encode(request).finish();
         const promise = this.rpc.request(this.service, "Params", data);
         return promise.then((data) => exports.QueryParamsResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    GetEpochLength(request) {
+        const data = exports.QueryGetEpochLengthRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "GetEpochLength", data);
+        return promise.then((data) => exports.QueryGetEpochLengthResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    GetCurrentEpoch(request) {
+        const data = exports.QueryGetCurrentEpochRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "GetCurrentEpoch", data);
+        return promise.then((data) => exports.QueryGetCurrentEpochResponse.decode(minimal_1.default.Reader.create(data)));
     }
     Workload(request) {
         const data = exports.QueryGetWorkloadRequest.encode(request).finish();

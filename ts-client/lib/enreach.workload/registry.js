@@ -1,48 +1,56 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.msgTypes = void 0;
-const tx_1 = require("./types/enreach/workload/tx");
-const genesis_1 = require("./types/enreach/workload/genesis");
 const query_1 = require("./types/enreach/workload/query");
-const query_2 = require("./types/enreach/workload/query");
-const tx_2 = require("./types/enreach/workload/tx");
 const workreport_1 = require("./types/enreach/workload/workreport");
-const query_3 = require("./types/enreach/workload/query");
 const workreport_2 = require("./types/enreach/workload/workreport");
+const workload_1 = require("./types/enreach/workload/workload");
+const query_2 = require("./types/enreach/workload/query");
+const workreport_3 = require("./types/enreach/workload/workreport");
+const tx_1 = require("./types/enreach/workload/tx");
+const tx_2 = require("./types/enreach/workload/tx");
+const query_3 = require("./types/enreach/workload/query");
 const query_4 = require("./types/enreach/workload/query");
-const query_5 = require("./types/enreach/workload/query");
-const tx_3 = require("./types/enreach/workload/tx");
+const workreport_4 = require("./types/enreach/workload/workreport");
+const genesis_1 = require("./types/enreach/workload/genesis");
 const params_1 = require("./types/enreach/workload/params");
-const tx_4 = require("./types/enreach/workload/tx");
+const query_5 = require("./types/enreach/workload/query");
 const query_6 = require("./types/enreach/workload/query");
 const query_7 = require("./types/enreach/workload/query");
+const tx_3 = require("./types/enreach/workload/tx");
 const query_8 = require("./types/enreach/workload/query");
 const query_9 = require("./types/enreach/workload/query");
-const workreport_3 = require("./types/enreach/workload/workreport");
-const workload_1 = require("./types/enreach/workload/workload");
 const query_10 = require("./types/enreach/workload/query");
-const workreport_4 = require("./types/enreach/workload/workreport");
+const tx_4 = require("./types/enreach/workload/tx");
+const query_11 = require("./types/enreach/workload/query");
+const query_12 = require("./types/enreach/workload/query");
+const query_13 = require("./types/enreach/workload/query");
+const query_14 = require("./types/enreach/workload/query");
 const msgTypes = [
-    ["/enreach.workload.MsgUpdateParams", tx_1.MsgUpdateParams],
-    ["/enreach.workload.GenesisState", genesis_1.GenesisState],
-    ["/enreach.workload.QueryAllWorkloadResponse", query_1.QueryAllWorkloadResponse],
-    ["/enreach.workload.QueryGetWorkreportRequest", query_2.QueryGetWorkreportRequest],
-    ["/enreach.workload.MsgSubmitWorkreports", tx_2.MsgSubmitWorkreports],
-    ["/enreach.workload.Workreport", workreport_1.Workreport],
-    ["/enreach.workload.QueryAllWorkloadRequest", query_3.QueryAllWorkloadRequest],
-    ["/enreach.workload.NodeScore", workreport_2.NodeScore],
-    ["/enreach.workload.QueryGetWorkreportResponse", query_4.QueryGetWorkreportResponse],
-    ["/enreach.workload.QueryGetAllWorkreportByEpochRequest", query_5.QueryGetAllWorkreportByEpochRequest],
-    ["/enreach.workload.MsgSubmitWorkreportsResponse", tx_3.MsgSubmitWorkreportsResponse],
-    ["/enreach.workload.Params", params_1.Params],
-    ["/enreach.workload.MsgUpdateParamsResponse", tx_4.MsgUpdateParamsResponse],
-    ["/enreach.workload.QueryGetWorkloadResponse", query_6.QueryGetWorkloadResponse],
-    ["/enreach.workload.QueryParamsRequest", query_7.QueryParamsRequest],
-    ["/enreach.workload.QueryParamsResponse", query_8.QueryParamsResponse],
-    ["/enreach.workload.QueryGetAllWorkreportByEpochResponse", query_9.QueryGetAllWorkreportByEpochResponse],
-    ["/enreach.workload.ManagerNodeScoreMap", workreport_3.ManagerNodeScoreMap],
+    ["/enreach.workload.QueryGetEpochLengthResponse", query_1.QueryGetEpochLengthResponse],
+    ["/enreach.workload.ManagerNodeScoreMap", workreport_1.ManagerNodeScoreMap],
+    ["/enreach.workload.Workreport", workreport_2.Workreport],
     ["/enreach.workload.Workload", workload_1.Workload],
-    ["/enreach.workload.QueryGetWorkloadRequest", query_10.QueryGetWorkloadRequest],
+    ["/enreach.workload.QueryGetCurrentEpochRequest", query_2.QueryGetCurrentEpochRequest],
+    ["/enreach.workload.NodeScore", workreport_3.NodeScore],
+    ["/enreach.workload.MsgUpdateParamsResponse", tx_1.MsgUpdateParamsResponse],
+    ["/enreach.workload.MsgSubmitWorkreportsResponse", tx_2.MsgSubmitWorkreportsResponse],
+    ["/enreach.workload.QueryGetAllWorkreportByEpochRequest", query_3.QueryGetAllWorkreportByEpochRequest],
+    ["/enreach.workload.QueryAllWorkloadRequest", query_4.QueryAllWorkloadRequest],
     ["/enreach.workload.NodeScoreDB", workreport_4.NodeScoreDB],
+    ["/enreach.workload.GenesisState", genesis_1.GenesisState],
+    ["/enreach.workload.Params", params_1.Params],
+    ["/enreach.workload.QueryParamsRequest", query_5.QueryParamsRequest],
+    ["/enreach.workload.QueryGetEpochLengthRequest", query_6.QueryGetEpochLengthRequest],
+    ["/enreach.workload.QueryGetWorkloadRequest", query_7.QueryGetWorkloadRequest],
+    ["/enreach.workload.MsgUpdateParams", tx_3.MsgUpdateParams],
+    ["/enreach.workload.QueryGetCurrentEpochResponse", query_8.QueryGetCurrentEpochResponse],
+    ["/enreach.workload.QueryGetWorkreportRequest", query_9.QueryGetWorkreportRequest],
+    ["/enreach.workload.QueryGetWorkreportResponse", query_10.QueryGetWorkreportResponse],
+    ["/enreach.workload.MsgSubmitWorkreports", tx_4.MsgSubmitWorkreports],
+    ["/enreach.workload.QueryParamsResponse", query_11.QueryParamsResponse],
+    ["/enreach.workload.QueryGetWorkloadResponse", query_12.QueryGetWorkloadResponse],
+    ["/enreach.workload.QueryAllWorkloadResponse", query_13.QueryAllWorkloadResponse],
+    ["/enreach.workload.QueryGetAllWorkreportByEpochResponse", query_14.QueryGetAllWorkreportByEpochResponse],
 ];
 exports.msgTypes = msgTypes;

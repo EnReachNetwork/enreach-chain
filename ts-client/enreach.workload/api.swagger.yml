@@ -4,6 +4,70 @@ info:
   name: ''
   description: ''
 paths:
+  /enreach/manager/epoch/currentepoch:
+    get:
+      operationId: Query_GetCurrentEpoch
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              currentEpoch:
+                type: string
+                format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
+  /enreach/manager/epoch/length:
+    get:
+      operationId: Query_GetEpochLength
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              epochLength:
+                type: string
+                format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
   /enreach/workload/params:
     get:
       operationId: Query_Params
@@ -453,6 +517,18 @@ definitions:
           total:
             type: string
             format: uint64
+  QueryGetCurrentEpochResponse:
+    type: object
+    properties:
+      currentEpoch:
+        type: string
+        format: uint64
+  QueryGetEpochLengthResponse:
+    type: object
+    properties:
+      epochLength:
+        type: string
+        format: uint64
   QueryGetWorkloadResponse:
     type: object
     properties:

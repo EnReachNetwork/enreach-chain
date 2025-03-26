@@ -6,165 +6,45 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
-import { Superior } from "./types/enreach/edgenode/superior";
-import { GenesisState } from "./types/enreach/edgenode/genesis";
-import { QueryParamsRequest } from "./types/enreach/edgenode/query";
-import { QueryAllNodeRequest } from "./types/enreach/edgenode/query";
-import { QueryAllNodeResponse } from "./types/enreach/edgenode/query";
-import { MsgCreateSuperiorResponse } from "./types/enreach/edgenode/tx";
-import { MsgRegisterNodeResponse } from "./types/enreach/edgenode/tx";
-import { MsgBindAndActivateNodeResponse } from "./types/enreach/edgenode/tx";
-import { Node } from "./types/enreach/edgenode/node";
-import { QueryGetSuperiorResponse } from "./types/enreach/edgenode/query";
-import { MsgRegisterNode } from "./types/enreach/edgenode/tx";
-import { MsgCreateSuperior } from "./types/enreach/edgenode/tx";
-import { QueryAllUserRequest } from "./types/enreach/edgenode/query";
-import { Params } from "./types/enreach/edgenode/params";
-import { MsgUnbindNode } from "./types/enreach/edgenode/tx";
-import { MsgUpdateSuperior } from "./types/enreach/edgenode/tx";
-import { MsgUpdateSuperiorResponse } from "./types/enreach/edgenode/tx";
-import { QueryParamsResponse } from "./types/enreach/edgenode/query";
-import { MsgCreateUserResponse } from "./types/enreach/edgenode/tx";
-import { QueryGetNodeRequest } from "./types/enreach/edgenode/query";
-import { MsgUpdateParamsResponse } from "./types/enreach/edgenode/tx";
+import { User } from "./types/enreach/edgenode/user";
 import { QueryGetNodeResponse } from "./types/enreach/edgenode/query";
-import { MsgBindAndActivateNode } from "./types/enreach/edgenode/tx";
-import { QueryGetUserRequest } from "./types/enreach/edgenode/query";
+import { MsgUpdateParamsResponse } from "./types/enreach/edgenode/tx";
+import { MsgRegisterNode } from "./types/enreach/edgenode/tx";
 import { QueryAllUserResponse } from "./types/enreach/edgenode/query";
-import { QueryGetSuperiorRequest } from "./types/enreach/edgenode/query";
+import { MsgUnbindNodeResponse } from "./types/enreach/edgenode/tx";
+import { QueryAllUserRequest } from "./types/enreach/edgenode/query";
+import { MsgUpdateSuperior } from "./types/enreach/edgenode/tx";
 import { MsgBindUserEVMAccountResponse } from "./types/enreach/edgenode/tx";
+import { MsgCreateSuperiorResponse } from "./types/enreach/edgenode/tx";
+import { GenesisState } from "./types/enreach/edgenode/genesis";
 import { MsgCreateUser } from "./types/enreach/edgenode/tx";
 import { MsgBindUserEVMAccount } from "./types/enreach/edgenode/tx";
-import { MsgUnbindNodeResponse } from "./types/enreach/edgenode/tx";
-import { User } from "./types/enreach/edgenode/user";
+import { MsgBindAndActivateNode } from "./types/enreach/edgenode/tx";
+import { QueryParamsResponse } from "./types/enreach/edgenode/query";
+import { QueryGetUserRequest } from "./types/enreach/edgenode/query";
 import { QueryGetUserResponse } from "./types/enreach/edgenode/query";
+import { MsgBindAndActivateNodeResponse } from "./types/enreach/edgenode/tx";
+import { MsgCreateUserResponse } from "./types/enreach/edgenode/tx";
+import { MsgCreateSuperior } from "./types/enreach/edgenode/tx";
 import { MsgUpdateParams } from "./types/enreach/edgenode/tx";
+import { MsgRegisterNodeResponse } from "./types/enreach/edgenode/tx";
+import { Params } from "./types/enreach/edgenode/params";
+import { Node } from "./types/enreach/edgenode/node";
+import { Superior } from "./types/enreach/edgenode/superior";
+import { QueryAllNodeRequest } from "./types/enreach/edgenode/query";
+import { QueryGetSuperiorResponse } from "./types/enreach/edgenode/query";
+import { MsgUnbindNode } from "./types/enreach/edgenode/tx";
+import { MsgUpdateSuperiorResponse } from "./types/enreach/edgenode/tx";
+import { QueryParamsRequest } from "./types/enreach/edgenode/query";
+import { QueryGetNodeRequest } from "./types/enreach/edgenode/query";
+import { QueryAllNodeResponse } from "./types/enreach/edgenode/query";
+import { QueryGetSuperiorRequest } from "./types/enreach/edgenode/query";
 
 
-export { Superior, GenesisState, QueryParamsRequest, QueryAllNodeRequest, QueryAllNodeResponse, MsgCreateSuperiorResponse, MsgRegisterNodeResponse, MsgBindAndActivateNodeResponse, Node, QueryGetSuperiorResponse, MsgRegisterNode, MsgCreateSuperior, QueryAllUserRequest, Params, MsgUnbindNode, MsgUpdateSuperior, MsgUpdateSuperiorResponse, QueryParamsResponse, MsgCreateUserResponse, QueryGetNodeRequest, MsgUpdateParamsResponse, QueryGetNodeResponse, MsgBindAndActivateNode, QueryGetUserRequest, QueryAllUserResponse, QueryGetSuperiorRequest, MsgBindUserEVMAccountResponse, MsgCreateUser, MsgBindUserEVMAccount, MsgUnbindNodeResponse, User, QueryGetUserResponse, MsgUpdateParams };
+export { User, QueryGetNodeResponse, MsgUpdateParamsResponse, MsgRegisterNode, QueryAllUserResponse, MsgUnbindNodeResponse, QueryAllUserRequest, MsgUpdateSuperior, MsgBindUserEVMAccountResponse, MsgCreateSuperiorResponse, GenesisState, MsgCreateUser, MsgBindUserEVMAccount, MsgBindAndActivateNode, QueryParamsResponse, QueryGetUserRequest, QueryGetUserResponse, MsgBindAndActivateNodeResponse, MsgCreateUserResponse, MsgCreateSuperior, MsgUpdateParams, MsgRegisterNodeResponse, Params, Node, Superior, QueryAllNodeRequest, QueryGetSuperiorResponse, MsgUnbindNode, MsgUpdateSuperiorResponse, QueryParamsRequest, QueryGetNodeRequest, QueryAllNodeResponse, QueryGetSuperiorRequest };
 
-type sendSuperiorParams = {
-  value: Superior,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendGenesisStateParams = {
-  value: GenesisState,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryParamsRequestParams = {
-  value: QueryParamsRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryAllNodeRequestParams = {
-  value: QueryAllNodeRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryAllNodeResponseParams = {
-  value: QueryAllNodeResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgCreateSuperiorResponseParams = {
-  value: MsgCreateSuperiorResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgRegisterNodeResponseParams = {
-  value: MsgRegisterNodeResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgBindAndActivateNodeResponseParams = {
-  value: MsgBindAndActivateNodeResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendNodeParams = {
-  value: Node,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetSuperiorResponseParams = {
-  value: QueryGetSuperiorResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgRegisterNodeParams = {
-  value: MsgRegisterNode,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgCreateSuperiorParams = {
-  value: MsgCreateSuperior,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryAllUserRequestParams = {
-  value: QueryAllUserRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendParamsParams = {
-  value: Params,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUnbindNodeParams = {
-  value: MsgUnbindNode,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateSuperiorParams = {
-  value: MsgUpdateSuperior,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateSuperiorResponseParams = {
-  value: MsgUpdateSuperiorResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryParamsResponseParams = {
-  value: QueryParamsResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgCreateUserResponseParams = {
-  value: MsgCreateUserResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetNodeRequestParams = {
-  value: QueryGetNodeRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateParamsResponseParams = {
-  value: MsgUpdateParamsResponse,
+type sendUserParams = {
+  value: User,
   fee?: StdFee,
   memo?: string
 };
@@ -175,14 +55,14 @@ type sendQueryGetNodeResponseParams = {
   memo?: string
 };
 
-type sendMsgBindAndActivateNodeParams = {
-  value: MsgBindAndActivateNode,
+type sendMsgUpdateParamsResponseParams = {
+  value: MsgUpdateParamsResponse,
   fee?: StdFee,
   memo?: string
 };
 
-type sendQueryGetUserRequestParams = {
-  value: QueryGetUserRequest,
+type sendMsgRegisterNodeParams = {
+  value: MsgRegisterNode,
   fee?: StdFee,
   memo?: string
 };
@@ -193,14 +73,38 @@ type sendQueryAllUserResponseParams = {
   memo?: string
 };
 
-type sendQueryGetSuperiorRequestParams = {
-  value: QueryGetSuperiorRequest,
+type sendMsgUnbindNodeResponseParams = {
+  value: MsgUnbindNodeResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryAllUserRequestParams = {
+  value: QueryAllUserRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateSuperiorParams = {
+  value: MsgUpdateSuperior,
   fee?: StdFee,
   memo?: string
 };
 
 type sendMsgBindUserEVMAccountResponseParams = {
   value: MsgBindUserEVMAccountResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgCreateSuperiorResponseParams = {
+  value: MsgCreateSuperiorResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendGenesisStateParams = {
+  value: GenesisState,
   fee?: StdFee,
   memo?: string
 };
@@ -217,14 +121,20 @@ type sendMsgBindUserEVMAccountParams = {
   memo?: string
 };
 
-type sendMsgUnbindNodeResponseParams = {
-  value: MsgUnbindNodeResponse,
+type sendMsgBindAndActivateNodeParams = {
+  value: MsgBindAndActivateNode,
   fee?: StdFee,
   memo?: string
 };
 
-type sendUserParams = {
-  value: User,
+type sendQueryParamsResponseParams = {
+  value: QueryParamsResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetUserRequestParams = {
+  value: QueryGetUserRequest,
   fee?: StdFee,
   memo?: string
 };
@@ -235,119 +145,145 @@ type sendQueryGetUserResponseParams = {
   memo?: string
 };
 
+type sendMsgBindAndActivateNodeResponseParams = {
+  value: MsgBindAndActivateNodeResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgCreateUserResponseParams = {
+  value: MsgCreateUserResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgCreateSuperiorParams = {
+  value: MsgCreateSuperior,
+  fee?: StdFee,
+  memo?: string
+};
+
 type sendMsgUpdateParamsParams = {
   value: MsgUpdateParams,
   fee?: StdFee,
   memo?: string
 };
 
-
-type superiorParams = {
-  value: Superior,
-};
-
-type genesisStateParams = {
-  value: GenesisState,
-};
-
-type queryParamsRequestParams = {
-  value: QueryParamsRequest,
-};
-
-type queryAllNodeRequestParams = {
-  value: QueryAllNodeRequest,
-};
-
-type queryAllNodeResponseParams = {
-  value: QueryAllNodeResponse,
-};
-
-type msgCreateSuperiorResponseParams = {
-  value: MsgCreateSuperiorResponse,
-};
-
-type msgRegisterNodeResponseParams = {
+type sendMsgRegisterNodeResponseParams = {
   value: MsgRegisterNodeResponse,
+  fee?: StdFee,
+  memo?: string
 };
 
-type msgBindAndActivateNodeResponseParams = {
-  value: MsgBindAndActivateNodeResponse,
-};
-
-type nodeParams = {
-  value: Node,
-};
-
-type queryGetSuperiorResponseParams = {
-  value: QueryGetSuperiorResponse,
-};
-
-type msgRegisterNodeParams = {
-  value: MsgRegisterNode,
-};
-
-type msgCreateSuperiorParams = {
-  value: MsgCreateSuperior,
-};
-
-type queryAllUserRequestParams = {
-  value: QueryAllUserRequest,
-};
-
-type paramsParams = {
+type sendParamsParams = {
   value: Params,
+  fee?: StdFee,
+  memo?: string
 };
 
-type msgUnbindNodeParams = {
+type sendNodeParams = {
+  value: Node,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendSuperiorParams = {
+  value: Superior,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryAllNodeRequestParams = {
+  value: QueryAllNodeRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetSuperiorResponseParams = {
+  value: QueryGetSuperiorResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUnbindNodeParams = {
   value: MsgUnbindNode,
+  fee?: StdFee,
+  memo?: string
 };
 
-type msgUpdateSuperiorParams = {
-  value: MsgUpdateSuperior,
-};
-
-type msgUpdateSuperiorResponseParams = {
+type sendMsgUpdateSuperiorResponseParams = {
   value: MsgUpdateSuperiorResponse,
+  fee?: StdFee,
+  memo?: string
 };
 
-type queryParamsResponseParams = {
-  value: QueryParamsResponse,
+type sendQueryParamsRequestParams = {
+  value: QueryParamsRequest,
+  fee?: StdFee,
+  memo?: string
 };
 
-type msgCreateUserResponseParams = {
-  value: MsgCreateUserResponse,
-};
-
-type queryGetNodeRequestParams = {
+type sendQueryGetNodeRequestParams = {
   value: QueryGetNodeRequest,
+  fee?: StdFee,
+  memo?: string
 };
 
-type msgUpdateParamsResponseParams = {
-  value: MsgUpdateParamsResponse,
+type sendQueryAllNodeResponseParams = {
+  value: QueryAllNodeResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetSuperiorRequestParams = {
+  value: QueryGetSuperiorRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+
+type userParams = {
+  value: User,
 };
 
 type queryGetNodeResponseParams = {
   value: QueryGetNodeResponse,
 };
 
-type msgBindAndActivateNodeParams = {
-  value: MsgBindAndActivateNode,
+type msgUpdateParamsResponseParams = {
+  value: MsgUpdateParamsResponse,
 };
 
-type queryGetUserRequestParams = {
-  value: QueryGetUserRequest,
+type msgRegisterNodeParams = {
+  value: MsgRegisterNode,
 };
 
 type queryAllUserResponseParams = {
   value: QueryAllUserResponse,
 };
 
-type queryGetSuperiorRequestParams = {
-  value: QueryGetSuperiorRequest,
+type msgUnbindNodeResponseParams = {
+  value: MsgUnbindNodeResponse,
+};
+
+type queryAllUserRequestParams = {
+  value: QueryAllUserRequest,
+};
+
+type msgUpdateSuperiorParams = {
+  value: MsgUpdateSuperior,
 };
 
 type msgBindUserEvmaccountResponseParams = {
   value: MsgBindUserEVMAccountResponse,
+};
+
+type msgCreateSuperiorResponseParams = {
+  value: MsgCreateSuperiorResponse,
+};
+
+type genesisStateParams = {
+  value: GenesisState,
 };
 
 type msgCreateUserParams = {
@@ -358,20 +294,84 @@ type msgBindUserEvmaccountParams = {
   value: MsgBindUserEVMAccount,
 };
 
-type msgUnbindNodeResponseParams = {
-  value: MsgUnbindNodeResponse,
+type msgBindAndActivateNodeParams = {
+  value: MsgBindAndActivateNode,
 };
 
-type userParams = {
-  value: User,
+type queryParamsResponseParams = {
+  value: QueryParamsResponse,
+};
+
+type queryGetUserRequestParams = {
+  value: QueryGetUserRequest,
 };
 
 type queryGetUserResponseParams = {
   value: QueryGetUserResponse,
 };
 
+type msgBindAndActivateNodeResponseParams = {
+  value: MsgBindAndActivateNodeResponse,
+};
+
+type msgCreateUserResponseParams = {
+  value: MsgCreateUserResponse,
+};
+
+type msgCreateSuperiorParams = {
+  value: MsgCreateSuperior,
+};
+
 type msgUpdateParamsParams = {
   value: MsgUpdateParams,
+};
+
+type msgRegisterNodeResponseParams = {
+  value: MsgRegisterNodeResponse,
+};
+
+type paramsParams = {
+  value: Params,
+};
+
+type nodeParams = {
+  value: Node,
+};
+
+type superiorParams = {
+  value: Superior,
+};
+
+type queryAllNodeRequestParams = {
+  value: QueryAllNodeRequest,
+};
+
+type queryGetSuperiorResponseParams = {
+  value: QueryGetSuperiorResponse,
+};
+
+type msgUnbindNodeParams = {
+  value: MsgUnbindNode,
+};
+
+type msgUpdateSuperiorResponseParams = {
+  value: MsgUpdateSuperiorResponse,
+};
+
+type queryParamsRequestParams = {
+  value: QueryParamsRequest,
+};
+
+type queryGetNodeRequestParams = {
+  value: QueryGetNodeRequest,
+};
+
+type queryAllNodeResponseParams = {
+  value: QueryAllNodeResponse,
+};
+
+type queryGetSuperiorRequestParams = {
+  value: QueryGetSuperiorRequest,
 };
 
 
@@ -404,297 +404,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 
   return {
 		
-		async sendSuperior({ value, fee, memo }: sendSuperiorParams): Promise<DeliverTxResponse> {
+		async sendUser({ value, fee, memo }: sendUserParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendSuperior: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendUser: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.superior({ value: Superior.fromPartial(value) })
+				let msg = this.user({ value: User.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendSuperior: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryParamsRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryParamsRequest({ value: QueryParamsRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryParamsRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryAllNodeRequest({ value, fee, memo }: sendQueryAllNodeRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryAllNodeRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryAllNodeRequest({ value: QueryAllNodeRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryAllNodeRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryAllNodeResponse({ value, fee, memo }: sendQueryAllNodeResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryAllNodeResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryAllNodeResponse({ value: QueryAllNodeResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryAllNodeResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgCreateSuperiorResponse({ value, fee, memo }: sendMsgCreateSuperiorResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgCreateSuperiorResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgCreateSuperiorResponse({ value: MsgCreateSuperiorResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgCreateSuperiorResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgRegisterNodeResponse({ value, fee, memo }: sendMsgRegisterNodeResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgRegisterNodeResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgRegisterNodeResponse({ value: MsgRegisterNodeResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgRegisterNodeResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgBindAndActivateNodeResponse({ value, fee, memo }: sendMsgBindAndActivateNodeResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgBindAndActivateNodeResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgBindAndActivateNodeResponse({ value: MsgBindAndActivateNodeResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgBindAndActivateNodeResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendNode({ value, fee, memo }: sendNodeParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendNode: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.node({ value: Node.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendNode: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGetSuperiorResponse({ value, fee, memo }: sendQueryGetSuperiorResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetSuperiorResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetSuperiorResponse({ value: QueryGetSuperiorResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetSuperiorResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgRegisterNode({ value, fee, memo }: sendMsgRegisterNodeParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgRegisterNode: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgRegisterNode({ value: MsgRegisterNode.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgRegisterNode: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgCreateSuperior({ value, fee, memo }: sendMsgCreateSuperiorParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgCreateSuperior: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgCreateSuperior({ value: MsgCreateSuperior.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgCreateSuperior: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryAllUserRequest({ value, fee, memo }: sendQueryAllUserRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryAllUserRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryAllUserRequest({ value: QueryAllUserRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryAllUserRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendParams: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.params({ value: Params.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendParams: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUnbindNode({ value, fee, memo }: sendMsgUnbindNodeParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUnbindNode: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUnbindNode({ value: MsgUnbindNode.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUnbindNode: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUpdateSuperior({ value, fee, memo }: sendMsgUpdateSuperiorParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateSuperior: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateSuperior({ value: MsgUpdateSuperior.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateSuperior: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUpdateSuperiorResponse({ value, fee, memo }: sendMsgUpdateSuperiorResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateSuperiorResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateSuperiorResponse({ value: MsgUpdateSuperiorResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateSuperiorResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryParamsResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryParamsResponse({ value: QueryParamsResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryParamsResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgCreateUserResponse({ value, fee, memo }: sendMsgCreateUserResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgCreateUserResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgCreateUserResponse({ value: MsgCreateUserResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgCreateUserResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGetNodeRequest({ value, fee, memo }: sendQueryGetNodeRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetNodeRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetNodeRequest({ value: QueryGetNodeRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetNodeRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateParamsResponse({ value: MsgUpdateParamsResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateParamsResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendUser: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -712,31 +432,31 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendMsgBindAndActivateNode({ value, fee, memo }: sendMsgBindAndActivateNodeParams): Promise<DeliverTxResponse> {
+		async sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgBindAndActivateNode: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgBindAndActivateNode({ value: MsgBindAndActivateNode.fromPartial(value) })
+				let msg = this.msgUpdateParamsResponse({ value: MsgUpdateParamsResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgBindAndActivateNode: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgUpdateParamsResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendQueryGetUserRequest({ value, fee, memo }: sendQueryGetUserRequestParams): Promise<DeliverTxResponse> {
+		async sendMsgRegisterNode({ value, fee, memo }: sendMsgRegisterNodeParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryGetUserRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgRegisterNode: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetUserRequest({ value: QueryGetUserRequest.fromPartial(value) })
+				let msg = this.msgRegisterNode({ value: MsgRegisterNode.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetUserRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgRegisterNode: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -754,17 +474,45 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendQueryGetSuperiorRequest({ value, fee, memo }: sendQueryGetSuperiorRequestParams): Promise<DeliverTxResponse> {
+		async sendMsgUnbindNodeResponse({ value, fee, memo }: sendMsgUnbindNodeResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryGetSuperiorRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgUnbindNodeResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetSuperiorRequest({ value: QueryGetSuperiorRequest.fromPartial(value) })
+				let msg = this.msgUnbindNodeResponse({ value: MsgUnbindNodeResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetSuperiorRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgUnbindNodeResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryAllUserRequest({ value, fee, memo }: sendQueryAllUserRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryAllUserRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryAllUserRequest({ value: QueryAllUserRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryAllUserRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateSuperior({ value, fee, memo }: sendMsgUpdateSuperiorParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateSuperior: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateSuperior({ value: MsgUpdateSuperior.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateSuperior: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -779,6 +527,34 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
 				throw new Error('TxClient:sendMsgBindUserEVMAccountResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgCreateSuperiorResponse({ value, fee, memo }: sendMsgCreateSuperiorResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateSuperiorResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgCreateSuperiorResponse({ value: MsgCreateSuperiorResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgCreateSuperiorResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -810,31 +586,45 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendMsgUnbindNodeResponse({ value, fee, memo }: sendMsgUnbindNodeResponseParams): Promise<DeliverTxResponse> {
+		async sendMsgBindAndActivateNode({ value, fee, memo }: sendMsgBindAndActivateNodeParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgUnbindNodeResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgBindAndActivateNode: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUnbindNodeResponse({ value: MsgUnbindNodeResponse.fromPartial(value) })
+				let msg = this.msgBindAndActivateNode({ value: MsgBindAndActivateNode.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUnbindNodeResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgBindAndActivateNode: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendUser({ value, fee, memo }: sendUserParams): Promise<DeliverTxResponse> {
+		async sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendUser: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryParamsResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.user({ value: User.fromPartial(value) })
+				let msg = this.queryParamsResponse({ value: QueryParamsResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendUser: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryParamsResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetUserRequest({ value, fee, memo }: sendQueryGetUserRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetUserRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetUserRequest({ value: QueryGetUserRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetUserRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -852,6 +642,48 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		async sendMsgBindAndActivateNodeResponse({ value, fee, memo }: sendMsgBindAndActivateNodeResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgBindAndActivateNodeResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgBindAndActivateNodeResponse({ value: MsgBindAndActivateNodeResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgBindAndActivateNodeResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgCreateUserResponse({ value, fee, memo }: sendMsgCreateUserResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateUserResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgCreateUserResponse({ value: MsgCreateUserResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgCreateUserResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgCreateSuperior({ value, fee, memo }: sendMsgCreateSuperiorParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateSuperior: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgCreateSuperior({ value: MsgCreateSuperior.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgCreateSuperior: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
 		async sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.')
@@ -866,172 +698,180 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		
-		superior({ value }: superiorParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.edgenode.Superior", value: Superior.fromPartial( value ) }  
+		async sendMsgRegisterNodeResponse({ value, fee, memo }: sendMsgRegisterNodeResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgRegisterNodeResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgRegisterNodeResponse({ value: MsgRegisterNodeResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:Superior: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendMsgRegisterNodeResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		genesisState({ value }: genesisStateParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.edgenode.GenesisState", value: GenesisState.fromPartial( value ) }  
+		async sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendParams: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.params({ value: Params.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendParams: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.edgenode.QueryParamsRequest", value: QueryParamsRequest.fromPartial( value ) }  
+		async sendNode({ value, fee, memo }: sendNodeParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendNode: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.node({ value: Node.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:QueryParamsRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendNode: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		queryAllNodeRequest({ value }: queryAllNodeRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.edgenode.QueryAllNodeRequest", value: QueryAllNodeRequest.fromPartial( value ) }  
+		async sendSuperior({ value, fee, memo }: sendSuperiorParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendSuperior: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.superior({ value: Superior.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:QueryAllNodeRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendSuperior: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		queryAllNodeResponse({ value }: queryAllNodeResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.edgenode.QueryAllNodeResponse", value: QueryAllNodeResponse.fromPartial( value ) }  
+		async sendQueryAllNodeRequest({ value, fee, memo }: sendQueryAllNodeRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryAllNodeRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryAllNodeRequest({ value: QueryAllNodeRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:QueryAllNodeResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendQueryAllNodeRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		msgCreateSuperiorResponse({ value }: msgCreateSuperiorResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.edgenode.MsgCreateSuperiorResponse", value: MsgCreateSuperiorResponse.fromPartial( value ) }  
+		async sendQueryGetSuperiorResponse({ value, fee, memo }: sendQueryGetSuperiorResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetSuperiorResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetSuperiorResponse({ value: QueryGetSuperiorResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:MsgCreateSuperiorResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendQueryGetSuperiorResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		msgRegisterNodeResponse({ value }: msgRegisterNodeResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.edgenode.MsgRegisterNodeResponse", value: MsgRegisterNodeResponse.fromPartial( value ) }  
+		async sendMsgUnbindNode({ value, fee, memo }: sendMsgUnbindNodeParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUnbindNode: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUnbindNode({ value: MsgUnbindNode.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:MsgRegisterNodeResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendMsgUnbindNode: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		msgBindAndActivateNodeResponse({ value }: msgBindAndActivateNodeResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.edgenode.MsgBindAndActivateNodeResponse", value: MsgBindAndActivateNodeResponse.fromPartial( value ) }  
+		async sendMsgUpdateSuperiorResponse({ value, fee, memo }: sendMsgUpdateSuperiorResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateSuperiorResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateSuperiorResponse({ value: MsgUpdateSuperiorResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:MsgBindAndActivateNodeResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendMsgUpdateSuperiorResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		node({ value }: nodeParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.edgenode.Node", value: Node.fromPartial( value ) }  
+		async sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryParamsRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryParamsRequest({ value: QueryParamsRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:Node: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendQueryParamsRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		queryGetSuperiorResponse({ value }: queryGetSuperiorResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.edgenode.QueryGetSuperiorResponse", value: QueryGetSuperiorResponse.fromPartial( value ) }  
+		async sendQueryGetNodeRequest({ value, fee, memo }: sendQueryGetNodeRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetNodeRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetNodeRequest({ value: QueryGetNodeRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:QueryGetSuperiorResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendQueryGetNodeRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		msgRegisterNode({ value }: msgRegisterNodeParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.edgenode.MsgRegisterNode", value: MsgRegisterNode.fromPartial( value ) }  
+		async sendQueryAllNodeResponse({ value, fee, memo }: sendQueryAllNodeResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryAllNodeResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryAllNodeResponse({ value: QueryAllNodeResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:MsgRegisterNode: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendQueryAllNodeResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		msgCreateSuperior({ value }: msgCreateSuperiorParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.edgenode.MsgCreateSuperior", value: MsgCreateSuperior.fromPartial( value ) }  
+		async sendQueryGetSuperiorRequest({ value, fee, memo }: sendQueryGetSuperiorRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetSuperiorRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetSuperiorRequest({ value: QueryGetSuperiorRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:MsgCreateSuperior: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendQueryGetSuperiorRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		queryAllUserRequest({ value }: queryAllUserRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.edgenode.QueryAllUserRequest", value: QueryAllUserRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryAllUserRequest: Could not create message: ' + e.message)
-			}
-		},
 		
-		params({ value }: paramsParams): EncodeObject {
+		user({ value }: userParams): EncodeObject {
 			try {
-				return { typeUrl: "/enreach.edgenode.Params", value: Params.fromPartial( value ) }  
+				return { typeUrl: "/enreach.edgenode.User", value: User.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:Params: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUnbindNode({ value }: msgUnbindNodeParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.edgenode.MsgUnbindNode", value: MsgUnbindNode.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUnbindNode: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateSuperior({ value }: msgUpdateSuperiorParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.edgenode.MsgUpdateSuperior", value: MsgUpdateSuperior.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateSuperior: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateSuperiorResponse({ value }: msgUpdateSuperiorResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.edgenode.MsgUpdateSuperiorResponse", value: MsgUpdateSuperiorResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateSuperiorResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.edgenode.QueryParamsResponse", value: QueryParamsResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryParamsResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgCreateUserResponse({ value }: msgCreateUserResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.edgenode.MsgCreateUserResponse", value: MsgCreateUserResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgCreateUserResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetNodeRequest({ value }: queryGetNodeRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.edgenode.QueryGetNodeRequest", value: QueryGetNodeRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetNodeRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.edgenode.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:User: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -1043,19 +883,19 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		msgBindAndActivateNode({ value }: msgBindAndActivateNodeParams): EncodeObject {
+		msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/enreach.edgenode.MsgBindAndActivateNode", value: MsgBindAndActivateNode.fromPartial( value ) }  
+				return { typeUrl: "/enreach.edgenode.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgBindAndActivateNode: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		queryGetUserRequest({ value }: queryGetUserRequestParams): EncodeObject {
+		msgRegisterNode({ value }: msgRegisterNodeParams): EncodeObject {
 			try {
-				return { typeUrl: "/enreach.edgenode.QueryGetUserRequest", value: QueryGetUserRequest.fromPartial( value ) }  
+				return { typeUrl: "/enreach.edgenode.MsgRegisterNode", value: MsgRegisterNode.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryGetUserRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgRegisterNode: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -1067,11 +907,27 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		queryGetSuperiorRequest({ value }: queryGetSuperiorRequestParams): EncodeObject {
+		msgUnbindNodeResponse({ value }: msgUnbindNodeResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/enreach.edgenode.QueryGetSuperiorRequest", value: QueryGetSuperiorRequest.fromPartial( value ) }  
+				return { typeUrl: "/enreach.edgenode.MsgUnbindNodeResponse", value: MsgUnbindNodeResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryGetSuperiorRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgUnbindNodeResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryAllUserRequest({ value }: queryAllUserRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.edgenode.QueryAllUserRequest", value: QueryAllUserRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryAllUserRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateSuperior({ value }: msgUpdateSuperiorParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.edgenode.MsgUpdateSuperior", value: MsgUpdateSuperior.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateSuperior: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -1080,6 +936,22 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 				return { typeUrl: "/enreach.edgenode.MsgBindUserEVMAccountResponse", value: MsgBindUserEVMAccountResponse.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:MsgBindUserEVMAccountResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgCreateSuperiorResponse({ value }: msgCreateSuperiorResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.edgenode.MsgCreateSuperiorResponse", value: MsgCreateSuperiorResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgCreateSuperiorResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		genesisState({ value }: genesisStateParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.edgenode.GenesisState", value: GenesisState.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -1099,19 +971,27 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		msgUnbindNodeResponse({ value }: msgUnbindNodeResponseParams): EncodeObject {
+		msgBindAndActivateNode({ value }: msgBindAndActivateNodeParams): EncodeObject {
 			try {
-				return { typeUrl: "/enreach.edgenode.MsgUnbindNodeResponse", value: MsgUnbindNodeResponse.fromPartial( value ) }  
+				return { typeUrl: "/enreach.edgenode.MsgBindAndActivateNode", value: MsgBindAndActivateNode.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgUnbindNodeResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgBindAndActivateNode: Could not create message: ' + e.message)
 			}
 		},
 		
-		user({ value }: userParams): EncodeObject {
+		queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/enreach.edgenode.User", value: User.fromPartial( value ) }  
+				return { typeUrl: "/enreach.edgenode.QueryParamsResponse", value: QueryParamsResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:User: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryParamsResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryGetUserRequest({ value }: queryGetUserRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.edgenode.QueryGetUserRequest", value: QueryGetUserRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetUserRequest: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -1123,11 +1003,131 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		msgBindAndActivateNodeResponse({ value }: msgBindAndActivateNodeResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.edgenode.MsgBindAndActivateNodeResponse", value: MsgBindAndActivateNodeResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgBindAndActivateNodeResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgCreateUserResponse({ value }: msgCreateUserResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.edgenode.MsgCreateUserResponse", value: MsgCreateUserResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgCreateUserResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgCreateSuperior({ value }: msgCreateSuperiorParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.edgenode.MsgCreateSuperior", value: MsgCreateSuperior.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgCreateSuperior: Could not create message: ' + e.message)
+			}
+		},
+		
 		msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject {
 			try {
 				return { typeUrl: "/enreach.edgenode.MsgUpdateParams", value: MsgUpdateParams.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgRegisterNodeResponse({ value }: msgRegisterNodeResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.edgenode.MsgRegisterNodeResponse", value: MsgRegisterNodeResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgRegisterNodeResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		params({ value }: paramsParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.edgenode.Params", value: Params.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:Params: Could not create message: ' + e.message)
+			}
+		},
+		
+		node({ value }: nodeParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.edgenode.Node", value: Node.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:Node: Could not create message: ' + e.message)
+			}
+		},
+		
+		superior({ value }: superiorParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.edgenode.Superior", value: Superior.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:Superior: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryAllNodeRequest({ value }: queryAllNodeRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.edgenode.QueryAllNodeRequest", value: QueryAllNodeRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryAllNodeRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryGetSuperiorResponse({ value }: queryGetSuperiorResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.edgenode.QueryGetSuperiorResponse", value: QueryGetSuperiorResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetSuperiorResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUnbindNode({ value }: msgUnbindNodeParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.edgenode.MsgUnbindNode", value: MsgUnbindNode.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUnbindNode: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateSuperiorResponse({ value }: msgUpdateSuperiorResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.edgenode.MsgUpdateSuperiorResponse", value: MsgUpdateSuperiorResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateSuperiorResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.edgenode.QueryParamsRequest", value: QueryParamsRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryParamsRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryGetNodeRequest({ value }: queryGetNodeRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.edgenode.QueryGetNodeRequest", value: QueryGetNodeRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetNodeRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryAllNodeResponse({ value }: queryAllNodeResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.edgenode.QueryAllNodeResponse", value: QueryAllNodeResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryAllNodeResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryGetSuperiorRequest({ value }: queryGetSuperiorRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.edgenode.QueryGetSuperiorRequest", value: QueryGetSuperiorRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetSuperiorRequest: Could not create message: ' + e.message)
 			}
 		},
 		

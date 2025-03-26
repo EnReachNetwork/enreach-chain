@@ -18,6 +18,20 @@ export interface QueryParamsResponse {
   params: Params | undefined;
 }
 
+export interface QueryGetEpochLengthRequest {
+}
+
+export interface QueryGetEpochLengthResponse {
+  epochLength: number;
+}
+
+export interface QueryGetCurrentEpochRequest {
+}
+
+export interface QueryGetCurrentEpochResponse {
+  currentEpoch: number;
+}
+
 export interface QueryGetWorkloadRequest {
   id: number;
 }
@@ -152,6 +166,206 @@ export const QueryParamsResponse = {
     message.params = (object.params !== undefined && object.params !== null)
       ? Params.fromPartial(object.params)
       : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetEpochLengthRequest(): QueryGetEpochLengthRequest {
+  return {};
+}
+
+export const QueryGetEpochLengthRequest = {
+  encode(_: QueryGetEpochLengthRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEpochLengthRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetEpochLengthRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): QueryGetEpochLengthRequest {
+    return {};
+  },
+
+  toJSON(_: QueryGetEpochLengthRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetEpochLengthRequest>, I>>(base?: I): QueryGetEpochLengthRequest {
+    return QueryGetEpochLengthRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetEpochLengthRequest>, I>>(_: I): QueryGetEpochLengthRequest {
+    const message = createBaseQueryGetEpochLengthRequest();
+    return message;
+  },
+};
+
+function createBaseQueryGetEpochLengthResponse(): QueryGetEpochLengthResponse {
+  return { epochLength: 0 };
+}
+
+export const QueryGetEpochLengthResponse = {
+  encode(message: QueryGetEpochLengthResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.epochLength !== 0) {
+      writer.uint32(8).uint64(message.epochLength);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEpochLengthResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetEpochLengthResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.epochLength = longToNumber(reader.uint64() as Long);
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetEpochLengthResponse {
+    return { epochLength: isSet(object.epochLength) ? Number(object.epochLength) : 0 };
+  },
+
+  toJSON(message: QueryGetEpochLengthResponse): unknown {
+    const obj: any = {};
+    if (message.epochLength !== 0) {
+      obj.epochLength = Math.round(message.epochLength);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetEpochLengthResponse>, I>>(base?: I): QueryGetEpochLengthResponse {
+    return QueryGetEpochLengthResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetEpochLengthResponse>, I>>(object: I): QueryGetEpochLengthResponse {
+    const message = createBaseQueryGetEpochLengthResponse();
+    message.epochLength = object.epochLength ?? 0;
+    return message;
+  },
+};
+
+function createBaseQueryGetCurrentEpochRequest(): QueryGetCurrentEpochRequest {
+  return {};
+}
+
+export const QueryGetCurrentEpochRequest = {
+  encode(_: QueryGetCurrentEpochRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetCurrentEpochRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetCurrentEpochRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): QueryGetCurrentEpochRequest {
+    return {};
+  },
+
+  toJSON(_: QueryGetCurrentEpochRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetCurrentEpochRequest>, I>>(base?: I): QueryGetCurrentEpochRequest {
+    return QueryGetCurrentEpochRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetCurrentEpochRequest>, I>>(_: I): QueryGetCurrentEpochRequest {
+    const message = createBaseQueryGetCurrentEpochRequest();
+    return message;
+  },
+};
+
+function createBaseQueryGetCurrentEpochResponse(): QueryGetCurrentEpochResponse {
+  return { currentEpoch: 0 };
+}
+
+export const QueryGetCurrentEpochResponse = {
+  encode(message: QueryGetCurrentEpochResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.currentEpoch !== 0) {
+      writer.uint32(8).uint64(message.currentEpoch);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetCurrentEpochResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetCurrentEpochResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.currentEpoch = longToNumber(reader.uint64() as Long);
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetCurrentEpochResponse {
+    return { currentEpoch: isSet(object.currentEpoch) ? Number(object.currentEpoch) : 0 };
+  },
+
+  toJSON(message: QueryGetCurrentEpochResponse): unknown {
+    const obj: any = {};
+    if (message.currentEpoch !== 0) {
+      obj.currentEpoch = Math.round(message.currentEpoch);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetCurrentEpochResponse>, I>>(base?: I): QueryGetCurrentEpochResponse {
+    return QueryGetCurrentEpochResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetCurrentEpochResponse>, I>>(object: I): QueryGetCurrentEpochResponse {
+    const message = createBaseQueryGetCurrentEpochResponse();
+    message.currentEpoch = object.currentEpoch ?? 0;
     return message;
   },
 };
@@ -704,6 +918,9 @@ export const QueryGetAllWorkreportByEpochResponse = {
 export interface Query {
   /** Parameters queries the parameters of the module. */
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
+  /** Queries epoch */
+  GetEpochLength(request: QueryGetEpochLengthRequest): Promise<QueryGetEpochLengthResponse>;
+  GetCurrentEpoch(request: QueryGetCurrentEpochRequest): Promise<QueryGetCurrentEpochResponse>;
   /** Queries a list of Workload items. */
   Workload(request: QueryGetWorkloadRequest): Promise<QueryGetWorkloadResponse>;
   WorkloadAll(request: QueryAllWorkloadRequest): Promise<QueryAllWorkloadResponse>;
@@ -720,6 +937,8 @@ export class QueryClientImpl implements Query {
     this.service = opts?.service || QueryServiceName;
     this.rpc = rpc;
     this.Params = this.Params.bind(this);
+    this.GetEpochLength = this.GetEpochLength.bind(this);
+    this.GetCurrentEpoch = this.GetCurrentEpoch.bind(this);
     this.Workload = this.Workload.bind(this);
     this.WorkloadAll = this.WorkloadAll.bind(this);
     this.GetWorkreport = this.GetWorkreport.bind(this);
@@ -729,6 +948,18 @@ export class QueryClientImpl implements Query {
     const data = QueryParamsRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "Params", data);
     return promise.then((data) => QueryParamsResponse.decode(_m0.Reader.create(data)));
+  }
+
+  GetEpochLength(request: QueryGetEpochLengthRequest): Promise<QueryGetEpochLengthResponse> {
+    const data = QueryGetEpochLengthRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "GetEpochLength", data);
+    return promise.then((data) => QueryGetEpochLengthResponse.decode(_m0.Reader.create(data)));
+  }
+
+  GetCurrentEpoch(request: QueryGetCurrentEpochRequest): Promise<QueryGetCurrentEpochResponse> {
+    const data = QueryGetCurrentEpochRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "GetCurrentEpoch", data);
+    return promise.then((data) => QueryGetCurrentEpochResponse.decode(_m0.Reader.create(data)));
   }
 
   Workload(request: QueryGetWorkloadRequest): Promise<QueryGetWorkloadResponse> {

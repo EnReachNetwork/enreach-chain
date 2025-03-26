@@ -9,12 +9,12 @@ const query_3 = require("./types/cosmos/params/v1beta1/query");
 const query_4 = require("./types/cosmos/params/v1beta1/query");
 const query_5 = require("./types/cosmos/params/v1beta1/query");
 const msgTypes = [
-    ["/cosmos.params.v1beta1.QuerySubspacesResponse", query_1.QuerySubspacesResponse],
-    ["/cosmos.params.v1beta1.Subspace", query_2.Subspace],
-    ["/cosmos.params.v1beta1.ParamChange", params_1.ParamChange],
-    ["/cosmos.params.v1beta1.ParameterChangeProposal", params_2.ParameterChangeProposal],
+    ["/cosmos.params.v1beta1.QuerySubspacesRequest", query_1.QuerySubspacesRequest],
+    ["/cosmos.params.v1beta1.QuerySubspacesResponse", query_2.QuerySubspacesResponse],
+    ["/cosmos.params.v1beta1.ParameterChangeProposal", params_1.ParameterChangeProposal],
+    ["/cosmos.params.v1beta1.ParamChange", params_2.ParamChange],
     ["/cosmos.params.v1beta1.QueryParamsRequest", query_3.QueryParamsRequest],
-    ["/cosmos.params.v1beta1.QuerySubspacesRequest", query_4.QuerySubspacesRequest],
-    ["/cosmos.params.v1beta1.QueryParamsResponse", query_5.QueryParamsResponse],
+    ["/cosmos.params.v1beta1.QueryParamsResponse", query_4.QueryParamsResponse],
+    ["/cosmos.params.v1beta1.Subspace", query_5.Subspace],
 ];
 exports.msgTypes = msgTypes;
