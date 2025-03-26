@@ -2,7 +2,7 @@ import { DirectSecp256k1HdWallet } from '@cosmjs/proto-signing'
 import { txClient } from 'enreach-client-ts/lib/enreach.workload';
 import { queryClient } from "enreach-client-ts/lib/enreach.workload";
 import { CHAIN_API_URL, CHAIN_PREFIX, CHAIN_RPC_URL } from './consts';
-import { MsgSubmitWorkreports, QueryAllWorkloadResponse } from 'enreach-client-ts/lib/enreach.workload/module';
+import { MsgSubmitWorkreports, QueryAllWorkloadResponse, QueryGetCurrentEpochResponse } from 'enreach-client-ts/lib/enreach.workload/module';
 
 export default class WorkloadApi {
     private mnemonic: string;
@@ -42,5 +42,11 @@ export default class WorkloadApi {
         let qClient = queryClient({ addr: CHAIN_API_URL });
         const regions = await qClient.queryWorkloadAll();
         return regions.data;
+    }
+
+    async getCurrentEpoch(): Promise<QueryGetCurrentEpochResponse> {
+        let qClient = queryClient({ addr: CHAIN_API_URL });
+        const resp = await qClient.queryGetCurrentEpoch();
+        return resp.data;
     }
 }

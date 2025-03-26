@@ -8,7 +8,10 @@ import EdgenodeApi from './edgenode';
 import WorkloadApi from './workload';
 import { Tendermint37Client } from "@cosmjs/tendermint-rpc";
 import { ethers } from 'ethers';
-import { MsgSubmitWorkreports } from 'enreach-client-ts/lib/enreach.workload/types/enreach/workload/tx';
+import { Params } from "@cosmjs/tendermint-rpc/build/tendermint37/adaptor/requests";
+import { BlockResultsRequest, Method } from '@cosmjs/tendermint-rpc/build/tendermint37/requests';
+import { Event } from '@cosmjs/tendermint-rpc/build/tendermint37/responses';
+import { JsonRpcSuccessResponse } from "@cosmjs/json-rpc";
 
 async function main() {
   const regionAdminApi = new RegionApi(ADMIN_MNEMONIC);
@@ -45,7 +48,7 @@ async function main() {
 
   await testEdgenode(edgenodeApi);
 
-  await testWorkload(workloadApi, managerApi);
+  await testWorkload(workloadApi);
 }
 
 async function testManager(regionApi: RegionApi, operatorApi: OperatorApi, managerApi: ManagerApi) {
@@ -145,13 +148,13 @@ async function testEdgenode(edgenodeApi: EdgenodeApi) {
   console.log("Nodes:", allNodes);
 }
 
-async function testWorkload(workloadApi: WorkloadApi, managerApi: ManagerApi) {
+async function testWorkload(workloadApi: WorkloadApi) {
 
-  const currentEpoch = (await managerApi.getCurrentEpoch()).currentEpoch;
+  const currentEpoch = (await workloadApi.getCurrentEpoch()).currentEpoch;
   const previsouEpoch = currentEpoch - 1;
 
   const workreports = {
-    managerAccount: managerApi.account,
+    managerAccount: workloadApi.account,
     epoch: previsouEpoch,
     nodeScores: [
       {
@@ -167,7 +170,7 @@ async function testWorkload(workloadApi: WorkloadApi, managerApi: ManagerApi) {
 
   await workloadApi.submitWorkreports(workreports);
   const workreports2 = {
-    managerAccount: managerApi.account,
+    managerAccount: workloadApi.account,
     epoch: previsouEpoch,
     nodeScores: [
       {
@@ -188,13 +191,29 @@ async function testWorkload(workloadApi: WorkloadApi, managerApi: ManagerApi) {
 } 
 
 async function listenEvents() {
+
   const tmClient = await Tendermint37Client.connect(CHAIN_WS_URL);
 
-  const query = `tm.event='Tx'`;
-  const subscription = tmClient.subscribeTx(query);
-  const decoder = new TextDecoder();
+  const subscriptionBlockHeader = tmClient.subscribeNewBlockHeader();
+  subscriptionBlockHeader.subscribe({
+      next: async (blockHeaderEvent) => {
 
-  subscription.subscribe({
+        const blockHeight = blockHeaderEvent.height;
+        const events = await getFinalizeBlockEvents(tmClient, blockHeight);
+        events.forEach((event) => {
+          if (event.type === "EventEpochStart") {
+            const epoch = event.attributes.find(attr => attr.key === "epoch")?.value;
+            console.log(`!!!Epoch '${epoch}' start at block '${blockHeight}'`);
+          } else if (event.type === "EventEpochEnd") {
+            const epoch = event.attributes.find(attr => attr.key === "epoch")?.value;
+            console.log(`!!!Epoch '${epoch}' end at block '${blockHeight}'`);
+          }
+        });
+      },
+  });
+
+  const subscriptionTx = tmClient.subscribeTx();
+  subscriptionTx.subscribe({
       next: (txResponse) => {
           txResponse.result.events.forEach((event) => {
               if (event.type === 'message') {
@@ -210,6 +229,38 @@ async function listenEvents() {
       error: (err) => console.error("Subsription Failed:", err),
       complete: () => console.log("Subscription Complete"),
   });
+}
+
+async function getFinalizeBlockEvents(tmClient:Tendermint37Client, height: number): Promise<Event[]> {
+
+  // The latest @cosmjs/tendermint-rpc (v0.33.1) is not compatible with cometbft v0.38
+  // which has removed begin_block_events and end_block_events, and replaced them with finalize_block_events
+  // there is a pull request to fix this issue https://github.com/cosmos/cosmjs/pull/1612
+  // but no one merge this...
+  // so we have to hack here and do the decode manually
+  const query: BlockResultsRequest = {
+    method: Method.BlockResults,
+    params: { height },
+  };
+  const req = Params.encodeBlockResults(query);
+  const resp = await (tmClient as any).client.execute(req);
+
+  const events = (resp as JsonRpcSuccessResponse).result.finalize_block_events
+  if (events !== undefined && Array.isArray(events)) {
+
+    const decodedEvents = events.map((event) =>{
+      return {
+        type: event.type,
+        attributes: (event.attributes && Array.isArray(event.attributes)) 
+            ? event.attributes.map((attribute: any) => {return {key:attribute.key, value: attribute.value ?? ""}}) 
+            : [],
+      };
+    });
+
+    return decodedEvents as Event[];
+  }
+
+  return [];
 }
 
 function sleep(ms: number) {

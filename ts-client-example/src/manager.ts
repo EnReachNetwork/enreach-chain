@@ -1,7 +1,7 @@
 import { DirectSecp256k1HdWallet } from '@cosmjs/proto-signing'
 import { txClient } from 'enreach-client-ts/lib/enreach.manager';
 import { queryClient } from "enreach-client-ts/lib/enreach.manager";
-import { MsgCreateSuperior, MsgGoWorking, MsgRegisterManager, QueryAllManagerResponse, QueryGetCurrentEpochResponse } from 'enreach-client-ts/lib/enreach.manager/module';
+import { MsgCreateSuperior, MsgGoWorking, MsgRegisterManager, QueryAllManagerResponse } from 'enreach-client-ts/lib/enreach.manager/module';
 import { CHAIN_API_URL, CHAIN_PREFIX, CHAIN_RPC_URL } from './consts';
 
 export default class ManagerApi {
@@ -64,11 +64,5 @@ export default class ManagerApi {
         let qClient = queryClient({ addr: CHAIN_API_URL });
         const regions = await qClient.queryManagerAll();
         return regions.data;
-    }
-
-    async getCurrentEpoch(): Promise<QueryGetCurrentEpochResponse> {
-        let qClient = queryClient({ addr: CHAIN_API_URL });
-        const resp = await qClient.queryGetCurrentEpoch();
-        return resp.data;
     }
 }
