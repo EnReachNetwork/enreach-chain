@@ -3,12 +3,13 @@ package keeper
 import (
 	"context"
 	"enreach/x/workload/types"
+	"strconv"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/query"
 )
 
-func (k Keeper) ProcessEpochWorkreports(goCtx context.Context) error {
+func (k Keeper) ProcessEpochWorkload(goCtx context.Context) error {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	currentEpoch := types.GetCurrentEpoch(ctx)
@@ -26,18 +27,7 @@ func (k Keeper) ProcessEpochWorkreports(goCtx context.Context) error {
 			toProcessEpoch := uint64(1)
 			totalNodesCount := k.GetWorkreportCountByEpoch(ctx, toProcessEpoch)
 
-			lastEpochProcessData = types.EpochProcessData{
-				Epoch:               1,
-				TotalNodesCount:     totalNodesCount,
-				ProcessedNodesCount: 0,
-				StartAt:             blockHeight,
-				UpdateAt:            blockHeight,
-				Status:              string(types.EPS_INIT),
-				Pagination:          nil,
-			}
-
-			k.SetLastEpochProcessData(ctx, &lastEpochProcessData)
-			k.AppendEpochProcessData(ctx, &lastEpochProcessData)
+			lastEpochProcessData = createNewEpochProcessData(ctx, k, toProcessEpoch, totalNodesCount)
 		}
 
 		if lastEpochProcessData.Status != string(types.EPS_DONE) {
@@ -83,6 +73,18 @@ func (k Keeper) ProcessEpochWorkreports(goCtx context.Context) error {
 				// Already process all the workreports data of the specific epoch
 				lastEpochProcessData.Status = string(types.EPS_DONE)
 				lastEpochProcessData.Pagination = nil
+
+				// Emit epoch workload process done event
+				ctx.EventManager().EmitEvent(
+					sdk.NewEvent(types.EventTypeEpochWorkloadProcessEnded,
+						sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+						sdk.NewAttribute(types.AttributeKeyEpoch, strconv.FormatUint(lastEpochProcessData.Epoch, 10)),
+						sdk.NewAttribute(types.AttributeKeyTotalNodesCount, strconv.FormatUint(lastEpochProcessData.TotalNodesCount, 10)),
+						sdk.NewAttribute(types.AttributeKeyProcessedNodesCount, strconv.FormatUint(lastEpochProcessData.ProcessedNodesCount, 10)),
+						sdk.NewAttribute(types.AttributeKeyStartAt, strconv.FormatUint(lastEpochProcessData.StartAt, 10)),
+						sdk.NewAttribute(types.AttributeKeyEndAt, strconv.FormatUint(lastEpochProcessData.UpdateAt, 10)),
+					),
+				)
 			}
 
 			// Save the lastEpochProcessData to store
@@ -100,23 +102,43 @@ func (k Keeper) ProcessEpochWorkreports(goCtx context.Context) error {
 				nextProcessEpoch := lastEpochProcessData.Epoch + 1
 				totalNodesCount := k.GetWorkreportCountByEpoch(ctx, nextProcessEpoch)
 
-				newLastEpochProcessData := types.EpochProcessData{
-					Epoch:               nextProcessEpoch,
-					TotalNodesCount:     totalNodesCount,
-					ProcessedNodesCount: 0,
-					StartAt:             blockHeight,
-					UpdateAt:            blockHeight,
-					Status:              string(types.EPS_INIT),
-					Pagination:          nil,
-				}
+				newEpochProcessData := createNewEpochProcessData(ctx, k, nextProcessEpoch, totalNodesCount)
 
-				k.SetLastEpochProcessData(ctx, &newLastEpochProcessData)
-				k.AppendEpochProcessData(ctx, &newLastEpochProcessData)
+				k.SetLastEpochProcessData(ctx, &newEpochProcessData)
+				k.AppendEpochProcessData(ctx, &newEpochProcessData)
 			}
 		}
 	}
 
 	return nil
+}
+
+func createNewEpochProcessData(ctx sdk.Context, k Keeper, epoch uint64, totalNodesCount uint64) types.EpochProcessData {
+	blockHeight := uint64(ctx.BlockHeight())
+	newEpochProcessData := types.EpochProcessData{
+		Epoch:               epoch,
+		TotalNodesCount:     totalNodesCount,
+		ProcessedNodesCount: 0,
+		StartAt:             blockHeight,
+		UpdateAt:            blockHeight,
+		Status:              string(types.EPS_INIT),
+		Pagination:          nil,
+	}
+
+	k.SetLastEpochProcessData(ctx, &newEpochProcessData)
+	k.AppendEpochProcessData(ctx, &newEpochProcessData)
+
+	// Emit epoch workload process start event
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeEpochWorkloadProcessStarted,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyEpoch, strconv.FormatUint(epoch, 10)),
+			sdk.NewAttribute(types.AttributeKeyTotalNodesCount, strconv.FormatUint(totalNodesCount, 10)),
+			sdk.NewAttribute(types.AttributeKeyStartAt, strconv.FormatUint(blockHeight, 10)),
+		),
+	)
+
+	return newEpochProcessData
 }
 
 func processWorkReportBatch(ctx sdk.Context, k Keeper, epoch uint64, workreports *[]types.Workreport) error {

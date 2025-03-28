@@ -156,8 +156,8 @@ func (am AppModule) BeginBlock(goCtx context.Context) error {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	k := am.keeper
-	// Process epoch workreports
-	k.ProcessEpochWorkreports(goCtx)
+	// Process epoch workload
+	k.ProcessEpochWorkload(goCtx)
 
 	if types.IsEpochStart(goCtx) {
 		currentEpoch := types.GetCurrentEpoch(ctx)
