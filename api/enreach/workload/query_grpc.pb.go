@@ -19,13 +19,18 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Query_Params_FullMethodName                  = "/enreach.workload.Query/Params"
-	Query_GetEpochLength_FullMethodName          = "/enreach.workload.Query/GetEpochLength"
-	Query_GetCurrentEpoch_FullMethodName         = "/enreach.workload.Query/GetCurrentEpoch"
-	Query_Workload_FullMethodName                = "/enreach.workload.Query/Workload"
-	Query_WorkloadAll_FullMethodName             = "/enreach.workload.Query/WorkloadAll"
-	Query_GetWorkreport_FullMethodName           = "/enreach.workload.Query/GetWorkreport"
-	Query_GetAllWorkreportByEpoch_FullMethodName = "/enreach.workload.Query/GetAllWorkreportByEpoch"
+	Query_Params_FullMethodName                     = "/enreach.workload.Query/Params"
+	Query_EpochLength_FullMethodName                = "/enreach.workload.Query/EpochLength"
+	Query_CurrentEpoch_FullMethodName               = "/enreach.workload.Query/CurrentEpoch"
+	Query_Workload_FullMethodName                   = "/enreach.workload.Query/Workload"
+	Query_WorkloadAll_FullMethodName                = "/enreach.workload.Query/WorkloadAll"
+	Query_Workreport_FullMethodName                 = "/enreach.workload.Query/Workreport"
+	Query_AllWorkreportByEpoch_FullMethodName       = "/enreach.workload.Query/AllWorkreportByEpoch"
+	Query_WorkreportProcessBatchSize_FullMethodName = "/enreach.workload.Query/WorkreportProcessBatchSize"
+	Query_HistoryEpochDataDepth_FullMethodName      = "/enreach.workload.Query/HistoryEpochDataDepth"
+	Query_EpochProcessData_FullMethodName           = "/enreach.workload.Query/EpochProcessData"
+	Query_AllEpochProcessData_FullMethodName        = "/enreach.workload.Query/AllEpochProcessData"
+	Query_Superior_FullMethodName                   = "/enreach.workload.Query/Superior"
 )
 
 // QueryClient is the client API for Query service.
@@ -35,14 +40,21 @@ type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
 	// Queries epoch
-	GetEpochLength(ctx context.Context, in *QueryGetEpochLengthRequest, opts ...grpc.CallOption) (*QueryGetEpochLengthResponse, error)
-	GetCurrentEpoch(ctx context.Context, in *QueryGetCurrentEpochRequest, opts ...grpc.CallOption) (*QueryGetCurrentEpochResponse, error)
+	EpochLength(ctx context.Context, in *QueryGetEpochLengthRequest, opts ...grpc.CallOption) (*QueryGetEpochLengthResponse, error)
+	CurrentEpoch(ctx context.Context, in *QueryGetCurrentEpochRequest, opts ...grpc.CallOption) (*QueryGetCurrentEpochResponse, error)
 	// Queries a list of Workload items.
 	Workload(ctx context.Context, in *QueryGetWorkloadRequest, opts ...grpc.CallOption) (*QueryGetWorkloadResponse, error)
 	WorkloadAll(ctx context.Context, in *QueryAllWorkloadRequest, opts ...grpc.CallOption) (*QueryAllWorkloadResponse, error)
 	// Queries a list of Workreport items.
-	GetWorkreport(ctx context.Context, in *QueryGetWorkreportRequest, opts ...grpc.CallOption) (*QueryGetWorkreportResponse, error)
-	GetAllWorkreportByEpoch(ctx context.Context, in *QueryGetAllWorkreportByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllWorkreportByEpochResponse, error)
+	Workreport(ctx context.Context, in *QueryGetWorkreportRequest, opts ...grpc.CallOption) (*QueryGetWorkreportResponse, error)
+	AllWorkreportByEpoch(ctx context.Context, in *QueryGetAllWorkreportByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllWorkreportByEpochResponse, error)
+	// Queries some param settings
+	WorkreportProcessBatchSize(ctx context.Context, in *QueryGetWorkreportProcessBatchSizeRequest, opts ...grpc.CallOption) (*QueryGetWorkreportProcessBatchSizeResponse, error)
+	HistoryEpochDataDepth(ctx context.Context, in *QueryGetHistoryEpochDataDepthRequest, opts ...grpc.CallOption) (*QueryGetHistoryEpochDataDepthResponse, error)
+	EpochProcessData(ctx context.Context, in *QueryGetEpochProcessDataRequest, opts ...grpc.CallOption) (*QueryGetEpochProcessDataResponse, error)
+	AllEpochProcessData(ctx context.Context, in *QueryGetAllEpochProcessDataRequest, opts ...grpc.CallOption) (*QueryGetAllEpochProcessDataResponse, error)
+	// Queries a Superior
+	Superior(ctx context.Context, in *QueryGetSuperiorRequest, opts ...grpc.CallOption) (*QueryGetSuperiorResponse, error)
 }
 
 type queryClient struct {
@@ -62,18 +74,18 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
-func (c *queryClient) GetEpochLength(ctx context.Context, in *QueryGetEpochLengthRequest, opts ...grpc.CallOption) (*QueryGetEpochLengthResponse, error) {
+func (c *queryClient) EpochLength(ctx context.Context, in *QueryGetEpochLengthRequest, opts ...grpc.CallOption) (*QueryGetEpochLengthResponse, error) {
 	out := new(QueryGetEpochLengthResponse)
-	err := c.cc.Invoke(ctx, Query_GetEpochLength_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, Query_EpochLength_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *queryClient) GetCurrentEpoch(ctx context.Context, in *QueryGetCurrentEpochRequest, opts ...grpc.CallOption) (*QueryGetCurrentEpochResponse, error) {
+func (c *queryClient) CurrentEpoch(ctx context.Context, in *QueryGetCurrentEpochRequest, opts ...grpc.CallOption) (*QueryGetCurrentEpochResponse, error) {
 	out := new(QueryGetCurrentEpochResponse)
-	err := c.cc.Invoke(ctx, Query_GetCurrentEpoch_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, Query_CurrentEpoch_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -98,18 +110,63 @@ func (c *queryClient) WorkloadAll(ctx context.Context, in *QueryAllWorkloadReque
 	return out, nil
 }
 
-func (c *queryClient) GetWorkreport(ctx context.Context, in *QueryGetWorkreportRequest, opts ...grpc.CallOption) (*QueryGetWorkreportResponse, error) {
+func (c *queryClient) Workreport(ctx context.Context, in *QueryGetWorkreportRequest, opts ...grpc.CallOption) (*QueryGetWorkreportResponse, error) {
 	out := new(QueryGetWorkreportResponse)
-	err := c.cc.Invoke(ctx, Query_GetWorkreport_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, Query_Workreport_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *queryClient) GetAllWorkreportByEpoch(ctx context.Context, in *QueryGetAllWorkreportByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllWorkreportByEpochResponse, error) {
+func (c *queryClient) AllWorkreportByEpoch(ctx context.Context, in *QueryGetAllWorkreportByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllWorkreportByEpochResponse, error) {
 	out := new(QueryGetAllWorkreportByEpochResponse)
-	err := c.cc.Invoke(ctx, Query_GetAllWorkreportByEpoch_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, Query_AllWorkreportByEpoch_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) WorkreportProcessBatchSize(ctx context.Context, in *QueryGetWorkreportProcessBatchSizeRequest, opts ...grpc.CallOption) (*QueryGetWorkreportProcessBatchSizeResponse, error) {
+	out := new(QueryGetWorkreportProcessBatchSizeResponse)
+	err := c.cc.Invoke(ctx, Query_WorkreportProcessBatchSize_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) HistoryEpochDataDepth(ctx context.Context, in *QueryGetHistoryEpochDataDepthRequest, opts ...grpc.CallOption) (*QueryGetHistoryEpochDataDepthResponse, error) {
+	out := new(QueryGetHistoryEpochDataDepthResponse)
+	err := c.cc.Invoke(ctx, Query_HistoryEpochDataDepth_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) EpochProcessData(ctx context.Context, in *QueryGetEpochProcessDataRequest, opts ...grpc.CallOption) (*QueryGetEpochProcessDataResponse, error) {
+	out := new(QueryGetEpochProcessDataResponse)
+	err := c.cc.Invoke(ctx, Query_EpochProcessData_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) AllEpochProcessData(ctx context.Context, in *QueryGetAllEpochProcessDataRequest, opts ...grpc.CallOption) (*QueryGetAllEpochProcessDataResponse, error) {
+	out := new(QueryGetAllEpochProcessDataResponse)
+	err := c.cc.Invoke(ctx, Query_AllEpochProcessData_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) Superior(ctx context.Context, in *QueryGetSuperiorRequest, opts ...grpc.CallOption) (*QueryGetSuperiorResponse, error) {
+	out := new(QueryGetSuperiorResponse)
+	err := c.cc.Invoke(ctx, Query_Superior_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -123,14 +180,21 @@ type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
 	// Queries epoch
-	GetEpochLength(context.Context, *QueryGetEpochLengthRequest) (*QueryGetEpochLengthResponse, error)
-	GetCurrentEpoch(context.Context, *QueryGetCurrentEpochRequest) (*QueryGetCurrentEpochResponse, error)
+	EpochLength(context.Context, *QueryGetEpochLengthRequest) (*QueryGetEpochLengthResponse, error)
+	CurrentEpoch(context.Context, *QueryGetCurrentEpochRequest) (*QueryGetCurrentEpochResponse, error)
 	// Queries a list of Workload items.
 	Workload(context.Context, *QueryGetWorkloadRequest) (*QueryGetWorkloadResponse, error)
 	WorkloadAll(context.Context, *QueryAllWorkloadRequest) (*QueryAllWorkloadResponse, error)
 	// Queries a list of Workreport items.
-	GetWorkreport(context.Context, *QueryGetWorkreportRequest) (*QueryGetWorkreportResponse, error)
-	GetAllWorkreportByEpoch(context.Context, *QueryGetAllWorkreportByEpochRequest) (*QueryGetAllWorkreportByEpochResponse, error)
+	Workreport(context.Context, *QueryGetWorkreportRequest) (*QueryGetWorkreportResponse, error)
+	AllWorkreportByEpoch(context.Context, *QueryGetAllWorkreportByEpochRequest) (*QueryGetAllWorkreportByEpochResponse, error)
+	// Queries some param settings
+	WorkreportProcessBatchSize(context.Context, *QueryGetWorkreportProcessBatchSizeRequest) (*QueryGetWorkreportProcessBatchSizeResponse, error)
+	HistoryEpochDataDepth(context.Context, *QueryGetHistoryEpochDataDepthRequest) (*QueryGetHistoryEpochDataDepthResponse, error)
+	EpochProcessData(context.Context, *QueryGetEpochProcessDataRequest) (*QueryGetEpochProcessDataResponse, error)
+	AllEpochProcessData(context.Context, *QueryGetAllEpochProcessDataRequest) (*QueryGetAllEpochProcessDataResponse, error)
+	// Queries a Superior
+	Superior(context.Context, *QueryGetSuperiorRequest) (*QueryGetSuperiorResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -141,11 +205,11 @@ type UnimplementedQueryServer struct {
 func (UnimplementedQueryServer) Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
 }
-func (UnimplementedQueryServer) GetEpochLength(context.Context, *QueryGetEpochLengthRequest) (*QueryGetEpochLengthResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetEpochLength not implemented")
+func (UnimplementedQueryServer) EpochLength(context.Context, *QueryGetEpochLengthRequest) (*QueryGetEpochLengthResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EpochLength not implemented")
 }
-func (UnimplementedQueryServer) GetCurrentEpoch(context.Context, *QueryGetCurrentEpochRequest) (*QueryGetCurrentEpochResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCurrentEpoch not implemented")
+func (UnimplementedQueryServer) CurrentEpoch(context.Context, *QueryGetCurrentEpochRequest) (*QueryGetCurrentEpochResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CurrentEpoch not implemented")
 }
 func (UnimplementedQueryServer) Workload(context.Context, *QueryGetWorkloadRequest) (*QueryGetWorkloadResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Workload not implemented")
@@ -153,11 +217,26 @@ func (UnimplementedQueryServer) Workload(context.Context, *QueryGetWorkloadReque
 func (UnimplementedQueryServer) WorkloadAll(context.Context, *QueryAllWorkloadRequest) (*QueryAllWorkloadResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WorkloadAll not implemented")
 }
-func (UnimplementedQueryServer) GetWorkreport(context.Context, *QueryGetWorkreportRequest) (*QueryGetWorkreportResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetWorkreport not implemented")
+func (UnimplementedQueryServer) Workreport(context.Context, *QueryGetWorkreportRequest) (*QueryGetWorkreportResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Workreport not implemented")
 }
-func (UnimplementedQueryServer) GetAllWorkreportByEpoch(context.Context, *QueryGetAllWorkreportByEpochRequest) (*QueryGetAllWorkreportByEpochResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAllWorkreportByEpoch not implemented")
+func (UnimplementedQueryServer) AllWorkreportByEpoch(context.Context, *QueryGetAllWorkreportByEpochRequest) (*QueryGetAllWorkreportByEpochResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllWorkreportByEpoch not implemented")
+}
+func (UnimplementedQueryServer) WorkreportProcessBatchSize(context.Context, *QueryGetWorkreportProcessBatchSizeRequest) (*QueryGetWorkreportProcessBatchSizeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WorkreportProcessBatchSize not implemented")
+}
+func (UnimplementedQueryServer) HistoryEpochDataDepth(context.Context, *QueryGetHistoryEpochDataDepthRequest) (*QueryGetHistoryEpochDataDepthResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HistoryEpochDataDepth not implemented")
+}
+func (UnimplementedQueryServer) EpochProcessData(context.Context, *QueryGetEpochProcessDataRequest) (*QueryGetEpochProcessDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EpochProcessData not implemented")
+}
+func (UnimplementedQueryServer) AllEpochProcessData(context.Context, *QueryGetAllEpochProcessDataRequest) (*QueryGetAllEpochProcessDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllEpochProcessData not implemented")
+}
+func (UnimplementedQueryServer) Superior(context.Context, *QueryGetSuperiorRequest) (*QueryGetSuperiorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Superior not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -190,38 +269,38 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_GetEpochLength_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_EpochLength_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryGetEpochLengthRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).GetEpochLength(ctx, in)
+		return srv.(QueryServer).EpochLength(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Query_GetEpochLength_FullMethodName,
+		FullMethod: Query_EpochLength_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).GetEpochLength(ctx, req.(*QueryGetEpochLengthRequest))
+		return srv.(QueryServer).EpochLength(ctx, req.(*QueryGetEpochLengthRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_GetCurrentEpoch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_CurrentEpoch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryGetCurrentEpochRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).GetCurrentEpoch(ctx, in)
+		return srv.(QueryServer).CurrentEpoch(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Query_GetCurrentEpoch_FullMethodName,
+		FullMethod: Query_CurrentEpoch_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).GetCurrentEpoch(ctx, req.(*QueryGetCurrentEpochRequest))
+		return srv.(QueryServer).CurrentEpoch(ctx, req.(*QueryGetCurrentEpochRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -262,38 +341,128 @@ func _Query_WorkloadAll_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_GetWorkreport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_Workreport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryGetWorkreportRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).GetWorkreport(ctx, in)
+		return srv.(QueryServer).Workreport(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Query_GetWorkreport_FullMethodName,
+		FullMethod: Query_Workreport_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).GetWorkreport(ctx, req.(*QueryGetWorkreportRequest))
+		return srv.(QueryServer).Workreport(ctx, req.(*QueryGetWorkreportRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_GetAllWorkreportByEpoch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_AllWorkreportByEpoch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryGetAllWorkreportByEpochRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).GetAllWorkreportByEpoch(ctx, in)
+		return srv.(QueryServer).AllWorkreportByEpoch(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Query_GetAllWorkreportByEpoch_FullMethodName,
+		FullMethod: Query_AllWorkreportByEpoch_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).GetAllWorkreportByEpoch(ctx, req.(*QueryGetAllWorkreportByEpochRequest))
+		return srv.(QueryServer).AllWorkreportByEpoch(ctx, req.(*QueryGetAllWorkreportByEpochRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_WorkreportProcessBatchSize_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetWorkreportProcessBatchSizeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).WorkreportProcessBatchSize(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_WorkreportProcessBatchSize_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).WorkreportProcessBatchSize(ctx, req.(*QueryGetWorkreportProcessBatchSizeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_HistoryEpochDataDepth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetHistoryEpochDataDepthRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).HistoryEpochDataDepth(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_HistoryEpochDataDepth_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).HistoryEpochDataDepth(ctx, req.(*QueryGetHistoryEpochDataDepthRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_EpochProcessData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetEpochProcessDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).EpochProcessData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_EpochProcessData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).EpochProcessData(ctx, req.(*QueryGetEpochProcessDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_AllEpochProcessData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAllEpochProcessDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).AllEpochProcessData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_AllEpochProcessData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).AllEpochProcessData(ctx, req.(*QueryGetAllEpochProcessDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_Superior_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetSuperiorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).Superior(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_Superior_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).Superior(ctx, req.(*QueryGetSuperiorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -310,12 +479,12 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Query_Params_Handler,
 		},
 		{
-			MethodName: "GetEpochLength",
-			Handler:    _Query_GetEpochLength_Handler,
+			MethodName: "EpochLength",
+			Handler:    _Query_EpochLength_Handler,
 		},
 		{
-			MethodName: "GetCurrentEpoch",
-			Handler:    _Query_GetCurrentEpoch_Handler,
+			MethodName: "CurrentEpoch",
+			Handler:    _Query_CurrentEpoch_Handler,
 		},
 		{
 			MethodName: "Workload",
@@ -326,12 +495,32 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Query_WorkloadAll_Handler,
 		},
 		{
-			MethodName: "GetWorkreport",
-			Handler:    _Query_GetWorkreport_Handler,
+			MethodName: "Workreport",
+			Handler:    _Query_Workreport_Handler,
 		},
 		{
-			MethodName: "GetAllWorkreportByEpoch",
-			Handler:    _Query_GetAllWorkreportByEpoch_Handler,
+			MethodName: "AllWorkreportByEpoch",
+			Handler:    _Query_AllWorkreportByEpoch_Handler,
+		},
+		{
+			MethodName: "WorkreportProcessBatchSize",
+			Handler:    _Query_WorkreportProcessBatchSize_Handler,
+		},
+		{
+			MethodName: "HistoryEpochDataDepth",
+			Handler:    _Query_HistoryEpochDataDepth_Handler,
+		},
+		{
+			MethodName: "EpochProcessData",
+			Handler:    _Query_EpochProcessData_Handler,
+		},
+		{
+			MethodName: "AllEpochProcessData",
+			Handler:    _Query_AllEpochProcessData_Handler,
+		},
+		{
+			MethodName: "Superior",
+			Handler:    _Query_Superior_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

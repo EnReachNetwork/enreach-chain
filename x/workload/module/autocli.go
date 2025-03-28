@@ -18,12 +18,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:     "Shows the parameters of the module",
 				},
 				{
-					RpcMethod: "GetEpochLength",
+					RpcMethod: "EpochLength",
 					Use:       "get-epoch-length",
 					Short:     "Get epoch length",
 				},
 				{
-					RpcMethod: "GetCurrentEpoch",
+					RpcMethod: "CurrentEpoch",
 					Use:       "get-current-epoch",
 					Short:     "Get current epoch",
 				},
@@ -39,16 +39,42 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}},
 				},
 				{
-					RpcMethod:      "GetWorkreport",
+					RpcMethod:      "Workreport",
 					Use:            "get-workreport [epoch] [nodeID]",
 					Short:          "Get workload by epoch and nodeID",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "epoch"}, {ProtoField: "nodeID"}},
 				},
 				{
-					RpcMethod:      "GetAllWorkreportByEpoch",
+					RpcMethod:      "AllWorkreportByEpoch",
 					Use:            "get-all-workreport-by-epoch [epoch]",
 					Short:          "Get all workreport by epoch",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "epoch"}},
+				},
+				{
+					RpcMethod: "WorkreportProcessBatchSize",
+					Use:       "get-workreport-process-batch-size",
+					Short:     "Get workload process batch size",
+				},
+				{
+					RpcMethod: "HistoryEpochDataDepth",
+					Use:       "get-history-epoch-data-depth",
+					Short:     "Get history epoch data depth",
+				},
+				{
+					RpcMethod:      "EpochProcessData",
+					Use:            "get-epoch-process-data [epoch]",
+					Short:          "Get epoch process data",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "epoch"}},
+				},
+				{
+					RpcMethod: "AllEpochProcessData",
+					Use:       "get-all-epoch-process-data",
+					Short:     "Get all epoch process data",
+				},
+				{
+					RpcMethod: "Superior",
+					Use:       "show-superior",
+					Short:     "show superior",
 				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
@@ -66,6 +92,18 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Use:            "submit-workreports [managerAccount] [epoch] [nodeScores]",
 					Short:          "Submit workreports",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "managerAccount"}, {ProtoField: "epoch"}, {ProtoField: "nodeScores"}},
+				},
+				{
+					RpcMethod:      "UpdateWorkreportProcessBatchSize",
+					Use:            "update-workreport-process-batch-size [batchSize]",
+					Short:          "Update workload process batch size",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "batchSize"}},
+				},
+				{
+					RpcMethod:      "UpdateHistoryEpochDataDepth",
+					Use:            "update-history-epoch-data-depth [depth]",
+					Short:          "Update history epoch data depth",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "depth"}},
 				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},

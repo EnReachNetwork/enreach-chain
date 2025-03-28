@@ -10,7 +10,7 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-func (k Keeper) GetWorkreport(ctx context.Context, req *types.QueryGetWorkreportRequest) (*types.QueryGetWorkreportResponse, error) {
+func (k Keeper) Workreport(ctx context.Context, req *types.QueryGetWorkreportRequest) (*types.QueryGetWorkreportResponse, error) {
 	if req == nil {
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
 	}
@@ -29,7 +29,7 @@ func (k Keeper) GetWorkreport(ctx context.Context, req *types.QueryGetWorkreport
 	return &types.QueryGetWorkreportResponse{Workreport: workreport}, nil
 }
 
-func (k Keeper) GetAllWorkreportByEpoch(ctx context.Context, req *types.QueryGetAllWorkreportByEpochRequest) (*types.QueryGetAllWorkreportByEpochResponse, error) {
+func (k Keeper) AllWorkreportByEpoch(ctx context.Context, req *types.QueryGetAllWorkreportByEpochRequest) (*types.QueryGetAllWorkreportByEpochResponse, error) {
 	if req == nil {
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
 	}
@@ -40,4 +40,24 @@ func (k Keeper) GetAllWorkreportByEpoch(ctx context.Context, req *types.QueryGet
 	}
 
 	return &types.QueryGetAllWorkreportByEpochResponse{Workreport: workreports, Pagination: pageRes}, nil
+}
+
+func (k Keeper) WorkreportProcessBatchSize(ctx context.Context, req *types.QueryGetWorkreportProcessBatchSizeRequest) (*types.QueryGetWorkreportProcessBatchSizeResponse, error) {
+	if req == nil {
+		return nil, status.Error(codes.InvalidArgument, "invalid request")
+	}
+
+	batchSize := k.GetWorkreportProcessBatchSize(ctx)
+
+	return &types.QueryGetWorkreportProcessBatchSizeResponse{BatchSize: batchSize}, nil
+}
+
+func (k Keeper) HistoryEpochDataDepth(ctx context.Context, req *types.QueryGetHistoryEpochDataDepthRequest) (*types.QueryGetHistoryEpochDataDepthResponse, error) {
+	if req == nil {
+		return nil, status.Error(codes.InvalidArgument, "invalid request")
+	}
+
+	depth := k.GetHistoryEpochDataDepth(ctx)
+
+	return &types.QueryGetHistoryEpochDataDepthResponse{Depth: depth}, nil
 }

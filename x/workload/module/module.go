@@ -155,10 +155,20 @@ func (AppModule) ConsensusVersion() uint64 { return 1 }
 func (am AppModule) BeginBlock(goCtx context.Context) error {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
+	// Get the workreport process batch size
+
+	// Get the last processed epoch
+
+	// Save the processed epoch data
+
+	// All workreports of this epoch have been processed, check whethere there're more epochs to process
+	// Only process up to epoch of (Epoch_N - 2)
+
 	if types.IsEpochStart(ctx) {
 		currentEpoch := types.GetCurrentEpoch(goCtx)
 
-		/// TODO: Necessary logic to process at the start of epoch
+		/// Delete old epoch related data
+		// Get the HistoryEpochDepth
 
 		ctx.EventManager().EmitEvent(
 			sdk.NewEvent(types.EventTypeEpochStart,

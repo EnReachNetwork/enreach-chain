@@ -9,6 +9,7 @@ import "cosmos/base/query/v1beta1/pagination.proto";
 import "enreach/workload/params.proto";
 import "enreach/workload/workload.proto";
 import "enreach/workload/workreport.proto";
+import "enreach/workload/superior.proto";
 
 option go_package = "enreach/x/workload/types";
 
@@ -22,12 +23,12 @@ service Query {
   }
 
   // Queries epoch
-  rpc GetEpochLength  (QueryGetEpochLengthRequest ) returns (QueryGetEpochLengthResponse ) {
-    option (google.api.http).get = "/enreach/manager/epoch/length";
+  rpc EpochLength  (QueryGetEpochLengthRequest ) returns (QueryGetEpochLengthResponse ) {
+    option (google.api.http).get = "/enreach/workload/epoch/length";
   
   }
-  rpc GetCurrentEpoch (QueryGetCurrentEpochRequest) returns (QueryGetCurrentEpochResponse) {
-    option (google.api.http).get = "/enreach/manager/epoch/currentepoch";
+  rpc CurrentEpoch (QueryGetCurrentEpochRequest) returns (QueryGetCurrentEpochResponse) {
+    option (google.api.http).get = "/enreach/workload/epoch/currentepoch";
   
   }
   
@@ -42,12 +43,36 @@ service Query {
   }
 
   // Queries a list of Workreport items.
-  rpc GetWorkreport    (QueryGetWorkreportRequest) returns (QueryGetWorkreportResponse) {
+  rpc Workreport    (QueryGetWorkreportRequest) returns (QueryGetWorkreportResponse) {
     option (google.api.http).get = "/enreach/workload/workreport/{epoch}/{nodeID}";
   
   }
-  rpc GetAllWorkreportByEpoch (QueryGetAllWorkreportByEpochRequest) returns (QueryGetAllWorkreportByEpochResponse) {
+  rpc AllWorkreportByEpoch (QueryGetAllWorkreportByEpochRequest) returns (QueryGetAllWorkreportByEpochResponse) {
     option (google.api.http).get = "/enreach/workload/workreports/{epoch}";
+  
+  }
+
+  // Queries some param settings
+  rpc WorkreportProcessBatchSize    (QueryGetWorkreportProcessBatchSizeRequest) returns (QueryGetWorkreportProcessBatchSizeResponse) {
+    option (google.api.http).get = "/enreach/workload/workreport/process_batch_size";
+  
+  }
+  rpc HistoryEpochDataDepth    (QueryGetHistoryEpochDataDepthRequest) returns (QueryGetHistoryEpochDataDepthResponse) {
+    option (google.api.http).get = "/enreach/workload/workreport/history_epoch_data_depth";
+  
+  }
+  rpc EpochProcessData    (QueryGetEpochProcessDataRequest) returns (QueryGetEpochProcessDataResponse) {
+    option (google.api.http).get = "/enreach/workload/workreport/epoch_process_data/{epoch}";
+  
+  }
+  rpc AllEpochProcessData    (QueryGetAllEpochProcessDataRequest) returns (QueryGetAllEpochProcessDataResponse) {
+    option (google.api.http).get = "/enreach/workload/workreport/epoch_process_datas";
+  
+  }
+
+  // Queries a Superior
+  rpc Superior (QueryGetSuperiorRequest) returns (QueryGetSuperiorResponse) {
+    option (google.api.http).get = "/enreach/workload/superior";
   
   }
 }
@@ -106,5 +131,42 @@ message QueryGetAllWorkreportByEpochRequest {
 
 message QueryGetAllWorkreportByEpochResponse {
   repeated Workreport                               Workreport   = 1 [(gogoproto.nullable) = false];
-           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetWorkreportProcessBatchSizeRequest {
+}
+
+message QueryGetWorkreportProcessBatchSizeResponse {
+  uint64   batchSize = 1;
+}
+
+message QueryGetHistoryEpochDataDepthRequest {
+}
+
+message QueryGetHistoryEpochDataDepthResponse {
+  uint64   depth = 1;
+}
+
+message QueryGetEpochProcessDataRequest {
+  uint64   epoch = 1;
+}
+
+message QueryGetEpochProcessDataResponse {
+  EpochProcessData EpochProcessData = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetAllEpochProcessDataRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryGetAllEpochProcessDataResponse {
+  repeated EpochProcessData EpochProcessDatas = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetSuperiorRequest {}
+
+message QueryGetSuperiorResponse {
+  Superior Superior = 1 [(gogoproto.nullable) = false];
 }

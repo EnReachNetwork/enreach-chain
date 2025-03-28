@@ -9,6 +9,7 @@ import "gogoproto/gogo.proto";
 import "enreach/workload/params.proto";
 import "enreach/workload/workload.proto";
 import "enreach/workload/workreport.proto";
+import "enreach/workload/superior.proto";
 
 option go_package = "enreach/x/workload/types";
 
@@ -20,6 +21,12 @@ service Msg {
   // parameters. The authority defaults to the x/gov module account.
   rpc UpdateParams   (MsgUpdateParams  ) returns (MsgUpdateParamsResponse  );
   rpc SubmitWorkreports (MsgSubmitWorkreports) returns (MsgSubmitWorkreportsResponse);
+
+  rpc UpdateWorkreportProcessBatchSize (MsgUpdateWorkreportProcessBatchSize) returns (MsgUpdateWorkreportProcessBatchSizeResponse);
+  rpc UpdateHistoryEpochDataDepth (MsgUpdateHistoryEpochDataDepth) returns (MsgUpdateHistoryEpochDataDepthResponse);
+
+  rpc CreateSuperior             (MsgCreateSuperior            ) returns (MsgCreateSuperiorResponse            );
+  rpc UpdateSuperior             (MsgUpdateSuperior            ) returns (MsgUpdateSuperiorResponse            );
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -49,4 +56,37 @@ message MsgSubmitWorkreports {
 message MsgSubmitWorkreportsResponse {
 }
 
+message MsgUpdateWorkreportProcessBatchSize {
+  option (cosmos.msg.v1.signer)   = "signer";
+  string signer                   = 1;
+  uint64 batchSize                = 2;
+}
 
+message MsgUpdateWorkreportProcessBatchSizeResponse {
+}
+
+message MsgUpdateHistoryEpochDataDepth {
+  option (cosmos.msg.v1.signer)   = "signer";
+  string signer                   = 1;
+  uint64 depth                    = 2;
+}
+
+message MsgUpdateHistoryEpochDataDepthResponse {
+}
+
+
+message MsgCreateSuperior {
+  option (cosmos.msg.v1.signer) = "signer";
+  string signer   = 1;
+  string account  = 2;
+}
+
+message MsgCreateSuperiorResponse {}
+
+message MsgUpdateSuperior {
+  option (cosmos.msg.v1.signer) = "signer";
+  string signer   = 1;
+  string account  = 2;
+}
+
+message MsgUpdateSuperiorResponse {}

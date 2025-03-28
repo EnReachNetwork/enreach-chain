@@ -1,6 +1,8 @@
 syntax = "proto3";
 package enreach.workload;
 
+import "cosmos/base/query/v1beta1/pagination.proto";
+
 option go_package = "enreach/x/workload/types";
 
 message NodeScore {
@@ -22,4 +24,14 @@ message Workreport {
   uint64 epoch = 1;
   string nodeID = 2; 
   map<string, NodeScoreDB> managerScoreMap = 3;
+}
+
+message EpochProcessData {
+  uint64 epoch = 1;
+  uint64 totalNodesCount = 2;      // total nodes count need to be processed
+  uint64 processedNodesCount = 3;  // accumulated processed nodes count
+  uint64 startAt = 4; 
+  uint64 updateAt = 5;
+  uint64 endAt = 6;
+  cosmos.base.query.v1beta1.PageRequest pagination = 7;
 }

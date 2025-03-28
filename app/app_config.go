@@ -327,8 +327,10 @@ var (
 				}),
 			},
 			{
-				Name:   workloadmoduletypes.ModuleName,
-				Config: appconfig.WrapAny(&workloadmodulev1.Module{}),
+				Name: workloadmoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&workloadmodulev1.Module{
+					Authority: "enreach1mwyh5y3nu300s2v2spr3mw8ypf65nzzdmf3lex",
+				}),
 			},
 			{
 				Name: edgenodemoduletypes.ModuleName,

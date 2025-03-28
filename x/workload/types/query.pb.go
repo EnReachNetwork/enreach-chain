@@ -658,6 +658,438 @@ func (m *QueryGetAllWorkreportByEpochResponse) GetPagination() *query.PageRespon
 	return nil
 }
 
+type QueryGetWorkreportProcessBatchSizeRequest struct {
+}
+
+func (m *QueryGetWorkreportProcessBatchSizeRequest) Reset() {
+	*m = QueryGetWorkreportProcessBatchSizeRequest{}
+}
+func (m *QueryGetWorkreportProcessBatchSizeRequest) String() string {
+	return proto.CompactTextString(m)
+}
+func (*QueryGetWorkreportProcessBatchSizeRequest) ProtoMessage() {}
+func (*QueryGetWorkreportProcessBatchSizeRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{14}
+}
+func (m *QueryGetWorkreportProcessBatchSizeRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetWorkreportProcessBatchSizeRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetWorkreportProcessBatchSizeRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetWorkreportProcessBatchSizeRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetWorkreportProcessBatchSizeRequest.Merge(m, src)
+}
+func (m *QueryGetWorkreportProcessBatchSizeRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetWorkreportProcessBatchSizeRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetWorkreportProcessBatchSizeRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetWorkreportProcessBatchSizeRequest proto.InternalMessageInfo
+
+type QueryGetWorkreportProcessBatchSizeResponse struct {
+	BatchSize uint64 `protobuf:"varint,1,opt,name=batchSize,proto3" json:"batchSize,omitempty"`
+}
+
+func (m *QueryGetWorkreportProcessBatchSizeResponse) Reset() {
+	*m = QueryGetWorkreportProcessBatchSizeResponse{}
+}
+func (m *QueryGetWorkreportProcessBatchSizeResponse) String() string {
+	return proto.CompactTextString(m)
+}
+func (*QueryGetWorkreportProcessBatchSizeResponse) ProtoMessage() {}
+func (*QueryGetWorkreportProcessBatchSizeResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{15}
+}
+func (m *QueryGetWorkreportProcessBatchSizeResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetWorkreportProcessBatchSizeResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetWorkreportProcessBatchSizeResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetWorkreportProcessBatchSizeResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetWorkreportProcessBatchSizeResponse.Merge(m, src)
+}
+func (m *QueryGetWorkreportProcessBatchSizeResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetWorkreportProcessBatchSizeResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetWorkreportProcessBatchSizeResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetWorkreportProcessBatchSizeResponse proto.InternalMessageInfo
+
+func (m *QueryGetWorkreportProcessBatchSizeResponse) GetBatchSize() uint64 {
+	if m != nil {
+		return m.BatchSize
+	}
+	return 0
+}
+
+type QueryGetHistoryEpochDataDepthRequest struct {
+}
+
+func (m *QueryGetHistoryEpochDataDepthRequest) Reset()         { *m = QueryGetHistoryEpochDataDepthRequest{} }
+func (m *QueryGetHistoryEpochDataDepthRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetHistoryEpochDataDepthRequest) ProtoMessage()    {}
+func (*QueryGetHistoryEpochDataDepthRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{16}
+}
+func (m *QueryGetHistoryEpochDataDepthRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetHistoryEpochDataDepthRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetHistoryEpochDataDepthRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetHistoryEpochDataDepthRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetHistoryEpochDataDepthRequest.Merge(m, src)
+}
+func (m *QueryGetHistoryEpochDataDepthRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetHistoryEpochDataDepthRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetHistoryEpochDataDepthRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetHistoryEpochDataDepthRequest proto.InternalMessageInfo
+
+type QueryGetHistoryEpochDataDepthResponse struct {
+	Depth uint64 `protobuf:"varint,1,opt,name=depth,proto3" json:"depth,omitempty"`
+}
+
+func (m *QueryGetHistoryEpochDataDepthResponse) Reset()         { *m = QueryGetHistoryEpochDataDepthResponse{} }
+func (m *QueryGetHistoryEpochDataDepthResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetHistoryEpochDataDepthResponse) ProtoMessage()    {}
+func (*QueryGetHistoryEpochDataDepthResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{17}
+}
+func (m *QueryGetHistoryEpochDataDepthResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetHistoryEpochDataDepthResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetHistoryEpochDataDepthResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetHistoryEpochDataDepthResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetHistoryEpochDataDepthResponse.Merge(m, src)
+}
+func (m *QueryGetHistoryEpochDataDepthResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetHistoryEpochDataDepthResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetHistoryEpochDataDepthResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetHistoryEpochDataDepthResponse proto.InternalMessageInfo
+
+func (m *QueryGetHistoryEpochDataDepthResponse) GetDepth() uint64 {
+	if m != nil {
+		return m.Depth
+	}
+	return 0
+}
+
+type QueryGetEpochProcessDataRequest struct {
+	Epoch uint64 `protobuf:"varint,1,opt,name=epoch,proto3" json:"epoch,omitempty"`
+}
+
+func (m *QueryGetEpochProcessDataRequest) Reset()         { *m = QueryGetEpochProcessDataRequest{} }
+func (m *QueryGetEpochProcessDataRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetEpochProcessDataRequest) ProtoMessage()    {}
+func (*QueryGetEpochProcessDataRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{18}
+}
+func (m *QueryGetEpochProcessDataRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetEpochProcessDataRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetEpochProcessDataRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetEpochProcessDataRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetEpochProcessDataRequest.Merge(m, src)
+}
+func (m *QueryGetEpochProcessDataRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetEpochProcessDataRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetEpochProcessDataRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetEpochProcessDataRequest proto.InternalMessageInfo
+
+func (m *QueryGetEpochProcessDataRequest) GetEpoch() uint64 {
+	if m != nil {
+		return m.Epoch
+	}
+	return 0
+}
+
+type QueryGetEpochProcessDataResponse struct {
+	EpochProcessData EpochProcessData `protobuf:"bytes,1,opt,name=EpochProcessData,proto3" json:"EpochProcessData"`
+}
+
+func (m *QueryGetEpochProcessDataResponse) Reset()         { *m = QueryGetEpochProcessDataResponse{} }
+func (m *QueryGetEpochProcessDataResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetEpochProcessDataResponse) ProtoMessage()    {}
+func (*QueryGetEpochProcessDataResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{19}
+}
+func (m *QueryGetEpochProcessDataResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetEpochProcessDataResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetEpochProcessDataResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetEpochProcessDataResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetEpochProcessDataResponse.Merge(m, src)
+}
+func (m *QueryGetEpochProcessDataResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetEpochProcessDataResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetEpochProcessDataResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetEpochProcessDataResponse proto.InternalMessageInfo
+
+func (m *QueryGetEpochProcessDataResponse) GetEpochProcessData() EpochProcessData {
+	if m != nil {
+		return m.EpochProcessData
+	}
+	return EpochProcessData{}
+}
+
+type QueryGetAllEpochProcessDataRequest struct {
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryGetAllEpochProcessDataRequest) Reset()         { *m = QueryGetAllEpochProcessDataRequest{} }
+func (m *QueryGetAllEpochProcessDataRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetAllEpochProcessDataRequest) ProtoMessage()    {}
+func (*QueryGetAllEpochProcessDataRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{20}
+}
+func (m *QueryGetAllEpochProcessDataRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetAllEpochProcessDataRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetAllEpochProcessDataRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetAllEpochProcessDataRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetAllEpochProcessDataRequest.Merge(m, src)
+}
+func (m *QueryGetAllEpochProcessDataRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetAllEpochProcessDataRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetAllEpochProcessDataRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetAllEpochProcessDataRequest proto.InternalMessageInfo
+
+func (m *QueryGetAllEpochProcessDataRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryGetAllEpochProcessDataResponse struct {
+	EpochProcessDatas []EpochProcessData  `protobuf:"bytes,1,rep,name=EpochProcessDatas,proto3" json:"EpochProcessDatas"`
+	Pagination        *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryGetAllEpochProcessDataResponse) Reset()         { *m = QueryGetAllEpochProcessDataResponse{} }
+func (m *QueryGetAllEpochProcessDataResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetAllEpochProcessDataResponse) ProtoMessage()    {}
+func (*QueryGetAllEpochProcessDataResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{21}
+}
+func (m *QueryGetAllEpochProcessDataResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetAllEpochProcessDataResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetAllEpochProcessDataResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetAllEpochProcessDataResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetAllEpochProcessDataResponse.Merge(m, src)
+}
+func (m *QueryGetAllEpochProcessDataResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetAllEpochProcessDataResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetAllEpochProcessDataResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetAllEpochProcessDataResponse proto.InternalMessageInfo
+
+func (m *QueryGetAllEpochProcessDataResponse) GetEpochProcessDatas() []EpochProcessData {
+	if m != nil {
+		return m.EpochProcessDatas
+	}
+	return nil
+}
+
+func (m *QueryGetAllEpochProcessDataResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryGetSuperiorRequest struct {
+}
+
+func (m *QueryGetSuperiorRequest) Reset()         { *m = QueryGetSuperiorRequest{} }
+func (m *QueryGetSuperiorRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetSuperiorRequest) ProtoMessage()    {}
+func (*QueryGetSuperiorRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{22}
+}
+func (m *QueryGetSuperiorRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetSuperiorRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetSuperiorRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetSuperiorRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetSuperiorRequest.Merge(m, src)
+}
+func (m *QueryGetSuperiorRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetSuperiorRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetSuperiorRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetSuperiorRequest proto.InternalMessageInfo
+
+type QueryGetSuperiorResponse struct {
+	Superior Superior `protobuf:"bytes,1,opt,name=Superior,proto3" json:"Superior"`
+}
+
+func (m *QueryGetSuperiorResponse) Reset()         { *m = QueryGetSuperiorResponse{} }
+func (m *QueryGetSuperiorResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetSuperiorResponse) ProtoMessage()    {}
+func (*QueryGetSuperiorResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{23}
+}
+func (m *QueryGetSuperiorResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetSuperiorResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetSuperiorResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetSuperiorResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetSuperiorResponse.Merge(m, src)
+}
+func (m *QueryGetSuperiorResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetSuperiorResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetSuperiorResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetSuperiorResponse proto.InternalMessageInfo
+
+func (m *QueryGetSuperiorResponse) GetSuperior() Superior {
+	if m != nil {
+		return m.Superior
+	}
+	return Superior{}
+}
+
 func init() {
 	proto.RegisterType((*QueryParamsRequest)(nil), "enreach.workload.QueryParamsRequest")
 	proto.RegisterType((*QueryParamsResponse)(nil), "enreach.workload.QueryParamsResponse")
@@ -673,62 +1105,93 @@ func init() {
 	proto.RegisterType((*QueryGetWorkreportResponse)(nil), "enreach.workload.QueryGetWorkreportResponse")
 	proto.RegisterType((*QueryGetAllWorkreportByEpochRequest)(nil), "enreach.workload.QueryGetAllWorkreportByEpochRequest")
 	proto.RegisterType((*QueryGetAllWorkreportByEpochResponse)(nil), "enreach.workload.QueryGetAllWorkreportByEpochResponse")
+	proto.RegisterType((*QueryGetWorkreportProcessBatchSizeRequest)(nil), "enreach.workload.QueryGetWorkreportProcessBatchSizeRequest")
+	proto.RegisterType((*QueryGetWorkreportProcessBatchSizeResponse)(nil), "enreach.workload.QueryGetWorkreportProcessBatchSizeResponse")
+	proto.RegisterType((*QueryGetHistoryEpochDataDepthRequest)(nil), "enreach.workload.QueryGetHistoryEpochDataDepthRequest")
+	proto.RegisterType((*QueryGetHistoryEpochDataDepthResponse)(nil), "enreach.workload.QueryGetHistoryEpochDataDepthResponse")
+	proto.RegisterType((*QueryGetEpochProcessDataRequest)(nil), "enreach.workload.QueryGetEpochProcessDataRequest")
+	proto.RegisterType((*QueryGetEpochProcessDataResponse)(nil), "enreach.workload.QueryGetEpochProcessDataResponse")
+	proto.RegisterType((*QueryGetAllEpochProcessDataRequest)(nil), "enreach.workload.QueryGetAllEpochProcessDataRequest")
+	proto.RegisterType((*QueryGetAllEpochProcessDataResponse)(nil), "enreach.workload.QueryGetAllEpochProcessDataResponse")
+	proto.RegisterType((*QueryGetSuperiorRequest)(nil), "enreach.workload.QueryGetSuperiorRequest")
+	proto.RegisterType((*QueryGetSuperiorResponse)(nil), "enreach.workload.QueryGetSuperiorResponse")
 }
 
 func init() { proto.RegisterFile("enreach/workload/query.proto", fileDescriptor_4c31abfb63ab8d50) }
 
 var fileDescriptor_4c31abfb63ab8d50 = []byte{
-	// 797 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x96, 0xcd, 0x4f, 0x13, 0x4f,
-	0x18, 0xc7, 0x3b, 0x05, 0x1a, 0x18, 0x7e, 0x3f, 0xd4, 0x91, 0x48, 0x5d, 0xfa, 0x02, 0x0b, 0x15,
-	0x79, 0xdb, 0x09, 0x18, 0xbc, 0x68, 0x62, 0xa8, 0x0a, 0x21, 0xf1, 0x80, 0xbd, 0x68, 0x3c, 0x39,
-	0xb4, 0x93, 0xa5, 0xb1, 0xdd, 0x59, 0x76, 0x17, 0x91, 0x10, 0x2e, 0x7a, 0xd2, 0x93, 0x89, 0x5e,
-	0x3d, 0x70, 0xf3, 0x64, 0x4c, 0x3c, 0xf8, 0x2f, 0x70, 0x24, 0xf1, 0xe2, 0xc9, 0x18, 0x30, 0xf1,
-	0xdf, 0x30, 0x9d, 0x79, 0x96, 0xee, 0xb6, 0xbb, 0xa5, 0x18, 0x2f, 0xcd, 0xee, 0x33, 0xcf, 0xcb,
-	0xe7, 0x79, 0xe6, 0xc9, 0xb7, 0x8b, 0x33, 0xdc, 0x72, 0x38, 0x2b, 0x6f, 0xd2, 0x1d, 0xe1, 0x3c,
-	0xab, 0x09, 0x56, 0xa1, 0x5b, 0xdb, 0xdc, 0xd9, 0x35, 0x6c, 0x47, 0x78, 0x82, 0x5c, 0x84, 0x53,
-	0xc3, 0x3f, 0xd5, 0x2e, 0xb1, 0x7a, 0xd5, 0x12, 0x54, 0xfe, 0x2a, 0x27, 0x6d, 0xd8, 0x14, 0xa6,
-	0x90, 0x8f, 0xb4, 0xf1, 0x04, 0xd6, 0x8c, 0x29, 0x84, 0x59, 0xe3, 0x94, 0xd9, 0x55, 0xca, 0x2c,
-	0x4b, 0x78, 0xcc, 0xab, 0x0a, 0xcb, 0x85, 0xd3, 0x99, 0xb2, 0x70, 0xeb, 0xc2, 0xa5, 0x1b, 0xcc,
-	0xe5, 0xaa, 0x22, 0x7d, 0xbe, 0xb0, 0xc1, 0x3d, 0xb6, 0x40, 0x6d, 0x66, 0x56, 0x2d, 0xe9, 0x0c,
-	0xbe, 0xd9, 0x36, 0x44, 0x9b, 0x39, 0xac, 0xee, 0xa7, 0xca, 0xb7, 0x1d, 0xfb, 0x0f, 0xe0, 0x30,
-	0x1e, 0xe9, 0xe0, 0x70, 0x5b, 0x38, 0x9e, 0x72, 0xd1, 0x87, 0x31, 0x79, 0xd8, 0x80, 0x58, 0x97,
-	0x89, 0x4b, 0x7c, 0x6b, 0x9b, 0xbb, 0x9e, 0x5e, 0xc2, 0x97, 0x43, 0x56, 0xd7, 0x16, 0x96, 0xcb,
-	0xc9, 0x2d, 0x9c, 0x52, 0x00, 0x69, 0x34, 0x86, 0xae, 0x0f, 0x2e, 0xa6, 0x8d, 0xd6, 0x29, 0x19,
-	0x2a, 0xa2, 0x38, 0x70, 0xf8, 0x23, 0x9f, 0xf8, 0xf8, 0xfb, 0xf3, 0x0c, 0x2a, 0x41, 0x88, 0x9e,
-	0xc1, 0x9a, 0xcc, 0xb9, 0xca, 0xbd, 0xfb, 0xb6, 0x28, 0x6f, 0x3e, 0xe0, 0x96, 0xe9, 0x6d, 0xfa,
-	0x15, 0xef, 0xe0, 0xd1, 0xc8, 0x53, 0xa8, 0x3c, 0x86, 0x07, 0x79, 0xd3, 0x2c, 0xcb, 0xf7, 0x96,
-	0x82, 0x26, 0x3d, 0xdb, 0x4c, 0x70, 0x77, 0xdb, 0x71, 0xb8, 0xa5, 0xf2, 0xf8, 0xf9, 0x8b, 0x38,
-	0x13, 0x7d, 0x0c, 0x05, 0x74, 0xfc, 0x5f, 0x39, 0x60, 0x87, 0x0a, 0x21, 0x9b, 0x3e, 0x8d, 0x47,
-	0xfc, 0x1c, 0x8f, 0xa0, 0x5f, 0x48, 0x4f, 0x86, 0x70, 0xb2, 0x5a, 0x81, 0xa0, 0x64, 0xb5, 0xa2,
-	0x3f, 0xc6, 0xe9, 0x76, 0x57, 0x28, 0x75, 0x1b, 0xf7, 0xfb, 0x36, 0x98, 0xa3, 0xd6, 0x3e, 0x47,
-	0xdf, 0xa3, 0xd8, 0xdb, 0x98, 0x64, 0xe9, 0x34, 0x42, 0x67, 0x00, 0xb1, 0x5c, 0xab, 0xb5, 0x42,
-	0xac, 0x60, 0xdc, 0x5c, 0x21, 0x48, 0x7d, 0xcd, 0x50, 0xfb, 0x66, 0x34, 0xf6, 0xcd, 0x50, 0x1b,
-	0x0e, 0xfb, 0x66, 0xac, 0x33, 0x93, 0x43, 0x6c, 0x29, 0x10, 0xa9, 0x1f, 0x20, 0xa0, 0x0f, 0xd5,
-	0x88, 0xa4, 0xef, 0x39, 0x1f, 0x3d, 0x59, 0x0d, 0x21, 0x26, 0x25, 0xe2, 0xd4, 0x99, 0x88, 0xaa,
-	0x74, 0x88, 0x71, 0x0d, 0x5f, 0x0d, 0x0e, 0x58, 0xed, 0xb4, 0x3f, 0x88, 0x61, 0xdc, 0xc7, 0x03,
-	0xb7, 0xa8, 0x5e, 0xc8, 0x15, 0x9c, 0xb2, 0x44, 0x85, 0xaf, 0xdd, 0x93, 0x75, 0x07, 0x4a, 0xf0,
-	0xa6, 0x3f, 0x6d, 0x2e, 0x66, 0x30, 0x15, 0xf4, 0x5b, 0xc4, 0xb8, 0x69, 0x85, 0xa1, 0x66, 0xa2,
-	0x3b, 0x56, 0x3e, 0xd0, 0x73, 0x20, 0x4a, 0x7f, 0x85, 0xf0, 0x84, 0x5f, 0x02, 0x66, 0x0a, 0xbe,
-	0xbb, 0xc1, 0x25, 0x8d, 0xe1, 0x5e, 0x89, 0x98, 0xd9, 0xdf, 0x5c, 0xeb, 0x17, 0x84, 0x27, 0x3b,
-	0x53, 0xc4, 0xb4, 0xdc, 0x73, 0xfe, 0x96, 0xff, 0xd9, 0x45, 0x2f, 0x7e, 0xea, 0xc7, 0x7d, 0x92,
-	0x9a, 0xec, 0xe0, 0x94, 0x52, 0x17, 0x32, 0xd9, 0x0e, 0xd3, 0x2e, 0x62, 0x5a, 0xe1, 0x0c, 0x2f,
-	0x55, 0x4c, 0x1f, 0x7b, 0xf9, 0xed, 0xd7, 0xbb, 0xa4, 0x46, 0xd2, 0x34, 0x46, 0x6d, 0xc9, 0x7b,
-	0x84, 0x87, 0xc2, 0xba, 0x44, 0xe6, 0x62, 0x72, 0x47, 0x8a, 0x9b, 0x36, 0xdf, 0xa5, 0x37, 0x10,
-	0x15, 0x24, 0x51, 0x9e, 0x64, 0x4f, 0x89, 0xea, 0xcc, 0x62, 0x26, 0x77, 0xa8, 0x5c, 0x08, 0x5a,
-	0x53, 0x0c, 0x1f, 0x10, 0xbe, 0xd0, 0x22, 0x67, 0xa4, 0x43, 0xa5, 0x08, 0x55, 0xd4, 0x8c, 0x6e,
-	0xdd, 0x81, 0x6c, 0x56, 0x92, 0x15, 0xc8, 0x44, 0x0c, 0x19, 0xc8, 0xa5, 0xda, 0xdb, 0x37, 0xa8,
-	0x29, 0x15, 0x64, 0x3a, 0xbe, 0x52, 0x8b, 0x8c, 0x69, 0x33, 0xdd, 0xb8, 0x02, 0xd0, 0x94, 0x04,
-	0x1a, 0x27, 0x79, 0x1a, 0xfb, 0x5f, 0x48, 0xf7, 0xaa, 0x95, 0x7d, 0xf2, 0x1a, 0xe1, 0x41, 0x3f,
-	0x7a, 0xb9, 0x56, 0x8b, 0xe5, 0x69, 0x97, 0xd5, 0x58, 0x9e, 0x08, 0x75, 0xd4, 0x27, 0x24, 0x4f,
-	0x96, 0x8c, 0xc6, 0xf3, 0xb8, 0xe4, 0x00, 0xe1, 0xff, 0x43, 0x62, 0x43, 0x66, 0x3b, 0xb7, 0x1c,
-	0x52, 0x37, 0x6d, 0xae, 0x3b, 0x67, 0x20, 0x5a, 0x92, 0x44, 0x94, 0xcc, 0xd3, 0x0e, 0x1f, 0x03,
-	0x74, 0x4f, 0x5e, 0xd9, 0x3e, 0xdd, 0x53, 0x9a, 0xb8, 0x4f, 0xbe, 0x22, 0x3c, 0x12, 0xa3, 0x13,
-	0x64, 0x29, 0x1e, 0xa0, 0x83, 0xba, 0x69, 0x37, 0xcf, 0x1b, 0x06, 0x1d, 0xcc, 0xcb, 0x0e, 0xa6,
-	0x48, 0xa1, 0x53, 0x07, 0xae, 0xdf, 0x42, 0x71, 0xf1, 0xf0, 0x38, 0x87, 0x8e, 0x8e, 0x73, 0xe8,
-	0xe7, 0x71, 0x0e, 0xbd, 0x3d, 0xc9, 0x25, 0x8e, 0x4e, 0x72, 0x89, 0xef, 0x27, 0xb9, 0xc4, 0x93,
-	0xb4, 0x1f, 0xff, 0xa2, 0x99, 0xc1, 0xdb, 0xb5, 0xb9, 0xbb, 0x91, 0x92, 0x1f, 0x43, 0x37, 0xfe,
-	0x04, 0x00, 0x00, 0xff, 0xff, 0x43, 0x73, 0x5a, 0x5d, 0x14, 0x0a, 0x00, 0x00,
+	// 1134 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x97, 0xcd, 0x6f, 0x1b, 0x45,
+	0x14, 0xc0, 0x33, 0x69, 0x13, 0x91, 0x97, 0x0a, 0xda, 0x69, 0x80, 0x74, 0xeb, 0x38, 0xe9, 0x34,
+	0x1f, 0x24, 0x4d, 0xbc, 0x24, 0x10, 0x0c, 0x6a, 0xab, 0xaa, 0x26, 0xb4, 0x14, 0x71, 0x08, 0x2e,
+	0x02, 0xc4, 0xc5, 0x6c, 0xec, 0x91, 0xbd, 0xc2, 0xd9, 0xd9, 0xee, 0x6e, 0x68, 0x43, 0x94, 0x0b,
+	0x88, 0x03, 0x9c, 0x10, 0x1c, 0x91, 0x90, 0xb8, 0x71, 0x44, 0x82, 0x13, 0xe2, 0x0a, 0xf4, 0x18,
+	0x89, 0x0b, 0x27, 0x84, 0x12, 0x24, 0xfe, 0x8d, 0xca, 0x33, 0x6f, 0xba, 0x6b, 0xef, 0xce, 0xc6,
+	0xae, 0x72, 0xb1, 0x76, 0x67, 0xde, 0xc7, 0xef, 0xbd, 0x79, 0x3b, 0xef, 0x19, 0x0a, 0xdc, 0x0b,
+	0xb8, 0x53, 0x6f, 0xd9, 0xf7, 0x45, 0xf0, 0x71, 0x5b, 0x38, 0x0d, 0xfb, 0xde, 0x0e, 0x0f, 0x76,
+	0x4b, 0x7e, 0x20, 0x22, 0x41, 0xcf, 0xe2, 0x6e, 0x49, 0xef, 0x5a, 0xe7, 0x9c, 0x6d, 0xd7, 0x13,
+	0xb6, 0xfc, 0x55, 0x42, 0xd6, 0x44, 0x53, 0x34, 0x85, 0x7c, 0xb4, 0x3b, 0x4f, 0xb8, 0x5a, 0x68,
+	0x0a, 0xd1, 0x6c, 0x73, 0xdb, 0xf1, 0x5d, 0xdb, 0xf1, 0x3c, 0x11, 0x39, 0x91, 0x2b, 0xbc, 0x10,
+	0x77, 0x97, 0xea, 0x22, 0xdc, 0x16, 0xa1, 0xbd, 0xe5, 0x84, 0x5c, 0x79, 0xb4, 0x3f, 0x59, 0xdd,
+	0xe2, 0x91, 0xb3, 0x6a, 0xfb, 0x4e, 0xd3, 0xf5, 0xa4, 0x30, 0xca, 0x4e, 0xa5, 0x10, 0x7d, 0x27,
+	0x70, 0xb6, 0xb5, 0xa9, 0xe9, 0xd4, 0xb6, 0x7e, 0x40, 0x81, 0x4b, 0x99, 0x02, 0x01, 0xf7, 0x45,
+	0x10, 0x19, 0x6d, 0x84, 0x3b, 0x3e, 0x0f, 0x5c, 0x11, 0x28, 0x01, 0x36, 0x01, 0xf4, 0x9d, 0x0e,
+	0xe5, 0xa6, 0xf4, 0x5c, 0xe5, 0xf7, 0x76, 0x78, 0x18, 0xb1, 0x2a, 0x9c, 0xef, 0x5a, 0x0d, 0x7d,
+	0xe1, 0x85, 0x9c, 0x5e, 0x85, 0x51, 0x45, 0x38, 0x49, 0x66, 0xc8, 0x0b, 0xe3, 0x6b, 0x93, 0xa5,
+	0xde, 0x34, 0x96, 0x94, 0x46, 0x65, 0xec, 0xe1, 0x3f, 0xd3, 0x43, 0x3f, 0xfe, 0xff, 0xd3, 0x12,
+	0xa9, 0xa2, 0x0a, 0x2b, 0x80, 0x25, 0x6d, 0xde, 0xe6, 0xd1, 0x1b, 0xbe, 0xa8, 0xb7, 0xde, 0xe6,
+	0x5e, 0x33, 0x6a, 0x69, 0x8f, 0x37, 0xe0, 0x62, 0xe6, 0x2e, 0x7a, 0x9e, 0x81, 0x71, 0x1e, 0x2f,
+	0x4b, 0xf7, 0xa7, 0xab, 0xc9, 0x25, 0x36, 0x15, 0x1b, 0x78, 0x7d, 0x27, 0x08, 0xb8, 0xa7, 0xec,
+	0x68, 0xfb, 0x15, 0x28, 0x64, 0x6f, 0xa3, 0x03, 0x06, 0x67, 0xea, 0x89, 0x75, 0xf4, 0xd0, 0xb5,
+	0xc6, 0x16, 0xe1, 0x79, 0x6d, 0xe3, 0x7d, 0x8c, 0x17, 0xcd, 0xd3, 0xa7, 0x61, 0xd8, 0x6d, 0xa0,
+	0xd2, 0xb0, 0xdb, 0x60, 0x1f, 0xc0, 0x64, 0x5a, 0x14, 0x5d, 0x5d, 0x83, 0xa7, 0xf4, 0x1a, 0xe6,
+	0xd1, 0x4a, 0xe7, 0x51, 0x4b, 0x54, 0x4e, 0x77, 0x32, 0x59, 0x7d, 0xac, 0xc1, 0x1c, 0x84, 0xb8,
+	0xd9, 0x6e, 0xf7, 0x42, 0xdc, 0x02, 0x88, 0x6b, 0x0c, 0x4d, 0xcf, 0x97, 0x54, 0x41, 0x96, 0x3a,
+	0x05, 0x59, 0x52, 0x9f, 0x00, 0x16, 0x64, 0x69, 0xd3, 0x69, 0x72, 0xd4, 0xad, 0x26, 0x34, 0xd9,
+	0x0f, 0x04, 0xe9, 0xbb, 0x7c, 0x64, 0xd2, 0x9f, 0x1a, 0x8c, 0x9e, 0xde, 0xee, 0x42, 0x1c, 0x96,
+	0x88, 0x0b, 0xc7, 0x22, 0x2a, 0xd7, 0x5d, 0x8c, 0x77, 0xe0, 0x42, 0x32, 0xc1, 0xaa, 0xe8, 0x75,
+	0x22, 0x26, 0x60, 0x84, 0x27, 0x4e, 0x51, 0xbd, 0xd0, 0xe7, 0x60, 0xd4, 0x13, 0x0d, 0x7e, 0x67,
+	0x43, 0xfa, 0x1d, 0xab, 0xe2, 0x1b, 0xfb, 0x28, 0x2e, 0xcc, 0xa4, 0x29, 0x8c, 0xb7, 0x02, 0x10,
+	0xaf, 0x62, 0x52, 0x0b, 0xd9, 0x11, 0x2b, 0x19, 0x8c, 0x39, 0xa1, 0xc5, 0x3e, 0x27, 0x70, 0x59,
+	0xbb, 0xc0, 0x9c, 0xa2, 0xec, 0x6e, 0xb2, 0x48, 0x0d, 0xdc, 0xb7, 0x32, 0x72, 0xf6, 0x24, 0xc7,
+	0xfa, 0x33, 0x81, 0xd9, 0x7c, 0x0a, 0x43, 0xc8, 0xa7, 0x06, 0x0f, 0xf9, 0xe4, 0x0e, 0xfa, 0x0a,
+	0x2c, 0xa6, 0x4f, 0x67, 0x33, 0x10, 0x75, 0x1e, 0x86, 0x15, 0x27, 0xaa, 0xb7, 0xee, 0xba, 0x9f,
+	0xea, 0x70, 0xd9, 0x5b, 0xb0, 0xd4, 0x8f, 0x30, 0xc6, 0x59, 0x80, 0xb1, 0x2d, 0xbd, 0x88, 0x29,
+	0x8f, 0x17, 0xd8, 0x7c, 0x9c, 0xad, 0x37, 0xdd, 0x30, 0x12, 0x81, 0xca, 0xd2, 0x86, 0x13, 0x39,
+	0x1b, 0xdc, 0x8f, 0x6f, 0xae, 0xeb, 0x30, 0x77, 0x8c, 0x1c, 0xba, 0x9b, 0x80, 0x91, 0x46, 0x67,
+	0x41, 0x9f, 0xae, 0x7c, 0x61, 0x65, 0x98, 0xee, 0xba, 0xf8, 0x90, 0xb6, 0xa3, 0x9e, 0x5b, 0x16,
+	0xec, 0x01, 0xcc, 0x98, 0x15, 0xd1, 0xe5, 0xbb, 0x70, 0xb6, 0x77, 0x0f, 0x4b, 0x98, 0xa5, 0xcf,
+	0xb3, 0x57, 0x12, 0x4f, 0x35, 0x65, 0x81, 0xb5, 0x81, 0x25, 0xea, 0xc8, 0x44, 0x7d, 0x52, 0xb7,
+	0xd1, 0x1f, 0xdd, 0x1f, 0x8f, 0x31, 0xd6, 0xf7, 0xe0, 0x5c, 0xef, 0x5e, 0x88, 0xc5, 0xdb, 0x7f,
+	0xb0, 0x69, 0x13, 0x27, 0x57, 0xc9, 0x17, 0xe2, 0xf6, 0x71, 0x17, 0x9b, 0xb0, 0xae, 0xa1, 0x44,
+	0xbb, 0x88, 0xb7, 0xe2, 0x0b, 0x57, 0xaf, 0x99, 0xdb, 0x85, 0x96, 0xd0, 0x17, 0xae, 0x7e, 0x5f,
+	0xfb, 0xfd, 0x19, 0x18, 0x91, 0xa6, 0xe9, 0x7d, 0x18, 0x55, 0xcd, 0x99, 0xce, 0xa6, 0xf5, 0xd3,
+	0x33, 0x80, 0x35, 0x77, 0x8c, 0x94, 0xc2, 0x63, 0x33, 0x9f, 0xfd, 0xf5, 0xdf, 0xb7, 0xc3, 0x16,
+	0x9d, 0xb4, 0x0d, 0xd3, 0x0c, 0xfd, 0x86, 0xc0, 0x78, 0xa2, 0xa7, 0xd3, 0x65, 0x83, 0xe1, 0xcc,
+	0xc1, 0xc0, 0x5a, 0xe9, 0x53, 0x1a, 0x71, 0xe6, 0x25, 0xce, 0x0c, 0x2d, 0xa6, 0x71, 0xe4, 0x67,
+	0x63, 0xb7, 0x15, 0xc4, 0x77, 0x04, 0xce, 0x24, 0x07, 0x01, 0x9a, 0xe3, 0x27, 0x63, 0x9e, 0xb0,
+	0x4a, 0xfd, 0x8a, 0x23, 0xd7, 0xb2, 0xe4, 0x9a, 0xa7, 0xb3, 0x26, 0x2e, 0x9c, 0x34, 0xd4, 0x95,
+	0xff, 0x15, 0x89, 0xbb, 0x2c, 0x5d, 0x34, 0xbb, 0xea, 0x99, 0x00, 0xac, 0xa5, 0x7e, 0x44, 0x91,
+	0x68, 0x41, 0x12, 0x5d, 0xa2, 0xd3, 0xb6, 0x71, 0xce, 0xb4, 0xf7, 0xdc, 0xc6, 0x3e, 0xfd, 0x92,
+	0xc0, 0xb8, 0xd6, 0xbe, 0xd9, 0x6e, 0x1b, 0x79, 0xd2, 0x13, 0x89, 0x91, 0x27, 0x63, 0xb0, 0x60,
+	0x97, 0x25, 0xcf, 0x14, 0xbd, 0x68, 0xe6, 0x09, 0xe9, 0xf7, 0x24, 0xd9, 0x9b, 0xe8, 0x95, 0xfc,
+	0x78, 0xbb, 0xa6, 0x02, 0x6b, 0xb9, 0x3f, 0x61, 0xc4, 0x59, 0x97, 0x38, 0x36, 0x5d, 0xb1, 0x73,
+	0xa6, 0x6c, 0x7b, 0x4f, 0x9e, 0xd7, 0xbe, 0xbd, 0xa7, 0x66, 0x89, 0x7d, 0xfa, 0x0b, 0x81, 0x89,
+	0xac, 0xe6, 0x4a, 0xd7, 0xcd, 0xde, 0x73, 0x46, 0x02, 0xeb, 0x95, 0x41, 0xd5, 0x10, 0x7f, 0x45,
+	0xe2, 0x2f, 0xd0, 0xb9, 0x3c, 0xfc, 0x50, 0xf3, 0xd3, 0x03, 0x02, 0x96, 0xb9, 0x63, 0xd2, 0xab,
+	0xfd, 0xa4, 0xce, 0xd0, 0x94, 0xad, 0x6b, 0x4f, 0xa6, 0x8c, 0x81, 0x94, 0x65, 0x20, 0xab, 0xd4,
+	0xce, 0x3d, 0x07, 0x5f, 0xa9, 0xd7, 0x64, 0xfb, 0xae, 0x85, 0x1d, 0xe6, 0x3f, 0x09, 0x3c, 0x9b,
+	0xd9, 0x90, 0x69, 0x4e, 0x4e, 0xf3, 0x3a, 0xbd, 0x55, 0x1e, 0x58, 0x0f, 0x63, 0xb8, 0x2e, 0x63,
+	0x28, 0xd3, 0xf5, 0xdc, 0x18, 0x5a, 0xca, 0x46, 0x4d, 0x1e, 0x49, 0xad, 0xe1, 0x44, 0x4e, 0x4d,
+	0x8e, 0x08, 0xf4, 0x57, 0x92, 0x6e, 0xe3, 0x74, 0xf5, 0x98, 0x7b, 0x31, 0xdd, 0x91, 0xad, 0xb5,
+	0x41, 0x54, 0x10, 0xfd, 0x86, 0x44, 0x7f, 0x8d, 0x96, 0x73, 0xd1, 0x15, 0xb2, 0x3e, 0x84, 0x0e,
+	0xfa, 0xe3, 0xca, 0xfa, 0x8d, 0xc0, 0xf9, 0x8c, 0xb6, 0x4d, 0x5f, 0xce, 0x2d, 0x6c, 0x53, 0x08,
+	0xeb, 0x03, 0x6a, 0x61, 0x14, 0xaf, 0xca, 0x28, 0xd6, 0xe8, 0x8b, 0x03, 0x46, 0x11, 0xd2, 0x2f,
+	0x48, 0xdc, 0x7e, 0xf3, 0x6e, 0xe2, 0x9e, 0x8e, 0x9e, 0x77, 0x13, 0xf7, 0x76, 0x78, 0xc6, 0x24,
+	0x5d, 0x81, 0x5a, 0xb6, 0xf1, 0xdf, 0x7a, 0x65, 0xed, 0xe1, 0x61, 0x91, 0x1c, 0x1c, 0x16, 0xc9,
+	0xbf, 0x87, 0x45, 0xf2, 0xf5, 0x51, 0x71, 0xe8, 0xe0, 0xa8, 0x38, 0xf4, 0xf7, 0x51, 0x71, 0xe8,
+	0xc3, 0x49, 0xad, 0xf4, 0x20, 0x56, 0x8b, 0x76, 0x7d, 0x1e, 0x6e, 0x8d, 0xca, 0xbf, 0xf8, 0x2f,
+	0x3d, 0x0a, 0x00, 0x00, 0xff, 0xff, 0x7b, 0xad, 0x50, 0x21, 0x0b, 0x11, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -746,14 +1209,21 @@ type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
 	// Queries epoch
-	GetEpochLength(ctx context.Context, in *QueryGetEpochLengthRequest, opts ...grpc.CallOption) (*QueryGetEpochLengthResponse, error)
-	GetCurrentEpoch(ctx context.Context, in *QueryGetCurrentEpochRequest, opts ...grpc.CallOption) (*QueryGetCurrentEpochResponse, error)
+	EpochLength(ctx context.Context, in *QueryGetEpochLengthRequest, opts ...grpc.CallOption) (*QueryGetEpochLengthResponse, error)
+	CurrentEpoch(ctx context.Context, in *QueryGetCurrentEpochRequest, opts ...grpc.CallOption) (*QueryGetCurrentEpochResponse, error)
 	// Queries a list of Workload items.
 	Workload(ctx context.Context, in *QueryGetWorkloadRequest, opts ...grpc.CallOption) (*QueryGetWorkloadResponse, error)
 	WorkloadAll(ctx context.Context, in *QueryAllWorkloadRequest, opts ...grpc.CallOption) (*QueryAllWorkloadResponse, error)
 	// Queries a list of Workreport items.
-	GetWorkreport(ctx context.Context, in *QueryGetWorkreportRequest, opts ...grpc.CallOption) (*QueryGetWorkreportResponse, error)
-	GetAllWorkreportByEpoch(ctx context.Context, in *QueryGetAllWorkreportByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllWorkreportByEpochResponse, error)
+	Workreport(ctx context.Context, in *QueryGetWorkreportRequest, opts ...grpc.CallOption) (*QueryGetWorkreportResponse, error)
+	AllWorkreportByEpoch(ctx context.Context, in *QueryGetAllWorkreportByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllWorkreportByEpochResponse, error)
+	// Queries some param settings
+	WorkreportProcessBatchSize(ctx context.Context, in *QueryGetWorkreportProcessBatchSizeRequest, opts ...grpc.CallOption) (*QueryGetWorkreportProcessBatchSizeResponse, error)
+	HistoryEpochDataDepth(ctx context.Context, in *QueryGetHistoryEpochDataDepthRequest, opts ...grpc.CallOption) (*QueryGetHistoryEpochDataDepthResponse, error)
+	EpochProcessData(ctx context.Context, in *QueryGetEpochProcessDataRequest, opts ...grpc.CallOption) (*QueryGetEpochProcessDataResponse, error)
+	AllEpochProcessData(ctx context.Context, in *QueryGetAllEpochProcessDataRequest, opts ...grpc.CallOption) (*QueryGetAllEpochProcessDataResponse, error)
+	// Queries a Superior
+	Superior(ctx context.Context, in *QueryGetSuperiorRequest, opts ...grpc.CallOption) (*QueryGetSuperiorResponse, error)
 }
 
 type queryClient struct {
@@ -773,18 +1243,18 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
-func (c *queryClient) GetEpochLength(ctx context.Context, in *QueryGetEpochLengthRequest, opts ...grpc.CallOption) (*QueryGetEpochLengthResponse, error) {
+func (c *queryClient) EpochLength(ctx context.Context, in *QueryGetEpochLengthRequest, opts ...grpc.CallOption) (*QueryGetEpochLengthResponse, error) {
 	out := new(QueryGetEpochLengthResponse)
-	err := c.cc.Invoke(ctx, "/enreach.workload.Query/GetEpochLength", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/EpochLength", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *queryClient) GetCurrentEpoch(ctx context.Context, in *QueryGetCurrentEpochRequest, opts ...grpc.CallOption) (*QueryGetCurrentEpochResponse, error) {
+func (c *queryClient) CurrentEpoch(ctx context.Context, in *QueryGetCurrentEpochRequest, opts ...grpc.CallOption) (*QueryGetCurrentEpochResponse, error) {
 	out := new(QueryGetCurrentEpochResponse)
-	err := c.cc.Invoke(ctx, "/enreach.workload.Query/GetCurrentEpoch", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/CurrentEpoch", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -809,18 +1279,63 @@ func (c *queryClient) WorkloadAll(ctx context.Context, in *QueryAllWorkloadReque
 	return out, nil
 }
 
-func (c *queryClient) GetWorkreport(ctx context.Context, in *QueryGetWorkreportRequest, opts ...grpc.CallOption) (*QueryGetWorkreportResponse, error) {
+func (c *queryClient) Workreport(ctx context.Context, in *QueryGetWorkreportRequest, opts ...grpc.CallOption) (*QueryGetWorkreportResponse, error) {
 	out := new(QueryGetWorkreportResponse)
-	err := c.cc.Invoke(ctx, "/enreach.workload.Query/GetWorkreport", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/Workreport", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *queryClient) GetAllWorkreportByEpoch(ctx context.Context, in *QueryGetAllWorkreportByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllWorkreportByEpochResponse, error) {
+func (c *queryClient) AllWorkreportByEpoch(ctx context.Context, in *QueryGetAllWorkreportByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllWorkreportByEpochResponse, error) {
 	out := new(QueryGetAllWorkreportByEpochResponse)
-	err := c.cc.Invoke(ctx, "/enreach.workload.Query/GetAllWorkreportByEpoch", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/AllWorkreportByEpoch", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) WorkreportProcessBatchSize(ctx context.Context, in *QueryGetWorkreportProcessBatchSizeRequest, opts ...grpc.CallOption) (*QueryGetWorkreportProcessBatchSizeResponse, error) {
+	out := new(QueryGetWorkreportProcessBatchSizeResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/WorkreportProcessBatchSize", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) HistoryEpochDataDepth(ctx context.Context, in *QueryGetHistoryEpochDataDepthRequest, opts ...grpc.CallOption) (*QueryGetHistoryEpochDataDepthResponse, error) {
+	out := new(QueryGetHistoryEpochDataDepthResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/HistoryEpochDataDepth", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) EpochProcessData(ctx context.Context, in *QueryGetEpochProcessDataRequest, opts ...grpc.CallOption) (*QueryGetEpochProcessDataResponse, error) {
+	out := new(QueryGetEpochProcessDataResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/EpochProcessData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) AllEpochProcessData(ctx context.Context, in *QueryGetAllEpochProcessDataRequest, opts ...grpc.CallOption) (*QueryGetAllEpochProcessDataResponse, error) {
+	out := new(QueryGetAllEpochProcessDataResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/AllEpochProcessData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) Superior(ctx context.Context, in *QueryGetSuperiorRequest, opts ...grpc.CallOption) (*QueryGetSuperiorResponse, error) {
+	out := new(QueryGetSuperiorResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/Superior", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -832,14 +1347,21 @@ type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
 	// Queries epoch
-	GetEpochLength(context.Context, *QueryGetEpochLengthRequest) (*QueryGetEpochLengthResponse, error)
-	GetCurrentEpoch(context.Context, *QueryGetCurrentEpochRequest) (*QueryGetCurrentEpochResponse, error)
+	EpochLength(context.Context, *QueryGetEpochLengthRequest) (*QueryGetEpochLengthResponse, error)
+	CurrentEpoch(context.Context, *QueryGetCurrentEpochRequest) (*QueryGetCurrentEpochResponse, error)
 	// Queries a list of Workload items.
 	Workload(context.Context, *QueryGetWorkloadRequest) (*QueryGetWorkloadResponse, error)
 	WorkloadAll(context.Context, *QueryAllWorkloadRequest) (*QueryAllWorkloadResponse, error)
 	// Queries a list of Workreport items.
-	GetWorkreport(context.Context, *QueryGetWorkreportRequest) (*QueryGetWorkreportResponse, error)
-	GetAllWorkreportByEpoch(context.Context, *QueryGetAllWorkreportByEpochRequest) (*QueryGetAllWorkreportByEpochResponse, error)
+	Workreport(context.Context, *QueryGetWorkreportRequest) (*QueryGetWorkreportResponse, error)
+	AllWorkreportByEpoch(context.Context, *QueryGetAllWorkreportByEpochRequest) (*QueryGetAllWorkreportByEpochResponse, error)
+	// Queries some param settings
+	WorkreportProcessBatchSize(context.Context, *QueryGetWorkreportProcessBatchSizeRequest) (*QueryGetWorkreportProcessBatchSizeResponse, error)
+	HistoryEpochDataDepth(context.Context, *QueryGetHistoryEpochDataDepthRequest) (*QueryGetHistoryEpochDataDepthResponse, error)
+	EpochProcessData(context.Context, *QueryGetEpochProcessDataRequest) (*QueryGetEpochProcessDataResponse, error)
+	AllEpochProcessData(context.Context, *QueryGetAllEpochProcessDataRequest) (*QueryGetAllEpochProcessDataResponse, error)
+	// Queries a Superior
+	Superior(context.Context, *QueryGetSuperiorRequest) (*QueryGetSuperiorResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -849,11 +1371,11 @@ type UnimplementedQueryServer struct {
 func (*UnimplementedQueryServer) Params(ctx context.Context, req *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
 }
-func (*UnimplementedQueryServer) GetEpochLength(ctx context.Context, req *QueryGetEpochLengthRequest) (*QueryGetEpochLengthResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetEpochLength not implemented")
+func (*UnimplementedQueryServer) EpochLength(ctx context.Context, req *QueryGetEpochLengthRequest) (*QueryGetEpochLengthResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EpochLength not implemented")
 }
-func (*UnimplementedQueryServer) GetCurrentEpoch(ctx context.Context, req *QueryGetCurrentEpochRequest) (*QueryGetCurrentEpochResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCurrentEpoch not implemented")
+func (*UnimplementedQueryServer) CurrentEpoch(ctx context.Context, req *QueryGetCurrentEpochRequest) (*QueryGetCurrentEpochResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CurrentEpoch not implemented")
 }
 func (*UnimplementedQueryServer) Workload(ctx context.Context, req *QueryGetWorkloadRequest) (*QueryGetWorkloadResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Workload not implemented")
@@ -861,11 +1383,26 @@ func (*UnimplementedQueryServer) Workload(ctx context.Context, req *QueryGetWork
 func (*UnimplementedQueryServer) WorkloadAll(ctx context.Context, req *QueryAllWorkloadRequest) (*QueryAllWorkloadResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WorkloadAll not implemented")
 }
-func (*UnimplementedQueryServer) GetWorkreport(ctx context.Context, req *QueryGetWorkreportRequest) (*QueryGetWorkreportResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetWorkreport not implemented")
+func (*UnimplementedQueryServer) Workreport(ctx context.Context, req *QueryGetWorkreportRequest) (*QueryGetWorkreportResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Workreport not implemented")
 }
-func (*UnimplementedQueryServer) GetAllWorkreportByEpoch(ctx context.Context, req *QueryGetAllWorkreportByEpochRequest) (*QueryGetAllWorkreportByEpochResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAllWorkreportByEpoch not implemented")
+func (*UnimplementedQueryServer) AllWorkreportByEpoch(ctx context.Context, req *QueryGetAllWorkreportByEpochRequest) (*QueryGetAllWorkreportByEpochResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllWorkreportByEpoch not implemented")
+}
+func (*UnimplementedQueryServer) WorkreportProcessBatchSize(ctx context.Context, req *QueryGetWorkreportProcessBatchSizeRequest) (*QueryGetWorkreportProcessBatchSizeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WorkreportProcessBatchSize not implemented")
+}
+func (*UnimplementedQueryServer) HistoryEpochDataDepth(ctx context.Context, req *QueryGetHistoryEpochDataDepthRequest) (*QueryGetHistoryEpochDataDepthResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HistoryEpochDataDepth not implemented")
+}
+func (*UnimplementedQueryServer) EpochProcessData(ctx context.Context, req *QueryGetEpochProcessDataRequest) (*QueryGetEpochProcessDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EpochProcessData not implemented")
+}
+func (*UnimplementedQueryServer) AllEpochProcessData(ctx context.Context, req *QueryGetAllEpochProcessDataRequest) (*QueryGetAllEpochProcessDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllEpochProcessData not implemented")
+}
+func (*UnimplementedQueryServer) Superior(ctx context.Context, req *QueryGetSuperiorRequest) (*QueryGetSuperiorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Superior not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -890,38 +1427,38 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_GetEpochLength_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_EpochLength_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryGetEpochLengthRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).GetEpochLength(ctx, in)
+		return srv.(QueryServer).EpochLength(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/enreach.workload.Query/GetEpochLength",
+		FullMethod: "/enreach.workload.Query/EpochLength",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).GetEpochLength(ctx, req.(*QueryGetEpochLengthRequest))
+		return srv.(QueryServer).EpochLength(ctx, req.(*QueryGetEpochLengthRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_GetCurrentEpoch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_CurrentEpoch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryGetCurrentEpochRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).GetCurrentEpoch(ctx, in)
+		return srv.(QueryServer).CurrentEpoch(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/enreach.workload.Query/GetCurrentEpoch",
+		FullMethod: "/enreach.workload.Query/CurrentEpoch",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).GetCurrentEpoch(ctx, req.(*QueryGetCurrentEpochRequest))
+		return srv.(QueryServer).CurrentEpoch(ctx, req.(*QueryGetCurrentEpochRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -962,38 +1499,128 @@ func _Query_WorkloadAll_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_GetWorkreport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_Workreport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryGetWorkreportRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).GetWorkreport(ctx, in)
+		return srv.(QueryServer).Workreport(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/enreach.workload.Query/GetWorkreport",
+		FullMethod: "/enreach.workload.Query/Workreport",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).GetWorkreport(ctx, req.(*QueryGetWorkreportRequest))
+		return srv.(QueryServer).Workreport(ctx, req.(*QueryGetWorkreportRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_GetAllWorkreportByEpoch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_AllWorkreportByEpoch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryGetAllWorkreportByEpochRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).GetAllWorkreportByEpoch(ctx, in)
+		return srv.(QueryServer).AllWorkreportByEpoch(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/enreach.workload.Query/GetAllWorkreportByEpoch",
+		FullMethod: "/enreach.workload.Query/AllWorkreportByEpoch",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).GetAllWorkreportByEpoch(ctx, req.(*QueryGetAllWorkreportByEpochRequest))
+		return srv.(QueryServer).AllWorkreportByEpoch(ctx, req.(*QueryGetAllWorkreportByEpochRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_WorkreportProcessBatchSize_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetWorkreportProcessBatchSizeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).WorkreportProcessBatchSize(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/enreach.workload.Query/WorkreportProcessBatchSize",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).WorkreportProcessBatchSize(ctx, req.(*QueryGetWorkreportProcessBatchSizeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_HistoryEpochDataDepth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetHistoryEpochDataDepthRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).HistoryEpochDataDepth(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/enreach.workload.Query/HistoryEpochDataDepth",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).HistoryEpochDataDepth(ctx, req.(*QueryGetHistoryEpochDataDepthRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_EpochProcessData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetEpochProcessDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).EpochProcessData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/enreach.workload.Query/EpochProcessData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).EpochProcessData(ctx, req.(*QueryGetEpochProcessDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_AllEpochProcessData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAllEpochProcessDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).AllEpochProcessData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/enreach.workload.Query/AllEpochProcessData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).AllEpochProcessData(ctx, req.(*QueryGetAllEpochProcessDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_Superior_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetSuperiorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).Superior(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/enreach.workload.Query/Superior",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).Superior(ctx, req.(*QueryGetSuperiorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1007,12 +1634,12 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Query_Params_Handler,
 		},
 		{
-			MethodName: "GetEpochLength",
-			Handler:    _Query_GetEpochLength_Handler,
+			MethodName: "EpochLength",
+			Handler:    _Query_EpochLength_Handler,
 		},
 		{
-			MethodName: "GetCurrentEpoch",
-			Handler:    _Query_GetCurrentEpoch_Handler,
+			MethodName: "CurrentEpoch",
+			Handler:    _Query_CurrentEpoch_Handler,
 		},
 		{
 			MethodName: "Workload",
@@ -1023,12 +1650,32 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Query_WorkloadAll_Handler,
 		},
 		{
-			MethodName: "GetWorkreport",
-			Handler:    _Query_GetWorkreport_Handler,
+			MethodName: "Workreport",
+			Handler:    _Query_Workreport_Handler,
 		},
 		{
-			MethodName: "GetAllWorkreportByEpoch",
-			Handler:    _Query_GetAllWorkreportByEpoch_Handler,
+			MethodName: "AllWorkreportByEpoch",
+			Handler:    _Query_AllWorkreportByEpoch_Handler,
+		},
+		{
+			MethodName: "WorkreportProcessBatchSize",
+			Handler:    _Query_WorkreportProcessBatchSize_Handler,
+		},
+		{
+			MethodName: "HistoryEpochDataDepth",
+			Handler:    _Query_HistoryEpochDataDepth_Handler,
+		},
+		{
+			MethodName: "EpochProcessData",
+			Handler:    _Query_EpochProcessData_Handler,
+		},
+		{
+			MethodName: "AllEpochProcessData",
+			Handler:    _Query_AllEpochProcessData_Handler,
+		},
+		{
+			MethodName: "Superior",
+			Handler:    _Query_Superior_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -1495,6 +2142,309 @@ func (m *QueryGetAllWorkreportByEpochResponse) MarshalToSizedBuffer(dAtA []byte)
 	return len(dAtA) - i, nil
 }
 
+func (m *QueryGetWorkreportProcessBatchSizeRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetWorkreportProcessBatchSizeRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetWorkreportProcessBatchSizeRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetWorkreportProcessBatchSizeResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetWorkreportProcessBatchSizeResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetWorkreportProcessBatchSizeResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.BatchSize != 0 {
+		i = encodeVarintQuery(dAtA, i, uint64(m.BatchSize))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetHistoryEpochDataDepthRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetHistoryEpochDataDepthRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetHistoryEpochDataDepthRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetHistoryEpochDataDepthResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetHistoryEpochDataDepthResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetHistoryEpochDataDepthResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Depth != 0 {
+		i = encodeVarintQuery(dAtA, i, uint64(m.Depth))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetEpochProcessDataRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetEpochProcessDataRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetEpochProcessDataRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Epoch != 0 {
+		i = encodeVarintQuery(dAtA, i, uint64(m.Epoch))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetEpochProcessDataResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetEpochProcessDataResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetEpochProcessDataResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.EpochProcessData.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetAllEpochProcessDataRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetAllEpochProcessDataRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetAllEpochProcessDataRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetAllEpochProcessDataResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetAllEpochProcessDataResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetAllEpochProcessDataResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.EpochProcessDatas) > 0 {
+		for iNdEx := len(m.EpochProcessDatas) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.EpochProcessDatas[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetSuperiorRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetSuperiorRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetSuperiorRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetSuperiorResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetSuperiorResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetSuperiorResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.Superior.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	offset -= sovQuery(v)
 	base := offset
@@ -1682,6 +2632,123 @@ func (m *QueryGetAllWorkreportByEpochResponse) Size() (n int) {
 		l = m.Pagination.Size()
 		n += 1 + l + sovQuery(uint64(l))
 	}
+	return n
+}
+
+func (m *QueryGetWorkreportProcessBatchSizeRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *QueryGetWorkreportProcessBatchSizeResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.BatchSize != 0 {
+		n += 1 + sovQuery(uint64(m.BatchSize))
+	}
+	return n
+}
+
+func (m *QueryGetHistoryEpochDataDepthRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *QueryGetHistoryEpochDataDepthResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Depth != 0 {
+		n += 1 + sovQuery(uint64(m.Depth))
+	}
+	return n
+}
+
+func (m *QueryGetEpochProcessDataRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Epoch != 0 {
+		n += 1 + sovQuery(uint64(m.Epoch))
+	}
+	return n
+}
+
+func (m *QueryGetEpochProcessDataResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.EpochProcessData.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryGetAllEpochProcessDataRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetAllEpochProcessDataResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.EpochProcessDatas) > 0 {
+		for _, e := range m.EpochProcessDatas {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetSuperiorRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *QueryGetSuperiorResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.Superior.Size()
+	n += 1 + l + sovQuery(uint64(l))
 	return n
 }
 
@@ -2805,6 +3872,735 @@ func (m *QueryGetAllWorkreportByEpochResponse) Unmarshal(dAtA []byte) error {
 				m.Pagination = &query.PageResponse{}
 			}
 			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetWorkreportProcessBatchSizeRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetWorkreportProcessBatchSizeRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetWorkreportProcessBatchSizeRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetWorkreportProcessBatchSizeResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetWorkreportProcessBatchSizeResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetWorkreportProcessBatchSizeResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field BatchSize", wireType)
+			}
+			m.BatchSize = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.BatchSize |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetHistoryEpochDataDepthRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetHistoryEpochDataDepthRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetHistoryEpochDataDepthRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetHistoryEpochDataDepthResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetHistoryEpochDataDepthResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetHistoryEpochDataDepthResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Depth", wireType)
+			}
+			m.Depth = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Depth |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetEpochProcessDataRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetEpochProcessDataRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetEpochProcessDataRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Epoch", wireType)
+			}
+			m.Epoch = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Epoch |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetEpochProcessDataResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetEpochProcessDataResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetEpochProcessDataResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field EpochProcessData", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.EpochProcessData.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetAllEpochProcessDataRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetAllEpochProcessDataRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetAllEpochProcessDataRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetAllEpochProcessDataResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetAllEpochProcessDataResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetAllEpochProcessDataResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field EpochProcessDatas", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.EpochProcessDatas = append(m.EpochProcessDatas, EpochProcessData{})
+			if err := m.EpochProcessDatas[len(m.EpochProcessDatas)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetSuperiorRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetSuperiorRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetSuperiorRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetSuperiorResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetSuperiorResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetSuperiorResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Superior", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Superior.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

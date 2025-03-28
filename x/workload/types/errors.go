@@ -18,4 +18,6 @@ var (
 	ErrInvalidParamLength               = sdkerrors.Register(ModuleName, 1107, "invalid parameter length")
 	ErrNodeScoresCountExceedPerReqLimit = sdkerrors.Register(ModuleName, 1108, "nodescores count exceed per request limit")
 	ErrInvalidEpoch                     = sdkerrors.Register(ModuleName, 1109, "invalid epoch")
+	ErrSuperiorNotSet                   = sdkerrors.Register(ModuleName, 1110, "superior not set")
+	ErrInvalidParamValue                = sdkerrors.Register(ModuleName, 1111, "invalid param value")
 )
