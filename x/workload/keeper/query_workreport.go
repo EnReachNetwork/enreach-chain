@@ -39,7 +39,7 @@ func (k Keeper) AllWorkreportByEpoch(ctx context.Context, req *types.QueryGetAll
 		return nil, status.Error(codes.Internal, err.Error())
 	}
 
-	return &types.QueryGetAllWorkreportByEpochResponse{Workreport: workreports, Pagination: pageRes}, nil
+	return &types.QueryGetAllWorkreportByEpochResponse{Workreports: workreports, Pagination: pageRes}, nil
 }
 
 func (k Keeper) WorkreportProcessBatchSize(ctx context.Context, req *types.QueryGetWorkreportProcessBatchSizeRequest) (*types.QueryGetWorkreportProcessBatchSizeResponse, error) {

@@ -32,6 +32,6 @@ message EpochProcessData {
   uint64 processedNodesCount = 3;  // accumulated processed nodes count
   uint64 startAt = 4; 
   uint64 updateAt = 5;
-  uint64 endAt = 6;
-  cosmos.base.query.v1beta1.PageRequest pagination = 7;
+  string status = 6;
+  cosmos.base.query.v1beta1.PageResponse pagination = 7;
 }

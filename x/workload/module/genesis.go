@@ -9,13 +9,6 @@ import (
 
 // InitGenesis initializes the module's state from a provided genesis state.
 func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) {
-	// Set all the workload
-	for _, elem := range genState.WorkloadList {
-		k.SetWorkload(ctx, elem)
-	}
-
-	// Set workload count
-	k.SetWorkloadCount(ctx, genState.WorkloadCount)
 	// this line is used by starport scaffolding # genesis/module/init
 	if err := k.SetParams(ctx, genState.Params); err != nil {
 		panic(err)
@@ -26,9 +19,6 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 	genesis := types.DefaultGenesis()
 	genesis.Params = k.GetParams(ctx)
-
-	genesis.WorkloadList = k.GetAllWorkload(ctx)
-	genesis.WorkloadCount = k.GetWorkloadCount(ctx)
 	// this line is used by starport scaffolding # genesis/module/export
 
 	return genesis

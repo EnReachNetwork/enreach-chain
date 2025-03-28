@@ -2465,7 +2465,7 @@ var (
 	fd_EpochProcessData_processedNodesCount protoreflect.FieldDescriptor
 	fd_EpochProcessData_startAt             protoreflect.FieldDescriptor
 	fd_EpochProcessData_updateAt            protoreflect.FieldDescriptor
-	fd_EpochProcessData_endAt               protoreflect.FieldDescriptor
+	fd_EpochProcessData_status              protoreflect.FieldDescriptor
 	fd_EpochProcessData_pagination          protoreflect.FieldDescriptor
 )
 
@@ -2477,7 +2477,7 @@ func init() {
 	fd_EpochProcessData_processedNodesCount = md_EpochProcessData.Fields().ByName("processedNodesCount")
 	fd_EpochProcessData_startAt = md_EpochProcessData.Fields().ByName("startAt")
 	fd_EpochProcessData_updateAt = md_EpochProcessData.Fields().ByName("updateAt")
-	fd_EpochProcessData_endAt = md_EpochProcessData.Fields().ByName("endAt")
+	fd_EpochProcessData_status = md_EpochProcessData.Fields().ByName("status")
 	fd_EpochProcessData_pagination = md_EpochProcessData.Fields().ByName("pagination")
 }
 
@@ -2576,9 +2576,9 @@ func (x *fastReflection_EpochProcessData) Range(f func(protoreflect.FieldDescrip
 			return
 		}
 	}
-	if x.EndAt != uint64(0) {
-		value := protoreflect.ValueOfUint64(x.EndAt)
-		if !f(fd_EpochProcessData_endAt, value) {
+	if x.Status != "" {
+		value := protoreflect.ValueOfString(x.Status)
+		if !f(fd_EpochProcessData_status, value) {
 			return
 		}
 	}
@@ -2613,8 +2613,8 @@ func (x *fastReflection_EpochProcessData) Has(fd protoreflect.FieldDescriptor) b
 		return x.StartAt != uint64(0)
 	case "enreach.workload.EpochProcessData.updateAt":
 		return x.UpdateAt != uint64(0)
-	case "enreach.workload.EpochProcessData.endAt":
-		return x.EndAt != uint64(0)
+	case "enreach.workload.EpochProcessData.status":
+		return x.Status != ""
 	case "enreach.workload.EpochProcessData.pagination":
 		return x.Pagination != nil
 	default:
@@ -2643,8 +2643,8 @@ func (x *fastReflection_EpochProcessData) Clear(fd protoreflect.FieldDescriptor)
 		x.StartAt = uint64(0)
 	case "enreach.workload.EpochProcessData.updateAt":
 		x.UpdateAt = uint64(0)
-	case "enreach.workload.EpochProcessData.endAt":
-		x.EndAt = uint64(0)
+	case "enreach.workload.EpochProcessData.status":
+		x.Status = ""
 	case "enreach.workload.EpochProcessData.pagination":
 		x.Pagination = nil
 	default:
@@ -2678,9 +2678,9 @@ func (x *fastReflection_EpochProcessData) Get(descriptor protoreflect.FieldDescr
 	case "enreach.workload.EpochProcessData.updateAt":
 		value := x.UpdateAt
 		return protoreflect.ValueOfUint64(value)
-	case "enreach.workload.EpochProcessData.endAt":
-		value := x.EndAt
-		return protoreflect.ValueOfUint64(value)
+	case "enreach.workload.EpochProcessData.status":
+		value := x.Status
+		return protoreflect.ValueOfString(value)
 	case "enreach.workload.EpochProcessData.pagination":
 		value := x.Pagination
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
@@ -2714,10 +2714,10 @@ func (x *fastReflection_EpochProcessData) Set(fd protoreflect.FieldDescriptor, v
 		x.StartAt = value.Uint()
 	case "enreach.workload.EpochProcessData.updateAt":
 		x.UpdateAt = value.Uint()
-	case "enreach.workload.EpochProcessData.endAt":
-		x.EndAt = value.Uint()
+	case "enreach.workload.EpochProcessData.status":
+		x.Status = value.Interface().(string)
 	case "enreach.workload.EpochProcessData.pagination":
-		x.Pagination = value.Message().Interface().(*v1beta1.PageRequest)
+		x.Pagination = value.Message().Interface().(*v1beta1.PageResponse)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.EpochProcessData"))
@@ -2740,7 +2740,7 @@ func (x *fastReflection_EpochProcessData) Mutable(fd protoreflect.FieldDescripto
 	switch fd.FullName() {
 	case "enreach.workload.EpochProcessData.pagination":
 		if x.Pagination == nil {
-			x.Pagination = new(v1beta1.PageRequest)
+			x.Pagination = new(v1beta1.PageResponse)
 		}
 		return protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
 	case "enreach.workload.EpochProcessData.epoch":
@@ -2753,8 +2753,8 @@ func (x *fastReflection_EpochProcessData) Mutable(fd protoreflect.FieldDescripto
 		panic(fmt.Errorf("field startAt of message enreach.workload.EpochProcessData is not mutable"))
 	case "enreach.workload.EpochProcessData.updateAt":
 		panic(fmt.Errorf("field updateAt of message enreach.workload.EpochProcessData is not mutable"))
-	case "enreach.workload.EpochProcessData.endAt":
-		panic(fmt.Errorf("field endAt of message enreach.workload.EpochProcessData is not mutable"))
+	case "enreach.workload.EpochProcessData.status":
+		panic(fmt.Errorf("field status of message enreach.workload.EpochProcessData is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.EpochProcessData"))
@@ -2778,10 +2778,10 @@ func (x *fastReflection_EpochProcessData) NewField(fd protoreflect.FieldDescript
 		return protoreflect.ValueOfUint64(uint64(0))
 	case "enreach.workload.EpochProcessData.updateAt":
 		return protoreflect.ValueOfUint64(uint64(0))
-	case "enreach.workload.EpochProcessData.endAt":
-		return protoreflect.ValueOfUint64(uint64(0))
+	case "enreach.workload.EpochProcessData.status":
+		return protoreflect.ValueOfString("")
 	case "enreach.workload.EpochProcessData.pagination":
-		m := new(v1beta1.PageRequest)
+		m := new(v1beta1.PageResponse)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
@@ -2867,8 +2867,9 @@ func (x *fastReflection_EpochProcessData) ProtoMethods() *protoiface.Methods {
 		if x.UpdateAt != 0 {
 			n += 1 + runtime.Sov(uint64(x.UpdateAt))
 		}
-		if x.EndAt != 0 {
-			n += 1 + runtime.Sov(uint64(x.EndAt))
+		l = len(x.Status)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
 		}
 		if x.Pagination != nil {
 			l = options.Size(x.Pagination)
@@ -2917,10 +2918,12 @@ func (x *fastReflection_EpochProcessData) ProtoMethods() *protoiface.Methods {
 			i--
 			dAtA[i] = 0x3a
 		}
-		if x.EndAt != 0 {
-			i = runtime.EncodeVarint(dAtA, i, uint64(x.EndAt))
+		if len(x.Status) > 0 {
+			i -= len(x.Status)
+			copy(dAtA[i:], x.Status)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Status)))
 			i--
-			dAtA[i] = 0x30
+			dAtA[i] = 0x32
 		}
 		if x.UpdateAt != 0 {
 			i = runtime.EncodeVarint(dAtA, i, uint64(x.UpdateAt))
@@ -3092,10 +3095,10 @@ func (x *fastReflection_EpochProcessData) ProtoMethods() *protoiface.Methods {
 					}
 				}
 			case 6:
-				if wireType != 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field EndAt", wireType)
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Status", wireType)
 				}
-				x.EndAt = 0
+				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
 					if shift >= 64 {
 						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
@@ -3105,11 +3108,24 @@ func (x *fastReflection_EpochProcessData) ProtoMethods() *protoiface.Methods {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					x.EndAt |= uint64(b&0x7F) << shift
+					stringLen |= uint64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
 				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Status = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
 			case 7:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
@@ -3140,7 +3156,7 @@ func (x *fastReflection_EpochProcessData) ProtoMethods() *protoiface.Methods {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
 				if x.Pagination == nil {
-					x.Pagination = &v1beta1.PageRequest{}
+					x.Pagination = &v1beta1.PageResponse{}
 				}
 				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Pagination); err != nil {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
@@ -3379,13 +3395,13 @@ type EpochProcessData struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Epoch               uint64               `protobuf:"varint,1,opt,name=epoch,proto3" json:"epoch,omitempty"`
-	TotalNodesCount     uint64               `protobuf:"varint,2,opt,name=totalNodesCount,proto3" json:"totalNodesCount,omitempty"`         // total nodes count need to be processed
-	ProcessedNodesCount uint64               `protobuf:"varint,3,opt,name=processedNodesCount,proto3" json:"processedNodesCount,omitempty"` // accumulated processed nodes count
-	StartAt             uint64               `protobuf:"varint,4,opt,name=startAt,proto3" json:"startAt,omitempty"`
-	UpdateAt            uint64               `protobuf:"varint,5,opt,name=updateAt,proto3" json:"updateAt,omitempty"`
-	EndAt               uint64               `protobuf:"varint,6,opt,name=endAt,proto3" json:"endAt,omitempty"`
-	Pagination          *v1beta1.PageRequest `protobuf:"bytes,7,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	Epoch               uint64                `protobuf:"varint,1,opt,name=epoch,proto3" json:"epoch,omitempty"`
+	TotalNodesCount     uint64                `protobuf:"varint,2,opt,name=totalNodesCount,proto3" json:"totalNodesCount,omitempty"`         // total nodes count need to be processed
+	ProcessedNodesCount uint64                `protobuf:"varint,3,opt,name=processedNodesCount,proto3" json:"processedNodesCount,omitempty"` // accumulated processed nodes count
+	StartAt             uint64                `protobuf:"varint,4,opt,name=startAt,proto3" json:"startAt,omitempty"`
+	UpdateAt            uint64                `protobuf:"varint,5,opt,name=updateAt,proto3" json:"updateAt,omitempty"`
+	Status              string                `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
+	Pagination          *v1beta1.PageResponse `protobuf:"bytes,7,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
 func (x *EpochProcessData) Reset() {
@@ -3443,14 +3459,14 @@ func (x *EpochProcessData) GetUpdateAt() uint64 {
 	return 0
 }
 
-func (x *EpochProcessData) GetEndAt() uint64 {
+func (x *EpochProcessData) GetStatus() string {
 	if x != nil {
-		return x.EndAt
+		return x.Status
 	}
-	return 0
+	return ""
 }
 
-func (x *EpochProcessData) GetPagination() *v1beta1.PageRequest {
+func (x *EpochProcessData) GetPagination() *v1beta1.PageResponse {
 	if x != nil {
 		return x.Pagination
 	}
@@ -3505,7 +3521,7 @@ var file_enreach_workload_workreport_proto_rawDesc = []byte{
 	0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1d, 0x2e,
 	0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64,
 	0x2e, 0x4e, 0x6f, 0x64, 0x65, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x44, 0x42, 0x52, 0x05, 0x76, 0x61,
-	0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0x98, 0x02, 0x0a, 0x10, 0x45, 0x70, 0x6f, 0x63,
+	0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0x9b, 0x02, 0x0a, 0x10, 0x45, 0x70, 0x6f, 0x63,
 	0x68, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x12, 0x14, 0x0a, 0x05,
 	0x65, 0x70, 0x6f, 0x63, 0x68, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x05, 0x65, 0x70, 0x6f,
 	0x63, 0x68, 0x12, 0x28, 0x0a, 0x0f, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x4e, 0x6f, 0x64, 0x65, 0x73,
@@ -3517,24 +3533,24 @@ var file_enreach_workload_workreport_proto_rawDesc = []byte{
 	0x0a, 0x07, 0x73, 0x74, 0x61, 0x72, 0x74, 0x41, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x04, 0x52,
 	0x07, 0x73, 0x74, 0x61, 0x72, 0x74, 0x41, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x70, 0x64, 0x61,
 	0x74, 0x65, 0x41, 0x74, 0x18, 0x05, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x75, 0x70, 0x64, 0x61,
-	0x74, 0x65, 0x41, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x6e, 0x64, 0x41, 0x74, 0x18, 0x06, 0x20,
-	0x01, 0x28, 0x04, 0x52, 0x05, 0x65, 0x6e, 0x64, 0x41, 0x74, 0x12, 0x46, 0x0a, 0x0a, 0x70, 0x61,
-	0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x07, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26,
-	0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65,
-	0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x42, 0xab, 0x01, 0x0a, 0x14, 0x63, 0x6f, 0x6d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61,
-	0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x42, 0x0f, 0x57, 0x6f, 0x72,
-	0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x21,
-	0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69,
-	0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61,
-	0x64, 0xa2, 0x02, 0x03, 0x45, 0x57, 0x58, 0xaa, 0x02, 0x10, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63,
-	0x68, 0x2e, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xca, 0x02, 0x10, 0x45, 0x6e, 0x72,
-	0x65, 0x61, 0x63, 0x68, 0x5c, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xe2, 0x02, 0x1c,
+	0x74, 0x65, 0x41, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x06,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x47, 0x0a, 0x0a,
+	0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x07, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x27, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71,
+	0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67,
+	0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0xab, 0x01, 0x0a, 0x14, 0x63, 0x6f, 0x6d, 0x2e, 0x65, 0x6e,
+	0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x42, 0x0f,
+	0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50,
+	0x01, 0x5a, 0x21, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f,
+	0x61, 0x70, 0x69, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b,
+	0x6c, 0x6f, 0x61, 0x64, 0xa2, 0x02, 0x03, 0x45, 0x57, 0x58, 0xaa, 0x02, 0x10, 0x45, 0x6e, 0x72,
+	0x65, 0x61, 0x63, 0x68, 0x2e, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xca, 0x02, 0x10,
 	0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64,
-	0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x11, 0x45,
-	0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x3a, 0x3a, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0xe2, 0x02, 0x1c, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x57, 0x6f, 0x72, 0x6b, 0x6c,
+	0x6f, 0x61, 0x64, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea,
+	0x02, 0x11, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x3a, 0x3a, 0x57, 0x6f, 0x72, 0x6b, 0x6c,
+	0x6f, 0x61, 0x64, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -3551,19 +3567,19 @@ func file_enreach_workload_workreport_proto_rawDescGZIP() []byte {
 
 var file_enreach_workload_workreport_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_enreach_workload_workreport_proto_goTypes = []interface{}{
-	(*NodeScore)(nil),           // 0: enreach.workload.NodeScore
-	(*NodeScoreDB)(nil),         // 1: enreach.workload.NodeScoreDB
-	(*ManagerNodeScoreMap)(nil), // 2: enreach.workload.ManagerNodeScoreMap
-	(*Workreport)(nil),          // 3: enreach.workload.Workreport
-	(*EpochProcessData)(nil),    // 4: enreach.workload.EpochProcessData
-	nil,                         // 5: enreach.workload.ManagerNodeScoreMap.ManagerScoreMapEntry
-	nil,                         // 6: enreach.workload.Workreport.ManagerScoreMapEntry
-	(*v1beta1.PageRequest)(nil), // 7: cosmos.base.query.v1beta1.PageRequest
+	(*NodeScore)(nil),            // 0: enreach.workload.NodeScore
+	(*NodeScoreDB)(nil),          // 1: enreach.workload.NodeScoreDB
+	(*ManagerNodeScoreMap)(nil),  // 2: enreach.workload.ManagerNodeScoreMap
+	(*Workreport)(nil),           // 3: enreach.workload.Workreport
+	(*EpochProcessData)(nil),     // 4: enreach.workload.EpochProcessData
+	nil,                          // 5: enreach.workload.ManagerNodeScoreMap.ManagerScoreMapEntry
+	nil,                          // 6: enreach.workload.Workreport.ManagerScoreMapEntry
+	(*v1beta1.PageResponse)(nil), // 7: cosmos.base.query.v1beta1.PageResponse
 }
 var file_enreach_workload_workreport_proto_depIdxs = []int32{
 	5, // 0: enreach.workload.ManagerNodeScoreMap.managerScoreMap:type_name -> enreach.workload.ManagerNodeScoreMap.ManagerScoreMapEntry
 	6, // 1: enreach.workload.Workreport.managerScoreMap:type_name -> enreach.workload.Workreport.ManagerScoreMapEntry
-	7, // 2: enreach.workload.EpochProcessData.pagination:type_name -> cosmos.base.query.v1beta1.PageRequest
+	7, // 2: enreach.workload.EpochProcessData.pagination:type_name -> cosmos.base.query.v1beta1.PageResponse
 	1, // 3: enreach.workload.ManagerNodeScoreMap.ManagerScoreMapEntry.value:type_name -> enreach.workload.NodeScoreDB
 	1, // 4: enreach.workload.Workreport.ManagerScoreMapEntry.value:type_name -> enreach.workload.NodeScoreDB
 	5, // [5:5] is the sub-list for method output_type

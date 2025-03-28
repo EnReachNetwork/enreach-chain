@@ -22,8 +22,10 @@ const (
 	Query_Params_FullMethodName                     = "/enreach.workload.Query/Params"
 	Query_EpochLength_FullMethodName                = "/enreach.workload.Query/EpochLength"
 	Query_CurrentEpoch_FullMethodName               = "/enreach.workload.Query/CurrentEpoch"
-	Query_Workload_FullMethodName                   = "/enreach.workload.Query/Workload"
-	Query_WorkloadAll_FullMethodName                = "/enreach.workload.Query/WorkloadAll"
+	Query_NodeWorkload_FullMethodName               = "/enreach.workload.Query/NodeWorkload"
+	Query_AllNodeWorkloadByEpoch_FullMethodName     = "/enreach.workload.Query/AllNodeWorkloadByEpoch"
+	Query_ManagerWorkload_FullMethodName            = "/enreach.workload.Query/ManagerWorkload"
+	Query_AllManagerWorkloadByEpoch_FullMethodName  = "/enreach.workload.Query/AllManagerWorkloadByEpoch"
 	Query_Workreport_FullMethodName                 = "/enreach.workload.Query/Workreport"
 	Query_AllWorkreportByEpoch_FullMethodName       = "/enreach.workload.Query/AllWorkreportByEpoch"
 	Query_WorkreportProcessBatchSize_FullMethodName = "/enreach.workload.Query/WorkreportProcessBatchSize"
@@ -42,9 +44,12 @@ type QueryClient interface {
 	// Queries epoch
 	EpochLength(ctx context.Context, in *QueryGetEpochLengthRequest, opts ...grpc.CallOption) (*QueryGetEpochLengthResponse, error)
 	CurrentEpoch(ctx context.Context, in *QueryGetCurrentEpochRequest, opts ...grpc.CallOption) (*QueryGetCurrentEpochResponse, error)
-	// Queries a list of Workload items.
-	Workload(ctx context.Context, in *QueryGetWorkloadRequest, opts ...grpc.CallOption) (*QueryGetWorkloadResponse, error)
-	WorkloadAll(ctx context.Context, in *QueryAllWorkloadRequest, opts ...grpc.CallOption) (*QueryAllWorkloadResponse, error)
+	// Queries a list of Node Workload items.
+	NodeWorkload(ctx context.Context, in *QueryGetNodeWorkloadRequest, opts ...grpc.CallOption) (*QueryGetNodeWorkloadResponse, error)
+	AllNodeWorkloadByEpoch(ctx context.Context, in *QueryGetAllNodeWorkloadByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllNodeWorkloadByEpochResponse, error)
+	// Queries a list of Manager Workload items.
+	ManagerWorkload(ctx context.Context, in *QueryGetManagerWorkloadRequest, opts ...grpc.CallOption) (*QueryGetManagerWorkloadResponse, error)
+	AllManagerWorkloadByEpoch(ctx context.Context, in *QueryGetAllManagerWorkloadByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllManagerWorkloadByEpochResponse, error)
 	// Queries a list of Workreport items.
 	Workreport(ctx context.Context, in *QueryGetWorkreportRequest, opts ...grpc.CallOption) (*QueryGetWorkreportResponse, error)
 	AllWorkreportByEpoch(ctx context.Context, in *QueryGetAllWorkreportByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllWorkreportByEpochResponse, error)
@@ -92,18 +97,36 @@ func (c *queryClient) CurrentEpoch(ctx context.Context, in *QueryGetCurrentEpoch
 	return out, nil
 }
 
-func (c *queryClient) Workload(ctx context.Context, in *QueryGetWorkloadRequest, opts ...grpc.CallOption) (*QueryGetWorkloadResponse, error) {
-	out := new(QueryGetWorkloadResponse)
-	err := c.cc.Invoke(ctx, Query_Workload_FullMethodName, in, out, opts...)
+func (c *queryClient) NodeWorkload(ctx context.Context, in *QueryGetNodeWorkloadRequest, opts ...grpc.CallOption) (*QueryGetNodeWorkloadResponse, error) {
+	out := new(QueryGetNodeWorkloadResponse)
+	err := c.cc.Invoke(ctx, Query_NodeWorkload_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *queryClient) WorkloadAll(ctx context.Context, in *QueryAllWorkloadRequest, opts ...grpc.CallOption) (*QueryAllWorkloadResponse, error) {
-	out := new(QueryAllWorkloadResponse)
-	err := c.cc.Invoke(ctx, Query_WorkloadAll_FullMethodName, in, out, opts...)
+func (c *queryClient) AllNodeWorkloadByEpoch(ctx context.Context, in *QueryGetAllNodeWorkloadByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllNodeWorkloadByEpochResponse, error) {
+	out := new(QueryGetAllNodeWorkloadByEpochResponse)
+	err := c.cc.Invoke(ctx, Query_AllNodeWorkloadByEpoch_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) ManagerWorkload(ctx context.Context, in *QueryGetManagerWorkloadRequest, opts ...grpc.CallOption) (*QueryGetManagerWorkloadResponse, error) {
+	out := new(QueryGetManagerWorkloadResponse)
+	err := c.cc.Invoke(ctx, Query_ManagerWorkload_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) AllManagerWorkloadByEpoch(ctx context.Context, in *QueryGetAllManagerWorkloadByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllManagerWorkloadByEpochResponse, error) {
+	out := new(QueryGetAllManagerWorkloadByEpochResponse)
+	err := c.cc.Invoke(ctx, Query_AllManagerWorkloadByEpoch_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -182,9 +205,12 @@ type QueryServer interface {
 	// Queries epoch
 	EpochLength(context.Context, *QueryGetEpochLengthRequest) (*QueryGetEpochLengthResponse, error)
 	CurrentEpoch(context.Context, *QueryGetCurrentEpochRequest) (*QueryGetCurrentEpochResponse, error)
-	// Queries a list of Workload items.
-	Workload(context.Context, *QueryGetWorkloadRequest) (*QueryGetWorkloadResponse, error)
-	WorkloadAll(context.Context, *QueryAllWorkloadRequest) (*QueryAllWorkloadResponse, error)
+	// Queries a list of Node Workload items.
+	NodeWorkload(context.Context, *QueryGetNodeWorkloadRequest) (*QueryGetNodeWorkloadResponse, error)
+	AllNodeWorkloadByEpoch(context.Context, *QueryGetAllNodeWorkloadByEpochRequest) (*QueryGetAllNodeWorkloadByEpochResponse, error)
+	// Queries a list of Manager Workload items.
+	ManagerWorkload(context.Context, *QueryGetManagerWorkloadRequest) (*QueryGetManagerWorkloadResponse, error)
+	AllManagerWorkloadByEpoch(context.Context, *QueryGetAllManagerWorkloadByEpochRequest) (*QueryGetAllManagerWorkloadByEpochResponse, error)
 	// Queries a list of Workreport items.
 	Workreport(context.Context, *QueryGetWorkreportRequest) (*QueryGetWorkreportResponse, error)
 	AllWorkreportByEpoch(context.Context, *QueryGetAllWorkreportByEpochRequest) (*QueryGetAllWorkreportByEpochResponse, error)
@@ -211,11 +237,17 @@ func (UnimplementedQueryServer) EpochLength(context.Context, *QueryGetEpochLengt
 func (UnimplementedQueryServer) CurrentEpoch(context.Context, *QueryGetCurrentEpochRequest) (*QueryGetCurrentEpochResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CurrentEpoch not implemented")
 }
-func (UnimplementedQueryServer) Workload(context.Context, *QueryGetWorkloadRequest) (*QueryGetWorkloadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Workload not implemented")
+func (UnimplementedQueryServer) NodeWorkload(context.Context, *QueryGetNodeWorkloadRequest) (*QueryGetNodeWorkloadResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NodeWorkload not implemented")
 }
-func (UnimplementedQueryServer) WorkloadAll(context.Context, *QueryAllWorkloadRequest) (*QueryAllWorkloadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method WorkloadAll not implemented")
+func (UnimplementedQueryServer) AllNodeWorkloadByEpoch(context.Context, *QueryGetAllNodeWorkloadByEpochRequest) (*QueryGetAllNodeWorkloadByEpochResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllNodeWorkloadByEpoch not implemented")
+}
+func (UnimplementedQueryServer) ManagerWorkload(context.Context, *QueryGetManagerWorkloadRequest) (*QueryGetManagerWorkloadResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ManagerWorkload not implemented")
+}
+func (UnimplementedQueryServer) AllManagerWorkloadByEpoch(context.Context, *QueryGetAllManagerWorkloadByEpochRequest) (*QueryGetAllManagerWorkloadByEpochResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllManagerWorkloadByEpoch not implemented")
 }
 func (UnimplementedQueryServer) Workreport(context.Context, *QueryGetWorkreportRequest) (*QueryGetWorkreportResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Workreport not implemented")
@@ -305,38 +337,74 @@ func _Query_CurrentEpoch_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_Workload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetWorkloadRequest)
+func _Query_NodeWorkload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetNodeWorkloadRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).Workload(ctx, in)
+		return srv.(QueryServer).NodeWorkload(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Query_Workload_FullMethodName,
+		FullMethod: Query_NodeWorkload_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).Workload(ctx, req.(*QueryGetWorkloadRequest))
+		return srv.(QueryServer).NodeWorkload(ctx, req.(*QueryGetNodeWorkloadRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_WorkloadAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryAllWorkloadRequest)
+func _Query_AllNodeWorkloadByEpoch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAllNodeWorkloadByEpochRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).WorkloadAll(ctx, in)
+		return srv.(QueryServer).AllNodeWorkloadByEpoch(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Query_WorkloadAll_FullMethodName,
+		FullMethod: Query_AllNodeWorkloadByEpoch_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).WorkloadAll(ctx, req.(*QueryAllWorkloadRequest))
+		return srv.(QueryServer).AllNodeWorkloadByEpoch(ctx, req.(*QueryGetAllNodeWorkloadByEpochRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_ManagerWorkload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetManagerWorkloadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ManagerWorkload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_ManagerWorkload_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ManagerWorkload(ctx, req.(*QueryGetManagerWorkloadRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_AllManagerWorkloadByEpoch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAllManagerWorkloadByEpochRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).AllManagerWorkloadByEpoch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_AllManagerWorkloadByEpoch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).AllManagerWorkloadByEpoch(ctx, req.(*QueryGetAllManagerWorkloadByEpochRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -487,12 +555,20 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Query_CurrentEpoch_Handler,
 		},
 		{
-			MethodName: "Workload",
-			Handler:    _Query_Workload_Handler,
+			MethodName: "NodeWorkload",
+			Handler:    _Query_NodeWorkload_Handler,
 		},
 		{
-			MethodName: "WorkloadAll",
-			Handler:    _Query_WorkloadAll_Handler,
+			MethodName: "AllNodeWorkloadByEpoch",
+			Handler:    _Query_AllNodeWorkloadByEpoch_Handler,
+		},
+		{
+			MethodName: "ManagerWorkload",
+			Handler:    _Query_ManagerWorkload_Handler,
+		},
+		{
+			MethodName: "AllManagerWorkloadByEpoch",
+			Handler:    _Query_AllManagerWorkloadByEpoch_Handler,
 		},
 		{
 			MethodName: "Workreport",

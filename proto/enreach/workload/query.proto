@@ -32,13 +32,23 @@ service Query {
   
   }
   
-  // Queries a list of Workload items.
-  rpc Workload    (QueryGetWorkloadRequest) returns (QueryGetWorkloadResponse) {
-    option (google.api.http).get = "/enreach/workload/workload/{id}";
+  // Queries a list of Node Workload items.
+  rpc NodeWorkload    (QueryGetNodeWorkloadRequest) returns (QueryGetNodeWorkloadResponse) {
+    option (google.api.http).get = "/enreach/workload/node_workload/{epoch}/{nodeID}";
   
   }
-  rpc WorkloadAll (QueryAllWorkloadRequest) returns (QueryAllWorkloadResponse) {
-    option (google.api.http).get = "/enreach/workload/workloads";
+  rpc AllNodeWorkloadByEpoch (QueryGetAllNodeWorkloadByEpochRequest) returns (QueryGetAllNodeWorkloadByEpochResponse) {
+    option (google.api.http).get = "/enreach/workload/node_workloads/{epoch}";
+  
+  }
+
+  // Queries a list of Manager Workload items.
+  rpc ManagerWorkload    (QueryGetManagerWorkloadRequest) returns (QueryGetManagerWorkloadResponse) {
+    option (google.api.http).get = "/enreach/workload/manager_workload/{epoch}/{managerAccount}";
+  
+  }
+  rpc AllManagerWorkloadByEpoch (QueryGetAllManagerWorkloadByEpochRequest) returns (QueryGetAllManagerWorkloadByEpochResponse) {
+    option (google.api.http).get = "/enreach/workload/manager_workloads/{epoch}";
   
   }
 
@@ -98,21 +108,42 @@ message QueryGetCurrentEpochResponse {
   uint64 currentEpoch = 1;
 }
 
-message QueryGetWorkloadRequest {
-  uint64 id = 1;
+message QueryGetNodeWorkloadRequest {
+  uint64 epoch = 1;
+  string nodeID = 2;
 }
 
-message QueryGetWorkloadResponse {
-  Workload Workload = 1 [(gogoproto.nullable) = false];
+message QueryGetNodeWorkloadResponse {
+  NodeWorkload NodeWorkload = 1 [(gogoproto.nullable) = false];
 }
 
-message QueryAllWorkloadRequest {
-  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+message QueryGetAllNodeWorkloadByEpochRequest {
+  uint64 epoch = 1;
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
 }
 
-message QueryAllWorkloadResponse {
-  repeated Workload                               Workload   = 1 [(gogoproto.nullable) = false];
-           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+message QueryGetAllNodeWorkloadByEpochResponse {
+  repeated NodeWorkload NodeWorkloads   = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetManagerWorkloadRequest {
+  uint64 epoch = 1;
+  string managerAccount = 2;
+}
+
+message QueryGetManagerWorkloadResponse {
+  ManagerWorkload ManagerWorkload = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetAllManagerWorkloadByEpochRequest {
+  uint64 epoch = 1;
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
+}
+
+message QueryGetAllManagerWorkloadByEpochResponse {
+  repeated ManagerWorkload ManagerWorkloads   = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
 message QueryGetWorkreportRequest {
@@ -130,7 +161,7 @@ message QueryGetAllWorkreportByEpochRequest {
 }
 
 message QueryGetAllWorkreportByEpochResponse {
-  repeated Workreport                               Workreport   = 1 [(gogoproto.nullable) = false];
+  repeated Workreport Workreports   = 1 [(gogoproto.nullable) = false];
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 

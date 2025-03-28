@@ -14,6 +14,7 @@ const (
 	AttributeKeyTxSigner        = "signer"
 	AttributeKeyManagerAccount  = "managerAccount"
 	AttributeKeyEpoch           = "epoch"
+	AttributeKeyBlockHeight     = "blockHeight"
 	AttributeKeyNodeScoresCount = "nodeScoresCount"
 	AttributeKeySuperior        = "superior"
 	AttributeKeyOldBatchSize    = "oldBatchSize"

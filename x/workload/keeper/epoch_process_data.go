@@ -81,7 +81,7 @@ func (k Keeper) SetLastEpochProcessData(ctx context.Context, epochProcessData *t
 }
 
 // GetEpochProcessData get the last EpochProcessData from the store
-func (k Keeper) GetLastEpochProcessData(ctx context.Context, epochID uint64) (val types.EpochProcessData, found bool) {
+func (k Keeper) GetLastEpochProcessData(ctx context.Context) (val types.EpochProcessData, found bool) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, []byte{})
 	b := store.Get(types.KeyPrefix(types.LastEpochProcessDataKey))

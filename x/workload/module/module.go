@@ -155,17 +155,13 @@ func (AppModule) ConsensusVersion() uint64 { return 1 }
 func (am AppModule) BeginBlock(goCtx context.Context) error {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	// Get the workreport process batch size
+	k := am.keeper
+	// Process epoch workreports
+	k.ProcessEpochWorkreports(goCtx)
 
-	// Get the last processed epoch
-
-	// Save the processed epoch data
-
-	// All workreports of this epoch have been processed, check whethere there're more epochs to process
-	// Only process up to epoch of (Epoch_N - 2)
-
-	if types.IsEpochStart(ctx) {
-		currentEpoch := types.GetCurrentEpoch(goCtx)
+	if types.IsEpochStart(goCtx) {
+		currentEpoch := types.GetCurrentEpoch(ctx)
+		blockHeight := uint64(ctx.BlockHeight())
 
 		/// Delete old epoch related data
 		// Get the HistoryEpochDepth
@@ -174,6 +170,7 @@ func (am AppModule) BeginBlock(goCtx context.Context) error {
 			sdk.NewEvent(types.EventTypeEpochStart,
 				sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
 				sdk.NewAttribute(types.AttributeKeyEpoch, strconv.FormatUint(currentEpoch, 10)),
+				sdk.NewAttribute(types.AttributeKeyBlockHeight, strconv.FormatUint(blockHeight, 10)),
 			),
 		)
 	}
@@ -185,6 +182,7 @@ func (am AppModule) BeginBlock(goCtx context.Context) error {
 func (am AppModule) EndBlock(goCtx context.Context) error {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
+	blockHeight := uint64(ctx.BlockHeight())
 	if types.IsEpochEnd(ctx) {
 		currentEpoch := types.GetCurrentEpoch(goCtx)
 
@@ -194,6 +192,7 @@ func (am AppModule) EndBlock(goCtx context.Context) error {
 			sdk.NewEvent(types.EventTypeEpochEnd,
 				sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
 				sdk.NewAttribute(types.AttributeKeyEpoch, strconv.FormatUint(currentEpoch, 10)),
+				sdk.NewAttribute(types.AttributeKeyBlockHeight, strconv.FormatUint(blockHeight, 10)),
 			),
 		)
 	}

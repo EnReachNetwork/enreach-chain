@@ -3,11 +3,18 @@ package enreach.workload;
 
 option go_package = "enreach/x/workload/types";
 
-message Workload {
-  uint64 id = 1;
-  string managerAccount = 2;
-  uint64 epoch = 3; 
-  string nodeID = 4; 
-  uint64 score = 5; 
-  uint64 createAt = 6; 
+message NodeWorkload {
+  uint64 epoch = 1; 
+  string nodeID = 2; 
+  uint64 score = 3; 
+  uint64 createAt = 4; 
+}
+
+message ManagerWorkload {
+  uint64 epoch = 1; 
+  string managerAccount = 2; 
+  uint64 reportedNodesCount = 3; 
+  uint64 score = 4; 
+  uint64 createAt = 5; 
+  uint64 updateAt = 6; 
 }

@@ -38,17 +38,6 @@ func (AppModule) GenerateGenesisState(simState *module.SimulationState) {
 	}
 	workloadGenesis := types.GenesisState{
 		Params: types.DefaultParams(),
-		WorkloadList: []types.Workload{
-			{
-				Id:             0,
-				ManagerAccount: sample.AccAddress(),
-			},
-			{
-				Id:             1,
-				ManagerAccount: sample.AccAddress(),
-			},
-		},
-		WorkloadCount: 2,
 		// this line is used by starport scaffolding # simapp/module/genesisState
 	}
 	simState.GenState[types.ModuleName] = simState.Cdc.MustMarshalJSON(&workloadGenesis)

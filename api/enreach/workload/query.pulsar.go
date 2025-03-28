@@ -2328,25 +2328,27 @@ func (x *fastReflection_QueryGetCurrentEpochResponse) ProtoMethods() *protoiface
 }
 
 var (
-	md_QueryGetWorkloadRequest    protoreflect.MessageDescriptor
-	fd_QueryGetWorkloadRequest_id protoreflect.FieldDescriptor
+	md_QueryGetNodeWorkloadRequest        protoreflect.MessageDescriptor
+	fd_QueryGetNodeWorkloadRequest_epoch  protoreflect.FieldDescriptor
+	fd_QueryGetNodeWorkloadRequest_nodeID protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_enreach_workload_query_proto_init()
-	md_QueryGetWorkloadRequest = File_enreach_workload_query_proto.Messages().ByName("QueryGetWorkloadRequest")
-	fd_QueryGetWorkloadRequest_id = md_QueryGetWorkloadRequest.Fields().ByName("id")
+	md_QueryGetNodeWorkloadRequest = File_enreach_workload_query_proto.Messages().ByName("QueryGetNodeWorkloadRequest")
+	fd_QueryGetNodeWorkloadRequest_epoch = md_QueryGetNodeWorkloadRequest.Fields().ByName("epoch")
+	fd_QueryGetNodeWorkloadRequest_nodeID = md_QueryGetNodeWorkloadRequest.Fields().ByName("nodeID")
 }
 
-var _ protoreflect.Message = (*fastReflection_QueryGetWorkloadRequest)(nil)
+var _ protoreflect.Message = (*fastReflection_QueryGetNodeWorkloadRequest)(nil)
 
-type fastReflection_QueryGetWorkloadRequest QueryGetWorkloadRequest
+type fastReflection_QueryGetNodeWorkloadRequest QueryGetNodeWorkloadRequest
 
-func (x *QueryGetWorkloadRequest) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryGetWorkloadRequest)(x)
+func (x *QueryGetNodeWorkloadRequest) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryGetNodeWorkloadRequest)(x)
 }
 
-func (x *QueryGetWorkloadRequest) slowProtoReflect() protoreflect.Message {
+func (x *QueryGetNodeWorkloadRequest) slowProtoReflect() protoreflect.Message {
 	mi := &file_enreach_workload_query_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2358,43 +2360,43 @@ func (x *QueryGetWorkloadRequest) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_QueryGetWorkloadRequest_messageType fastReflection_QueryGetWorkloadRequest_messageType
-var _ protoreflect.MessageType = fastReflection_QueryGetWorkloadRequest_messageType{}
+var _fastReflection_QueryGetNodeWorkloadRequest_messageType fastReflection_QueryGetNodeWorkloadRequest_messageType
+var _ protoreflect.MessageType = fastReflection_QueryGetNodeWorkloadRequest_messageType{}
 
-type fastReflection_QueryGetWorkloadRequest_messageType struct{}
+type fastReflection_QueryGetNodeWorkloadRequest_messageType struct{}
 
-func (x fastReflection_QueryGetWorkloadRequest_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryGetWorkloadRequest)(nil)
+func (x fastReflection_QueryGetNodeWorkloadRequest_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryGetNodeWorkloadRequest)(nil)
 }
-func (x fastReflection_QueryGetWorkloadRequest_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryGetWorkloadRequest)
+func (x fastReflection_QueryGetNodeWorkloadRequest_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryGetNodeWorkloadRequest)
 }
-func (x fastReflection_QueryGetWorkloadRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetWorkloadRequest
+func (x fastReflection_QueryGetNodeWorkloadRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetNodeWorkloadRequest
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_QueryGetWorkloadRequest) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetWorkloadRequest
+func (x *fastReflection_QueryGetNodeWorkloadRequest) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetNodeWorkloadRequest
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryGetWorkloadRequest) Type() protoreflect.MessageType {
-	return _fastReflection_QueryGetWorkloadRequest_messageType
+func (x *fastReflection_QueryGetNodeWorkloadRequest) Type() protoreflect.MessageType {
+	return _fastReflection_QueryGetNodeWorkloadRequest_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryGetWorkloadRequest) New() protoreflect.Message {
-	return new(fastReflection_QueryGetWorkloadRequest)
+func (x *fastReflection_QueryGetNodeWorkloadRequest) New() protoreflect.Message {
+	return new(fastReflection_QueryGetNodeWorkloadRequest)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryGetWorkloadRequest) Interface() protoreflect.ProtoMessage {
-	return (*QueryGetWorkloadRequest)(x)
+func (x *fastReflection_QueryGetNodeWorkloadRequest) Interface() protoreflect.ProtoMessage {
+	return (*QueryGetNodeWorkloadRequest)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -2402,10 +2404,16 @@ func (x *fastReflection_QueryGetWorkloadRequest) Interface() protoreflect.ProtoM
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_QueryGetWorkloadRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Id != uint64(0) {
-		value := protoreflect.ValueOfUint64(x.Id)
-		if !f(fd_QueryGetWorkloadRequest_id, value) {
+func (x *fastReflection_QueryGetNodeWorkloadRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Epoch != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.Epoch)
+		if !f(fd_QueryGetNodeWorkloadRequest_epoch, value) {
+			return
+		}
+	}
+	if x.NodeID != "" {
+		value := protoreflect.ValueOfString(x.NodeID)
+		if !f(fd_QueryGetNodeWorkloadRequest_nodeID, value) {
 			return
 		}
 	}
@@ -2422,15 +2430,17 @@ func (x *fastReflection_QueryGetWorkloadRequest) Range(f func(protoreflect.Field
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryGetWorkloadRequest) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_QueryGetNodeWorkloadRequest) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "enreach.workload.QueryGetWorkloadRequest.id":
-		return x.Id != uint64(0)
+	case "enreach.workload.QueryGetNodeWorkloadRequest.epoch":
+		return x.Epoch != uint64(0)
+	case "enreach.workload.QueryGetNodeWorkloadRequest.nodeID":
+		return x.NodeID != ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetWorkloadRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetNodeWorkloadRequest"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryGetWorkloadRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetNodeWorkloadRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2440,15 +2450,17 @@ func (x *fastReflection_QueryGetWorkloadRequest) Has(fd protoreflect.FieldDescri
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetWorkloadRequest) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_QueryGetNodeWorkloadRequest) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "enreach.workload.QueryGetWorkloadRequest.id":
-		x.Id = uint64(0)
+	case "enreach.workload.QueryGetNodeWorkloadRequest.epoch":
+		x.Epoch = uint64(0)
+	case "enreach.workload.QueryGetNodeWorkloadRequest.nodeID":
+		x.NodeID = ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetWorkloadRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetNodeWorkloadRequest"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryGetWorkloadRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetNodeWorkloadRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2458,16 +2470,19 @@ func (x *fastReflection_QueryGetWorkloadRequest) Clear(fd protoreflect.FieldDesc
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryGetWorkloadRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetNodeWorkloadRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "enreach.workload.QueryGetWorkloadRequest.id":
-		value := x.Id
+	case "enreach.workload.QueryGetNodeWorkloadRequest.epoch":
+		value := x.Epoch
 		return protoreflect.ValueOfUint64(value)
+	case "enreach.workload.QueryGetNodeWorkloadRequest.nodeID":
+		value := x.NodeID
+		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetWorkloadRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetNodeWorkloadRequest"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryGetWorkloadRequest does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetNodeWorkloadRequest does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -2481,15 +2496,17 @@ func (x *fastReflection_QueryGetWorkloadRequest) Get(descriptor protoreflect.Fie
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetWorkloadRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_QueryGetNodeWorkloadRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "enreach.workload.QueryGetWorkloadRequest.id":
-		x.Id = value.Uint()
+	case "enreach.workload.QueryGetNodeWorkloadRequest.epoch":
+		x.Epoch = value.Uint()
+	case "enreach.workload.QueryGetNodeWorkloadRequest.nodeID":
+		x.NodeID = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetWorkloadRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetNodeWorkloadRequest"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryGetWorkloadRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetNodeWorkloadRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2503,40 +2520,44 @@ func (x *fastReflection_QueryGetWorkloadRequest) Set(fd protoreflect.FieldDescri
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetWorkloadRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetNodeWorkloadRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "enreach.workload.QueryGetWorkloadRequest.id":
-		panic(fmt.Errorf("field id of message enreach.workload.QueryGetWorkloadRequest is not mutable"))
+	case "enreach.workload.QueryGetNodeWorkloadRequest.epoch":
+		panic(fmt.Errorf("field epoch of message enreach.workload.QueryGetNodeWorkloadRequest is not mutable"))
+	case "enreach.workload.QueryGetNodeWorkloadRequest.nodeID":
+		panic(fmt.Errorf("field nodeID of message enreach.workload.QueryGetNodeWorkloadRequest is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetWorkloadRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetNodeWorkloadRequest"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryGetWorkloadRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetNodeWorkloadRequest does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryGetWorkloadRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetNodeWorkloadRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "enreach.workload.QueryGetWorkloadRequest.id":
+	case "enreach.workload.QueryGetNodeWorkloadRequest.epoch":
 		return protoreflect.ValueOfUint64(uint64(0))
+	case "enreach.workload.QueryGetNodeWorkloadRequest.nodeID":
+		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetWorkloadRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetNodeWorkloadRequest"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryGetWorkloadRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetNodeWorkloadRequest does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryGetWorkloadRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_QueryGetNodeWorkloadRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in enreach.workload.QueryGetWorkloadRequest", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in enreach.workload.QueryGetNodeWorkloadRequest", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -2544,7 +2565,7 @@ func (x *fastReflection_QueryGetWorkloadRequest) WhichOneof(d protoreflect.Oneof
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryGetWorkloadRequest) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_QueryGetNodeWorkloadRequest) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -2555,7 +2576,7 @@ func (x *fastReflection_QueryGetWorkloadRequest) GetUnknown() protoreflect.RawFi
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetWorkloadRequest) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_QueryGetNodeWorkloadRequest) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -2567,7 +2588,7 @@ func (x *fastReflection_QueryGetWorkloadRequest) SetUnknown(fields protoreflect.
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_QueryGetWorkloadRequest) IsValid() bool {
+func (x *fastReflection_QueryGetNodeWorkloadRequest) IsValid() bool {
 	return x != nil
 }
 
@@ -2577,9 +2598,9 @@ func (x *fastReflection_QueryGetWorkloadRequest) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryGetWorkloadRequest) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_QueryGetNodeWorkloadRequest) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryGetWorkloadRequest)
+		x := input.Message.Interface().(*QueryGetNodeWorkloadRequest)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -2591,8 +2612,12 @@ func (x *fastReflection_QueryGetWorkloadRequest) ProtoMethods() *protoiface.Meth
 		var n int
 		var l int
 		_ = l
-		if x.Id != 0 {
-			n += 1 + runtime.Sov(uint64(x.Id))
+		if x.Epoch != 0 {
+			n += 1 + runtime.Sov(uint64(x.Epoch))
+		}
+		l = len(x.NodeID)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
 		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
@@ -2604,7 +2629,7 @@ func (x *fastReflection_QueryGetWorkloadRequest) ProtoMethods() *protoiface.Meth
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetWorkloadRequest)
+		x := input.Message.Interface().(*QueryGetNodeWorkloadRequest)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -2623,8 +2648,15 @@ func (x *fastReflection_QueryGetWorkloadRequest) ProtoMethods() *protoiface.Meth
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if x.Id != 0 {
-			i = runtime.EncodeVarint(dAtA, i, uint64(x.Id))
+		if len(x.NodeID) > 0 {
+			i -= len(x.NodeID)
+			copy(dAtA[i:], x.NodeID)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.NodeID)))
+			i--
+			dAtA[i] = 0x12
+		}
+		if x.Epoch != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.Epoch))
 			i--
 			dAtA[i] = 0x8
 		}
@@ -2639,7 +2671,7 @@ func (x *fastReflection_QueryGetWorkloadRequest) ProtoMethods() *protoiface.Meth
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetWorkloadRequest)
+		x := input.Message.Interface().(*QueryGetNodeWorkloadRequest)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -2671,17 +2703,17 @@ func (x *fastReflection_QueryGetWorkloadRequest) ProtoMethods() *protoiface.Meth
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetWorkloadRequest: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetNodeWorkloadRequest: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetWorkloadRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetNodeWorkloadRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
 				if wireType != 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Epoch", wireType)
 				}
-				x.Id = 0
+				x.Epoch = 0
 				for shift := uint(0); ; shift += 7 {
 					if shift >= 64 {
 						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
@@ -2691,11 +2723,43 @@ func (x *fastReflection_QueryGetWorkloadRequest) ProtoMethods() *protoiface.Meth
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					x.Id |= uint64(b&0x7F) << shift
+					x.Epoch |= uint64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
 				}
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field NodeID", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.NodeID = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -2732,25 +2796,25 @@ func (x *fastReflection_QueryGetWorkloadRequest) ProtoMethods() *protoiface.Meth
 }
 
 var (
-	md_QueryGetWorkloadResponse          protoreflect.MessageDescriptor
-	fd_QueryGetWorkloadResponse_Workload protoreflect.FieldDescriptor
+	md_QueryGetNodeWorkloadResponse              protoreflect.MessageDescriptor
+	fd_QueryGetNodeWorkloadResponse_NodeWorkload protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_enreach_workload_query_proto_init()
-	md_QueryGetWorkloadResponse = File_enreach_workload_query_proto.Messages().ByName("QueryGetWorkloadResponse")
-	fd_QueryGetWorkloadResponse_Workload = md_QueryGetWorkloadResponse.Fields().ByName("Workload")
+	md_QueryGetNodeWorkloadResponse = File_enreach_workload_query_proto.Messages().ByName("QueryGetNodeWorkloadResponse")
+	fd_QueryGetNodeWorkloadResponse_NodeWorkload = md_QueryGetNodeWorkloadResponse.Fields().ByName("NodeWorkload")
 }
 
-var _ protoreflect.Message = (*fastReflection_QueryGetWorkloadResponse)(nil)
+var _ protoreflect.Message = (*fastReflection_QueryGetNodeWorkloadResponse)(nil)
 
-type fastReflection_QueryGetWorkloadResponse QueryGetWorkloadResponse
+type fastReflection_QueryGetNodeWorkloadResponse QueryGetNodeWorkloadResponse
 
-func (x *QueryGetWorkloadResponse) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryGetWorkloadResponse)(x)
+func (x *QueryGetNodeWorkloadResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryGetNodeWorkloadResponse)(x)
 }
 
-func (x *QueryGetWorkloadResponse) slowProtoReflect() protoreflect.Message {
+func (x *QueryGetNodeWorkloadResponse) slowProtoReflect() protoreflect.Message {
 	mi := &file_enreach_workload_query_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2762,43 +2826,43 @@ func (x *QueryGetWorkloadResponse) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_QueryGetWorkloadResponse_messageType fastReflection_QueryGetWorkloadResponse_messageType
-var _ protoreflect.MessageType = fastReflection_QueryGetWorkloadResponse_messageType{}
+var _fastReflection_QueryGetNodeWorkloadResponse_messageType fastReflection_QueryGetNodeWorkloadResponse_messageType
+var _ protoreflect.MessageType = fastReflection_QueryGetNodeWorkloadResponse_messageType{}
 
-type fastReflection_QueryGetWorkloadResponse_messageType struct{}
+type fastReflection_QueryGetNodeWorkloadResponse_messageType struct{}
 
-func (x fastReflection_QueryGetWorkloadResponse_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryGetWorkloadResponse)(nil)
+func (x fastReflection_QueryGetNodeWorkloadResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryGetNodeWorkloadResponse)(nil)
 }
-func (x fastReflection_QueryGetWorkloadResponse_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryGetWorkloadResponse)
+func (x fastReflection_QueryGetNodeWorkloadResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryGetNodeWorkloadResponse)
 }
-func (x fastReflection_QueryGetWorkloadResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetWorkloadResponse
+func (x fastReflection_QueryGetNodeWorkloadResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetNodeWorkloadResponse
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_QueryGetWorkloadResponse) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetWorkloadResponse
+func (x *fastReflection_QueryGetNodeWorkloadResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetNodeWorkloadResponse
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryGetWorkloadResponse) Type() protoreflect.MessageType {
-	return _fastReflection_QueryGetWorkloadResponse_messageType
+func (x *fastReflection_QueryGetNodeWorkloadResponse) Type() protoreflect.MessageType {
+	return _fastReflection_QueryGetNodeWorkloadResponse_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryGetWorkloadResponse) New() protoreflect.Message {
-	return new(fastReflection_QueryGetWorkloadResponse)
+func (x *fastReflection_QueryGetNodeWorkloadResponse) New() protoreflect.Message {
+	return new(fastReflection_QueryGetNodeWorkloadResponse)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryGetWorkloadResponse) Interface() protoreflect.ProtoMessage {
-	return (*QueryGetWorkloadResponse)(x)
+func (x *fastReflection_QueryGetNodeWorkloadResponse) Interface() protoreflect.ProtoMessage {
+	return (*QueryGetNodeWorkloadResponse)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -2806,10 +2870,10 @@ func (x *fastReflection_QueryGetWorkloadResponse) Interface() protoreflect.Proto
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_QueryGetWorkloadResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Workload != nil {
-		value := protoreflect.ValueOfMessage(x.Workload.ProtoReflect())
-		if !f(fd_QueryGetWorkloadResponse_Workload, value) {
+func (x *fastReflection_QueryGetNodeWorkloadResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.NodeWorkload != nil {
+		value := protoreflect.ValueOfMessage(x.NodeWorkload.ProtoReflect())
+		if !f(fd_QueryGetNodeWorkloadResponse_NodeWorkload, value) {
 			return
 		}
 	}
@@ -2826,15 +2890,15 @@ func (x *fastReflection_QueryGetWorkloadResponse) Range(f func(protoreflect.Fiel
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryGetWorkloadResponse) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_QueryGetNodeWorkloadResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "enreach.workload.QueryGetWorkloadResponse.Workload":
-		return x.Workload != nil
+	case "enreach.workload.QueryGetNodeWorkloadResponse.NodeWorkload":
+		return x.NodeWorkload != nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetWorkloadResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetNodeWorkloadResponse"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryGetWorkloadResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetNodeWorkloadResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2844,15 +2908,15 @@ func (x *fastReflection_QueryGetWorkloadResponse) Has(fd protoreflect.FieldDescr
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetWorkloadResponse) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_QueryGetNodeWorkloadResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "enreach.workload.QueryGetWorkloadResponse.Workload":
-		x.Workload = nil
+	case "enreach.workload.QueryGetNodeWorkloadResponse.NodeWorkload":
+		x.NodeWorkload = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetWorkloadResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetNodeWorkloadResponse"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryGetWorkloadResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetNodeWorkloadResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2862,16 +2926,16 @@ func (x *fastReflection_QueryGetWorkloadResponse) Clear(fd protoreflect.FieldDes
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryGetWorkloadResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetNodeWorkloadResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "enreach.workload.QueryGetWorkloadResponse.Workload":
-		value := x.Workload
+	case "enreach.workload.QueryGetNodeWorkloadResponse.NodeWorkload":
+		value := x.NodeWorkload
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetWorkloadResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetNodeWorkloadResponse"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryGetWorkloadResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetNodeWorkloadResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -2885,15 +2949,15 @@ func (x *fastReflection_QueryGetWorkloadResponse) Get(descriptor protoreflect.Fi
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetWorkloadResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_QueryGetNodeWorkloadResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "enreach.workload.QueryGetWorkloadResponse.Workload":
-		x.Workload = value.Message().Interface().(*Workload)
+	case "enreach.workload.QueryGetNodeWorkloadResponse.NodeWorkload":
+		x.NodeWorkload = value.Message().Interface().(*NodeWorkload)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetWorkloadResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetNodeWorkloadResponse"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryGetWorkloadResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetNodeWorkloadResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2907,44 +2971,44 @@ func (x *fastReflection_QueryGetWorkloadResponse) Set(fd protoreflect.FieldDescr
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetWorkloadResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetNodeWorkloadResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "enreach.workload.QueryGetWorkloadResponse.Workload":
-		if x.Workload == nil {
-			x.Workload = new(Workload)
+	case "enreach.workload.QueryGetNodeWorkloadResponse.NodeWorkload":
+		if x.NodeWorkload == nil {
+			x.NodeWorkload = new(NodeWorkload)
 		}
-		return protoreflect.ValueOfMessage(x.Workload.ProtoReflect())
+		return protoreflect.ValueOfMessage(x.NodeWorkload.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetWorkloadResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetNodeWorkloadResponse"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryGetWorkloadResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetNodeWorkloadResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryGetWorkloadResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetNodeWorkloadResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "enreach.workload.QueryGetWorkloadResponse.Workload":
-		m := new(Workload)
+	case "enreach.workload.QueryGetNodeWorkloadResponse.NodeWorkload":
+		m := new(NodeWorkload)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetWorkloadResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetNodeWorkloadResponse"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryGetWorkloadResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetNodeWorkloadResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryGetWorkloadResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_QueryGetNodeWorkloadResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in enreach.workload.QueryGetWorkloadResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in enreach.workload.QueryGetNodeWorkloadResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -2952,7 +3016,7 @@ func (x *fastReflection_QueryGetWorkloadResponse) WhichOneof(d protoreflect.Oneo
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryGetWorkloadResponse) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_QueryGetNodeWorkloadResponse) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -2963,7 +3027,7 @@ func (x *fastReflection_QueryGetWorkloadResponse) GetUnknown() protoreflect.RawF
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetWorkloadResponse) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_QueryGetNodeWorkloadResponse) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -2975,7 +3039,7 @@ func (x *fastReflection_QueryGetWorkloadResponse) SetUnknown(fields protoreflect
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_QueryGetWorkloadResponse) IsValid() bool {
+func (x *fastReflection_QueryGetNodeWorkloadResponse) IsValid() bool {
 	return x != nil
 }
 
@@ -2985,9 +3049,9 @@ func (x *fastReflection_QueryGetWorkloadResponse) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryGetWorkloadResponse) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_QueryGetNodeWorkloadResponse) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryGetWorkloadResponse)
+		x := input.Message.Interface().(*QueryGetNodeWorkloadResponse)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -2999,8 +3063,8 @@ func (x *fastReflection_QueryGetWorkloadResponse) ProtoMethods() *protoiface.Met
 		var n int
 		var l int
 		_ = l
-		if x.Workload != nil {
-			l = options.Size(x.Workload)
+		if x.NodeWorkload != nil {
+			l = options.Size(x.NodeWorkload)
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
 		if x.unknownFields != nil {
@@ -3013,7 +3077,7 @@ func (x *fastReflection_QueryGetWorkloadResponse) ProtoMethods() *protoiface.Met
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetWorkloadResponse)
+		x := input.Message.Interface().(*QueryGetNodeWorkloadResponse)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -3032,8 +3096,8 @@ func (x *fastReflection_QueryGetWorkloadResponse) ProtoMethods() *protoiface.Met
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if x.Workload != nil {
-			encoded, err := options.Marshal(x.Workload)
+		if x.NodeWorkload != nil {
+			encoded, err := options.Marshal(x.NodeWorkload)
 			if err != nil {
 				return protoiface.MarshalOutput{
 					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -3057,7 +3121,7 @@ func (x *fastReflection_QueryGetWorkloadResponse) ProtoMethods() *protoiface.Met
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetWorkloadResponse)
+		x := input.Message.Interface().(*QueryGetNodeWorkloadResponse)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -3089,15 +3153,15 @@ func (x *fastReflection_QueryGetWorkloadResponse) ProtoMethods() *protoiface.Met
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetWorkloadResponse: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetNodeWorkloadResponse: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetWorkloadResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetNodeWorkloadResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Workload", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field NodeWorkload", wireType)
 				}
 				var msglen int
 				for shift := uint(0); ; shift += 7 {
@@ -3124,10 +3188,10 @@ func (x *fastReflection_QueryGetWorkloadResponse) ProtoMethods() *protoiface.Met
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				if x.Workload == nil {
-					x.Workload = &Workload{}
+				if x.NodeWorkload == nil {
+					x.NodeWorkload = &NodeWorkload{}
 				}
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Workload); err != nil {
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.NodeWorkload); err != nil {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
@@ -3167,25 +3231,27 @@ func (x *fastReflection_QueryGetWorkloadResponse) ProtoMethods() *protoiface.Met
 }
 
 var (
-	md_QueryAllWorkloadRequest            protoreflect.MessageDescriptor
-	fd_QueryAllWorkloadRequest_pagination protoreflect.FieldDescriptor
+	md_QueryGetAllNodeWorkloadByEpochRequest            protoreflect.MessageDescriptor
+	fd_QueryGetAllNodeWorkloadByEpochRequest_epoch      protoreflect.FieldDescriptor
+	fd_QueryGetAllNodeWorkloadByEpochRequest_pagination protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_enreach_workload_query_proto_init()
-	md_QueryAllWorkloadRequest = File_enreach_workload_query_proto.Messages().ByName("QueryAllWorkloadRequest")
-	fd_QueryAllWorkloadRequest_pagination = md_QueryAllWorkloadRequest.Fields().ByName("pagination")
+	md_QueryGetAllNodeWorkloadByEpochRequest = File_enreach_workload_query_proto.Messages().ByName("QueryGetAllNodeWorkloadByEpochRequest")
+	fd_QueryGetAllNodeWorkloadByEpochRequest_epoch = md_QueryGetAllNodeWorkloadByEpochRequest.Fields().ByName("epoch")
+	fd_QueryGetAllNodeWorkloadByEpochRequest_pagination = md_QueryGetAllNodeWorkloadByEpochRequest.Fields().ByName("pagination")
 }
 
-var _ protoreflect.Message = (*fastReflection_QueryAllWorkloadRequest)(nil)
+var _ protoreflect.Message = (*fastReflection_QueryGetAllNodeWorkloadByEpochRequest)(nil)
 
-type fastReflection_QueryAllWorkloadRequest QueryAllWorkloadRequest
+type fastReflection_QueryGetAllNodeWorkloadByEpochRequest QueryGetAllNodeWorkloadByEpochRequest
 
-func (x *QueryAllWorkloadRequest) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryAllWorkloadRequest)(x)
+func (x *QueryGetAllNodeWorkloadByEpochRequest) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryGetAllNodeWorkloadByEpochRequest)(x)
 }
 
-func (x *QueryAllWorkloadRequest) slowProtoReflect() protoreflect.Message {
+func (x *QueryGetAllNodeWorkloadByEpochRequest) slowProtoReflect() protoreflect.Message {
 	mi := &file_enreach_workload_query_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3197,43 +3263,43 @@ func (x *QueryAllWorkloadRequest) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_QueryAllWorkloadRequest_messageType fastReflection_QueryAllWorkloadRequest_messageType
-var _ protoreflect.MessageType = fastReflection_QueryAllWorkloadRequest_messageType{}
+var _fastReflection_QueryGetAllNodeWorkloadByEpochRequest_messageType fastReflection_QueryGetAllNodeWorkloadByEpochRequest_messageType
+var _ protoreflect.MessageType = fastReflection_QueryGetAllNodeWorkloadByEpochRequest_messageType{}
 
-type fastReflection_QueryAllWorkloadRequest_messageType struct{}
+type fastReflection_QueryGetAllNodeWorkloadByEpochRequest_messageType struct{}
 
-func (x fastReflection_QueryAllWorkloadRequest_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryAllWorkloadRequest)(nil)
+func (x fastReflection_QueryGetAllNodeWorkloadByEpochRequest_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryGetAllNodeWorkloadByEpochRequest)(nil)
 }
-func (x fastReflection_QueryAllWorkloadRequest_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryAllWorkloadRequest)
+func (x fastReflection_QueryGetAllNodeWorkloadByEpochRequest_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryGetAllNodeWorkloadByEpochRequest)
 }
-func (x fastReflection_QueryAllWorkloadRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryAllWorkloadRequest
+func (x fastReflection_QueryGetAllNodeWorkloadByEpochRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetAllNodeWorkloadByEpochRequest
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_QueryAllWorkloadRequest) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryAllWorkloadRequest
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochRequest) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetAllNodeWorkloadByEpochRequest
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryAllWorkloadRequest) Type() protoreflect.MessageType {
-	return _fastReflection_QueryAllWorkloadRequest_messageType
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochRequest) Type() protoreflect.MessageType {
+	return _fastReflection_QueryGetAllNodeWorkloadByEpochRequest_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryAllWorkloadRequest) New() protoreflect.Message {
-	return new(fastReflection_QueryAllWorkloadRequest)
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochRequest) New() protoreflect.Message {
+	return new(fastReflection_QueryGetAllNodeWorkloadByEpochRequest)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryAllWorkloadRequest) Interface() protoreflect.ProtoMessage {
-	return (*QueryAllWorkloadRequest)(x)
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochRequest) Interface() protoreflect.ProtoMessage {
+	return (*QueryGetAllNodeWorkloadByEpochRequest)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -3241,10 +3307,16 @@ func (x *fastReflection_QueryAllWorkloadRequest) Interface() protoreflect.ProtoM
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_QueryAllWorkloadRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Epoch != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.Epoch)
+		if !f(fd_QueryGetAllNodeWorkloadByEpochRequest_epoch, value) {
+			return
+		}
+	}
 	if x.Pagination != nil {
 		value := protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
-		if !f(fd_QueryAllWorkloadRequest_pagination, value) {
+		if !f(fd_QueryGetAllNodeWorkloadByEpochRequest_pagination, value) {
 			return
 		}
 	}
@@ -3261,15 +3333,17 @@ func (x *fastReflection_QueryAllWorkloadRequest) Range(f func(protoreflect.Field
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryAllWorkloadRequest) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochRequest) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "enreach.workload.QueryAllWorkloadRequest.pagination":
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochRequest.epoch":
+		return x.Epoch != uint64(0)
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochRequest.pagination":
 		return x.Pagination != nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryAllWorkloadRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllNodeWorkloadByEpochRequest"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryAllWorkloadRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllNodeWorkloadByEpochRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3279,15 +3353,17 @@ func (x *fastReflection_QueryAllWorkloadRequest) Has(fd protoreflect.FieldDescri
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllWorkloadRequest) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochRequest) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "enreach.workload.QueryAllWorkloadRequest.pagination":
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochRequest.epoch":
+		x.Epoch = uint64(0)
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochRequest.pagination":
 		x.Pagination = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryAllWorkloadRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllNodeWorkloadByEpochRequest"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryAllWorkloadRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllNodeWorkloadByEpochRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3297,16 +3373,19 @@ func (x *fastReflection_QueryAllWorkloadRequest) Clear(fd protoreflect.FieldDesc
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryAllWorkloadRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "enreach.workload.QueryAllWorkloadRequest.pagination":
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochRequest.epoch":
+		value := x.Epoch
+		return protoreflect.ValueOfUint64(value)
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochRequest.pagination":
 		value := x.Pagination
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryAllWorkloadRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllNodeWorkloadByEpochRequest"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryAllWorkloadRequest does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllNodeWorkloadByEpochRequest does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -3320,15 +3399,17 @@ func (x *fastReflection_QueryAllWorkloadRequest) Get(descriptor protoreflect.Fie
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllWorkloadRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "enreach.workload.QueryAllWorkloadRequest.pagination":
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochRequest.epoch":
+		x.Epoch = value.Uint()
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochRequest.pagination":
 		x.Pagination = value.Message().Interface().(*v1beta1.PageRequest)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryAllWorkloadRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllNodeWorkloadByEpochRequest"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryAllWorkloadRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllNodeWorkloadByEpochRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3342,44 +3423,48 @@ func (x *fastReflection_QueryAllWorkloadRequest) Set(fd protoreflect.FieldDescri
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllWorkloadRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "enreach.workload.QueryAllWorkloadRequest.pagination":
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochRequest.pagination":
 		if x.Pagination == nil {
 			x.Pagination = new(v1beta1.PageRequest)
 		}
 		return protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochRequest.epoch":
+		panic(fmt.Errorf("field epoch of message enreach.workload.QueryGetAllNodeWorkloadByEpochRequest is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryAllWorkloadRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllNodeWorkloadByEpochRequest"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryAllWorkloadRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllNodeWorkloadByEpochRequest does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryAllWorkloadRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "enreach.workload.QueryAllWorkloadRequest.pagination":
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochRequest.epoch":
+		return protoreflect.ValueOfUint64(uint64(0))
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochRequest.pagination":
 		m := new(v1beta1.PageRequest)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryAllWorkloadRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllNodeWorkloadByEpochRequest"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryAllWorkloadRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllNodeWorkloadByEpochRequest does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryAllWorkloadRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in enreach.workload.QueryAllWorkloadRequest", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in enreach.workload.QueryGetAllNodeWorkloadByEpochRequest", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -3387,7 +3472,7 @@ func (x *fastReflection_QueryAllWorkloadRequest) WhichOneof(d protoreflect.Oneof
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryAllWorkloadRequest) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochRequest) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -3398,7 +3483,7 @@ func (x *fastReflection_QueryAllWorkloadRequest) GetUnknown() protoreflect.RawFi
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllWorkloadRequest) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochRequest) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -3410,7 +3495,7 @@ func (x *fastReflection_QueryAllWorkloadRequest) SetUnknown(fields protoreflect.
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_QueryAllWorkloadRequest) IsValid() bool {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochRequest) IsValid() bool {
 	return x != nil
 }
 
@@ -3420,9 +3505,9 @@ func (x *fastReflection_QueryAllWorkloadRequest) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryAllWorkloadRequest) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochRequest) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryAllWorkloadRequest)
+		x := input.Message.Interface().(*QueryGetAllNodeWorkloadByEpochRequest)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -3434,6 +3519,9 @@ func (x *fastReflection_QueryAllWorkloadRequest) ProtoMethods() *protoiface.Meth
 		var n int
 		var l int
 		_ = l
+		if x.Epoch != 0 {
+			n += 1 + runtime.Sov(uint64(x.Epoch))
+		}
 		if x.Pagination != nil {
 			l = options.Size(x.Pagination)
 			n += 1 + l + runtime.Sov(uint64(l))
@@ -3448,7 +3536,7 @@ func (x *fastReflection_QueryAllWorkloadRequest) ProtoMethods() *protoiface.Meth
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryAllWorkloadRequest)
+		x := input.Message.Interface().(*QueryGetAllNodeWorkloadByEpochRequest)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -3479,7 +3567,12 @@ func (x *fastReflection_QueryAllWorkloadRequest) ProtoMethods() *protoiface.Meth
 			copy(dAtA[i:], encoded)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
 			i--
-			dAtA[i] = 0xa
+			dAtA[i] = 0x12
+		}
+		if x.Epoch != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.Epoch))
+			i--
+			dAtA[i] = 0x8
 		}
 		if input.Buf != nil {
 			input.Buf = append(input.Buf, dAtA...)
@@ -3492,7 +3585,7 @@ func (x *fastReflection_QueryAllWorkloadRequest) ProtoMethods() *protoiface.Meth
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryAllWorkloadRequest)
+		x := input.Message.Interface().(*QueryGetAllNodeWorkloadByEpochRequest)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -3524,13 +3617,32 @@ func (x *fastReflection_QueryAllWorkloadRequest) ProtoMethods() *protoiface.Meth
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllWorkloadRequest: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetAllNodeWorkloadByEpochRequest: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllWorkloadRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetAllNodeWorkloadByEpochRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Epoch", wireType)
+				}
+				x.Epoch = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.Epoch |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 2:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
 				}
@@ -3601,79 +3713,79 @@ func (x *fastReflection_QueryAllWorkloadRequest) ProtoMethods() *protoiface.Meth
 	}
 }
 
-var _ protoreflect.List = (*_QueryAllWorkloadResponse_1_list)(nil)
+var _ protoreflect.List = (*_QueryGetAllNodeWorkloadByEpochResponse_1_list)(nil)
 
-type _QueryAllWorkloadResponse_1_list struct {
-	list *[]*Workload
+type _QueryGetAllNodeWorkloadByEpochResponse_1_list struct {
+	list *[]*NodeWorkload
 }
 
-func (x *_QueryAllWorkloadResponse_1_list) Len() int {
+func (x *_QueryGetAllNodeWorkloadByEpochResponse_1_list) Len() int {
 	if x.list == nil {
 		return 0
 	}
 	return len(*x.list)
 }
 
-func (x *_QueryAllWorkloadResponse_1_list) Get(i int) protoreflect.Value {
+func (x *_QueryGetAllNodeWorkloadByEpochResponse_1_list) Get(i int) protoreflect.Value {
 	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
 }
 
-func (x *_QueryAllWorkloadResponse_1_list) Set(i int, value protoreflect.Value) {
+func (x *_QueryGetAllNodeWorkloadByEpochResponse_1_list) Set(i int, value protoreflect.Value) {
 	valueUnwrapped := value.Message()
-	concreteValue := valueUnwrapped.Interface().(*Workload)
+	concreteValue := valueUnwrapped.Interface().(*NodeWorkload)
 	(*x.list)[i] = concreteValue
 }
 
-func (x *_QueryAllWorkloadResponse_1_list) Append(value protoreflect.Value) {
+func (x *_QueryGetAllNodeWorkloadByEpochResponse_1_list) Append(value protoreflect.Value) {
 	valueUnwrapped := value.Message()
-	concreteValue := valueUnwrapped.Interface().(*Workload)
+	concreteValue := valueUnwrapped.Interface().(*NodeWorkload)
 	*x.list = append(*x.list, concreteValue)
 }
 
-func (x *_QueryAllWorkloadResponse_1_list) AppendMutable() protoreflect.Value {
-	v := new(Workload)
+func (x *_QueryGetAllNodeWorkloadByEpochResponse_1_list) AppendMutable() protoreflect.Value {
+	v := new(NodeWorkload)
 	*x.list = append(*x.list, v)
 	return protoreflect.ValueOfMessage(v.ProtoReflect())
 }
 
-func (x *_QueryAllWorkloadResponse_1_list) Truncate(n int) {
+func (x *_QueryGetAllNodeWorkloadByEpochResponse_1_list) Truncate(n int) {
 	for i := n; i < len(*x.list); i++ {
 		(*x.list)[i] = nil
 	}
 	*x.list = (*x.list)[:n]
 }
 
-func (x *_QueryAllWorkloadResponse_1_list) NewElement() protoreflect.Value {
-	v := new(Workload)
+func (x *_QueryGetAllNodeWorkloadByEpochResponse_1_list) NewElement() protoreflect.Value {
+	v := new(NodeWorkload)
 	return protoreflect.ValueOfMessage(v.ProtoReflect())
 }
 
-func (x *_QueryAllWorkloadResponse_1_list) IsValid() bool {
+func (x *_QueryGetAllNodeWorkloadByEpochResponse_1_list) IsValid() bool {
 	return x.list != nil
 }
 
 var (
-	md_QueryAllWorkloadResponse            protoreflect.MessageDescriptor
-	fd_QueryAllWorkloadResponse_Workload   protoreflect.FieldDescriptor
-	fd_QueryAllWorkloadResponse_pagination protoreflect.FieldDescriptor
+	md_QueryGetAllNodeWorkloadByEpochResponse               protoreflect.MessageDescriptor
+	fd_QueryGetAllNodeWorkloadByEpochResponse_NodeWorkloads protoreflect.FieldDescriptor
+	fd_QueryGetAllNodeWorkloadByEpochResponse_pagination    protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_enreach_workload_query_proto_init()
-	md_QueryAllWorkloadResponse = File_enreach_workload_query_proto.Messages().ByName("QueryAllWorkloadResponse")
-	fd_QueryAllWorkloadResponse_Workload = md_QueryAllWorkloadResponse.Fields().ByName("Workload")
-	fd_QueryAllWorkloadResponse_pagination = md_QueryAllWorkloadResponse.Fields().ByName("pagination")
+	md_QueryGetAllNodeWorkloadByEpochResponse = File_enreach_workload_query_proto.Messages().ByName("QueryGetAllNodeWorkloadByEpochResponse")
+	fd_QueryGetAllNodeWorkloadByEpochResponse_NodeWorkloads = md_QueryGetAllNodeWorkloadByEpochResponse.Fields().ByName("NodeWorkloads")
+	fd_QueryGetAllNodeWorkloadByEpochResponse_pagination = md_QueryGetAllNodeWorkloadByEpochResponse.Fields().ByName("pagination")
 }
 
-var _ protoreflect.Message = (*fastReflection_QueryAllWorkloadResponse)(nil)
+var _ protoreflect.Message = (*fastReflection_QueryGetAllNodeWorkloadByEpochResponse)(nil)
 
-type fastReflection_QueryAllWorkloadResponse QueryAllWorkloadResponse
+type fastReflection_QueryGetAllNodeWorkloadByEpochResponse QueryGetAllNodeWorkloadByEpochResponse
 
-func (x *QueryAllWorkloadResponse) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryAllWorkloadResponse)(x)
+func (x *QueryGetAllNodeWorkloadByEpochResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryGetAllNodeWorkloadByEpochResponse)(x)
 }
 
-func (x *QueryAllWorkloadResponse) slowProtoReflect() protoreflect.Message {
+func (x *QueryGetAllNodeWorkloadByEpochResponse) slowProtoReflect() protoreflect.Message {
 	mi := &file_enreach_workload_query_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3685,43 +3797,43 @@ func (x *QueryAllWorkloadResponse) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_QueryAllWorkloadResponse_messageType fastReflection_QueryAllWorkloadResponse_messageType
-var _ protoreflect.MessageType = fastReflection_QueryAllWorkloadResponse_messageType{}
+var _fastReflection_QueryGetAllNodeWorkloadByEpochResponse_messageType fastReflection_QueryGetAllNodeWorkloadByEpochResponse_messageType
+var _ protoreflect.MessageType = fastReflection_QueryGetAllNodeWorkloadByEpochResponse_messageType{}
 
-type fastReflection_QueryAllWorkloadResponse_messageType struct{}
+type fastReflection_QueryGetAllNodeWorkloadByEpochResponse_messageType struct{}
 
-func (x fastReflection_QueryAllWorkloadResponse_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryAllWorkloadResponse)(nil)
+func (x fastReflection_QueryGetAllNodeWorkloadByEpochResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryGetAllNodeWorkloadByEpochResponse)(nil)
 }
-func (x fastReflection_QueryAllWorkloadResponse_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryAllWorkloadResponse)
+func (x fastReflection_QueryGetAllNodeWorkloadByEpochResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryGetAllNodeWorkloadByEpochResponse)
 }
-func (x fastReflection_QueryAllWorkloadResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryAllWorkloadResponse
+func (x fastReflection_QueryGetAllNodeWorkloadByEpochResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetAllNodeWorkloadByEpochResponse
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_QueryAllWorkloadResponse) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryAllWorkloadResponse
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetAllNodeWorkloadByEpochResponse
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryAllWorkloadResponse) Type() protoreflect.MessageType {
-	return _fastReflection_QueryAllWorkloadResponse_messageType
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochResponse) Type() protoreflect.MessageType {
+	return _fastReflection_QueryGetAllNodeWorkloadByEpochResponse_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryAllWorkloadResponse) New() protoreflect.Message {
-	return new(fastReflection_QueryAllWorkloadResponse)
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochResponse) New() protoreflect.Message {
+	return new(fastReflection_QueryGetAllNodeWorkloadByEpochResponse)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryAllWorkloadResponse) Interface() protoreflect.ProtoMessage {
-	return (*QueryAllWorkloadResponse)(x)
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochResponse) Interface() protoreflect.ProtoMessage {
+	return (*QueryGetAllNodeWorkloadByEpochResponse)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -3729,16 +3841,16 @@ func (x *fastReflection_QueryAllWorkloadResponse) Interface() protoreflect.Proto
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_QueryAllWorkloadResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if len(x.Workload) != 0 {
-		value := protoreflect.ValueOfList(&_QueryAllWorkloadResponse_1_list{list: &x.Workload})
-		if !f(fd_QueryAllWorkloadResponse_Workload, value) {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if len(x.NodeWorkloads) != 0 {
+		value := protoreflect.ValueOfList(&_QueryGetAllNodeWorkloadByEpochResponse_1_list{list: &x.NodeWorkloads})
+		if !f(fd_QueryGetAllNodeWorkloadByEpochResponse_NodeWorkloads, value) {
 			return
 		}
 	}
 	if x.Pagination != nil {
 		value := protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
-		if !f(fd_QueryAllWorkloadResponse_pagination, value) {
+		if !f(fd_QueryGetAllNodeWorkloadByEpochResponse_pagination, value) {
 			return
 		}
 	}
@@ -3755,17 +3867,17 @@ func (x *fastReflection_QueryAllWorkloadResponse) Range(f func(protoreflect.Fiel
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryAllWorkloadResponse) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "enreach.workload.QueryAllWorkloadResponse.Workload":
-		return len(x.Workload) != 0
-	case "enreach.workload.QueryAllWorkloadResponse.pagination":
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochResponse.NodeWorkloads":
+		return len(x.NodeWorkloads) != 0
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochResponse.pagination":
 		return x.Pagination != nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryAllWorkloadResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllNodeWorkloadByEpochResponse"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryAllWorkloadResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllNodeWorkloadByEpochResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3775,17 +3887,17 @@ func (x *fastReflection_QueryAllWorkloadResponse) Has(fd protoreflect.FieldDescr
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllWorkloadResponse) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "enreach.workload.QueryAllWorkloadResponse.Workload":
-		x.Workload = nil
-	case "enreach.workload.QueryAllWorkloadResponse.pagination":
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochResponse.NodeWorkloads":
+		x.NodeWorkloads = nil
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochResponse.pagination":
 		x.Pagination = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryAllWorkloadResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllNodeWorkloadByEpochResponse"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryAllWorkloadResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllNodeWorkloadByEpochResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3795,22 +3907,22 @@ func (x *fastReflection_QueryAllWorkloadResponse) Clear(fd protoreflect.FieldDes
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryAllWorkloadResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "enreach.workload.QueryAllWorkloadResponse.Workload":
-		if len(x.Workload) == 0 {
-			return protoreflect.ValueOfList(&_QueryAllWorkloadResponse_1_list{})
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochResponse.NodeWorkloads":
+		if len(x.NodeWorkloads) == 0 {
+			return protoreflect.ValueOfList(&_QueryGetAllNodeWorkloadByEpochResponse_1_list{})
 		}
-		listValue := &_QueryAllWorkloadResponse_1_list{list: &x.Workload}
+		listValue := &_QueryGetAllNodeWorkloadByEpochResponse_1_list{list: &x.NodeWorkloads}
 		return protoreflect.ValueOfList(listValue)
-	case "enreach.workload.QueryAllWorkloadResponse.pagination":
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochResponse.pagination":
 		value := x.Pagination
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryAllWorkloadResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllNodeWorkloadByEpochResponse"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryAllWorkloadResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllNodeWorkloadByEpochResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -3824,19 +3936,19 @@ func (x *fastReflection_QueryAllWorkloadResponse) Get(descriptor protoreflect.Fi
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllWorkloadResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "enreach.workload.QueryAllWorkloadResponse.Workload":
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochResponse.NodeWorkloads":
 		lv := value.List()
-		clv := lv.(*_QueryAllWorkloadResponse_1_list)
-		x.Workload = *clv.list
-	case "enreach.workload.QueryAllWorkloadResponse.pagination":
+		clv := lv.(*_QueryGetAllNodeWorkloadByEpochResponse_1_list)
+		x.NodeWorkloads = *clv.list
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochResponse.pagination":
 		x.Pagination = value.Message().Interface().(*v1beta1.PageResponse)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryAllWorkloadResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllNodeWorkloadByEpochResponse"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryAllWorkloadResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllNodeWorkloadByEpochResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3850,53 +3962,53 @@ func (x *fastReflection_QueryAllWorkloadResponse) Set(fd protoreflect.FieldDescr
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllWorkloadResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "enreach.workload.QueryAllWorkloadResponse.Workload":
-		if x.Workload == nil {
-			x.Workload = []*Workload{}
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochResponse.NodeWorkloads":
+		if x.NodeWorkloads == nil {
+			x.NodeWorkloads = []*NodeWorkload{}
 		}
-		value := &_QueryAllWorkloadResponse_1_list{list: &x.Workload}
+		value := &_QueryGetAllNodeWorkloadByEpochResponse_1_list{list: &x.NodeWorkloads}
 		return protoreflect.ValueOfList(value)
-	case "enreach.workload.QueryAllWorkloadResponse.pagination":
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochResponse.pagination":
 		if x.Pagination == nil {
 			x.Pagination = new(v1beta1.PageResponse)
 		}
 		return protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryAllWorkloadResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllNodeWorkloadByEpochResponse"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryAllWorkloadResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllNodeWorkloadByEpochResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryAllWorkloadResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "enreach.workload.QueryAllWorkloadResponse.Workload":
-		list := []*Workload{}
-		return protoreflect.ValueOfList(&_QueryAllWorkloadResponse_1_list{list: &list})
-	case "enreach.workload.QueryAllWorkloadResponse.pagination":
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochResponse.NodeWorkloads":
+		list := []*NodeWorkload{}
+		return protoreflect.ValueOfList(&_QueryGetAllNodeWorkloadByEpochResponse_1_list{list: &list})
+	case "enreach.workload.QueryGetAllNodeWorkloadByEpochResponse.pagination":
 		m := new(v1beta1.PageResponse)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryAllWorkloadResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllNodeWorkloadByEpochResponse"))
 		}
-		panic(fmt.Errorf("message enreach.workload.QueryAllWorkloadResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllNodeWorkloadByEpochResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryAllWorkloadResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in enreach.workload.QueryAllWorkloadResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in enreach.workload.QueryGetAllNodeWorkloadByEpochResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -3904,7 +4016,7 @@ func (x *fastReflection_QueryAllWorkloadResponse) WhichOneof(d protoreflect.Oneo
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryAllWorkloadResponse) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochResponse) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -3915,7 +4027,7 @@ func (x *fastReflection_QueryAllWorkloadResponse) GetUnknown() protoreflect.RawF
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllWorkloadResponse) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochResponse) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -3927,7 +4039,7 @@ func (x *fastReflection_QueryAllWorkloadResponse) SetUnknown(fields protoreflect
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_QueryAllWorkloadResponse) IsValid() bool {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochResponse) IsValid() bool {
 	return x != nil
 }
 
@@ -3937,9 +4049,9 @@ func (x *fastReflection_QueryAllWorkloadResponse) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryAllWorkloadResponse) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_QueryGetAllNodeWorkloadByEpochResponse) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryAllWorkloadResponse)
+		x := input.Message.Interface().(*QueryGetAllNodeWorkloadByEpochResponse)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -3951,8 +4063,8 @@ func (x *fastReflection_QueryAllWorkloadResponse) ProtoMethods() *protoiface.Met
 		var n int
 		var l int
 		_ = l
-		if len(x.Workload) > 0 {
-			for _, e := range x.Workload {
+		if len(x.NodeWorkloads) > 0 {
+			for _, e := range x.NodeWorkloads {
 				l = options.Size(e)
 				n += 1 + l + runtime.Sov(uint64(l))
 			}
@@ -3971,7 +4083,7 @@ func (x *fastReflection_QueryAllWorkloadResponse) ProtoMethods() *protoiface.Met
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryAllWorkloadResponse)
+		x := input.Message.Interface().(*QueryGetAllNodeWorkloadByEpochResponse)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -4004,9 +4116,9 @@ func (x *fastReflection_QueryAllWorkloadResponse) ProtoMethods() *protoiface.Met
 			i--
 			dAtA[i] = 0x12
 		}
-		if len(x.Workload) > 0 {
-			for iNdEx := len(x.Workload) - 1; iNdEx >= 0; iNdEx-- {
-				encoded, err := options.Marshal(x.Workload[iNdEx])
+		if len(x.NodeWorkloads) > 0 {
+			for iNdEx := len(x.NodeWorkloads) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.NodeWorkloads[iNdEx])
 				if err != nil {
 					return protoiface.MarshalOutput{
 						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -4031,7 +4143,7 @@ func (x *fastReflection_QueryAllWorkloadResponse) ProtoMethods() *protoiface.Met
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryAllWorkloadResponse)
+		x := input.Message.Interface().(*QueryGetAllNodeWorkloadByEpochResponse)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -4063,15 +4175,15 @@ func (x *fastReflection_QueryAllWorkloadResponse) ProtoMethods() *protoiface.Met
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllWorkloadResponse: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetAllNodeWorkloadByEpochResponse: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllWorkloadResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetAllNodeWorkloadByEpochResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Workload", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field NodeWorkloads", wireType)
 				}
 				var msglen int
 				for shift := uint(0); ; shift += 7 {
@@ -4098,8 +4210,1967 @@ func (x *fastReflection_QueryAllWorkloadResponse) ProtoMethods() *protoiface.Met
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.Workload = append(x.Workload, &Workload{})
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Workload[len(x.Workload)-1]); err != nil {
+				x.NodeWorkloads = append(x.NodeWorkloads, &NodeWorkload{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.NodeWorkloads[len(x.NodeWorkloads)-1]); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if x.Pagination == nil {
+					x.Pagination = &v1beta1.PageResponse{}
+				}
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Pagination); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_QueryGetManagerWorkloadRequest                protoreflect.MessageDescriptor
+	fd_QueryGetManagerWorkloadRequest_epoch          protoreflect.FieldDescriptor
+	fd_QueryGetManagerWorkloadRequest_managerAccount protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_enreach_workload_query_proto_init()
+	md_QueryGetManagerWorkloadRequest = File_enreach_workload_query_proto.Messages().ByName("QueryGetManagerWorkloadRequest")
+	fd_QueryGetManagerWorkloadRequest_epoch = md_QueryGetManagerWorkloadRequest.Fields().ByName("epoch")
+	fd_QueryGetManagerWorkloadRequest_managerAccount = md_QueryGetManagerWorkloadRequest.Fields().ByName("managerAccount")
+}
+
+var _ protoreflect.Message = (*fastReflection_QueryGetManagerWorkloadRequest)(nil)
+
+type fastReflection_QueryGetManagerWorkloadRequest QueryGetManagerWorkloadRequest
+
+func (x *QueryGetManagerWorkloadRequest) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryGetManagerWorkloadRequest)(x)
+}
+
+func (x *QueryGetManagerWorkloadRequest) slowProtoReflect() protoreflect.Message {
+	mi := &file_enreach_workload_query_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_QueryGetManagerWorkloadRequest_messageType fastReflection_QueryGetManagerWorkloadRequest_messageType
+var _ protoreflect.MessageType = fastReflection_QueryGetManagerWorkloadRequest_messageType{}
+
+type fastReflection_QueryGetManagerWorkloadRequest_messageType struct{}
+
+func (x fastReflection_QueryGetManagerWorkloadRequest_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryGetManagerWorkloadRequest)(nil)
+}
+func (x fastReflection_QueryGetManagerWorkloadRequest_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryGetManagerWorkloadRequest)
+}
+func (x fastReflection_QueryGetManagerWorkloadRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetManagerWorkloadRequest
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_QueryGetManagerWorkloadRequest) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetManagerWorkloadRequest
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_QueryGetManagerWorkloadRequest) Type() protoreflect.MessageType {
+	return _fastReflection_QueryGetManagerWorkloadRequest_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_QueryGetManagerWorkloadRequest) New() protoreflect.Message {
+	return new(fastReflection_QueryGetManagerWorkloadRequest)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_QueryGetManagerWorkloadRequest) Interface() protoreflect.ProtoMessage {
+	return (*QueryGetManagerWorkloadRequest)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_QueryGetManagerWorkloadRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Epoch != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.Epoch)
+		if !f(fd_QueryGetManagerWorkloadRequest_epoch, value) {
+			return
+		}
+	}
+	if x.ManagerAccount != "" {
+		value := protoreflect.ValueOfString(x.ManagerAccount)
+		if !f(fd_QueryGetManagerWorkloadRequest_managerAccount, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_QueryGetManagerWorkloadRequest) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "enreach.workload.QueryGetManagerWorkloadRequest.epoch":
+		return x.Epoch != uint64(0)
+	case "enreach.workload.QueryGetManagerWorkloadRequest.managerAccount":
+		return x.ManagerAccount != ""
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetManagerWorkloadRequest"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetManagerWorkloadRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetManagerWorkloadRequest) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "enreach.workload.QueryGetManagerWorkloadRequest.epoch":
+		x.Epoch = uint64(0)
+	case "enreach.workload.QueryGetManagerWorkloadRequest.managerAccount":
+		x.ManagerAccount = ""
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetManagerWorkloadRequest"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetManagerWorkloadRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_QueryGetManagerWorkloadRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "enreach.workload.QueryGetManagerWorkloadRequest.epoch":
+		value := x.Epoch
+		return protoreflect.ValueOfUint64(value)
+	case "enreach.workload.QueryGetManagerWorkloadRequest.managerAccount":
+		value := x.ManagerAccount
+		return protoreflect.ValueOfString(value)
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetManagerWorkloadRequest"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetManagerWorkloadRequest does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetManagerWorkloadRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "enreach.workload.QueryGetManagerWorkloadRequest.epoch":
+		x.Epoch = value.Uint()
+	case "enreach.workload.QueryGetManagerWorkloadRequest.managerAccount":
+		x.ManagerAccount = value.Interface().(string)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetManagerWorkloadRequest"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetManagerWorkloadRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetManagerWorkloadRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "enreach.workload.QueryGetManagerWorkloadRequest.epoch":
+		panic(fmt.Errorf("field epoch of message enreach.workload.QueryGetManagerWorkloadRequest is not mutable"))
+	case "enreach.workload.QueryGetManagerWorkloadRequest.managerAccount":
+		panic(fmt.Errorf("field managerAccount of message enreach.workload.QueryGetManagerWorkloadRequest is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetManagerWorkloadRequest"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetManagerWorkloadRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_QueryGetManagerWorkloadRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "enreach.workload.QueryGetManagerWorkloadRequest.epoch":
+		return protoreflect.ValueOfUint64(uint64(0))
+	case "enreach.workload.QueryGetManagerWorkloadRequest.managerAccount":
+		return protoreflect.ValueOfString("")
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetManagerWorkloadRequest"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetManagerWorkloadRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_QueryGetManagerWorkloadRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in enreach.workload.QueryGetManagerWorkloadRequest", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_QueryGetManagerWorkloadRequest) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetManagerWorkloadRequest) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_QueryGetManagerWorkloadRequest) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_QueryGetManagerWorkloadRequest) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*QueryGetManagerWorkloadRequest)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if x.Epoch != 0 {
+			n += 1 + runtime.Sov(uint64(x.Epoch))
+		}
+		l = len(x.ManagerAccount)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*QueryGetManagerWorkloadRequest)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.ManagerAccount) > 0 {
+			i -= len(x.ManagerAccount)
+			copy(dAtA[i:], x.ManagerAccount)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.ManagerAccount)))
+			i--
+			dAtA[i] = 0x12
+		}
+		if x.Epoch != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.Epoch))
+			i--
+			dAtA[i] = 0x8
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*QueryGetManagerWorkloadRequest)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetManagerWorkloadRequest: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetManagerWorkloadRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Epoch", wireType)
+				}
+				x.Epoch = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.Epoch |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ManagerAccount", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.ManagerAccount = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_QueryGetManagerWorkloadResponse                 protoreflect.MessageDescriptor
+	fd_QueryGetManagerWorkloadResponse_ManagerWorkload protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_enreach_workload_query_proto_init()
+	md_QueryGetManagerWorkloadResponse = File_enreach_workload_query_proto.Messages().ByName("QueryGetManagerWorkloadResponse")
+	fd_QueryGetManagerWorkloadResponse_ManagerWorkload = md_QueryGetManagerWorkloadResponse.Fields().ByName("ManagerWorkload")
+}
+
+var _ protoreflect.Message = (*fastReflection_QueryGetManagerWorkloadResponse)(nil)
+
+type fastReflection_QueryGetManagerWorkloadResponse QueryGetManagerWorkloadResponse
+
+func (x *QueryGetManagerWorkloadResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryGetManagerWorkloadResponse)(x)
+}
+
+func (x *QueryGetManagerWorkloadResponse) slowProtoReflect() protoreflect.Message {
+	mi := &file_enreach_workload_query_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_QueryGetManagerWorkloadResponse_messageType fastReflection_QueryGetManagerWorkloadResponse_messageType
+var _ protoreflect.MessageType = fastReflection_QueryGetManagerWorkloadResponse_messageType{}
+
+type fastReflection_QueryGetManagerWorkloadResponse_messageType struct{}
+
+func (x fastReflection_QueryGetManagerWorkloadResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryGetManagerWorkloadResponse)(nil)
+}
+func (x fastReflection_QueryGetManagerWorkloadResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryGetManagerWorkloadResponse)
+}
+func (x fastReflection_QueryGetManagerWorkloadResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetManagerWorkloadResponse
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_QueryGetManagerWorkloadResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetManagerWorkloadResponse
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_QueryGetManagerWorkloadResponse) Type() protoreflect.MessageType {
+	return _fastReflection_QueryGetManagerWorkloadResponse_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_QueryGetManagerWorkloadResponse) New() protoreflect.Message {
+	return new(fastReflection_QueryGetManagerWorkloadResponse)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_QueryGetManagerWorkloadResponse) Interface() protoreflect.ProtoMessage {
+	return (*QueryGetManagerWorkloadResponse)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_QueryGetManagerWorkloadResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.ManagerWorkload != nil {
+		value := protoreflect.ValueOfMessage(x.ManagerWorkload.ProtoReflect())
+		if !f(fd_QueryGetManagerWorkloadResponse_ManagerWorkload, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_QueryGetManagerWorkloadResponse) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "enreach.workload.QueryGetManagerWorkloadResponse.ManagerWorkload":
+		return x.ManagerWorkload != nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetManagerWorkloadResponse"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetManagerWorkloadResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetManagerWorkloadResponse) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "enreach.workload.QueryGetManagerWorkloadResponse.ManagerWorkload":
+		x.ManagerWorkload = nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetManagerWorkloadResponse"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetManagerWorkloadResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_QueryGetManagerWorkloadResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "enreach.workload.QueryGetManagerWorkloadResponse.ManagerWorkload":
+		value := x.ManagerWorkload
+		return protoreflect.ValueOfMessage(value.ProtoReflect())
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetManagerWorkloadResponse"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetManagerWorkloadResponse does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetManagerWorkloadResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "enreach.workload.QueryGetManagerWorkloadResponse.ManagerWorkload":
+		x.ManagerWorkload = value.Message().Interface().(*ManagerWorkload)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetManagerWorkloadResponse"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetManagerWorkloadResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetManagerWorkloadResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "enreach.workload.QueryGetManagerWorkloadResponse.ManagerWorkload":
+		if x.ManagerWorkload == nil {
+			x.ManagerWorkload = new(ManagerWorkload)
+		}
+		return protoreflect.ValueOfMessage(x.ManagerWorkload.ProtoReflect())
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetManagerWorkloadResponse"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetManagerWorkloadResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_QueryGetManagerWorkloadResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "enreach.workload.QueryGetManagerWorkloadResponse.ManagerWorkload":
+		m := new(ManagerWorkload)
+		return protoreflect.ValueOfMessage(m.ProtoReflect())
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetManagerWorkloadResponse"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetManagerWorkloadResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_QueryGetManagerWorkloadResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in enreach.workload.QueryGetManagerWorkloadResponse", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_QueryGetManagerWorkloadResponse) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetManagerWorkloadResponse) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_QueryGetManagerWorkloadResponse) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_QueryGetManagerWorkloadResponse) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*QueryGetManagerWorkloadResponse)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if x.ManagerWorkload != nil {
+			l = options.Size(x.ManagerWorkload)
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*QueryGetManagerWorkloadResponse)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if x.ManagerWorkload != nil {
+			encoded, err := options.Marshal(x.ManagerWorkload)
+			if err != nil {
+				return protoiface.MarshalOutput{
+					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+					Buf:               input.Buf,
+				}, err
+			}
+			i -= len(encoded)
+			copy(dAtA[i:], encoded)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+			i--
+			dAtA[i] = 0xa
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*QueryGetManagerWorkloadResponse)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetManagerWorkloadResponse: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetManagerWorkloadResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ManagerWorkload", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if x.ManagerWorkload == nil {
+					x.ManagerWorkload = &ManagerWorkload{}
+				}
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.ManagerWorkload); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_QueryGetAllManagerWorkloadByEpochRequest            protoreflect.MessageDescriptor
+	fd_QueryGetAllManagerWorkloadByEpochRequest_epoch      protoreflect.FieldDescriptor
+	fd_QueryGetAllManagerWorkloadByEpochRequest_pagination protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_enreach_workload_query_proto_init()
+	md_QueryGetAllManagerWorkloadByEpochRequest = File_enreach_workload_query_proto.Messages().ByName("QueryGetAllManagerWorkloadByEpochRequest")
+	fd_QueryGetAllManagerWorkloadByEpochRequest_epoch = md_QueryGetAllManagerWorkloadByEpochRequest.Fields().ByName("epoch")
+	fd_QueryGetAllManagerWorkloadByEpochRequest_pagination = md_QueryGetAllManagerWorkloadByEpochRequest.Fields().ByName("pagination")
+}
+
+var _ protoreflect.Message = (*fastReflection_QueryGetAllManagerWorkloadByEpochRequest)(nil)
+
+type fastReflection_QueryGetAllManagerWorkloadByEpochRequest QueryGetAllManagerWorkloadByEpochRequest
+
+func (x *QueryGetAllManagerWorkloadByEpochRequest) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryGetAllManagerWorkloadByEpochRequest)(x)
+}
+
+func (x *QueryGetAllManagerWorkloadByEpochRequest) slowProtoReflect() protoreflect.Message {
+	mi := &file_enreach_workload_query_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_QueryGetAllManagerWorkloadByEpochRequest_messageType fastReflection_QueryGetAllManagerWorkloadByEpochRequest_messageType
+var _ protoreflect.MessageType = fastReflection_QueryGetAllManagerWorkloadByEpochRequest_messageType{}
+
+type fastReflection_QueryGetAllManagerWorkloadByEpochRequest_messageType struct{}
+
+func (x fastReflection_QueryGetAllManagerWorkloadByEpochRequest_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryGetAllManagerWorkloadByEpochRequest)(nil)
+}
+func (x fastReflection_QueryGetAllManagerWorkloadByEpochRequest_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryGetAllManagerWorkloadByEpochRequest)
+}
+func (x fastReflection_QueryGetAllManagerWorkloadByEpochRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetAllManagerWorkloadByEpochRequest
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochRequest) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetAllManagerWorkloadByEpochRequest
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochRequest) Type() protoreflect.MessageType {
+	return _fastReflection_QueryGetAllManagerWorkloadByEpochRequest_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochRequest) New() protoreflect.Message {
+	return new(fastReflection_QueryGetAllManagerWorkloadByEpochRequest)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochRequest) Interface() protoreflect.ProtoMessage {
+	return (*QueryGetAllManagerWorkloadByEpochRequest)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Epoch != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.Epoch)
+		if !f(fd_QueryGetAllManagerWorkloadByEpochRequest_epoch, value) {
+			return
+		}
+	}
+	if x.Pagination != nil {
+		value := protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
+		if !f(fd_QueryGetAllManagerWorkloadByEpochRequest_pagination, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochRequest) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochRequest.epoch":
+		return x.Epoch != uint64(0)
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochRequest.pagination":
+		return x.Pagination != nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllManagerWorkloadByEpochRequest"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllManagerWorkloadByEpochRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochRequest) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochRequest.epoch":
+		x.Epoch = uint64(0)
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochRequest.pagination":
+		x.Pagination = nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllManagerWorkloadByEpochRequest"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllManagerWorkloadByEpochRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochRequest.epoch":
+		value := x.Epoch
+		return protoreflect.ValueOfUint64(value)
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochRequest.pagination":
+		value := x.Pagination
+		return protoreflect.ValueOfMessage(value.ProtoReflect())
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllManagerWorkloadByEpochRequest"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllManagerWorkloadByEpochRequest does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochRequest.epoch":
+		x.Epoch = value.Uint()
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochRequest.pagination":
+		x.Pagination = value.Message().Interface().(*v1beta1.PageRequest)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllManagerWorkloadByEpochRequest"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllManagerWorkloadByEpochRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochRequest.pagination":
+		if x.Pagination == nil {
+			x.Pagination = new(v1beta1.PageRequest)
+		}
+		return protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochRequest.epoch":
+		panic(fmt.Errorf("field epoch of message enreach.workload.QueryGetAllManagerWorkloadByEpochRequest is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllManagerWorkloadByEpochRequest"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllManagerWorkloadByEpochRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochRequest.epoch":
+		return protoreflect.ValueOfUint64(uint64(0))
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochRequest.pagination":
+		m := new(v1beta1.PageRequest)
+		return protoreflect.ValueOfMessage(m.ProtoReflect())
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllManagerWorkloadByEpochRequest"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllManagerWorkloadByEpochRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in enreach.workload.QueryGetAllManagerWorkloadByEpochRequest", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochRequest) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochRequest) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochRequest) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochRequest) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*QueryGetAllManagerWorkloadByEpochRequest)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if x.Epoch != 0 {
+			n += 1 + runtime.Sov(uint64(x.Epoch))
+		}
+		if x.Pagination != nil {
+			l = options.Size(x.Pagination)
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*QueryGetAllManagerWorkloadByEpochRequest)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if x.Pagination != nil {
+			encoded, err := options.Marshal(x.Pagination)
+			if err != nil {
+				return protoiface.MarshalOutput{
+					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+					Buf:               input.Buf,
+				}, err
+			}
+			i -= len(encoded)
+			copy(dAtA[i:], encoded)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+			i--
+			dAtA[i] = 0x12
+		}
+		if x.Epoch != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.Epoch))
+			i--
+			dAtA[i] = 0x8
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*QueryGetAllManagerWorkloadByEpochRequest)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetAllManagerWorkloadByEpochRequest: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetAllManagerWorkloadByEpochRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Epoch", wireType)
+				}
+				x.Epoch = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.Epoch |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if x.Pagination == nil {
+					x.Pagination = &v1beta1.PageRequest{}
+				}
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Pagination); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var _ protoreflect.List = (*_QueryGetAllManagerWorkloadByEpochResponse_1_list)(nil)
+
+type _QueryGetAllManagerWorkloadByEpochResponse_1_list struct {
+	list *[]*ManagerWorkload
+}
+
+func (x *_QueryGetAllManagerWorkloadByEpochResponse_1_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_QueryGetAllManagerWorkloadByEpochResponse_1_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
+}
+
+func (x *_QueryGetAllManagerWorkloadByEpochResponse_1_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*ManagerWorkload)
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_QueryGetAllManagerWorkloadByEpochResponse_1_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*ManagerWorkload)
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_QueryGetAllManagerWorkloadByEpochResponse_1_list) AppendMutable() protoreflect.Value {
+	v := new(ManagerWorkload)
+	*x.list = append(*x.list, v)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_QueryGetAllManagerWorkloadByEpochResponse_1_list) Truncate(n int) {
+	for i := n; i < len(*x.list); i++ {
+		(*x.list)[i] = nil
+	}
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_QueryGetAllManagerWorkloadByEpochResponse_1_list) NewElement() protoreflect.Value {
+	v := new(ManagerWorkload)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_QueryGetAllManagerWorkloadByEpochResponse_1_list) IsValid() bool {
+	return x.list != nil
+}
+
+var (
+	md_QueryGetAllManagerWorkloadByEpochResponse                  protoreflect.MessageDescriptor
+	fd_QueryGetAllManagerWorkloadByEpochResponse_ManagerWorkloads protoreflect.FieldDescriptor
+	fd_QueryGetAllManagerWorkloadByEpochResponse_pagination       protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_enreach_workload_query_proto_init()
+	md_QueryGetAllManagerWorkloadByEpochResponse = File_enreach_workload_query_proto.Messages().ByName("QueryGetAllManagerWorkloadByEpochResponse")
+	fd_QueryGetAllManagerWorkloadByEpochResponse_ManagerWorkloads = md_QueryGetAllManagerWorkloadByEpochResponse.Fields().ByName("ManagerWorkloads")
+	fd_QueryGetAllManagerWorkloadByEpochResponse_pagination = md_QueryGetAllManagerWorkloadByEpochResponse.Fields().ByName("pagination")
+}
+
+var _ protoreflect.Message = (*fastReflection_QueryGetAllManagerWorkloadByEpochResponse)(nil)
+
+type fastReflection_QueryGetAllManagerWorkloadByEpochResponse QueryGetAllManagerWorkloadByEpochResponse
+
+func (x *QueryGetAllManagerWorkloadByEpochResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryGetAllManagerWorkloadByEpochResponse)(x)
+}
+
+func (x *QueryGetAllManagerWorkloadByEpochResponse) slowProtoReflect() protoreflect.Message {
+	mi := &file_enreach_workload_query_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_QueryGetAllManagerWorkloadByEpochResponse_messageType fastReflection_QueryGetAllManagerWorkloadByEpochResponse_messageType
+var _ protoreflect.MessageType = fastReflection_QueryGetAllManagerWorkloadByEpochResponse_messageType{}
+
+type fastReflection_QueryGetAllManagerWorkloadByEpochResponse_messageType struct{}
+
+func (x fastReflection_QueryGetAllManagerWorkloadByEpochResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryGetAllManagerWorkloadByEpochResponse)(nil)
+}
+func (x fastReflection_QueryGetAllManagerWorkloadByEpochResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryGetAllManagerWorkloadByEpochResponse)
+}
+func (x fastReflection_QueryGetAllManagerWorkloadByEpochResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetAllManagerWorkloadByEpochResponse
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetAllManagerWorkloadByEpochResponse
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochResponse) Type() protoreflect.MessageType {
+	return _fastReflection_QueryGetAllManagerWorkloadByEpochResponse_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochResponse) New() protoreflect.Message {
+	return new(fastReflection_QueryGetAllManagerWorkloadByEpochResponse)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochResponse) Interface() protoreflect.ProtoMessage {
+	return (*QueryGetAllManagerWorkloadByEpochResponse)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if len(x.ManagerWorkloads) != 0 {
+		value := protoreflect.ValueOfList(&_QueryGetAllManagerWorkloadByEpochResponse_1_list{list: &x.ManagerWorkloads})
+		if !f(fd_QueryGetAllManagerWorkloadByEpochResponse_ManagerWorkloads, value) {
+			return
+		}
+	}
+	if x.Pagination != nil {
+		value := protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
+		if !f(fd_QueryGetAllManagerWorkloadByEpochResponse_pagination, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochResponse) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochResponse.ManagerWorkloads":
+		return len(x.ManagerWorkloads) != 0
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochResponse.pagination":
+		return x.Pagination != nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllManagerWorkloadByEpochResponse"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllManagerWorkloadByEpochResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochResponse) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochResponse.ManagerWorkloads":
+		x.ManagerWorkloads = nil
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochResponse.pagination":
+		x.Pagination = nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllManagerWorkloadByEpochResponse"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllManagerWorkloadByEpochResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochResponse.ManagerWorkloads":
+		if len(x.ManagerWorkloads) == 0 {
+			return protoreflect.ValueOfList(&_QueryGetAllManagerWorkloadByEpochResponse_1_list{})
+		}
+		listValue := &_QueryGetAllManagerWorkloadByEpochResponse_1_list{list: &x.ManagerWorkloads}
+		return protoreflect.ValueOfList(listValue)
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochResponse.pagination":
+		value := x.Pagination
+		return protoreflect.ValueOfMessage(value.ProtoReflect())
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllManagerWorkloadByEpochResponse"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllManagerWorkloadByEpochResponse does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochResponse.ManagerWorkloads":
+		lv := value.List()
+		clv := lv.(*_QueryGetAllManagerWorkloadByEpochResponse_1_list)
+		x.ManagerWorkloads = *clv.list
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochResponse.pagination":
+		x.Pagination = value.Message().Interface().(*v1beta1.PageResponse)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllManagerWorkloadByEpochResponse"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllManagerWorkloadByEpochResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochResponse.ManagerWorkloads":
+		if x.ManagerWorkloads == nil {
+			x.ManagerWorkloads = []*ManagerWorkload{}
+		}
+		value := &_QueryGetAllManagerWorkloadByEpochResponse_1_list{list: &x.ManagerWorkloads}
+		return protoreflect.ValueOfList(value)
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochResponse.pagination":
+		if x.Pagination == nil {
+			x.Pagination = new(v1beta1.PageResponse)
+		}
+		return protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllManagerWorkloadByEpochResponse"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllManagerWorkloadByEpochResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochResponse.ManagerWorkloads":
+		list := []*ManagerWorkload{}
+		return protoreflect.ValueOfList(&_QueryGetAllManagerWorkloadByEpochResponse_1_list{list: &list})
+	case "enreach.workload.QueryGetAllManagerWorkloadByEpochResponse.pagination":
+		m := new(v1beta1.PageResponse)
+		return protoreflect.ValueOfMessage(m.ProtoReflect())
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.QueryGetAllManagerWorkloadByEpochResponse"))
+		}
+		panic(fmt.Errorf("message enreach.workload.QueryGetAllManagerWorkloadByEpochResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in enreach.workload.QueryGetAllManagerWorkloadByEpochResponse", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochResponse) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochResponse) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochResponse) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_QueryGetAllManagerWorkloadByEpochResponse) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*QueryGetAllManagerWorkloadByEpochResponse)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if len(x.ManagerWorkloads) > 0 {
+			for _, e := range x.ManagerWorkloads {
+				l = options.Size(e)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
+		if x.Pagination != nil {
+			l = options.Size(x.Pagination)
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*QueryGetAllManagerWorkloadByEpochResponse)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if x.Pagination != nil {
+			encoded, err := options.Marshal(x.Pagination)
+			if err != nil {
+				return protoiface.MarshalOutput{
+					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+					Buf:               input.Buf,
+				}, err
+			}
+			i -= len(encoded)
+			copy(dAtA[i:], encoded)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+			i--
+			dAtA[i] = 0x12
+		}
+		if len(x.ManagerWorkloads) > 0 {
+			for iNdEx := len(x.ManagerWorkloads) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.ManagerWorkloads[iNdEx])
+				if err != nil {
+					return protoiface.MarshalOutput{
+						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+						Buf:               input.Buf,
+					}, err
+				}
+				i -= len(encoded)
+				copy(dAtA[i:], encoded)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0xa
+			}
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*QueryGetAllManagerWorkloadByEpochResponse)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetAllManagerWorkloadByEpochResponse: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetAllManagerWorkloadByEpochResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ManagerWorkloads", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.ManagerWorkloads = append(x.ManagerWorkloads, &ManagerWorkload{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.ManagerWorkloads[len(x.ManagerWorkloads)-1]); err != nil {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
@@ -4196,7 +6267,7 @@ func (x *QueryGetWorkreportRequest) ProtoReflect() protoreflect.Message {
 }
 
 func (x *QueryGetWorkreportRequest) slowProtoReflect() protoreflect.Message {
-	mi := &file_enreach_workload_query_proto_msgTypes[10]
+	mi := &file_enreach_workload_query_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4662,7 +6733,7 @@ func (x *QueryGetWorkreportResponse) ProtoReflect() protoreflect.Message {
 }
 
 func (x *QueryGetWorkreportResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_enreach_workload_query_proto_msgTypes[11]
+	mi := &file_enreach_workload_query_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5099,7 +7170,7 @@ func (x *QueryGetAllWorkreportByEpochRequest) ProtoReflect() protoreflect.Messag
 }
 
 func (x *QueryGetAllWorkreportByEpochRequest) slowProtoReflect() protoreflect.Message {
-	mi := &file_enreach_workload_query_proto_msgTypes[12]
+	mi := &file_enreach_workload_query_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5612,15 +7683,15 @@ func (x *_QueryGetAllWorkreportByEpochResponse_1_list) IsValid() bool {
 }
 
 var (
-	md_QueryGetAllWorkreportByEpochResponse            protoreflect.MessageDescriptor
-	fd_QueryGetAllWorkreportByEpochResponse_Workreport protoreflect.FieldDescriptor
-	fd_QueryGetAllWorkreportByEpochResponse_pagination protoreflect.FieldDescriptor
+	md_QueryGetAllWorkreportByEpochResponse             protoreflect.MessageDescriptor
+	fd_QueryGetAllWorkreportByEpochResponse_Workreports protoreflect.FieldDescriptor
+	fd_QueryGetAllWorkreportByEpochResponse_pagination  protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_enreach_workload_query_proto_init()
 	md_QueryGetAllWorkreportByEpochResponse = File_enreach_workload_query_proto.Messages().ByName("QueryGetAllWorkreportByEpochResponse")
-	fd_QueryGetAllWorkreportByEpochResponse_Workreport = md_QueryGetAllWorkreportByEpochResponse.Fields().ByName("Workreport")
+	fd_QueryGetAllWorkreportByEpochResponse_Workreports = md_QueryGetAllWorkreportByEpochResponse.Fields().ByName("Workreports")
 	fd_QueryGetAllWorkreportByEpochResponse_pagination = md_QueryGetAllWorkreportByEpochResponse.Fields().ByName("pagination")
 }
 
@@ -5633,7 +7704,7 @@ func (x *QueryGetAllWorkreportByEpochResponse) ProtoReflect() protoreflect.Messa
 }
 
 func (x *QueryGetAllWorkreportByEpochResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_enreach_workload_query_proto_msgTypes[13]
+	mi := &file_enreach_workload_query_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5689,9 +7760,9 @@ func (x *fastReflection_QueryGetAllWorkreportByEpochResponse) Interface() protor
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_QueryGetAllWorkreportByEpochResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if len(x.Workreport) != 0 {
-		value := protoreflect.ValueOfList(&_QueryGetAllWorkreportByEpochResponse_1_list{list: &x.Workreport})
-		if !f(fd_QueryGetAllWorkreportByEpochResponse_Workreport, value) {
+	if len(x.Workreports) != 0 {
+		value := protoreflect.ValueOfList(&_QueryGetAllWorkreportByEpochResponse_1_list{list: &x.Workreports})
+		if !f(fd_QueryGetAllWorkreportByEpochResponse_Workreports, value) {
 			return
 		}
 	}
@@ -5716,8 +7787,8 @@ func (x *fastReflection_QueryGetAllWorkreportByEpochResponse) Range(f func(proto
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_QueryGetAllWorkreportByEpochResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "enreach.workload.QueryGetAllWorkreportByEpochResponse.Workreport":
-		return len(x.Workreport) != 0
+	case "enreach.workload.QueryGetAllWorkreportByEpochResponse.Workreports":
+		return len(x.Workreports) != 0
 	case "enreach.workload.QueryGetAllWorkreportByEpochResponse.pagination":
 		return x.Pagination != nil
 	default:
@@ -5736,8 +7807,8 @@ func (x *fastReflection_QueryGetAllWorkreportByEpochResponse) Has(fd protoreflec
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryGetAllWorkreportByEpochResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "enreach.workload.QueryGetAllWorkreportByEpochResponse.Workreport":
-		x.Workreport = nil
+	case "enreach.workload.QueryGetAllWorkreportByEpochResponse.Workreports":
+		x.Workreports = nil
 	case "enreach.workload.QueryGetAllWorkreportByEpochResponse.pagination":
 		x.Pagination = nil
 	default:
@@ -5756,11 +7827,11 @@ func (x *fastReflection_QueryGetAllWorkreportByEpochResponse) Clear(fd protorefl
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_QueryGetAllWorkreportByEpochResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "enreach.workload.QueryGetAllWorkreportByEpochResponse.Workreport":
-		if len(x.Workreport) == 0 {
+	case "enreach.workload.QueryGetAllWorkreportByEpochResponse.Workreports":
+		if len(x.Workreports) == 0 {
 			return protoreflect.ValueOfList(&_QueryGetAllWorkreportByEpochResponse_1_list{})
 		}
-		listValue := &_QueryGetAllWorkreportByEpochResponse_1_list{list: &x.Workreport}
+		listValue := &_QueryGetAllWorkreportByEpochResponse_1_list{list: &x.Workreports}
 		return protoreflect.ValueOfList(listValue)
 	case "enreach.workload.QueryGetAllWorkreportByEpochResponse.pagination":
 		value := x.Pagination
@@ -5785,10 +7856,10 @@ func (x *fastReflection_QueryGetAllWorkreportByEpochResponse) Get(descriptor pro
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryGetAllWorkreportByEpochResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "enreach.workload.QueryGetAllWorkreportByEpochResponse.Workreport":
+	case "enreach.workload.QueryGetAllWorkreportByEpochResponse.Workreports":
 		lv := value.List()
 		clv := lv.(*_QueryGetAllWorkreportByEpochResponse_1_list)
-		x.Workreport = *clv.list
+		x.Workreports = *clv.list
 	case "enreach.workload.QueryGetAllWorkreportByEpochResponse.pagination":
 		x.Pagination = value.Message().Interface().(*v1beta1.PageResponse)
 	default:
@@ -5811,11 +7882,11 @@ func (x *fastReflection_QueryGetAllWorkreportByEpochResponse) Set(fd protoreflec
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryGetAllWorkreportByEpochResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "enreach.workload.QueryGetAllWorkreportByEpochResponse.Workreport":
-		if x.Workreport == nil {
-			x.Workreport = []*Workreport{}
+	case "enreach.workload.QueryGetAllWorkreportByEpochResponse.Workreports":
+		if x.Workreports == nil {
+			x.Workreports = []*Workreport{}
 		}
-		value := &_QueryGetAllWorkreportByEpochResponse_1_list{list: &x.Workreport}
+		value := &_QueryGetAllWorkreportByEpochResponse_1_list{list: &x.Workreports}
 		return protoreflect.ValueOfList(value)
 	case "enreach.workload.QueryGetAllWorkreportByEpochResponse.pagination":
 		if x.Pagination == nil {
@@ -5835,7 +7906,7 @@ func (x *fastReflection_QueryGetAllWorkreportByEpochResponse) Mutable(fd protore
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_QueryGetAllWorkreportByEpochResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "enreach.workload.QueryGetAllWorkreportByEpochResponse.Workreport":
+	case "enreach.workload.QueryGetAllWorkreportByEpochResponse.Workreports":
 		list := []*Workreport{}
 		return protoreflect.ValueOfList(&_QueryGetAllWorkreportByEpochResponse_1_list{list: &list})
 	case "enreach.workload.QueryGetAllWorkreportByEpochResponse.pagination":
@@ -5910,8 +7981,8 @@ func (x *fastReflection_QueryGetAllWorkreportByEpochResponse) ProtoMethods() *pr
 		var n int
 		var l int
 		_ = l
-		if len(x.Workreport) > 0 {
-			for _, e := range x.Workreport {
+		if len(x.Workreports) > 0 {
+			for _, e := range x.Workreports {
 				l = options.Size(e)
 				n += 1 + l + runtime.Sov(uint64(l))
 			}
@@ -5963,9 +8034,9 @@ func (x *fastReflection_QueryGetAllWorkreportByEpochResponse) ProtoMethods() *pr
 			i--
 			dAtA[i] = 0x12
 		}
-		if len(x.Workreport) > 0 {
-			for iNdEx := len(x.Workreport) - 1; iNdEx >= 0; iNdEx-- {
-				encoded, err := options.Marshal(x.Workreport[iNdEx])
+		if len(x.Workreports) > 0 {
+			for iNdEx := len(x.Workreports) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.Workreports[iNdEx])
 				if err != nil {
 					return protoiface.MarshalOutput{
 						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -6030,7 +8101,7 @@ func (x *fastReflection_QueryGetAllWorkreportByEpochResponse) ProtoMethods() *pr
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Workreport", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Workreports", wireType)
 				}
 				var msglen int
 				for shift := uint(0); ; shift += 7 {
@@ -6057,8 +8128,8 @@ func (x *fastReflection_QueryGetAllWorkreportByEpochResponse) ProtoMethods() *pr
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.Workreport = append(x.Workreport, &Workreport{})
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Workreport[len(x.Workreport)-1]); err != nil {
+				x.Workreports = append(x.Workreports, &Workreport{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Workreports[len(x.Workreports)-1]); err != nil {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
@@ -6151,7 +8222,7 @@ func (x *QueryGetWorkreportProcessBatchSizeRequest) ProtoReflect() protoreflect.
 }
 
 func (x *QueryGetWorkreportProcessBatchSizeRequest) slowProtoReflect() protoreflect.Message {
-	mi := &file_enreach_workload_query_proto_msgTypes[14]
+	mi := &file_enreach_workload_query_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6509,7 +8580,7 @@ func (x *QueryGetWorkreportProcessBatchSizeResponse) ProtoReflect() protoreflect
 }
 
 func (x *QueryGetWorkreportProcessBatchSizeResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_enreach_workload_query_proto_msgTypes[15]
+	mi := &file_enreach_workload_query_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6911,7 +8982,7 @@ func (x *QueryGetHistoryEpochDataDepthRequest) ProtoReflect() protoreflect.Messa
 }
 
 func (x *QueryGetHistoryEpochDataDepthRequest) slowProtoReflect() protoreflect.Message {
-	mi := &file_enreach_workload_query_proto_msgTypes[16]
+	mi := &file_enreach_workload_query_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7269,7 +9340,7 @@ func (x *QueryGetHistoryEpochDataDepthResponse) ProtoReflect() protoreflect.Mess
 }
 
 func (x *QueryGetHistoryEpochDataDepthResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_enreach_workload_query_proto_msgTypes[17]
+	mi := &file_enreach_workload_query_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7673,7 +9744,7 @@ func (x *QueryGetEpochProcessDataRequest) ProtoReflect() protoreflect.Message {
 }
 
 func (x *QueryGetEpochProcessDataRequest) slowProtoReflect() protoreflect.Message {
-	mi := &file_enreach_workload_query_proto_msgTypes[18]
+	mi := &file_enreach_workload_query_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8077,7 +10148,7 @@ func (x *QueryGetEpochProcessDataResponse) ProtoReflect() protoreflect.Message {
 }
 
 func (x *QueryGetEpochProcessDataResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_enreach_workload_query_proto_msgTypes[19]
+	mi := &file_enreach_workload_query_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8512,7 +10583,7 @@ func (x *QueryGetAllEpochProcessDataRequest) ProtoReflect() protoreflect.Message
 }
 
 func (x *QueryGetAllEpochProcessDataRequest) slowProtoReflect() protoreflect.Message {
-	mi := &file_enreach_workload_query_proto_msgTypes[20]
+	mi := &file_enreach_workload_query_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9000,7 +11071,7 @@ func (x *QueryGetAllEpochProcessDataResponse) ProtoReflect() protoreflect.Messag
 }
 
 func (x *QueryGetAllEpochProcessDataResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_enreach_workload_query_proto_msgTypes[21]
+	mi := &file_enreach_workload_query_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9518,7 +11589,7 @@ func (x *QueryGetSuperiorRequest) ProtoReflect() protoreflect.Message {
 }
 
 func (x *QueryGetSuperiorRequest) slowProtoReflect() protoreflect.Message {
-	mi := &file_enreach_workload_query_proto_msgTypes[22]
+	mi := &file_enreach_workload_query_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9876,7 +11947,7 @@ func (x *QueryGetSuperiorResponse) ProtoReflect() protoreflect.Message {
 }
 
 func (x *QueryGetSuperiorResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_enreach_workload_query_proto_msgTypes[23]
+	mi := &file_enreach_workload_query_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10490,16 +12561,17 @@ func (x *QueryGetCurrentEpochResponse) GetCurrentEpoch() uint64 {
 	return 0
 }
 
-type QueryGetWorkloadRequest struct {
+type QueryGetNodeWorkloadRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Epoch  uint64 `protobuf:"varint,1,opt,name=epoch,proto3" json:"epoch,omitempty"`
+	NodeID string `protobuf:"bytes,2,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
 }
 
-func (x *QueryGetWorkloadRequest) Reset() {
-	*x = QueryGetWorkloadRequest{}
+func (x *QueryGetNodeWorkloadRequest) Reset() {
+	*x = QueryGetNodeWorkloadRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_enreach_workload_query_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -10507,34 +12579,41 @@ func (x *QueryGetWorkloadRequest) Reset() {
 	}
 }
 
-func (x *QueryGetWorkloadRequest) String() string {
+func (x *QueryGetNodeWorkloadRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*QueryGetWorkloadRequest) ProtoMessage() {}
+func (*QueryGetNodeWorkloadRequest) ProtoMessage() {}
 
-// Deprecated: Use QueryGetWorkloadRequest.ProtoReflect.Descriptor instead.
-func (*QueryGetWorkloadRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use QueryGetNodeWorkloadRequest.ProtoReflect.Descriptor instead.
+func (*QueryGetNodeWorkloadRequest) Descriptor() ([]byte, []int) {
 	return file_enreach_workload_query_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *QueryGetWorkloadRequest) GetId() uint64 {
+func (x *QueryGetNodeWorkloadRequest) GetEpoch() uint64 {
 	if x != nil {
-		return x.Id
+		return x.Epoch
 	}
 	return 0
 }
 
-type QueryGetWorkloadResponse struct {
+func (x *QueryGetNodeWorkloadRequest) GetNodeID() string {
+	if x != nil {
+		return x.NodeID
+	}
+	return ""
+}
+
+type QueryGetNodeWorkloadResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Workload *Workload `protobuf:"bytes,1,opt,name=Workload,proto3" json:"Workload,omitempty"`
+	NodeWorkload *NodeWorkload `protobuf:"bytes,1,opt,name=NodeWorkload,proto3" json:"NodeWorkload,omitempty"`
 }
 
-func (x *QueryGetWorkloadResponse) Reset() {
-	*x = QueryGetWorkloadResponse{}
+func (x *QueryGetNodeWorkloadResponse) Reset() {
+	*x = QueryGetNodeWorkloadResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_enreach_workload_query_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -10542,34 +12621,35 @@ func (x *QueryGetWorkloadResponse) Reset() {
 	}
 }
 
-func (x *QueryGetWorkloadResponse) String() string {
+func (x *QueryGetNodeWorkloadResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*QueryGetWorkloadResponse) ProtoMessage() {}
+func (*QueryGetNodeWorkloadResponse) ProtoMessage() {}
 
-// Deprecated: Use QueryGetWorkloadResponse.ProtoReflect.Descriptor instead.
-func (*QueryGetWorkloadResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use QueryGetNodeWorkloadResponse.ProtoReflect.Descriptor instead.
+func (*QueryGetNodeWorkloadResponse) Descriptor() ([]byte, []int) {
 	return file_enreach_workload_query_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *QueryGetWorkloadResponse) GetWorkload() *Workload {
+func (x *QueryGetNodeWorkloadResponse) GetNodeWorkload() *NodeWorkload {
 	if x != nil {
-		return x.Workload
+		return x.NodeWorkload
 	}
 	return nil
 }
 
-type QueryAllWorkloadRequest struct {
+type QueryGetAllNodeWorkloadByEpochRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Pagination *v1beta1.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	Epoch      uint64               `protobuf:"varint,1,opt,name=epoch,proto3" json:"epoch,omitempty"`
+	Pagination *v1beta1.PageRequest `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
-func (x *QueryAllWorkloadRequest) Reset() {
-	*x = QueryAllWorkloadRequest{}
+func (x *QueryGetAllNodeWorkloadByEpochRequest) Reset() {
+	*x = QueryGetAllNodeWorkloadByEpochRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_enreach_workload_query_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -10577,35 +12657,42 @@ func (x *QueryAllWorkloadRequest) Reset() {
 	}
 }
 
-func (x *QueryAllWorkloadRequest) String() string {
+func (x *QueryGetAllNodeWorkloadByEpochRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*QueryAllWorkloadRequest) ProtoMessage() {}
+func (*QueryGetAllNodeWorkloadByEpochRequest) ProtoMessage() {}
 
-// Deprecated: Use QueryAllWorkloadRequest.ProtoReflect.Descriptor instead.
-func (*QueryAllWorkloadRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use QueryGetAllNodeWorkloadByEpochRequest.ProtoReflect.Descriptor instead.
+func (*QueryGetAllNodeWorkloadByEpochRequest) Descriptor() ([]byte, []int) {
 	return file_enreach_workload_query_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *QueryAllWorkloadRequest) GetPagination() *v1beta1.PageRequest {
+func (x *QueryGetAllNodeWorkloadByEpochRequest) GetEpoch() uint64 {
+	if x != nil {
+		return x.Epoch
+	}
+	return 0
+}
+
+func (x *QueryGetAllNodeWorkloadByEpochRequest) GetPagination() *v1beta1.PageRequest {
 	if x != nil {
 		return x.Pagination
 	}
 	return nil
 }
 
-type QueryAllWorkloadResponse struct {
+type QueryGetAllNodeWorkloadByEpochResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Workload   []*Workload           `protobuf:"bytes,1,rep,name=Workload,proto3" json:"Workload,omitempty"`
-	Pagination *v1beta1.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	NodeWorkloads []*NodeWorkload       `protobuf:"bytes,1,rep,name=NodeWorkloads,proto3" json:"NodeWorkloads,omitempty"`
+	Pagination    *v1beta1.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
-func (x *QueryAllWorkloadResponse) Reset() {
-	*x = QueryAllWorkloadResponse{}
+func (x *QueryGetAllNodeWorkloadByEpochResponse) Reset() {
+	*x = QueryGetAllNodeWorkloadByEpochResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_enreach_workload_query_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -10613,25 +12700,189 @@ func (x *QueryAllWorkloadResponse) Reset() {
 	}
 }
 
-func (x *QueryAllWorkloadResponse) String() string {
+func (x *QueryGetAllNodeWorkloadByEpochResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*QueryAllWorkloadResponse) ProtoMessage() {}
+func (*QueryGetAllNodeWorkloadByEpochResponse) ProtoMessage() {}
 
-// Deprecated: Use QueryAllWorkloadResponse.ProtoReflect.Descriptor instead.
-func (*QueryAllWorkloadResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use QueryGetAllNodeWorkloadByEpochResponse.ProtoReflect.Descriptor instead.
+func (*QueryGetAllNodeWorkloadByEpochResponse) Descriptor() ([]byte, []int) {
 	return file_enreach_workload_query_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *QueryAllWorkloadResponse) GetWorkload() []*Workload {
+func (x *QueryGetAllNodeWorkloadByEpochResponse) GetNodeWorkloads() []*NodeWorkload {
 	if x != nil {
-		return x.Workload
+		return x.NodeWorkloads
 	}
 	return nil
 }
 
-func (x *QueryAllWorkloadResponse) GetPagination() *v1beta1.PageResponse {
+func (x *QueryGetAllNodeWorkloadByEpochResponse) GetPagination() *v1beta1.PageResponse {
+	if x != nil {
+		return x.Pagination
+	}
+	return nil
+}
+
+type QueryGetManagerWorkloadRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Epoch          uint64 `protobuf:"varint,1,opt,name=epoch,proto3" json:"epoch,omitempty"`
+	ManagerAccount string `protobuf:"bytes,2,opt,name=managerAccount,proto3" json:"managerAccount,omitempty"`
+}
+
+func (x *QueryGetManagerWorkloadRequest) Reset() {
+	*x = QueryGetManagerWorkloadRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_enreach_workload_query_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *QueryGetManagerWorkloadRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueryGetManagerWorkloadRequest) ProtoMessage() {}
+
+// Deprecated: Use QueryGetManagerWorkloadRequest.ProtoReflect.Descriptor instead.
+func (*QueryGetManagerWorkloadRequest) Descriptor() ([]byte, []int) {
+	return file_enreach_workload_query_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *QueryGetManagerWorkloadRequest) GetEpoch() uint64 {
+	if x != nil {
+		return x.Epoch
+	}
+	return 0
+}
+
+func (x *QueryGetManagerWorkloadRequest) GetManagerAccount() string {
+	if x != nil {
+		return x.ManagerAccount
+	}
+	return ""
+}
+
+type QueryGetManagerWorkloadResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ManagerWorkload *ManagerWorkload `protobuf:"bytes,1,opt,name=ManagerWorkload,proto3" json:"ManagerWorkload,omitempty"`
+}
+
+func (x *QueryGetManagerWorkloadResponse) Reset() {
+	*x = QueryGetManagerWorkloadResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_enreach_workload_query_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *QueryGetManagerWorkloadResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueryGetManagerWorkloadResponse) ProtoMessage() {}
+
+// Deprecated: Use QueryGetManagerWorkloadResponse.ProtoReflect.Descriptor instead.
+func (*QueryGetManagerWorkloadResponse) Descriptor() ([]byte, []int) {
+	return file_enreach_workload_query_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *QueryGetManagerWorkloadResponse) GetManagerWorkload() *ManagerWorkload {
+	if x != nil {
+		return x.ManagerWorkload
+	}
+	return nil
+}
+
+type QueryGetAllManagerWorkloadByEpochRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Epoch      uint64               `protobuf:"varint,1,opt,name=epoch,proto3" json:"epoch,omitempty"`
+	Pagination *v1beta1.PageRequest `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (x *QueryGetAllManagerWorkloadByEpochRequest) Reset() {
+	*x = QueryGetAllManagerWorkloadByEpochRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_enreach_workload_query_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *QueryGetAllManagerWorkloadByEpochRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueryGetAllManagerWorkloadByEpochRequest) ProtoMessage() {}
+
+// Deprecated: Use QueryGetAllManagerWorkloadByEpochRequest.ProtoReflect.Descriptor instead.
+func (*QueryGetAllManagerWorkloadByEpochRequest) Descriptor() ([]byte, []int) {
+	return file_enreach_workload_query_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *QueryGetAllManagerWorkloadByEpochRequest) GetEpoch() uint64 {
+	if x != nil {
+		return x.Epoch
+	}
+	return 0
+}
+
+func (x *QueryGetAllManagerWorkloadByEpochRequest) GetPagination() *v1beta1.PageRequest {
+	if x != nil {
+		return x.Pagination
+	}
+	return nil
+}
+
+type QueryGetAllManagerWorkloadByEpochResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ManagerWorkloads []*ManagerWorkload    `protobuf:"bytes,1,rep,name=ManagerWorkloads,proto3" json:"ManagerWorkloads,omitempty"`
+	Pagination       *v1beta1.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (x *QueryGetAllManagerWorkloadByEpochResponse) Reset() {
+	*x = QueryGetAllManagerWorkloadByEpochResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_enreach_workload_query_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *QueryGetAllManagerWorkloadByEpochResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueryGetAllManagerWorkloadByEpochResponse) ProtoMessage() {}
+
+// Deprecated: Use QueryGetAllManagerWorkloadByEpochResponse.ProtoReflect.Descriptor instead.
+func (*QueryGetAllManagerWorkloadByEpochResponse) Descriptor() ([]byte, []int) {
+	return file_enreach_workload_query_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *QueryGetAllManagerWorkloadByEpochResponse) GetManagerWorkloads() []*ManagerWorkload {
+	if x != nil {
+		return x.ManagerWorkloads
+	}
+	return nil
+}
+
+func (x *QueryGetAllManagerWorkloadByEpochResponse) GetPagination() *v1beta1.PageResponse {
 	if x != nil {
 		return x.Pagination
 	}
@@ -10650,7 +12901,7 @@ type QueryGetWorkreportRequest struct {
 func (x *QueryGetWorkreportRequest) Reset() {
 	*x = QueryGetWorkreportRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_enreach_workload_query_proto_msgTypes[10]
+		mi := &file_enreach_workload_query_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -10664,7 +12915,7 @@ func (*QueryGetWorkreportRequest) ProtoMessage() {}
 
 // Deprecated: Use QueryGetWorkreportRequest.ProtoReflect.Descriptor instead.
 func (*QueryGetWorkreportRequest) Descriptor() ([]byte, []int) {
-	return file_enreach_workload_query_proto_rawDescGZIP(), []int{10}
+	return file_enreach_workload_query_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *QueryGetWorkreportRequest) GetEpoch() uint64 {
@@ -10692,7 +12943,7 @@ type QueryGetWorkreportResponse struct {
 func (x *QueryGetWorkreportResponse) Reset() {
 	*x = QueryGetWorkreportResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_enreach_workload_query_proto_msgTypes[11]
+		mi := &file_enreach_workload_query_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -10706,7 +12957,7 @@ func (*QueryGetWorkreportResponse) ProtoMessage() {}
 
 // Deprecated: Use QueryGetWorkreportResponse.ProtoReflect.Descriptor instead.
 func (*QueryGetWorkreportResponse) Descriptor() ([]byte, []int) {
-	return file_enreach_workload_query_proto_rawDescGZIP(), []int{11}
+	return file_enreach_workload_query_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *QueryGetWorkreportResponse) GetWorkreport() *Workreport {
@@ -10728,7 +12979,7 @@ type QueryGetAllWorkreportByEpochRequest struct {
 func (x *QueryGetAllWorkreportByEpochRequest) Reset() {
 	*x = QueryGetAllWorkreportByEpochRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_enreach_workload_query_proto_msgTypes[12]
+		mi := &file_enreach_workload_query_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -10742,7 +12993,7 @@ func (*QueryGetAllWorkreportByEpochRequest) ProtoMessage() {}
 
 // Deprecated: Use QueryGetAllWorkreportByEpochRequest.ProtoReflect.Descriptor instead.
 func (*QueryGetAllWorkreportByEpochRequest) Descriptor() ([]byte, []int) {
-	return file_enreach_workload_query_proto_rawDescGZIP(), []int{12}
+	return file_enreach_workload_query_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *QueryGetAllWorkreportByEpochRequest) GetEpoch() uint64 {
@@ -10764,14 +13015,14 @@ type QueryGetAllWorkreportByEpochResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Workreport []*Workreport         `protobuf:"bytes,1,rep,name=Workreport,proto3" json:"Workreport,omitempty"`
-	Pagination *v1beta1.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	Workreports []*Workreport         `protobuf:"bytes,1,rep,name=Workreports,proto3" json:"Workreports,omitempty"`
+	Pagination  *v1beta1.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
 func (x *QueryGetAllWorkreportByEpochResponse) Reset() {
 	*x = QueryGetAllWorkreportByEpochResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_enreach_workload_query_proto_msgTypes[13]
+		mi := &file_enreach_workload_query_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -10785,12 +13036,12 @@ func (*QueryGetAllWorkreportByEpochResponse) ProtoMessage() {}
 
 // Deprecated: Use QueryGetAllWorkreportByEpochResponse.ProtoReflect.Descriptor instead.
 func (*QueryGetAllWorkreportByEpochResponse) Descriptor() ([]byte, []int) {
-	return file_enreach_workload_query_proto_rawDescGZIP(), []int{13}
+	return file_enreach_workload_query_proto_rawDescGZIP(), []int{17}
 }
 
-func (x *QueryGetAllWorkreportByEpochResponse) GetWorkreport() []*Workreport {
+func (x *QueryGetAllWorkreportByEpochResponse) GetWorkreports() []*Workreport {
 	if x != nil {
-		return x.Workreport
+		return x.Workreports
 	}
 	return nil
 }
@@ -10811,7 +13062,7 @@ type QueryGetWorkreportProcessBatchSizeRequest struct {
 func (x *QueryGetWorkreportProcessBatchSizeRequest) Reset() {
 	*x = QueryGetWorkreportProcessBatchSizeRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_enreach_workload_query_proto_msgTypes[14]
+		mi := &file_enreach_workload_query_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -10825,7 +13076,7 @@ func (*QueryGetWorkreportProcessBatchSizeRequest) ProtoMessage() {}
 
 // Deprecated: Use QueryGetWorkreportProcessBatchSizeRequest.ProtoReflect.Descriptor instead.
 func (*QueryGetWorkreportProcessBatchSizeRequest) Descriptor() ([]byte, []int) {
-	return file_enreach_workload_query_proto_rawDescGZIP(), []int{14}
+	return file_enreach_workload_query_proto_rawDescGZIP(), []int{18}
 }
 
 type QueryGetWorkreportProcessBatchSizeResponse struct {
@@ -10839,7 +13090,7 @@ type QueryGetWorkreportProcessBatchSizeResponse struct {
 func (x *QueryGetWorkreportProcessBatchSizeResponse) Reset() {
 	*x = QueryGetWorkreportProcessBatchSizeResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_enreach_workload_query_proto_msgTypes[15]
+		mi := &file_enreach_workload_query_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -10853,7 +13104,7 @@ func (*QueryGetWorkreportProcessBatchSizeResponse) ProtoMessage() {}
 
 // Deprecated: Use QueryGetWorkreportProcessBatchSizeResponse.ProtoReflect.Descriptor instead.
 func (*QueryGetWorkreportProcessBatchSizeResponse) Descriptor() ([]byte, []int) {
-	return file_enreach_workload_query_proto_rawDescGZIP(), []int{15}
+	return file_enreach_workload_query_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *QueryGetWorkreportProcessBatchSizeResponse) GetBatchSize() uint64 {
@@ -10872,7 +13123,7 @@ type QueryGetHistoryEpochDataDepthRequest struct {
 func (x *QueryGetHistoryEpochDataDepthRequest) Reset() {
 	*x = QueryGetHistoryEpochDataDepthRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_enreach_workload_query_proto_msgTypes[16]
+		mi := &file_enreach_workload_query_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -10886,7 +13137,7 @@ func (*QueryGetHistoryEpochDataDepthRequest) ProtoMessage() {}
 
 // Deprecated: Use QueryGetHistoryEpochDataDepthRequest.ProtoReflect.Descriptor instead.
 func (*QueryGetHistoryEpochDataDepthRequest) Descriptor() ([]byte, []int) {
-	return file_enreach_workload_query_proto_rawDescGZIP(), []int{16}
+	return file_enreach_workload_query_proto_rawDescGZIP(), []int{20}
 }
 
 type QueryGetHistoryEpochDataDepthResponse struct {
@@ -10900,7 +13151,7 @@ type QueryGetHistoryEpochDataDepthResponse struct {
 func (x *QueryGetHistoryEpochDataDepthResponse) Reset() {
 	*x = QueryGetHistoryEpochDataDepthResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_enreach_workload_query_proto_msgTypes[17]
+		mi := &file_enreach_workload_query_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -10914,7 +13165,7 @@ func (*QueryGetHistoryEpochDataDepthResponse) ProtoMessage() {}
 
 // Deprecated: Use QueryGetHistoryEpochDataDepthResponse.ProtoReflect.Descriptor instead.
 func (*QueryGetHistoryEpochDataDepthResponse) Descriptor() ([]byte, []int) {
-	return file_enreach_workload_query_proto_rawDescGZIP(), []int{17}
+	return file_enreach_workload_query_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *QueryGetHistoryEpochDataDepthResponse) GetDepth() uint64 {
@@ -10935,7 +13186,7 @@ type QueryGetEpochProcessDataRequest struct {
 func (x *QueryGetEpochProcessDataRequest) Reset() {
 	*x = QueryGetEpochProcessDataRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_enreach_workload_query_proto_msgTypes[18]
+		mi := &file_enreach_workload_query_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -10949,7 +13200,7 @@ func (*QueryGetEpochProcessDataRequest) ProtoMessage() {}
 
 // Deprecated: Use QueryGetEpochProcessDataRequest.ProtoReflect.Descriptor instead.
 func (*QueryGetEpochProcessDataRequest) Descriptor() ([]byte, []int) {
-	return file_enreach_workload_query_proto_rawDescGZIP(), []int{18}
+	return file_enreach_workload_query_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *QueryGetEpochProcessDataRequest) GetEpoch() uint64 {
@@ -10970,7 +13221,7 @@ type QueryGetEpochProcessDataResponse struct {
 func (x *QueryGetEpochProcessDataResponse) Reset() {
 	*x = QueryGetEpochProcessDataResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_enreach_workload_query_proto_msgTypes[19]
+		mi := &file_enreach_workload_query_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -10984,7 +13235,7 @@ func (*QueryGetEpochProcessDataResponse) ProtoMessage() {}
 
 // Deprecated: Use QueryGetEpochProcessDataResponse.ProtoReflect.Descriptor instead.
 func (*QueryGetEpochProcessDataResponse) Descriptor() ([]byte, []int) {
-	return file_enreach_workload_query_proto_rawDescGZIP(), []int{19}
+	return file_enreach_workload_query_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *QueryGetEpochProcessDataResponse) GetEpochProcessData() *EpochProcessData {
@@ -11005,7 +13256,7 @@ type QueryGetAllEpochProcessDataRequest struct {
 func (x *QueryGetAllEpochProcessDataRequest) Reset() {
 	*x = QueryGetAllEpochProcessDataRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_enreach_workload_query_proto_msgTypes[20]
+		mi := &file_enreach_workload_query_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -11019,7 +13270,7 @@ func (*QueryGetAllEpochProcessDataRequest) ProtoMessage() {}
 
 // Deprecated: Use QueryGetAllEpochProcessDataRequest.ProtoReflect.Descriptor instead.
 func (*QueryGetAllEpochProcessDataRequest) Descriptor() ([]byte, []int) {
-	return file_enreach_workload_query_proto_rawDescGZIP(), []int{20}
+	return file_enreach_workload_query_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *QueryGetAllEpochProcessDataRequest) GetPagination() *v1beta1.PageRequest {
@@ -11041,7 +13292,7 @@ type QueryGetAllEpochProcessDataResponse struct {
 func (x *QueryGetAllEpochProcessDataResponse) Reset() {
 	*x = QueryGetAllEpochProcessDataResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_enreach_workload_query_proto_msgTypes[21]
+		mi := &file_enreach_workload_query_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -11055,7 +13306,7 @@ func (*QueryGetAllEpochProcessDataResponse) ProtoMessage() {}
 
 // Deprecated: Use QueryGetAllEpochProcessDataResponse.ProtoReflect.Descriptor instead.
 func (*QueryGetAllEpochProcessDataResponse) Descriptor() ([]byte, []int) {
-	return file_enreach_workload_query_proto_rawDescGZIP(), []int{21}
+	return file_enreach_workload_query_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *QueryGetAllEpochProcessDataResponse) GetEpochProcessDatas() []*EpochProcessData {
@@ -11081,7 +13332,7 @@ type QueryGetSuperiorRequest struct {
 func (x *QueryGetSuperiorRequest) Reset() {
 	*x = QueryGetSuperiorRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_enreach_workload_query_proto_msgTypes[22]
+		mi := &file_enreach_workload_query_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -11095,7 +13346,7 @@ func (*QueryGetSuperiorRequest) ProtoMessage() {}
 
 // Deprecated: Use QueryGetSuperiorRequest.ProtoReflect.Descriptor instead.
 func (*QueryGetSuperiorRequest) Descriptor() ([]byte, []int) {
-	return file_enreach_workload_query_proto_rawDescGZIP(), []int{22}
+	return file_enreach_workload_query_proto_rawDescGZIP(), []int{26}
 }
 
 type QueryGetSuperiorResponse struct {
@@ -11109,7 +13360,7 @@ type QueryGetSuperiorResponse struct {
 func (x *QueryGetSuperiorResponse) Reset() {
 	*x = QueryGetSuperiorResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_enreach_workload_query_proto_msgTypes[23]
+		mi := &file_enreach_workload_query_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -11123,7 +13374,7 @@ func (*QueryGetSuperiorResponse) ProtoMessage() {}
 
 // Deprecated: Use QueryGetSuperiorResponse.ProtoReflect.Descriptor instead.
 func (*QueryGetSuperiorResponse) Descriptor() ([]byte, []int) {
-	return file_enreach_workload_query_proto_rawDescGZIP(), []int{23}
+	return file_enreach_workload_query_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *QueryGetSuperiorResponse) GetSuperior() *Superior {
@@ -11173,27 +13424,69 @@ var file_enreach_workload_query_proto_rawDesc = []byte{
 	0x6e, 0x74, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
 	0x22, 0x0a, 0x0c, 0x63, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0c, 0x63, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x45, 0x70,
-	0x6f, 0x63, 0x68, 0x22, 0x29, 0x0a, 0x17, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x57,
-	0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e,
-	0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x22, 0x58,
-	0x0a, 0x18, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f,
-	0x61, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3c, 0x0a, 0x08, 0x57, 0x6f,
-	0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x65,
-	0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e,
-	0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x08,
-	0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x22, 0x61, 0x0a, 0x17, 0x51, 0x75, 0x65, 0x72,
-	0x79, 0x41, 0x6c, 0x6c, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x12, 0x46, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
-	0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65,
-	0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52,
-	0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0xa1, 0x01, 0x0a, 0x18,
-	0x51, 0x75, 0x65, 0x72, 0x79, 0x41, 0x6c, 0x6c, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3c, 0x0a, 0x08, 0x57, 0x6f, 0x72, 0x6b,
-	0x6c, 0x6f, 0x61, 0x64, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x65, 0x6e, 0x72,
-	0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x57, 0x6f,
-	0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x08, 0x57, 0x6f,
-	0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x12, 0x47, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61,
+	0x6f, 0x63, 0x68, 0x22, 0x4b, 0x0a, 0x1b, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4e,
+	0x6f, 0x64, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x04, 0x52, 0x05, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x12, 0x16, 0x0a, 0x06, 0x6e, 0x6f, 0x64, 0x65,
+	0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x6e, 0x6f, 0x64, 0x65, 0x49, 0x44,
+	0x22, 0x68, 0x0a, 0x1c, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4e, 0x6f, 0x64, 0x65,
+	0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x48, 0x0a, 0x0c, 0x4e, 0x6f, 0x64, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68,
+	0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x4e, 0x6f, 0x64, 0x65, 0x57, 0x6f,
+	0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0c, 0x4e, 0x6f,
+	0x64, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x22, 0x85, 0x01, 0x0a, 0x25, 0x51,
+	0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x4e, 0x6f, 0x64, 0x65, 0x57, 0x6f,
+	0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x42, 0x79, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x04, 0x52, 0x05, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x12, 0x46, 0x0a, 0x0a, 0x70, 0x61,
+	0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26,
+	0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65,
+	0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x22, 0xbd, 0x01, 0x0a, 0x26, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41,
+	0x6c, 0x6c, 0x4e, 0x6f, 0x64, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x42, 0x79,
+	0x45, 0x70, 0x6f, 0x63, 0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4a, 0x0a,
+	0x0d, 0x4e, 0x6f, 0x64, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x73, 0x18, 0x01,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77,
+	0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x4e, 0x6f, 0x64, 0x65, 0x57, 0x6f, 0x72, 0x6b,
+	0x6c, 0x6f, 0x61, 0x64, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0d, 0x4e, 0x6f, 0x64, 0x65,
+	0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x73, 0x12, 0x47, 0x0a, 0x0a, 0x70, 0x61, 0x67,
+	0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e,
+	0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72,
+	0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x22, 0x5e, 0x0a, 0x1e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4d, 0x61,
+	0x6e, 0x61, 0x67, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x04, 0x52, 0x05, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x12, 0x26, 0x0a, 0x0e, 0x6d, 0x61,
+	0x6e, 0x61, 0x67, 0x65, 0x72, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x0e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x41, 0x63, 0x63, 0x6f, 0x75,
+	0x6e, 0x74, 0x22, 0x74, 0x0a, 0x1f, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4d, 0x61,
+	0x6e, 0x61, 0x67, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x51, 0x0a, 0x0f, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72,
+	0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x21,
+	0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61,
+	0x64, 0x2e, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61,
+	0x64, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0f, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72,
+	0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x22, 0x88, 0x01, 0x0a, 0x28, 0x51, 0x75, 0x65,
+	0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x57,
+	0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x42, 0x79, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x04, 0x52, 0x05, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x12, 0x46, 0x0a, 0x0a, 0x70,
+	0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x26, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75,
+	0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x22, 0xc9, 0x01, 0x0a, 0x29, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74,
+	0x41, 0x6c, 0x6c, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f,
+	0x61, 0x64, 0x42, 0x79, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x53, 0x0a, 0x10, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x6b,
+	0x6c, 0x6f, 0x61, 0x64, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x65, 0x6e,
+	0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x4d,
+	0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x42, 0x04,
+	0xc8, 0xde, 0x1f, 0x00, 0x52, 0x10, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x57, 0x6f, 0x72,
+	0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x73, 0x12, 0x47, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61,
 	0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x63, 0x6f, 0x73,
 	0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76,
 	0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f,
@@ -11217,205 +13510,235 @@ var file_enreach_workload_query_proto_rawDesc = []byte{
 	0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65,
 	0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52,
 	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x22, 0xb3, 0x01, 0x0a, 0x24, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41,
+	0x6f, 0x6e, 0x22, 0xb5, 0x01, 0x0a, 0x24, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41,
 	0x6c, 0x6c, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x42, 0x79, 0x45, 0x70,
-	0x6f, 0x63, 0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x42, 0x0a, 0x0a, 0x57,
-	0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
-	0x1c, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f,
-	0x61, 0x64, 0x2e, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x42, 0x04, 0xc8,
-	0xde, 0x1f, 0x00, 0x52, 0x0a, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x12,
-	0x47, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73,
-	0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e,
-	0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0a, 0x70, 0x61,
-	0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x2b, 0x0a, 0x29, 0x51, 0x75, 0x65, 0x72,
-	0x79, 0x47, 0x65, 0x74, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x50, 0x72,
-	0x6f, 0x63, 0x65, 0x73, 0x73, 0x42, 0x61, 0x74, 0x63, 0x68, 0x53, 0x69, 0x7a, 0x65, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x4a, 0x0a, 0x2a, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65,
-	0x74, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x50, 0x72, 0x6f, 0x63, 0x65,
-	0x73, 0x73, 0x42, 0x61, 0x74, 0x63, 0x68, 0x53, 0x69, 0x7a, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x62, 0x61, 0x74, 0x63, 0x68, 0x53, 0x69, 0x7a, 0x65,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x09, 0x62, 0x61, 0x74, 0x63, 0x68, 0x53, 0x69, 0x7a,
-	0x65, 0x22, 0x26, 0x0a, 0x24, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x48, 0x69, 0x73,
-	0x74, 0x6f, 0x72, 0x79, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x44, 0x61, 0x74, 0x61, 0x44, 0x65, 0x70,
-	0x74, 0x68, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x3d, 0x0a, 0x25, 0x51, 0x75, 0x65,
-	0x72, 0x79, 0x47, 0x65, 0x74, 0x48, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x45, 0x70, 0x6f, 0x63,
-	0x68, 0x44, 0x61, 0x74, 0x61, 0x44, 0x65, 0x70, 0x74, 0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x64, 0x65, 0x70, 0x74, 0x68, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x04, 0x52, 0x05, 0x64, 0x65, 0x70, 0x74, 0x68, 0x22, 0x37, 0x0a, 0x1f, 0x51, 0x75, 0x65, 0x72,
-	0x79, 0x47, 0x65, 0x74, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73,
-	0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x65,
-	0x70, 0x6f, 0x63, 0x68, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x05, 0x65, 0x70, 0x6f, 0x63,
-	0x68, 0x22, 0x78, 0x0a, 0x20, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x45, 0x70, 0x6f,
-	0x63, 0x68, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x54, 0x0a, 0x10, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x50, 0x72,
-	0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x22, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f,
-	0x61, 0x64, 0x2e, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44,
-	0x61, 0x74, 0x61, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x10, 0x45, 0x70, 0x6f, 0x63, 0x68,
-	0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x22, 0x6c, 0x0a, 0x22, 0x51,
-	0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x50,
-	0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x12, 0x46, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62,
+	0x6f, 0x63, 0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x44, 0x0a, 0x0b, 0x57,
+	0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x1c, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c,
+	0x6f, 0x61, 0x64, 0x2e, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x42, 0x04,
+	0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0b, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74,
+	0x73, 0x12, 0x47, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62,
 	0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61,
-	0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x0a, 0x70,
-	0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0xc6, 0x01, 0x0a, 0x23, 0x51, 0x75,
-	0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x50, 0x72,
-	0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x56, 0x0a, 0x11, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73,
-	0x73, 0x44, 0x61, 0x74, 0x61, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x22, 0x2e, 0x65,
+	0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0a,
+	0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x2b, 0x0a, 0x29, 0x51, 0x75,
+	0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74,
+	0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x42, 0x61, 0x74, 0x63, 0x68, 0x53, 0x69, 0x7a, 0x65,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x4a, 0x0a, 0x2a, 0x51, 0x75, 0x65, 0x72, 0x79,
+	0x47, 0x65, 0x74, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x50, 0x72, 0x6f,
+	0x63, 0x65, 0x73, 0x73, 0x42, 0x61, 0x74, 0x63, 0x68, 0x53, 0x69, 0x7a, 0x65, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x62, 0x61, 0x74, 0x63, 0x68, 0x53, 0x69,
+	0x7a, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x09, 0x62, 0x61, 0x74, 0x63, 0x68, 0x53,
+	0x69, 0x7a, 0x65, 0x22, 0x26, 0x0a, 0x24, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x48,
+	0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x44, 0x61, 0x74, 0x61, 0x44,
+	0x65, 0x70, 0x74, 0x68, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x3d, 0x0a, 0x25, 0x51,
+	0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x48, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x45, 0x70,
+	0x6f, 0x63, 0x68, 0x44, 0x61, 0x74, 0x61, 0x44, 0x65, 0x70, 0x74, 0x68, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x64, 0x65, 0x70, 0x74, 0x68, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x04, 0x52, 0x05, 0x64, 0x65, 0x70, 0x74, 0x68, 0x22, 0x37, 0x0a, 0x1f, 0x51, 0x75,
+	0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x50, 0x72, 0x6f, 0x63, 0x65,
+	0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a,
+	0x05, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x05, 0x65, 0x70,
+	0x6f, 0x63, 0x68, 0x22, 0x78, 0x0a, 0x20, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x45,
+	0x70, 0x6f, 0x63, 0x68, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x54, 0x0a, 0x10, 0x45, 0x70, 0x6f, 0x63, 0x68,
+	0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x22, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b,
+	0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73,
+	0x73, 0x44, 0x61, 0x74, 0x61, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x10, 0x45, 0x70, 0x6f,
+	0x63, 0x68, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x22, 0x6c, 0x0a,
+	0x22, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x70, 0x6f, 0x63,
+	0x68, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x46, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
+	0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65,
+	0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52,
+	0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0xc6, 0x01, 0x0a, 0x23,
+	0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x70, 0x6f, 0x63, 0x68,
+	0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x56, 0x0a, 0x11, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x50, 0x72, 0x6f, 0x63,
+	0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x22,
+	0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61,
+	0x64, 0x2e, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61,
+	0x74, 0x61, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x11, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x50,
+	0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x73, 0x12, 0x47, 0x0a, 0x0a, 0x70,
+	0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x27, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75,
+	0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x22, 0x19, 0x0a, 0x17, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74,
+	0x53, 0x75, 0x70, 0x65, 0x72, 0x69, 0x6f, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22,
+	0x58, 0x0a, 0x18, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x53, 0x75, 0x70, 0x65, 0x72,
+	0x69, 0x6f, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3c, 0x0a, 0x08, 0x53,
+	0x75, 0x70, 0x65, 0x72, 0x69, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e,
+	0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64,
+	0x2e, 0x53, 0x75, 0x70, 0x65, 0x72, 0x69, 0x6f, 0x72, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52,
+	0x08, 0x53, 0x75, 0x70, 0x65, 0x72, 0x69, 0x6f, 0x72, 0x32, 0xa0, 0x13, 0x0a, 0x05, 0x51, 0x75,
+	0x65, 0x72, 0x79, 0x12, 0x77, 0x0a, 0x06, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x24, 0x2e,
+	0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64,
+	0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f,
+	0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61,
+	0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x20, 0x82, 0xd3, 0xe4, 0x93,
+	0x02, 0x1a, 0x12, 0x18, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72,
+	0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x92, 0x01, 0x0a,
+	0x0b, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x4c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x12, 0x2c, 0x2e, 0x65,
 	0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e,
-	0x45, 0x70, 0x6f, 0x63, 0x68, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61,
-	0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x11, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x50, 0x72, 0x6f,
-	0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x73, 0x12, 0x47, 0x0a, 0x0a, 0x70, 0x61, 0x67,
-	0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e,
-	0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72,
-	0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x22, 0x19, 0x0a, 0x17, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x53, 0x75,
-	0x70, 0x65, 0x72, 0x69, 0x6f, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x58, 0x0a,
-	0x18, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x53, 0x75, 0x70, 0x65, 0x72, 0x69, 0x6f,
-	0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3c, 0x0a, 0x08, 0x53, 0x75, 0x70,
-	0x65, 0x72, 0x69, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x65, 0x6e,
-	0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x53,
-	0x75, 0x70, 0x65, 0x72, 0x69, 0x6f, 0x72, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x08, 0x53,
-	0x75, 0x70, 0x65, 0x72, 0x69, 0x6f, 0x72, 0x32, 0xc5, 0x0f, 0x0a, 0x05, 0x51, 0x75, 0x65, 0x72,
-	0x79, 0x12, 0x77, 0x0a, 0x06, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x24, 0x2e, 0x65, 0x6e,
-	0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51,
-	0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x1a, 0x25, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b,
-	0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x20, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x1a,
-	0x12, 0x18, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c,
-	0x6f, 0x61, 0x64, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x92, 0x01, 0x0a, 0x0b, 0x45,
-	0x70, 0x6f, 0x63, 0x68, 0x4c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x12, 0x2c, 0x2e, 0x65, 0x6e, 0x72,
+	0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x4c, 0x65, 0x6e,
+	0x67, 0x74, 0x68, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2d, 0x2e, 0x65, 0x6e, 0x72,
 	0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75,
 	0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x4c, 0x65, 0x6e, 0x67, 0x74,
-	0x68, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61,
-	0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72,
-	0x79, 0x47, 0x65, 0x74, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x4c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x26, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x20, 0x12,
-	0x1e, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f,
-	0x61, 0x64, 0x2f, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x2f, 0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x12,
-	0x9b, 0x01, 0x0a, 0x0c, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x45, 0x70, 0x6f, 0x63, 0x68,
+	0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x26, 0x82, 0xd3, 0xe4, 0x93, 0x02,
+	0x20, 0x12, 0x1e, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b,
+	0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x2f, 0x6c, 0x65, 0x6e, 0x67, 0x74,
+	0x68, 0x12, 0x9b, 0x01, 0x0a, 0x0c, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x45, 0x70, 0x6f,
+	0x63, 0x68, 0x12, 0x2d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72,
+	0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x43, 0x75,
+	0x72, 0x72, 0x65, 0x6e, 0x74, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x2e, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b,
+	0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x43, 0x75, 0x72,
+	0x72, 0x65, 0x6e, 0x74, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x2c, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x26, 0x12, 0x24, 0x2f, 0x65, 0x6e, 0x72, 0x65,
+	0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x65, 0x70, 0x6f,
+	0x63, 0x68, 0x2f, 0x63, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x12,
+	0xa7, 0x01, 0x0a, 0x0c, 0x4e, 0x6f, 0x64, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64,
 	0x12, 0x2d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c,
-	0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x43, 0x75, 0x72, 0x72,
-	0x65, 0x6e, 0x74, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4e, 0x6f, 0x64, 0x65,
+	0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
 	0x2e, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f,
-	0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x43, 0x75, 0x72, 0x72, 0x65,
-	0x6e, 0x74, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
-	0x2c, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x26, 0x12, 0x24, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63,
-	0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x65, 0x70, 0x6f, 0x63, 0x68,
-	0x2f, 0x63, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x12, 0x8a, 0x01,
-	0x0a, 0x08, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x12, 0x29, 0x2e, 0x65, 0x6e, 0x72,
-	0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75,
-	0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e,
-	0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65,
-	0x74, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x22, 0x27, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x21, 0x12, 0x1f, 0x2f, 0x65, 0x6e, 0x72, 0x65,
-	0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x77, 0x6f, 0x72,
-	0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x7b, 0x69, 0x64, 0x7d, 0x12, 0x89, 0x01, 0x0a, 0x0b, 0x57,
-	0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x41, 0x6c, 0x6c, 0x12, 0x29, 0x2e, 0x65, 0x6e, 0x72,
-	0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75,
-	0x65, 0x72, 0x79, 0x41, 0x6c, 0x6c, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e,
-	0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x41, 0x6c,
-	0x6c, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x22, 0x23, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x1d, 0x12, 0x1b, 0x2f, 0x65, 0x6e, 0x72, 0x65,
-	0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x77, 0x6f, 0x72,
-	0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x73, 0x12, 0x9e, 0x01, 0x0a, 0x0a, 0x57, 0x6f, 0x72, 0x6b, 0x72,
-	0x65, 0x70, 0x6f, 0x72, 0x74, 0x12, 0x2b, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e,
-	0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65,
-	0x74, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72,
-	0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x57, 0x6f,
-	0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x22, 0x35, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x2f, 0x12, 0x2d, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61,
-	0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x77, 0x6f, 0x72, 0x6b,
-	0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x2f, 0x7b, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x7d, 0x2f, 0x7b,
-	0x6e, 0x6f, 0x64, 0x65, 0x49, 0x44, 0x7d, 0x12, 0xb4, 0x01, 0x0a, 0x14, 0x41, 0x6c, 0x6c, 0x57,
-	0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x42, 0x79, 0x45, 0x70, 0x6f, 0x63, 0x68,
-	0x12, 0x35, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c,
-	0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x57,
-	0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x42, 0x79, 0x45, 0x70, 0x6f, 0x63, 0x68,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x36, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63,
-	0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79,
-	0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74,
-	0x42, 0x79, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
-	0x2d, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x27, 0x12, 0x25, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63,
-	0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x72,
-	0x65, 0x70, 0x6f, 0x72, 0x74, 0x73, 0x2f, 0x7b, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x7d, 0x12, 0xd0,
-	0x01, 0x0a, 0x1a, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x50, 0x72, 0x6f,
-	0x63, 0x65, 0x73, 0x73, 0x42, 0x61, 0x74, 0x63, 0x68, 0x53, 0x69, 0x7a, 0x65, 0x12, 0x3b, 0x2e,
+	0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4e, 0x6f, 0x64, 0x65, 0x57,
+	0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x38, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x32, 0x12, 0x30, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63,
+	0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x6e, 0x6f, 0x64, 0x65, 0x5f,
+	0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x7b, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x7d,
+	0x2f, 0x7b, 0x6e, 0x6f, 0x64, 0x65, 0x49, 0x44, 0x7d, 0x12, 0xbd, 0x01, 0x0a, 0x16, 0x41, 0x6c,
+	0x6c, 0x4e, 0x6f, 0x64, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x42, 0x79, 0x45,
+	0x70, 0x6f, 0x63, 0x68, 0x12, 0x37, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77,
+	0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74,
+	0x41, 0x6c, 0x6c, 0x4e, 0x6f, 0x64, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x42,
+	0x79, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x38, 0x2e,
 	0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64,
-	0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70,
-	0x6f, 0x72, 0x74, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x42, 0x61, 0x74, 0x63, 0x68, 0x53,
-	0x69, 0x7a, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x3c, 0x2e, 0x65, 0x6e, 0x72,
+	0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x4e, 0x6f, 0x64, 0x65,
+	0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x42, 0x79, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x30, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x2a, 0x12,
+	0x28, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f,
+	0x61, 0x64, 0x2f, 0x6e, 0x6f, 0x64, 0x65, 0x5f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64,
+	0x73, 0x2f, 0x7b, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x7d, 0x12, 0xbb, 0x01, 0x0a, 0x0f, 0x4d, 0x61,
+	0x6e, 0x61, 0x67, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x12, 0x30, 0x2e,
+	0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64,
+	0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72,
+	0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x31, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f,
+	0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4d, 0x61, 0x6e, 0x61, 0x67,
+	0x65, 0x72, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x43, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x3d, 0x12, 0x3b, 0x2f, 0x65, 0x6e, 0x72,
+	0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x6d, 0x61,
+	0x6e, 0x61, 0x67, 0x65, 0x72, 0x5f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x7b,
+	0x65, 0x70, 0x6f, 0x63, 0x68, 0x7d, 0x2f, 0x7b, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x41,
+	0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x7d, 0x12, 0xc9, 0x01, 0x0a, 0x19, 0x41, 0x6c, 0x6c, 0x4d,
+	0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x42, 0x79,
+	0x45, 0x70, 0x6f, 0x63, 0x68, 0x12, 0x3a, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e,
+	0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65,
+	0x74, 0x41, 0x6c, 0x6c, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x6b, 0x6c,
+	0x6f, 0x61, 0x64, 0x42, 0x79, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x3b, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b,
+	0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c,
+	0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x42,
+	0x79, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x33,
+	0x82, 0xd3, 0xe4, 0x93, 0x02, 0x2d, 0x12, 0x2b, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68,
+	0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65,
+	0x72, 0x5f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x73, 0x2f, 0x7b, 0x65, 0x70, 0x6f,
+	0x63, 0x68, 0x7d, 0x12, 0x9e, 0x01, 0x0a, 0x0a, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f,
+	0x72, 0x74, 0x12, 0x2b, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72,
+	0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x57, 0x6f,
+	0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x2c, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f,
+	0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x57, 0x6f, 0x72, 0x6b, 0x72,
+	0x65, 0x70, 0x6f, 0x72, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x35, 0x82,
+	0xd3, 0xe4, 0x93, 0x02, 0x2f, 0x12, 0x2d, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f,
+	0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70,
+	0x6f, 0x72, 0x74, 0x2f, 0x7b, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x7d, 0x2f, 0x7b, 0x6e, 0x6f, 0x64,
+	0x65, 0x49, 0x44, 0x7d, 0x12, 0xb4, 0x01, 0x0a, 0x14, 0x41, 0x6c, 0x6c, 0x57, 0x6f, 0x72, 0x6b,
+	0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x42, 0x79, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x12, 0x35, 0x2e,
+	0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64,
+	0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x57, 0x6f, 0x72, 0x6b,
+	0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x42, 0x79, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x36, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77,
+	0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74,
+	0x41, 0x6c, 0x6c, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x42, 0x79, 0x45,
+	0x70, 0x6f, 0x63, 0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x2d, 0x82, 0xd3,
+	0xe4, 0x93, 0x02, 0x27, 0x12, 0x25, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77,
+	0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f,
+	0x72, 0x74, 0x73, 0x2f, 0x7b, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x7d, 0x12, 0xd0, 0x01, 0x0a, 0x1a,
+	0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73,
+	0x73, 0x42, 0x61, 0x74, 0x63, 0x68, 0x53, 0x69, 0x7a, 0x65, 0x12, 0x3b, 0x2e, 0x65, 0x6e, 0x72,
 	0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75,
 	0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74,
 	0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x42, 0x61, 0x74, 0x63, 0x68, 0x53, 0x69, 0x7a, 0x65,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x37, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x31,
-	0x12, 0x2f, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c,
-	0x6f, 0x61, 0x64, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x2f, 0x70,
-	0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x5f, 0x62, 0x61, 0x74, 0x63, 0x68, 0x5f, 0x73, 0x69, 0x7a,
-	0x65, 0x12, 0xc7, 0x01, 0x0a, 0x15, 0x48, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x45, 0x70, 0x6f,
-	0x63, 0x68, 0x44, 0x61, 0x74, 0x61, 0x44, 0x65, 0x70, 0x74, 0x68, 0x12, 0x36, 0x2e, 0x65, 0x6e,
-	0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51,
-	0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x48, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x45, 0x70,
-	0x6f, 0x63, 0x68, 0x44, 0x61, 0x74, 0x61, 0x44, 0x65, 0x70, 0x74, 0x68, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x37, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f,
-	0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x48,
-	0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x44, 0x61, 0x74, 0x61, 0x44,
-	0x65, 0x70, 0x74, 0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x3d, 0x82, 0xd3,
-	0xe4, 0x93, 0x02, 0x37, 0x12, 0x35, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77,
-	0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f,
-	0x72, 0x74, 0x2f, 0x68, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x5f, 0x65, 0x70, 0x6f, 0x63, 0x68,
-	0x5f, 0x64, 0x61, 0x74, 0x61, 0x5f, 0x64, 0x65, 0x70, 0x74, 0x68, 0x12, 0xba, 0x01, 0x0a, 0x10,
-	0x45, 0x70, 0x6f, 0x63, 0x68, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61,
-	0x12, 0x31, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x3c, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63,
+	0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79,
+	0x47, 0x65, 0x74, 0x57, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x50, 0x72, 0x6f,
+	0x63, 0x65, 0x73, 0x73, 0x42, 0x61, 0x74, 0x63, 0x68, 0x53, 0x69, 0x7a, 0x65, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x37, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x31, 0x12, 0x2f, 0x2f,
+	0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64,
+	0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x2f, 0x70, 0x72, 0x6f, 0x63,
+	0x65, 0x73, 0x73, 0x5f, 0x62, 0x61, 0x74, 0x63, 0x68, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x12, 0xc7,
+	0x01, 0x0a, 0x15, 0x48, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x44,
+	0x61, 0x74, 0x61, 0x44, 0x65, 0x70, 0x74, 0x68, 0x12, 0x36, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61,
+	0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72,
+	0x79, 0x47, 0x65, 0x74, 0x48, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x45, 0x70, 0x6f, 0x63, 0x68,
+	0x44, 0x61, 0x74, 0x61, 0x44, 0x65, 0x70, 0x74, 0x68, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x37, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c,
+	0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x48, 0x69, 0x73, 0x74,
+	0x6f, 0x72, 0x79, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x44, 0x61, 0x74, 0x61, 0x44, 0x65, 0x70, 0x74,
+	0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x3d, 0x82, 0xd3, 0xe4, 0x93, 0x02,
+	0x37, 0x12, 0x35, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b,
+	0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x2f,
+	0x68, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x5f, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x5f, 0x64, 0x61,
+	0x74, 0x61, 0x5f, 0x64, 0x65, 0x70, 0x74, 0x68, 0x12, 0xba, 0x01, 0x0a, 0x10, 0x45, 0x70, 0x6f,
+	0x63, 0x68, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x12, 0x31, 0x2e,
+	0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64,
+	0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x50, 0x72,
+	0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x32, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c,
 	0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x45, 0x70, 0x6f, 0x63,
+	0x68, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x3f, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x39, 0x12, 0x37, 0x2f, 0x65,
+	0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f,
+	0x77, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x2f, 0x65, 0x70, 0x6f, 0x63, 0x68,
+	0x5f, 0x70, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x5f, 0x64, 0x61, 0x74, 0x61, 0x2f, 0x7b, 0x65,
+	0x70, 0x6f, 0x63, 0x68, 0x7d, 0x12, 0xbc, 0x01, 0x0a, 0x13, 0x41, 0x6c, 0x6c, 0x45, 0x70, 0x6f,
+	0x63, 0x68, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x12, 0x34, 0x2e,
+	0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64,
+	0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x70, 0x6f, 0x63,
 	0x68, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x32, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f,
-	0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x45,
-	0x70, 0x6f, 0x63, 0x68, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x3f, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x39, 0x12,
-	0x37, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f,
-	0x61, 0x64, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x2f, 0x65, 0x70,
-	0x6f, 0x63, 0x68, 0x5f, 0x70, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x5f, 0x64, 0x61, 0x74, 0x61,
-	0x2f, 0x7b, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x7d, 0x12, 0xbc, 0x01, 0x0a, 0x13, 0x41, 0x6c, 0x6c,
-	0x45, 0x70, 0x6f, 0x63, 0x68, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61,
-	0x12, 0x34, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c,
-	0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x45,
-	0x70, 0x6f, 0x63, 0x68, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x35, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68,
-	0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47,
-	0x65, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73,
-	0x73, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x38, 0x82,
-	0xd3, 0xe4, 0x93, 0x02, 0x32, 0x12, 0x30, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f,
-	0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70,
-	0x6f, 0x72, 0x74, 0x2f, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x5f, 0x70, 0x72, 0x6f, 0x63, 0x65, 0x73,
-	0x73, 0x5f, 0x64, 0x61, 0x74, 0x61, 0x73, 0x12, 0x85, 0x01, 0x0a, 0x08, 0x53, 0x75, 0x70, 0x65,
-	0x72, 0x69, 0x6f, 0x72, 0x12, 0x29, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77,
-	0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74,
-	0x53, 0x75, 0x70, 0x65, 0x72, 0x69, 0x6f, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x2a, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f,
-	0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x53, 0x75, 0x70, 0x65, 0x72,
-	0x69, 0x6f, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x22, 0x82, 0xd3, 0xe4,
-	0x93, 0x02, 0x1c, 0x12, 0x1a, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f,
-	0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x73, 0x75, 0x70, 0x65, 0x72, 0x69, 0x6f, 0x72, 0x42,
-	0xa6, 0x01, 0x0a, 0x14, 0x63, 0x6f, 0x6d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e,
-	0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x42, 0x0a, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50,
-	0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x21, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64,
-	0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68,
-	0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xa2, 0x02, 0x03, 0x45, 0x57, 0x58, 0xaa,
-	0x02, 0x10, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f,
-	0x61, 0x64, 0xca, 0x02, 0x10, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x57, 0x6f, 0x72,
-	0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xe2, 0x02, 0x1c, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c,
-	0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61,
-	0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x11, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x3a, 0x3a,
-	0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x73, 0x74, 0x1a, 0x35, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f,
+	0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41,
+	0x6c, 0x6c, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61,
+	0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x38, 0x82, 0xd3, 0xe4, 0x93,
+	0x02, 0x32, 0x12, 0x30, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72,
+	0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74,
+	0x2f, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x5f, 0x70, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x5f, 0x64,
+	0x61, 0x74, 0x61, 0x73, 0x12, 0x85, 0x01, 0x0a, 0x08, 0x53, 0x75, 0x70, 0x65, 0x72, 0x69, 0x6f,
+	0x72, 0x12, 0x29, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b,
+	0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x53, 0x75, 0x70,
+	0x65, 0x72, 0x69, 0x6f, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a, 0x2e, 0x65,
+	0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x2e,
+	0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x53, 0x75, 0x70, 0x65, 0x72, 0x69, 0x6f, 0x72,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x22, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x1c,
+	0x12, 0x1a, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c,
+	0x6f, 0x61, 0x64, 0x2f, 0x73, 0x75, 0x70, 0x65, 0x72, 0x69, 0x6f, 0x72, 0x42, 0xa6, 0x01, 0x0a,
+	0x14, 0x63, 0x6f, 0x6d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72,
+	0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x42, 0x0a, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x72, 0x6f, 0x74,
+	0x6f, 0x50, 0x01, 0x5a, 0x21, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69,
+	0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f,
+	0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xa2, 0x02, 0x03, 0x45, 0x57, 0x58, 0xaa, 0x02, 0x10, 0x45,
+	0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xca,
+	0x02, 0x10, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f,
+	0x61, 0x64, 0xe2, 0x02, 0x1c, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x57, 0x6f, 0x72,
+	0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74,
+	0x61, 0xea, 0x02, 0x11, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x3a, 0x3a, 0x57, 0x6f, 0x72,
+	0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -11430,7 +13753,7 @@ func file_enreach_workload_query_proto_rawDescGZIP() []byte {
 	return file_enreach_workload_query_proto_rawDescData
 }
 
-var file_enreach_workload_query_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
+var file_enreach_workload_query_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
 var file_enreach_workload_query_proto_goTypes = []interface{}{
 	(*QueryParamsRequest)(nil),                         // 0: enreach.workload.QueryParamsRequest
 	(*QueryParamsResponse)(nil),                        // 1: enreach.workload.QueryParamsResponse
@@ -11438,76 +13761,89 @@ var file_enreach_workload_query_proto_goTypes = []interface{}{
 	(*QueryGetEpochLengthResponse)(nil),                // 3: enreach.workload.QueryGetEpochLengthResponse
 	(*QueryGetCurrentEpochRequest)(nil),                // 4: enreach.workload.QueryGetCurrentEpochRequest
 	(*QueryGetCurrentEpochResponse)(nil),               // 5: enreach.workload.QueryGetCurrentEpochResponse
-	(*QueryGetWorkloadRequest)(nil),                    // 6: enreach.workload.QueryGetWorkloadRequest
-	(*QueryGetWorkloadResponse)(nil),                   // 7: enreach.workload.QueryGetWorkloadResponse
-	(*QueryAllWorkloadRequest)(nil),                    // 8: enreach.workload.QueryAllWorkloadRequest
-	(*QueryAllWorkloadResponse)(nil),                   // 9: enreach.workload.QueryAllWorkloadResponse
-	(*QueryGetWorkreportRequest)(nil),                  // 10: enreach.workload.QueryGetWorkreportRequest
-	(*QueryGetWorkreportResponse)(nil),                 // 11: enreach.workload.QueryGetWorkreportResponse
-	(*QueryGetAllWorkreportByEpochRequest)(nil),        // 12: enreach.workload.QueryGetAllWorkreportByEpochRequest
-	(*QueryGetAllWorkreportByEpochResponse)(nil),       // 13: enreach.workload.QueryGetAllWorkreportByEpochResponse
-	(*QueryGetWorkreportProcessBatchSizeRequest)(nil),  // 14: enreach.workload.QueryGetWorkreportProcessBatchSizeRequest
-	(*QueryGetWorkreportProcessBatchSizeResponse)(nil), // 15: enreach.workload.QueryGetWorkreportProcessBatchSizeResponse
-	(*QueryGetHistoryEpochDataDepthRequest)(nil),       // 16: enreach.workload.QueryGetHistoryEpochDataDepthRequest
-	(*QueryGetHistoryEpochDataDepthResponse)(nil),      // 17: enreach.workload.QueryGetHistoryEpochDataDepthResponse
-	(*QueryGetEpochProcessDataRequest)(nil),            // 18: enreach.workload.QueryGetEpochProcessDataRequest
-	(*QueryGetEpochProcessDataResponse)(nil),           // 19: enreach.workload.QueryGetEpochProcessDataResponse
-	(*QueryGetAllEpochProcessDataRequest)(nil),         // 20: enreach.workload.QueryGetAllEpochProcessDataRequest
-	(*QueryGetAllEpochProcessDataResponse)(nil),        // 21: enreach.workload.QueryGetAllEpochProcessDataResponse
-	(*QueryGetSuperiorRequest)(nil),                    // 22: enreach.workload.QueryGetSuperiorRequest
-	(*QueryGetSuperiorResponse)(nil),                   // 23: enreach.workload.QueryGetSuperiorResponse
-	(*Params)(nil),                                     // 24: enreach.workload.Params
-	(*Workload)(nil),                                   // 25: enreach.workload.Workload
-	(*v1beta1.PageRequest)(nil),                        // 26: cosmos.base.query.v1beta1.PageRequest
-	(*v1beta1.PageResponse)(nil),                       // 27: cosmos.base.query.v1beta1.PageResponse
-	(*Workreport)(nil),                                 // 28: enreach.workload.Workreport
-	(*EpochProcessData)(nil),                           // 29: enreach.workload.EpochProcessData
-	(*Superior)(nil),                                   // 30: enreach.workload.Superior
+	(*QueryGetNodeWorkloadRequest)(nil),                // 6: enreach.workload.QueryGetNodeWorkloadRequest
+	(*QueryGetNodeWorkloadResponse)(nil),               // 7: enreach.workload.QueryGetNodeWorkloadResponse
+	(*QueryGetAllNodeWorkloadByEpochRequest)(nil),      // 8: enreach.workload.QueryGetAllNodeWorkloadByEpochRequest
+	(*QueryGetAllNodeWorkloadByEpochResponse)(nil),     // 9: enreach.workload.QueryGetAllNodeWorkloadByEpochResponse
+	(*QueryGetManagerWorkloadRequest)(nil),             // 10: enreach.workload.QueryGetManagerWorkloadRequest
+	(*QueryGetManagerWorkloadResponse)(nil),            // 11: enreach.workload.QueryGetManagerWorkloadResponse
+	(*QueryGetAllManagerWorkloadByEpochRequest)(nil),   // 12: enreach.workload.QueryGetAllManagerWorkloadByEpochRequest
+	(*QueryGetAllManagerWorkloadByEpochResponse)(nil),  // 13: enreach.workload.QueryGetAllManagerWorkloadByEpochResponse
+	(*QueryGetWorkreportRequest)(nil),                  // 14: enreach.workload.QueryGetWorkreportRequest
+	(*QueryGetWorkreportResponse)(nil),                 // 15: enreach.workload.QueryGetWorkreportResponse
+	(*QueryGetAllWorkreportByEpochRequest)(nil),        // 16: enreach.workload.QueryGetAllWorkreportByEpochRequest
+	(*QueryGetAllWorkreportByEpochResponse)(nil),       // 17: enreach.workload.QueryGetAllWorkreportByEpochResponse
+	(*QueryGetWorkreportProcessBatchSizeRequest)(nil),  // 18: enreach.workload.QueryGetWorkreportProcessBatchSizeRequest
+	(*QueryGetWorkreportProcessBatchSizeResponse)(nil), // 19: enreach.workload.QueryGetWorkreportProcessBatchSizeResponse
+	(*QueryGetHistoryEpochDataDepthRequest)(nil),       // 20: enreach.workload.QueryGetHistoryEpochDataDepthRequest
+	(*QueryGetHistoryEpochDataDepthResponse)(nil),      // 21: enreach.workload.QueryGetHistoryEpochDataDepthResponse
+	(*QueryGetEpochProcessDataRequest)(nil),            // 22: enreach.workload.QueryGetEpochProcessDataRequest
+	(*QueryGetEpochProcessDataResponse)(nil),           // 23: enreach.workload.QueryGetEpochProcessDataResponse
+	(*QueryGetAllEpochProcessDataRequest)(nil),         // 24: enreach.workload.QueryGetAllEpochProcessDataRequest
+	(*QueryGetAllEpochProcessDataResponse)(nil),        // 25: enreach.workload.QueryGetAllEpochProcessDataResponse
+	(*QueryGetSuperiorRequest)(nil),                    // 26: enreach.workload.QueryGetSuperiorRequest
+	(*QueryGetSuperiorResponse)(nil),                   // 27: enreach.workload.QueryGetSuperiorResponse
+	(*Params)(nil),                                     // 28: enreach.workload.Params
+	(*NodeWorkload)(nil),                               // 29: enreach.workload.NodeWorkload
+	(*v1beta1.PageRequest)(nil),                        // 30: cosmos.base.query.v1beta1.PageRequest
+	(*v1beta1.PageResponse)(nil),                       // 31: cosmos.base.query.v1beta1.PageResponse
+	(*ManagerWorkload)(nil),                            // 32: enreach.workload.ManagerWorkload
+	(*Workreport)(nil),                                 // 33: enreach.workload.Workreport
+	(*EpochProcessData)(nil),                           // 34: enreach.workload.EpochProcessData
+	(*Superior)(nil),                                   // 35: enreach.workload.Superior
 }
 var file_enreach_workload_query_proto_depIdxs = []int32{
-	24, // 0: enreach.workload.QueryParamsResponse.params:type_name -> enreach.workload.Params
-	25, // 1: enreach.workload.QueryGetWorkloadResponse.Workload:type_name -> enreach.workload.Workload
-	26, // 2: enreach.workload.QueryAllWorkloadRequest.pagination:type_name -> cosmos.base.query.v1beta1.PageRequest
-	25, // 3: enreach.workload.QueryAllWorkloadResponse.Workload:type_name -> enreach.workload.Workload
-	27, // 4: enreach.workload.QueryAllWorkloadResponse.pagination:type_name -> cosmos.base.query.v1beta1.PageResponse
-	28, // 5: enreach.workload.QueryGetWorkreportResponse.Workreport:type_name -> enreach.workload.Workreport
-	26, // 6: enreach.workload.QueryGetAllWorkreportByEpochRequest.pagination:type_name -> cosmos.base.query.v1beta1.PageRequest
-	28, // 7: enreach.workload.QueryGetAllWorkreportByEpochResponse.Workreport:type_name -> enreach.workload.Workreport
-	27, // 8: enreach.workload.QueryGetAllWorkreportByEpochResponse.pagination:type_name -> cosmos.base.query.v1beta1.PageResponse
-	29, // 9: enreach.workload.QueryGetEpochProcessDataResponse.EpochProcessData:type_name -> enreach.workload.EpochProcessData
-	26, // 10: enreach.workload.QueryGetAllEpochProcessDataRequest.pagination:type_name -> cosmos.base.query.v1beta1.PageRequest
-	29, // 11: enreach.workload.QueryGetAllEpochProcessDataResponse.EpochProcessDatas:type_name -> enreach.workload.EpochProcessData
-	27, // 12: enreach.workload.QueryGetAllEpochProcessDataResponse.pagination:type_name -> cosmos.base.query.v1beta1.PageResponse
-	30, // 13: enreach.workload.QueryGetSuperiorResponse.Superior:type_name -> enreach.workload.Superior
-	0,  // 14: enreach.workload.Query.Params:input_type -> enreach.workload.QueryParamsRequest
-	2,  // 15: enreach.workload.Query.EpochLength:input_type -> enreach.workload.QueryGetEpochLengthRequest
-	4,  // 16: enreach.workload.Query.CurrentEpoch:input_type -> enreach.workload.QueryGetCurrentEpochRequest
-	6,  // 17: enreach.workload.Query.Workload:input_type -> enreach.workload.QueryGetWorkloadRequest
-	8,  // 18: enreach.workload.Query.WorkloadAll:input_type -> enreach.workload.QueryAllWorkloadRequest
-	10, // 19: enreach.workload.Query.Workreport:input_type -> enreach.workload.QueryGetWorkreportRequest
-	12, // 20: enreach.workload.Query.AllWorkreportByEpoch:input_type -> enreach.workload.QueryGetAllWorkreportByEpochRequest
-	14, // 21: enreach.workload.Query.WorkreportProcessBatchSize:input_type -> enreach.workload.QueryGetWorkreportProcessBatchSizeRequest
-	16, // 22: enreach.workload.Query.HistoryEpochDataDepth:input_type -> enreach.workload.QueryGetHistoryEpochDataDepthRequest
-	18, // 23: enreach.workload.Query.EpochProcessData:input_type -> enreach.workload.QueryGetEpochProcessDataRequest
-	20, // 24: enreach.workload.Query.AllEpochProcessData:input_type -> enreach.workload.QueryGetAllEpochProcessDataRequest
-	22, // 25: enreach.workload.Query.Superior:input_type -> enreach.workload.QueryGetSuperiorRequest
-	1,  // 26: enreach.workload.Query.Params:output_type -> enreach.workload.QueryParamsResponse
-	3,  // 27: enreach.workload.Query.EpochLength:output_type -> enreach.workload.QueryGetEpochLengthResponse
-	5,  // 28: enreach.workload.Query.CurrentEpoch:output_type -> enreach.workload.QueryGetCurrentEpochResponse
-	7,  // 29: enreach.workload.Query.Workload:output_type -> enreach.workload.QueryGetWorkloadResponse
-	9,  // 30: enreach.workload.Query.WorkloadAll:output_type -> enreach.workload.QueryAllWorkloadResponse
-	11, // 31: enreach.workload.Query.Workreport:output_type -> enreach.workload.QueryGetWorkreportResponse
-	13, // 32: enreach.workload.Query.AllWorkreportByEpoch:output_type -> enreach.workload.QueryGetAllWorkreportByEpochResponse
-	15, // 33: enreach.workload.Query.WorkreportProcessBatchSize:output_type -> enreach.workload.QueryGetWorkreportProcessBatchSizeResponse
-	17, // 34: enreach.workload.Query.HistoryEpochDataDepth:output_type -> enreach.workload.QueryGetHistoryEpochDataDepthResponse
-	19, // 35: enreach.workload.Query.EpochProcessData:output_type -> enreach.workload.QueryGetEpochProcessDataResponse
-	21, // 36: enreach.workload.Query.AllEpochProcessData:output_type -> enreach.workload.QueryGetAllEpochProcessDataResponse
-	23, // 37: enreach.workload.Query.Superior:output_type -> enreach.workload.QueryGetSuperiorResponse
-	26, // [26:38] is the sub-list for method output_type
-	14, // [14:26] is the sub-list for method input_type
-	14, // [14:14] is the sub-list for extension type_name
-	14, // [14:14] is the sub-list for extension extendee
-	0,  // [0:14] is the sub-list for field type_name
+	28, // 0: enreach.workload.QueryParamsResponse.params:type_name -> enreach.workload.Params
+	29, // 1: enreach.workload.QueryGetNodeWorkloadResponse.NodeWorkload:type_name -> enreach.workload.NodeWorkload
+	30, // 2: enreach.workload.QueryGetAllNodeWorkloadByEpochRequest.pagination:type_name -> cosmos.base.query.v1beta1.PageRequest
+	29, // 3: enreach.workload.QueryGetAllNodeWorkloadByEpochResponse.NodeWorkloads:type_name -> enreach.workload.NodeWorkload
+	31, // 4: enreach.workload.QueryGetAllNodeWorkloadByEpochResponse.pagination:type_name -> cosmos.base.query.v1beta1.PageResponse
+	32, // 5: enreach.workload.QueryGetManagerWorkloadResponse.ManagerWorkload:type_name -> enreach.workload.ManagerWorkload
+	30, // 6: enreach.workload.QueryGetAllManagerWorkloadByEpochRequest.pagination:type_name -> cosmos.base.query.v1beta1.PageRequest
+	32, // 7: enreach.workload.QueryGetAllManagerWorkloadByEpochResponse.ManagerWorkloads:type_name -> enreach.workload.ManagerWorkload
+	31, // 8: enreach.workload.QueryGetAllManagerWorkloadByEpochResponse.pagination:type_name -> cosmos.base.query.v1beta1.PageResponse
+	33, // 9: enreach.workload.QueryGetWorkreportResponse.Workreport:type_name -> enreach.workload.Workreport
+	30, // 10: enreach.workload.QueryGetAllWorkreportByEpochRequest.pagination:type_name -> cosmos.base.query.v1beta1.PageRequest
+	33, // 11: enreach.workload.QueryGetAllWorkreportByEpochResponse.Workreports:type_name -> enreach.workload.Workreport
+	31, // 12: enreach.workload.QueryGetAllWorkreportByEpochResponse.pagination:type_name -> cosmos.base.query.v1beta1.PageResponse
+	34, // 13: enreach.workload.QueryGetEpochProcessDataResponse.EpochProcessData:type_name -> enreach.workload.EpochProcessData
+	30, // 14: enreach.workload.QueryGetAllEpochProcessDataRequest.pagination:type_name -> cosmos.base.query.v1beta1.PageRequest
+	34, // 15: enreach.workload.QueryGetAllEpochProcessDataResponse.EpochProcessDatas:type_name -> enreach.workload.EpochProcessData
+	31, // 16: enreach.workload.QueryGetAllEpochProcessDataResponse.pagination:type_name -> cosmos.base.query.v1beta1.PageResponse
+	35, // 17: enreach.workload.QueryGetSuperiorResponse.Superior:type_name -> enreach.workload.Superior
+	0,  // 18: enreach.workload.Query.Params:input_type -> enreach.workload.QueryParamsRequest
+	2,  // 19: enreach.workload.Query.EpochLength:input_type -> enreach.workload.QueryGetEpochLengthRequest
+	4,  // 20: enreach.workload.Query.CurrentEpoch:input_type -> enreach.workload.QueryGetCurrentEpochRequest
+	6,  // 21: enreach.workload.Query.NodeWorkload:input_type -> enreach.workload.QueryGetNodeWorkloadRequest
+	8,  // 22: enreach.workload.Query.AllNodeWorkloadByEpoch:input_type -> enreach.workload.QueryGetAllNodeWorkloadByEpochRequest
+	10, // 23: enreach.workload.Query.ManagerWorkload:input_type -> enreach.workload.QueryGetManagerWorkloadRequest
+	12, // 24: enreach.workload.Query.AllManagerWorkloadByEpoch:input_type -> enreach.workload.QueryGetAllManagerWorkloadByEpochRequest
+	14, // 25: enreach.workload.Query.Workreport:input_type -> enreach.workload.QueryGetWorkreportRequest
+	16, // 26: enreach.workload.Query.AllWorkreportByEpoch:input_type -> enreach.workload.QueryGetAllWorkreportByEpochRequest
+	18, // 27: enreach.workload.Query.WorkreportProcessBatchSize:input_type -> enreach.workload.QueryGetWorkreportProcessBatchSizeRequest
+	20, // 28: enreach.workload.Query.HistoryEpochDataDepth:input_type -> enreach.workload.QueryGetHistoryEpochDataDepthRequest
+	22, // 29: enreach.workload.Query.EpochProcessData:input_type -> enreach.workload.QueryGetEpochProcessDataRequest
+	24, // 30: enreach.workload.Query.AllEpochProcessData:input_type -> enreach.workload.QueryGetAllEpochProcessDataRequest
+	26, // 31: enreach.workload.Query.Superior:input_type -> enreach.workload.QueryGetSuperiorRequest
+	1,  // 32: enreach.workload.Query.Params:output_type -> enreach.workload.QueryParamsResponse
+	3,  // 33: enreach.workload.Query.EpochLength:output_type -> enreach.workload.QueryGetEpochLengthResponse
+	5,  // 34: enreach.workload.Query.CurrentEpoch:output_type -> enreach.workload.QueryGetCurrentEpochResponse
+	7,  // 35: enreach.workload.Query.NodeWorkload:output_type -> enreach.workload.QueryGetNodeWorkloadResponse
+	9,  // 36: enreach.workload.Query.AllNodeWorkloadByEpoch:output_type -> enreach.workload.QueryGetAllNodeWorkloadByEpochResponse
+	11, // 37: enreach.workload.Query.ManagerWorkload:output_type -> enreach.workload.QueryGetManagerWorkloadResponse
+	13, // 38: enreach.workload.Query.AllManagerWorkloadByEpoch:output_type -> enreach.workload.QueryGetAllManagerWorkloadByEpochResponse
+	15, // 39: enreach.workload.Query.Workreport:output_type -> enreach.workload.QueryGetWorkreportResponse
+	17, // 40: enreach.workload.Query.AllWorkreportByEpoch:output_type -> enreach.workload.QueryGetAllWorkreportByEpochResponse
+	19, // 41: enreach.workload.Query.WorkreportProcessBatchSize:output_type -> enreach.workload.QueryGetWorkreportProcessBatchSizeResponse
+	21, // 42: enreach.workload.Query.HistoryEpochDataDepth:output_type -> enreach.workload.QueryGetHistoryEpochDataDepthResponse
+	23, // 43: enreach.workload.Query.EpochProcessData:output_type -> enreach.workload.QueryGetEpochProcessDataResponse
+	25, // 44: enreach.workload.Query.AllEpochProcessData:output_type -> enreach.workload.QueryGetAllEpochProcessDataResponse
+	27, // 45: enreach.workload.Query.Superior:output_type -> enreach.workload.QueryGetSuperiorResponse
+	32, // [32:46] is the sub-list for method output_type
+	18, // [18:32] is the sub-list for method input_type
+	18, // [18:18] is the sub-list for extension type_name
+	18, // [18:18] is the sub-list for extension extendee
+	0,  // [0:18] is the sub-list for field type_name
 }
 
 func init() { file_enreach_workload_query_proto_init() }
@@ -11593,7 +13929,7 @@ func file_enreach_workload_query_proto_init() {
 			}
 		}
 		file_enreach_workload_query_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetWorkloadRequest); i {
+			switch v := v.(*QueryGetNodeWorkloadRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11605,7 +13941,7 @@ func file_enreach_workload_query_proto_init() {
 			}
 		}
 		file_enreach_workload_query_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetWorkloadResponse); i {
+			switch v := v.(*QueryGetNodeWorkloadResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11617,7 +13953,7 @@ func file_enreach_workload_query_proto_init() {
 			}
 		}
 		file_enreach_workload_query_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryAllWorkloadRequest); i {
+			switch v := v.(*QueryGetAllNodeWorkloadByEpochRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11629,7 +13965,7 @@ func file_enreach_workload_query_proto_init() {
 			}
 		}
 		file_enreach_workload_query_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryAllWorkloadResponse); i {
+			switch v := v.(*QueryGetAllNodeWorkloadByEpochResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11641,7 +13977,7 @@ func file_enreach_workload_query_proto_init() {
 			}
 		}
 		file_enreach_workload_query_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetWorkreportRequest); i {
+			switch v := v.(*QueryGetManagerWorkloadRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11653,7 +13989,7 @@ func file_enreach_workload_query_proto_init() {
 			}
 		}
 		file_enreach_workload_query_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetWorkreportResponse); i {
+			switch v := v.(*QueryGetManagerWorkloadResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11665,7 +14001,7 @@ func file_enreach_workload_query_proto_init() {
 			}
 		}
 		file_enreach_workload_query_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetAllWorkreportByEpochRequest); i {
+			switch v := v.(*QueryGetAllManagerWorkloadByEpochRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11677,7 +14013,7 @@ func file_enreach_workload_query_proto_init() {
 			}
 		}
 		file_enreach_workload_query_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetAllWorkreportByEpochResponse); i {
+			switch v := v.(*QueryGetAllManagerWorkloadByEpochResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11689,7 +14025,7 @@ func file_enreach_workload_query_proto_init() {
 			}
 		}
 		file_enreach_workload_query_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetWorkreportProcessBatchSizeRequest); i {
+			switch v := v.(*QueryGetWorkreportRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11701,7 +14037,7 @@ func file_enreach_workload_query_proto_init() {
 			}
 		}
 		file_enreach_workload_query_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetWorkreportProcessBatchSizeResponse); i {
+			switch v := v.(*QueryGetWorkreportResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11713,7 +14049,7 @@ func file_enreach_workload_query_proto_init() {
 			}
 		}
 		file_enreach_workload_query_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetHistoryEpochDataDepthRequest); i {
+			switch v := v.(*QueryGetAllWorkreportByEpochRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11725,7 +14061,7 @@ func file_enreach_workload_query_proto_init() {
 			}
 		}
 		file_enreach_workload_query_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetHistoryEpochDataDepthResponse); i {
+			switch v := v.(*QueryGetAllWorkreportByEpochResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11737,7 +14073,7 @@ func file_enreach_workload_query_proto_init() {
 			}
 		}
 		file_enreach_workload_query_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetEpochProcessDataRequest); i {
+			switch v := v.(*QueryGetWorkreportProcessBatchSizeRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11749,7 +14085,7 @@ func file_enreach_workload_query_proto_init() {
 			}
 		}
 		file_enreach_workload_query_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetEpochProcessDataResponse); i {
+			switch v := v.(*QueryGetWorkreportProcessBatchSizeResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11761,7 +14097,7 @@ func file_enreach_workload_query_proto_init() {
 			}
 		}
 		file_enreach_workload_query_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetAllEpochProcessDataRequest); i {
+			switch v := v.(*QueryGetHistoryEpochDataDepthRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11773,7 +14109,7 @@ func file_enreach_workload_query_proto_init() {
 			}
 		}
 		file_enreach_workload_query_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetAllEpochProcessDataResponse); i {
+			switch v := v.(*QueryGetHistoryEpochDataDepthResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11785,7 +14121,7 @@ func file_enreach_workload_query_proto_init() {
 			}
 		}
 		file_enreach_workload_query_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetSuperiorRequest); i {
+			switch v := v.(*QueryGetEpochProcessDataRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11797,6 +14133,54 @@ func file_enreach_workload_query_proto_init() {
 			}
 		}
 		file_enreach_workload_query_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*QueryGetEpochProcessDataResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_enreach_workload_query_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*QueryGetAllEpochProcessDataRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_enreach_workload_query_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*QueryGetAllEpochProcessDataResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_enreach_workload_query_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*QueryGetSuperiorRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_enreach_workload_query_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*QueryGetSuperiorResponse); i {
 			case 0:
 				return &v.state
@@ -11815,7 +14199,7 @@ func file_enreach_workload_query_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_enreach_workload_query_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   24,
+			NumMessages:   28,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -17,7 +17,7 @@ import (
 // GetWorkreportCountByEpoch get the total number of workreports of an epoch
 func (k Keeper) GetWorkreportCountByEpoch(ctx context.Context, epochID uint64) uint64 {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, []byte{})
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.WorkreportCountKey))
 	byteKey := GetWorkreportCountKey(epochID)
 	bz := store.Get(byteKey)
 
@@ -33,7 +33,7 @@ func (k Keeper) GetWorkreportCountByEpoch(ctx context.Context, epochID uint64) u
 // SetWorkreportCountByEpoch set the total number of workreports of an epoch
 func (k Keeper) SetWorkreportCountByEpoch(ctx context.Context, epochID uint64, count uint64) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, []byte{})
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.WorkreportCountKey))
 	byteKey := GetWorkreportCountKey(epochID)
 	bz := make([]byte, 8)
 	binary.BigEndian.PutUint64(bz, count)
@@ -46,7 +46,7 @@ func (k Keeper) AppendNodeWorkreport(ctx context.Context, epochID uint64, nodeID
 	count := k.GetWorkreportCountByEpoch(ctx, epochID)
 
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, GetStorePrefix(epochID))
+	store := prefix.NewStore(storeAdapter, GetWorkreportStorePrefix(epochID))
 	appendedValue := k.cdc.MustMarshal(scoresMap)
 	store.Set(GetWorkreportKey(epochID, nodeID), appendedValue)
 
@@ -57,7 +57,7 @@ func (k Keeper) AppendNodeWorkreport(ctx context.Context, epochID uint64, nodeID
 // SetNodeWorkreport set the workreport of a node in a dedicated epoch
 func (k Keeper) SetNodeWorkreport(ctx context.Context, epochID uint64, nodeID string, scoresMap *types.ManagerNodeScoreMap) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, GetStorePrefix(epochID))
+	store := prefix.NewStore(storeAdapter, GetWorkreportStorePrefix(epochID))
 	b := k.cdc.MustMarshal(scoresMap)
 	store.Set(GetWorkreportKey(epochID, nodeID), b)
 }
@@ -65,7 +65,7 @@ func (k Keeper) SetNodeWorkreport(ctx context.Context, epochID uint64, nodeID st
 // GetNodeWorkreport get the workreport of a node in a dedicated epoch
 func (k Keeper) GetNodeWorkreport(ctx context.Context, epochID uint64, nodeID string) (val types.ManagerNodeScoreMap, found bool) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, GetStorePrefix(epochID))
+	store := prefix.NewStore(storeAdapter, GetWorkreportStorePrefix(epochID))
 	b := store.Get(GetWorkreportKey(epochID, nodeID))
 	if b == nil {
 		return val, false
@@ -78,7 +78,7 @@ func (k Keeper) GetNodeWorkreport(ctx context.Context, epochID uint64, nodeID st
 // GetNodeWorkreportPaginated get the workreports of all nodes in a dedicated epoch
 func (k Keeper) GetNodeWorkreportsPaginated(ctx context.Context, epochID uint64, pageReq *query.PageRequest) ([]types.Workreport, *query.PageResponse, error) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, GetStorePrefix(epochID))
+	store := prefix.NewStore(storeAdapter, GetWorkreportStorePrefix(epochID))
 
 	var workreports []types.Workreport
 	pageRes, err := query.Paginate(store, pageReq, func(key []byte, value []byte) error {
@@ -171,7 +171,7 @@ func GetWorkreportCountKey(epochID uint64) []byte {
 }
 
 // Prefix + epochID (8 bytes BigEndian)
-func GetStorePrefix(epochID uint64) []byte {
+func GetWorkreportStorePrefix(epochID uint64) []byte {
 	storePrefix := binary.BigEndian.AppendUint64([]byte(types.WorkreportKey), epochID)
 
 	return storePrefix

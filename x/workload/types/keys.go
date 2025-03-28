@@ -20,8 +20,11 @@ func KeyPrefix(p string) []byte {
 }
 
 const (
-	WorkloadKey      = "Workload/value/"
-	WorkloadCountKey = "Workload/count/"
+	NodeWorkloadKey      = "NodeWorkload/value/"
+	NodeWorkloadCountKey = "NodeWorkload/count/"
+
+	ManagerWorkloadKey      = "ManagerWorkload/value/"
+	ManagerWorkloadCountKey = "ManagerWorkload/count/"
 
 	WorkreportKey      = "Workreport/value/"
 	WorkreportCountKey = "Workreport/count/"
@@ -32,8 +35,6 @@ const (
 	EpochProcessDataKey      = "EpochProcessData/value/"
 	LastEpochProcessDataKey  = "EpochProcessData/last/"
 	EpochProcessDataCountKey = "EpochProcessData/count/"
-)
 
-const (
 	SuperiorKey = "Superior/value/"
 )
