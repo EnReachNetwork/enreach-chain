@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	EPOCH_LENGTH = 20
+	EPOCH_LENGTH = 30
 )
 
 func GetCurrentEpoch(goCtx context.Context) uint64 {

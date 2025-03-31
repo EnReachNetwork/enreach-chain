@@ -23,7 +23,7 @@ func (k Keeper) ProcessEpochWorkload(goCtx context.Context) error {
 		// Get the last processed epoch
 		lastEpochProcessData, found := k.GetLastEpochProcessData(ctx)
 		if !found {
-			// This is the first time to run, the epoch data to process should be epoch-1
+			// This is the first time to run, start to process from epoch_1
 			toProcessEpoch := uint64(1)
 			totalNodesCount := k.GetWorkreportCountByEpoch(ctx, toProcessEpoch)
 
