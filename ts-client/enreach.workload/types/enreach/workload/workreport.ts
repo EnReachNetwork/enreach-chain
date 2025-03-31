@@ -1,6 +1,7 @@
 /* eslint-disable */
 import Long from "long";
 import _m0 from "protobufjs/minimal";
+import { PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
 
 export const protobufPackage = "enreach.workload";
 
@@ -34,6 +35,18 @@ export interface Workreport {
 export interface Workreport_ManagerScoreMapEntry {
   key: string;
   value: NodeScoreDB | undefined;
+}
+
+export interface EpochProcessData {
+  epoch: number;
+  /** total nodes count need to be processed */
+  totalNodesCount: number;
+  /** accumulated processed nodes count */
+  processedNodesCount: number;
+  startAt: number;
+  updateAt: number;
+  status: string;
+  pagination: PageResponse | undefined;
 }
 
 function createBaseNodeScore(): NodeScore {
@@ -544,6 +557,165 @@ export const Workreport_ManagerScoreMapEntry = {
     message.key = object.key ?? "";
     message.value = (object.value !== undefined && object.value !== null)
       ? NodeScoreDB.fromPartial(object.value)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseEpochProcessData(): EpochProcessData {
+  return {
+    epoch: 0,
+    totalNodesCount: 0,
+    processedNodesCount: 0,
+    startAt: 0,
+    updateAt: 0,
+    status: "",
+    pagination: undefined,
+  };
+}
+
+export const EpochProcessData = {
+  encode(message: EpochProcessData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.epoch !== 0) {
+      writer.uint32(8).uint64(message.epoch);
+    }
+    if (message.totalNodesCount !== 0) {
+      writer.uint32(16).uint64(message.totalNodesCount);
+    }
+    if (message.processedNodesCount !== 0) {
+      writer.uint32(24).uint64(message.processedNodesCount);
+    }
+    if (message.startAt !== 0) {
+      writer.uint32(32).uint64(message.startAt);
+    }
+    if (message.updateAt !== 0) {
+      writer.uint32(40).uint64(message.updateAt);
+    }
+    if (message.status !== "") {
+      writer.uint32(50).string(message.status);
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(58).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): EpochProcessData {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseEpochProcessData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.epoch = longToNumber(reader.uint64() as Long);
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.totalNodesCount = longToNumber(reader.uint64() as Long);
+          continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+
+          message.processedNodesCount = longToNumber(reader.uint64() as Long);
+          continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+
+          message.startAt = longToNumber(reader.uint64() as Long);
+          continue;
+        case 5:
+          if (tag !== 40) {
+            break;
+          }
+
+          message.updateAt = longToNumber(reader.uint64() as Long);
+          continue;
+        case 6:
+          if (tag !== 50) {
+            break;
+          }
+
+          message.status = reader.string();
+          continue;
+        case 7:
+          if (tag !== 58) {
+            break;
+          }
+
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): EpochProcessData {
+    return {
+      epoch: isSet(object.epoch) ? Number(object.epoch) : 0,
+      totalNodesCount: isSet(object.totalNodesCount) ? Number(object.totalNodesCount) : 0,
+      processedNodesCount: isSet(object.processedNodesCount) ? Number(object.processedNodesCount) : 0,
+      startAt: isSet(object.startAt) ? Number(object.startAt) : 0,
+      updateAt: isSet(object.updateAt) ? Number(object.updateAt) : 0,
+      status: isSet(object.status) ? String(object.status) : "",
+      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: EpochProcessData): unknown {
+    const obj: any = {};
+    if (message.epoch !== 0) {
+      obj.epoch = Math.round(message.epoch);
+    }
+    if (message.totalNodesCount !== 0) {
+      obj.totalNodesCount = Math.round(message.totalNodesCount);
+    }
+    if (message.processedNodesCount !== 0) {
+      obj.processedNodesCount = Math.round(message.processedNodesCount);
+    }
+    if (message.startAt !== 0) {
+      obj.startAt = Math.round(message.startAt);
+    }
+    if (message.updateAt !== 0) {
+      obj.updateAt = Math.round(message.updateAt);
+    }
+    if (message.status !== "") {
+      obj.status = message.status;
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<EpochProcessData>, I>>(base?: I): EpochProcessData {
+    return EpochProcessData.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<EpochProcessData>, I>>(object: I): EpochProcessData {
+    const message = createBaseEpochProcessData();
+    message.epoch = object.epoch ?? 0;
+    message.totalNodesCount = object.totalNodesCount ?? 0;
+    message.processedNodesCount = object.processedNodesCount ?? 0;
+    message.startAt = object.startAt ?? 0;
+    message.updateAt = object.updateAt ?? 0;
+    message.status = object.status ?? "";
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageResponse.fromPartial(object.pagination)
       : undefined;
     return message;
   },

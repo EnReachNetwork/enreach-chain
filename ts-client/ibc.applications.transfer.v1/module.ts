@@ -6,36 +6,30 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
-import { QueryDenomTraceRequest } from "./types/ibc/applications/transfer/v1/query";
 import { QueryDenomTracesResponse } from "./types/ibc/applications/transfer/v1/query";
 import { QueryParamsRequest } from "./types/ibc/applications/transfer/v1/query";
 import { QueryEscrowAddressResponse } from "./types/ibc/applications/transfer/v1/query";
 import { DenomTrace } from "./types/ibc/applications/transfer/v1/transfer";
-import { Params } from "./types/ibc/applications/transfer/v1/transfer";
+import { TransferAuthorization } from "./types/ibc/applications/transfer/v1/authz";
 import { QueryDenomHashResponse } from "./types/ibc/applications/transfer/v1/query";
-import { QueryDenomTracesRequest } from "./types/ibc/applications/transfer/v1/query";
-import { QueryDenomTraceResponse } from "./types/ibc/applications/transfer/v1/query";
+import { Params } from "./types/ibc/applications/transfer/v1/transfer";
 import { QueryDenomHashRequest } from "./types/ibc/applications/transfer/v1/query";
 import { QueryEscrowAddressRequest } from "./types/ibc/applications/transfer/v1/query";
-import { MsgUpdateParamsResponse } from "./types/ibc/applications/transfer/v1/tx";
-import { MsgUpdateParams } from "./types/ibc/applications/transfer/v1/tx";
-import { QueryTotalEscrowForDenomRequest } from "./types/ibc/applications/transfer/v1/query";
-import { TransferAuthorization } from "./types/ibc/applications/transfer/v1/authz";
-import { QueryParamsResponse } from "./types/ibc/applications/transfer/v1/query";
-import { MsgTransfer } from "./types/ibc/applications/transfer/v1/tx";
-import { Allocation } from "./types/ibc/applications/transfer/v1/authz";
-import { QueryTotalEscrowForDenomResponse } from "./types/ibc/applications/transfer/v1/query";
-import { MsgTransferResponse } from "./types/ibc/applications/transfer/v1/tx";
 import { GenesisState } from "./types/ibc/applications/transfer/v1/genesis";
+import { QueryDenomTracesRequest } from "./types/ibc/applications/transfer/v1/query";
+import { MsgUpdateParams } from "./types/ibc/applications/transfer/v1/tx";
+import { QueryDenomTraceResponse } from "./types/ibc/applications/transfer/v1/query";
+import { MsgTransferResponse } from "./types/ibc/applications/transfer/v1/tx";
+import { QueryDenomTraceRequest } from "./types/ibc/applications/transfer/v1/query";
+import { QueryTotalEscrowForDenomResponse } from "./types/ibc/applications/transfer/v1/query";
+import { Allocation } from "./types/ibc/applications/transfer/v1/authz";
+import { QueryTotalEscrowForDenomRequest } from "./types/ibc/applications/transfer/v1/query";
+import { MsgTransfer } from "./types/ibc/applications/transfer/v1/tx";
+import { MsgUpdateParamsResponse } from "./types/ibc/applications/transfer/v1/tx";
+import { QueryParamsResponse } from "./types/ibc/applications/transfer/v1/query";
 
 
-export { QueryDenomTraceRequest, QueryDenomTracesResponse, QueryParamsRequest, QueryEscrowAddressResponse, DenomTrace, Params, QueryDenomHashResponse, QueryDenomTracesRequest, QueryDenomTraceResponse, QueryDenomHashRequest, QueryEscrowAddressRequest, MsgUpdateParamsResponse, MsgUpdateParams, QueryTotalEscrowForDenomRequest, TransferAuthorization, QueryParamsResponse, MsgTransfer, Allocation, QueryTotalEscrowForDenomResponse, MsgTransferResponse, GenesisState };
-
-type sendQueryDenomTraceRequestParams = {
-  value: QueryDenomTraceRequest,
-  fee?: StdFee,
-  memo?: string
-};
+export { QueryDenomTracesResponse, QueryParamsRequest, QueryEscrowAddressResponse, DenomTrace, TransferAuthorization, QueryDenomHashResponse, Params, QueryDenomHashRequest, QueryEscrowAddressRequest, GenesisState, QueryDenomTracesRequest, MsgUpdateParams, QueryDenomTraceResponse, MsgTransferResponse, QueryDenomTraceRequest, QueryTotalEscrowForDenomResponse, Allocation, QueryTotalEscrowForDenomRequest, MsgTransfer, MsgUpdateParamsResponse, QueryParamsResponse };
 
 type sendQueryDenomTracesResponseParams = {
   value: QueryDenomTracesResponse,
@@ -61,8 +55,8 @@ type sendDenomTraceParams = {
   memo?: string
 };
 
-type sendParamsParams = {
-  value: Params,
+type sendTransferAuthorizationParams = {
+  value: TransferAuthorization,
   fee?: StdFee,
   memo?: string
 };
@@ -73,14 +67,8 @@ type sendQueryDenomHashResponseParams = {
   memo?: string
 };
 
-type sendQueryDenomTracesRequestParams = {
-  value: QueryDenomTracesRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryDenomTraceResponseParams = {
-  value: QueryDenomTraceResponse,
+type sendParamsParams = {
+  value: Params,
   fee?: StdFee,
   memo?: string
 };
@@ -97,8 +85,14 @@ type sendQueryEscrowAddressRequestParams = {
   memo?: string
 };
 
-type sendMsgUpdateParamsResponseParams = {
-  value: MsgUpdateParamsResponse,
+type sendGenesisStateParams = {
+  value: GenesisState,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryDenomTracesRequestParams = {
+  value: QueryDenomTracesRequest,
   fee?: StdFee,
   memo?: string
 };
@@ -109,38 +103,8 @@ type sendMsgUpdateParamsParams = {
   memo?: string
 };
 
-type sendQueryTotalEscrowForDenomRequestParams = {
-  value: QueryTotalEscrowForDenomRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendTransferAuthorizationParams = {
-  value: TransferAuthorization,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryParamsResponseParams = {
-  value: QueryParamsResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgTransferParams = {
-  value: MsgTransfer,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendAllocationParams = {
-  value: Allocation,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryTotalEscrowForDenomResponseParams = {
-  value: QueryTotalEscrowForDenomResponse,
+type sendQueryDenomTraceResponseParams = {
+  value: QueryDenomTraceResponse,
   fee?: StdFee,
   memo?: string
 };
@@ -151,16 +115,48 @@ type sendMsgTransferResponseParams = {
   memo?: string
 };
 
-type sendGenesisStateParams = {
-  value: GenesisState,
+type sendQueryDenomTraceRequestParams = {
+  value: QueryDenomTraceRequest,
   fee?: StdFee,
   memo?: string
 };
 
-
-type queryDenomTraceRequestParams = {
-  value: QueryDenomTraceRequest,
+type sendQueryTotalEscrowForDenomResponseParams = {
+  value: QueryTotalEscrowForDenomResponse,
+  fee?: StdFee,
+  memo?: string
 };
+
+type sendAllocationParams = {
+  value: Allocation,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryTotalEscrowForDenomRequestParams = {
+  value: QueryTotalEscrowForDenomRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgTransferParams = {
+  value: MsgTransfer,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateParamsResponseParams = {
+  value: MsgUpdateParamsResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryParamsResponseParams = {
+  value: QueryParamsResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
 
 type queryDenomTracesResponseParams = {
   value: QueryDenomTracesResponse,
@@ -178,20 +174,16 @@ type denomTraceParams = {
   value: DenomTrace,
 };
 
-type paramsParams = {
-  value: Params,
+type transferAuthorizationParams = {
+  value: TransferAuthorization,
 };
 
 type queryDenomHashResponseParams = {
   value: QueryDenomHashResponse,
 };
 
-type queryDenomTracesRequestParams = {
-  value: QueryDenomTracesRequest,
-};
-
-type queryDenomTraceResponseParams = {
-  value: QueryDenomTraceResponse,
+type paramsParams = {
+  value: Params,
 };
 
 type queryDenomHashRequestParams = {
@@ -202,44 +194,52 @@ type queryEscrowAddressRequestParams = {
   value: QueryEscrowAddressRequest,
 };
 
-type msgUpdateParamsResponseParams = {
-  value: MsgUpdateParamsResponse,
+type genesisStateParams = {
+  value: GenesisState,
+};
+
+type queryDenomTracesRequestParams = {
+  value: QueryDenomTracesRequest,
 };
 
 type msgUpdateParamsParams = {
   value: MsgUpdateParams,
 };
 
-type queryTotalEscrowForDenomRequestParams = {
-  value: QueryTotalEscrowForDenomRequest,
-};
-
-type transferAuthorizationParams = {
-  value: TransferAuthorization,
-};
-
-type queryParamsResponseParams = {
-  value: QueryParamsResponse,
-};
-
-type msgTransferParams = {
-  value: MsgTransfer,
-};
-
-type allocationParams = {
-  value: Allocation,
-};
-
-type queryTotalEscrowForDenomResponseParams = {
-  value: QueryTotalEscrowForDenomResponse,
+type queryDenomTraceResponseParams = {
+  value: QueryDenomTraceResponse,
 };
 
 type msgTransferResponseParams = {
   value: MsgTransferResponse,
 };
 
-type genesisStateParams = {
-  value: GenesisState,
+type queryDenomTraceRequestParams = {
+  value: QueryDenomTraceRequest,
+};
+
+type queryTotalEscrowForDenomResponseParams = {
+  value: QueryTotalEscrowForDenomResponse,
+};
+
+type allocationParams = {
+  value: Allocation,
+};
+
+type queryTotalEscrowForDenomRequestParams = {
+  value: QueryTotalEscrowForDenomRequest,
+};
+
+type msgTransferParams = {
+  value: MsgTransfer,
+};
+
+type msgUpdateParamsResponseParams = {
+  value: MsgUpdateParamsResponse,
+};
+
+type queryParamsResponseParams = {
+  value: QueryParamsResponse,
 };
 
 
@@ -271,20 +271,6 @@ interface TxClientOptions {
 export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "http://localhost:26657", prefix: "cosmos" }) => {
 
   return {
-		
-		async sendQueryDenomTraceRequest({ value, fee, memo }: sendQueryDenomTraceRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryDenomTraceRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryDenomTraceRequest({ value: QueryDenomTraceRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryDenomTraceRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
 		
 		async sendQueryDenomTracesResponse({ value, fee, memo }: sendQueryDenomTracesResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
@@ -342,17 +328,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse> {
+		async sendTransferAuthorization({ value, fee, memo }: sendTransferAuthorizationParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendParams: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendTransferAuthorization: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.params({ value: Params.fromPartial(value) })
+				let msg = this.transferAuthorization({ value: TransferAuthorization.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendParams: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendTransferAuthorization: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -370,31 +356,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendQueryDenomTracesRequest({ value, fee, memo }: sendQueryDenomTracesRequestParams): Promise<DeliverTxResponse> {
+		async sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryDenomTracesRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendParams: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryDenomTracesRequest({ value: QueryDenomTracesRequest.fromPartial(value) })
+				let msg = this.params({ value: Params.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryDenomTracesRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryDenomTraceResponse({ value, fee, memo }: sendQueryDenomTraceResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryDenomTraceResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryDenomTraceResponse({ value: QueryDenomTraceResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryDenomTraceResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendParams: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -426,17 +398,31 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse> {
+		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateParamsResponse({ value: MsgUpdateParamsResponse.fromPartial(value) })
+				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateParamsResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryDenomTracesRequest({ value, fee, memo }: sendQueryDenomTracesRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryDenomTracesRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryDenomTracesRequest({ value: QueryDenomTracesRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryDenomTracesRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -454,87 +440,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendQueryTotalEscrowForDenomRequest({ value, fee, memo }: sendQueryTotalEscrowForDenomRequestParams): Promise<DeliverTxResponse> {
+		async sendQueryDenomTraceResponse({ value, fee, memo }: sendQueryDenomTraceResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryTotalEscrowForDenomRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryDenomTraceResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryTotalEscrowForDenomRequest({ value: QueryTotalEscrowForDenomRequest.fromPartial(value) })
+				let msg = this.queryDenomTraceResponse({ value: QueryDenomTraceResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryTotalEscrowForDenomRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendTransferAuthorization({ value, fee, memo }: sendTransferAuthorizationParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendTransferAuthorization: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.transferAuthorization({ value: TransferAuthorization.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendTransferAuthorization: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryParamsResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryParamsResponse({ value: QueryParamsResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryParamsResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgTransfer({ value, fee, memo }: sendMsgTransferParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgTransfer: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgTransfer({ value: MsgTransfer.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgTransfer: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendAllocation({ value, fee, memo }: sendAllocationParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendAllocation: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.allocation({ value: Allocation.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendAllocation: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryTotalEscrowForDenomResponse({ value, fee, memo }: sendQueryTotalEscrowForDenomResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryTotalEscrowForDenomResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryTotalEscrowForDenomResponse({ value: QueryTotalEscrowForDenomResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryTotalEscrowForDenomResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryDenomTraceResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -552,28 +468,104 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
+		async sendQueryDenomTraceRequest({ value, fee, memo }: sendQueryDenomTraceRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryDenomTraceRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
+				let msg = this.queryDenomTraceRequest({ value: QueryDenomTraceRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryDenomTraceRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		
-		queryDenomTraceRequest({ value }: queryDenomTraceRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.applications.transfer.v1.QueryDenomTraceRequest", value: QueryDenomTraceRequest.fromPartial( value ) }  
+		async sendQueryTotalEscrowForDenomResponse({ value, fee, memo }: sendQueryTotalEscrowForDenomResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryTotalEscrowForDenomResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryTotalEscrowForDenomResponse({ value: QueryTotalEscrowForDenomResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:QueryDenomTraceRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendQueryTotalEscrowForDenomResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
+		
+		async sendAllocation({ value, fee, memo }: sendAllocationParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendAllocation: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.allocation({ value: Allocation.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendAllocation: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryTotalEscrowForDenomRequest({ value, fee, memo }: sendQueryTotalEscrowForDenomRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryTotalEscrowForDenomRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryTotalEscrowForDenomRequest({ value: QueryTotalEscrowForDenomRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryTotalEscrowForDenomRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgTransfer({ value, fee, memo }: sendMsgTransferParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgTransfer: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgTransfer({ value: MsgTransfer.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgTransfer: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateParamsResponse({ value: MsgUpdateParamsResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateParamsResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryParamsResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryParamsResponse({ value: QueryParamsResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryParamsResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
 		
 		queryDenomTracesResponse({ value }: queryDenomTracesResponseParams): EncodeObject {
 			try {
@@ -607,11 +599,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		params({ value }: paramsParams): EncodeObject {
+		transferAuthorization({ value }: transferAuthorizationParams): EncodeObject {
 			try {
-				return { typeUrl: "/ibc.applications.transfer.v1.Params", value: Params.fromPartial( value ) }  
+				return { typeUrl: "/ibc.applications.transfer.v1.TransferAuthorization", value: TransferAuthorization.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:Params: Could not create message: ' + e.message)
+				throw new Error('TxClient:TransferAuthorization: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -623,19 +615,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		queryDenomTracesRequest({ value }: queryDenomTracesRequestParams): EncodeObject {
+		params({ value }: paramsParams): EncodeObject {
 			try {
-				return { typeUrl: "/ibc.applications.transfer.v1.QueryDenomTracesRequest", value: QueryDenomTracesRequest.fromPartial( value ) }  
+				return { typeUrl: "/ibc.applications.transfer.v1.Params", value: Params.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryDenomTracesRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryDenomTraceResponse({ value }: queryDenomTraceResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.applications.transfer.v1.QueryDenomTraceResponse", value: QueryDenomTraceResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryDenomTraceResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:Params: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -655,11 +639,19 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject {
+		genesisState({ value }: genesisStateParams): EncodeObject {
 			try {
-				return { typeUrl: "/ibc.applications.transfer.v1.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial( value ) }  
+				return { typeUrl: "/ibc.applications.transfer.v1.GenesisState", value: GenesisState.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryDenomTracesRequest({ value }: queryDenomTracesRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.applications.transfer.v1.QueryDenomTracesRequest", value: QueryDenomTracesRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryDenomTracesRequest: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -671,51 +663,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		queryTotalEscrowForDenomRequest({ value }: queryTotalEscrowForDenomRequestParams): EncodeObject {
+		queryDenomTraceResponse({ value }: queryDenomTraceResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/ibc.applications.transfer.v1.QueryTotalEscrowForDenomRequest", value: QueryTotalEscrowForDenomRequest.fromPartial( value ) }  
+				return { typeUrl: "/ibc.applications.transfer.v1.QueryDenomTraceResponse", value: QueryDenomTraceResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryTotalEscrowForDenomRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		transferAuthorization({ value }: transferAuthorizationParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.applications.transfer.v1.TransferAuthorization", value: TransferAuthorization.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:TransferAuthorization: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.applications.transfer.v1.QueryParamsResponse", value: QueryParamsResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryParamsResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgTransfer({ value }: msgTransferParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.applications.transfer.v1.MsgTransfer", value: MsgTransfer.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgTransfer: Could not create message: ' + e.message)
-			}
-		},
-		
-		allocation({ value }: allocationParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.applications.transfer.v1.Allocation", value: Allocation.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:Allocation: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryTotalEscrowForDenomResponse({ value }: queryTotalEscrowForDenomResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/ibc.applications.transfer.v1.QueryTotalEscrowForDenomResponse", value: QueryTotalEscrowForDenomResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryTotalEscrowForDenomResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryDenomTraceResponse: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -727,11 +679,59 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		genesisState({ value }: genesisStateParams): EncodeObject {
+		queryDenomTraceRequest({ value }: queryDenomTraceRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/ibc.applications.transfer.v1.GenesisState", value: GenesisState.fromPartial( value ) }  
+				return { typeUrl: "/ibc.applications.transfer.v1.QueryDenomTraceRequest", value: QueryDenomTraceRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryDenomTraceRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryTotalEscrowForDenomResponse({ value }: queryTotalEscrowForDenomResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.applications.transfer.v1.QueryTotalEscrowForDenomResponse", value: QueryTotalEscrowForDenomResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryTotalEscrowForDenomResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		allocation({ value }: allocationParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.applications.transfer.v1.Allocation", value: Allocation.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:Allocation: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryTotalEscrowForDenomRequest({ value }: queryTotalEscrowForDenomRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.applications.transfer.v1.QueryTotalEscrowForDenomRequest", value: QueryTotalEscrowForDenomRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryTotalEscrowForDenomRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgTransfer({ value }: msgTransferParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.applications.transfer.v1.MsgTransfer", value: MsgTransfer.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgTransfer: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.applications.transfer.v1.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/ibc.applications.transfer.v1.QueryParamsResponse", value: QueryParamsResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryParamsResponse: Could not create message: ' + e.message)
 			}
 		},
 		

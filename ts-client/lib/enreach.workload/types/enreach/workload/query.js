@@ -3,12 +3,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.QueryClientImpl = exports.QueryServiceName = exports.QueryGetAllWorkreportByEpochResponse = exports.QueryGetAllWorkreportByEpochRequest = exports.QueryGetWorkreportResponse = exports.QueryGetWorkreportRequest = exports.QueryAllWorkloadResponse = exports.QueryAllWorkloadRequest = exports.QueryGetWorkloadResponse = exports.QueryGetWorkloadRequest = exports.QueryGetCurrentEpochResponse = exports.QueryGetCurrentEpochRequest = exports.QueryGetEpochLengthResponse = exports.QueryGetEpochLengthRequest = exports.QueryParamsResponse = exports.QueryParamsRequest = exports.protobufPackage = void 0;
+exports.QueryClientImpl = exports.QueryServiceName = exports.QueryGetSuperiorResponse = exports.QueryGetSuperiorRequest = exports.QueryGetAllEpochProcessDataResponse = exports.QueryGetAllEpochProcessDataRequest = exports.QueryGetEpochProcessDataResponse = exports.QueryGetEpochProcessDataRequest = exports.QueryGetHistoryEpochDataDepthResponse = exports.QueryGetHistoryEpochDataDepthRequest = exports.QueryGetWorkreportProcessBatchSizeResponse = exports.QueryGetWorkreportProcessBatchSizeRequest = exports.QueryGetAllWorkreportByEpochResponse = exports.QueryGetAllWorkreportByEpochRequest = exports.QueryGetWorkreportResponse = exports.QueryGetWorkreportRequest = exports.QueryGetAllManagerWorkloadByEpochResponse = exports.QueryGetAllManagerWorkloadByEpochRequest = exports.QueryGetManagerWorkloadResponse = exports.QueryGetManagerWorkloadRequest = exports.QueryGetAllNodeWorkloadByEpochResponse = exports.QueryGetAllNodeWorkloadByEpochRequest = exports.QueryGetNodeWorkloadResponse = exports.QueryGetNodeWorkloadRequest = exports.QueryGetCurrentEpochResponse = exports.QueryGetCurrentEpochRequest = exports.QueryGetEpochLengthResponse = exports.QueryGetEpochLengthRequest = exports.QueryParamsResponse = exports.QueryParamsRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const pagination_1 = require("../../cosmos/base/query/v1beta1/pagination");
 const params_1 = require("./params");
+const superior_1 = require("./superior");
 const workload_1 = require("./workload");
 const workreport_1 = require("./workreport");
 exports.protobufPackage = "enreach.workload";
@@ -275,20 +276,23 @@ exports.QueryGetCurrentEpochResponse = {
         return message;
     },
 };
-function createBaseQueryGetWorkloadRequest() {
-    return { id: 0 };
+function createBaseQueryGetNodeWorkloadRequest() {
+    return { epoch: 0, nodeID: "" };
 }
-exports.QueryGetWorkloadRequest = {
+exports.QueryGetNodeWorkloadRequest = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.id !== 0) {
-            writer.uint32(8).uint64(message.id);
+        if (message.epoch !== 0) {
+            writer.uint32(8).uint64(message.epoch);
+        }
+        if (message.nodeID !== "") {
+            writer.uint32(18).string(message.nodeID);
         }
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseQueryGetWorkloadRequest();
+        const message = createBaseQueryGetNodeWorkloadRequest();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -296,7 +300,13 @@ exports.QueryGetWorkloadRequest = {
                     if (tag !== 8) {
                         break;
                     }
-                    message.id = longToNumber(reader.uint64());
+                    message.epoch = longToNumber(reader.uint64());
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.nodeID = reader.string();
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -307,38 +317,45 @@ exports.QueryGetWorkloadRequest = {
         return message;
     },
     fromJSON(object) {
-        return { id: isSet(object.id) ? Number(object.id) : 0 };
+        return {
+            epoch: isSet(object.epoch) ? Number(object.epoch) : 0,
+            nodeID: isSet(object.nodeID) ? String(object.nodeID) : "",
+        };
     },
     toJSON(message) {
         const obj = {};
-        if (message.id !== 0) {
-            obj.id = Math.round(message.id);
+        if (message.epoch !== 0) {
+            obj.epoch = Math.round(message.epoch);
+        }
+        if (message.nodeID !== "") {
+            obj.nodeID = message.nodeID;
         }
         return obj;
     },
     create(base) {
-        return exports.QueryGetWorkloadRequest.fromPartial(base ?? {});
+        return exports.QueryGetNodeWorkloadRequest.fromPartial(base ?? {});
     },
     fromPartial(object) {
-        const message = createBaseQueryGetWorkloadRequest();
-        message.id = object.id ?? 0;
+        const message = createBaseQueryGetNodeWorkloadRequest();
+        message.epoch = object.epoch ?? 0;
+        message.nodeID = object.nodeID ?? "";
         return message;
     },
 };
-function createBaseQueryGetWorkloadResponse() {
-    return { Workload: undefined };
+function createBaseQueryGetNodeWorkloadResponse() {
+    return { NodeWorkload: undefined };
 }
-exports.QueryGetWorkloadResponse = {
+exports.QueryGetNodeWorkloadResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.Workload !== undefined) {
-            workload_1.Workload.encode(message.Workload, writer.uint32(10).fork()).ldelim();
+        if (message.NodeWorkload !== undefined) {
+            workload_1.NodeWorkload.encode(message.NodeWorkload, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseQueryGetWorkloadResponse();
+        const message = createBaseQueryGetNodeWorkloadResponse();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -346,7 +363,7 @@ exports.QueryGetWorkloadResponse = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.Workload = workload_1.Workload.decode(reader, reader.uint32());
+                    message.NodeWorkload = workload_1.NodeWorkload.decode(reader, reader.uint32());
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -357,45 +374,54 @@ exports.QueryGetWorkloadResponse = {
         return message;
     },
     fromJSON(object) {
-        return { Workload: isSet(object.Workload) ? workload_1.Workload.fromJSON(object.Workload) : undefined };
+        return { NodeWorkload: isSet(object.NodeWorkload) ? workload_1.NodeWorkload.fromJSON(object.NodeWorkload) : undefined };
     },
     toJSON(message) {
         const obj = {};
-        if (message.Workload !== undefined) {
-            obj.Workload = workload_1.Workload.toJSON(message.Workload);
+        if (message.NodeWorkload !== undefined) {
+            obj.NodeWorkload = workload_1.NodeWorkload.toJSON(message.NodeWorkload);
         }
         return obj;
     },
     create(base) {
-        return exports.QueryGetWorkloadResponse.fromPartial(base ?? {});
+        return exports.QueryGetNodeWorkloadResponse.fromPartial(base ?? {});
     },
     fromPartial(object) {
-        const message = createBaseQueryGetWorkloadResponse();
-        message.Workload = (object.Workload !== undefined && object.Workload !== null)
-            ? workload_1.Workload.fromPartial(object.Workload)
+        const message = createBaseQueryGetNodeWorkloadResponse();
+        message.NodeWorkload = (object.NodeWorkload !== undefined && object.NodeWorkload !== null)
+            ? workload_1.NodeWorkload.fromPartial(object.NodeWorkload)
             : undefined;
         return message;
     },
 };
-function createBaseQueryAllWorkloadRequest() {
-    return { pagination: undefined };
+function createBaseQueryGetAllNodeWorkloadByEpochRequest() {
+    return { epoch: 0, pagination: undefined };
 }
-exports.QueryAllWorkloadRequest = {
+exports.QueryGetAllNodeWorkloadByEpochRequest = {
     encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.epoch !== 0) {
+            writer.uint32(8).uint64(message.epoch);
+        }
         if (message.pagination !== undefined) {
-            pagination_1.PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+            pagination_1.PageRequest.encode(message.pagination, writer.uint32(18).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseQueryAllWorkloadRequest();
+        const message = createBaseQueryGetAllNodeWorkloadByEpochRequest();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    if (tag !== 10) {
+                    if (tag !== 8) {
+                        break;
+                    }
+                    message.epoch = longToNumber(reader.uint64());
+                    continue;
+                case 2:
+                    if (tag !== 18) {
                         break;
                     }
                     message.pagination = pagination_1.PageRequest.decode(reader, reader.uint32());
@@ -409,33 +435,40 @@ exports.QueryAllWorkloadRequest = {
         return message;
     },
     fromJSON(object) {
-        return { pagination: isSet(object.pagination) ? pagination_1.PageRequest.fromJSON(object.pagination) : undefined };
+        return {
+            epoch: isSet(object.epoch) ? Number(object.epoch) : 0,
+            pagination: isSet(object.pagination) ? pagination_1.PageRequest.fromJSON(object.pagination) : undefined,
+        };
     },
     toJSON(message) {
         const obj = {};
+        if (message.epoch !== 0) {
+            obj.epoch = Math.round(message.epoch);
+        }
         if (message.pagination !== undefined) {
             obj.pagination = pagination_1.PageRequest.toJSON(message.pagination);
         }
         return obj;
     },
     create(base) {
-        return exports.QueryAllWorkloadRequest.fromPartial(base ?? {});
+        return exports.QueryGetAllNodeWorkloadByEpochRequest.fromPartial(base ?? {});
     },
     fromPartial(object) {
-        const message = createBaseQueryAllWorkloadRequest();
+        const message = createBaseQueryGetAllNodeWorkloadByEpochRequest();
+        message.epoch = object.epoch ?? 0;
         message.pagination = (object.pagination !== undefined && object.pagination !== null)
             ? pagination_1.PageRequest.fromPartial(object.pagination)
             : undefined;
         return message;
     },
 };
-function createBaseQueryAllWorkloadResponse() {
-    return { Workload: [], pagination: undefined };
+function createBaseQueryGetAllNodeWorkloadByEpochResponse() {
+    return { NodeWorkloads: [], pagination: undefined };
 }
-exports.QueryAllWorkloadResponse = {
+exports.QueryGetAllNodeWorkloadByEpochResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        for (const v of message.Workload) {
-            workload_1.Workload.encode(v, writer.uint32(10).fork()).ldelim();
+        for (const v of message.NodeWorkloads) {
+            workload_1.NodeWorkload.encode(v, writer.uint32(10).fork()).ldelim();
         }
         if (message.pagination !== undefined) {
             pagination_1.PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
@@ -445,7 +478,7 @@ exports.QueryAllWorkloadResponse = {
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseQueryAllWorkloadResponse();
+        const message = createBaseQueryGetAllNodeWorkloadByEpochResponse();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -453,7 +486,7 @@ exports.QueryAllWorkloadResponse = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.Workload.push(workload_1.Workload.decode(reader, reader.uint32()));
+                    message.NodeWorkloads.push(workload_1.NodeWorkload.decode(reader, reader.uint32()));
                     continue;
                 case 2:
                     if (tag !== 18) {
@@ -471,14 +504,16 @@ exports.QueryAllWorkloadResponse = {
     },
     fromJSON(object) {
         return {
-            Workload: Array.isArray(object?.Workload) ? object.Workload.map((e) => workload_1.Workload.fromJSON(e)) : [],
+            NodeWorkloads: Array.isArray(object?.NodeWorkloads)
+                ? object.NodeWorkloads.map((e) => workload_1.NodeWorkload.fromJSON(e))
+                : [],
             pagination: isSet(object.pagination) ? pagination_1.PageResponse.fromJSON(object.pagination) : undefined,
         };
     },
     toJSON(message) {
         const obj = {};
-        if (message.Workload?.length) {
-            obj.Workload = message.Workload.map((e) => workload_1.Workload.toJSON(e));
+        if (message.NodeWorkloads?.length) {
+            obj.NodeWorkloads = message.NodeWorkloads.map((e) => workload_1.NodeWorkload.toJSON(e));
         }
         if (message.pagination !== undefined) {
             obj.pagination = pagination_1.PageResponse.toJSON(message.pagination);
@@ -486,11 +521,269 @@ exports.QueryAllWorkloadResponse = {
         return obj;
     },
     create(base) {
-        return exports.QueryAllWorkloadResponse.fromPartial(base ?? {});
+        return exports.QueryGetAllNodeWorkloadByEpochResponse.fromPartial(base ?? {});
     },
     fromPartial(object) {
-        const message = createBaseQueryAllWorkloadResponse();
-        message.Workload = object.Workload?.map((e) => workload_1.Workload.fromPartial(e)) || [];
+        const message = createBaseQueryGetAllNodeWorkloadByEpochResponse();
+        message.NodeWorkloads = object.NodeWorkloads?.map((e) => workload_1.NodeWorkload.fromPartial(e)) || [];
+        message.pagination = (object.pagination !== undefined && object.pagination !== null)
+            ? pagination_1.PageResponse.fromPartial(object.pagination)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetManagerWorkloadRequest() {
+    return { epoch: 0, managerAccount: "" };
+}
+exports.QueryGetManagerWorkloadRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.epoch !== 0) {
+            writer.uint32(8).uint64(message.epoch);
+        }
+        if (message.managerAccount !== "") {
+            writer.uint32(18).string(message.managerAccount);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetManagerWorkloadRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 8) {
+                        break;
+                    }
+                    message.epoch = longToNumber(reader.uint64());
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.managerAccount = reader.string();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            epoch: isSet(object.epoch) ? Number(object.epoch) : 0,
+            managerAccount: isSet(object.managerAccount) ? String(object.managerAccount) : "",
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.epoch !== 0) {
+            obj.epoch = Math.round(message.epoch);
+        }
+        if (message.managerAccount !== "") {
+            obj.managerAccount = message.managerAccount;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetManagerWorkloadRequest.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetManagerWorkloadRequest();
+        message.epoch = object.epoch ?? 0;
+        message.managerAccount = object.managerAccount ?? "";
+        return message;
+    },
+};
+function createBaseQueryGetManagerWorkloadResponse() {
+    return { ManagerWorkload: undefined };
+}
+exports.QueryGetManagerWorkloadResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.ManagerWorkload !== undefined) {
+            workload_1.ManagerWorkload.encode(message.ManagerWorkload, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetManagerWorkloadResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.ManagerWorkload = workload_1.ManagerWorkload.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            ManagerWorkload: isSet(object.ManagerWorkload) ? workload_1.ManagerWorkload.fromJSON(object.ManagerWorkload) : undefined,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.ManagerWorkload !== undefined) {
+            obj.ManagerWorkload = workload_1.ManagerWorkload.toJSON(message.ManagerWorkload);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetManagerWorkloadResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetManagerWorkloadResponse();
+        message.ManagerWorkload = (object.ManagerWorkload !== undefined && object.ManagerWorkload !== null)
+            ? workload_1.ManagerWorkload.fromPartial(object.ManagerWorkload)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetAllManagerWorkloadByEpochRequest() {
+    return { epoch: 0, pagination: undefined };
+}
+exports.QueryGetAllManagerWorkloadByEpochRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.epoch !== 0) {
+            writer.uint32(8).uint64(message.epoch);
+        }
+        if (message.pagination !== undefined) {
+            pagination_1.PageRequest.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetAllManagerWorkloadByEpochRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 8) {
+                        break;
+                    }
+                    message.epoch = longToNumber(reader.uint64());
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.pagination = pagination_1.PageRequest.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            epoch: isSet(object.epoch) ? Number(object.epoch) : 0,
+            pagination: isSet(object.pagination) ? pagination_1.PageRequest.fromJSON(object.pagination) : undefined,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.epoch !== 0) {
+            obj.epoch = Math.round(message.epoch);
+        }
+        if (message.pagination !== undefined) {
+            obj.pagination = pagination_1.PageRequest.toJSON(message.pagination);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetAllManagerWorkloadByEpochRequest.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetAllManagerWorkloadByEpochRequest();
+        message.epoch = object.epoch ?? 0;
+        message.pagination = (object.pagination !== undefined && object.pagination !== null)
+            ? pagination_1.PageRequest.fromPartial(object.pagination)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetAllManagerWorkloadByEpochResponse() {
+    return { ManagerWorkloads: [], pagination: undefined };
+}
+exports.QueryGetAllManagerWorkloadByEpochResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        for (const v of message.ManagerWorkloads) {
+            workload_1.ManagerWorkload.encode(v, writer.uint32(10).fork()).ldelim();
+        }
+        if (message.pagination !== undefined) {
+            pagination_1.PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetAllManagerWorkloadByEpochResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.ManagerWorkloads.push(workload_1.ManagerWorkload.decode(reader, reader.uint32()));
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.pagination = pagination_1.PageResponse.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            ManagerWorkloads: Array.isArray(object?.ManagerWorkloads)
+                ? object.ManagerWorkloads.map((e) => workload_1.ManagerWorkload.fromJSON(e))
+                : [],
+            pagination: isSet(object.pagination) ? pagination_1.PageResponse.fromJSON(object.pagination) : undefined,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.ManagerWorkloads?.length) {
+            obj.ManagerWorkloads = message.ManagerWorkloads.map((e) => workload_1.ManagerWorkload.toJSON(e));
+        }
+        if (message.pagination !== undefined) {
+            obj.pagination = pagination_1.PageResponse.toJSON(message.pagination);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetAllManagerWorkloadByEpochResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetAllManagerWorkloadByEpochResponse();
+        message.ManagerWorkloads = object.ManagerWorkloads?.map((e) => workload_1.ManagerWorkload.fromPartial(e)) || [];
         message.pagination = (object.pagination !== undefined && object.pagination !== null)
             ? pagination_1.PageResponse.fromPartial(object.pagination)
             : undefined;
@@ -684,11 +977,11 @@ exports.QueryGetAllWorkreportByEpochRequest = {
     },
 };
 function createBaseQueryGetAllWorkreportByEpochResponse() {
-    return { Workreport: [], pagination: undefined };
+    return { Workreports: [], pagination: undefined };
 }
 exports.QueryGetAllWorkreportByEpochResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        for (const v of message.Workreport) {
+        for (const v of message.Workreports) {
             workreport_1.Workreport.encode(v, writer.uint32(10).fork()).ldelim();
         }
         if (message.pagination !== undefined) {
@@ -707,7 +1000,7 @@ exports.QueryGetAllWorkreportByEpochResponse = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.Workreport.push(workreport_1.Workreport.decode(reader, reader.uint32()));
+                    message.Workreports.push(workreport_1.Workreport.decode(reader, reader.uint32()));
                     continue;
                 case 2:
                     if (tag !== 18) {
@@ -725,14 +1018,14 @@ exports.QueryGetAllWorkreportByEpochResponse = {
     },
     fromJSON(object) {
         return {
-            Workreport: Array.isArray(object?.Workreport) ? object.Workreport.map((e) => workreport_1.Workreport.fromJSON(e)) : [],
+            Workreports: Array.isArray(object?.Workreports) ? object.Workreports.map((e) => workreport_1.Workreport.fromJSON(e)) : [],
             pagination: isSet(object.pagination) ? pagination_1.PageResponse.fromJSON(object.pagination) : undefined,
         };
     },
     toJSON(message) {
         const obj = {};
-        if (message.Workreport?.length) {
-            obj.Workreport = message.Workreport.map((e) => workreport_1.Workreport.toJSON(e));
+        if (message.Workreports?.length) {
+            obj.Workreports = message.Workreports.map((e) => workreport_1.Workreport.toJSON(e));
         }
         if (message.pagination !== undefined) {
             obj.pagination = pagination_1.PageResponse.toJSON(message.pagination);
@@ -744,9 +1037,498 @@ exports.QueryGetAllWorkreportByEpochResponse = {
     },
     fromPartial(object) {
         const message = createBaseQueryGetAllWorkreportByEpochResponse();
-        message.Workreport = object.Workreport?.map((e) => workreport_1.Workreport.fromPartial(e)) || [];
+        message.Workreports = object.Workreports?.map((e) => workreport_1.Workreport.fromPartial(e)) || [];
         message.pagination = (object.pagination !== undefined && object.pagination !== null)
             ? pagination_1.PageResponse.fromPartial(object.pagination)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetWorkreportProcessBatchSizeRequest() {
+    return {};
+}
+exports.QueryGetWorkreportProcessBatchSizeRequest = {
+    encode(_, writer = minimal_1.default.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetWorkreportProcessBatchSizeRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(_) {
+        return {};
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetWorkreportProcessBatchSizeRequest.fromPartial(base ?? {});
+    },
+    fromPartial(_) {
+        const message = createBaseQueryGetWorkreportProcessBatchSizeRequest();
+        return message;
+    },
+};
+function createBaseQueryGetWorkreportProcessBatchSizeResponse() {
+    return { batchSize: 0 };
+}
+exports.QueryGetWorkreportProcessBatchSizeResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.batchSize !== 0) {
+            writer.uint32(8).uint64(message.batchSize);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetWorkreportProcessBatchSizeResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 8) {
+                        break;
+                    }
+                    message.batchSize = longToNumber(reader.uint64());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { batchSize: isSet(object.batchSize) ? Number(object.batchSize) : 0 };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.batchSize !== 0) {
+            obj.batchSize = Math.round(message.batchSize);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetWorkreportProcessBatchSizeResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetWorkreportProcessBatchSizeResponse();
+        message.batchSize = object.batchSize ?? 0;
+        return message;
+    },
+};
+function createBaseQueryGetHistoryEpochDataDepthRequest() {
+    return {};
+}
+exports.QueryGetHistoryEpochDataDepthRequest = {
+    encode(_, writer = minimal_1.default.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetHistoryEpochDataDepthRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(_) {
+        return {};
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetHistoryEpochDataDepthRequest.fromPartial(base ?? {});
+    },
+    fromPartial(_) {
+        const message = createBaseQueryGetHistoryEpochDataDepthRequest();
+        return message;
+    },
+};
+function createBaseQueryGetHistoryEpochDataDepthResponse() {
+    return { depth: 0 };
+}
+exports.QueryGetHistoryEpochDataDepthResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.depth !== 0) {
+            writer.uint32(8).uint64(message.depth);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetHistoryEpochDataDepthResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 8) {
+                        break;
+                    }
+                    message.depth = longToNumber(reader.uint64());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { depth: isSet(object.depth) ? Number(object.depth) : 0 };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.depth !== 0) {
+            obj.depth = Math.round(message.depth);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetHistoryEpochDataDepthResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetHistoryEpochDataDepthResponse();
+        message.depth = object.depth ?? 0;
+        return message;
+    },
+};
+function createBaseQueryGetEpochProcessDataRequest() {
+    return { epoch: 0 };
+}
+exports.QueryGetEpochProcessDataRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.epoch !== 0) {
+            writer.uint32(8).uint64(message.epoch);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetEpochProcessDataRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 8) {
+                        break;
+                    }
+                    message.epoch = longToNumber(reader.uint64());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { epoch: isSet(object.epoch) ? Number(object.epoch) : 0 };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.epoch !== 0) {
+            obj.epoch = Math.round(message.epoch);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetEpochProcessDataRequest.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetEpochProcessDataRequest();
+        message.epoch = object.epoch ?? 0;
+        return message;
+    },
+};
+function createBaseQueryGetEpochProcessDataResponse() {
+    return { EpochProcessData: undefined };
+}
+exports.QueryGetEpochProcessDataResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.EpochProcessData !== undefined) {
+            workreport_1.EpochProcessData.encode(message.EpochProcessData, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetEpochProcessDataResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.EpochProcessData = workreport_1.EpochProcessData.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            EpochProcessData: isSet(object.EpochProcessData) ? workreport_1.EpochProcessData.fromJSON(object.EpochProcessData) : undefined,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.EpochProcessData !== undefined) {
+            obj.EpochProcessData = workreport_1.EpochProcessData.toJSON(message.EpochProcessData);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetEpochProcessDataResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetEpochProcessDataResponse();
+        message.EpochProcessData = (object.EpochProcessData !== undefined && object.EpochProcessData !== null)
+            ? workreport_1.EpochProcessData.fromPartial(object.EpochProcessData)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetAllEpochProcessDataRequest() {
+    return { pagination: undefined };
+}
+exports.QueryGetAllEpochProcessDataRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.pagination !== undefined) {
+            pagination_1.PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetAllEpochProcessDataRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.pagination = pagination_1.PageRequest.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { pagination: isSet(object.pagination) ? pagination_1.PageRequest.fromJSON(object.pagination) : undefined };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.pagination !== undefined) {
+            obj.pagination = pagination_1.PageRequest.toJSON(message.pagination);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetAllEpochProcessDataRequest.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetAllEpochProcessDataRequest();
+        message.pagination = (object.pagination !== undefined && object.pagination !== null)
+            ? pagination_1.PageRequest.fromPartial(object.pagination)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetAllEpochProcessDataResponse() {
+    return { EpochProcessDatas: [], pagination: undefined };
+}
+exports.QueryGetAllEpochProcessDataResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        for (const v of message.EpochProcessDatas) {
+            workreport_1.EpochProcessData.encode(v, writer.uint32(10).fork()).ldelim();
+        }
+        if (message.pagination !== undefined) {
+            pagination_1.PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetAllEpochProcessDataResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.EpochProcessDatas.push(workreport_1.EpochProcessData.decode(reader, reader.uint32()));
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.pagination = pagination_1.PageResponse.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            EpochProcessDatas: Array.isArray(object?.EpochProcessDatas)
+                ? object.EpochProcessDatas.map((e) => workreport_1.EpochProcessData.fromJSON(e))
+                : [],
+            pagination: isSet(object.pagination) ? pagination_1.PageResponse.fromJSON(object.pagination) : undefined,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.EpochProcessDatas?.length) {
+            obj.EpochProcessDatas = message.EpochProcessDatas.map((e) => workreport_1.EpochProcessData.toJSON(e));
+        }
+        if (message.pagination !== undefined) {
+            obj.pagination = pagination_1.PageResponse.toJSON(message.pagination);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetAllEpochProcessDataResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetAllEpochProcessDataResponse();
+        message.EpochProcessDatas = object.EpochProcessDatas?.map((e) => workreport_1.EpochProcessData.fromPartial(e)) || [];
+        message.pagination = (object.pagination !== undefined && object.pagination !== null)
+            ? pagination_1.PageResponse.fromPartial(object.pagination)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetSuperiorRequest() {
+    return {};
+}
+exports.QueryGetSuperiorRequest = {
+    encode(_, writer = minimal_1.default.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetSuperiorRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(_) {
+        return {};
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetSuperiorRequest.fromPartial(base ?? {});
+    },
+    fromPartial(_) {
+        const message = createBaseQueryGetSuperiorRequest();
+        return message;
+    },
+};
+function createBaseQueryGetSuperiorResponse() {
+    return { Superior: undefined };
+}
+exports.QueryGetSuperiorResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.Superior !== undefined) {
+            superior_1.Superior.encode(message.Superior, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetSuperiorResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.Superior = superior_1.Superior.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { Superior: isSet(object.Superior) ? superior_1.Superior.fromJSON(object.Superior) : undefined };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.Superior !== undefined) {
+            obj.Superior = superior_1.Superior.toJSON(message.Superior);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetSuperiorResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetSuperiorResponse();
+        message.Superior = (object.Superior !== undefined && object.Superior !== null)
+            ? superior_1.Superior.fromPartial(object.Superior)
             : undefined;
         return message;
     },
@@ -757,47 +1539,89 @@ class QueryClientImpl {
         this.service = opts?.service || exports.QueryServiceName;
         this.rpc = rpc;
         this.Params = this.Params.bind(this);
-        this.GetEpochLength = this.GetEpochLength.bind(this);
-        this.GetCurrentEpoch = this.GetCurrentEpoch.bind(this);
-        this.Workload = this.Workload.bind(this);
-        this.WorkloadAll = this.WorkloadAll.bind(this);
-        this.GetWorkreport = this.GetWorkreport.bind(this);
-        this.GetAllWorkreportByEpoch = this.GetAllWorkreportByEpoch.bind(this);
+        this.EpochLength = this.EpochLength.bind(this);
+        this.CurrentEpoch = this.CurrentEpoch.bind(this);
+        this.NodeWorkload = this.NodeWorkload.bind(this);
+        this.AllNodeWorkloadByEpoch = this.AllNodeWorkloadByEpoch.bind(this);
+        this.ManagerWorkload = this.ManagerWorkload.bind(this);
+        this.AllManagerWorkloadByEpoch = this.AllManagerWorkloadByEpoch.bind(this);
+        this.Workreport = this.Workreport.bind(this);
+        this.AllWorkreportByEpoch = this.AllWorkreportByEpoch.bind(this);
+        this.WorkreportProcessBatchSize = this.WorkreportProcessBatchSize.bind(this);
+        this.HistoryEpochDataDepth = this.HistoryEpochDataDepth.bind(this);
+        this.EpochProcessData = this.EpochProcessData.bind(this);
+        this.AllEpochProcessData = this.AllEpochProcessData.bind(this);
+        this.Superior = this.Superior.bind(this);
     }
     Params(request) {
         const data = exports.QueryParamsRequest.encode(request).finish();
         const promise = this.rpc.request(this.service, "Params", data);
         return promise.then((data) => exports.QueryParamsResponse.decode(minimal_1.default.Reader.create(data)));
     }
-    GetEpochLength(request) {
+    EpochLength(request) {
         const data = exports.QueryGetEpochLengthRequest.encode(request).finish();
-        const promise = this.rpc.request(this.service, "GetEpochLength", data);
+        const promise = this.rpc.request(this.service, "EpochLength", data);
         return promise.then((data) => exports.QueryGetEpochLengthResponse.decode(minimal_1.default.Reader.create(data)));
     }
-    GetCurrentEpoch(request) {
+    CurrentEpoch(request) {
         const data = exports.QueryGetCurrentEpochRequest.encode(request).finish();
-        const promise = this.rpc.request(this.service, "GetCurrentEpoch", data);
+        const promise = this.rpc.request(this.service, "CurrentEpoch", data);
         return promise.then((data) => exports.QueryGetCurrentEpochResponse.decode(minimal_1.default.Reader.create(data)));
     }
-    Workload(request) {
-        const data = exports.QueryGetWorkloadRequest.encode(request).finish();
-        const promise = this.rpc.request(this.service, "Workload", data);
-        return promise.then((data) => exports.QueryGetWorkloadResponse.decode(minimal_1.default.Reader.create(data)));
+    NodeWorkload(request) {
+        const data = exports.QueryGetNodeWorkloadRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "NodeWorkload", data);
+        return promise.then((data) => exports.QueryGetNodeWorkloadResponse.decode(minimal_1.default.Reader.create(data)));
     }
-    WorkloadAll(request) {
-        const data = exports.QueryAllWorkloadRequest.encode(request).finish();
-        const promise = this.rpc.request(this.service, "WorkloadAll", data);
-        return promise.then((data) => exports.QueryAllWorkloadResponse.decode(minimal_1.default.Reader.create(data)));
+    AllNodeWorkloadByEpoch(request) {
+        const data = exports.QueryGetAllNodeWorkloadByEpochRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "AllNodeWorkloadByEpoch", data);
+        return promise.then((data) => exports.QueryGetAllNodeWorkloadByEpochResponse.decode(minimal_1.default.Reader.create(data)));
     }
-    GetWorkreport(request) {
+    ManagerWorkload(request) {
+        const data = exports.QueryGetManagerWorkloadRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "ManagerWorkload", data);
+        return promise.then((data) => exports.QueryGetManagerWorkloadResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    AllManagerWorkloadByEpoch(request) {
+        const data = exports.QueryGetAllManagerWorkloadByEpochRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "AllManagerWorkloadByEpoch", data);
+        return promise.then((data) => exports.QueryGetAllManagerWorkloadByEpochResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    Workreport(request) {
         const data = exports.QueryGetWorkreportRequest.encode(request).finish();
-        const promise = this.rpc.request(this.service, "GetWorkreport", data);
+        const promise = this.rpc.request(this.service, "Workreport", data);
         return promise.then((data) => exports.QueryGetWorkreportResponse.decode(minimal_1.default.Reader.create(data)));
     }
-    GetAllWorkreportByEpoch(request) {
+    AllWorkreportByEpoch(request) {
         const data = exports.QueryGetAllWorkreportByEpochRequest.encode(request).finish();
-        const promise = this.rpc.request(this.service, "GetAllWorkreportByEpoch", data);
+        const promise = this.rpc.request(this.service, "AllWorkreportByEpoch", data);
         return promise.then((data) => exports.QueryGetAllWorkreportByEpochResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    WorkreportProcessBatchSize(request) {
+        const data = exports.QueryGetWorkreportProcessBatchSizeRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "WorkreportProcessBatchSize", data);
+        return promise.then((data) => exports.QueryGetWorkreportProcessBatchSizeResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    HistoryEpochDataDepth(request) {
+        const data = exports.QueryGetHistoryEpochDataDepthRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "HistoryEpochDataDepth", data);
+        return promise.then((data) => exports.QueryGetHistoryEpochDataDepthResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    EpochProcessData(request) {
+        const data = exports.QueryGetEpochProcessDataRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "EpochProcessData", data);
+        return promise.then((data) => exports.QueryGetEpochProcessDataResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    AllEpochProcessData(request) {
+        const data = exports.QueryGetAllEpochProcessDataRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "AllEpochProcessData", data);
+        return promise.then((data) => exports.QueryGetAllEpochProcessDataResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    Superior(request) {
+        const data = exports.QueryGetSuperiorRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "Superior", data);
+        return promise.then((data) => exports.QueryGetSuperiorResponse.decode(minimal_1.default.Reader.create(data)));
     }
 }
 exports.QueryClientImpl = QueryClientImpl;

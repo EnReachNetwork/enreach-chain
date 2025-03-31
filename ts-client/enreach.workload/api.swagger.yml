@@ -4,9 +4,9 @@ info:
   name: ''
   description: ''
 paths:
-  /enreach/manager/epoch/currentepoch:
+  /enreach/workload/epoch/currentepoch:
     get:
-      operationId: Query_GetCurrentEpoch
+      operationId: Query_CurrentEpoch
       responses:
         '200':
           description: A successful response.
@@ -36,9 +36,9 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /enreach/manager/epoch/length:
+  /enreach/workload/epoch/length:
     get:
-      operationId: Query_GetEpochLength
+      operationId: Query_EpochLength
       responses:
         '200':
           description: A successful response.
@@ -66,6 +66,290 @@ paths:
                     '@type':
                       type: string
                   additionalProperties: {}
+      tags:
+        - Query
+  /enreach/workload/manager_workload/{epoch}/{managerAccount}:
+    get:
+      operationId: Query_ManagerWorkload
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              ManagerWorkload:
+                type: object
+                properties:
+                  epoch:
+                    type: string
+                    format: uint64
+                  managerAccount:
+                    type: string
+                  reportedNodesCount:
+                    type: string
+                    format: uint64
+                  score:
+                    type: string
+                    format: uint64
+                  createAt:
+                    type: string
+                    format: uint64
+                  updateAt:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: epoch
+          in: path
+          required: true
+          type: string
+          format: uint64
+        - name: managerAccount
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /enreach/workload/manager_workloads/{epoch}:
+    get:
+      operationId: Query_AllManagerWorkloadByEpoch
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              ManagerWorkloads:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    epoch:
+                      type: string
+                      format: uint64
+                    managerAccount:
+                      type: string
+                    reportedNodesCount:
+                      type: string
+                      format: uint64
+                    score:
+                      type: string
+                      format: uint64
+                    createAt:
+                      type: string
+                      format: uint64
+                    updateAt:
+                      type: string
+                      format: uint64
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                  total:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: epoch
+          in: path
+          required: true
+          type: string
+          format: uint64
+        - name: pagination.key
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  /enreach/workload/node_workload/{epoch}/{nodeID}:
+    get:
+      operationId: Query_NodeWorkload
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              NodeWorkload:
+                type: object
+                properties:
+                  epoch:
+                    type: string
+                    format: uint64
+                  nodeID:
+                    type: string
+                  score:
+                    type: string
+                    format: uint64
+                  createAt:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: epoch
+          in: path
+          required: true
+          type: string
+          format: uint64
+        - name: nodeID
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /enreach/workload/node_workloads/{epoch}:
+    get:
+      operationId: Query_AllNodeWorkloadByEpoch
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              NodeWorkloads:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    epoch:
+                      type: string
+                      format: uint64
+                    nodeID:
+                      type: string
+                    score:
+                      type: string
+                      format: uint64
+                    createAt:
+                      type: string
+                      format: uint64
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                  total:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: epoch
+          in: path
+          required: true
+          type: string
+          format: uint64
+        - name: pagination.key
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          in: query
+          required: false
+          type: boolean
       tags:
         - Query
   /enreach/workload/params:
@@ -99,34 +383,90 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /enreach/workload/workload/{id}:
+  /enreach/workload/superior:
     get:
-      operationId: Query_Workload
+      operationId: Query_Superior
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
             properties:
-              Workload:
+              Superior:
                 type: object
                 properties:
-                  id:
+                  account:
                     type: string
-                    format: uint64
-                  managerAccount:
+                  creator:
                     type: string
-                  epoch:
-                    type: string
-                    format: uint64
-                  nodeID:
-                    type: string
-                  score:
-                    type: string
-                    format: uint64
                   createAt:
                     type: string
                     format: uint64
+                  updator:
+                    type: string
+                  updateAt:
+                    type: string
+                    format: uint64
+                  signer:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
+  /enreach/workload/workreport/epoch_process_data/{epoch}:
+    get:
+      operationId: Query_EpochProcessData
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              EpochProcessData:
+                type: object
+                properties:
+                  epoch:
+                    type: string
+                    format: uint64
+                  totalNodesCount:
+                    type: string
+                    format: uint64
+                  processedNodesCount:
+                    type: string
+                    format: uint64
+                  startAt:
+                    type: string
+                    format: uint64
+                  updateAt:
+                    type: string
+                    format: uint64
+                  status:
+                    type: string
+                  pagination:
+                    type: object
+                    properties:
+                      next_key:
+                        type: string
+                        format: byte
+                      total:
+                        type: string
+                        format: uint64
         default:
           description: An unexpected error response.
           schema:
@@ -146,43 +486,53 @@ paths:
                       type: string
                   additionalProperties: {}
       parameters:
-        - name: id
+        - name: epoch
           in: path
           required: true
           type: string
           format: uint64
       tags:
         - Query
-  /enreach/workload/workloads:
+  /enreach/workload/workreport/epoch_process_datas:
     get:
-      operationId: Query_WorkloadAll
+      operationId: Query_AllEpochProcessData
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
             properties:
-              Workload:
+              EpochProcessDatas:
                 type: array
                 items:
                   type: object
                   properties:
-                    id:
-                      type: string
-                      format: uint64
-                    managerAccount:
-                      type: string
                     epoch:
                       type: string
                       format: uint64
-                    nodeID:
-                      type: string
-                    score:
+                    totalNodesCount:
                       type: string
                       format: uint64
-                    createAt:
+                    processedNodesCount:
                       type: string
                       format: uint64
+                    startAt:
+                      type: string
+                      format: uint64
+                    updateAt:
+                      type: string
+                      format: uint64
+                    status:
+                      type: string
+                    pagination:
+                      type: object
+                      properties:
+                        next_key:
+                          type: string
+                          format: byte
+                        total:
+                          type: string
+                          format: uint64
               pagination:
                 type: object
                 properties:
@@ -236,9 +586,73 @@ paths:
           type: boolean
       tags:
         - Query
+  /enreach/workload/workreport/history_epoch_data_depth:
+    get:
+      operationId: Query_HistoryEpochDataDepth
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              depth:
+                type: string
+                format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
+  /enreach/workload/workreport/process_batch_size:
+    get:
+      operationId: Query_WorkreportProcessBatchSize
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              batchSize:
+                type: string
+                format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
   /enreach/workload/workreport/{epoch}/{nodeID}:
     get:
-      operationId: Query_GetWorkreport
+      operationId: Query_Workreport
       responses:
         '200':
           description: A successful response.
@@ -299,14 +713,14 @@ paths:
         - Query
   /enreach/workload/workreports/{epoch}:
     get:
-      operationId: Query_GetAllWorkreportByEpoch
+      operationId: Query_AllWorkreportByEpoch
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
             properties:
-              Workreport:
+              Workreports:
                 type: array
                 items:
                   type: object
@@ -448,19 +862,91 @@ definitions:
       total:
         type: string
         format: uint64
-  QueryAllWorkloadResponse:
+  QueryGetAllEpochProcessDataResponse:
     type: object
     properties:
-      Workload:
+      EpochProcessDatas:
         type: array
         items:
           type: object
           properties:
-            id:
+            epoch:
+              type: string
+              format: uint64
+            totalNodesCount:
+              type: string
+              format: uint64
+            processedNodesCount:
+              type: string
+              format: uint64
+            startAt:
+              type: string
+              format: uint64
+            updateAt:
+              type: string
+              format: uint64
+            status:
+              type: string
+            pagination:
+              type: object
+              properties:
+                next_key:
+                  type: string
+                  format: byte
+                total:
+                  type: string
+                  format: uint64
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+          total:
+            type: string
+            format: uint64
+  QueryGetAllManagerWorkloadByEpochResponse:
+    type: object
+    properties:
+      ManagerWorkloads:
+        type: array
+        items:
+          type: object
+          properties:
+            epoch:
               type: string
               format: uint64
             managerAccount:
               type: string
+            reportedNodesCount:
+              type: string
+              format: uint64
+            score:
+              type: string
+              format: uint64
+            createAt:
+              type: string
+              format: uint64
+            updateAt:
+              type: string
+              format: uint64
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+          total:
+            type: string
+            format: uint64
+  QueryGetAllNodeWorkloadByEpochResponse:
+    type: object
+    properties:
+      NodeWorkloads:
+        type: array
+        items:
+          type: object
+          properties:
             epoch:
               type: string
               format: uint64
@@ -484,7 +970,7 @@ definitions:
   QueryGetAllWorkreportByEpochResponse:
     type: object
     properties:
-      Workreport:
+      Workreports:
         type: array
         items:
           type: object
@@ -529,17 +1015,73 @@ definitions:
       epochLength:
         type: string
         format: uint64
-  QueryGetWorkloadResponse:
+  QueryGetEpochProcessDataResponse:
     type: object
     properties:
-      Workload:
+      EpochProcessData:
         type: object
         properties:
-          id:
+          epoch:
+            type: string
+            format: uint64
+          totalNodesCount:
+            type: string
+            format: uint64
+          processedNodesCount:
+            type: string
+            format: uint64
+          startAt:
+            type: string
+            format: uint64
+          updateAt:
+            type: string
+            format: uint64
+          status:
+            type: string
+          pagination:
+            type: object
+            properties:
+              next_key:
+                type: string
+                format: byte
+              total:
+                type: string
+                format: uint64
+  QueryGetHistoryEpochDataDepthResponse:
+    type: object
+    properties:
+      depth:
+        type: string
+        format: uint64
+  QueryGetManagerWorkloadResponse:
+    type: object
+    properties:
+      ManagerWorkload:
+        type: object
+        properties:
+          epoch:
             type: string
             format: uint64
           managerAccount:
             type: string
+          reportedNodesCount:
+            type: string
+            format: uint64
+          score:
+            type: string
+            format: uint64
+          createAt:
+            type: string
+            format: uint64
+          updateAt:
+            type: string
+            format: uint64
+  QueryGetNodeWorkloadResponse:
+    type: object
+    properties:
+      NodeWorkload:
+        type: object
+        properties:
           epoch:
             type: string
             format: uint64
@@ -551,6 +1093,32 @@ definitions:
           createAt:
             type: string
             format: uint64
+  QueryGetSuperiorResponse:
+    type: object
+    properties:
+      Superior:
+        type: object
+        properties:
+          account:
+            type: string
+          creator:
+            type: string
+          createAt:
+            type: string
+            format: uint64
+          updator:
+            type: string
+          updateAt:
+            type: string
+            format: uint64
+          signer:
+            type: string
+  QueryGetWorkreportProcessBatchSizeResponse:
+    type: object
+    properties:
+      batchSize:
+        type: string
+        format: uint64
   QueryGetWorkreportResponse:
     type: object
     properties:
@@ -581,7 +1149,89 @@ definitions:
     properties:
       params:
         type: object
-  Workreport:
+  workload.EpochProcessData:
+    type: object
+    properties:
+      epoch:
+        type: string
+        format: uint64
+      totalNodesCount:
+        type: string
+        format: uint64
+      processedNodesCount:
+        type: string
+        format: uint64
+      startAt:
+        type: string
+        format: uint64
+      updateAt:
+        type: string
+        format: uint64
+      status:
+        type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+          total:
+            type: string
+            format: uint64
+  workload.ManagerWorkload:
+    type: object
+    properties:
+      epoch:
+        type: string
+        format: uint64
+      managerAccount:
+        type: string
+      reportedNodesCount:
+        type: string
+        format: uint64
+      score:
+        type: string
+        format: uint64
+      createAt:
+        type: string
+        format: uint64
+      updateAt:
+        type: string
+        format: uint64
+  workload.NodeWorkload:
+    type: object
+    properties:
+      epoch:
+        type: string
+        format: uint64
+      nodeID:
+        type: string
+      score:
+        type: string
+        format: uint64
+      createAt:
+        type: string
+        format: uint64
+  workload.Params:
+    type: object
+  workload.Superior:
+    type: object
+    properties:
+      account:
+        type: string
+      creator:
+        type: string
+      createAt:
+        type: string
+        format: uint64
+      updator:
+        type: string
+      updateAt:
+        type: string
+        format: uint64
+      signer:
+        type: string
+  workload.Workreport:
     type: object
     properties:
       epoch:
@@ -603,30 +1253,17 @@ definitions:
             updateAt:
               type: string
               format: uint64
-  workload.Params:
+  MsgCreateSuperiorResponse:
     type: object
-  workload.Workload:
-    type: object
-    properties:
-      id:
-        type: string
-        format: uint64
-      managerAccount:
-        type: string
-      epoch:
-        type: string
-        format: uint64
-      nodeID:
-        type: string
-      score:
-        type: string
-        format: uint64
-      createAt:
-        type: string
-        format: uint64
   MsgSubmitWorkreportsResponse:
     type: object
+  MsgUpdateHistoryEpochDataDepthResponse:
+    type: object
   MsgUpdateParamsResponse:
+    type: object
+  MsgUpdateSuperiorResponse:
+    type: object
+  MsgUpdateWorkreportProcessBatchSizeResponse:
     type: object
   NodeScore:
     type: object

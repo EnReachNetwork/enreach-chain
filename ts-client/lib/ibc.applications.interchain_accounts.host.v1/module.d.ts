@@ -2,17 +2,12 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { Params } from "./types/ibc/applications/interchain_accounts/host/v1/host";
 import { QueryParamsResponse } from "./types/ibc/applications/interchain_accounts/host/v1/query";
 import { MsgUpdateParamsResponse } from "./types/ibc/applications/interchain_accounts/host/v1/tx";
+import { Params } from "./types/ibc/applications/interchain_accounts/host/v1/host";
 import { QueryParamsRequest } from "./types/ibc/applications/interchain_accounts/host/v1/query";
 import { MsgUpdateParams } from "./types/ibc/applications/interchain_accounts/host/v1/tx";
-export { Params, QueryParamsResponse, MsgUpdateParamsResponse, QueryParamsRequest, MsgUpdateParams };
-type sendParamsParams = {
-    value: Params;
-    fee?: StdFee;
-    memo?: string;
-};
+export { QueryParamsResponse, MsgUpdateParamsResponse, Params, QueryParamsRequest, MsgUpdateParams };
 type sendQueryParamsResponseParams = {
     value: QueryParamsResponse;
     fee?: StdFee;
@@ -20,6 +15,11 @@ type sendQueryParamsResponseParams = {
 };
 type sendMsgUpdateParamsResponseParams = {
     value: MsgUpdateParamsResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendParamsParams = {
+    value: Params;
     fee?: StdFee;
     memo?: string;
 };
@@ -33,14 +33,14 @@ type sendMsgUpdateParamsParams = {
     fee?: StdFee;
     memo?: string;
 };
-type paramsParams = {
-    value: Params;
-};
 type queryParamsResponseParams = {
     value: QueryParamsResponse;
 };
 type msgUpdateParamsResponseParams = {
     value: MsgUpdateParamsResponse;
+};
+type paramsParams = {
+    value: Params;
 };
 type queryParamsRequestParams = {
     value: QueryParamsRequest;
@@ -55,14 +55,14 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
     sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
     sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
+    sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
     sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
     sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
-    params({ value }: paramsParams): EncodeObject;
     queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
     msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
+    params({ value }: paramsParams): EncodeObject;
     queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
     msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
 };

@@ -1,4 +1,5 @@
 import _m0 from "protobufjs/minimal";
+import { PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
 export declare const protobufPackage = "enreach.workload";
 export interface NodeScore {
     nodeID: string;
@@ -29,6 +30,17 @@ export interface Workreport {
 export interface Workreport_ManagerScoreMapEntry {
     key: string;
     value: NodeScoreDB | undefined;
+}
+export interface EpochProcessData {
+    epoch: number;
+    /** total nodes count need to be processed */
+    totalNodesCount: number;
+    /** accumulated processed nodes count */
+    processedNodesCount: number;
+    startAt: number;
+    updateAt: number;
+    status: string;
+    pagination: PageResponse | undefined;
 }
 export declare const NodeScore: {
     encode(message: NodeScore, writer?: _m0.Writer): _m0.Writer;
@@ -77,6 +89,14 @@ export declare const Workreport_ManagerScoreMapEntry: {
     toJSON(message: Workreport_ManagerScoreMapEntry): unknown;
     create<I extends Exact<DeepPartial<Workreport_ManagerScoreMapEntry>, I>>(base?: I): Workreport_ManagerScoreMapEntry;
     fromPartial<I extends Exact<DeepPartial<Workreport_ManagerScoreMapEntry>, I>>(object: I): Workreport_ManagerScoreMapEntry;
+};
+export declare const EpochProcessData: {
+    encode(message: EpochProcessData, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): EpochProcessData;
+    fromJSON(object: any): EpochProcessData;
+    toJSON(message: EpochProcessData): unknown;
+    create<I extends Exact<DeepPartial<EpochProcessData>, I>>(base?: I): EpochProcessData;
+    fromPartial<I extends Exact<DeepPartial<EpochProcessData>, I>>(object: I): EpochProcessData;
 };
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {

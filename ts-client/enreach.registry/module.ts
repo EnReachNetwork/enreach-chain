@@ -6,54 +6,36 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
-import { MsgDeleteRegion } from "./types/enreach/registry/tx";
-import { Region } from "./types/enreach/registry/region";
-import { MsgDeleteRegionResponse } from "./types/enreach/registry/tx";
-import { Superior } from "./types/enreach/registry/superior";
-import { MsgUpdateRegion } from "./types/enreach/registry/tx";
-import { QueryGetRegionResponse } from "./types/enreach/registry/query";
-import { QueryAllRegionResponse } from "./types/enreach/registry/query";
-import { MsgCreateRegion } from "./types/enreach/registry/tx";
-import { MsgCreateSuperior } from "./types/enreach/registry/tx";
-import { GenesisState } from "./types/enreach/registry/genesis";
-import { MsgCreateRegionResponse } from "./types/enreach/registry/tx";
-import { MsgUpdateRegionResponse } from "./types/enreach/registry/tx";
-import { MsgCreateSuperiorResponse } from "./types/enreach/registry/tx";
 import { QueryParamsRequest } from "./types/enreach/registry/query";
+import { MsgUpdateRegion } from "./types/enreach/registry/tx";
+import { MsgCreateSuperior } from "./types/enreach/registry/tx";
+import { MsgUpdateSuperior } from "./types/enreach/registry/tx";
+import { MsgCreateRegion } from "./types/enreach/registry/tx";
+import { MsgUpdateParamsResponse } from "./types/enreach/registry/tx";
 import { Params } from "./types/enreach/registry/params";
 import { QueryParamsResponse } from "./types/enreach/registry/query";
 import { MsgUpdateParams } from "./types/enreach/registry/tx";
+import { MsgDeleteRegionResponse } from "./types/enreach/registry/tx";
+import { QueryGetSuperiorRequest } from "./types/enreach/registry/query";
+import { Region } from "./types/enreach/registry/region";
+import { GenesisState } from "./types/enreach/registry/genesis";
 import { QueryGetRegionRequest } from "./types/enreach/registry/query";
 import { QueryAllRegionRequest } from "./types/enreach/registry/query";
 import { QueryGetSuperiorResponse } from "./types/enreach/registry/query";
-import { MsgUpdateParamsResponse } from "./types/enreach/registry/tx";
-import { MsgUpdateSuperior } from "./types/enreach/registry/tx";
+import { Superior } from "./types/enreach/registry/superior";
+import { QueryGetRegionResponse } from "./types/enreach/registry/query";
+import { QueryAllRegionResponse } from "./types/enreach/registry/query";
+import { MsgCreateRegionResponse } from "./types/enreach/registry/tx";
+import { MsgUpdateRegionResponse } from "./types/enreach/registry/tx";
+import { MsgCreateSuperiorResponse } from "./types/enreach/registry/tx";
 import { MsgUpdateSuperiorResponse } from "./types/enreach/registry/tx";
-import { QueryGetSuperiorRequest } from "./types/enreach/registry/query";
+import { MsgDeleteRegion } from "./types/enreach/registry/tx";
 
 
-export { MsgDeleteRegion, Region, MsgDeleteRegionResponse, Superior, MsgUpdateRegion, QueryGetRegionResponse, QueryAllRegionResponse, MsgCreateRegion, MsgCreateSuperior, GenesisState, MsgCreateRegionResponse, MsgUpdateRegionResponse, MsgCreateSuperiorResponse, QueryParamsRequest, Params, QueryParamsResponse, MsgUpdateParams, QueryGetRegionRequest, QueryAllRegionRequest, QueryGetSuperiorResponse, MsgUpdateParamsResponse, MsgUpdateSuperior, MsgUpdateSuperiorResponse, QueryGetSuperiorRequest };
+export { QueryParamsRequest, MsgUpdateRegion, MsgCreateSuperior, MsgUpdateSuperior, MsgCreateRegion, MsgUpdateParamsResponse, Params, QueryParamsResponse, MsgUpdateParams, MsgDeleteRegionResponse, QueryGetSuperiorRequest, Region, GenesisState, QueryGetRegionRequest, QueryAllRegionRequest, QueryGetSuperiorResponse, Superior, QueryGetRegionResponse, QueryAllRegionResponse, MsgCreateRegionResponse, MsgUpdateRegionResponse, MsgCreateSuperiorResponse, MsgUpdateSuperiorResponse, MsgDeleteRegion };
 
-type sendMsgDeleteRegionParams = {
-  value: MsgDeleteRegion,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendRegionParams = {
-  value: Region,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgDeleteRegionResponseParams = {
-  value: MsgDeleteRegionResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendSuperiorParams = {
-  value: Superior,
+type sendQueryParamsRequestParams = {
+  value: QueryParamsRequest,
   fee?: StdFee,
   memo?: string
 };
@@ -64,14 +46,14 @@ type sendMsgUpdateRegionParams = {
   memo?: string
 };
 
-type sendQueryGetRegionResponseParams = {
-  value: QueryGetRegionResponse,
+type sendMsgCreateSuperiorParams = {
+  value: MsgCreateSuperior,
   fee?: StdFee,
   memo?: string
 };
 
-type sendQueryAllRegionResponseParams = {
-  value: QueryAllRegionResponse,
+type sendMsgUpdateSuperiorParams = {
+  value: MsgUpdateSuperior,
   fee?: StdFee,
   memo?: string
 };
@@ -82,38 +64,8 @@ type sendMsgCreateRegionParams = {
   memo?: string
 };
 
-type sendMsgCreateSuperiorParams = {
-  value: MsgCreateSuperior,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendGenesisStateParams = {
-  value: GenesisState,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgCreateRegionResponseParams = {
-  value: MsgCreateRegionResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateRegionResponseParams = {
-  value: MsgUpdateRegionResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgCreateSuperiorResponseParams = {
-  value: MsgCreateSuperiorResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryParamsRequestParams = {
-  value: QueryParamsRequest,
+type sendMsgUpdateParamsResponseParams = {
+  value: MsgUpdateParamsResponse,
   fee?: StdFee,
   memo?: string
 };
@@ -136,6 +88,30 @@ type sendMsgUpdateParamsParams = {
   memo?: string
 };
 
+type sendMsgDeleteRegionResponseParams = {
+  value: MsgDeleteRegionResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetSuperiorRequestParams = {
+  value: QueryGetSuperiorRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendRegionParams = {
+  value: Region,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendGenesisStateParams = {
+  value: GenesisState,
+  fee?: StdFee,
+  memo?: string
+};
+
 type sendQueryGetRegionRequestParams = {
   value: QueryGetRegionRequest,
   fee?: StdFee,
@@ -154,14 +130,38 @@ type sendQueryGetSuperiorResponseParams = {
   memo?: string
 };
 
-type sendMsgUpdateParamsResponseParams = {
-  value: MsgUpdateParamsResponse,
+type sendSuperiorParams = {
+  value: Superior,
   fee?: StdFee,
   memo?: string
 };
 
-type sendMsgUpdateSuperiorParams = {
-  value: MsgUpdateSuperior,
+type sendQueryGetRegionResponseParams = {
+  value: QueryGetRegionResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryAllRegionResponseParams = {
+  value: QueryAllRegionResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgCreateRegionResponseParams = {
+  value: MsgCreateRegionResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateRegionResponseParams = {
+  value: MsgUpdateRegionResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgCreateSuperiorResponseParams = {
+  value: MsgCreateSuperiorResponse,
   fee?: StdFee,
   memo?: string
 };
@@ -172,67 +172,35 @@ type sendMsgUpdateSuperiorResponseParams = {
   memo?: string
 };
 
-type sendQueryGetSuperiorRequestParams = {
-  value: QueryGetSuperiorRequest,
+type sendMsgDeleteRegionParams = {
+  value: MsgDeleteRegion,
   fee?: StdFee,
   memo?: string
 };
 
 
-type msgDeleteRegionParams = {
-  value: MsgDeleteRegion,
-};
-
-type regionParams = {
-  value: Region,
-};
-
-type msgDeleteRegionResponseParams = {
-  value: MsgDeleteRegionResponse,
-};
-
-type superiorParams = {
-  value: Superior,
+type queryParamsRequestParams = {
+  value: QueryParamsRequest,
 };
 
 type msgUpdateRegionParams = {
   value: MsgUpdateRegion,
 };
 
-type queryGetRegionResponseParams = {
-  value: QueryGetRegionResponse,
+type msgCreateSuperiorParams = {
+  value: MsgCreateSuperior,
 };
 
-type queryAllRegionResponseParams = {
-  value: QueryAllRegionResponse,
+type msgUpdateSuperiorParams = {
+  value: MsgUpdateSuperior,
 };
 
 type msgCreateRegionParams = {
   value: MsgCreateRegion,
 };
 
-type msgCreateSuperiorParams = {
-  value: MsgCreateSuperior,
-};
-
-type genesisStateParams = {
-  value: GenesisState,
-};
-
-type msgCreateRegionResponseParams = {
-  value: MsgCreateRegionResponse,
-};
-
-type msgUpdateRegionResponseParams = {
-  value: MsgUpdateRegionResponse,
-};
-
-type msgCreateSuperiorResponseParams = {
-  value: MsgCreateSuperiorResponse,
-};
-
-type queryParamsRequestParams = {
-  value: QueryParamsRequest,
+type msgUpdateParamsResponseParams = {
+  value: MsgUpdateParamsResponse,
 };
 
 type paramsParams = {
@@ -247,6 +215,22 @@ type msgUpdateParamsParams = {
   value: MsgUpdateParams,
 };
 
+type msgDeleteRegionResponseParams = {
+  value: MsgDeleteRegionResponse,
+};
+
+type queryGetSuperiorRequestParams = {
+  value: QueryGetSuperiorRequest,
+};
+
+type regionParams = {
+  value: Region,
+};
+
+type genesisStateParams = {
+  value: GenesisState,
+};
+
 type queryGetRegionRequestParams = {
   value: QueryGetRegionRequest,
 };
@@ -259,20 +243,36 @@ type queryGetSuperiorResponseParams = {
   value: QueryGetSuperiorResponse,
 };
 
-type msgUpdateParamsResponseParams = {
-  value: MsgUpdateParamsResponse,
+type superiorParams = {
+  value: Superior,
 };
 
-type msgUpdateSuperiorParams = {
-  value: MsgUpdateSuperior,
+type queryGetRegionResponseParams = {
+  value: QueryGetRegionResponse,
+};
+
+type queryAllRegionResponseParams = {
+  value: QueryAllRegionResponse,
+};
+
+type msgCreateRegionResponseParams = {
+  value: MsgCreateRegionResponse,
+};
+
+type msgUpdateRegionResponseParams = {
+  value: MsgUpdateRegionResponse,
+};
+
+type msgCreateSuperiorResponseParams = {
+  value: MsgCreateSuperiorResponse,
 };
 
 type msgUpdateSuperiorResponseParams = {
   value: MsgUpdateSuperiorResponse,
 };
 
-type queryGetSuperiorRequestParams = {
-  value: QueryGetSuperiorRequest,
+type msgDeleteRegionParams = {
+  value: MsgDeleteRegion,
 };
 
 
@@ -305,59 +305,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 
   return {
 		
-		async sendMsgDeleteRegion({ value, fee, memo }: sendMsgDeleteRegionParams): Promise<DeliverTxResponse> {
+		async sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgDeleteRegion: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryParamsRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgDeleteRegion({ value: MsgDeleteRegion.fromPartial(value) })
+				let msg = this.queryParamsRequest({ value: QueryParamsRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgDeleteRegion: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendRegion({ value, fee, memo }: sendRegionParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendRegion: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.region({ value: Region.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendRegion: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgDeleteRegionResponse({ value, fee, memo }: sendMsgDeleteRegionResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgDeleteRegionResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgDeleteRegionResponse({ value: MsgDeleteRegionResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgDeleteRegionResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendSuperior({ value, fee, memo }: sendSuperiorParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendSuperior: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.superior({ value: Superior.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendSuperior: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryParamsRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -375,31 +333,31 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendQueryGetRegionResponse({ value, fee, memo }: sendQueryGetRegionResponseParams): Promise<DeliverTxResponse> {
+		async sendMsgCreateSuperior({ value, fee, memo }: sendMsgCreateSuperiorParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryGetRegionResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgCreateSuperior: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetRegionResponse({ value: QueryGetRegionResponse.fromPartial(value) })
+				let msg = this.msgCreateSuperior({ value: MsgCreateSuperior.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetRegionResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgCreateSuperior: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendQueryAllRegionResponse({ value, fee, memo }: sendQueryAllRegionResponseParams): Promise<DeliverTxResponse> {
+		async sendMsgUpdateSuperior({ value, fee, memo }: sendMsgUpdateSuperiorParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryAllRegionResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgUpdateSuperior: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryAllRegionResponse({ value: QueryAllRegionResponse.fromPartial(value) })
+				let msg = this.msgUpdateSuperior({ value: MsgUpdateSuperior.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryAllRegionResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgUpdateSuperior: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -417,87 +375,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendMsgCreateSuperior({ value, fee, memo }: sendMsgCreateSuperiorParams): Promise<DeliverTxResponse> {
+		async sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgCreateSuperior: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgCreateSuperior({ value: MsgCreateSuperior.fromPartial(value) })
+				let msg = this.msgUpdateParamsResponse({ value: MsgUpdateParamsResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgCreateSuperior: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgCreateRegionResponse({ value, fee, memo }: sendMsgCreateRegionResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgCreateRegionResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgCreateRegionResponse({ value: MsgCreateRegionResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgCreateRegionResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUpdateRegionResponse({ value, fee, memo }: sendMsgUpdateRegionResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateRegionResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateRegionResponse({ value: MsgUpdateRegionResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateRegionResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgCreateSuperiorResponse({ value, fee, memo }: sendMsgCreateSuperiorResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgCreateSuperiorResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgCreateSuperiorResponse({ value: MsgCreateSuperiorResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgCreateSuperiorResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryParamsRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryParamsRequest({ value: QueryParamsRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryParamsRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgUpdateParamsResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -543,6 +431,62 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		async sendMsgDeleteRegionResponse({ value, fee, memo }: sendMsgDeleteRegionResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgDeleteRegionResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgDeleteRegionResponse({ value: MsgDeleteRegionResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgDeleteRegionResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetSuperiorRequest({ value, fee, memo }: sendQueryGetSuperiorRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetSuperiorRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetSuperiorRequest({ value: QueryGetSuperiorRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetSuperiorRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendRegion({ value, fee, memo }: sendRegionParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendRegion: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.region({ value: Region.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendRegion: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
 		async sendQueryGetRegionRequest({ value, fee, memo }: sendQueryGetRegionRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendQueryGetRegionRequest: Unable to sign Tx. Signer is not present.')
@@ -585,31 +529,87 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse> {
+		async sendSuperior({ value, fee, memo }: sendSuperiorParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendSuperior: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateParamsResponse({ value: MsgUpdateParamsResponse.fromPartial(value) })
+				let msg = this.superior({ value: Superior.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateParamsResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendSuperior: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendMsgUpdateSuperior({ value, fee, memo }: sendMsgUpdateSuperiorParams): Promise<DeliverTxResponse> {
+		async sendQueryGetRegionResponse({ value, fee, memo }: sendQueryGetRegionResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateSuperior: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryGetRegionResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateSuperior({ value: MsgUpdateSuperior.fromPartial(value) })
+				let msg = this.queryGetRegionResponse({ value: QueryGetRegionResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateSuperior: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryGetRegionResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryAllRegionResponse({ value, fee, memo }: sendQueryAllRegionResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryAllRegionResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryAllRegionResponse({ value: QueryAllRegionResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryAllRegionResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgCreateRegionResponse({ value, fee, memo }: sendMsgCreateRegionResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateRegionResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgCreateRegionResponse({ value: MsgCreateRegionResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgCreateRegionResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateRegionResponse({ value, fee, memo }: sendMsgUpdateRegionResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateRegionResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateRegionResponse({ value: MsgUpdateRegionResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateRegionResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgCreateSuperiorResponse({ value, fee, memo }: sendMsgCreateSuperiorResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateSuperiorResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgCreateSuperiorResponse({ value: MsgCreateSuperiorResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgCreateSuperiorResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -627,50 +627,26 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendQueryGetSuperiorRequest({ value, fee, memo }: sendQueryGetSuperiorRequestParams): Promise<DeliverTxResponse> {
+		async sendMsgDeleteRegion({ value, fee, memo }: sendMsgDeleteRegionParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryGetSuperiorRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgDeleteRegion: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetSuperiorRequest({ value: QueryGetSuperiorRequest.fromPartial(value) })
+				let msg = this.msgDeleteRegion({ value: MsgDeleteRegion.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetSuperiorRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgDeleteRegion: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
 		
-		msgDeleteRegion({ value }: msgDeleteRegionParams): EncodeObject {
+		queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/enreach.registry.MsgDeleteRegion", value: MsgDeleteRegion.fromPartial( value ) }  
+				return { typeUrl: "/enreach.registry.QueryParamsRequest", value: QueryParamsRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgDeleteRegion: Could not create message: ' + e.message)
-			}
-		},
-		
-		region({ value }: regionParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.registry.Region", value: Region.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:Region: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgDeleteRegionResponse({ value }: msgDeleteRegionResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.registry.MsgDeleteRegionResponse", value: MsgDeleteRegionResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgDeleteRegionResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		superior({ value }: superiorParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.registry.Superior", value: Superior.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:Superior: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryParamsRequest: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -682,19 +658,19 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		queryGetRegionResponse({ value }: queryGetRegionResponseParams): EncodeObject {
+		msgCreateSuperior({ value }: msgCreateSuperiorParams): EncodeObject {
 			try {
-				return { typeUrl: "/enreach.registry.QueryGetRegionResponse", value: QueryGetRegionResponse.fromPartial( value ) }  
+				return { typeUrl: "/enreach.registry.MsgCreateSuperior", value: MsgCreateSuperior.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryGetRegionResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgCreateSuperior: Could not create message: ' + e.message)
 			}
 		},
 		
-		queryAllRegionResponse({ value }: queryAllRegionResponseParams): EncodeObject {
+		msgUpdateSuperior({ value }: msgUpdateSuperiorParams): EncodeObject {
 			try {
-				return { typeUrl: "/enreach.registry.QueryAllRegionResponse", value: QueryAllRegionResponse.fromPartial( value ) }  
+				return { typeUrl: "/enreach.registry.MsgUpdateSuperior", value: MsgUpdateSuperior.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryAllRegionResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgUpdateSuperior: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -706,51 +682,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		msgCreateSuperior({ value }: msgCreateSuperiorParams): EncodeObject {
+		msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/enreach.registry.MsgCreateSuperior", value: MsgCreateSuperior.fromPartial( value ) }  
+				return { typeUrl: "/enreach.registry.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgCreateSuperior: Could not create message: ' + e.message)
-			}
-		},
-		
-		genesisState({ value }: genesisStateParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.registry.GenesisState", value: GenesisState.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgCreateRegionResponse({ value }: msgCreateRegionResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.registry.MsgCreateRegionResponse", value: MsgCreateRegionResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgCreateRegionResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateRegionResponse({ value }: msgUpdateRegionResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.registry.MsgUpdateRegionResponse", value: MsgUpdateRegionResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateRegionResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgCreateSuperiorResponse({ value }: msgCreateSuperiorResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.registry.MsgCreateSuperiorResponse", value: MsgCreateSuperiorResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgCreateSuperiorResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.registry.QueryParamsRequest", value: QueryParamsRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryParamsRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -778,6 +714,38 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		msgDeleteRegionResponse({ value }: msgDeleteRegionResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.registry.MsgDeleteRegionResponse", value: MsgDeleteRegionResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgDeleteRegionResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryGetSuperiorRequest({ value }: queryGetSuperiorRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.registry.QueryGetSuperiorRequest", value: QueryGetSuperiorRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetSuperiorRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		region({ value }: regionParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.registry.Region", value: Region.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:Region: Could not create message: ' + e.message)
+			}
+		},
+		
+		genesisState({ value }: genesisStateParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.registry.GenesisState", value: GenesisState.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
+			}
+		},
+		
 		queryGetRegionRequest({ value }: queryGetRegionRequestParams): EncodeObject {
 			try {
 				return { typeUrl: "/enreach.registry.QueryGetRegionRequest", value: QueryGetRegionRequest.fromPartial( value ) }  
@@ -802,19 +770,51 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject {
+		superior({ value }: superiorParams): EncodeObject {
 			try {
-				return { typeUrl: "/enreach.registry.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial( value ) }  
+				return { typeUrl: "/enreach.registry.Superior", value: Superior.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:Superior: Could not create message: ' + e.message)
 			}
 		},
 		
-		msgUpdateSuperior({ value }: msgUpdateSuperiorParams): EncodeObject {
+		queryGetRegionResponse({ value }: queryGetRegionResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/enreach.registry.MsgUpdateSuperior", value: MsgUpdateSuperior.fromPartial( value ) }  
+				return { typeUrl: "/enreach.registry.QueryGetRegionResponse", value: QueryGetRegionResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateSuperior: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryGetRegionResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryAllRegionResponse({ value }: queryAllRegionResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.registry.QueryAllRegionResponse", value: QueryAllRegionResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryAllRegionResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgCreateRegionResponse({ value }: msgCreateRegionResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.registry.MsgCreateRegionResponse", value: MsgCreateRegionResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgCreateRegionResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateRegionResponse({ value }: msgUpdateRegionResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.registry.MsgUpdateRegionResponse", value: MsgUpdateRegionResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateRegionResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgCreateSuperiorResponse({ value }: msgCreateSuperiorResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.registry.MsgCreateSuperiorResponse", value: MsgCreateSuperiorResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgCreateSuperiorResponse: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -826,11 +826,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		queryGetSuperiorRequest({ value }: queryGetSuperiorRequestParams): EncodeObject {
+		msgDeleteRegion({ value }: msgDeleteRegionParams): EncodeObject {
 			try {
-				return { typeUrl: "/enreach.registry.QueryGetSuperiorRequest", value: QueryGetSuperiorRequest.fromPartial( value ) }  
+				return { typeUrl: "/enreach.registry.MsgDeleteRegion", value: MsgDeleteRegion.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryGetSuperiorRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgDeleteRegion: Could not create message: ' + e.message)
 			}
 		},
 		

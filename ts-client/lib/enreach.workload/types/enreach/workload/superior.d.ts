@@ -1,18 +1,20 @@
 import _m0 from "protobufjs/minimal";
-import { Params } from "./params";
 export declare const protobufPackage = "enreach.workload";
-/** GenesisState defines the workload module's genesis state. */
-export interface GenesisState {
-    /** params defines all the parameters of the module. */
-    params: Params | undefined;
+export interface Superior {
+    account: string;
+    creator: string;
+    createAt: number;
+    updator: string;
+    updateAt: number;
+    signer: string;
 }
-export declare const GenesisState: {
-    encode(message: GenesisState, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): GenesisState;
-    fromJSON(object: any): GenesisState;
-    toJSON(message: GenesisState): unknown;
-    create<I extends Exact<DeepPartial<GenesisState>, I>>(base?: I): GenesisState;
-    fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState;
+export declare const Superior: {
+    encode(message: Superior, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): Superior;
+    fromJSON(object: any): Superior;
+    toJSON(message: Superior): unknown;
+    create<I extends Exact<DeepPartial<Superior>, I>>(base?: I): Superior;
+    fromPartial<I extends Exact<DeepPartial<Superior>, I>>(object: I): Superior;
 };
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
