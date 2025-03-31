@@ -11,18 +11,43 @@ accounts:
   - 10000token
   - 100000000stake
   mnemonic: fitness marine video shine dose garlic senior throw room metal seek address stable abstract salmon traffic multiply erode category brass maid joy usual round
-- name: alice
+- name: operatorA
   coins:
   - 20000token
   - 200000000stake
   mnemonic: frame blame asset doctor below parrot cross latin camp cruel trumpet fix income impose dose culture amused health sniff poem risk ask twenty zone
-- name: bob
+- name: operatorB
+  coins:
+  - 20000token
+  - 200000000stake
+  mnemonic: gather dawn ethics hurdle employ business dad divorce question cable spoil kiss ritual adapt punch divorce invest bench game believe couple useful truly step
+- name: operatorC
+  coins:
+  - 20000token
+  - 200000000stake
+  mnemonic: crisp flame remain custom cool stable host detail uncle immense tennis shoot eight hello illegal message pause property whip elevator lock beef raccoon drink
+- name: managerA
   coins:
   - 10000token
   - 100000000stake
   mnemonic: swallow asthma famous gasp wear velvet actor addict option poem vacuum box path creek slender lamp such inform cable interest quit exchange exclude hurt
+- name: managerB
+  coins:
+  - 10000token
+  - 100000000stake
+  mnemonic: arch coin juice arrest skill wear engine hobby sniff enforce gloom dance wood volume program bridge slot juice typical chat basic better limit easy
+- name: managerC
+  coins:
+  - 10000token
+  - 100000000stake
+  mnemonic: grant about cake lady sing work just breeze outdoor candy lazy envelope love penalty ready remember note flip assist immune echo pill mouse core
+- name: validator
+  coins:
+  - 10000token
+  - 100000000stake
+  mnemonic: favorite useful have until tattoo buyer else canoe fiber ride rival pear miss scissors almost pill leisure melody mask vacant license target shuffle mass
 faucet:
-  name: bob
+  name: validator
   coins:
   - 5token
   - 100000stake
@@ -32,7 +57,7 @@ client:
   openapi:
     path: docs/static/openapi.yml
 validators:
-- name: alice
+- name: validator
   bonded: 100000000stake
   app:
       pruning: "nothing"

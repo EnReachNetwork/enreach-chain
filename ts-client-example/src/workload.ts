@@ -2,7 +2,7 @@ import { DirectSecp256k1HdWallet } from '@cosmjs/proto-signing'
 import { txClient } from 'enreach-client-ts/lib/enreach.workload';
 import { queryClient } from "enreach-client-ts/lib/enreach.workload";
 import { CHAIN_API_URL, CHAIN_PREFIX, CHAIN_RPC_URL } from './consts';
-import { MsgSubmitWorkreports, QueryAllWorkloadResponse, QueryGetCurrentEpochResponse } from 'enreach-client-ts/lib/enreach.workload/module';
+import { MsgSubmitWorkreports, QueryGetAllEpochProcessDataResponse, QueryGetAllManagerWorkloadByEpochResponse, QueryGetAllNodeWorkloadByEpochResponse, QueryGetAllWorkreportByEpochResponse, QueryGetCurrentEpochResponse } from 'enreach-client-ts/lib/enreach.workload/module';
 
 export default class WorkloadApi {
     private mnemonic: string;
@@ -32,21 +32,33 @@ export default class WorkloadApi {
         }
     }
 
-    async queryAllWorkreporthByEpoch(epoch: number): Promise<QueryAllWorkloadResponse> {
+    async queryAllWorkreporthByEpoch(epoch: number): Promise<QueryGetAllWorkreportByEpochResponse> {
         let qClient = queryClient({ addr: CHAIN_API_URL });
-        const regions = await qClient.queryGetAllWorkreportByEpoch(epoch.toString());
+        const regions = await qClient.queryAllWorkreportByEpoch(epoch.toString());
         return regions.data;
     }
 
-    async queryAllWorkload(): Promise<QueryAllWorkloadResponse> {
+    async queryAllEpochProcessData(): Promise<QueryGetAllEpochProcessDataResponse> {
         let qClient = queryClient({ addr: CHAIN_API_URL });
-        const regions = await qClient.queryWorkloadAll();
+        const regions = await qClient.queryAllEpochProcessData();
+        return regions.data;
+    }
+
+    async queryAllNodeWorkloadByEpoch(epoch: number): Promise<QueryGetAllNodeWorkloadByEpochResponse> {
+        let qClient = queryClient({ addr: CHAIN_API_URL });
+        const regions = await qClient.queryAllNodeWorkloadByEpoch(epoch.toString());
+        return regions.data;
+    }
+
+    async queryAllManagerWorkloadByEpoch(epoch: number): Promise<QueryGetAllManagerWorkloadByEpochResponse> {
+        let qClient = queryClient({ addr: CHAIN_API_URL });
+        const regions = await qClient.queryAllManagerWorkloadByEpoch(epoch.toString());
         return regions.data;
     }
 
     async getCurrentEpoch(): Promise<QueryGetCurrentEpochResponse> {
         let qClient = queryClient({ addr: CHAIN_API_URL });
-        const resp = await qClient.queryGetCurrentEpoch();
+        const resp = await qClient.queryCurrentEpoch();
         return resp.data;
     }
 }
