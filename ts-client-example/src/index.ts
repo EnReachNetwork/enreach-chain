@@ -218,10 +218,6 @@ async function testWorkload() {
   console.log("===Query all data");
   const allWorkreports_A = await workload_A_Api.queryAllWorkreporthByEpoch(previsouEpoch);
   console.log("Workreports:", JSON.stringify(allWorkreports_A, (key, value) => typeof value === 'bigint' ? value.toString() : value, 2));
-  const allWorkreports_B = await workload_B_Api.queryAllWorkreporthByEpoch(previsouEpoch);
-  console.log("Workreports:", JSON.stringify(allWorkreports_B, (key, value) => typeof value === 'bigint' ? value.toString() : value, 2));
-  const allWorkreports_C = await workload_A_Api.queryAllWorkreporthByEpoch(previsouEpoch);
-  console.log("Workreports:", JSON.stringify(allWorkreports_C, (key, value) => typeof value === 'bigint' ? value.toString() : value, 2));
 } 
 
 async function listenEvents() {
