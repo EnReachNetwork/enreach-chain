@@ -89,6 +89,41 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Use:       "show-superior",
 					Short:     "show superior",
 				},
+				{
+					RpcMethod:      "ReputationPointChangeData",
+					Use:            "get-reputation-point-change-data [era] [nodeID]",
+					Short:          "Get reputation point change data by era and nodeID",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "era"}, {ProtoField: "nodeID"}},
+				},
+				{
+					RpcMethod:      "AllReputationPointChangeDataByEra",
+					Use:            "get-all-reputation-point-change-data-by-era [era]",
+					Short:          "Get all reputation point change data by era",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "era"}},
+				},
+				{
+					RpcMethod:      "ReputationPoint",
+					Use:            "get-reputation-point [era] [nodeID]",
+					Short:          "Get reputation point by era and nodeID",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "era"}, {ProtoField: "nodeID"}},
+				},
+				{
+					RpcMethod:      "AllReputationPointByEra",
+					Use:            "get-all-reputation-point-by-era [era]",
+					Short:          "Get all reputation point by era",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "era"}},
+				},
+				{
+					RpcMethod:      "EraProcessData",
+					Use:            "get-era-process-data [era]",
+					Short:          "Get era process data",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "era"}},
+				},
+				{
+					RpcMethod: "AllEraProcessData",
+					Use:       "get-all-era-process-data",
+					Short:     "Get all era process data",
+				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},
@@ -117,6 +152,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Use:            "update-history-epoch-data-depth [depth]",
 					Short:          "Update history epoch data depth",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "depth"}},
+				},
+				{
+					RpcMethod:      "SubmitReputationPointChangeData",
+					Use:            "submit-reputation-point-change-data [managerAccount] [era] [nodePoints]",
+					Short:          "Submit reputation point change data",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "managerAccount"}, {ProtoField: "era"}, {ProtoField: "nodePoints"}},
 				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},

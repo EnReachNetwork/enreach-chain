@@ -34,15 +34,12 @@ func (k msgServer) SubmitWorkreports(goCtx context.Context, msg *types.MsgSubmit
 		return nil, errorsmod.Wrapf(types.ErrManagerBlocked, "Manager '%s' is blocked", msg.ManagerAccount)
 	}
 
-	// Check epoch validity
-	currentEpochResp, err := k.CurrentEpoch(ctx, &types.QueryGetCurrentEpochRequest{})
-	if err != nil {
-		return nil, errorsmod.Wrapf(sdkerrors.ErrLogic, "Failed to get current epoch: %s", err.Error())
-	}
-
 	// The submitted epoch must be the previous epoch, since the current epoch is not yet finalized.
-	currentEpoch := currentEpochResp.CurrentEpoch
+	currentEpoch := types.GetCurrentEpoch(goCtx)
 	previousEpoch := currentEpoch - 1
+	if currentEpoch == 1 {
+		return nil, errorsmod.Wrap(types.ErrInvalidEpoch, "Epoch_1 is not allowed to submit workreports")
+	}
 	if previousEpoch != msg.Epoch {
 		return nil, errorsmod.Wrapf(types.ErrInvalidEpoch, "Epoch must be the previous epoch (%d)", previousEpoch)
 	}

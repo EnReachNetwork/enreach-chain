@@ -1314,6 +1314,856 @@ func (m *QueryGetSuperiorResponse) GetSuperior() Superior {
 	return Superior{}
 }
 
+type QueryGetEraLengthRequest struct {
+}
+
+func (m *QueryGetEraLengthRequest) Reset()         { *m = QueryGetEraLengthRequest{} }
+func (m *QueryGetEraLengthRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetEraLengthRequest) ProtoMessage()    {}
+func (*QueryGetEraLengthRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{28}
+}
+func (m *QueryGetEraLengthRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetEraLengthRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetEraLengthRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetEraLengthRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetEraLengthRequest.Merge(m, src)
+}
+func (m *QueryGetEraLengthRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetEraLengthRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetEraLengthRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetEraLengthRequest proto.InternalMessageInfo
+
+type QueryGetEraLengthResponse struct {
+	EraLength uint64 `protobuf:"varint,1,opt,name=eraLength,proto3" json:"eraLength,omitempty"`
+}
+
+func (m *QueryGetEraLengthResponse) Reset()         { *m = QueryGetEraLengthResponse{} }
+func (m *QueryGetEraLengthResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetEraLengthResponse) ProtoMessage()    {}
+func (*QueryGetEraLengthResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{29}
+}
+func (m *QueryGetEraLengthResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetEraLengthResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetEraLengthResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetEraLengthResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetEraLengthResponse.Merge(m, src)
+}
+func (m *QueryGetEraLengthResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetEraLengthResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetEraLengthResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetEraLengthResponse proto.InternalMessageInfo
+
+func (m *QueryGetEraLengthResponse) GetEraLength() uint64 {
+	if m != nil {
+		return m.EraLength
+	}
+	return 0
+}
+
+type QueryGetCurrentEraRequest struct {
+}
+
+func (m *QueryGetCurrentEraRequest) Reset()         { *m = QueryGetCurrentEraRequest{} }
+func (m *QueryGetCurrentEraRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetCurrentEraRequest) ProtoMessage()    {}
+func (*QueryGetCurrentEraRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{30}
+}
+func (m *QueryGetCurrentEraRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetCurrentEraRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetCurrentEraRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetCurrentEraRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetCurrentEraRequest.Merge(m, src)
+}
+func (m *QueryGetCurrentEraRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetCurrentEraRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetCurrentEraRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetCurrentEraRequest proto.InternalMessageInfo
+
+type QueryGetCurrentEraResponse struct {
+	CurrentEra uint64 `protobuf:"varint,1,opt,name=currentEra,proto3" json:"currentEra,omitempty"`
+}
+
+func (m *QueryGetCurrentEraResponse) Reset()         { *m = QueryGetCurrentEraResponse{} }
+func (m *QueryGetCurrentEraResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetCurrentEraResponse) ProtoMessage()    {}
+func (*QueryGetCurrentEraResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{31}
+}
+func (m *QueryGetCurrentEraResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetCurrentEraResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetCurrentEraResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetCurrentEraResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetCurrentEraResponse.Merge(m, src)
+}
+func (m *QueryGetCurrentEraResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetCurrentEraResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetCurrentEraResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetCurrentEraResponse proto.InternalMessageInfo
+
+func (m *QueryGetCurrentEraResponse) GetCurrentEra() uint64 {
+	if m != nil {
+		return m.CurrentEra
+	}
+	return 0
+}
+
+type QueryGetReputationPointChangeDataRequest struct {
+	Era    uint64 `protobuf:"varint,1,opt,name=era,proto3" json:"era,omitempty"`
+	NodeID string `protobuf:"bytes,2,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
+}
+
+func (m *QueryGetReputationPointChangeDataRequest) Reset() {
+	*m = QueryGetReputationPointChangeDataRequest{}
+}
+func (m *QueryGetReputationPointChangeDataRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetReputationPointChangeDataRequest) ProtoMessage()    {}
+func (*QueryGetReputationPointChangeDataRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{32}
+}
+func (m *QueryGetReputationPointChangeDataRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetReputationPointChangeDataRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetReputationPointChangeDataRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetReputationPointChangeDataRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetReputationPointChangeDataRequest.Merge(m, src)
+}
+func (m *QueryGetReputationPointChangeDataRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetReputationPointChangeDataRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetReputationPointChangeDataRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetReputationPointChangeDataRequest proto.InternalMessageInfo
+
+func (m *QueryGetReputationPointChangeDataRequest) GetEra() uint64 {
+	if m != nil {
+		return m.Era
+	}
+	return 0
+}
+
+func (m *QueryGetReputationPointChangeDataRequest) GetNodeID() string {
+	if m != nil {
+		return m.NodeID
+	}
+	return ""
+}
+
+type QueryGetReputationPointChangeDataResponse struct {
+	ReputationPointChangeData ReputationPointChangeData `protobuf:"bytes,1,opt,name=ReputationPointChangeData,proto3" json:"ReputationPointChangeData"`
+}
+
+func (m *QueryGetReputationPointChangeDataResponse) Reset() {
+	*m = QueryGetReputationPointChangeDataResponse{}
+}
+func (m *QueryGetReputationPointChangeDataResponse) String() string {
+	return proto.CompactTextString(m)
+}
+func (*QueryGetReputationPointChangeDataResponse) ProtoMessage() {}
+func (*QueryGetReputationPointChangeDataResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{33}
+}
+func (m *QueryGetReputationPointChangeDataResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetReputationPointChangeDataResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetReputationPointChangeDataResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetReputationPointChangeDataResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetReputationPointChangeDataResponse.Merge(m, src)
+}
+func (m *QueryGetReputationPointChangeDataResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetReputationPointChangeDataResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetReputationPointChangeDataResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetReputationPointChangeDataResponse proto.InternalMessageInfo
+
+func (m *QueryGetReputationPointChangeDataResponse) GetReputationPointChangeData() ReputationPointChangeData {
+	if m != nil {
+		return m.ReputationPointChangeData
+	}
+	return ReputationPointChangeData{}
+}
+
+type QueryGetAllReputationPointChangeDataByEraRequest struct {
+	Era        uint64             `protobuf:"varint,1,opt,name=era,proto3" json:"era,omitempty"`
+	Pagination *query.PageRequest `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryGetAllReputationPointChangeDataByEraRequest) Reset() {
+	*m = QueryGetAllReputationPointChangeDataByEraRequest{}
+}
+func (m *QueryGetAllReputationPointChangeDataByEraRequest) String() string {
+	return proto.CompactTextString(m)
+}
+func (*QueryGetAllReputationPointChangeDataByEraRequest) ProtoMessage() {}
+func (*QueryGetAllReputationPointChangeDataByEraRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{34}
+}
+func (m *QueryGetAllReputationPointChangeDataByEraRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetAllReputationPointChangeDataByEraRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetAllReputationPointChangeDataByEraRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetAllReputationPointChangeDataByEraRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetAllReputationPointChangeDataByEraRequest.Merge(m, src)
+}
+func (m *QueryGetAllReputationPointChangeDataByEraRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetAllReputationPointChangeDataByEraRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetAllReputationPointChangeDataByEraRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetAllReputationPointChangeDataByEraRequest proto.InternalMessageInfo
+
+func (m *QueryGetAllReputationPointChangeDataByEraRequest) GetEra() uint64 {
+	if m != nil {
+		return m.Era
+	}
+	return 0
+}
+
+func (m *QueryGetAllReputationPointChangeDataByEraRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryGetAllReputationPointChangeDataByEraResponse struct {
+	ReputationPointChangeDatas []ReputationPointChangeData `protobuf:"bytes,1,rep,name=ReputationPointChangeDatas,proto3" json:"ReputationPointChangeDatas"`
+	Pagination                 *query.PageResponse         `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryGetAllReputationPointChangeDataByEraResponse) Reset() {
+	*m = QueryGetAllReputationPointChangeDataByEraResponse{}
+}
+func (m *QueryGetAllReputationPointChangeDataByEraResponse) String() string {
+	return proto.CompactTextString(m)
+}
+func (*QueryGetAllReputationPointChangeDataByEraResponse) ProtoMessage() {}
+func (*QueryGetAllReputationPointChangeDataByEraResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{35}
+}
+func (m *QueryGetAllReputationPointChangeDataByEraResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetAllReputationPointChangeDataByEraResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetAllReputationPointChangeDataByEraResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetAllReputationPointChangeDataByEraResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetAllReputationPointChangeDataByEraResponse.Merge(m, src)
+}
+func (m *QueryGetAllReputationPointChangeDataByEraResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetAllReputationPointChangeDataByEraResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetAllReputationPointChangeDataByEraResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetAllReputationPointChangeDataByEraResponse proto.InternalMessageInfo
+
+func (m *QueryGetAllReputationPointChangeDataByEraResponse) GetReputationPointChangeDatas() []ReputationPointChangeData {
+	if m != nil {
+		return m.ReputationPointChangeDatas
+	}
+	return nil
+}
+
+func (m *QueryGetAllReputationPointChangeDataByEraResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryGetReputationPointRequest struct {
+	Era    uint64 `protobuf:"varint,1,opt,name=era,proto3" json:"era,omitempty"`
+	NodeID string `protobuf:"bytes,2,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
+}
+
+func (m *QueryGetReputationPointRequest) Reset()         { *m = QueryGetReputationPointRequest{} }
+func (m *QueryGetReputationPointRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetReputationPointRequest) ProtoMessage()    {}
+func (*QueryGetReputationPointRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{36}
+}
+func (m *QueryGetReputationPointRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetReputationPointRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetReputationPointRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetReputationPointRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetReputationPointRequest.Merge(m, src)
+}
+func (m *QueryGetReputationPointRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetReputationPointRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetReputationPointRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetReputationPointRequest proto.InternalMessageInfo
+
+func (m *QueryGetReputationPointRequest) GetEra() uint64 {
+	if m != nil {
+		return m.Era
+	}
+	return 0
+}
+
+func (m *QueryGetReputationPointRequest) GetNodeID() string {
+	if m != nil {
+		return m.NodeID
+	}
+	return ""
+}
+
+type QueryGetReputationPointResponse struct {
+	ReputationPoint ReputationPoint `protobuf:"bytes,1,opt,name=ReputationPoint,proto3" json:"ReputationPoint"`
+}
+
+func (m *QueryGetReputationPointResponse) Reset()         { *m = QueryGetReputationPointResponse{} }
+func (m *QueryGetReputationPointResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetReputationPointResponse) ProtoMessage()    {}
+func (*QueryGetReputationPointResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{37}
+}
+func (m *QueryGetReputationPointResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetReputationPointResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetReputationPointResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetReputationPointResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetReputationPointResponse.Merge(m, src)
+}
+func (m *QueryGetReputationPointResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetReputationPointResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetReputationPointResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetReputationPointResponse proto.InternalMessageInfo
+
+func (m *QueryGetReputationPointResponse) GetReputationPoint() ReputationPoint {
+	if m != nil {
+		return m.ReputationPoint
+	}
+	return ReputationPoint{}
+}
+
+type QueryGetLatestReputationPointRequest struct {
+	NodeID string `protobuf:"bytes,1,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
+}
+
+func (m *QueryGetLatestReputationPointRequest) Reset()         { *m = QueryGetLatestReputationPointRequest{} }
+func (m *QueryGetLatestReputationPointRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetLatestReputationPointRequest) ProtoMessage()    {}
+func (*QueryGetLatestReputationPointRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{38}
+}
+func (m *QueryGetLatestReputationPointRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetLatestReputationPointRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetLatestReputationPointRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetLatestReputationPointRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetLatestReputationPointRequest.Merge(m, src)
+}
+func (m *QueryGetLatestReputationPointRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetLatestReputationPointRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetLatestReputationPointRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetLatestReputationPointRequest proto.InternalMessageInfo
+
+func (m *QueryGetLatestReputationPointRequest) GetNodeID() string {
+	if m != nil {
+		return m.NodeID
+	}
+	return ""
+}
+
+type QueryGetLatestReputationPointResponse struct {
+	ReputationPoint ReputationPoint `protobuf:"bytes,1,opt,name=ReputationPoint,proto3" json:"ReputationPoint"`
+}
+
+func (m *QueryGetLatestReputationPointResponse) Reset()         { *m = QueryGetLatestReputationPointResponse{} }
+func (m *QueryGetLatestReputationPointResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetLatestReputationPointResponse) ProtoMessage()    {}
+func (*QueryGetLatestReputationPointResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{39}
+}
+func (m *QueryGetLatestReputationPointResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetLatestReputationPointResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetLatestReputationPointResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetLatestReputationPointResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetLatestReputationPointResponse.Merge(m, src)
+}
+func (m *QueryGetLatestReputationPointResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetLatestReputationPointResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetLatestReputationPointResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetLatestReputationPointResponse proto.InternalMessageInfo
+
+func (m *QueryGetLatestReputationPointResponse) GetReputationPoint() ReputationPoint {
+	if m != nil {
+		return m.ReputationPoint
+	}
+	return ReputationPoint{}
+}
+
+type QueryGetAllReputationPointByEraRequest struct {
+	Era        uint64             `protobuf:"varint,1,opt,name=era,proto3" json:"era,omitempty"`
+	Pagination *query.PageRequest `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryGetAllReputationPointByEraRequest) Reset() {
+	*m = QueryGetAllReputationPointByEraRequest{}
+}
+func (m *QueryGetAllReputationPointByEraRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetAllReputationPointByEraRequest) ProtoMessage()    {}
+func (*QueryGetAllReputationPointByEraRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{40}
+}
+func (m *QueryGetAllReputationPointByEraRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetAllReputationPointByEraRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetAllReputationPointByEraRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetAllReputationPointByEraRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetAllReputationPointByEraRequest.Merge(m, src)
+}
+func (m *QueryGetAllReputationPointByEraRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetAllReputationPointByEraRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetAllReputationPointByEraRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetAllReputationPointByEraRequest proto.InternalMessageInfo
+
+func (m *QueryGetAllReputationPointByEraRequest) GetEra() uint64 {
+	if m != nil {
+		return m.Era
+	}
+	return 0
+}
+
+func (m *QueryGetAllReputationPointByEraRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryGetAllReputationPointByEraResponse struct {
+	ReputationPoints []ReputationPoint   `protobuf:"bytes,1,rep,name=ReputationPoints,proto3" json:"ReputationPoints"`
+	Pagination       *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryGetAllReputationPointByEraResponse) Reset() {
+	*m = QueryGetAllReputationPointByEraResponse{}
+}
+func (m *QueryGetAllReputationPointByEraResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetAllReputationPointByEraResponse) ProtoMessage()    {}
+func (*QueryGetAllReputationPointByEraResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{41}
+}
+func (m *QueryGetAllReputationPointByEraResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetAllReputationPointByEraResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetAllReputationPointByEraResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetAllReputationPointByEraResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetAllReputationPointByEraResponse.Merge(m, src)
+}
+func (m *QueryGetAllReputationPointByEraResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetAllReputationPointByEraResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetAllReputationPointByEraResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetAllReputationPointByEraResponse proto.InternalMessageInfo
+
+func (m *QueryGetAllReputationPointByEraResponse) GetReputationPoints() []ReputationPoint {
+	if m != nil {
+		return m.ReputationPoints
+	}
+	return nil
+}
+
+func (m *QueryGetAllReputationPointByEraResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryGetEraProcessDataRequest struct {
+	Era uint64 `protobuf:"varint,1,opt,name=era,proto3" json:"era,omitempty"`
+}
+
+func (m *QueryGetEraProcessDataRequest) Reset()         { *m = QueryGetEraProcessDataRequest{} }
+func (m *QueryGetEraProcessDataRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetEraProcessDataRequest) ProtoMessage()    {}
+func (*QueryGetEraProcessDataRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{42}
+}
+func (m *QueryGetEraProcessDataRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetEraProcessDataRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetEraProcessDataRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetEraProcessDataRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetEraProcessDataRequest.Merge(m, src)
+}
+func (m *QueryGetEraProcessDataRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetEraProcessDataRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetEraProcessDataRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetEraProcessDataRequest proto.InternalMessageInfo
+
+func (m *QueryGetEraProcessDataRequest) GetEra() uint64 {
+	if m != nil {
+		return m.Era
+	}
+	return 0
+}
+
+type QueryGetEraProcessDataResponse struct {
+	EraProcessData EraProcessData `protobuf:"bytes,1,opt,name=EraProcessData,proto3" json:"EraProcessData"`
+}
+
+func (m *QueryGetEraProcessDataResponse) Reset()         { *m = QueryGetEraProcessDataResponse{} }
+func (m *QueryGetEraProcessDataResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetEraProcessDataResponse) ProtoMessage()    {}
+func (*QueryGetEraProcessDataResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{43}
+}
+func (m *QueryGetEraProcessDataResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetEraProcessDataResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetEraProcessDataResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetEraProcessDataResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetEraProcessDataResponse.Merge(m, src)
+}
+func (m *QueryGetEraProcessDataResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetEraProcessDataResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetEraProcessDataResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetEraProcessDataResponse proto.InternalMessageInfo
+
+func (m *QueryGetEraProcessDataResponse) GetEraProcessData() EraProcessData {
+	if m != nil {
+		return m.EraProcessData
+	}
+	return EraProcessData{}
+}
+
+type QueryGetAllEraProcessDataRequest struct {
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryGetAllEraProcessDataRequest) Reset()         { *m = QueryGetAllEraProcessDataRequest{} }
+func (m *QueryGetAllEraProcessDataRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetAllEraProcessDataRequest) ProtoMessage()    {}
+func (*QueryGetAllEraProcessDataRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{44}
+}
+func (m *QueryGetAllEraProcessDataRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetAllEraProcessDataRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetAllEraProcessDataRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetAllEraProcessDataRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetAllEraProcessDataRequest.Merge(m, src)
+}
+func (m *QueryGetAllEraProcessDataRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetAllEraProcessDataRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetAllEraProcessDataRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetAllEraProcessDataRequest proto.InternalMessageInfo
+
+func (m *QueryGetAllEraProcessDataRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryGetAllEraProcessDataResponse struct {
+	EraProcessDatas []EraProcessData    `protobuf:"bytes,1,rep,name=EraProcessDatas,proto3" json:"EraProcessDatas"`
+	Pagination      *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryGetAllEraProcessDataResponse) Reset()         { *m = QueryGetAllEraProcessDataResponse{} }
+func (m *QueryGetAllEraProcessDataResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetAllEraProcessDataResponse) ProtoMessage()    {}
+func (*QueryGetAllEraProcessDataResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{45}
+}
+func (m *QueryGetAllEraProcessDataResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetAllEraProcessDataResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetAllEraProcessDataResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetAllEraProcessDataResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetAllEraProcessDataResponse.Merge(m, src)
+}
+func (m *QueryGetAllEraProcessDataResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetAllEraProcessDataResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetAllEraProcessDataResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetAllEraProcessDataResponse proto.InternalMessageInfo
+
+func (m *QueryGetAllEraProcessDataResponse) GetEraProcessDatas() []EraProcessData {
+	if m != nil {
+		return m.EraProcessDatas
+	}
+	return nil
+}
+
+func (m *QueryGetAllEraProcessDataResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*QueryParamsRequest)(nil), "enreach.workload.QueryParamsRequest")
 	proto.RegisterType((*QueryParamsResponse)(nil), "enreach.workload.QueryParamsResponse")
@@ -1343,94 +2193,148 @@ func init() {
 	proto.RegisterType((*QueryGetAllEpochProcessDataResponse)(nil), "enreach.workload.QueryGetAllEpochProcessDataResponse")
 	proto.RegisterType((*QueryGetSuperiorRequest)(nil), "enreach.workload.QueryGetSuperiorRequest")
 	proto.RegisterType((*QueryGetSuperiorResponse)(nil), "enreach.workload.QueryGetSuperiorResponse")
+	proto.RegisterType((*QueryGetEraLengthRequest)(nil), "enreach.workload.QueryGetEraLengthRequest")
+	proto.RegisterType((*QueryGetEraLengthResponse)(nil), "enreach.workload.QueryGetEraLengthResponse")
+	proto.RegisterType((*QueryGetCurrentEraRequest)(nil), "enreach.workload.QueryGetCurrentEraRequest")
+	proto.RegisterType((*QueryGetCurrentEraResponse)(nil), "enreach.workload.QueryGetCurrentEraResponse")
+	proto.RegisterType((*QueryGetReputationPointChangeDataRequest)(nil), "enreach.workload.QueryGetReputationPointChangeDataRequest")
+	proto.RegisterType((*QueryGetReputationPointChangeDataResponse)(nil), "enreach.workload.QueryGetReputationPointChangeDataResponse")
+	proto.RegisterType((*QueryGetAllReputationPointChangeDataByEraRequest)(nil), "enreach.workload.QueryGetAllReputationPointChangeDataByEraRequest")
+	proto.RegisterType((*QueryGetAllReputationPointChangeDataByEraResponse)(nil), "enreach.workload.QueryGetAllReputationPointChangeDataByEraResponse")
+	proto.RegisterType((*QueryGetReputationPointRequest)(nil), "enreach.workload.QueryGetReputationPointRequest")
+	proto.RegisterType((*QueryGetReputationPointResponse)(nil), "enreach.workload.QueryGetReputationPointResponse")
+	proto.RegisterType((*QueryGetLatestReputationPointRequest)(nil), "enreach.workload.QueryGetLatestReputationPointRequest")
+	proto.RegisterType((*QueryGetLatestReputationPointResponse)(nil), "enreach.workload.QueryGetLatestReputationPointResponse")
+	proto.RegisterType((*QueryGetAllReputationPointByEraRequest)(nil), "enreach.workload.QueryGetAllReputationPointByEraRequest")
+	proto.RegisterType((*QueryGetAllReputationPointByEraResponse)(nil), "enreach.workload.QueryGetAllReputationPointByEraResponse")
+	proto.RegisterType((*QueryGetEraProcessDataRequest)(nil), "enreach.workload.QueryGetEraProcessDataRequest")
+	proto.RegisterType((*QueryGetEraProcessDataResponse)(nil), "enreach.workload.QueryGetEraProcessDataResponse")
+	proto.RegisterType((*QueryGetAllEraProcessDataRequest)(nil), "enreach.workload.QueryGetAllEraProcessDataRequest")
+	proto.RegisterType((*QueryGetAllEraProcessDataResponse)(nil), "enreach.workload.QueryGetAllEraProcessDataResponse")
 }
 
 func init() { proto.RegisterFile("enreach/workload/query.proto", fileDescriptor_4c31abfb63ab8d50) }
 
 var fileDescriptor_4c31abfb63ab8d50 = []byte{
-	// 1300 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x58, 0xcd, 0x6f, 0x1b, 0x45,
-	0x14, 0xcf, 0x94, 0x26, 0x22, 0x2f, 0x01, 0xd2, 0x49, 0x28, 0xce, 0xe2, 0x3a, 0xee, 0x92, 0xb8,
-	0x69, 0x3e, 0xbc, 0x89, 0x4b, 0x70, 0x21, 0x8d, 0xaa, 0xba, 0x81, 0x7e, 0xf0, 0xa1, 0xd4, 0x41,
-	0x14, 0x71, 0xc0, 0x6c, 0x9c, 0x91, 0x6d, 0xe1, 0xec, 0xb8, 0xbb, 0x1b, 0xda, 0x50, 0xe5, 0x02,
-	0xaa, 0xc4, 0x11, 0xc1, 0x11, 0x09, 0x71, 0x83, 0x23, 0x07, 0xb8, 0x00, 0xbd, 0x42, 0x7b, 0x8b,
-	0xc4, 0x85, 0x13, 0x42, 0x09, 0x12, 0xff, 0x06, 0xf2, 0xec, 0x9b, 0xec, 0x7a, 0xbf, 0xbc, 0x8e,
-	0xa2, 0x5e, 0xa2, 0xdd, 0x99, 0xf7, 0x7b, 0xef, 0xf7, 0x7b, 0xf3, 0x76, 0xf7, 0x17, 0x43, 0x9a,
-	0x19, 0x26, 0xd3, 0xab, 0x75, 0xed, 0x2e, 0x37, 0x3f, 0x6e, 0x72, 0x7d, 0x53, 0xbb, 0xb3, 0xcd,
-	0xcc, 0x9d, 0x7c, 0xcb, 0xe4, 0x36, 0xa7, 0x23, 0xb8, 0x9b, 0x97, 0xbb, 0xca, 0x29, 0x7d, 0xab,
-	0x61, 0x70, 0x4d, 0xfc, 0x75, 0x82, 0x94, 0xb1, 0x1a, 0xaf, 0x71, 0x71, 0xa9, 0xb5, 0xaf, 0x70,
-	0x35, 0x5d, 0xe3, 0xbc, 0xd6, 0x64, 0x9a, 0xde, 0x6a, 0x68, 0xba, 0x61, 0x70, 0x5b, 0xb7, 0x1b,
-	0xdc, 0xb0, 0x70, 0x77, 0xa6, 0xca, 0xad, 0x2d, 0x6e, 0x69, 0x1b, 0xba, 0xc5, 0x9c, 0x8a, 0xda,
-	0x27, 0x8b, 0x1b, 0xcc, 0xd6, 0x17, 0xb5, 0x96, 0x5e, 0x6b, 0x18, 0x22, 0x18, 0x63, 0xcf, 0x04,
-	0x28, 0xb6, 0x74, 0x53, 0xdf, 0x92, 0xa9, 0x26, 0x02, 0xdb, 0xf2, 0x02, 0x03, 0xce, 0x86, 0x06,
-	0x98, 0xac, 0xc5, 0x4d, 0x3b, 0x32, 0x87, 0xb5, 0xdd, 0x62, 0x66, 0x83, 0x9b, 0x4e, 0x80, 0x3a,
-	0x06, 0xf4, 0x56, 0x9b, 0xe5, 0x9a, 0xa8, 0x5c, 0x66, 0x77, 0xb6, 0x99, 0x65, 0xab, 0x65, 0x18,
-	0xed, 0x58, 0xb5, 0x5a, 0xdc, 0xb0, 0x18, 0x5d, 0x86, 0x01, 0x87, 0x61, 0x8a, 0x64, 0xc9, 0xf4,
-	0x50, 0x21, 0x95, 0xf7, 0xb7, 0x31, 0xef, 0x20, 0x4a, 0x83, 0x8f, 0xfe, 0x9e, 0xe8, 0xfb, 0xe1,
-	0xbf, 0x1f, 0x67, 0x48, 0x19, 0x21, 0x6a, 0x1a, 0x14, 0x91, 0xf3, 0x1a, 0xb3, 0x5f, 0x6f, 0xf1,
-	0x6a, 0xfd, 0x2d, 0x66, 0xd4, 0xec, 0xba, 0xac, 0x78, 0x19, 0x5e, 0x0c, 0xdd, 0xc5, 0xca, 0x59,
-	0x18, 0x62, 0xee, 0xb2, 0x28, 0x7f, 0xb2, 0xec, 0x5d, 0x52, 0xcf, 0xb8, 0x09, 0xae, 0x6e, 0x9b,
-	0x26, 0x33, 0x9c, 0x3c, 0x32, 0x7f, 0x09, 0xd2, 0xe1, 0xdb, 0x58, 0x40, 0x85, 0xe1, 0xaa, 0x67,
-	0x1d, 0x2b, 0x74, 0xac, 0xa9, 0x6f, 0xba, 0x25, 0xde, 0xe1, 0x9b, 0xec, 0x36, 0x6a, 0xc6, 0x12,
-	0x74, 0x0c, 0xfa, 0x99, 0x07, 0xeb, 0xdc, 0xd0, 0xd3, 0x30, 0x60, 0xf0, 0x4d, 0x76, 0x63, 0x35,
-	0x75, 0x22, 0x4b, 0xa6, 0x07, 0xcb, 0x78, 0xa7, 0xd6, 0x5d, 0x42, 0x9d, 0xc9, 0x90, 0xd0, 0x75,
-	0x18, 0xf6, 0xae, 0x63, 0xc7, 0x33, 0xc1, 0x8e, 0x7b, 0xa3, 0x4a, 0x27, 0xdb, 0x7d, 0x2f, 0x77,
-	0x20, 0xd5, 0x07, 0x04, 0xa6, 0x64, 0xa9, 0x2b, 0xcd, 0x66, 0x47, 0xfc, 0x8e, 0xb7, 0x49, 0x11,
-	0x0a, 0xde, 0x00, 0x70, 0x47, 0x57, 0xa8, 0x18, 0x2a, 0xe4, 0xf2, 0xce, 0x9c, 0xe7, 0xdb, 0x73,
-	0x9e, 0x77, 0x9e, 0x2c, 0x9c, 0xf3, 0xfc, 0x9a, 0x5e, 0x63, 0x98, 0xb1, 0xec, 0x41, 0xaa, 0x0f,
-	0x09, 0xe4, 0xba, 0xf1, 0x40, 0xf1, 0x37, 0xe1, 0x19, 0xef, 0x76, 0x7b, 0xde, 0x9e, 0x4a, 0xac,
-	0xbe, 0x13, 0x4a, 0xaf, 0x85, 0xd0, 0x3f, 0xd7, 0x95, 0xbe, 0x43, 0xa4, 0x83, 0xff, 0x87, 0x90,
-	0x91, 0xf4, 0xdf, 0xd6, 0x0d, 0xbd, 0xc6, 0xcc, 0x64, 0x13, 0x90, 0x83, 0x67, 0xb7, 0x9c, 0xf8,
-	0x2b, 0xd5, 0x2a, 0xdf, 0x36, 0x6c, 0x9c, 0x04, 0xdf, 0xaa, 0x6a, 0xc3, 0x44, 0x64, 0x7e, 0xec,
-	0xcb, 0x2d, 0x78, 0xce, 0xb7, 0x85, 0x73, 0x71, 0x36, 0xd8, 0x19, 0x5f, 0x20, 0x36, 0xc7, 0x8f,
-	0x57, 0xbf, 0x20, 0x30, 0xed, 0x39, 0x15, 0x3f, 0xea, 0x49, 0x0e, 0xc8, 0x63, 0x02, 0xe7, 0x13,
-	0x50, 0xc1, 0x5e, 0xac, 0xc3, 0x88, 0x2f, 0x42, 0x8e, 0x49, 0xe2, 0x66, 0x04, 0x12, 0x1c, 0xdf,
-	0xb0, 0xdc, 0x80, 0x71, 0x29, 0xe5, 0xf6, 0xe1, 0x4b, 0xf9, 0x68, 0x6f, 0x8a, 0x8f, 0xdc, 0x17,
-	0xa7, 0x37, 0x15, 0xb6, 0xa1, 0x04, 0xe0, 0xae, 0xe2, 0x34, 0xa4, 0x83, 0x0d, 0x70, 0x63, 0x50,
-	0xbb, 0x07, 0xa5, 0x7e, 0x4e, 0xe0, 0x25, 0x4f, 0xe3, 0x3d, 0xb1, 0x4f, 0xf2, 0xf8, 0x7f, 0x26,
-	0x30, 0x19, 0xcf, 0x02, 0x25, 0xaf, 0xc2, 0x90, 0xbb, 0x29, 0x0f, 0x3d, 0x89, 0x66, 0x2f, 0xec,
-	0xf8, 0x8e, 0x7a, 0xd6, 0x9d, 0x5a, 0x37, 0xff, 0x9a, 0xc9, 0xab, 0xcc, 0xb2, 0x4a, 0xba, 0x5d,
-	0xad, 0xaf, 0x37, 0x3e, 0x95, 0x82, 0xd5, 0x9b, 0x30, 0x93, 0x24, 0x18, 0x95, 0xa6, 0x61, 0x70,
-	0x43, 0x2e, 0x62, 0xd3, 0xdd, 0x05, 0x35, 0xe7, 0xf6, 0xeb, 0x7a, 0xc3, 0xb2, 0xb9, 0xe9, 0xf4,
-	0x69, 0x55, 0xb7, 0xf5, 0x55, 0xd6, 0x72, 0xbf, 0xad, 0x2b, 0xee, 0xfb, 0x3f, 0x22, 0x0e, 0xcb,
-	0x8d, 0x41, 0xff, 0x66, 0x7b, 0x41, 0x9e, 0xaf, 0xb8, 0x51, 0x8b, 0xee, 0x7b, 0x49, 0xe0, 0x90,
-	0x6d, 0x1b, 0x1e, 0x3b, 0x18, 0xea, 0x3d, 0xc8, 0x46, 0x03, 0xb1, 0xe4, 0xbb, 0x30, 0xe2, 0xdf,
-	0xc3, 0x21, 0x56, 0x83, 0x07, 0xea, 0x8f, 0x94, 0x8f, 0xb1, 0x7f, 0x5d, 0x6d, 0x82, 0xea, 0x99,
-	0xa4, 0x28, 0xd6, 0x9d, 0x83, 0x4b, 0x8e, 0x3c, 0xb8, 0xbf, 0x77, 0x3e, 0x3e, 0x91, 0x5a, 0xdf,
-	0x83, 0x53, 0xfe, 0x3d, 0x39, 0xbd, 0xc9, 0xc5, 0x06, 0x53, 0x1c, 0xdf, 0x24, 0x8f, 0xc3, 0x0b,
-	0x52, 0xc7, 0x3a, 0xda, 0x44, 0x39, 0x43, 0xef, 0x43, 0x2a, 0xb8, 0x85, 0xba, 0x2e, 0xc1, 0xd3,
-	0x72, 0x0d, 0xbb, 0xa8, 0x04, 0xe5, 0xc8, 0x08, 0x94, 0x71, 0x88, 0x28, 0x7c, 0x37, 0x0a, 0xfd,
-	0x22, 0x35, 0xbd, 0x0b, 0x03, 0x8e, 0x7d, 0xa4, 0x93, 0x41, 0x7c, 0xd0, 0xa5, 0x2a, 0x53, 0x5d,
-	0xa2, 0x1c, 0x7a, 0x6a, 0xf6, 0xb3, 0x3f, 0xff, 0xfd, 0xfa, 0x84, 0x42, 0x53, 0x5a, 0x84, 0xdf,
-	0xa6, 0x5f, 0x11, 0x18, 0xf2, 0xb8, 0x4e, 0x3a, 0x17, 0x91, 0x38, 0xd4, 0xba, 0x2a, 0xf3, 0x09,
-	0xa3, 0x91, 0x4e, 0x4e, 0xd0, 0xc9, 0xd2, 0x4c, 0x90, 0x8e, 0x78, 0x6c, 0xb4, 0xa6, 0x43, 0xe2,
-	0x1b, 0x02, 0xc3, 0x5e, 0xab, 0x4a, 0x63, 0xea, 0x84, 0x38, 0x5e, 0x25, 0x9f, 0x34, 0x1c, 0x79,
-	0xcd, 0x09, 0x5e, 0x39, 0x3a, 0x19, 0xc5, 0x0b, 0xbd, 0xb0, 0xf3, 0xd2, 0xff, 0x9e, 0x74, 0xfa,
-	0xd3, 0x38, 0x76, 0x21, 0x66, 0x39, 0x8e, 0x5d, 0x98, 0x1d, 0x56, 0x2f, 0x0a, 0x76, 0x05, 0xba,
-	0x10, 0x64, 0xd7, 0xfe, 0x4c, 0x56, 0x0e, 0xef, 0xee, 0x0b, 0x7e, 0xbb, 0xda, 0x7d, 0xe7, 0xeb,
-	0xb9, 0x4b, 0x1f, 0x12, 0x38, 0x1d, 0x6e, 0x37, 0x69, 0x31, 0x9a, 0x44, 0xac, 0x51, 0x56, 0x2e,
-	0xf6, 0x0e, 0x44, 0x1d, 0x0b, 0x42, 0xc7, 0x0c, 0x9d, 0xee, 0xa2, 0xc3, 0x92, 0x42, 0xe8, 0xaf,
-	0x24, 0x60, 0xfa, 0xe8, 0x42, 0x74, 0xfd, 0x70, 0x6b, 0xaa, 0x2c, 0xf6, 0x80, 0x40, 0xaa, 0x57,
-	0x05, 0xd5, 0x15, 0xba, 0x1c, 0xa4, 0x8a, 0xce, 0x35, 0xa4, 0xeb, 0x9d, 0x9e, 0x76, 0x97, 0x3e,
-	0x26, 0x30, 0x1e, 0xe9, 0xe5, 0xe8, 0x6b, 0xb1, 0x7d, 0x8c, 0xf5, 0xa2, 0xca, 0xf2, 0x91, 0xb0,
-	0xa8, 0xed, 0x82, 0xd0, 0x36, 0x4f, 0x67, 0xbb, 0x6b, 0x73, 0x4f, 0xe2, 0x5b, 0xe2, 0xf5, 0x5a,
-	0x74, 0x36, 0x9a, 0x40, 0xc0, 0xf2, 0x29, 0x73, 0xc9, 0x82, 0x91, 0xde, 0x92, 0xa0, 0xa7, 0xd1,
-	0x79, 0x2d, 0xe6, 0x5f, 0xfc, 0xe0, 0xa8, 0xff, 0x44, 0x60, 0x2c, 0xcc, 0x39, 0xd1, 0xa5, 0xd8,
-	0x5e, 0x45, 0xf9, 0x3d, 0xe5, 0x95, 0x5e, 0x61, 0x48, 0x7f, 0x5e, 0xd0, 0x3f, 0x47, 0xa7, 0xe2,
-	0xe8, 0xbb, 0x7d, 0xdd, 0x23, 0xa0, 0x44, 0x9b, 0x21, 0xba, 0x9c, 0xa4, 0x75, 0x11, 0x7e, 0x4b,
-	0xb9, 0x74, 0x34, 0x30, 0x0a, 0x29, 0x0a, 0x21, 0x8b, 0x54, 0x8b, 0x3d, 0x87, 0x96, 0x03, 0xaf,
-	0x08, 0x67, 0x56, 0xb1, 0xda, 0x9c, 0xff, 0x20, 0xf0, 0x7c, 0xa8, 0xd7, 0xa2, 0x31, 0x3d, 0x8d,
-	0x33, 0x71, 0x4a, 0xb1, 0x67, 0x1c, 0x6a, 0x58, 0x11, 0x1a, 0x8a, 0x74, 0x29, 0x56, 0x43, 0xdd,
-	0xc9, 0x51, 0x11, 0x47, 0x52, 0xd9, 0xd4, 0x6d, 0xbd, 0x22, 0xdc, 0x1f, 0xfd, 0x85, 0x04, 0x1d,
-	0x1a, 0x5d, 0xec, 0xf2, 0xc9, 0x0b, 0x9a, 0x2d, 0xa5, 0xd0, 0x0b, 0x04, 0xa9, 0x5f, 0x16, 0xd4,
-	0x5f, 0xa5, 0xc5, 0x58, 0xea, 0x0e, 0x65, 0x79, 0x08, 0x6d, 0xea, 0x87, 0x93, 0xf5, 0x1b, 0x81,
-	0xd1, 0x10, 0x47, 0x46, 0x5f, 0x8e, 0x1d, 0xec, 0x28, 0x09, 0x4b, 0x3d, 0xa2, 0xba, 0x7f, 0xba,
-	0x62, 0x55, 0x58, 0xf4, 0x01, 0x71, 0x9d, 0x15, 0x3d, 0x1f, 0x5d, 0xdd, 0x67, 0xd6, 0x94, 0x99,
-	0x24, 0xa1, 0xc8, 0x4e, 0x15, 0xec, 0xd2, 0x54, 0xd1, 0x22, 0x7f, 0x2a, 0x2c, 0x15, 0x1e, 0xed,
-	0x67, 0xc8, 0xde, 0x7e, 0x86, 0xfc, 0xb3, 0x9f, 0x21, 0x5f, 0x1e, 0x64, 0xfa, 0xf6, 0x0e, 0x32,
-	0x7d, 0x7f, 0x1d, 0x64, 0xfa, 0x3e, 0x48, 0x49, 0xd0, 0x3d, 0x17, 0x66, 0xef, 0xb4, 0x98, 0xb5,
-	0x31, 0x20, 0x7e, 0x5f, 0xbc, 0xf0, 0x7f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x00, 0xed, 0x78, 0xb8,
-	0x88, 0x15, 0x00, 0x00,
+	// 1885 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x5a, 0xdf, 0x6f, 0x54, 0x4f,
+	0x15, 0xef, 0xf0, 0xa3, 0xb1, 0xa7, 0x08, 0x65, 0x28, 0xd0, 0x5e, 0x96, 0x65, 0x3b, 0x96, 0x52,
+	0x5a, 0xba, 0xb7, 0xbb, 0xa5, 0x94, 0x52, 0x2a, 0xa1, 0x2d, 0xf2, 0x43, 0x24, 0x65, 0x21, 0x62,
+	0x7c, 0x70, 0xbd, 0xdd, 0xde, 0x6c, 0x57, 0xdb, 0xbd, 0xcb, 0xbd, 0xb7, 0x42, 0x21, 0xbc, 0x60,
+	0x48, 0x8c, 0xf1, 0xc1, 0x1f, 0x8f, 0x1a, 0x5f, 0xf5, 0x11, 0x13, 0xf4, 0x41, 0xc5, 0xc4, 0xc4,
+	0x08, 0xbc, 0x91, 0xf8, 0x62, 0x62, 0x62, 0x0c, 0x98, 0xf8, 0xe0, 0x83, 0xff, 0x82, 0xd9, 0xb9,
+	0x67, 0x76, 0xee, 0xcf, 0xd9, 0xbb, 0xfd, 0xee, 0x97, 0x17, 0xb2, 0x3b, 0x73, 0xce, 0x99, 0xcf,
+	0xe7, 0xcc, 0x99, 0x99, 0xd3, 0xcf, 0x02, 0x19, 0xb3, 0x6e, 0x9b, 0x46, 0x65, 0x43, 0x7f, 0x64,
+	0xd9, 0xdf, 0xdd, 0xb4, 0x8c, 0x75, 0xfd, 0xe1, 0xb6, 0x69, 0xef, 0xe4, 0x1b, 0xb6, 0xe5, 0x5a,
+	0x74, 0x00, 0x67, 0xf3, 0x62, 0x56, 0x3b, 0x6c, 0x6c, 0xd5, 0xea, 0x96, 0xce, 0xff, 0xf5, 0x8c,
+	0xb4, 0xc1, 0xaa, 0x55, 0xb5, 0xf8, 0x47, 0xbd, 0xf9, 0x09, 0x47, 0x33, 0x55, 0xcb, 0xaa, 0x6e,
+	0x9a, 0xba, 0xd1, 0xa8, 0xe9, 0x46, 0xbd, 0x6e, 0xb9, 0x86, 0x5b, 0xb3, 0xea, 0x0e, 0xce, 0x4e,
+	0x54, 0x2c, 0x67, 0xcb, 0x72, 0xf4, 0x35, 0xc3, 0x31, 0xbd, 0x15, 0xf5, 0xef, 0x15, 0xd6, 0x4c,
+	0xd7, 0x28, 0xe8, 0x0d, 0xa3, 0x5a, 0xab, 0x73, 0x63, 0xb4, 0x3d, 0x19, 0x81, 0xd8, 0x30, 0x6c,
+	0x63, 0x4b, 0x84, 0x3a, 0x15, 0x99, 0x16, 0x1f, 0xd0, 0x60, 0x24, 0xd6, 0xc0, 0x36, 0x1b, 0x96,
+	0xed, 0x26, 0xc6, 0x70, 0xb6, 0x1b, 0xa6, 0x5d, 0xb3, 0x6c, 0x34, 0x18, 0x8b, 0x18, 0xd8, 0x66,
+	0x63, 0xdb, 0xe3, 0xd4, 0xb0, 0x6a, 0x75, 0x0c, 0xc4, 0x06, 0x81, 0xde, 0x6d, 0xb2, 0x59, 0xe5,
+	0x08, 0x4b, 0xe6, 0xc3, 0x6d, 0xd3, 0x71, 0x59, 0x09, 0x8e, 0x04, 0x46, 0x9d, 0x86, 0x55, 0x77,
+	0x4c, 0xba, 0x00, 0xbd, 0x1e, 0x93, 0x21, 0x92, 0x23, 0xe3, 0xfd, 0xc5, 0xa1, 0x7c, 0x38, 0xdd,
+	0x79, 0xcf, 0x63, 0xa9, 0xef, 0xed, 0x3f, 0x4f, 0xf5, 0xfc, 0xfa, 0x3f, 0x2f, 0x27, 0x48, 0x09,
+	0x5d, 0x58, 0x06, 0x34, 0x1e, 0xf3, 0xba, 0xe9, 0x5e, 0x6b, 0x58, 0x95, 0x8d, 0xdb, 0x66, 0xbd,
+	0xea, 0x6e, 0x88, 0x15, 0xaf, 0xc0, 0x89, 0xd8, 0x59, 0x5c, 0x39, 0x07, 0xfd, 0xa6, 0x1c, 0xe6,
+	0xcb, 0xef, 0x2b, 0xf9, 0x87, 0xd8, 0x49, 0x19, 0x60, 0x79, 0xdb, 0xb6, 0xcd, 0xba, 0x17, 0x47,
+	0xc4, 0x5f, 0x82, 0x4c, 0xfc, 0x34, 0x2e, 0xc0, 0xe0, 0x40, 0xc5, 0x37, 0x8e, 0x2b, 0x04, 0xc6,
+	0xd8, 0x57, 0xe5, 0x12, 0x77, 0xac, 0x75, 0xf3, 0x01, 0x72, 0xc6, 0x25, 0xe8, 0x20, 0xec, 0x37,
+	0x7d, 0xbe, 0xde, 0x17, 0x7a, 0x0c, 0x7a, 0xeb, 0xd6, 0xba, 0x79, 0x73, 0x65, 0x68, 0x4f, 0x8e,
+	0x8c, 0xf7, 0x95, 0xf0, 0x1b, 0xdb, 0x90, 0x80, 0x82, 0xc1, 0x10, 0xd0, 0x0d, 0x38, 0xe0, 0x1f,
+	0xc7, 0x8c, 0x67, 0xa3, 0x19, 0xf7, 0x5b, 0x2d, 0xed, 0x6b, 0xe6, 0xbd, 0x14, 0xf0, 0x64, 0x2f,
+	0x08, 0x9c, 0x16, 0x4b, 0x5d, 0xdd, 0xdc, 0x0c, 0xd8, 0xef, 0xf8, 0x93, 0x94, 0xc0, 0xe0, 0x2b,
+	0x00, 0xb2, 0xc4, 0x39, 0x8b, 0xfe, 0xe2, 0x58, 0xde, 0x3b, 0x0f, 0xf9, 0xe6, 0x79, 0xc8, 0x7b,
+	0x27, 0x10, 0xcf, 0x43, 0x7e, 0xd5, 0xa8, 0x9a, 0x18, 0xb1, 0xe4, 0xf3, 0x64, 0xaf, 0x09, 0x8c,
+	0xb5, 0xc3, 0x81, 0xe4, 0x6f, 0xc1, 0x17, 0xfd, 0xd3, 0xcd, 0x7a, 0xdb, 0x9b, 0x9a, 0x7d, 0xd0,
+	0x95, 0x5e, 0x8f, 0x81, 0x7f, 0xa6, 0x2d, 0x7c, 0x0f, 0x48, 0x00, 0xff, 0xb7, 0x20, 0x2b, 0xe0,
+	0x7f, 0xcd, 0xa8, 0x1b, 0x55, 0xd3, 0x4e, 0x57, 0x01, 0x63, 0x70, 0x70, 0xcb, 0xb3, 0xbf, 0x5a,
+	0xa9, 0x58, 0xdb, 0x75, 0x17, 0x2b, 0x21, 0x34, 0xca, 0x5c, 0x38, 0x95, 0x18, 0x1f, 0xf3, 0x72,
+	0x17, 0x0e, 0x85, 0xa6, 0xb0, 0x2e, 0x46, 0xa2, 0x99, 0x09, 0x19, 0x62, 0x72, 0xc2, 0xfe, 0xec,
+	0x07, 0x04, 0xc6, 0x7d, 0xbb, 0x12, 0xf6, 0xfa, 0x94, 0x05, 0xf2, 0x8e, 0xc0, 0xd9, 0x14, 0x50,
+	0x30, 0x17, 0xf7, 0x60, 0x20, 0x64, 0x21, 0xca, 0x24, 0x75, 0x32, 0x22, 0x01, 0xba, 0x57, 0x2c,
+	0x37, 0x61, 0x58, 0x50, 0x79, 0xd0, 0xba, 0xbc, 0x77, 0x77, 0x53, 0x7c, 0x5b, 0x5e, 0x9c, 0xfe,
+	0x50, 0x98, 0x86, 0x25, 0x00, 0x39, 0x8a, 0xd5, 0x90, 0x89, 0x26, 0x40, 0xda, 0x20, 0x77, 0x9f,
+	0x17, 0xfb, 0x3e, 0x81, 0x2f, 0xf9, 0x12, 0xef, 0xb3, 0xfd, 0x94, 0xdb, 0xff, 0x5b, 0x02, 0xa3,
+	0x6a, 0x14, 0x48, 0x79, 0x05, 0xfa, 0xe5, 0xa4, 0xd8, 0xf4, 0x34, 0x9c, 0xfd, 0x6e, 0xdd, 0xdb,
+	0xea, 0x49, 0x59, 0xb5, 0x32, 0xfe, 0xaa, 0x6d, 0x55, 0x4c, 0xc7, 0x59, 0x32, 0xdc, 0xca, 0xc6,
+	0xbd, 0xda, 0x13, 0x41, 0x98, 0xdd, 0x82, 0x89, 0x34, 0xc6, 0xc8, 0x34, 0x03, 0x7d, 0x6b, 0x62,
+	0x10, 0x93, 0x2e, 0x07, 0xd8, 0x98, 0xcc, 0xd7, 0x8d, 0x9a, 0xe3, 0x5a, 0xb6, 0x97, 0xa7, 0x15,
+	0xc3, 0x35, 0x56, 0xcc, 0x86, 0x7c, 0x5b, 0x17, 0xe5, 0xfd, 0x9f, 0x60, 0x87, 0xcb, 0x0d, 0xc2,
+	0xfe, 0xf5, 0xe6, 0x80, 0xd8, 0x5f, 0xfe, 0x85, 0xcd, 0xc9, 0x7b, 0x89, 0xfb, 0x21, 0xda, 0xa6,
+	0xbb, 0xb2, 0x30, 0xd8, 0x63, 0xc8, 0x25, 0x3b, 0xe2, 0x92, 0xf7, 0x61, 0x20, 0x3c, 0x87, 0x45,
+	0xcc, 0xa2, 0x1b, 0x1a, 0xb6, 0x14, 0xc7, 0x38, 0x3c, 0xce, 0x36, 0x81, 0xf9, 0x2a, 0x29, 0x09,
+	0x75, 0xb0, 0x70, 0xc9, 0xae, 0x0b, 0xf7, 0xaf, 0xc1, 0xe3, 0x93, 0xc8, 0xf5, 0xeb, 0x70, 0x38,
+	0x3c, 0x27, 0xaa, 0x37, 0x3d, 0xd9, 0x68, 0x88, 0xee, 0x55, 0xf2, 0x30, 0x1c, 0x17, 0x3c, 0xee,
+	0x61, 0x3b, 0x29, 0x6a, 0xe8, 0x1b, 0x30, 0x14, 0x9d, 0x42, 0x5e, 0x97, 0xe1, 0x0b, 0x62, 0x0c,
+	0xb3, 0xa8, 0x45, 0xe9, 0x08, 0x0b, 0xa4, 0xd1, 0xf2, 0x60, 0x9a, 0x8c, 0x7c, 0xcd, 0x36, 0x82,
+	0x5d, 0xe1, 0xbc, 0xbc, 0x45, 0x7d, 0x73, 0xf2, 0x70, 0x98, 0x62, 0x50, 0x1c, 0x8e, 0xd6, 0x00,
+	0x3b, 0x21, 0x5d, 0x45, 0xc3, 0x67, 0x8b, 0x9d, 0x67, 0x97, 0xe5, 0x95, 0xea, 0x9f, 0xc4, 0xc0,
+	0x59, 0x80, 0x4a, 0x6b, 0x14, 0x23, 0xfb, 0x46, 0xd8, 0x7d, 0xf9, 0x62, 0x96, 0x5a, 0x4d, 0xf5,
+	0x6a, 0xb3, 0xa9, 0x5e, 0xde, 0x30, 0xea, 0x55, 0xd3, 0x5f, 0x63, 0x03, 0xb0, 0xd7, 0x6c, 0x05,
+	0x69, 0x7e, 0x4c, 0xbc, 0xe6, 0x7f, 0xe1, 0x7b, 0xfd, 0x14, 0x61, 0x11, 0xa3, 0x05, 0xc3, 0x89,
+	0x46, 0xb8, 0x09, 0x93, 0xd1, 0x4d, 0x48, 0x74, 0xc1, 0x5d, 0x49, 0x8e, 0xc9, 0x7e, 0x44, 0x60,
+	0xda, 0x57, 0xe4, 0xc9, 0x91, 0x76, 0x64, 0x9e, 0x63, 0xd8, 0x77, 0xeb, 0xb1, 0xf8, 0x1f, 0x81,
+	0x42, 0x07, 0x70, 0x30, 0x6b, 0x0f, 0x41, 0x4b, 0xb4, 0x14, 0x47, 0x71, 0x17, 0x69, 0x53, 0x04,
+	0xed, 0xde, 0xe1, 0xbc, 0x25, 0xdb, 0xcf, 0xd0, 0x72, 0x9d, 0xd7, 0x9a, 0xaf, 0xd5, 0x8c, 0xc4,
+	0x92, 0xad, 0x66, 0x68, 0x2a, 0xb9, 0xd5, 0x0c, 0x19, 0x8a, 0x56, 0x33, 0x34, 0xcc, 0xbe, 0x2c,
+	0xdf, 0xab, 0xdb, 0x86, 0xdb, 0xdc, 0xd1, 0x78, 0x1e, 0x12, 0x35, 0x09, 0xa0, 0x7e, 0x22, 0xdf,
+	0xb1, 0x04, 0xff, 0xcf, 0x0f, 0xfb, 0xf3, 0xe0, 0x1f, 0x2f, 0x61, 0xaf, 0x4f, 0x53, 0xf4, 0x6f,
+	0x08, 0x9c, 0x69, 0x0b, 0x42, 0xb6, 0xc7, 0xa1, 0x79, 0x45, 0x7b, 0x1c, 0x9f, 0x84, 0x48, 0x80,
+	0xee, 0x15, 0x73, 0x01, 0x4e, 0xfa, 0x2e, 0xf6, 0x98, 0xb7, 0x39, 0x92, 0x44, 0xd6, 0x90, 0xf5,
+	0x1f, 0x76, 0x41, 0xca, 0x77, 0xe0, 0x60, 0x70, 0x06, 0x77, 0x3d, 0x17, 0xf3, 0xb8, 0x06, 0xec,
+	0x90, 0x6f, 0xc8, 0x9b, 0x7d, 0x47, 0xf6, 0x2f, 0xcd, 0x67, 0x3d, 0x16, 0x67, 0xb7, 0x7a, 0x88,
+	0x3f, 0x11, 0x18, 0x51, 0x2c, 0x86, 0x0c, 0x57, 0xe1, 0x50, 0x70, 0x46, 0xec, 0x69, 0x5a, 0x8a,
+	0x61, 0xf7, 0xae, 0xed, 0x68, 0xf1, 0x77, 0x39, 0xd8, 0xcf, 0x09, 0xd0, 0x47, 0xd0, 0xeb, 0xa9,
+	0x40, 0x74, 0x34, 0x8a, 0x2a, 0x2a, 0x36, 0x69, 0xa7, 0xdb, 0x58, 0x79, 0x8b, 0xb1, 0xdc, 0xf3,
+	0xbf, 0xfd, 0xfb, 0x67, 0x7b, 0x34, 0x3a, 0xa4, 0x27, 0xc8, 0x6b, 0xf4, 0xa7, 0x04, 0xfa, 0x7d,
+	0xe2, 0x11, 0x3d, 0x97, 0x10, 0x38, 0x56, 0x81, 0xd2, 0xa6, 0x52, 0x5a, 0x23, 0x9c, 0x31, 0x0e,
+	0x27, 0x47, 0xb3, 0x51, 0x38, 0xbc, 0xfb, 0xd5, 0x37, 0x3d, 0x10, 0x3f, 0x27, 0x70, 0xc0, 0xaf,
+	0x38, 0x51, 0xc5, 0x3a, 0x31, 0xc2, 0x95, 0x96, 0x4f, 0x6b, 0x8e, 0xb8, 0xce, 0x71, 0x5c, 0x63,
+	0x74, 0x34, 0x09, 0x17, 0x36, 0x32, 0xde, 0xdf, 0x6e, 0xbf, 0x22, 0x41, 0x99, 0x49, 0x85, 0x2e,
+	0x46, 0xf3, 0x52, 0xa1, 0x8b, 0x53, 0xb5, 0xd8, 0x45, 0x8e, 0xae, 0x48, 0xa7, 0xa3, 0xe8, 0x9a,
+	0x97, 0x7c, 0xb9, 0xf5, 0xed, 0x29, 0xc7, 0xf7, 0x4c, 0x7f, 0xea, 0xdd, 0xfd, 0xcf, 0xe8, 0x6b,
+	0x02, 0xc7, 0xe2, 0x55, 0x23, 0x3a, 0x97, 0x0c, 0x42, 0xa9, 0x77, 0x69, 0x17, 0x3b, 0x77, 0x44,
+	0x1e, 0xd3, 0x9c, 0xc7, 0x04, 0x1d, 0x6f, 0xc3, 0xc3, 0x11, 0x44, 0xe8, 0x1f, 0x48, 0x44, 0xbb,
+	0xa1, 0xd3, 0xc9, 0xeb, 0xc7, 0x2b, 0x4c, 0x5a, 0xa1, 0x03, 0x0f, 0x84, 0xba, 0xcc, 0xa1, 0x2e,
+	0xd2, 0x85, 0x28, 0x54, 0x14, 0xa0, 0x62, 0xb2, 0x1e, 0x94, 0xa6, 0x9e, 0xd1, 0x77, 0x04, 0x86,
+	0x13, 0x25, 0x19, 0x7a, 0x49, 0x99, 0x47, 0xa5, 0xa4, 0xa4, 0x2d, 0xec, 0xca, 0x17, 0xb9, 0xcd,
+	0x70, 0x6e, 0x53, 0x74, 0xb2, 0x3d, 0x37, 0xb9, 0x13, 0xbf, 0x24, 0x7e, 0xc9, 0x84, 0x4e, 0x26,
+	0x03, 0x88, 0x28, 0x37, 0xda, 0xb9, 0x74, 0xc6, 0x08, 0x6f, 0x96, 0xc3, 0xd3, 0xe9, 0x94, 0xae,
+	0x50, 0xf4, 0xa3, 0xa5, 0xfe, 0x8a, 0xc0, 0x60, 0x9c, 0x00, 0x42, 0x67, 0x95, 0xb9, 0x4a, 0x92,
+	0x6d, 0xb4, 0x0b, 0x9d, 0xba, 0x21, 0xfc, 0x29, 0x0e, 0xff, 0x0c, 0x3d, 0xad, 0x82, 0x2f, 0xf3,
+	0xfa, 0x9e, 0x80, 0x96, 0xac, 0x69, 0xd0, 0x85, 0x34, 0xa9, 0x4b, 0x90, 0x4d, 0xb4, 0xcb, 0xbb,
+	0x73, 0x46, 0x22, 0x73, 0x9c, 0x48, 0x81, 0xea, 0xca, 0x7d, 0x68, 0x78, 0xee, 0x65, 0x2e, 0xb0,
+	0x94, 0x9d, 0x26, 0xe6, 0x37, 0x04, 0x8e, 0xc6, 0x4a, 0x26, 0x54, 0x91, 0x53, 0x95, 0x16, 0xa3,
+	0xcd, 0x75, 0xec, 0x87, 0x1c, 0x16, 0x39, 0x87, 0x39, 0x3a, 0xab, 0xe4, 0xb0, 0xe1, 0xc5, 0x28,
+	0xf3, 0x2d, 0x29, 0xaf, 0x1b, 0xae, 0x51, 0xe6, 0x22, 0x0e, 0xfd, 0x3d, 0x89, 0x0a, 0x2d, 0xb4,
+	0xd0, 0xe6, 0xc9, 0x8b, 0xf6, 0x3b, 0x5a, 0xb1, 0x13, 0x17, 0x84, 0x7e, 0x85, 0x43, 0x9f, 0xa7,
+	0x73, 0x4a, 0xe8, 0x1e, 0x64, 0xb1, 0x09, 0x4d, 0xe8, 0xad, 0xca, 0xfa, 0x23, 0x81, 0x23, 0x31,
+	0xc2, 0x0a, 0x3d, 0xaf, 0x2c, 0xec, 0x24, 0x0a, 0xb3, 0x1d, 0x7a, 0xb5, 0x7f, 0xba, 0x94, 0x2c,
+	0x1c, 0xfa, 0x82, 0x48, 0x81, 0x84, 0x9e, 0x4d, 0x5e, 0x3d, 0xa4, 0xb9, 0x68, 0x13, 0x69, 0x4c,
+	0x11, 0x1d, 0xe3, 0xe8, 0x32, 0x54, 0xd3, 0x13, 0x7f, 0x19, 0xa4, 0x3f, 0x24, 0xd0, 0xd7, 0x92,
+	0x51, 0xa8, 0x22, 0x7a, 0x58, 0x87, 0xd1, 0x26, 0x53, 0xd9, 0x22, 0x94, 0x51, 0x0e, 0x25, 0x4b,
+	0x33, 0x31, 0x1d, 0x88, 0x6d, 0x88, 0xbe, 0xe8, 0x27, 0x04, 0x40, 0x6a, 0x2f, 0xaa, 0x5b, 0x38,
+	0x22, 0xdf, 0xa8, 0x6e, 0xe1, 0xa8, 0x9c, 0xc3, 0xc6, 0x39, 0x1e, 0x46, 0x73, 0xf1, 0x78, 0x44,
+	0x3f, 0x64, 0x1b, 0xf4, 0x1f, 0x44, 0xa1, 0xaa, 0xa8, 0x5e, 0xb9, 0x76, 0x32, 0x90, 0xea, 0x95,
+	0x6b, 0xab, 0xf5, 0xb0, 0x6b, 0x9c, 0xc0, 0x15, 0xba, 0xa8, 0x2b, 0x7e, 0xd4, 0x2d, 0xf3, 0x5f,
+	0x75, 0xcb, 0x15, 0xee, 0x2e, 0x8e, 0x8f, 0x6d, 0xf8, 0x9e, 0x95, 0xff, 0x12, 0x18, 0x69, 0x2b,
+	0x95, 0xd0, 0x25, 0xe5, 0xe9, 0x48, 0x25, 0xfb, 0x68, 0xcb, 0x9f, 0x29, 0x46, 0xfb, 0x0b, 0x4f,
+	0xc5, 0xda, 0xf1, 0x68, 0xd3, 0xdf, 0x90, 0x88, 0x08, 0xa0, 0xea, 0xb7, 0xe2, 0xa5, 0x08, 0x55,
+	0xbf, 0x95, 0x20, 0x3e, 0xb0, 0x79, 0x8e, 0x7b, 0x86, 0x16, 0xda, 0xe3, 0x0e, 0xef, 0xd0, 0x5f,
+	0x08, 0x1c, 0x8d, 0x55, 0x36, 0x54, 0xcf, 0x8d, 0x4a, 0x4a, 0x51, 0x3d, 0x37, 0x4a, 0x09, 0x85,
+	0x5d, 0xe2, 0x2c, 0xce, 0xd3, 0x62, 0x94, 0xc5, 0x26, 0x77, 0x2c, 0x47, 0xc9, 0x08, 0x1a, 0x7f,
+	0x26, 0x70, 0x3c, 0x41, 0x9e, 0xa0, 0x17, 0x3b, 0x29, 0x8d, 0x40, 0x51, 0xcd, 0xef, 0xc2, 0x13,
+	0xc9, 0x14, 0x38, 0x99, 0x49, 0x7a, 0xb6, 0xfd, 0x96, 0x88, 0xf2, 0x79, 0x49, 0xc2, 0x62, 0x02,
+	0xd5, 0x95, 0x97, 0x60, 0xcc, 0x43, 0x33, 0x9d, 0xde, 0x01, 0x81, 0x2e, 0x70, 0xa0, 0xb3, 0x74,
+	0x46, 0xfd, 0xc6, 0xd8, 0x46, 0xf8, 0x9d, 0x6c, 0x42, 0x7e, 0x45, 0xe0, 0x70, 0x44, 0x3a, 0xa0,
+	0x45, 0xf5, 0x6b, 0x17, 0x0b, 0x7c, 0xa6, 0x23, 0x1f, 0xc4, 0x7e, 0x81, 0x63, 0x9f, 0xa6, 0xf9,
+	0x8e, 0xb0, 0x3b, 0x4b, 0xc5, 0xb7, 0x1f, 0xb2, 0xe4, 0xfd, 0x87, 0x2c, 0xf9, 0xd7, 0x87, 0x2c,
+	0xf9, 0xf1, 0xc7, 0x6c, 0xcf, 0xfb, 0x8f, 0xd9, 0x9e, 0xbf, 0x7f, 0xcc, 0xf6, 0x7c, 0x73, 0x48,
+	0x04, 0x7a, 0x2c, 0x43, 0xb9, 0x3b, 0x0d, 0xd3, 0x59, 0xeb, 0xe5, 0xff, 0x79, 0x65, 0xe6, 0xff,
+	0x01, 0x00, 0x00, 0xff, 0xff, 0x99, 0x0b, 0x62, 0x65, 0x0d, 0x24, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -1466,6 +2370,19 @@ type QueryClient interface {
 	AllEpochProcessData(ctx context.Context, in *QueryGetAllEpochProcessDataRequest, opts ...grpc.CallOption) (*QueryGetAllEpochProcessDataResponse, error)
 	// Queries a Superior
 	Superior(ctx context.Context, in *QueryGetSuperiorRequest, opts ...grpc.CallOption) (*QueryGetSuperiorResponse, error)
+	// Queries era
+	EraLength(ctx context.Context, in *QueryGetEraLengthRequest, opts ...grpc.CallOption) (*QueryGetEraLengthResponse, error)
+	CurrentEra(ctx context.Context, in *QueryGetCurrentEraRequest, opts ...grpc.CallOption) (*QueryGetCurrentEraResponse, error)
+	// Queries a list of ReputationPointChangeData items.
+	ReputationPointChangeData(ctx context.Context, in *QueryGetReputationPointChangeDataRequest, opts ...grpc.CallOption) (*QueryGetReputationPointChangeDataResponse, error)
+	AllReputationPointChangeDataByEra(ctx context.Context, in *QueryGetAllReputationPointChangeDataByEraRequest, opts ...grpc.CallOption) (*QueryGetAllReputationPointChangeDataByEraResponse, error)
+	// Queries a list of ReputationPoint items.
+	ReputationPoint(ctx context.Context, in *QueryGetReputationPointRequest, opts ...grpc.CallOption) (*QueryGetReputationPointResponse, error)
+	LatestReputationPoint(ctx context.Context, in *QueryGetLatestReputationPointRequest, opts ...grpc.CallOption) (*QueryGetLatestReputationPointResponse, error)
+	AllReputationPointByEra(ctx context.Context, in *QueryGetAllReputationPointByEraRequest, opts ...grpc.CallOption) (*QueryGetAllReputationPointByEraResponse, error)
+	// Queries a list of EpochProcessData items.
+	EraProcessData(ctx context.Context, in *QueryGetEraProcessDataRequest, opts ...grpc.CallOption) (*QueryGetEraProcessDataResponse, error)
+	AllEraProcessData(ctx context.Context, in *QueryGetAllEraProcessDataRequest, opts ...grpc.CallOption) (*QueryGetAllEraProcessDataResponse, error)
 }
 
 type queryClient struct {
@@ -1602,6 +2519,87 @@ func (c *queryClient) Superior(ctx context.Context, in *QueryGetSuperiorRequest,
 	return out, nil
 }
 
+func (c *queryClient) EraLength(ctx context.Context, in *QueryGetEraLengthRequest, opts ...grpc.CallOption) (*QueryGetEraLengthResponse, error) {
+	out := new(QueryGetEraLengthResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/EraLength", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) CurrentEra(ctx context.Context, in *QueryGetCurrentEraRequest, opts ...grpc.CallOption) (*QueryGetCurrentEraResponse, error) {
+	out := new(QueryGetCurrentEraResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/CurrentEra", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) ReputationPointChangeData(ctx context.Context, in *QueryGetReputationPointChangeDataRequest, opts ...grpc.CallOption) (*QueryGetReputationPointChangeDataResponse, error) {
+	out := new(QueryGetReputationPointChangeDataResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/ReputationPointChangeData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) AllReputationPointChangeDataByEra(ctx context.Context, in *QueryGetAllReputationPointChangeDataByEraRequest, opts ...grpc.CallOption) (*QueryGetAllReputationPointChangeDataByEraResponse, error) {
+	out := new(QueryGetAllReputationPointChangeDataByEraResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/AllReputationPointChangeDataByEra", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) ReputationPoint(ctx context.Context, in *QueryGetReputationPointRequest, opts ...grpc.CallOption) (*QueryGetReputationPointResponse, error) {
+	out := new(QueryGetReputationPointResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/ReputationPoint", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) LatestReputationPoint(ctx context.Context, in *QueryGetLatestReputationPointRequest, opts ...grpc.CallOption) (*QueryGetLatestReputationPointResponse, error) {
+	out := new(QueryGetLatestReputationPointResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/LatestReputationPoint", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) AllReputationPointByEra(ctx context.Context, in *QueryGetAllReputationPointByEraRequest, opts ...grpc.CallOption) (*QueryGetAllReputationPointByEraResponse, error) {
+	out := new(QueryGetAllReputationPointByEraResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/AllReputationPointByEra", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) EraProcessData(ctx context.Context, in *QueryGetEraProcessDataRequest, opts ...grpc.CallOption) (*QueryGetEraProcessDataResponse, error) {
+	out := new(QueryGetEraProcessDataResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/EraProcessData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) AllEraProcessData(ctx context.Context, in *QueryGetAllEraProcessDataRequest, opts ...grpc.CallOption) (*QueryGetAllEraProcessDataResponse, error) {
+	out := new(QueryGetAllEraProcessDataResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/AllEraProcessData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
@@ -1625,6 +2623,19 @@ type QueryServer interface {
 	AllEpochProcessData(context.Context, *QueryGetAllEpochProcessDataRequest) (*QueryGetAllEpochProcessDataResponse, error)
 	// Queries a Superior
 	Superior(context.Context, *QueryGetSuperiorRequest) (*QueryGetSuperiorResponse, error)
+	// Queries era
+	EraLength(context.Context, *QueryGetEraLengthRequest) (*QueryGetEraLengthResponse, error)
+	CurrentEra(context.Context, *QueryGetCurrentEraRequest) (*QueryGetCurrentEraResponse, error)
+	// Queries a list of ReputationPointChangeData items.
+	ReputationPointChangeData(context.Context, *QueryGetReputationPointChangeDataRequest) (*QueryGetReputationPointChangeDataResponse, error)
+	AllReputationPointChangeDataByEra(context.Context, *QueryGetAllReputationPointChangeDataByEraRequest) (*QueryGetAllReputationPointChangeDataByEraResponse, error)
+	// Queries a list of ReputationPoint items.
+	ReputationPoint(context.Context, *QueryGetReputationPointRequest) (*QueryGetReputationPointResponse, error)
+	LatestReputationPoint(context.Context, *QueryGetLatestReputationPointRequest) (*QueryGetLatestReputationPointResponse, error)
+	AllReputationPointByEra(context.Context, *QueryGetAllReputationPointByEraRequest) (*QueryGetAllReputationPointByEraResponse, error)
+	// Queries a list of EpochProcessData items.
+	EraProcessData(context.Context, *QueryGetEraProcessDataRequest) (*QueryGetEraProcessDataResponse, error)
+	AllEraProcessData(context.Context, *QueryGetAllEraProcessDataRequest) (*QueryGetAllEraProcessDataResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -1672,6 +2683,33 @@ func (*UnimplementedQueryServer) AllEpochProcessData(ctx context.Context, req *Q
 }
 func (*UnimplementedQueryServer) Superior(ctx context.Context, req *QueryGetSuperiorRequest) (*QueryGetSuperiorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Superior not implemented")
+}
+func (*UnimplementedQueryServer) EraLength(ctx context.Context, req *QueryGetEraLengthRequest) (*QueryGetEraLengthResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EraLength not implemented")
+}
+func (*UnimplementedQueryServer) CurrentEra(ctx context.Context, req *QueryGetCurrentEraRequest) (*QueryGetCurrentEraResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CurrentEra not implemented")
+}
+func (*UnimplementedQueryServer) ReputationPointChangeData(ctx context.Context, req *QueryGetReputationPointChangeDataRequest) (*QueryGetReputationPointChangeDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReputationPointChangeData not implemented")
+}
+func (*UnimplementedQueryServer) AllReputationPointChangeDataByEra(ctx context.Context, req *QueryGetAllReputationPointChangeDataByEraRequest) (*QueryGetAllReputationPointChangeDataByEraResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllReputationPointChangeDataByEra not implemented")
+}
+func (*UnimplementedQueryServer) ReputationPoint(ctx context.Context, req *QueryGetReputationPointRequest) (*QueryGetReputationPointResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReputationPoint not implemented")
+}
+func (*UnimplementedQueryServer) LatestReputationPoint(ctx context.Context, req *QueryGetLatestReputationPointRequest) (*QueryGetLatestReputationPointResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LatestReputationPoint not implemented")
+}
+func (*UnimplementedQueryServer) AllReputationPointByEra(ctx context.Context, req *QueryGetAllReputationPointByEraRequest) (*QueryGetAllReputationPointByEraResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllReputationPointByEra not implemented")
+}
+func (*UnimplementedQueryServer) EraProcessData(ctx context.Context, req *QueryGetEraProcessDataRequest) (*QueryGetEraProcessDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EraProcessData not implemented")
+}
+func (*UnimplementedQueryServer) AllEraProcessData(ctx context.Context, req *QueryGetAllEraProcessDataRequest) (*QueryGetAllEraProcessDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllEraProcessData not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -1930,6 +2968,168 @@ func _Query_Superior_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_EraLength_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetEraLengthRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).EraLength(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/enreach.workload.Query/EraLength",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).EraLength(ctx, req.(*QueryGetEraLengthRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_CurrentEra_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetCurrentEraRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).CurrentEra(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/enreach.workload.Query/CurrentEra",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).CurrentEra(ctx, req.(*QueryGetCurrentEraRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_ReputationPointChangeData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetReputationPointChangeDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ReputationPointChangeData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/enreach.workload.Query/ReputationPointChangeData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ReputationPointChangeData(ctx, req.(*QueryGetReputationPointChangeDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_AllReputationPointChangeDataByEra_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAllReputationPointChangeDataByEraRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).AllReputationPointChangeDataByEra(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/enreach.workload.Query/AllReputationPointChangeDataByEra",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).AllReputationPointChangeDataByEra(ctx, req.(*QueryGetAllReputationPointChangeDataByEraRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_ReputationPoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetReputationPointRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ReputationPoint(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/enreach.workload.Query/ReputationPoint",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ReputationPoint(ctx, req.(*QueryGetReputationPointRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_LatestReputationPoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetLatestReputationPointRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).LatestReputationPoint(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/enreach.workload.Query/LatestReputationPoint",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).LatestReputationPoint(ctx, req.(*QueryGetLatestReputationPointRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_AllReputationPointByEra_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAllReputationPointByEraRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).AllReputationPointByEra(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/enreach.workload.Query/AllReputationPointByEra",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).AllReputationPointByEra(ctx, req.(*QueryGetAllReputationPointByEraRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_EraProcessData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetEraProcessDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).EraProcessData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/enreach.workload.Query/EraProcessData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).EraProcessData(ctx, req.(*QueryGetEraProcessDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_AllEraProcessData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAllEraProcessDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).AllEraProcessData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/enreach.workload.Query/AllEraProcessData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).AllEraProcessData(ctx, req.(*QueryGetAllEraProcessDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Query_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "enreach.workload.Query",
 	HandlerType: (*QueryServer)(nil),
@@ -1989,6 +3189,42 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Superior",
 			Handler:    _Query_Superior_Handler,
+		},
+		{
+			MethodName: "EraLength",
+			Handler:    _Query_EraLength_Handler,
+		},
+		{
+			MethodName: "CurrentEra",
+			Handler:    _Query_CurrentEra_Handler,
+		},
+		{
+			MethodName: "ReputationPointChangeData",
+			Handler:    _Query_ReputationPointChangeData_Handler,
+		},
+		{
+			MethodName: "AllReputationPointChangeDataByEra",
+			Handler:    _Query_AllReputationPointChangeDataByEra_Handler,
+		},
+		{
+			MethodName: "ReputationPoint",
+			Handler:    _Query_ReputationPoint_Handler,
+		},
+		{
+			MethodName: "LatestReputationPoint",
+			Handler:    _Query_LatestReputationPoint_Handler,
+		},
+		{
+			MethodName: "AllReputationPointByEra",
+			Handler:    _Query_AllReputationPointByEra_Handler,
+		},
+		{
+			MethodName: "EraProcessData",
+			Handler:    _Query_EraProcessData_Handler,
+		},
+		{
+			MethodName: "AllEraProcessData",
+			Handler:    _Query_AllEraProcessData_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -2927,6 +4163,630 @@ func (m *QueryGetSuperiorResponse) MarshalToSizedBuffer(dAtA []byte) (int, error
 	return len(dAtA) - i, nil
 }
 
+func (m *QueryGetEraLengthRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetEraLengthRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetEraLengthRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetEraLengthResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetEraLengthResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetEraLengthResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.EraLength != 0 {
+		i = encodeVarintQuery(dAtA, i, uint64(m.EraLength))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetCurrentEraRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetCurrentEraRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetCurrentEraRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetCurrentEraResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetCurrentEraResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetCurrentEraResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.CurrentEra != 0 {
+		i = encodeVarintQuery(dAtA, i, uint64(m.CurrentEra))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetReputationPointChangeDataRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetReputationPointChangeDataRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetReputationPointChangeDataRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.NodeID) > 0 {
+		i -= len(m.NodeID)
+		copy(dAtA[i:], m.NodeID)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.NodeID)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Era != 0 {
+		i = encodeVarintQuery(dAtA, i, uint64(m.Era))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetReputationPointChangeDataResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetReputationPointChangeDataResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetReputationPointChangeDataResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.ReputationPointChangeData.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetAllReputationPointChangeDataByEraRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetAllReputationPointChangeDataByEraRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetAllReputationPointChangeDataByEraRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Era != 0 {
+		i = encodeVarintQuery(dAtA, i, uint64(m.Era))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetAllReputationPointChangeDataByEraResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetAllReputationPointChangeDataByEraResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetAllReputationPointChangeDataByEraResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.ReputationPointChangeDatas) > 0 {
+		for iNdEx := len(m.ReputationPointChangeDatas) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.ReputationPointChangeDatas[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetReputationPointRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetReputationPointRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetReputationPointRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.NodeID) > 0 {
+		i -= len(m.NodeID)
+		copy(dAtA[i:], m.NodeID)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.NodeID)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Era != 0 {
+		i = encodeVarintQuery(dAtA, i, uint64(m.Era))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetReputationPointResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetReputationPointResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetReputationPointResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.ReputationPoint.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetLatestReputationPointRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetLatestReputationPointRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetLatestReputationPointRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.NodeID) > 0 {
+		i -= len(m.NodeID)
+		copy(dAtA[i:], m.NodeID)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.NodeID)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetLatestReputationPointResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetLatestReputationPointResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetLatestReputationPointResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.ReputationPoint.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetAllReputationPointByEraRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetAllReputationPointByEraRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetAllReputationPointByEraRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Era != 0 {
+		i = encodeVarintQuery(dAtA, i, uint64(m.Era))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetAllReputationPointByEraResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetAllReputationPointByEraResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetAllReputationPointByEraResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.ReputationPoints) > 0 {
+		for iNdEx := len(m.ReputationPoints) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.ReputationPoints[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetEraProcessDataRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetEraProcessDataRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetEraProcessDataRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Era != 0 {
+		i = encodeVarintQuery(dAtA, i, uint64(m.Era))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetEraProcessDataResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetEraProcessDataResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetEraProcessDataResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.EraProcessData.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetAllEraProcessDataRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetAllEraProcessDataRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetAllEraProcessDataRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetAllEraProcessDataResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetAllEraProcessDataResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetAllEraProcessDataResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.EraProcessDatas) > 0 {
+		for iNdEx := len(m.EraProcessDatas) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.EraProcessDatas[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	offset -= sovQuery(v)
 	base := offset
@@ -3300,6 +5160,251 @@ func (m *QueryGetSuperiorResponse) Size() (n int) {
 	_ = l
 	l = m.Superior.Size()
 	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryGetEraLengthRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *QueryGetEraLengthResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.EraLength != 0 {
+		n += 1 + sovQuery(uint64(m.EraLength))
+	}
+	return n
+}
+
+func (m *QueryGetCurrentEraRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *QueryGetCurrentEraResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.CurrentEra != 0 {
+		n += 1 + sovQuery(uint64(m.CurrentEra))
+	}
+	return n
+}
+
+func (m *QueryGetReputationPointChangeDataRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Era != 0 {
+		n += 1 + sovQuery(uint64(m.Era))
+	}
+	l = len(m.NodeID)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetReputationPointChangeDataResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.ReputationPointChangeData.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryGetAllReputationPointChangeDataByEraRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Era != 0 {
+		n += 1 + sovQuery(uint64(m.Era))
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetAllReputationPointChangeDataByEraResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.ReputationPointChangeDatas) > 0 {
+		for _, e := range m.ReputationPointChangeDatas {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetReputationPointRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Era != 0 {
+		n += 1 + sovQuery(uint64(m.Era))
+	}
+	l = len(m.NodeID)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetReputationPointResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.ReputationPoint.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryGetLatestReputationPointRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.NodeID)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetLatestReputationPointResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.ReputationPoint.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryGetAllReputationPointByEraRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Era != 0 {
+		n += 1 + sovQuery(uint64(m.Era))
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetAllReputationPointByEraResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.ReputationPoints) > 0 {
+		for _, e := range m.ReputationPoints {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetEraProcessDataRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Era != 0 {
+		n += 1 + sovQuery(uint64(m.Era))
+	}
+	return n
+}
+
+func (m *QueryGetEraProcessDataResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.EraProcessData.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryGetAllEraProcessDataRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetAllEraProcessDataResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.EraProcessDatas) > 0 {
+		for _, e := range m.EraProcessDatas {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
 	return n
 }
 
@@ -5612,6 +7717,1585 @@ func (m *QueryGetSuperiorResponse) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			if err := m.Superior.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetEraLengthRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetEraLengthRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetEraLengthRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetEraLengthResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetEraLengthResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetEraLengthResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field EraLength", wireType)
+			}
+			m.EraLength = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.EraLength |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetCurrentEraRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetCurrentEraRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetCurrentEraRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetCurrentEraResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetCurrentEraResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetCurrentEraResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CurrentEra", wireType)
+			}
+			m.CurrentEra = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.CurrentEra |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetReputationPointChangeDataRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetReputationPointChangeDataRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetReputationPointChangeDataRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Era", wireType)
+			}
+			m.Era = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Era |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field NodeID", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.NodeID = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetReputationPointChangeDataResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetReputationPointChangeDataResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetReputationPointChangeDataResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ReputationPointChangeData", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.ReputationPointChangeData.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetAllReputationPointChangeDataByEraRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetAllReputationPointChangeDataByEraRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetAllReputationPointChangeDataByEraRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Era", wireType)
+			}
+			m.Era = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Era |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetAllReputationPointChangeDataByEraResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetAllReputationPointChangeDataByEraResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetAllReputationPointChangeDataByEraResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ReputationPointChangeDatas", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ReputationPointChangeDatas = append(m.ReputationPointChangeDatas, ReputationPointChangeData{})
+			if err := m.ReputationPointChangeDatas[len(m.ReputationPointChangeDatas)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetReputationPointRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetReputationPointRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetReputationPointRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Era", wireType)
+			}
+			m.Era = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Era |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field NodeID", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.NodeID = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetReputationPointResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetReputationPointResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetReputationPointResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ReputationPoint", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.ReputationPoint.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetLatestReputationPointRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetLatestReputationPointRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetLatestReputationPointRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field NodeID", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.NodeID = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetLatestReputationPointResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetLatestReputationPointResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetLatestReputationPointResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ReputationPoint", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.ReputationPoint.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetAllReputationPointByEraRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetAllReputationPointByEraRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetAllReputationPointByEraRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Era", wireType)
+			}
+			m.Era = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Era |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetAllReputationPointByEraResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetAllReputationPointByEraResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetAllReputationPointByEraResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ReputationPoints", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ReputationPoints = append(m.ReputationPoints, ReputationPoint{})
+			if err := m.ReputationPoints[len(m.ReputationPoints)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetEraProcessDataRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetEraProcessDataRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetEraProcessDataRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Era", wireType)
+			}
+			m.Era = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Era |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetEraProcessDataResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetEraProcessDataResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetEraProcessDataResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field EraProcessData", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.EraProcessData.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetAllEraProcessDataRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetAllEraProcessDataRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetAllEraProcessDataRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetAllEraProcessDataResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetAllEraProcessDataResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetAllEraProcessDataResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field EraProcessDatas", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.EraProcessDatas = append(m.EraProcessDatas, EraProcessData{})
+			if err := m.EraProcessDatas[len(m.EraProcessDatas)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

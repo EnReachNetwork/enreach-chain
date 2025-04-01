@@ -10,6 +10,7 @@ import "enreach/workload/params.proto";
 import "enreach/workload/workload.proto";
 import "enreach/workload/workreport.proto";
 import "enreach/workload/superior.proto";
+import "enreach/workload/reputationpoint.proto";
 
 option go_package = "enreach/x/workload/types";
 
@@ -83,6 +84,50 @@ service Query {
   // Queries a Superior
   rpc Superior (QueryGetSuperiorRequest) returns (QueryGetSuperiorResponse) {
     option (google.api.http).get = "/enreach/workload/superior";
+  
+  }
+
+
+  // Queries era
+  rpc EraLength  (QueryGetEraLengthRequest ) returns (QueryGetEraLengthResponse ) {
+    option (google.api.http).get = "/enreach/workload/era/length";
+  
+  }
+  rpc CurrentEra (QueryGetCurrentEraRequest) returns (QueryGetCurrentEraResponse) {
+    option (google.api.http).get = "/enreach/workload/era/currentera";
+  
+  }
+
+  // Queries a list of ReputationPointChangeData items.
+  rpc ReputationPointChangeData    (QueryGetReputationPointChangeDataRequest) returns (QueryGetReputationPointChangeDataResponse) {
+    option (google.api.http).get = "/enreach/workload/reputation_point_change_data/{era}/{nodeID}";
+  
+  }
+  rpc AllReputationPointChangeDataByEra (QueryGetAllReputationPointChangeDataByEraRequest) returns (QueryGetAllReputationPointChangeDataByEraResponse) {
+    option (google.api.http).get = "/enreach/workload/reputation_point_change_datas/{era}";
+  
+  }
+  // Queries a list of ReputationPoint items.
+  rpc ReputationPoint    (QueryGetReputationPointRequest) returns (QueryGetReputationPointResponse) {
+    option (google.api.http).get = "/enreach/workload/reputation_point/{era}/{nodeID}";
+  
+  }
+  rpc LatestReputationPoint    (QueryGetLatestReputationPointRequest) returns (QueryGetLatestReputationPointResponse) {
+    option (google.api.http).get = "/enreach/workload/latest_reputation_point/{nodeID}";
+  
+  }
+  rpc AllReputationPointByEra (QueryGetAllReputationPointByEraRequest) returns (QueryGetAllReputationPointByEraResponse) {
+    option (google.api.http).get = "/enreach/workload/reputation_points/{era}";
+  
+  }
+
+  // Queries a list of EpochProcessData items.
+  rpc EraProcessData    (QueryGetEraProcessDataRequest) returns (QueryGetEraProcessDataResponse) {
+    option (google.api.http).get = "/enreach/workload/workreport/era_process_data/{era}";
+  
+  }
+  rpc AllEraProcessData    (QueryGetAllEraProcessDataRequest) returns (QueryGetAllEraProcessDataResponse) {
+    option (google.api.http).get = "/enreach/workload/workreport/era_process_datas";
   
   }
 }
@@ -200,4 +245,80 @@ message QueryGetSuperiorRequest {}
 
 message QueryGetSuperiorResponse {
   Superior Superior = 1 [(gogoproto.nullable) = false];
+}
+
+
+message QueryGetEraLengthRequest {}
+
+message QueryGetEraLengthResponse {
+  uint64 eraLength = 1;
+}
+
+message QueryGetCurrentEraRequest {}
+
+message QueryGetCurrentEraResponse {
+  uint64 currentEra = 1;
+}
+
+message QueryGetReputationPointChangeDataRequest {
+  uint64 era = 1;
+  string nodeID = 2;
+}
+
+message QueryGetReputationPointChangeDataResponse {
+  ReputationPointChangeData ReputationPointChangeData = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetAllReputationPointChangeDataByEraRequest {
+  uint64 era = 1;
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
+}
+
+message QueryGetAllReputationPointChangeDataByEraResponse {
+  repeated ReputationPointChangeData ReputationPointChangeDatas   = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetReputationPointRequest {
+  uint64 era = 1;
+  string nodeID = 2;
+}
+
+message QueryGetReputationPointResponse {
+  ReputationPoint ReputationPoint = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetLatestReputationPointRequest {
+  string nodeID = 1;
+}
+
+message QueryGetLatestReputationPointResponse {
+  ReputationPoint ReputationPoint = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetAllReputationPointByEraRequest {
+  uint64 era = 1;
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
+}
+
+message QueryGetAllReputationPointByEraResponse {
+  repeated ReputationPoint ReputationPoints   = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetEraProcessDataRequest {
+  uint64   era = 1;
+}
+
+message QueryGetEraProcessDataResponse {
+  EraProcessData EraProcessData = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetAllEraProcessDataRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryGetAllEraProcessDataResponse {
+  repeated EraProcessData EraProcessDatas = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }

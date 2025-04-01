@@ -37,4 +37,14 @@ const (
 	EpochProcessDataCountKey = "EpochProcessData/count/"
 
 	SuperiorKey = "Superior/value/"
+
+	ReputationPointChangeDataKey      = "ReputationPointChangeData/value/"
+	ReputationPointChangeDataCountKey = "ReputationPointChangeData/count/"
+
+	ReputationPointKey      = "ReputationPoint/value/"
+	ReputationPointCountKey = "ReputationPoint/count/"
+
+	EraProcessDataKey      = "EraProcessData/value/"
+	LastEraProcessDataKey  = "EraProcessData/last/"
+	EraProcessDataCountKey = "EraProcessData/count/"
 )

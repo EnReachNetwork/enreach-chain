@@ -28,4 +28,6 @@ const (
 	AttributeKeyEndAt               = "endAt"
 	AttributeKeyTotalNodesCount     = "totalNodesCount"
 	AttributeKeyProcessedNodesCount = "processedNodesCount"
+	AttributeKeyEra                 = "era"
+	AttributeKeyNodePointsCount     = "nodePointsCount"
 )

@@ -25,6 +25,7 @@ const (
 	Msg_UpdateHistoryEpochDataDepth_FullMethodName      = "/enreach.workload.Msg/UpdateHistoryEpochDataDepth"
 	Msg_CreateSuperior_FullMethodName                   = "/enreach.workload.Msg/CreateSuperior"
 	Msg_UpdateSuperior_FullMethodName                   = "/enreach.workload.Msg/UpdateSuperior"
+	Msg_SubmitReputationPointChangeData_FullMethodName  = "/enreach.workload.Msg/SubmitReputationPointChangeData"
 )
 
 // MsgClient is the client API for Msg service.
@@ -39,6 +40,7 @@ type MsgClient interface {
 	UpdateHistoryEpochDataDepth(ctx context.Context, in *MsgUpdateHistoryEpochDataDepth, opts ...grpc.CallOption) (*MsgUpdateHistoryEpochDataDepthResponse, error)
 	CreateSuperior(ctx context.Context, in *MsgCreateSuperior, opts ...grpc.CallOption) (*MsgCreateSuperiorResponse, error)
 	UpdateSuperior(ctx context.Context, in *MsgUpdateSuperior, opts ...grpc.CallOption) (*MsgUpdateSuperiorResponse, error)
+	SubmitReputationPointChangeData(ctx context.Context, in *MsgSubmitReputationPointChangeData, opts ...grpc.CallOption) (*MsgSubmitReputationPointChangeDataResponse, error)
 }
 
 type msgClient struct {
@@ -103,6 +105,15 @@ func (c *msgClient) UpdateSuperior(ctx context.Context, in *MsgUpdateSuperior, o
 	return out, nil
 }
 
+func (c *msgClient) SubmitReputationPointChangeData(ctx context.Context, in *MsgSubmitReputationPointChangeData, opts ...grpc.CallOption) (*MsgSubmitReputationPointChangeDataResponse, error) {
+	out := new(MsgSubmitReputationPointChangeDataResponse)
+	err := c.cc.Invoke(ctx, Msg_SubmitReputationPointChangeData_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -115,6 +126,7 @@ type MsgServer interface {
 	UpdateHistoryEpochDataDepth(context.Context, *MsgUpdateHistoryEpochDataDepth) (*MsgUpdateHistoryEpochDataDepthResponse, error)
 	CreateSuperior(context.Context, *MsgCreateSuperior) (*MsgCreateSuperiorResponse, error)
 	UpdateSuperior(context.Context, *MsgUpdateSuperior) (*MsgUpdateSuperiorResponse, error)
+	SubmitReputationPointChangeData(context.Context, *MsgSubmitReputationPointChangeData) (*MsgSubmitReputationPointChangeDataResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -139,6 +151,9 @@ func (UnimplementedMsgServer) CreateSuperior(context.Context, *MsgCreateSuperior
 }
 func (UnimplementedMsgServer) UpdateSuperior(context.Context, *MsgUpdateSuperior) (*MsgUpdateSuperiorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateSuperior not implemented")
+}
+func (UnimplementedMsgServer) SubmitReputationPointChangeData(context.Context, *MsgSubmitReputationPointChangeData) (*MsgSubmitReputationPointChangeDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SubmitReputationPointChangeData not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -261,6 +276,24 @@ func _Msg_UpdateSuperior_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_SubmitReputationPointChangeData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgSubmitReputationPointChangeData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).SubmitReputationPointChangeData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_SubmitReputationPointChangeData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).SubmitReputationPointChangeData(ctx, req.(*MsgSubmitReputationPointChangeData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -291,6 +324,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateSuperior",
 			Handler:    _Msg_UpdateSuperior_Handler,
+		},
+		{
+			MethodName: "SubmitReputationPointChangeData",
+			Handler:    _Msg_SubmitReputationPointChangeData_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

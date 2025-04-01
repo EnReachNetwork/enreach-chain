@@ -20,4 +20,8 @@ var (
 	ErrInvalidEpoch                     = sdkerrors.Register(ModuleName, 1109, "invalid epoch")
 	ErrSuperiorNotSet                   = sdkerrors.Register(ModuleName, 1110, "superior not set")
 	ErrInvalidParamValue                = sdkerrors.Register(ModuleName, 1111, "invalid param value")
+	ErrNodePointsCountExceedPerReqLimit = sdkerrors.Register(ModuleName, 1112, "nodepoints count exceed per request limit")
+	ErrInvalidEra                       = sdkerrors.Register(ModuleName, 1113, "invalid era")
+	ErrEraProcessorNotStartedYet        = sdkerrors.Register(ModuleName, 1114, "era processor not started yet")
+	ErrFirstEraProcessNotFinishedYet    = sdkerrors.Register(ModuleName, 1115, "first era process not finished yet")
 )
