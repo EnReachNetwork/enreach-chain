@@ -2459,20 +2459,584 @@ func (x *fastReflection_ReputationPointChangeData) ProtoMethods() *protoiface.Me
 }
 
 var (
+	md_ReputationDeltaPoint            protoreflect.MessageDescriptor
+	fd_ReputationDeltaPoint_era        protoreflect.FieldDescriptor
+	fd_ReputationDeltaPoint_nodeID     protoreflect.FieldDescriptor
+	fd_ReputationDeltaPoint_deltaPoint protoreflect.FieldDescriptor
+	fd_ReputationDeltaPoint_createAt   protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_enreach_workload_reputationpoint_proto_init()
+	md_ReputationDeltaPoint = File_enreach_workload_reputationpoint_proto.Messages().ByName("ReputationDeltaPoint")
+	fd_ReputationDeltaPoint_era = md_ReputationDeltaPoint.Fields().ByName("era")
+	fd_ReputationDeltaPoint_nodeID = md_ReputationDeltaPoint.Fields().ByName("nodeID")
+	fd_ReputationDeltaPoint_deltaPoint = md_ReputationDeltaPoint.Fields().ByName("deltaPoint")
+	fd_ReputationDeltaPoint_createAt = md_ReputationDeltaPoint.Fields().ByName("createAt")
+}
+
+var _ protoreflect.Message = (*fastReflection_ReputationDeltaPoint)(nil)
+
+type fastReflection_ReputationDeltaPoint ReputationDeltaPoint
+
+func (x *ReputationDeltaPoint) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_ReputationDeltaPoint)(x)
+}
+
+func (x *ReputationDeltaPoint) slowProtoReflect() protoreflect.Message {
+	mi := &file_enreach_workload_reputationpoint_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_ReputationDeltaPoint_messageType fastReflection_ReputationDeltaPoint_messageType
+var _ protoreflect.MessageType = fastReflection_ReputationDeltaPoint_messageType{}
+
+type fastReflection_ReputationDeltaPoint_messageType struct{}
+
+func (x fastReflection_ReputationDeltaPoint_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_ReputationDeltaPoint)(nil)
+}
+func (x fastReflection_ReputationDeltaPoint_messageType) New() protoreflect.Message {
+	return new(fastReflection_ReputationDeltaPoint)
+}
+func (x fastReflection_ReputationDeltaPoint_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_ReputationDeltaPoint
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_ReputationDeltaPoint) Descriptor() protoreflect.MessageDescriptor {
+	return md_ReputationDeltaPoint
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_ReputationDeltaPoint) Type() protoreflect.MessageType {
+	return _fastReflection_ReputationDeltaPoint_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_ReputationDeltaPoint) New() protoreflect.Message {
+	return new(fastReflection_ReputationDeltaPoint)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_ReputationDeltaPoint) Interface() protoreflect.ProtoMessage {
+	return (*ReputationDeltaPoint)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_ReputationDeltaPoint) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Era != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.Era)
+		if !f(fd_ReputationDeltaPoint_era, value) {
+			return
+		}
+	}
+	if x.NodeID != "" {
+		value := protoreflect.ValueOfString(x.NodeID)
+		if !f(fd_ReputationDeltaPoint_nodeID, value) {
+			return
+		}
+	}
+	if x.DeltaPoint != int64(0) {
+		value := protoreflect.ValueOfInt64(x.DeltaPoint)
+		if !f(fd_ReputationDeltaPoint_deltaPoint, value) {
+			return
+		}
+	}
+	if x.CreateAt != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.CreateAt)
+		if !f(fd_ReputationDeltaPoint_createAt, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_ReputationDeltaPoint) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "enreach.workload.ReputationDeltaPoint.era":
+		return x.Era != uint64(0)
+	case "enreach.workload.ReputationDeltaPoint.nodeID":
+		return x.NodeID != ""
+	case "enreach.workload.ReputationDeltaPoint.deltaPoint":
+		return x.DeltaPoint != int64(0)
+	case "enreach.workload.ReputationDeltaPoint.createAt":
+		return x.CreateAt != uint64(0)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.ReputationDeltaPoint"))
+		}
+		panic(fmt.Errorf("message enreach.workload.ReputationDeltaPoint does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_ReputationDeltaPoint) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "enreach.workload.ReputationDeltaPoint.era":
+		x.Era = uint64(0)
+	case "enreach.workload.ReputationDeltaPoint.nodeID":
+		x.NodeID = ""
+	case "enreach.workload.ReputationDeltaPoint.deltaPoint":
+		x.DeltaPoint = int64(0)
+	case "enreach.workload.ReputationDeltaPoint.createAt":
+		x.CreateAt = uint64(0)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.ReputationDeltaPoint"))
+		}
+		panic(fmt.Errorf("message enreach.workload.ReputationDeltaPoint does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_ReputationDeltaPoint) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "enreach.workload.ReputationDeltaPoint.era":
+		value := x.Era
+		return protoreflect.ValueOfUint64(value)
+	case "enreach.workload.ReputationDeltaPoint.nodeID":
+		value := x.NodeID
+		return protoreflect.ValueOfString(value)
+	case "enreach.workload.ReputationDeltaPoint.deltaPoint":
+		value := x.DeltaPoint
+		return protoreflect.ValueOfInt64(value)
+	case "enreach.workload.ReputationDeltaPoint.createAt":
+		value := x.CreateAt
+		return protoreflect.ValueOfUint64(value)
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.ReputationDeltaPoint"))
+		}
+		panic(fmt.Errorf("message enreach.workload.ReputationDeltaPoint does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_ReputationDeltaPoint) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "enreach.workload.ReputationDeltaPoint.era":
+		x.Era = value.Uint()
+	case "enreach.workload.ReputationDeltaPoint.nodeID":
+		x.NodeID = value.Interface().(string)
+	case "enreach.workload.ReputationDeltaPoint.deltaPoint":
+		x.DeltaPoint = value.Int()
+	case "enreach.workload.ReputationDeltaPoint.createAt":
+		x.CreateAt = value.Uint()
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.ReputationDeltaPoint"))
+		}
+		panic(fmt.Errorf("message enreach.workload.ReputationDeltaPoint does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_ReputationDeltaPoint) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "enreach.workload.ReputationDeltaPoint.era":
+		panic(fmt.Errorf("field era of message enreach.workload.ReputationDeltaPoint is not mutable"))
+	case "enreach.workload.ReputationDeltaPoint.nodeID":
+		panic(fmt.Errorf("field nodeID of message enreach.workload.ReputationDeltaPoint is not mutable"))
+	case "enreach.workload.ReputationDeltaPoint.deltaPoint":
+		panic(fmt.Errorf("field deltaPoint of message enreach.workload.ReputationDeltaPoint is not mutable"))
+	case "enreach.workload.ReputationDeltaPoint.createAt":
+		panic(fmt.Errorf("field createAt of message enreach.workload.ReputationDeltaPoint is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.ReputationDeltaPoint"))
+		}
+		panic(fmt.Errorf("message enreach.workload.ReputationDeltaPoint does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_ReputationDeltaPoint) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "enreach.workload.ReputationDeltaPoint.era":
+		return protoreflect.ValueOfUint64(uint64(0))
+	case "enreach.workload.ReputationDeltaPoint.nodeID":
+		return protoreflect.ValueOfString("")
+	case "enreach.workload.ReputationDeltaPoint.deltaPoint":
+		return protoreflect.ValueOfInt64(int64(0))
+	case "enreach.workload.ReputationDeltaPoint.createAt":
+		return protoreflect.ValueOfUint64(uint64(0))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.ReputationDeltaPoint"))
+		}
+		panic(fmt.Errorf("message enreach.workload.ReputationDeltaPoint does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_ReputationDeltaPoint) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in enreach.workload.ReputationDeltaPoint", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_ReputationDeltaPoint) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_ReputationDeltaPoint) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_ReputationDeltaPoint) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_ReputationDeltaPoint) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*ReputationDeltaPoint)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if x.Era != 0 {
+			n += 1 + runtime.Sov(uint64(x.Era))
+		}
+		l = len(x.NodeID)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.DeltaPoint != 0 {
+			n += 1 + runtime.Sov(uint64(x.DeltaPoint))
+		}
+		if x.CreateAt != 0 {
+			n += 1 + runtime.Sov(uint64(x.CreateAt))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*ReputationDeltaPoint)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if x.CreateAt != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.CreateAt))
+			i--
+			dAtA[i] = 0x20
+		}
+		if x.DeltaPoint != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.DeltaPoint))
+			i--
+			dAtA[i] = 0x18
+		}
+		if len(x.NodeID) > 0 {
+			i -= len(x.NodeID)
+			copy(dAtA[i:], x.NodeID)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.NodeID)))
+			i--
+			dAtA[i] = 0x12
+		}
+		if x.Era != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.Era))
+			i--
+			dAtA[i] = 0x8
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*ReputationDeltaPoint)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: ReputationDeltaPoint: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: ReputationDeltaPoint: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Era", wireType)
+				}
+				x.Era = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.Era |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field NodeID", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.NodeID = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 3:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field DeltaPoint", wireType)
+				}
+				x.DeltaPoint = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.DeltaPoint |= int64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 4:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field CreateAt", wireType)
+				}
+				x.CreateAt = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.CreateAt |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
 	md_ReputationPoint          protoreflect.MessageDescriptor
-	fd_ReputationPoint_era      protoreflect.FieldDescriptor
 	fd_ReputationPoint_nodeID   protoreflect.FieldDescriptor
 	fd_ReputationPoint_point    protoreflect.FieldDescriptor
 	fd_ReputationPoint_createAt protoreflect.FieldDescriptor
+	fd_ReputationPoint_updateAt protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_enreach_workload_reputationpoint_proto_init()
 	md_ReputationPoint = File_enreach_workload_reputationpoint_proto.Messages().ByName("ReputationPoint")
-	fd_ReputationPoint_era = md_ReputationPoint.Fields().ByName("era")
 	fd_ReputationPoint_nodeID = md_ReputationPoint.Fields().ByName("nodeID")
 	fd_ReputationPoint_point = md_ReputationPoint.Fields().ByName("point")
 	fd_ReputationPoint_createAt = md_ReputationPoint.Fields().ByName("createAt")
+	fd_ReputationPoint_updateAt = md_ReputationPoint.Fields().ByName("updateAt")
 }
 
 var _ protoreflect.Message = (*fastReflection_ReputationPoint)(nil)
@@ -2484,7 +3048,7 @@ func (x *ReputationPoint) ProtoReflect() protoreflect.Message {
 }
 
 func (x *ReputationPoint) slowProtoReflect() protoreflect.Message {
-	mi := &file_enreach_workload_reputationpoint_proto_msgTypes[4]
+	mi := &file_enreach_workload_reputationpoint_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2540,20 +3104,14 @@ func (x *fastReflection_ReputationPoint) Interface() protoreflect.ProtoMessage {
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_ReputationPoint) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Era != uint64(0) {
-		value := protoreflect.ValueOfUint64(x.Era)
-		if !f(fd_ReputationPoint_era, value) {
-			return
-		}
-	}
 	if x.NodeID != "" {
 		value := protoreflect.ValueOfString(x.NodeID)
 		if !f(fd_ReputationPoint_nodeID, value) {
 			return
 		}
 	}
-	if x.Point != uint64(0) {
-		value := protoreflect.ValueOfUint64(x.Point)
+	if x.Point != int64(0) {
+		value := protoreflect.ValueOfInt64(x.Point)
 		if !f(fd_ReputationPoint_point, value) {
 			return
 		}
@@ -2561,6 +3119,12 @@ func (x *fastReflection_ReputationPoint) Range(f func(protoreflect.FieldDescript
 	if x.CreateAt != uint64(0) {
 		value := protoreflect.ValueOfUint64(x.CreateAt)
 		if !f(fd_ReputationPoint_createAt, value) {
+			return
+		}
+	}
+	if x.UpdateAt != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.UpdateAt)
+		if !f(fd_ReputationPoint_updateAt, value) {
 			return
 		}
 	}
@@ -2579,14 +3143,14 @@ func (x *fastReflection_ReputationPoint) Range(f func(protoreflect.FieldDescript
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_ReputationPoint) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "enreach.workload.ReputationPoint.era":
-		return x.Era != uint64(0)
 	case "enreach.workload.ReputationPoint.nodeID":
 		return x.NodeID != ""
 	case "enreach.workload.ReputationPoint.point":
-		return x.Point != uint64(0)
+		return x.Point != int64(0)
 	case "enreach.workload.ReputationPoint.createAt":
 		return x.CreateAt != uint64(0)
+	case "enreach.workload.ReputationPoint.updateAt":
+		return x.UpdateAt != uint64(0)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.ReputationPoint"))
@@ -2603,14 +3167,14 @@ func (x *fastReflection_ReputationPoint) Has(fd protoreflect.FieldDescriptor) bo
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_ReputationPoint) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "enreach.workload.ReputationPoint.era":
-		x.Era = uint64(0)
 	case "enreach.workload.ReputationPoint.nodeID":
 		x.NodeID = ""
 	case "enreach.workload.ReputationPoint.point":
-		x.Point = uint64(0)
+		x.Point = int64(0)
 	case "enreach.workload.ReputationPoint.createAt":
 		x.CreateAt = uint64(0)
+	case "enreach.workload.ReputationPoint.updateAt":
+		x.UpdateAt = uint64(0)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.ReputationPoint"))
@@ -2627,17 +3191,17 @@ func (x *fastReflection_ReputationPoint) Clear(fd protoreflect.FieldDescriptor) 
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_ReputationPoint) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "enreach.workload.ReputationPoint.era":
-		value := x.Era
-		return protoreflect.ValueOfUint64(value)
 	case "enreach.workload.ReputationPoint.nodeID":
 		value := x.NodeID
 		return protoreflect.ValueOfString(value)
 	case "enreach.workload.ReputationPoint.point":
 		value := x.Point
-		return protoreflect.ValueOfUint64(value)
+		return protoreflect.ValueOfInt64(value)
 	case "enreach.workload.ReputationPoint.createAt":
 		value := x.CreateAt
+		return protoreflect.ValueOfUint64(value)
+	case "enreach.workload.ReputationPoint.updateAt":
+		value := x.UpdateAt
 		return protoreflect.ValueOfUint64(value)
 	default:
 		if descriptor.IsExtension() {
@@ -2659,14 +3223,14 @@ func (x *fastReflection_ReputationPoint) Get(descriptor protoreflect.FieldDescri
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_ReputationPoint) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "enreach.workload.ReputationPoint.era":
-		x.Era = value.Uint()
 	case "enreach.workload.ReputationPoint.nodeID":
 		x.NodeID = value.Interface().(string)
 	case "enreach.workload.ReputationPoint.point":
-		x.Point = value.Uint()
+		x.Point = value.Int()
 	case "enreach.workload.ReputationPoint.createAt":
 		x.CreateAt = value.Uint()
+	case "enreach.workload.ReputationPoint.updateAt":
+		x.UpdateAt = value.Uint()
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.ReputationPoint"))
@@ -2687,14 +3251,14 @@ func (x *fastReflection_ReputationPoint) Set(fd protoreflect.FieldDescriptor, va
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_ReputationPoint) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "enreach.workload.ReputationPoint.era":
-		panic(fmt.Errorf("field era of message enreach.workload.ReputationPoint is not mutable"))
 	case "enreach.workload.ReputationPoint.nodeID":
 		panic(fmt.Errorf("field nodeID of message enreach.workload.ReputationPoint is not mutable"))
 	case "enreach.workload.ReputationPoint.point":
 		panic(fmt.Errorf("field point of message enreach.workload.ReputationPoint is not mutable"))
 	case "enreach.workload.ReputationPoint.createAt":
 		panic(fmt.Errorf("field createAt of message enreach.workload.ReputationPoint is not mutable"))
+	case "enreach.workload.ReputationPoint.updateAt":
+		panic(fmt.Errorf("field updateAt of message enreach.workload.ReputationPoint is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: enreach.workload.ReputationPoint"))
@@ -2708,13 +3272,13 @@ func (x *fastReflection_ReputationPoint) Mutable(fd protoreflect.FieldDescriptor
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_ReputationPoint) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "enreach.workload.ReputationPoint.era":
-		return protoreflect.ValueOfUint64(uint64(0))
 	case "enreach.workload.ReputationPoint.nodeID":
 		return protoreflect.ValueOfString("")
 	case "enreach.workload.ReputationPoint.point":
-		return protoreflect.ValueOfUint64(uint64(0))
+		return protoreflect.ValueOfInt64(int64(0))
 	case "enreach.workload.ReputationPoint.createAt":
+		return protoreflect.ValueOfUint64(uint64(0))
+	case "enreach.workload.ReputationPoint.updateAt":
 		return protoreflect.ValueOfUint64(uint64(0))
 	default:
 		if fd.IsExtension() {
@@ -2785,9 +3349,6 @@ func (x *fastReflection_ReputationPoint) ProtoMethods() *protoiface.Methods {
 		var n int
 		var l int
 		_ = l
-		if x.Era != 0 {
-			n += 1 + runtime.Sov(uint64(x.Era))
-		}
 		l = len(x.NodeID)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
@@ -2797,6 +3358,9 @@ func (x *fastReflection_ReputationPoint) ProtoMethods() *protoiface.Methods {
 		}
 		if x.CreateAt != 0 {
 			n += 1 + runtime.Sov(uint64(x.CreateAt))
+		}
+		if x.UpdateAt != 0 {
+			n += 1 + runtime.Sov(uint64(x.UpdateAt))
 		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
@@ -2827,27 +3391,27 @@ func (x *fastReflection_ReputationPoint) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
+		if x.UpdateAt != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.UpdateAt))
+			i--
+			dAtA[i] = 0x20
+		}
 		if x.CreateAt != 0 {
 			i = runtime.EncodeVarint(dAtA, i, uint64(x.CreateAt))
 			i--
-			dAtA[i] = 0x20
+			dAtA[i] = 0x18
 		}
 		if x.Point != 0 {
 			i = runtime.EncodeVarint(dAtA, i, uint64(x.Point))
 			i--
-			dAtA[i] = 0x18
+			dAtA[i] = 0x10
 		}
 		if len(x.NodeID) > 0 {
 			i -= len(x.NodeID)
 			copy(dAtA[i:], x.NodeID)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.NodeID)))
 			i--
-			dAtA[i] = 0x12
-		}
-		if x.Era != 0 {
-			i = runtime.EncodeVarint(dAtA, i, uint64(x.Era))
-			i--
-			dAtA[i] = 0x8
+			dAtA[i] = 0xa
 		}
 		if input.Buf != nil {
 			input.Buf = append(input.Buf, dAtA...)
@@ -2899,25 +3463,6 @@ func (x *fastReflection_ReputationPoint) ProtoMethods() *protoiface.Methods {
 			}
 			switch fieldNum {
 			case 1:
-				if wireType != 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Era", wireType)
-				}
-				x.Era = 0
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					x.Era |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-			case 2:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field NodeID", wireType)
 				}
@@ -2949,7 +3494,7 @@ func (x *fastReflection_ReputationPoint) ProtoMethods() *protoiface.Methods {
 				}
 				x.NodeID = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
-			case 3:
+			case 2:
 				if wireType != 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Point", wireType)
 				}
@@ -2963,12 +3508,12 @@ func (x *fastReflection_ReputationPoint) ProtoMethods() *protoiface.Methods {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					x.Point |= uint64(b&0x7F) << shift
+					x.Point |= int64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
 				}
-			case 4:
+			case 3:
 				if wireType != 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field CreateAt", wireType)
 				}
@@ -2983,6 +3528,25 @@ func (x *fastReflection_ReputationPoint) ProtoMethods() *protoiface.Methods {
 					b := dAtA[iNdEx]
 					iNdEx++
 					x.CreateAt |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 4:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field UpdateAt", wireType)
+				}
+				x.UpdateAt = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.UpdateAt |= uint64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
@@ -3054,7 +3618,7 @@ func (x *EraProcessData) ProtoReflect() protoreflect.Message {
 }
 
 func (x *EraProcessData) slowProtoReflect() protoreflect.Message {
-	mi := &file_enreach_workload_reputationpoint_proto_msgTypes[5]
+	mi := &file_enreach_workload_reputationpoint_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3954,21 +4518,80 @@ func (x *ReputationPointChangeData) GetData() map[string]*ReputationPointChangeR
 	return nil
 }
 
+type ReputationDeltaPoint struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Era        uint64 `protobuf:"varint,1,opt,name=era,proto3" json:"era,omitempty"`
+	NodeID     string `protobuf:"bytes,2,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
+	DeltaPoint int64  `protobuf:"varint,3,opt,name=deltaPoint,proto3" json:"deltaPoint,omitempty"`
+	CreateAt   uint64 `protobuf:"varint,4,opt,name=createAt,proto3" json:"createAt,omitempty"`
+}
+
+func (x *ReputationDeltaPoint) Reset() {
+	*x = ReputationDeltaPoint{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_enreach_workload_reputationpoint_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ReputationDeltaPoint) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReputationDeltaPoint) ProtoMessage() {}
+
+// Deprecated: Use ReputationDeltaPoint.ProtoReflect.Descriptor instead.
+func (*ReputationDeltaPoint) Descriptor() ([]byte, []int) {
+	return file_enreach_workload_reputationpoint_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ReputationDeltaPoint) GetEra() uint64 {
+	if x != nil {
+		return x.Era
+	}
+	return 0
+}
+
+func (x *ReputationDeltaPoint) GetNodeID() string {
+	if x != nil {
+		return x.NodeID
+	}
+	return ""
+}
+
+func (x *ReputationDeltaPoint) GetDeltaPoint() int64 {
+	if x != nil {
+		return x.DeltaPoint
+	}
+	return 0
+}
+
+func (x *ReputationDeltaPoint) GetCreateAt() uint64 {
+	if x != nil {
+		return x.CreateAt
+	}
+	return 0
+}
+
 type ReputationPoint struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Era      uint64 `protobuf:"varint,1,opt,name=era,proto3" json:"era,omitempty"`
-	NodeID   string `protobuf:"bytes,2,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
-	Point    uint64 `protobuf:"varint,3,opt,name=point,proto3" json:"point,omitempty"`
-	CreateAt uint64 `protobuf:"varint,4,opt,name=createAt,proto3" json:"createAt,omitempty"`
+	NodeID   string `protobuf:"bytes,1,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
+	Point    int64  `protobuf:"varint,2,opt,name=point,proto3" json:"point,omitempty"`
+	CreateAt uint64 `protobuf:"varint,3,opt,name=createAt,proto3" json:"createAt,omitempty"`
+	UpdateAt uint64 `protobuf:"varint,4,opt,name=updateAt,proto3" json:"updateAt,omitempty"`
 }
 
 func (x *ReputationPoint) Reset() {
 	*x = ReputationPoint{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_enreach_workload_reputationpoint_proto_msgTypes[4]
+		mi := &file_enreach_workload_reputationpoint_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3982,14 +4605,7 @@ func (*ReputationPoint) ProtoMessage() {}
 
 // Deprecated: Use ReputationPoint.ProtoReflect.Descriptor instead.
 func (*ReputationPoint) Descriptor() ([]byte, []int) {
-	return file_enreach_workload_reputationpoint_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *ReputationPoint) GetEra() uint64 {
-	if x != nil {
-		return x.Era
-	}
-	return 0
+	return file_enreach_workload_reputationpoint_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ReputationPoint) GetNodeID() string {
@@ -3999,7 +4615,7 @@ func (x *ReputationPoint) GetNodeID() string {
 	return ""
 }
 
-func (x *ReputationPoint) GetPoint() uint64 {
+func (x *ReputationPoint) GetPoint() int64 {
 	if x != nil {
 		return x.Point
 	}
@@ -4009,6 +4625,13 @@ func (x *ReputationPoint) GetPoint() uint64 {
 func (x *ReputationPoint) GetCreateAt() uint64 {
 	if x != nil {
 		return x.CreateAt
+	}
+	return 0
+}
+
+func (x *ReputationPoint) GetUpdateAt() uint64 {
+	if x != nil {
+		return x.UpdateAt
 	}
 	return 0
 }
@@ -4030,7 +4653,7 @@ type EraProcessData struct {
 func (x *EraProcessData) Reset() {
 	*x = EraProcessData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_enreach_workload_reputationpoint_proto_msgTypes[5]
+		mi := &file_enreach_workload_reputationpoint_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4044,7 +4667,7 @@ func (*EraProcessData) ProtoMessage() {}
 
 // Deprecated: Use EraProcessData.ProtoReflect.Descriptor instead.
 func (*EraProcessData) Descriptor() ([]byte, []int) {
-	return file_enreach_workload_reputationpoint_proto_rawDescGZIP(), []int{5}
+	return file_enreach_workload_reputationpoint_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *EraProcessData) GetEra() uint64 {
@@ -4148,43 +4771,52 @@ var file_enreach_workload_reputationpoint_proto_rawDesc = []byte{
 	0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64,
 	0x2e, 0x52, 0x65, 0x70, 0x75, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x50, 0x6f, 0x69, 0x6e, 0x74,
 	0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x52, 0x61, 0x77, 0x44, 0x61, 0x74, 0x61, 0x44, 0x42, 0x52,
-	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0x6d, 0x0a, 0x0f, 0x52, 0x65,
-	0x70, 0x75, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x50, 0x6f, 0x69, 0x6e, 0x74, 0x12, 0x10, 0x0a,
-	0x03, 0x65, 0x72, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x03, 0x65, 0x72, 0x61, 0x12,
-	0x16, 0x0a, 0x06, 0x6e, 0x6f, 0x64, 0x65, 0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x06, 0x6e, 0x6f, 0x64, 0x65, 0x49, 0x44, 0x12, 0x14, 0x0a, 0x05, 0x70, 0x6f, 0x69, 0x6e, 0x74,
-	0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x05, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x12, 0x1a, 0x0a,
-	0x08, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x04, 0x52,
-	0x08, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x74, 0x22, 0x95, 0x02, 0x0a, 0x0e, 0x45, 0x72,
-	0x61, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x12, 0x10, 0x0a, 0x03,
-	0x65, 0x72, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x03, 0x65, 0x72, 0x61, 0x12, 0x28,
-	0x0a, 0x0f, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x43, 0x6f, 0x75, 0x6e,
-	0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0f, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x4e, 0x6f,
-	0x64, 0x65, 0x73, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x30, 0x0a, 0x13, 0x70, 0x72, 0x6f, 0x63,
-	0x65, 0x73, 0x73, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x18,
-	0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x13, 0x70, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x65, 0x64,
-	0x4e, 0x6f, 0x64, 0x65, 0x73, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x73, 0x74,
-	0x61, 0x72, 0x74, 0x41, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x04, 0x52, 0x07, 0x73, 0x74, 0x61,
-	0x72, 0x74, 0x41, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x74,
-	0x18, 0x05, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x74,
-	0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x47, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69,
-	0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x07, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x63,
-	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79,
-	0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x42, 0xb0, 0x01, 0x0a, 0x14, 0x63, 0x6f, 0x6d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63,
-	0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x42, 0x14, 0x52, 0x65, 0x70, 0x75,
-	0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x50, 0x72, 0x6f, 0x74, 0x6f,
-	0x50, 0x01, 0x5a, 0x21, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f,
-	0x2f, 0x61, 0x70, 0x69, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72,
-	0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xa2, 0x02, 0x03, 0x45, 0x57, 0x58, 0xaa, 0x02, 0x10, 0x45, 0x6e,
-	0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xca, 0x02,
-	0x10, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61,
-	0x64, 0xe2, 0x02, 0x1c, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x57, 0x6f, 0x72, 0x6b,
-	0x6c, 0x6f, 0x61, 0x64, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61,
-	0xea, 0x02, 0x11, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x3a, 0x3a, 0x57, 0x6f, 0x72, 0x6b,
-	0x6c, 0x6f, 0x61, 0x64, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0x7c, 0x0a, 0x14, 0x52, 0x65,
+	0x70, 0x75, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x44, 0x65, 0x6c, 0x74, 0x61, 0x50, 0x6f, 0x69,
+	0x6e, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x65, 0x72, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52,
+	0x03, 0x65, 0x72, 0x61, 0x12, 0x16, 0x0a, 0x06, 0x6e, 0x6f, 0x64, 0x65, 0x49, 0x44, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x6e, 0x6f, 0x64, 0x65, 0x49, 0x44, 0x12, 0x1e, 0x0a, 0x0a,
+	0x64, 0x65, 0x6c, 0x74, 0x61, 0x50, 0x6f, 0x69, 0x6e, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x0a, 0x64, 0x65, 0x6c, 0x74, 0x61, 0x50, 0x6f, 0x69, 0x6e, 0x74, 0x12, 0x1a, 0x0a, 0x08,
+	0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08,
+	0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x74, 0x22, 0x77, 0x0a, 0x0f, 0x52, 0x65, 0x70, 0x75,
+	0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x50, 0x6f, 0x69, 0x6e, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x6e,
+	0x6f, 0x64, 0x65, 0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x6e, 0x6f, 0x64,
+	0x65, 0x49, 0x44, 0x12, 0x14, 0x0a, 0x05, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x03, 0x52, 0x05, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x63, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x41, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x63, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x41, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41,
+	0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41,
+	0x74, 0x22, 0x95, 0x02, 0x0a, 0x0e, 0x45, 0x72, 0x61, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73,
+	0x44, 0x61, 0x74, 0x61, 0x12, 0x10, 0x0a, 0x03, 0x65, 0x72, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x04, 0x52, 0x03, 0x65, 0x72, 0x61, 0x12, 0x28, 0x0a, 0x0f, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x4e,
+	0x6f, 0x64, 0x65, 0x73, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52,
+	0x0f, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x43, 0x6f, 0x75, 0x6e, 0x74,
+	0x12, 0x30, 0x0a, 0x13, 0x70, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x65, 0x64, 0x4e, 0x6f, 0x64,
+	0x65, 0x73, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x13, 0x70,
+	0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x43, 0x6f, 0x75,
+	0x6e, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x73, 0x74, 0x61, 0x72, 0x74, 0x41, 0x74, 0x18, 0x04, 0x20,
+	0x01, 0x28, 0x04, 0x52, 0x07, 0x73, 0x74, 0x61, 0x72, 0x74, 0x41, 0x74, 0x12, 0x1a, 0x0a, 0x08,
+	0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x74, 0x18, 0x05, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08,
+	0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74,
+	0x75, 0x73, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73,
+	0x12, 0x47, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x07,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61,
+	0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31,
+	0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0a, 0x70,
+	0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0xb0, 0x01, 0x0a, 0x14, 0x63, 0x6f,
+	0x6d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f,
+	0x61, 0x64, 0x42, 0x14, 0x52, 0x65, 0x70, 0x75, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x70, 0x6f,
+	0x69, 0x6e, 0x74, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x21, 0x63, 0x6f, 0x73, 0x6d,
+	0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x65, 0x6e, 0x72,
+	0x65, 0x61, 0x63, 0x68, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xa2, 0x02, 0x03,
+	0x45, 0x57, 0x58, 0xaa, 0x02, 0x10, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x57, 0x6f,
+	0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xca, 0x02, 0x10, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68,
+	0x5c, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0xe2, 0x02, 0x1c, 0x45, 0x6e, 0x72, 0x65,
+	0x61, 0x63, 0x68, 0x5c, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x5c, 0x47, 0x50, 0x42,
+	0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x11, 0x45, 0x6e, 0x72, 0x65, 0x61,
+	0x63, 0x68, 0x3a, 0x3a, 0x57, 0x6f, 0x72, 0x6b, 0x6c, 0x6f, 0x61, 0x64, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -4199,22 +4831,23 @@ func file_enreach_workload_reputationpoint_proto_rawDescGZIP() []byte {
 	return file_enreach_workload_reputationpoint_proto_rawDescData
 }
 
-var file_enreach_workload_reputationpoint_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_enreach_workload_reputationpoint_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_enreach_workload_reputationpoint_proto_goTypes = []interface{}{
 	(*ReputationPointChangeRawData)(nil),      // 0: enreach.workload.ReputationPointChangeRawData
 	(*ReputationPointChangeRawDataDB)(nil),    // 1: enreach.workload.ReputationPointChangeRawDataDB
 	(*ReputationPointChangeRawDataMapDB)(nil), // 2: enreach.workload.ReputationPointChangeRawDataMapDB
 	(*ReputationPointChangeData)(nil),         // 3: enreach.workload.ReputationPointChangeData
-	(*ReputationPoint)(nil),                   // 4: enreach.workload.ReputationPoint
-	(*EraProcessData)(nil),                    // 5: enreach.workload.EraProcessData
-	nil,                                       // 6: enreach.workload.ReputationPointChangeRawDataMapDB.DataEntry
-	nil,                                       // 7: enreach.workload.ReputationPointChangeData.DataEntry
-	(*v1beta1.PageResponse)(nil),              // 8: cosmos.base.query.v1beta1.PageResponse
+	(*ReputationDeltaPoint)(nil),              // 4: enreach.workload.ReputationDeltaPoint
+	(*ReputationPoint)(nil),                   // 5: enreach.workload.ReputationPoint
+	(*EraProcessData)(nil),                    // 6: enreach.workload.EraProcessData
+	nil,                                       // 7: enreach.workload.ReputationPointChangeRawDataMapDB.DataEntry
+	nil,                                       // 8: enreach.workload.ReputationPointChangeData.DataEntry
+	(*v1beta1.PageResponse)(nil),              // 9: cosmos.base.query.v1beta1.PageResponse
 }
 var file_enreach_workload_reputationpoint_proto_depIdxs = []int32{
-	6, // 0: enreach.workload.ReputationPointChangeRawDataMapDB.data:type_name -> enreach.workload.ReputationPointChangeRawDataMapDB.DataEntry
-	7, // 1: enreach.workload.ReputationPointChangeData.data:type_name -> enreach.workload.ReputationPointChangeData.DataEntry
-	8, // 2: enreach.workload.EraProcessData.pagination:type_name -> cosmos.base.query.v1beta1.PageResponse
+	7, // 0: enreach.workload.ReputationPointChangeRawDataMapDB.data:type_name -> enreach.workload.ReputationPointChangeRawDataMapDB.DataEntry
+	8, // 1: enreach.workload.ReputationPointChangeData.data:type_name -> enreach.workload.ReputationPointChangeData.DataEntry
+	9, // 2: enreach.workload.EraProcessData.pagination:type_name -> cosmos.base.query.v1beta1.PageResponse
 	1, // 3: enreach.workload.ReputationPointChangeRawDataMapDB.DataEntry.value:type_name -> enreach.workload.ReputationPointChangeRawDataDB
 	1, // 4: enreach.workload.ReputationPointChangeData.DataEntry.value:type_name -> enreach.workload.ReputationPointChangeRawDataDB
 	5, // [5:5] is the sub-list for method output_type
@@ -4279,7 +4912,7 @@ func file_enreach_workload_reputationpoint_proto_init() {
 			}
 		}
 		file_enreach_workload_reputationpoint_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ReputationPoint); i {
+			switch v := v.(*ReputationDeltaPoint); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4291,6 +4924,18 @@ func file_enreach_workload_reputationpoint_proto_init() {
 			}
 		}
 		file_enreach_workload_reputationpoint_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ReputationPoint); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_enreach_workload_reputationpoint_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*EraProcessData); i {
 			case 0:
 				return &v.state
@@ -4309,7 +4954,7 @@ func file_enreach_workload_reputationpoint_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_enreach_workload_reputationpoint_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

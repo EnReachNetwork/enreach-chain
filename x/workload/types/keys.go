@@ -23,8 +23,11 @@ const (
 	NodeWorkloadKey      = "NodeWorkload/value/"
 	NodeWorkloadCountKey = "NodeWorkload/count/"
 
-	ManagerWorkloadKey      = "ManagerWorkload/value/"
-	ManagerWorkloadCountKey = "ManagerWorkload/count/"
+	ManagerWRWorkloadKey      = "ManagerWRWorkload/value/"
+	ManagerWRWorkloadCountKey = "ManagerWRWorkload/count/"
+
+	ManagerRPWorkloadKey      = "ManagerRPWorkload/value/"
+	ManagerRPWorkloadCountKey = "ManagerRPWorkload/count/"
 
 	WorkreportKey      = "Workreport/value/"
 	WorkreportCountKey = "Workreport/count/"
@@ -40,6 +43,9 @@ const (
 
 	ReputationPointChangeDataKey      = "ReputationPointChangeData/value/"
 	ReputationPointChangeDataCountKey = "ReputationPointChangeData/count/"
+
+	ReputationDeltaPointKey      = "ReputationDeltaPoint/value/"
+	ReputationDeltaPointCountKey = "ReputationDeltaPoint/count/"
 
 	ReputationPointKey      = "ReputationPoint/value/"
 	ReputationPointCountKey = "ReputationPoint/count/"

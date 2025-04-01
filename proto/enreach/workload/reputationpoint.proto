@@ -26,11 +26,18 @@ message ReputationPointChangeData {
   map<string, ReputationPointChangeRawDataDB> data = 3;
 }
 
-message ReputationPoint {
+message ReputationDeltaPoint {
   uint64 era = 1; 
   string nodeID = 2; 
-  uint64 point = 3; 
+  int64 deltaPoint = 3; 
   uint64 createAt = 4; 
+}
+
+message ReputationPoint {
+  string nodeID = 1; 
+  int64 point = 2; 
+  uint64 createAt = 3; 
+  uint64 updateAt = 4; 
 }
 
 message EraProcessData {

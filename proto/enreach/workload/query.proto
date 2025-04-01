@@ -44,12 +44,20 @@ service Query {
   }
 
   // Queries a list of Manager Workload items.
-  rpc ManagerWorkload    (QueryGetManagerWorkloadRequest) returns (QueryGetManagerWorkloadResponse) {
-    option (google.api.http).get = "/enreach/workload/manager_workload/{epoch}/{managerAccount}";
+  rpc ManagerWRWorkload    (QueryGetManagerWRWorkloadRequest) returns (QueryGetManagerWRWorkloadResponse) {
+    option (google.api.http).get = "/enreach/workload/manager_wr_workload/{epoch}/{managerAccount}";
   
   }
-  rpc AllManagerWorkloadByEpoch (QueryGetAllManagerWorkloadByEpochRequest) returns (QueryGetAllManagerWorkloadByEpochResponse) {
-    option (google.api.http).get = "/enreach/workload/manager_workloads/{epoch}";
+  rpc AllManagerWRWorkloadByEpoch (QueryGetAllManagerWRWorkloadByEpochRequest) returns (QueryGetAllManagerWRWorkloadByEpochResponse) {
+    option (google.api.http).get = "/enreach/workload/manager_wr_workloads/{epoch}";
+  
+  }
+  rpc ManagerRPWorkload    (QueryGetManagerRPWorkloadRequest) returns (QueryGetManagerRPWorkloadResponse) {
+    option (google.api.http).get = "/enreach/workload/manager_rp_workload/{era}/{managerAccount}";
+  
+  }
+  rpc AllManagerRPWorkloadByEra (QueryGetAllManagerRPWorkloadByEraRequest) returns (QueryGetAllManagerRPWorkloadByEraResponse) {
+    option (google.api.http).get = "/enreach/workload/manager_rp_workloads/{era}";
   
   }
 
@@ -108,16 +116,20 @@ service Query {
   
   }
   // Queries a list of ReputationPoint items.
+  rpc ReputationDeltaPoint    (QueryGetReputationDeltaPointRequest) returns (QueryGetReputationDeltaPointResponse) {
+    option (google.api.http).get = "/enreach/workload/reputation_delta_point/{era}/{nodeID}";
+  
+  }
+  rpc AllReputationDeltaPointByEra (QueryGetAllReputationDeltaPointByEraRequest) returns (QueryGetAllReputationDeltaPointByEraResponse) {
+    option (google.api.http).get = "/enreach/workload/reputation_delta_points/{era}";
+  
+  }
   rpc ReputationPoint    (QueryGetReputationPointRequest) returns (QueryGetReputationPointResponse) {
-    option (google.api.http).get = "/enreach/workload/reputation_point/{era}/{nodeID}";
+    option (google.api.http).get = "/enreach/workload/reputation_point/{nodeID}";
   
   }
-  rpc LatestReputationPoint    (QueryGetLatestReputationPointRequest) returns (QueryGetLatestReputationPointResponse) {
-    option (google.api.http).get = "/enreach/workload/latest_reputation_point/{nodeID}";
-  
-  }
-  rpc AllReputationPointByEra (QueryGetAllReputationPointByEraRequest) returns (QueryGetAllReputationPointByEraResponse) {
-    option (google.api.http).get = "/enreach/workload/reputation_points/{era}";
+  rpc AllReputationPoint    (QueryGetAllReputationPointRequest) returns (QueryGetAllReputationPointResponse) {
+    option (google.api.http).get = "/enreach/workload/reputation_points";
   
   }
 
@@ -172,22 +184,41 @@ message QueryGetAllNodeWorkloadByEpochResponse {
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
-message QueryGetManagerWorkloadRequest {
+message QueryGetManagerWRWorkloadRequest {
   uint64 epoch = 1;
   string managerAccount = 2;
 }
 
-message QueryGetManagerWorkloadResponse {
-  ManagerWorkload ManagerWorkload = 1 [(gogoproto.nullable) = false];
+message QueryGetManagerWRWorkloadResponse {
+  ManagerWRWorkload ManagerWRWorkload = 1 [(gogoproto.nullable) = false];
 }
 
-message QueryGetAllManagerWorkloadByEpochRequest {
+message QueryGetAllManagerWRWorkloadByEpochRequest {
   uint64 epoch = 1;
   cosmos.base.query.v1beta1.PageRequest pagination = 2;
 }
 
-message QueryGetAllManagerWorkloadByEpochResponse {
-  repeated ManagerWorkload ManagerWorkloads   = 1 [(gogoproto.nullable) = false];
+message QueryGetAllManagerWRWorkloadByEpochResponse {
+  repeated ManagerWRWorkload ManagerWRWorkloads   = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetManagerRPWorkloadRequest {
+  uint64 era = 1;
+  string managerAccount = 2;
+}
+
+message QueryGetManagerRPWorkloadResponse {
+  ManagerRPWorkload ManagerRPWorkload = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetAllManagerRPWorkloadByEraRequest {
+  uint64 era = 1;
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
+}
+
+message QueryGetAllManagerRPWorkloadByEraResponse {
+  repeated ManagerRPWorkload ManagerRPWorkloads   = 1 [(gogoproto.nullable) = false];
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
@@ -279,30 +310,39 @@ message QueryGetAllReputationPointChangeDataByEraResponse {
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
-message QueryGetReputationPointRequest {
+message QueryGetReputationDeltaPointRequest {
   uint64 era = 1;
   string nodeID = 2;
+}
+
+message QueryGetReputationDeltaPointResponse {
+  ReputationDeltaPoint ReputationDeltaPoint = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetAllReputationDeltaPointByEraRequest {
+  uint64 era = 1;
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
+}
+
+message QueryGetAllReputationDeltaPointByEraResponse {
+  repeated ReputationDeltaPoint ReputationDeltaPoints   = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetReputationPointRequest {
+  string nodeID = 1;
 }
 
 message QueryGetReputationPointResponse {
   ReputationPoint ReputationPoint = 1 [(gogoproto.nullable) = false];
 }
 
-message QueryGetLatestReputationPointRequest {
-  string nodeID = 1;
+message QueryGetAllReputationPointRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
 }
 
-message QueryGetLatestReputationPointResponse {
-  ReputationPoint ReputationPoint = 1 [(gogoproto.nullable) = false];
-}
-
-message QueryGetAllReputationPointByEraRequest {
-  uint64 era = 1;
-  cosmos.base.query.v1beta1.PageRequest pagination = 2;
-}
-
-message QueryGetAllReputationPointByEraResponse {
-  repeated ReputationPoint ReputationPoints   = 1 [(gogoproto.nullable) = false];
+message QueryGetAllReputationPointResponse {
+  repeated ReputationPoint ReputationPoints = 1 [(gogoproto.nullable) = false];
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 

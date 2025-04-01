@@ -15,7 +15,7 @@ func (k Keeper) ReputationPoint(ctx context.Context, req *types.QueryGetReputati
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
 	}
 
-	reputationPoint, found := k.GetReputationPoint(ctx, req.Era, req.NodeID)
+	reputationPoint, found := k.GetReputationPoint(ctx, req.NodeID)
 	if !found {
 		return nil, sdkerrors.ErrKeyNotFound
 	}
@@ -23,42 +23,15 @@ func (k Keeper) ReputationPoint(ctx context.Context, req *types.QueryGetReputati
 	return &types.QueryGetReputationPointResponse{ReputationPoint: reputationPoint}, nil
 }
 
-func (k Keeper) LatestReputationPoint(ctx context.Context, req *types.QueryGetLatestReputationPointRequest) (*types.QueryGetLatestReputationPointResponse, error) {
+func (k Keeper) AllReputationPoint(ctx context.Context, req *types.QueryGetAllReputationPointRequest) (*types.QueryGetAllReputationPointResponse, error) {
 	if req == nil {
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
 	}
 
-	lastEraProcessData, found := k.GetLastEraProcessData(ctx)
-	if !found {
-		return nil, types.ErrEraProcessorNotStartedYet
-	}
-
-	// Get the last era which has processed done
-	lastFinishedProcessedEra := lastEraProcessData.Era
-	if lastFinishedProcessedEra == 1 && lastEraProcessData.Status != string(types.ERS_DONE) {
-		return nil, types.ErrFirstEraProcessNotFinishedYet
-	}
-	if lastEraProcessData.Status != string(types.ERS_DONE) {
-		lastFinishedProcessedEra -= 1
-	}
-
-	reputationPoint, found := k.GetReputationPoint(ctx, lastFinishedProcessedEra, req.NodeID)
-	if !found {
-		return nil, sdkerrors.ErrKeyNotFound
-	}
-
-	return &types.QueryGetLatestReputationPointResponse{ReputationPoint: reputationPoint}, nil
-}
-
-func (k Keeper) AllReputationPointByEra(ctx context.Context, req *types.QueryGetAllReputationPointByEraRequest) (*types.QueryGetAllReputationPointByEraResponse, error) {
-	if req == nil {
-		return nil, status.Error(codes.InvalidArgument, "invalid request")
-	}
-
-	reputationPointList, pageRes, err := k.GetReputationPointsPaginated(ctx, req.Era, req.Pagination)
+	reputationPointList, pageRes, err := k.GetReputationPointsPaginated(ctx, req.Pagination)
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
 	}
 
-	return &types.QueryGetAllReputationPointByEraResponse{ReputationPoints: reputationPointList, Pagination: pageRes}, nil
+	return &types.QueryGetAllReputationPointResponse{ReputationPoints: reputationPointList, Pagination: pageRes}, nil
 }

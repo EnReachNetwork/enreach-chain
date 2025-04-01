@@ -14,6 +14,9 @@ const (
 	EventTypeEpochWorkloadProcessStarted = "EventEpochWorkloadProcessStarted"
 	EventTypeEpochWorkloadProcessEnded   = "EventEpochWorkloadProcessEnded"
 
+	EventTypeEraReputationPointProcessStarted = "EraReputationPointProcessStarted"
+	EventTypeEraReputationPointProcessEnded   = "EraReputationPointProcessEnded"
+
 	AttributeKeyTxSigner            = "signer"
 	AttributeKeyManagerAccount      = "managerAccount"
 	AttributeKeyEpoch               = "epoch"

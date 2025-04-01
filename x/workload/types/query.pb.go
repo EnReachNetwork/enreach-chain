@@ -476,23 +476,23 @@ func (m *QueryGetAllNodeWorkloadByEpochResponse) GetPagination() *query.PageResp
 	return nil
 }
 
-type QueryGetManagerWorkloadRequest struct {
+type QueryGetManagerWRWorkloadRequest struct {
 	Epoch          uint64 `protobuf:"varint,1,opt,name=epoch,proto3" json:"epoch,omitempty"`
 	ManagerAccount string `protobuf:"bytes,2,opt,name=managerAccount,proto3" json:"managerAccount,omitempty"`
 }
 
-func (m *QueryGetManagerWorkloadRequest) Reset()         { *m = QueryGetManagerWorkloadRequest{} }
-func (m *QueryGetManagerWorkloadRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryGetManagerWorkloadRequest) ProtoMessage()    {}
-func (*QueryGetManagerWorkloadRequest) Descriptor() ([]byte, []int) {
+func (m *QueryGetManagerWRWorkloadRequest) Reset()         { *m = QueryGetManagerWRWorkloadRequest{} }
+func (m *QueryGetManagerWRWorkloadRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetManagerWRWorkloadRequest) ProtoMessage()    {}
+func (*QueryGetManagerWRWorkloadRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_4c31abfb63ab8d50, []int{10}
 }
-func (m *QueryGetManagerWorkloadRequest) XXX_Unmarshal(b []byte) error {
+func (m *QueryGetManagerWRWorkloadRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryGetManagerWorkloadRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryGetManagerWRWorkloadRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryGetManagerWorkloadRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryGetManagerWRWorkloadRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -502,48 +502,48 @@ func (m *QueryGetManagerWorkloadRequest) XXX_Marshal(b []byte, deterministic boo
 		return b[:n], nil
 	}
 }
-func (m *QueryGetManagerWorkloadRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryGetManagerWorkloadRequest.Merge(m, src)
+func (m *QueryGetManagerWRWorkloadRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetManagerWRWorkloadRequest.Merge(m, src)
 }
-func (m *QueryGetManagerWorkloadRequest) XXX_Size() int {
+func (m *QueryGetManagerWRWorkloadRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryGetManagerWorkloadRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryGetManagerWorkloadRequest.DiscardUnknown(m)
+func (m *QueryGetManagerWRWorkloadRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetManagerWRWorkloadRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryGetManagerWorkloadRequest proto.InternalMessageInfo
+var xxx_messageInfo_QueryGetManagerWRWorkloadRequest proto.InternalMessageInfo
 
-func (m *QueryGetManagerWorkloadRequest) GetEpoch() uint64 {
+func (m *QueryGetManagerWRWorkloadRequest) GetEpoch() uint64 {
 	if m != nil {
 		return m.Epoch
 	}
 	return 0
 }
 
-func (m *QueryGetManagerWorkloadRequest) GetManagerAccount() string {
+func (m *QueryGetManagerWRWorkloadRequest) GetManagerAccount() string {
 	if m != nil {
 		return m.ManagerAccount
 	}
 	return ""
 }
 
-type QueryGetManagerWorkloadResponse struct {
-	ManagerWorkload ManagerWorkload `protobuf:"bytes,1,opt,name=ManagerWorkload,proto3" json:"ManagerWorkload"`
+type QueryGetManagerWRWorkloadResponse struct {
+	ManagerWRWorkload ManagerWRWorkload `protobuf:"bytes,1,opt,name=ManagerWRWorkload,proto3" json:"ManagerWRWorkload"`
 }
 
-func (m *QueryGetManagerWorkloadResponse) Reset()         { *m = QueryGetManagerWorkloadResponse{} }
-func (m *QueryGetManagerWorkloadResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryGetManagerWorkloadResponse) ProtoMessage()    {}
-func (*QueryGetManagerWorkloadResponse) Descriptor() ([]byte, []int) {
+func (m *QueryGetManagerWRWorkloadResponse) Reset()         { *m = QueryGetManagerWRWorkloadResponse{} }
+func (m *QueryGetManagerWRWorkloadResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetManagerWRWorkloadResponse) ProtoMessage()    {}
+func (*QueryGetManagerWRWorkloadResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_4c31abfb63ab8d50, []int{11}
 }
-func (m *QueryGetManagerWorkloadResponse) XXX_Unmarshal(b []byte) error {
+func (m *QueryGetManagerWRWorkloadResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryGetManagerWorkloadResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryGetManagerWRWorkloadResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryGetManagerWorkloadResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryGetManagerWRWorkloadResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -553,44 +553,46 @@ func (m *QueryGetManagerWorkloadResponse) XXX_Marshal(b []byte, deterministic bo
 		return b[:n], nil
 	}
 }
-func (m *QueryGetManagerWorkloadResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryGetManagerWorkloadResponse.Merge(m, src)
+func (m *QueryGetManagerWRWorkloadResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetManagerWRWorkloadResponse.Merge(m, src)
 }
-func (m *QueryGetManagerWorkloadResponse) XXX_Size() int {
+func (m *QueryGetManagerWRWorkloadResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryGetManagerWorkloadResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryGetManagerWorkloadResponse.DiscardUnknown(m)
+func (m *QueryGetManagerWRWorkloadResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetManagerWRWorkloadResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryGetManagerWorkloadResponse proto.InternalMessageInfo
+var xxx_messageInfo_QueryGetManagerWRWorkloadResponse proto.InternalMessageInfo
 
-func (m *QueryGetManagerWorkloadResponse) GetManagerWorkload() ManagerWorkload {
+func (m *QueryGetManagerWRWorkloadResponse) GetManagerWRWorkload() ManagerWRWorkload {
 	if m != nil {
-		return m.ManagerWorkload
+		return m.ManagerWRWorkload
 	}
-	return ManagerWorkload{}
+	return ManagerWRWorkload{}
 }
 
-type QueryGetAllManagerWorkloadByEpochRequest struct {
+type QueryGetAllManagerWRWorkloadByEpochRequest struct {
 	Epoch      uint64             `protobuf:"varint,1,opt,name=epoch,proto3" json:"epoch,omitempty"`
 	Pagination *query.PageRequest `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
-func (m *QueryGetAllManagerWorkloadByEpochRequest) Reset() {
-	*m = QueryGetAllManagerWorkloadByEpochRequest{}
+func (m *QueryGetAllManagerWRWorkloadByEpochRequest) Reset() {
+	*m = QueryGetAllManagerWRWorkloadByEpochRequest{}
 }
-func (m *QueryGetAllManagerWorkloadByEpochRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryGetAllManagerWorkloadByEpochRequest) ProtoMessage()    {}
-func (*QueryGetAllManagerWorkloadByEpochRequest) Descriptor() ([]byte, []int) {
+func (m *QueryGetAllManagerWRWorkloadByEpochRequest) String() string {
+	return proto.CompactTextString(m)
+}
+func (*QueryGetAllManagerWRWorkloadByEpochRequest) ProtoMessage() {}
+func (*QueryGetAllManagerWRWorkloadByEpochRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_4c31abfb63ab8d50, []int{12}
 }
-func (m *QueryGetAllManagerWorkloadByEpochRequest) XXX_Unmarshal(b []byte) error {
+func (m *QueryGetAllManagerWRWorkloadByEpochRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryGetAllManagerWorkloadByEpochRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryGetAllManagerWRWorkloadByEpochRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryGetAllManagerWorkloadByEpochRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryGetAllManagerWRWorkloadByEpochRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -600,53 +602,53 @@ func (m *QueryGetAllManagerWorkloadByEpochRequest) XXX_Marshal(b []byte, determi
 		return b[:n], nil
 	}
 }
-func (m *QueryGetAllManagerWorkloadByEpochRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryGetAllManagerWorkloadByEpochRequest.Merge(m, src)
+func (m *QueryGetAllManagerWRWorkloadByEpochRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetAllManagerWRWorkloadByEpochRequest.Merge(m, src)
 }
-func (m *QueryGetAllManagerWorkloadByEpochRequest) XXX_Size() int {
+func (m *QueryGetAllManagerWRWorkloadByEpochRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryGetAllManagerWorkloadByEpochRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryGetAllManagerWorkloadByEpochRequest.DiscardUnknown(m)
+func (m *QueryGetAllManagerWRWorkloadByEpochRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetAllManagerWRWorkloadByEpochRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryGetAllManagerWorkloadByEpochRequest proto.InternalMessageInfo
+var xxx_messageInfo_QueryGetAllManagerWRWorkloadByEpochRequest proto.InternalMessageInfo
 
-func (m *QueryGetAllManagerWorkloadByEpochRequest) GetEpoch() uint64 {
+func (m *QueryGetAllManagerWRWorkloadByEpochRequest) GetEpoch() uint64 {
 	if m != nil {
 		return m.Epoch
 	}
 	return 0
 }
 
-func (m *QueryGetAllManagerWorkloadByEpochRequest) GetPagination() *query.PageRequest {
+func (m *QueryGetAllManagerWRWorkloadByEpochRequest) GetPagination() *query.PageRequest {
 	if m != nil {
 		return m.Pagination
 	}
 	return nil
 }
 
-type QueryGetAllManagerWorkloadByEpochResponse struct {
-	ManagerWorkloads []ManagerWorkload   `protobuf:"bytes,1,rep,name=ManagerWorkloads,proto3" json:"ManagerWorkloads"`
-	Pagination       *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+type QueryGetAllManagerWRWorkloadByEpochResponse struct {
+	ManagerWRWorkloads []ManagerWRWorkload `protobuf:"bytes,1,rep,name=ManagerWRWorkloads,proto3" json:"ManagerWRWorkloads"`
+	Pagination         *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
-func (m *QueryGetAllManagerWorkloadByEpochResponse) Reset() {
-	*m = QueryGetAllManagerWorkloadByEpochResponse{}
+func (m *QueryGetAllManagerWRWorkloadByEpochResponse) Reset() {
+	*m = QueryGetAllManagerWRWorkloadByEpochResponse{}
 }
-func (m *QueryGetAllManagerWorkloadByEpochResponse) String() string {
+func (m *QueryGetAllManagerWRWorkloadByEpochResponse) String() string {
 	return proto.CompactTextString(m)
 }
-func (*QueryGetAllManagerWorkloadByEpochResponse) ProtoMessage() {}
-func (*QueryGetAllManagerWorkloadByEpochResponse) Descriptor() ([]byte, []int) {
+func (*QueryGetAllManagerWRWorkloadByEpochResponse) ProtoMessage() {}
+func (*QueryGetAllManagerWRWorkloadByEpochResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_4c31abfb63ab8d50, []int{13}
 }
-func (m *QueryGetAllManagerWorkloadByEpochResponse) XXX_Unmarshal(b []byte) error {
+func (m *QueryGetAllManagerWRWorkloadByEpochResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryGetAllManagerWorkloadByEpochResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryGetAllManagerWRWorkloadByEpochResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryGetAllManagerWorkloadByEpochResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryGetAllManagerWRWorkloadByEpochResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -656,26 +658,232 @@ func (m *QueryGetAllManagerWorkloadByEpochResponse) XXX_Marshal(b []byte, determ
 		return b[:n], nil
 	}
 }
-func (m *QueryGetAllManagerWorkloadByEpochResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryGetAllManagerWorkloadByEpochResponse.Merge(m, src)
+func (m *QueryGetAllManagerWRWorkloadByEpochResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetAllManagerWRWorkloadByEpochResponse.Merge(m, src)
 }
-func (m *QueryGetAllManagerWorkloadByEpochResponse) XXX_Size() int {
+func (m *QueryGetAllManagerWRWorkloadByEpochResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryGetAllManagerWorkloadByEpochResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryGetAllManagerWorkloadByEpochResponse.DiscardUnknown(m)
+func (m *QueryGetAllManagerWRWorkloadByEpochResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetAllManagerWRWorkloadByEpochResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryGetAllManagerWorkloadByEpochResponse proto.InternalMessageInfo
+var xxx_messageInfo_QueryGetAllManagerWRWorkloadByEpochResponse proto.InternalMessageInfo
 
-func (m *QueryGetAllManagerWorkloadByEpochResponse) GetManagerWorkloads() []ManagerWorkload {
+func (m *QueryGetAllManagerWRWorkloadByEpochResponse) GetManagerWRWorkloads() []ManagerWRWorkload {
 	if m != nil {
-		return m.ManagerWorkloads
+		return m.ManagerWRWorkloads
 	}
 	return nil
 }
 
-func (m *QueryGetAllManagerWorkloadByEpochResponse) GetPagination() *query.PageResponse {
+func (m *QueryGetAllManagerWRWorkloadByEpochResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryGetManagerRPWorkloadRequest struct {
+	Era            uint64 `protobuf:"varint,1,opt,name=era,proto3" json:"era,omitempty"`
+	ManagerAccount string `protobuf:"bytes,2,opt,name=managerAccount,proto3" json:"managerAccount,omitempty"`
+}
+
+func (m *QueryGetManagerRPWorkloadRequest) Reset()         { *m = QueryGetManagerRPWorkloadRequest{} }
+func (m *QueryGetManagerRPWorkloadRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetManagerRPWorkloadRequest) ProtoMessage()    {}
+func (*QueryGetManagerRPWorkloadRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{14}
+}
+func (m *QueryGetManagerRPWorkloadRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetManagerRPWorkloadRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetManagerRPWorkloadRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetManagerRPWorkloadRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetManagerRPWorkloadRequest.Merge(m, src)
+}
+func (m *QueryGetManagerRPWorkloadRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetManagerRPWorkloadRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetManagerRPWorkloadRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetManagerRPWorkloadRequest proto.InternalMessageInfo
+
+func (m *QueryGetManagerRPWorkloadRequest) GetEra() uint64 {
+	if m != nil {
+		return m.Era
+	}
+	return 0
+}
+
+func (m *QueryGetManagerRPWorkloadRequest) GetManagerAccount() string {
+	if m != nil {
+		return m.ManagerAccount
+	}
+	return ""
+}
+
+type QueryGetManagerRPWorkloadResponse struct {
+	ManagerRPWorkload ManagerRPWorkload `protobuf:"bytes,1,opt,name=ManagerRPWorkload,proto3" json:"ManagerRPWorkload"`
+}
+
+func (m *QueryGetManagerRPWorkloadResponse) Reset()         { *m = QueryGetManagerRPWorkloadResponse{} }
+func (m *QueryGetManagerRPWorkloadResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetManagerRPWorkloadResponse) ProtoMessage()    {}
+func (*QueryGetManagerRPWorkloadResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{15}
+}
+func (m *QueryGetManagerRPWorkloadResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetManagerRPWorkloadResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetManagerRPWorkloadResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetManagerRPWorkloadResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetManagerRPWorkloadResponse.Merge(m, src)
+}
+func (m *QueryGetManagerRPWorkloadResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetManagerRPWorkloadResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetManagerRPWorkloadResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetManagerRPWorkloadResponse proto.InternalMessageInfo
+
+func (m *QueryGetManagerRPWorkloadResponse) GetManagerRPWorkload() ManagerRPWorkload {
+	if m != nil {
+		return m.ManagerRPWorkload
+	}
+	return ManagerRPWorkload{}
+}
+
+type QueryGetAllManagerRPWorkloadByEraRequest struct {
+	Era        uint64             `protobuf:"varint,1,opt,name=era,proto3" json:"era,omitempty"`
+	Pagination *query.PageRequest `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryGetAllManagerRPWorkloadByEraRequest) Reset() {
+	*m = QueryGetAllManagerRPWorkloadByEraRequest{}
+}
+func (m *QueryGetAllManagerRPWorkloadByEraRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetAllManagerRPWorkloadByEraRequest) ProtoMessage()    {}
+func (*QueryGetAllManagerRPWorkloadByEraRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{16}
+}
+func (m *QueryGetAllManagerRPWorkloadByEraRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetAllManagerRPWorkloadByEraRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetAllManagerRPWorkloadByEraRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetAllManagerRPWorkloadByEraRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetAllManagerRPWorkloadByEraRequest.Merge(m, src)
+}
+func (m *QueryGetAllManagerRPWorkloadByEraRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetAllManagerRPWorkloadByEraRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetAllManagerRPWorkloadByEraRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetAllManagerRPWorkloadByEraRequest proto.InternalMessageInfo
+
+func (m *QueryGetAllManagerRPWorkloadByEraRequest) GetEra() uint64 {
+	if m != nil {
+		return m.Era
+	}
+	return 0
+}
+
+func (m *QueryGetAllManagerRPWorkloadByEraRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryGetAllManagerRPWorkloadByEraResponse struct {
+	ManagerRPWorkloads []ManagerRPWorkload `protobuf:"bytes,1,rep,name=ManagerRPWorkloads,proto3" json:"ManagerRPWorkloads"`
+	Pagination         *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryGetAllManagerRPWorkloadByEraResponse) Reset() {
+	*m = QueryGetAllManagerRPWorkloadByEraResponse{}
+}
+func (m *QueryGetAllManagerRPWorkloadByEraResponse) String() string {
+	return proto.CompactTextString(m)
+}
+func (*QueryGetAllManagerRPWorkloadByEraResponse) ProtoMessage() {}
+func (*QueryGetAllManagerRPWorkloadByEraResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{17}
+}
+func (m *QueryGetAllManagerRPWorkloadByEraResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetAllManagerRPWorkloadByEraResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetAllManagerRPWorkloadByEraResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetAllManagerRPWorkloadByEraResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetAllManagerRPWorkloadByEraResponse.Merge(m, src)
+}
+func (m *QueryGetAllManagerRPWorkloadByEraResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetAllManagerRPWorkloadByEraResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetAllManagerRPWorkloadByEraResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetAllManagerRPWorkloadByEraResponse proto.InternalMessageInfo
+
+func (m *QueryGetAllManagerRPWorkloadByEraResponse) GetManagerRPWorkloads() []ManagerRPWorkload {
+	if m != nil {
+		return m.ManagerRPWorkloads
+	}
+	return nil
+}
+
+func (m *QueryGetAllManagerRPWorkloadByEraResponse) GetPagination() *query.PageResponse {
 	if m != nil {
 		return m.Pagination
 	}
@@ -691,7 +899,7 @@ func (m *QueryGetWorkreportRequest) Reset()         { *m = QueryGetWorkreportReq
 func (m *QueryGetWorkreportRequest) String() string { return proto.CompactTextString(m) }
 func (*QueryGetWorkreportRequest) ProtoMessage()    {}
 func (*QueryGetWorkreportRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{14}
+	return fileDescriptor_4c31abfb63ab8d50, []int{18}
 }
 func (m *QueryGetWorkreportRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -742,7 +950,7 @@ func (m *QueryGetWorkreportResponse) Reset()         { *m = QueryGetWorkreportRe
 func (m *QueryGetWorkreportResponse) String() string { return proto.CompactTextString(m) }
 func (*QueryGetWorkreportResponse) ProtoMessage()    {}
 func (*QueryGetWorkreportResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{15}
+	return fileDescriptor_4c31abfb63ab8d50, []int{19}
 }
 func (m *QueryGetWorkreportResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -787,7 +995,7 @@ func (m *QueryGetAllWorkreportByEpochRequest) Reset()         { *m = QueryGetAll
 func (m *QueryGetAllWorkreportByEpochRequest) String() string { return proto.CompactTextString(m) }
 func (*QueryGetAllWorkreportByEpochRequest) ProtoMessage()    {}
 func (*QueryGetAllWorkreportByEpochRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{16}
+	return fileDescriptor_4c31abfb63ab8d50, []int{20}
 }
 func (m *QueryGetAllWorkreportByEpochRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -839,7 +1047,7 @@ func (m *QueryGetAllWorkreportByEpochResponse) Reset()         { *m = QueryGetAl
 func (m *QueryGetAllWorkreportByEpochResponse) String() string { return proto.CompactTextString(m) }
 func (*QueryGetAllWorkreportByEpochResponse) ProtoMessage()    {}
 func (*QueryGetAllWorkreportByEpochResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{17}
+	return fileDescriptor_4c31abfb63ab8d50, []int{21}
 }
 func (m *QueryGetAllWorkreportByEpochResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -893,7 +1101,7 @@ func (m *QueryGetWorkreportProcessBatchSizeRequest) String() string {
 }
 func (*QueryGetWorkreportProcessBatchSizeRequest) ProtoMessage() {}
 func (*QueryGetWorkreportProcessBatchSizeRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{18}
+	return fileDescriptor_4c31abfb63ab8d50, []int{22}
 }
 func (m *QueryGetWorkreportProcessBatchSizeRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -934,7 +1142,7 @@ func (m *QueryGetWorkreportProcessBatchSizeResponse) String() string {
 }
 func (*QueryGetWorkreportProcessBatchSizeResponse) ProtoMessage() {}
 func (*QueryGetWorkreportProcessBatchSizeResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{19}
+	return fileDescriptor_4c31abfb63ab8d50, []int{23}
 }
 func (m *QueryGetWorkreportProcessBatchSizeResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -977,7 +1185,7 @@ func (m *QueryGetHistoryEpochDataDepthRequest) Reset()         { *m = QueryGetHi
 func (m *QueryGetHistoryEpochDataDepthRequest) String() string { return proto.CompactTextString(m) }
 func (*QueryGetHistoryEpochDataDepthRequest) ProtoMessage()    {}
 func (*QueryGetHistoryEpochDataDepthRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{20}
+	return fileDescriptor_4c31abfb63ab8d50, []int{24}
 }
 func (m *QueryGetHistoryEpochDataDepthRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1014,7 +1222,7 @@ func (m *QueryGetHistoryEpochDataDepthResponse) Reset()         { *m = QueryGetH
 func (m *QueryGetHistoryEpochDataDepthResponse) String() string { return proto.CompactTextString(m) }
 func (*QueryGetHistoryEpochDataDepthResponse) ProtoMessage()    {}
 func (*QueryGetHistoryEpochDataDepthResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{21}
+	return fileDescriptor_4c31abfb63ab8d50, []int{25}
 }
 func (m *QueryGetHistoryEpochDataDepthResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1058,7 +1266,7 @@ func (m *QueryGetEpochProcessDataRequest) Reset()         { *m = QueryGetEpochPr
 func (m *QueryGetEpochProcessDataRequest) String() string { return proto.CompactTextString(m) }
 func (*QueryGetEpochProcessDataRequest) ProtoMessage()    {}
 func (*QueryGetEpochProcessDataRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{22}
+	return fileDescriptor_4c31abfb63ab8d50, []int{26}
 }
 func (m *QueryGetEpochProcessDataRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1102,7 +1310,7 @@ func (m *QueryGetEpochProcessDataResponse) Reset()         { *m = QueryGetEpochP
 func (m *QueryGetEpochProcessDataResponse) String() string { return proto.CompactTextString(m) }
 func (*QueryGetEpochProcessDataResponse) ProtoMessage()    {}
 func (*QueryGetEpochProcessDataResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{23}
+	return fileDescriptor_4c31abfb63ab8d50, []int{27}
 }
 func (m *QueryGetEpochProcessDataResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1146,7 +1354,7 @@ func (m *QueryGetAllEpochProcessDataRequest) Reset()         { *m = QueryGetAllE
 func (m *QueryGetAllEpochProcessDataRequest) String() string { return proto.CompactTextString(m) }
 func (*QueryGetAllEpochProcessDataRequest) ProtoMessage()    {}
 func (*QueryGetAllEpochProcessDataRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{24}
+	return fileDescriptor_4c31abfb63ab8d50, []int{28}
 }
 func (m *QueryGetAllEpochProcessDataRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1191,7 +1399,7 @@ func (m *QueryGetAllEpochProcessDataResponse) Reset()         { *m = QueryGetAll
 func (m *QueryGetAllEpochProcessDataResponse) String() string { return proto.CompactTextString(m) }
 func (*QueryGetAllEpochProcessDataResponse) ProtoMessage()    {}
 func (*QueryGetAllEpochProcessDataResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{25}
+	return fileDescriptor_4c31abfb63ab8d50, []int{29}
 }
 func (m *QueryGetAllEpochProcessDataResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1241,7 +1449,7 @@ func (m *QueryGetSuperiorRequest) Reset()         { *m = QueryGetSuperiorRequest
 func (m *QueryGetSuperiorRequest) String() string { return proto.CompactTextString(m) }
 func (*QueryGetSuperiorRequest) ProtoMessage()    {}
 func (*QueryGetSuperiorRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{26}
+	return fileDescriptor_4c31abfb63ab8d50, []int{30}
 }
 func (m *QueryGetSuperiorRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1278,7 +1486,7 @@ func (m *QueryGetSuperiorResponse) Reset()         { *m = QueryGetSuperiorRespon
 func (m *QueryGetSuperiorResponse) String() string { return proto.CompactTextString(m) }
 func (*QueryGetSuperiorResponse) ProtoMessage()    {}
 func (*QueryGetSuperiorResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{27}
+	return fileDescriptor_4c31abfb63ab8d50, []int{31}
 }
 func (m *QueryGetSuperiorResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1321,7 +1529,7 @@ func (m *QueryGetEraLengthRequest) Reset()         { *m = QueryGetEraLengthReque
 func (m *QueryGetEraLengthRequest) String() string { return proto.CompactTextString(m) }
 func (*QueryGetEraLengthRequest) ProtoMessage()    {}
 func (*QueryGetEraLengthRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{28}
+	return fileDescriptor_4c31abfb63ab8d50, []int{32}
 }
 func (m *QueryGetEraLengthRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1358,7 +1566,7 @@ func (m *QueryGetEraLengthResponse) Reset()         { *m = QueryGetEraLengthResp
 func (m *QueryGetEraLengthResponse) String() string { return proto.CompactTextString(m) }
 func (*QueryGetEraLengthResponse) ProtoMessage()    {}
 func (*QueryGetEraLengthResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{29}
+	return fileDescriptor_4c31abfb63ab8d50, []int{33}
 }
 func (m *QueryGetEraLengthResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1401,7 +1609,7 @@ func (m *QueryGetCurrentEraRequest) Reset()         { *m = QueryGetCurrentEraReq
 func (m *QueryGetCurrentEraRequest) String() string { return proto.CompactTextString(m) }
 func (*QueryGetCurrentEraRequest) ProtoMessage()    {}
 func (*QueryGetCurrentEraRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{30}
+	return fileDescriptor_4c31abfb63ab8d50, []int{34}
 }
 func (m *QueryGetCurrentEraRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1438,7 +1646,7 @@ func (m *QueryGetCurrentEraResponse) Reset()         { *m = QueryGetCurrentEraRe
 func (m *QueryGetCurrentEraResponse) String() string { return proto.CompactTextString(m) }
 func (*QueryGetCurrentEraResponse) ProtoMessage()    {}
 func (*QueryGetCurrentEraResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{31}
+	return fileDescriptor_4c31abfb63ab8d50, []int{35}
 }
 func (m *QueryGetCurrentEraResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1485,7 +1693,7 @@ func (m *QueryGetReputationPointChangeDataRequest) Reset() {
 func (m *QueryGetReputationPointChangeDataRequest) String() string { return proto.CompactTextString(m) }
 func (*QueryGetReputationPointChangeDataRequest) ProtoMessage()    {}
 func (*QueryGetReputationPointChangeDataRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{32}
+	return fileDescriptor_4c31abfb63ab8d50, []int{36}
 }
 func (m *QueryGetReputationPointChangeDataRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1540,7 +1748,7 @@ func (m *QueryGetReputationPointChangeDataResponse) String() string {
 }
 func (*QueryGetReputationPointChangeDataResponse) ProtoMessage() {}
 func (*QueryGetReputationPointChangeDataResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{33}
+	return fileDescriptor_4c31abfb63ab8d50, []int{37}
 }
 func (m *QueryGetReputationPointChangeDataResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1589,7 +1797,7 @@ func (m *QueryGetAllReputationPointChangeDataByEraRequest) String() string {
 }
 func (*QueryGetAllReputationPointChangeDataByEraRequest) ProtoMessage() {}
 func (*QueryGetAllReputationPointChangeDataByEraRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{34}
+	return fileDescriptor_4c31abfb63ab8d50, []int{38}
 }
 func (m *QueryGetAllReputationPointChangeDataByEraRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1645,7 +1853,7 @@ func (m *QueryGetAllReputationPointChangeDataByEraResponse) String() string {
 }
 func (*QueryGetAllReputationPointChangeDataByEraResponse) ProtoMessage() {}
 func (*QueryGetAllReputationPointChangeDataByEraResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{35}
+	return fileDescriptor_4c31abfb63ab8d50, []int{39}
 }
 func (m *QueryGetAllReputationPointChangeDataByEraResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1688,16 +1896,223 @@ func (m *QueryGetAllReputationPointChangeDataByEraResponse) GetPagination() *que
 	return nil
 }
 
-type QueryGetReputationPointRequest struct {
+type QueryGetReputationDeltaPointRequest struct {
 	Era    uint64 `protobuf:"varint,1,opt,name=era,proto3" json:"era,omitempty"`
 	NodeID string `protobuf:"bytes,2,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
+}
+
+func (m *QueryGetReputationDeltaPointRequest) Reset()         { *m = QueryGetReputationDeltaPointRequest{} }
+func (m *QueryGetReputationDeltaPointRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetReputationDeltaPointRequest) ProtoMessage()    {}
+func (*QueryGetReputationDeltaPointRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{40}
+}
+func (m *QueryGetReputationDeltaPointRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetReputationDeltaPointRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetReputationDeltaPointRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetReputationDeltaPointRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetReputationDeltaPointRequest.Merge(m, src)
+}
+func (m *QueryGetReputationDeltaPointRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetReputationDeltaPointRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetReputationDeltaPointRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetReputationDeltaPointRequest proto.InternalMessageInfo
+
+func (m *QueryGetReputationDeltaPointRequest) GetEra() uint64 {
+	if m != nil {
+		return m.Era
+	}
+	return 0
+}
+
+func (m *QueryGetReputationDeltaPointRequest) GetNodeID() string {
+	if m != nil {
+		return m.NodeID
+	}
+	return ""
+}
+
+type QueryGetReputationDeltaPointResponse struct {
+	ReputationDeltaPoint ReputationDeltaPoint `protobuf:"bytes,1,opt,name=ReputationDeltaPoint,proto3" json:"ReputationDeltaPoint"`
+}
+
+func (m *QueryGetReputationDeltaPointResponse) Reset()         { *m = QueryGetReputationDeltaPointResponse{} }
+func (m *QueryGetReputationDeltaPointResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetReputationDeltaPointResponse) ProtoMessage()    {}
+func (*QueryGetReputationDeltaPointResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{41}
+}
+func (m *QueryGetReputationDeltaPointResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetReputationDeltaPointResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetReputationDeltaPointResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetReputationDeltaPointResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetReputationDeltaPointResponse.Merge(m, src)
+}
+func (m *QueryGetReputationDeltaPointResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetReputationDeltaPointResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetReputationDeltaPointResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetReputationDeltaPointResponse proto.InternalMessageInfo
+
+func (m *QueryGetReputationDeltaPointResponse) GetReputationDeltaPoint() ReputationDeltaPoint {
+	if m != nil {
+		return m.ReputationDeltaPoint
+	}
+	return ReputationDeltaPoint{}
+}
+
+type QueryGetAllReputationDeltaPointByEraRequest struct {
+	Era        uint64             `protobuf:"varint,1,opt,name=era,proto3" json:"era,omitempty"`
+	Pagination *query.PageRequest `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryGetAllReputationDeltaPointByEraRequest) Reset() {
+	*m = QueryGetAllReputationDeltaPointByEraRequest{}
+}
+func (m *QueryGetAllReputationDeltaPointByEraRequest) String() string {
+	return proto.CompactTextString(m)
+}
+func (*QueryGetAllReputationDeltaPointByEraRequest) ProtoMessage() {}
+func (*QueryGetAllReputationDeltaPointByEraRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{42}
+}
+func (m *QueryGetAllReputationDeltaPointByEraRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetAllReputationDeltaPointByEraRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetAllReputationDeltaPointByEraRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetAllReputationDeltaPointByEraRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetAllReputationDeltaPointByEraRequest.Merge(m, src)
+}
+func (m *QueryGetAllReputationDeltaPointByEraRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetAllReputationDeltaPointByEraRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetAllReputationDeltaPointByEraRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetAllReputationDeltaPointByEraRequest proto.InternalMessageInfo
+
+func (m *QueryGetAllReputationDeltaPointByEraRequest) GetEra() uint64 {
+	if m != nil {
+		return m.Era
+	}
+	return 0
+}
+
+func (m *QueryGetAllReputationDeltaPointByEraRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryGetAllReputationDeltaPointByEraResponse struct {
+	ReputationDeltaPoints []ReputationDeltaPoint `protobuf:"bytes,1,rep,name=ReputationDeltaPoints,proto3" json:"ReputationDeltaPoints"`
+	Pagination            *query.PageResponse    `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryGetAllReputationDeltaPointByEraResponse) Reset() {
+	*m = QueryGetAllReputationDeltaPointByEraResponse{}
+}
+func (m *QueryGetAllReputationDeltaPointByEraResponse) String() string {
+	return proto.CompactTextString(m)
+}
+func (*QueryGetAllReputationDeltaPointByEraResponse) ProtoMessage() {}
+func (*QueryGetAllReputationDeltaPointByEraResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{43}
+}
+func (m *QueryGetAllReputationDeltaPointByEraResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetAllReputationDeltaPointByEraResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetAllReputationDeltaPointByEraResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetAllReputationDeltaPointByEraResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetAllReputationDeltaPointByEraResponse.Merge(m, src)
+}
+func (m *QueryGetAllReputationDeltaPointByEraResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetAllReputationDeltaPointByEraResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetAllReputationDeltaPointByEraResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetAllReputationDeltaPointByEraResponse proto.InternalMessageInfo
+
+func (m *QueryGetAllReputationDeltaPointByEraResponse) GetReputationDeltaPoints() []ReputationDeltaPoint {
+	if m != nil {
+		return m.ReputationDeltaPoints
+	}
+	return nil
+}
+
+func (m *QueryGetAllReputationDeltaPointByEraResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryGetReputationPointRequest struct {
+	NodeID string `protobuf:"bytes,1,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
 }
 
 func (m *QueryGetReputationPointRequest) Reset()         { *m = QueryGetReputationPointRequest{} }
 func (m *QueryGetReputationPointRequest) String() string { return proto.CompactTextString(m) }
 func (*QueryGetReputationPointRequest) ProtoMessage()    {}
 func (*QueryGetReputationPointRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{36}
+	return fileDescriptor_4c31abfb63ab8d50, []int{44}
 }
 func (m *QueryGetReputationPointRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1726,13 +2141,6 @@ func (m *QueryGetReputationPointRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_QueryGetReputationPointRequest proto.InternalMessageInfo
 
-func (m *QueryGetReputationPointRequest) GetEra() uint64 {
-	if m != nil {
-		return m.Era
-	}
-	return 0
-}
-
 func (m *QueryGetReputationPointRequest) GetNodeID() string {
 	if m != nil {
 		return m.NodeID
@@ -1748,7 +2156,7 @@ func (m *QueryGetReputationPointResponse) Reset()         { *m = QueryGetReputat
 func (m *QueryGetReputationPointResponse) String() string { return proto.CompactTextString(m) }
 func (*QueryGetReputationPointResponse) ProtoMessage()    {}
 func (*QueryGetReputationPointResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{37}
+	return fileDescriptor_4c31abfb63ab8d50, []int{45}
 }
 func (m *QueryGetReputationPointResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1784,22 +2192,22 @@ func (m *QueryGetReputationPointResponse) GetReputationPoint() ReputationPoint {
 	return ReputationPoint{}
 }
 
-type QueryGetLatestReputationPointRequest struct {
-	NodeID string `protobuf:"bytes,1,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
+type QueryGetAllReputationPointRequest struct {
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
-func (m *QueryGetLatestReputationPointRequest) Reset()         { *m = QueryGetLatestReputationPointRequest{} }
-func (m *QueryGetLatestReputationPointRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryGetLatestReputationPointRequest) ProtoMessage()    {}
-func (*QueryGetLatestReputationPointRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{38}
+func (m *QueryGetAllReputationPointRequest) Reset()         { *m = QueryGetAllReputationPointRequest{} }
+func (m *QueryGetAllReputationPointRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetAllReputationPointRequest) ProtoMessage()    {}
+func (*QueryGetAllReputationPointRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{46}
 }
-func (m *QueryGetLatestReputationPointRequest) XXX_Unmarshal(b []byte) error {
+func (m *QueryGetAllReputationPointRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryGetLatestReputationPointRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryGetAllReputationPointRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryGetLatestReputationPointRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryGetAllReputationPointRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -1809,142 +2217,42 @@ func (m *QueryGetLatestReputationPointRequest) XXX_Marshal(b []byte, determinist
 		return b[:n], nil
 	}
 }
-func (m *QueryGetLatestReputationPointRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryGetLatestReputationPointRequest.Merge(m, src)
+func (m *QueryGetAllReputationPointRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetAllReputationPointRequest.Merge(m, src)
 }
-func (m *QueryGetLatestReputationPointRequest) XXX_Size() int {
+func (m *QueryGetAllReputationPointRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryGetLatestReputationPointRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryGetLatestReputationPointRequest.DiscardUnknown(m)
+func (m *QueryGetAllReputationPointRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetAllReputationPointRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryGetLatestReputationPointRequest proto.InternalMessageInfo
+var xxx_messageInfo_QueryGetAllReputationPointRequest proto.InternalMessageInfo
 
-func (m *QueryGetLatestReputationPointRequest) GetNodeID() string {
-	if m != nil {
-		return m.NodeID
-	}
-	return ""
-}
-
-type QueryGetLatestReputationPointResponse struct {
-	ReputationPoint ReputationPoint `protobuf:"bytes,1,opt,name=ReputationPoint,proto3" json:"ReputationPoint"`
-}
-
-func (m *QueryGetLatestReputationPointResponse) Reset()         { *m = QueryGetLatestReputationPointResponse{} }
-func (m *QueryGetLatestReputationPointResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryGetLatestReputationPointResponse) ProtoMessage()    {}
-func (*QueryGetLatestReputationPointResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{39}
-}
-func (m *QueryGetLatestReputationPointResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *QueryGetLatestReputationPointResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_QueryGetLatestReputationPointResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *QueryGetLatestReputationPointResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryGetLatestReputationPointResponse.Merge(m, src)
-}
-func (m *QueryGetLatestReputationPointResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *QueryGetLatestReputationPointResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryGetLatestReputationPointResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_QueryGetLatestReputationPointResponse proto.InternalMessageInfo
-
-func (m *QueryGetLatestReputationPointResponse) GetReputationPoint() ReputationPoint {
-	if m != nil {
-		return m.ReputationPoint
-	}
-	return ReputationPoint{}
-}
-
-type QueryGetAllReputationPointByEraRequest struct {
-	Era        uint64             `protobuf:"varint,1,opt,name=era,proto3" json:"era,omitempty"`
-	Pagination *query.PageRequest `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
-}
-
-func (m *QueryGetAllReputationPointByEraRequest) Reset() {
-	*m = QueryGetAllReputationPointByEraRequest{}
-}
-func (m *QueryGetAllReputationPointByEraRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryGetAllReputationPointByEraRequest) ProtoMessage()    {}
-func (*QueryGetAllReputationPointByEraRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{40}
-}
-func (m *QueryGetAllReputationPointByEraRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *QueryGetAllReputationPointByEraRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_QueryGetAllReputationPointByEraRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *QueryGetAllReputationPointByEraRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryGetAllReputationPointByEraRequest.Merge(m, src)
-}
-func (m *QueryGetAllReputationPointByEraRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *QueryGetAllReputationPointByEraRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryGetAllReputationPointByEraRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_QueryGetAllReputationPointByEraRequest proto.InternalMessageInfo
-
-func (m *QueryGetAllReputationPointByEraRequest) GetEra() uint64 {
-	if m != nil {
-		return m.Era
-	}
-	return 0
-}
-
-func (m *QueryGetAllReputationPointByEraRequest) GetPagination() *query.PageRequest {
+func (m *QueryGetAllReputationPointRequest) GetPagination() *query.PageRequest {
 	if m != nil {
 		return m.Pagination
 	}
 	return nil
 }
 
-type QueryGetAllReputationPointByEraResponse struct {
+type QueryGetAllReputationPointResponse struct {
 	ReputationPoints []ReputationPoint   `protobuf:"bytes,1,rep,name=ReputationPoints,proto3" json:"ReputationPoints"`
 	Pagination       *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
-func (m *QueryGetAllReputationPointByEraResponse) Reset() {
-	*m = QueryGetAllReputationPointByEraResponse{}
+func (m *QueryGetAllReputationPointResponse) Reset()         { *m = QueryGetAllReputationPointResponse{} }
+func (m *QueryGetAllReputationPointResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetAllReputationPointResponse) ProtoMessage()    {}
+func (*QueryGetAllReputationPointResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c31abfb63ab8d50, []int{47}
 }
-func (m *QueryGetAllReputationPointByEraResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryGetAllReputationPointByEraResponse) ProtoMessage()    {}
-func (*QueryGetAllReputationPointByEraResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{41}
-}
-func (m *QueryGetAllReputationPointByEraResponse) XXX_Unmarshal(b []byte) error {
+func (m *QueryGetAllReputationPointResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryGetAllReputationPointByEraResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryGetAllReputationPointResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryGetAllReputationPointByEraResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryGetAllReputationPointResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -1954,26 +2262,26 @@ func (m *QueryGetAllReputationPointByEraResponse) XXX_Marshal(b []byte, determin
 		return b[:n], nil
 	}
 }
-func (m *QueryGetAllReputationPointByEraResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryGetAllReputationPointByEraResponse.Merge(m, src)
+func (m *QueryGetAllReputationPointResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetAllReputationPointResponse.Merge(m, src)
 }
-func (m *QueryGetAllReputationPointByEraResponse) XXX_Size() int {
+func (m *QueryGetAllReputationPointResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryGetAllReputationPointByEraResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryGetAllReputationPointByEraResponse.DiscardUnknown(m)
+func (m *QueryGetAllReputationPointResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetAllReputationPointResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryGetAllReputationPointByEraResponse proto.InternalMessageInfo
+var xxx_messageInfo_QueryGetAllReputationPointResponse proto.InternalMessageInfo
 
-func (m *QueryGetAllReputationPointByEraResponse) GetReputationPoints() []ReputationPoint {
+func (m *QueryGetAllReputationPointResponse) GetReputationPoints() []ReputationPoint {
 	if m != nil {
 		return m.ReputationPoints
 	}
 	return nil
 }
 
-func (m *QueryGetAllReputationPointByEraResponse) GetPagination() *query.PageResponse {
+func (m *QueryGetAllReputationPointResponse) GetPagination() *query.PageResponse {
 	if m != nil {
 		return m.Pagination
 	}
@@ -1988,7 +2296,7 @@ func (m *QueryGetEraProcessDataRequest) Reset()         { *m = QueryGetEraProces
 func (m *QueryGetEraProcessDataRequest) String() string { return proto.CompactTextString(m) }
 func (*QueryGetEraProcessDataRequest) ProtoMessage()    {}
 func (*QueryGetEraProcessDataRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{42}
+	return fileDescriptor_4c31abfb63ab8d50, []int{48}
 }
 func (m *QueryGetEraProcessDataRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -2032,7 +2340,7 @@ func (m *QueryGetEraProcessDataResponse) Reset()         { *m = QueryGetEraProce
 func (m *QueryGetEraProcessDataResponse) String() string { return proto.CompactTextString(m) }
 func (*QueryGetEraProcessDataResponse) ProtoMessage()    {}
 func (*QueryGetEraProcessDataResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{43}
+	return fileDescriptor_4c31abfb63ab8d50, []int{49}
 }
 func (m *QueryGetEraProcessDataResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -2076,7 +2384,7 @@ func (m *QueryGetAllEraProcessDataRequest) Reset()         { *m = QueryGetAllEra
 func (m *QueryGetAllEraProcessDataRequest) String() string { return proto.CompactTextString(m) }
 func (*QueryGetAllEraProcessDataRequest) ProtoMessage()    {}
 func (*QueryGetAllEraProcessDataRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{44}
+	return fileDescriptor_4c31abfb63ab8d50, []int{50}
 }
 func (m *QueryGetAllEraProcessDataRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -2121,7 +2429,7 @@ func (m *QueryGetAllEraProcessDataResponse) Reset()         { *m = QueryGetAllEr
 func (m *QueryGetAllEraProcessDataResponse) String() string { return proto.CompactTextString(m) }
 func (*QueryGetAllEraProcessDataResponse) ProtoMessage()    {}
 func (*QueryGetAllEraProcessDataResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4c31abfb63ab8d50, []int{45}
+	return fileDescriptor_4c31abfb63ab8d50, []int{51}
 }
 func (m *QueryGetAllEraProcessDataResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -2175,10 +2483,14 @@ func init() {
 	proto.RegisterType((*QueryGetNodeWorkloadResponse)(nil), "enreach.workload.QueryGetNodeWorkloadResponse")
 	proto.RegisterType((*QueryGetAllNodeWorkloadByEpochRequest)(nil), "enreach.workload.QueryGetAllNodeWorkloadByEpochRequest")
 	proto.RegisterType((*QueryGetAllNodeWorkloadByEpochResponse)(nil), "enreach.workload.QueryGetAllNodeWorkloadByEpochResponse")
-	proto.RegisterType((*QueryGetManagerWorkloadRequest)(nil), "enreach.workload.QueryGetManagerWorkloadRequest")
-	proto.RegisterType((*QueryGetManagerWorkloadResponse)(nil), "enreach.workload.QueryGetManagerWorkloadResponse")
-	proto.RegisterType((*QueryGetAllManagerWorkloadByEpochRequest)(nil), "enreach.workload.QueryGetAllManagerWorkloadByEpochRequest")
-	proto.RegisterType((*QueryGetAllManagerWorkloadByEpochResponse)(nil), "enreach.workload.QueryGetAllManagerWorkloadByEpochResponse")
+	proto.RegisterType((*QueryGetManagerWRWorkloadRequest)(nil), "enreach.workload.QueryGetManagerWRWorkloadRequest")
+	proto.RegisterType((*QueryGetManagerWRWorkloadResponse)(nil), "enreach.workload.QueryGetManagerWRWorkloadResponse")
+	proto.RegisterType((*QueryGetAllManagerWRWorkloadByEpochRequest)(nil), "enreach.workload.QueryGetAllManagerWRWorkloadByEpochRequest")
+	proto.RegisterType((*QueryGetAllManagerWRWorkloadByEpochResponse)(nil), "enreach.workload.QueryGetAllManagerWRWorkloadByEpochResponse")
+	proto.RegisterType((*QueryGetManagerRPWorkloadRequest)(nil), "enreach.workload.QueryGetManagerRPWorkloadRequest")
+	proto.RegisterType((*QueryGetManagerRPWorkloadResponse)(nil), "enreach.workload.QueryGetManagerRPWorkloadResponse")
+	proto.RegisterType((*QueryGetAllManagerRPWorkloadByEraRequest)(nil), "enreach.workload.QueryGetAllManagerRPWorkloadByEraRequest")
+	proto.RegisterType((*QueryGetAllManagerRPWorkloadByEraResponse)(nil), "enreach.workload.QueryGetAllManagerRPWorkloadByEraResponse")
 	proto.RegisterType((*QueryGetWorkreportRequest)(nil), "enreach.workload.QueryGetWorkreportRequest")
 	proto.RegisterType((*QueryGetWorkreportResponse)(nil), "enreach.workload.QueryGetWorkreportResponse")
 	proto.RegisterType((*QueryGetAllWorkreportByEpochRequest)(nil), "enreach.workload.QueryGetAllWorkreportByEpochRequest")
@@ -2201,12 +2513,14 @@ func init() {
 	proto.RegisterType((*QueryGetReputationPointChangeDataResponse)(nil), "enreach.workload.QueryGetReputationPointChangeDataResponse")
 	proto.RegisterType((*QueryGetAllReputationPointChangeDataByEraRequest)(nil), "enreach.workload.QueryGetAllReputationPointChangeDataByEraRequest")
 	proto.RegisterType((*QueryGetAllReputationPointChangeDataByEraResponse)(nil), "enreach.workload.QueryGetAllReputationPointChangeDataByEraResponse")
+	proto.RegisterType((*QueryGetReputationDeltaPointRequest)(nil), "enreach.workload.QueryGetReputationDeltaPointRequest")
+	proto.RegisterType((*QueryGetReputationDeltaPointResponse)(nil), "enreach.workload.QueryGetReputationDeltaPointResponse")
+	proto.RegisterType((*QueryGetAllReputationDeltaPointByEraRequest)(nil), "enreach.workload.QueryGetAllReputationDeltaPointByEraRequest")
+	proto.RegisterType((*QueryGetAllReputationDeltaPointByEraResponse)(nil), "enreach.workload.QueryGetAllReputationDeltaPointByEraResponse")
 	proto.RegisterType((*QueryGetReputationPointRequest)(nil), "enreach.workload.QueryGetReputationPointRequest")
 	proto.RegisterType((*QueryGetReputationPointResponse)(nil), "enreach.workload.QueryGetReputationPointResponse")
-	proto.RegisterType((*QueryGetLatestReputationPointRequest)(nil), "enreach.workload.QueryGetLatestReputationPointRequest")
-	proto.RegisterType((*QueryGetLatestReputationPointResponse)(nil), "enreach.workload.QueryGetLatestReputationPointResponse")
-	proto.RegisterType((*QueryGetAllReputationPointByEraRequest)(nil), "enreach.workload.QueryGetAllReputationPointByEraRequest")
-	proto.RegisterType((*QueryGetAllReputationPointByEraResponse)(nil), "enreach.workload.QueryGetAllReputationPointByEraResponse")
+	proto.RegisterType((*QueryGetAllReputationPointRequest)(nil), "enreach.workload.QueryGetAllReputationPointRequest")
+	proto.RegisterType((*QueryGetAllReputationPointResponse)(nil), "enreach.workload.QueryGetAllReputationPointResponse")
 	proto.RegisterType((*QueryGetEraProcessDataRequest)(nil), "enreach.workload.QueryGetEraProcessDataRequest")
 	proto.RegisterType((*QueryGetEraProcessDataResponse)(nil), "enreach.workload.QueryGetEraProcessDataResponse")
 	proto.RegisterType((*QueryGetAllEraProcessDataRequest)(nil), "enreach.workload.QueryGetAllEraProcessDataRequest")
@@ -2216,125 +2530,138 @@ func init() {
 func init() { proto.RegisterFile("enreach/workload/query.proto", fileDescriptor_4c31abfb63ab8d50) }
 
 var fileDescriptor_4c31abfb63ab8d50 = []byte{
-	// 1885 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x5a, 0xdf, 0x6f, 0x54, 0x4f,
-	0x15, 0xef, 0xf0, 0xa3, 0xb1, 0xa7, 0x08, 0x65, 0x28, 0xd0, 0x5e, 0x96, 0x65, 0x3b, 0x96, 0x52,
-	0x5a, 0xba, 0xb7, 0xbb, 0xa5, 0x94, 0x52, 0x2a, 0xa1, 0x2d, 0xf2, 0x43, 0x24, 0x65, 0x21, 0x62,
-	0x7c, 0x70, 0xbd, 0xdd, 0xde, 0x6c, 0x57, 0xdb, 0xbd, 0xcb, 0xbd, 0xb7, 0x42, 0x21, 0xbc, 0x60,
-	0x48, 0x8c, 0xf1, 0xc1, 0x1f, 0x8f, 0x1a, 0x5f, 0xf5, 0x11, 0x13, 0xf4, 0x41, 0xc5, 0xc4, 0xc4,
-	0x08, 0xbc, 0x91, 0xf8, 0x62, 0x62, 0x62, 0x0c, 0x98, 0xf8, 0xe0, 0x83, 0xff, 0x82, 0xd9, 0xb9,
-	0x67, 0x76, 0xee, 0xcf, 0xd9, 0xbb, 0xfd, 0xee, 0x97, 0x17, 0xb2, 0x3b, 0x73, 0xce, 0x99, 0xcf,
-	0xe7, 0xcc, 0x99, 0x99, 0xd3, 0xcf, 0x02, 0x19, 0xb3, 0x6e, 0x9b, 0x46, 0x65, 0x43, 0x7f, 0x64,
-	0xd9, 0xdf, 0xdd, 0xb4, 0x8c, 0x75, 0xfd, 0xe1, 0xb6, 0x69, 0xef, 0xe4, 0x1b, 0xb6, 0xe5, 0x5a,
-	0x74, 0x00, 0x67, 0xf3, 0x62, 0x56, 0x3b, 0x6c, 0x6c, 0xd5, 0xea, 0x96, 0xce, 0xff, 0xf5, 0x8c,
-	0xb4, 0xc1, 0xaa, 0x55, 0xb5, 0xf8, 0x47, 0xbd, 0xf9, 0x09, 0x47, 0x33, 0x55, 0xcb, 0xaa, 0x6e,
-	0x9a, 0xba, 0xd1, 0xa8, 0xe9, 0x46, 0xbd, 0x6e, 0xb9, 0x86, 0x5b, 0xb3, 0xea, 0x0e, 0xce, 0x4e,
-	0x54, 0x2c, 0x67, 0xcb, 0x72, 0xf4, 0x35, 0xc3, 0x31, 0xbd, 0x15, 0xf5, 0xef, 0x15, 0xd6, 0x4c,
-	0xd7, 0x28, 0xe8, 0x0d, 0xa3, 0x5a, 0xab, 0x73, 0x63, 0xb4, 0x3d, 0x19, 0x81, 0xd8, 0x30, 0x6c,
-	0x63, 0x4b, 0x84, 0x3a, 0x15, 0x99, 0x16, 0x1f, 0xd0, 0x60, 0x24, 0xd6, 0xc0, 0x36, 0x1b, 0x96,
-	0xed, 0x26, 0xc6, 0x70, 0xb6, 0x1b, 0xa6, 0x5d, 0xb3, 0x6c, 0x34, 0x18, 0x8b, 0x18, 0xd8, 0x66,
-	0x63, 0xdb, 0xe3, 0xd4, 0xb0, 0x6a, 0x75, 0x0c, 0xc4, 0x06, 0x81, 0xde, 0x6d, 0xb2, 0x59, 0xe5,
-	0x08, 0x4b, 0xe6, 0xc3, 0x6d, 0xd3, 0x71, 0x59, 0x09, 0x8e, 0x04, 0x46, 0x9d, 0x86, 0x55, 0x77,
-	0x4c, 0xba, 0x00, 0xbd, 0x1e, 0x93, 0x21, 0x92, 0x23, 0xe3, 0xfd, 0xc5, 0xa1, 0x7c, 0x38, 0xdd,
-	0x79, 0xcf, 0x63, 0xa9, 0xef, 0xed, 0x3f, 0x4f, 0xf5, 0xfc, 0xfa, 0x3f, 0x2f, 0x27, 0x48, 0x09,
-	0x5d, 0x58, 0x06, 0x34, 0x1e, 0xf3, 0xba, 0xe9, 0x5e, 0x6b, 0x58, 0x95, 0x8d, 0xdb, 0x66, 0xbd,
-	0xea, 0x6e, 0x88, 0x15, 0xaf, 0xc0, 0x89, 0xd8, 0x59, 0x5c, 0x39, 0x07, 0xfd, 0xa6, 0x1c, 0xe6,
-	0xcb, 0xef, 0x2b, 0xf9, 0x87, 0xd8, 0x49, 0x19, 0x60, 0x79, 0xdb, 0xb6, 0xcd, 0xba, 0x17, 0x47,
-	0xc4, 0x5f, 0x82, 0x4c, 0xfc, 0x34, 0x2e, 0xc0, 0xe0, 0x40, 0xc5, 0x37, 0x8e, 0x2b, 0x04, 0xc6,
-	0xd8, 0x57, 0xe5, 0x12, 0x77, 0xac, 0x75, 0xf3, 0x01, 0x72, 0xc6, 0x25, 0xe8, 0x20, 0xec, 0x37,
-	0x7d, 0xbe, 0xde, 0x17, 0x7a, 0x0c, 0x7a, 0xeb, 0xd6, 0xba, 0x79, 0x73, 0x65, 0x68, 0x4f, 0x8e,
-	0x8c, 0xf7, 0x95, 0xf0, 0x1b, 0xdb, 0x90, 0x80, 0x82, 0xc1, 0x10, 0xd0, 0x0d, 0x38, 0xe0, 0x1f,
-	0xc7, 0x8c, 0x67, 0xa3, 0x19, 0xf7, 0x5b, 0x2d, 0xed, 0x6b, 0xe6, 0xbd, 0x14, 0xf0, 0x64, 0x2f,
-	0x08, 0x9c, 0x16, 0x4b, 0x5d, 0xdd, 0xdc, 0x0c, 0xd8, 0xef, 0xf8, 0x93, 0x94, 0xc0, 0xe0, 0x2b,
-	0x00, 0xb2, 0xc4, 0x39, 0x8b, 0xfe, 0xe2, 0x58, 0xde, 0x3b, 0x0f, 0xf9, 0xe6, 0x79, 0xc8, 0x7b,
-	0x27, 0x10, 0xcf, 0x43, 0x7e, 0xd5, 0xa8, 0x9a, 0x18, 0xb1, 0xe4, 0xf3, 0x64, 0xaf, 0x09, 0x8c,
-	0xb5, 0xc3, 0x81, 0xe4, 0x6f, 0xc1, 0x17, 0xfd, 0xd3, 0xcd, 0x7a, 0xdb, 0x9b, 0x9a, 0x7d, 0xd0,
-	0x95, 0x5e, 0x8f, 0x81, 0x7f, 0xa6, 0x2d, 0x7c, 0x0f, 0x48, 0x00, 0xff, 0xb7, 0x20, 0x2b, 0xe0,
-	0x7f, 0xcd, 0xa8, 0x1b, 0x55, 0xd3, 0x4e, 0x57, 0x01, 0x63, 0x70, 0x70, 0xcb, 0xb3, 0xbf, 0x5a,
-	0xa9, 0x58, 0xdb, 0x75, 0x17, 0x2b, 0x21, 0x34, 0xca, 0x5c, 0x38, 0x95, 0x18, 0x1f, 0xf3, 0x72,
-	0x17, 0x0e, 0x85, 0xa6, 0xb0, 0x2e, 0x46, 0xa2, 0x99, 0x09, 0x19, 0x62, 0x72, 0xc2, 0xfe, 0xec,
-	0x07, 0x04, 0xc6, 0x7d, 0xbb, 0x12, 0xf6, 0xfa, 0x94, 0x05, 0xf2, 0x8e, 0xc0, 0xd9, 0x14, 0x50,
-	0x30, 0x17, 0xf7, 0x60, 0x20, 0x64, 0x21, 0xca, 0x24, 0x75, 0x32, 0x22, 0x01, 0xba, 0x57, 0x2c,
-	0x37, 0x61, 0x58, 0x50, 0x79, 0xd0, 0xba, 0xbc, 0x77, 0x77, 0x53, 0x7c, 0x5b, 0x5e, 0x9c, 0xfe,
-	0x50, 0x98, 0x86, 0x25, 0x00, 0x39, 0x8a, 0xd5, 0x90, 0x89, 0x26, 0x40, 0xda, 0x20, 0x77, 0x9f,
-	0x17, 0xfb, 0x3e, 0x81, 0x2f, 0xf9, 0x12, 0xef, 0xb3, 0xfd, 0x94, 0xdb, 0xff, 0x5b, 0x02, 0xa3,
-	0x6a, 0x14, 0x48, 0x79, 0x05, 0xfa, 0xe5, 0xa4, 0xd8, 0xf4, 0x34, 0x9c, 0xfd, 0x6e, 0xdd, 0xdb,
-	0xea, 0x49, 0x59, 0xb5, 0x32, 0xfe, 0xaa, 0x6d, 0x55, 0x4c, 0xc7, 0x59, 0x32, 0xdc, 0xca, 0xc6,
-	0xbd, 0xda, 0x13, 0x41, 0x98, 0xdd, 0x82, 0x89, 0x34, 0xc6, 0xc8, 0x34, 0x03, 0x7d, 0x6b, 0x62,
-	0x10, 0x93, 0x2e, 0x07, 0xd8, 0x98, 0xcc, 0xd7, 0x8d, 0x9a, 0xe3, 0x5a, 0xb6, 0x97, 0xa7, 0x15,
-	0xc3, 0x35, 0x56, 0xcc, 0x86, 0x7c, 0x5b, 0x17, 0xe5, 0xfd, 0x9f, 0x60, 0x87, 0xcb, 0x0d, 0xc2,
-	0xfe, 0xf5, 0xe6, 0x80, 0xd8, 0x5f, 0xfe, 0x85, 0xcd, 0xc9, 0x7b, 0x89, 0xfb, 0x21, 0xda, 0xa6,
-	0xbb, 0xb2, 0x30, 0xd8, 0x63, 0xc8, 0x25, 0x3b, 0xe2, 0x92, 0xf7, 0x61, 0x20, 0x3c, 0x87, 0x45,
-	0xcc, 0xa2, 0x1b, 0x1a, 0xb6, 0x14, 0xc7, 0x38, 0x3c, 0xce, 0x36, 0x81, 0xf9, 0x2a, 0x29, 0x09,
-	0x75, 0xb0, 0x70, 0xc9, 0xae, 0x0b, 0xf7, 0xaf, 0xc1, 0xe3, 0x93, 0xc8, 0xf5, 0xeb, 0x70, 0x38,
-	0x3c, 0x27, 0xaa, 0x37, 0x3d, 0xd9, 0x68, 0x88, 0xee, 0x55, 0xf2, 0x30, 0x1c, 0x17, 0x3c, 0xee,
-	0x61, 0x3b, 0x29, 0x6a, 0xe8, 0x1b, 0x30, 0x14, 0x9d, 0x42, 0x5e, 0x97, 0xe1, 0x0b, 0x62, 0x0c,
-	0xb3, 0xa8, 0x45, 0xe9, 0x08, 0x0b, 0xa4, 0xd1, 0xf2, 0x60, 0x9a, 0x8c, 0x7c, 0xcd, 0x36, 0x82,
-	0x5d, 0xe1, 0xbc, 0xbc, 0x45, 0x7d, 0x73, 0xf2, 0x70, 0x98, 0x62, 0x50, 0x1c, 0x8e, 0xd6, 0x00,
-	0x3b, 0x21, 0x5d, 0x45, 0xc3, 0x67, 0x8b, 0x9d, 0x67, 0x97, 0xe5, 0x95, 0xea, 0x9f, 0xc4, 0xc0,
-	0x59, 0x80, 0x4a, 0x6b, 0x14, 0x23, 0xfb, 0x46, 0xd8, 0x7d, 0xf9, 0x62, 0x96, 0x5a, 0x4d, 0xf5,
-	0x6a, 0xb3, 0xa9, 0x5e, 0xde, 0x30, 0xea, 0x55, 0xd3, 0x5f, 0x63, 0x03, 0xb0, 0xd7, 0x6c, 0x05,
-	0x69, 0x7e, 0x4c, 0xbc, 0xe6, 0x7f, 0xe1, 0x7b, 0xfd, 0x14, 0x61, 0x11, 0xa3, 0x05, 0xc3, 0x89,
-	0x46, 0xb8, 0x09, 0x93, 0xd1, 0x4d, 0x48, 0x74, 0xc1, 0x5d, 0x49, 0x8e, 0xc9, 0x7e, 0x44, 0x60,
-	0xda, 0x57, 0xe4, 0xc9, 0x91, 0x76, 0x64, 0x9e, 0x63, 0xd8, 0x77, 0xeb, 0xb1, 0xf8, 0x1f, 0x81,
-	0x42, 0x07, 0x70, 0x30, 0x6b, 0x0f, 0x41, 0x4b, 0xb4, 0x14, 0x47, 0x71, 0x17, 0x69, 0x53, 0x04,
-	0xed, 0xde, 0xe1, 0xbc, 0x25, 0xdb, 0xcf, 0xd0, 0x72, 0x9d, 0xd7, 0x9a, 0xaf, 0xd5, 0x8c, 0xc4,
-	0x92, 0xad, 0x66, 0x68, 0x2a, 0xb9, 0xd5, 0x0c, 0x19, 0x8a, 0x56, 0x33, 0x34, 0xcc, 0xbe, 0x2c,
-	0xdf, 0xab, 0xdb, 0x86, 0xdb, 0xdc, 0xd1, 0x78, 0x1e, 0x12, 0x35, 0x09, 0xa0, 0x7e, 0x22, 0xdf,
-	0xb1, 0x04, 0xff, 0xcf, 0x0f, 0xfb, 0xf3, 0xe0, 0x1f, 0x2f, 0x61, 0xaf, 0x4f, 0x53, 0xf4, 0x6f,
-	0x08, 0x9c, 0x69, 0x0b, 0x42, 0xb6, 0xc7, 0xa1, 0x79, 0x45, 0x7b, 0x1c, 0x9f, 0x84, 0x48, 0x80,
-	0xee, 0x15, 0x73, 0x01, 0x4e, 0xfa, 0x2e, 0xf6, 0x98, 0xb7, 0x39, 0x92, 0x44, 0xd6, 0x90, 0xf5,
-	0x1f, 0x76, 0x41, 0xca, 0x77, 0xe0, 0x60, 0x70, 0x06, 0x77, 0x3d, 0x17, 0xf3, 0xb8, 0x06, 0xec,
-	0x90, 0x6f, 0xc8, 0x9b, 0x7d, 0x47, 0xf6, 0x2f, 0xcd, 0x67, 0x3d, 0x16, 0x67, 0xb7, 0x7a, 0x88,
-	0x3f, 0x11, 0x18, 0x51, 0x2c, 0x86, 0x0c, 0x57, 0xe1, 0x50, 0x70, 0x46, 0xec, 0x69, 0x5a, 0x8a,
-	0x61, 0xf7, 0xae, 0xed, 0x68, 0xf1, 0x77, 0x39, 0xd8, 0xcf, 0x09, 0xd0, 0x47, 0xd0, 0xeb, 0xa9,
-	0x40, 0x74, 0x34, 0x8a, 0x2a, 0x2a, 0x36, 0x69, 0xa7, 0xdb, 0x58, 0x79, 0x8b, 0xb1, 0xdc, 0xf3,
-	0xbf, 0xfd, 0xfb, 0x67, 0x7b, 0x34, 0x3a, 0xa4, 0x27, 0xc8, 0x6b, 0xf4, 0xa7, 0x04, 0xfa, 0x7d,
-	0xe2, 0x11, 0x3d, 0x97, 0x10, 0x38, 0x56, 0x81, 0xd2, 0xa6, 0x52, 0x5a, 0x23, 0x9c, 0x31, 0x0e,
-	0x27, 0x47, 0xb3, 0x51, 0x38, 0xbc, 0xfb, 0xd5, 0x37, 0x3d, 0x10, 0x3f, 0x27, 0x70, 0xc0, 0xaf,
-	0x38, 0x51, 0xc5, 0x3a, 0x31, 0xc2, 0x95, 0x96, 0x4f, 0x6b, 0x8e, 0xb8, 0xce, 0x71, 0x5c, 0x63,
-	0x74, 0x34, 0x09, 0x17, 0x36, 0x32, 0xde, 0xdf, 0x6e, 0xbf, 0x22, 0x41, 0x99, 0x49, 0x85, 0x2e,
-	0x46, 0xf3, 0x52, 0xa1, 0x8b, 0x53, 0xb5, 0xd8, 0x45, 0x8e, 0xae, 0x48, 0xa7, 0xa3, 0xe8, 0x9a,
-	0x97, 0x7c, 0xb9, 0xf5, 0xed, 0x29, 0xc7, 0xf7, 0x4c, 0x7f, 0xea, 0xdd, 0xfd, 0xcf, 0xe8, 0x6b,
-	0x02, 0xc7, 0xe2, 0x55, 0x23, 0x3a, 0x97, 0x0c, 0x42, 0xa9, 0x77, 0x69, 0x17, 0x3b, 0x77, 0x44,
-	0x1e, 0xd3, 0x9c, 0xc7, 0x04, 0x1d, 0x6f, 0xc3, 0xc3, 0x11, 0x44, 0xe8, 0x1f, 0x48, 0x44, 0xbb,
-	0xa1, 0xd3, 0xc9, 0xeb, 0xc7, 0x2b, 0x4c, 0x5a, 0xa1, 0x03, 0x0f, 0x84, 0xba, 0xcc, 0xa1, 0x2e,
-	0xd2, 0x85, 0x28, 0x54, 0x14, 0xa0, 0x62, 0xb2, 0x1e, 0x94, 0xa6, 0x9e, 0xd1, 0x77, 0x04, 0x86,
-	0x13, 0x25, 0x19, 0x7a, 0x49, 0x99, 0x47, 0xa5, 0xa4, 0xa4, 0x2d, 0xec, 0xca, 0x17, 0xb9, 0xcd,
-	0x70, 0x6e, 0x53, 0x74, 0xb2, 0x3d, 0x37, 0xb9, 0x13, 0xbf, 0x24, 0x7e, 0xc9, 0x84, 0x4e, 0x26,
-	0x03, 0x88, 0x28, 0x37, 0xda, 0xb9, 0x74, 0xc6, 0x08, 0x6f, 0x96, 0xc3, 0xd3, 0xe9, 0x94, 0xae,
-	0x50, 0xf4, 0xa3, 0xa5, 0xfe, 0x8a, 0xc0, 0x60, 0x9c, 0x00, 0x42, 0x67, 0x95, 0xb9, 0x4a, 0x92,
-	0x6d, 0xb4, 0x0b, 0x9d, 0xba, 0x21, 0xfc, 0x29, 0x0e, 0xff, 0x0c, 0x3d, 0xad, 0x82, 0x2f, 0xf3,
-	0xfa, 0x9e, 0x80, 0x96, 0xac, 0x69, 0xd0, 0x85, 0x34, 0xa9, 0x4b, 0x90, 0x4d, 0xb4, 0xcb, 0xbb,
-	0x73, 0x46, 0x22, 0x73, 0x9c, 0x48, 0x81, 0xea, 0xca, 0x7d, 0x68, 0x78, 0xee, 0x65, 0x2e, 0xb0,
-	0x94, 0x9d, 0x26, 0xe6, 0x37, 0x04, 0x8e, 0xc6, 0x4a, 0x26, 0x54, 0x91, 0x53, 0x95, 0x16, 0xa3,
-	0xcd, 0x75, 0xec, 0x87, 0x1c, 0x16, 0x39, 0x87, 0x39, 0x3a, 0xab, 0xe4, 0xb0, 0xe1, 0xc5, 0x28,
-	0xf3, 0x2d, 0x29, 0xaf, 0x1b, 0xae, 0x51, 0xe6, 0x22, 0x0e, 0xfd, 0x3d, 0x89, 0x0a, 0x2d, 0xb4,
-	0xd0, 0xe6, 0xc9, 0x8b, 0xf6, 0x3b, 0x5a, 0xb1, 0x13, 0x17, 0x84, 0x7e, 0x85, 0x43, 0x9f, 0xa7,
-	0x73, 0x4a, 0xe8, 0x1e, 0x64, 0xb1, 0x09, 0x4d, 0xe8, 0xad, 0xca, 0xfa, 0x23, 0x81, 0x23, 0x31,
-	0xc2, 0x0a, 0x3d, 0xaf, 0x2c, 0xec, 0x24, 0x0a, 0xb3, 0x1d, 0x7a, 0xb5, 0x7f, 0xba, 0x94, 0x2c,
-	0x1c, 0xfa, 0x82, 0x48, 0x81, 0x84, 0x9e, 0x4d, 0x5e, 0x3d, 0xa4, 0xb9, 0x68, 0x13, 0x69, 0x4c,
-	0x11, 0x1d, 0xe3, 0xe8, 0x32, 0x54, 0xd3, 0x13, 0x7f, 0x19, 0xa4, 0x3f, 0x24, 0xd0, 0xd7, 0x92,
-	0x51, 0xa8, 0x22, 0x7a, 0x58, 0x87, 0xd1, 0x26, 0x53, 0xd9, 0x22, 0x94, 0x51, 0x0e, 0x25, 0x4b,
-	0x33, 0x31, 0x1d, 0x88, 0x6d, 0x88, 0xbe, 0xe8, 0x27, 0x04, 0x40, 0x6a, 0x2f, 0xaa, 0x5b, 0x38,
-	0x22, 0xdf, 0xa8, 0x6e, 0xe1, 0xa8, 0x9c, 0xc3, 0xc6, 0x39, 0x1e, 0x46, 0x73, 0xf1, 0x78, 0x44,
-	0x3f, 0x64, 0x1b, 0xf4, 0x1f, 0x44, 0xa1, 0xaa, 0xa8, 0x5e, 0xb9, 0x76, 0x32, 0x90, 0xea, 0x95,
-	0x6b, 0xab, 0xf5, 0xb0, 0x6b, 0x9c, 0xc0, 0x15, 0xba, 0xa8, 0x2b, 0x7e, 0xd4, 0x2d, 0xf3, 0x5f,
-	0x75, 0xcb, 0x15, 0xee, 0x2e, 0x8e, 0x8f, 0x6d, 0xf8, 0x9e, 0x95, 0xff, 0x12, 0x18, 0x69, 0x2b,
-	0x95, 0xd0, 0x25, 0xe5, 0xe9, 0x48, 0x25, 0xfb, 0x68, 0xcb, 0x9f, 0x29, 0x46, 0xfb, 0x0b, 0x4f,
-	0xc5, 0xda, 0xf1, 0x68, 0xd3, 0xdf, 0x90, 0x88, 0x08, 0xa0, 0xea, 0xb7, 0xe2, 0xa5, 0x08, 0x55,
-	0xbf, 0x95, 0x20, 0x3e, 0xb0, 0x79, 0x8e, 0x7b, 0x86, 0x16, 0xda, 0xe3, 0x0e, 0xef, 0xd0, 0x5f,
-	0x08, 0x1c, 0x8d, 0x55, 0x36, 0x54, 0xcf, 0x8d, 0x4a, 0x4a, 0x51, 0x3d, 0x37, 0x4a, 0x09, 0x85,
-	0x5d, 0xe2, 0x2c, 0xce, 0xd3, 0x62, 0x94, 0xc5, 0x26, 0x77, 0x2c, 0x47, 0xc9, 0x08, 0x1a, 0x7f,
-	0x26, 0x70, 0x3c, 0x41, 0x9e, 0xa0, 0x17, 0x3b, 0x29, 0x8d, 0x40, 0x51, 0xcd, 0xef, 0xc2, 0x13,
-	0xc9, 0x14, 0x38, 0x99, 0x49, 0x7a, 0xb6, 0xfd, 0x96, 0x88, 0xf2, 0x79, 0x49, 0xc2, 0x62, 0x02,
-	0xd5, 0x95, 0x97, 0x60, 0xcc, 0x43, 0x33, 0x9d, 0xde, 0x01, 0x81, 0x2e, 0x70, 0xa0, 0xb3, 0x74,
-	0x46, 0xfd, 0xc6, 0xd8, 0x46, 0xf8, 0x9d, 0x6c, 0x42, 0x7e, 0x45, 0xe0, 0x70, 0x44, 0x3a, 0xa0,
-	0x45, 0xf5, 0x6b, 0x17, 0x0b, 0x7c, 0xa6, 0x23, 0x1f, 0xc4, 0x7e, 0x81, 0x63, 0x9f, 0xa6, 0xf9,
-	0x8e, 0xb0, 0x3b, 0x4b, 0xc5, 0xb7, 0x1f, 0xb2, 0xe4, 0xfd, 0x87, 0x2c, 0xf9, 0xd7, 0x87, 0x2c,
-	0xf9, 0xf1, 0xc7, 0x6c, 0xcf, 0xfb, 0x8f, 0xd9, 0x9e, 0xbf, 0x7f, 0xcc, 0xf6, 0x7c, 0x73, 0x48,
-	0x04, 0x7a, 0x2c, 0x43, 0xb9, 0x3b, 0x0d, 0xd3, 0x59, 0xeb, 0xe5, 0xff, 0x79, 0x65, 0xe6, 0xff,
-	0x01, 0x00, 0x00, 0xff, 0xff, 0x99, 0x0b, 0x62, 0x65, 0x0d, 0x24, 0x00, 0x00,
+	// 2089 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x5a, 0xdd, 0x6f, 0x1c, 0x57,
+	0x15, 0xcf, 0x6d, 0x9b, 0x88, 0x1c, 0x87, 0x36, 0xb9, 0x75, 0x8b, 0x33, 0xd9, 0x6c, 0x36, 0x37,
+	0xb1, 0xeb, 0xfa, 0x63, 0xc7, 0x1f, 0x71, 0x9d, 0x62, 0x3b, 0xa1, 0x8e, 0xdd, 0x2f, 0xa0, 0xb8,
+	0x9b, 0x0a, 0x03, 0x42, 0xda, 0x8c, 0xd7, 0xa3, 0xf5, 0x52, 0x7b, 0x67, 0x33, 0x33, 0x26, 0x35,
+	0x25, 0x2f, 0x40, 0x05, 0xaa, 0x78, 0xe0, 0xe3, 0x0d, 0x10, 0xaf, 0x20, 0xc1, 0x43, 0x1f, 0xca,
+	0x0b, 0xa2, 0x3c, 0x54, 0xa8, 0x54, 0xbc, 0x10, 0x40, 0x42, 0x48, 0x95, 0x10, 0x4a, 0x90, 0x78,
+	0xe0, 0x81, 0x7f, 0x01, 0xed, 0x9d, 0x73, 0xf7, 0xce, 0xcc, 0xbd, 0x73, 0x67, 0xd6, 0x5d, 0xf9,
+	0x25, 0xb2, 0xef, 0x3d, 0xe7, 0xdc, 0xdf, 0xef, 0x9c, 0x73, 0x3f, 0xe6, 0x17, 0x43, 0xc9, 0x6d,
+	0xfb, 0xae, 0xd3, 0xd8, 0xb1, 0xef, 0x78, 0xfe, 0xeb, 0xbb, 0x9e, 0xb3, 0x6d, 0xdf, 0xde, 0x77,
+	0xfd, 0x83, 0x6a, 0xc7, 0xf7, 0x42, 0x8f, 0x9e, 0xc6, 0xd9, 0xaa, 0x98, 0xb5, 0xce, 0x38, 0x7b,
+	0xad, 0xb6, 0x67, 0xf3, 0x7f, 0x23, 0x23, 0x6b, 0xb8, 0xe9, 0x35, 0x3d, 0xfe, 0xa3, 0xdd, 0xfd,
+	0x09, 0x47, 0x4b, 0x4d, 0xcf, 0x6b, 0xee, 0xba, 0xb6, 0xd3, 0x69, 0xd9, 0x4e, 0xbb, 0xed, 0x85,
+	0x4e, 0xd8, 0xf2, 0xda, 0x01, 0xce, 0x4e, 0x34, 0xbc, 0x60, 0xcf, 0x0b, 0xec, 0x2d, 0x27, 0x70,
+	0xa3, 0x15, 0xed, 0xaf, 0xcf, 0x6e, 0xb9, 0xa1, 0x33, 0x6b, 0x77, 0x9c, 0x66, 0xab, 0xcd, 0x8d,
+	0xd1, 0xf6, 0xbc, 0x02, 0xb1, 0xe3, 0xf8, 0xce, 0x9e, 0x08, 0x75, 0x41, 0x99, 0x16, 0x3f, 0xa0,
+	0xc1, 0x45, 0xad, 0x81, 0xef, 0x76, 0x3c, 0x3f, 0xcc, 0x8c, 0x11, 0xec, 0x77, 0x5c, 0xbf, 0xe5,
+	0xf9, 0x68, 0x30, 0xa6, 0x18, 0xf8, 0x6e, 0x67, 0x3f, 0xe2, 0xd4, 0xf1, 0x5a, 0x6d, 0x0c, 0xc4,
+	0x86, 0x81, 0xbe, 0xda, 0x65, 0xb3, 0xc1, 0x11, 0xd6, 0xdc, 0xdb, 0xfb, 0x6e, 0x10, 0xb2, 0x1a,
+	0x3c, 0x9e, 0x18, 0x0d, 0x3a, 0x5e, 0x3b, 0x70, 0xe9, 0x12, 0x9c, 0x88, 0x98, 0x8c, 0x90, 0x0a,
+	0x19, 0x1f, 0x9a, 0x1b, 0xa9, 0xa6, 0xd3, 0x5d, 0x8d, 0x3c, 0x56, 0x4f, 0x7e, 0xf8, 0xcf, 0x0b,
+	0xc7, 0x7e, 0xf9, 0x9f, 0x77, 0x26, 0x48, 0x0d, 0x5d, 0x58, 0x09, 0x2c, 0x1e, 0xf3, 0x05, 0x37,
+	0x5c, 0xef, 0x78, 0x8d, 0x9d, 0xcf, 0xb9, 0xed, 0x66, 0xb8, 0x23, 0x56, 0xbc, 0x0e, 0xe7, 0xb4,
+	0xb3, 0xb8, 0x72, 0x05, 0x86, 0x5c, 0x39, 0xcc, 0x97, 0x7f, 0xa4, 0x16, 0x1f, 0x62, 0xe7, 0x65,
+	0x80, 0x1b, 0xfb, 0xbe, 0xef, 0xb6, 0xa3, 0x38, 0x22, 0xfe, 0x2a, 0x94, 0xf4, 0xd3, 0xb8, 0x00,
+	0x83, 0x53, 0x8d, 0xd8, 0x38, 0xae, 0x90, 0x18, 0x63, 0x9f, 0x95, 0x4b, 0xbc, 0xe2, 0x6d, 0xbb,
+	0x9b, 0xc8, 0x19, 0x97, 0xa0, 0xc3, 0x70, 0xdc, 0x8d, 0xf9, 0x46, 0xbf, 0xd0, 0x27, 0xe1, 0x44,
+	0xdb, 0xdb, 0x76, 0x5f, 0x5a, 0x1b, 0x79, 0xa8, 0x42, 0xc6, 0x4f, 0xd6, 0xf0, 0x37, 0xb6, 0x23,
+	0x01, 0x25, 0x83, 0x21, 0xa0, 0x17, 0xe1, 0x54, 0x7c, 0x1c, 0x33, 0x5e, 0x56, 0x33, 0x1e, 0xb7,
+	0x5a, 0x7d, 0xa4, 0x9b, 0xf7, 0x5a, 0xc2, 0x93, 0xbd, 0x45, 0x60, 0x54, 0x2c, 0xf5, 0xdc, 0xee,
+	0x6e, 0xc2, 0xfe, 0x20, 0x9e, 0xa4, 0x0c, 0x06, 0xcf, 0x03, 0xc8, 0x16, 0xe7, 0x2c, 0x86, 0xe6,
+	0xc6, 0xaa, 0xd1, 0x7e, 0xa8, 0x76, 0xf7, 0x43, 0x35, 0xda, 0x81, 0xb8, 0x1f, 0xaa, 0x1b, 0x4e,
+	0xd3, 0xc5, 0x88, 0xb5, 0x98, 0x27, 0x7b, 0x8f, 0xc0, 0x58, 0x1e, 0x0e, 0x24, 0xff, 0x32, 0x7c,
+	0x32, 0x3e, 0xdd, 0xed, 0xb7, 0x87, 0x0b, 0xb3, 0x4f, 0xba, 0xd2, 0x17, 0x34, 0xf0, 0x9f, 0xca,
+	0x85, 0x1f, 0x01, 0x49, 0xe0, 0xbf, 0x05, 0x15, 0x01, 0xff, 0xf3, 0x4e, 0xdb, 0x69, 0xba, 0xfe,
+	0x66, 0xad, 0x58, 0x0f, 0x8c, 0xc1, 0xa3, 0x7b, 0x91, 0xc7, 0x73, 0x8d, 0x86, 0xb7, 0xdf, 0x0e,
+	0xb1, 0x17, 0x52, 0xa3, 0xec, 0x9b, 0x70, 0xd1, 0xb0, 0x02, 0xe6, 0x66, 0x13, 0xce, 0x28, 0x93,
+	0xd8, 0x1d, 0x97, 0xd4, 0xfc, 0x28, 0xa6, 0x98, 0x24, 0x35, 0x06, 0x7b, 0x9b, 0xc0, 0x44, 0xac,
+	0x3e, 0xaa, 0xe7, 0x51, 0x36, 0xcb, 0x5f, 0x08, 0x4c, 0x16, 0x02, 0x83, 0x59, 0xf9, 0x32, 0x50,
+	0xc5, 0x46, 0xb4, 0x4d, 0x1f, 0x69, 0xd1, 0x04, 0x19, 0x5c, 0x03, 0x7d, 0x55, 0x69, 0xa0, 0xda,
+	0x46, 0xba, 0x81, 0x4e, 0xc3, 0xc3, 0xae, 0xef, 0x60, 0x4e, 0xbb, 0x3f, 0x7e, 0x8c, 0xe6, 0x89,
+	0x47, 0x57, 0x9a, 0x47, 0x4e, 0xe6, 0x36, 0x8f, 0x34, 0x4d, 0x35, 0x8f, 0x9c, 0x60, 0xdf, 0x21,
+	0x30, 0xae, 0xd6, 0x2b, 0xe6, 0x79, 0xb0, 0xee, 0x3b, 0xd9, 0x24, 0x07, 0xd5, 0x36, 0x7f, 0x26,
+	0xf0, 0x74, 0x01, 0x18, 0x4a, 0xd3, 0x48, 0x8b, 0xfc, 0xa6, 0x51, 0xd2, 0xa1, 0x09, 0x32, 0xb8,
+	0xa6, 0x79, 0x09, 0xce, 0x0a, 0x42, 0x9b, 0xbd, 0x57, 0xc0, 0xe1, 0xae, 0x9c, 0x5b, 0xf2, 0x06,
+	0x8e, 0x87, 0xc2, 0x64, 0xac, 0x02, 0xc8, 0x51, 0xec, 0x89, 0x92, 0x9a, 0x04, 0x69, 0x83, 0xec,
+	0x63, 0x5e, 0xec, 0xdb, 0x04, 0x2e, 0xc5, 0xd2, 0x1f, 0xb3, 0x3d, 0xca, 0xb3, 0xe3, 0x37, 0x04,
+	0x2e, 0x9b, 0x51, 0x20, 0xe5, 0x35, 0x18, 0x92, 0x93, 0xa2, 0xf0, 0x45, 0x38, 0xc7, 0xdd, 0x06,
+	0x57, 0xea, 0x49, 0xd9, 0xbb, 0x32, 0xfe, 0x86, 0xef, 0x35, 0xdc, 0x20, 0x58, 0x75, 0xc2, 0xc6,
+	0xce, 0xcd, 0xd6, 0x37, 0x04, 0x61, 0xf6, 0xb2, 0x3c, 0xac, 0x4d, 0xc6, 0xc8, 0xb4, 0x04, 0x27,
+	0xb7, 0xc4, 0x20, 0x26, 0x5d, 0x0e, 0xb0, 0x31, 0x99, 0xaf, 0x17, 0x5b, 0x41, 0xe8, 0xf9, 0x51,
+	0x9e, 0xd6, 0x9c, 0xd0, 0x59, 0x73, 0x3b, 0xf2, 0x91, 0xb6, 0x22, 0x1f, 0x12, 0x19, 0x76, 0xb8,
+	0xdc, 0x30, 0x1c, 0xdf, 0xee, 0x0e, 0x88, 0xfa, 0xf2, 0x5f, 0xd8, 0x22, 0x5c, 0x48, 0xbc, 0xf1,
+	0x10, 0x6d, 0xd7, 0xdd, 0xd8, 0x18, 0xec, 0x0d, 0x79, 0x70, 0xaa, 0x8e, 0xb8, 0xe4, 0x6b, 0x70,
+	0x3a, 0x3d, 0x87, 0x4d, 0xcc, 0xd4, 0x82, 0xa6, 0x2d, 0xb1, 0xac, 0x4a, 0x04, 0xb6, 0x0b, 0x2c,
+	0xd6, 0x49, 0x59, 0xa8, 0x93, 0x8d, 0x4b, 0x0e, 0xdd, 0xb8, 0x1f, 0x24, 0xb7, 0x4f, 0x26, 0xd7,
+	0x2f, 0xc2, 0x99, 0xf4, 0x9c, 0xe8, 0xde, 0xe2, 0x64, 0xd5, 0x10, 0x83, 0xeb, 0xe4, 0xb3, 0xf0,
+	0x29, 0xc1, 0xe3, 0x26, 0x7e, 0x97, 0x88, 0x1e, 0xfa, 0x12, 0x8c, 0xa8, 0x53, 0xc8, 0x6b, 0x19,
+	0x3e, 0x21, 0xc6, 0x30, 0x8b, 0x96, 0x4a, 0x47, 0x58, 0x20, 0x8d, 0x9e, 0x07, 0xb3, 0x64, 0xe4,
+	0x75, 0xdf, 0x49, 0x7e, 0x5e, 0x3c, 0x2b, 0x4f, 0xd1, 0xd8, 0x9c, 0xdc, 0x1c, 0xae, 0x18, 0x14,
+	0x9b, 0xa3, 0x37, 0xc0, 0xce, 0x49, 0x57, 0xf1, 0xe5, 0xd0, 0xbb, 0xc9, 0xd8, 0xb2, 0x3c, 0x52,
+	0xe3, 0x93, 0x18, 0xb8, 0x0c, 0xd0, 0xe8, 0x8d, 0x62, 0xe4, 0xd8, 0x08, 0x7b, 0x4d, 0xde, 0x99,
+	0xb5, 0xde, 0xd7, 0xd9, 0x46, 0xf7, 0xeb, 0xec, 0xc6, 0x8e, 0xd3, 0x6e, 0xba, 0xf1, 0x1e, 0x53,
+	0xef, 0xcc, 0xac, 0x63, 0xfe, 0x67, 0xb1, 0x3b, 0xd0, 0x10, 0x16, 0x31, 0x7a, 0x70, 0x36, 0xd3,
+	0x08, 0x8b, 0x30, 0xa9, 0x16, 0x21, 0xd3, 0x05, 0xab, 0x92, 0x1d, 0x93, 0x7d, 0x9f, 0xc0, 0x4c,
+	0xac, 0xc9, 0xb3, 0x23, 0x1d, 0xcd, 0x8b, 0xe1, 0x7f, 0x04, 0x66, 0xfb, 0x80, 0x83, 0x59, 0xbb,
+	0x0d, 0x56, 0xa6, 0xa5, 0xd8, 0x8a, 0x87, 0x48, 0x9b, 0x21, 0xe8, 0xe0, 0x36, 0xe7, 0x17, 0xe4,
+	0x21, 0x23, 0x97, 0x5b, 0x73, 0x77, 0x43, 0x87, 0xaf, 0xd9, 0x7f, 0xc3, 0x7d, 0x2f, 0x76, 0xdf,
+	0xea, 0x23, 0x62, 0xd6, 0x6e, 0xc1, 0xb0, 0x6e, 0xbe, 0x77, 0x62, 0x1a, 0xf2, 0x25, 0xad, 0x31,
+	0x55, 0xda, 0x48, 0xec, 0xbb, 0xc9, 0xcf, 0x06, 0xad, 0xff, 0xd1, 0xf4, 0xd5, 0x47, 0x04, 0xa6,
+	0x8a, 0x21, 0xc1, 0xe4, 0x6c, 0xc1, 0x13, 0x3a, 0x23, 0xd1, 0x4d, 0xfd, 0x65, 0x47, 0x1f, 0x6a,
+	0x70, 0x3d, 0x74, 0x15, 0xca, 0x19, 0x47, 0x8c, 0xc8, 0xac, 0x6c, 0x16, 0x92, 0x68, 0x96, 0x50,
+	0x3e, 0x02, 0x14, 0x4f, 0xcc, 0xc4, 0xab, 0xf0, 0x58, 0x6a, 0x0a, 0x3b, 0xe4, 0x62, 0xee, 0x8e,
+	0x42, 0xfa, 0x69, 0x7f, 0xf6, 0xba, 0xfc, 0x38, 0x52, 0x37, 0xf9, 0xa0, 0xaf, 0xf1, 0xf7, 0x49,
+	0xe2, 0xd5, 0x90, 0x45, 0xf3, 0x26, 0x9c, 0x4e, 0x4d, 0x89, 0x5a, 0x17, 0xe6, 0xa9, 0x04, 0x18,
+	0x5c, 0x85, 0x67, 0xe1, 0x7c, 0xec, 0xc6, 0xd4, 0x3c, 0x7a, 0x94, 0xad, 0xc3, 0x3a, 0xb2, 0x29,
+	0xd2, 0x2e, 0x48, 0xf9, 0x15, 0x78, 0x34, 0x39, 0x83, 0x59, 0xae, 0x68, 0x5e, 0x2d, 0x09, 0x3b,
+	0xe4, 0x9b, 0xf2, 0x66, 0x5f, 0x93, 0x0f, 0xc3, 0xee, 0x7b, 0x49, 0x8b, 0x73, 0x50, 0x55, 0xfd,
+	0x3d, 0x49, 0xf4, 0x50, 0x06, 0xc3, 0x0d, 0x78, 0x2c, 0x39, 0x23, 0x6a, 0x5a, 0x94, 0x62, 0xda,
+	0x7d, 0x60, 0x15, 0x9d, 0xfb, 0xc9, 0x28, 0x1c, 0xe7, 0x04, 0xe8, 0x1d, 0x38, 0x11, 0xe9, 0xb4,
+	0xf4, 0xb2, 0x8a, 0x4a, 0x95, 0x83, 0xad, 0xd1, 0x1c, 0xab, 0x68, 0x31, 0x56, 0xf9, 0xd6, 0xdf,
+	0xfe, 0xfd, 0xe3, 0x87, 0x2c, 0x3a, 0x62, 0x67, 0x08, 0xe0, 0xf4, 0x47, 0x04, 0x86, 0x62, 0xf2,
+	0x2e, 0x9d, 0xca, 0x08, 0xac, 0xd5, 0x88, 0xad, 0xe9, 0x82, 0xd6, 0x08, 0x67, 0x8c, 0xc3, 0xa9,
+	0xd0, 0xb2, 0x0a, 0x87, 0x7f, 0x56, 0xd8, 0xbb, 0x11, 0x88, 0x9f, 0x12, 0x38, 0x15, 0xd7, 0x84,
+	0xa9, 0x61, 0x1d, 0x8d, 0xb4, 0x6c, 0x55, 0x8b, 0x9a, 0x23, 0xae, 0x29, 0x8e, 0x6b, 0x8c, 0x5e,
+	0xce, 0xc2, 0x85, 0x2f, 0xc4, 0xe8, 0xa3, 0xf8, 0x17, 0x24, 0x29, 0x04, 0x9b, 0xd0, 0x69, 0x54,
+	0x69, 0x13, 0x3a, 0x9d, 0xee, 0xcc, 0xae, 0x72, 0x74, 0x73, 0x74, 0x46, 0x45, 0xd7, 0x3d, 0xc1,
+	0xeb, 0xbd, 0xdf, 0xde, 0xe4, 0xf8, 0xee, 0xda, 0x6f, 0x46, 0x07, 0xfb, 0x5d, 0xfa, 0x1e, 0x81,
+	0x27, 0xf5, 0xba, 0x2e, 0x5d, 0xcc, 0x06, 0x61, 0x54, 0xa4, 0xad, 0xab, 0xfd, 0x3b, 0x22, 0x8f,
+	0x19, 0xce, 0x63, 0x82, 0x8e, 0xe7, 0xf0, 0x08, 0x04, 0x11, 0xfa, 0x07, 0xa2, 0x51, 0x56, 0xe9,
+	0x5c, 0x36, 0x82, 0x2c, 0x15, 0xd8, 0x9a, 0xef, 0xcb, 0x07, 0x01, 0x3f, 0xcf, 0x01, 0x7f, 0x86,
+	0x5e, 0x53, 0x01, 0xa3, 0xd2, 0x57, 0xbf, 0xe3, 0x6b, 0xd2, 0x9f, 0x94, 0x01, 0xef, 0xd2, 0xbf,
+	0x12, 0x38, 0x67, 0x50, 0x4c, 0xe9, 0xb2, 0x31, 0xa5, 0x39, 0xaa, 0xaf, 0xb5, 0x72, 0x48, 0x6f,
+	0x24, 0xf9, 0x0c, 0x27, 0x39, 0x43, 0xab, 0x85, 0x48, 0xca, 0xda, 0xbc, 0x4f, 0x34, 0xc2, 0x65,
+	0x81, 0xda, 0x28, 0x02, 0x6b, 0x81, 0xda, 0xa8, 0xb2, 0x29, 0x5b, 0xe3, 0xb0, 0xaf, 0xd1, 0xe5,
+	0x6c, 0xd8, 0x7e, 0x27, 0x5e, 0x1b, 0xdf, 0xd1, 0x54, 0xe6, 0x4f, 0x04, 0xce, 0x66, 0x8a, 0x92,
+	0xf4, 0xd3, 0x45, 0x32, 0xab, 0x17, 0x54, 0xad, 0xa5, 0x43, 0xf9, 0x22, 0xb9, 0x2b, 0x9c, 0x5c,
+	0x95, 0x4e, 0x15, 0x22, 0x17, 0x44, 0xec, 0xe8, 0xcf, 0x49, 0x5c, 0x2f, 0xa4, 0x93, 0xd9, 0x08,
+	0x14, 0xd9, 0xd2, 0x9a, 0x2a, 0x66, 0x8c, 0xf8, 0x16, 0x38, 0x3e, 0x9b, 0x4e, 0xdb, 0x86, 0xff,
+	0x17, 0x55, 0x8f, 0xa3, 0x77, 0x09, 0x0c, 0xeb, 0xd4, 0x3f, 0xba, 0x60, 0x4c, 0x56, 0x96, 0x66,
+	0x69, 0x3d, 0xd3, 0xaf, 0x1b, 0xc2, 0x9f, 0xe6, 0xf0, 0x9f, 0xa2, 0xa3, 0x26, 0xf8, 0xb2, 0xd3,
+	0xef, 0x11, 0xb0, 0xb2, 0x05, 0x3d, 0xba, 0x54, 0x24, 0x75, 0x19, 0x9a, 0xa1, 0xb5, 0x7c, 0x38,
+	0x67, 0x24, 0xb2, 0xc8, 0x89, 0xcc, 0x52, 0xdb, 0x58, 0x87, 0x4e, 0xe4, 0x5e, 0xe7, 0xea, 0x62,
+	0x3d, 0xe8, 0x62, 0xfe, 0x23, 0x81, 0x27, 0xb4, 0x7a, 0x21, 0x35, 0xe4, 0xd4, 0x24, 0x44, 0x5a,
+	0x8b, 0x7d, 0xfb, 0x21, 0x87, 0x15, 0xce, 0x61, 0x91, 0x2e, 0x18, 0x39, 0xec, 0x44, 0x31, 0xea,
+	0xbc, 0x24, 0xf5, 0x6d, 0x27, 0x74, 0xea, 0x5c, 0xc1, 0xa4, 0xbf, 0x25, 0xaa, 0xca, 0x48, 0x67,
+	0x73, 0x9e, 0x25, 0xea, 0x9b, 0xd4, 0x9a, 0xeb, 0xc7, 0x05, 0xa1, 0x5f, 0xe7, 0xd0, 0x9f, 0xa5,
+	0x8b, 0x46, 0xe8, 0x11, 0x64, 0x51, 0x84, 0x2e, 0xf4, 0x5e, 0x67, 0xfd, 0x8e, 0xc0, 0xe3, 0x1a,
+	0x55, 0x91, 0x5e, 0x31, 0x36, 0x76, 0x16, 0x85, 0x85, 0x3e, 0xbd, 0xf2, 0x9f, 0x17, 0x46, 0x16,
+	0x01, 0x7d, 0x8b, 0x48, 0x75, 0x90, 0x3e, 0x9d, 0xbd, 0x7a, 0x4a, 0x70, 0xb4, 0x26, 0x8a, 0x98,
+	0x22, 0x3a, 0xc6, 0xd1, 0x95, 0xa8, 0x65, 0x67, 0xfe, 0x7d, 0x05, 0x7d, 0x9b, 0xc0, 0xc9, 0x9e,
+	0x86, 0x48, 0x0d, 0xd1, 0xd3, 0x22, 0xa4, 0x35, 0x59, 0xc8, 0x16, 0xa1, 0x5c, 0xe6, 0x50, 0xca,
+	0xb4, 0xa4, 0x79, 0x25, 0xfa, 0x8e, 0x78, 0xbb, 0xfe, 0x90, 0x00, 0x48, 0xe1, 0xd1, 0x74, 0x0a,
+	0x2b, 0xda, 0xa5, 0xe9, 0x14, 0x56, 0xb5, 0x4c, 0x36, 0xce, 0xf1, 0x30, 0x5a, 0xd1, 0xe3, 0x11,
+	0x6f, 0x56, 0xdf, 0xa1, 0x1f, 0x11, 0x83, 0xa4, 0x68, 0xba, 0xe6, 0xf2, 0x34, 0x50, 0xd3, 0x35,
+	0x97, 0x2b, 0x74, 0xb2, 0x75, 0x4e, 0xe0, 0x3a, 0x5d, 0xb1, 0x0d, 0x7f, 0x1a, 0x53, 0xe7, 0x7f,
+	0x1b, 0x53, 0x6f, 0x70, 0x77, 0xb1, 0x7d, 0xf8, 0x65, 0x2e, 0xae, 0x95, 0xff, 0x12, 0xb8, 0x98,
+	0xab, 0x13, 0xd2, 0x55, 0xe3, 0xee, 0x28, 0xa4, 0x79, 0x5a, 0x37, 0x3e, 0x56, 0x8c, 0xfc, 0x03,
+	0xcf, 0xc4, 0x5a, 0xdc, 0xf2, 0x1f, 0x10, 0xbd, 0x64, 0x67, 0xba, 0x44, 0x0d, 0xa2, 0xa2, 0xe9,
+	0x12, 0x35, 0x29, 0x87, 0xa6, 0xc3, 0x2f, 0x46, 0x63, 0xbb, 0xeb, 0x18, 0x91, 0x49, 0x97, 0xed,
+	0xef, 0x04, 0x4a, 0x26, 0x19, 0x8e, 0xae, 0x14, 0xcc, 0xb6, 0x5e, 0x48, 0xb4, 0xae, 0x1d, 0xd6,
+	0x3d, 0xff, 0x72, 0xd5, 0x13, 0x14, 0x15, 0xfa, 0x15, 0x51, 0xd4, 0x32, 0x3a, 0x53, 0x78, 0x9f,
+	0x08, 0xf8, 0xb3, 0x7d, 0x78, 0x20, 0xe2, 0x79, 0x8e, 0x78, 0x9a, 0x4e, 0xe6, 0x77, 0x96, 0x2c,
+	0xc3, 0xaf, 0x09, 0x50, 0xb5, 0x79, 0xe9, 0x7c, 0x3f, 0xad, 0x2e, 0x30, 0x5f, 0xe9, 0xcf, 0x09,
+	0x61, 0x4f, 0x72, 0xd8, 0xa3, 0xf4, 0x52, 0x3e, 0xec, 0x80, 0xbe, 0x43, 0xd2, 0x82, 0x15, 0xb5,
+	0x8d, 0x87, 0xb8, 0xe6, 0xa2, 0x9c, 0x29, 0xee, 0x80, 0x10, 0x97, 0x38, 0xc4, 0x05, 0x3a, 0x6f,
+	0xbe, 0x23, 0x7d, 0x27, 0x7d, 0xcf, 0x77, 0xfb, 0xe1, 0x5d, 0x02, 0x67, 0x14, 0x79, 0xca, 0xf4,
+	0xa5, 0x94, 0x25, 0x9c, 0x59, 0xf3, 0x7d, 0xf9, 0xe4, 0x7f, 0xe0, 0x19, 0xb0, 0x07, 0xab, 0x73,
+	0x1f, 0xde, 0x2f, 0x93, 0x7b, 0xf7, 0xcb, 0xe4, 0x5f, 0xf7, 0xcb, 0xe4, 0x07, 0x0f, 0xca, 0xc7,
+	0xee, 0x3d, 0x28, 0x1f, 0xfb, 0xc7, 0x83, 0xf2, 0xb1, 0xaf, 0x8c, 0x88, 0x40, 0x6f, 0xc8, 0x50,
+	0xe1, 0x41, 0xc7, 0x0d, 0xb6, 0x4e, 0xf0, 0x3f, 0x61, 0x9c, 0xff, 0x7f, 0x00, 0x00, 0x00, 0xff,
+	0xff, 0x49, 0x1b, 0x3c, 0x3b, 0x13, 0x2a, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -2358,8 +2685,10 @@ type QueryClient interface {
 	NodeWorkload(ctx context.Context, in *QueryGetNodeWorkloadRequest, opts ...grpc.CallOption) (*QueryGetNodeWorkloadResponse, error)
 	AllNodeWorkloadByEpoch(ctx context.Context, in *QueryGetAllNodeWorkloadByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllNodeWorkloadByEpochResponse, error)
 	// Queries a list of Manager Workload items.
-	ManagerWorkload(ctx context.Context, in *QueryGetManagerWorkloadRequest, opts ...grpc.CallOption) (*QueryGetManagerWorkloadResponse, error)
-	AllManagerWorkloadByEpoch(ctx context.Context, in *QueryGetAllManagerWorkloadByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllManagerWorkloadByEpochResponse, error)
+	ManagerWRWorkload(ctx context.Context, in *QueryGetManagerWRWorkloadRequest, opts ...grpc.CallOption) (*QueryGetManagerWRWorkloadResponse, error)
+	AllManagerWRWorkloadByEpoch(ctx context.Context, in *QueryGetAllManagerWRWorkloadByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllManagerWRWorkloadByEpochResponse, error)
+	ManagerRPWorkload(ctx context.Context, in *QueryGetManagerRPWorkloadRequest, opts ...grpc.CallOption) (*QueryGetManagerRPWorkloadResponse, error)
+	AllManagerRPWorkloadByEra(ctx context.Context, in *QueryGetAllManagerRPWorkloadByEraRequest, opts ...grpc.CallOption) (*QueryGetAllManagerRPWorkloadByEraResponse, error)
 	// Queries a list of Workreport items.
 	Workreport(ctx context.Context, in *QueryGetWorkreportRequest, opts ...grpc.CallOption) (*QueryGetWorkreportResponse, error)
 	AllWorkreportByEpoch(ctx context.Context, in *QueryGetAllWorkreportByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllWorkreportByEpochResponse, error)
@@ -2377,9 +2706,10 @@ type QueryClient interface {
 	ReputationPointChangeData(ctx context.Context, in *QueryGetReputationPointChangeDataRequest, opts ...grpc.CallOption) (*QueryGetReputationPointChangeDataResponse, error)
 	AllReputationPointChangeDataByEra(ctx context.Context, in *QueryGetAllReputationPointChangeDataByEraRequest, opts ...grpc.CallOption) (*QueryGetAllReputationPointChangeDataByEraResponse, error)
 	// Queries a list of ReputationPoint items.
+	ReputationDeltaPoint(ctx context.Context, in *QueryGetReputationDeltaPointRequest, opts ...grpc.CallOption) (*QueryGetReputationDeltaPointResponse, error)
+	AllReputationDeltaPointByEra(ctx context.Context, in *QueryGetAllReputationDeltaPointByEraRequest, opts ...grpc.CallOption) (*QueryGetAllReputationDeltaPointByEraResponse, error)
 	ReputationPoint(ctx context.Context, in *QueryGetReputationPointRequest, opts ...grpc.CallOption) (*QueryGetReputationPointResponse, error)
-	LatestReputationPoint(ctx context.Context, in *QueryGetLatestReputationPointRequest, opts ...grpc.CallOption) (*QueryGetLatestReputationPointResponse, error)
-	AllReputationPointByEra(ctx context.Context, in *QueryGetAllReputationPointByEraRequest, opts ...grpc.CallOption) (*QueryGetAllReputationPointByEraResponse, error)
+	AllReputationPoint(ctx context.Context, in *QueryGetAllReputationPointRequest, opts ...grpc.CallOption) (*QueryGetAllReputationPointResponse, error)
 	// Queries a list of EpochProcessData items.
 	EraProcessData(ctx context.Context, in *QueryGetEraProcessDataRequest, opts ...grpc.CallOption) (*QueryGetEraProcessDataResponse, error)
 	AllEraProcessData(ctx context.Context, in *QueryGetAllEraProcessDataRequest, opts ...grpc.CallOption) (*QueryGetAllEraProcessDataResponse, error)
@@ -2438,18 +2768,36 @@ func (c *queryClient) AllNodeWorkloadByEpoch(ctx context.Context, in *QueryGetAl
 	return out, nil
 }
 
-func (c *queryClient) ManagerWorkload(ctx context.Context, in *QueryGetManagerWorkloadRequest, opts ...grpc.CallOption) (*QueryGetManagerWorkloadResponse, error) {
-	out := new(QueryGetManagerWorkloadResponse)
-	err := c.cc.Invoke(ctx, "/enreach.workload.Query/ManagerWorkload", in, out, opts...)
+func (c *queryClient) ManagerWRWorkload(ctx context.Context, in *QueryGetManagerWRWorkloadRequest, opts ...grpc.CallOption) (*QueryGetManagerWRWorkloadResponse, error) {
+	out := new(QueryGetManagerWRWorkloadResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/ManagerWRWorkload", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *queryClient) AllManagerWorkloadByEpoch(ctx context.Context, in *QueryGetAllManagerWorkloadByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllManagerWorkloadByEpochResponse, error) {
-	out := new(QueryGetAllManagerWorkloadByEpochResponse)
-	err := c.cc.Invoke(ctx, "/enreach.workload.Query/AllManagerWorkloadByEpoch", in, out, opts...)
+func (c *queryClient) AllManagerWRWorkloadByEpoch(ctx context.Context, in *QueryGetAllManagerWRWorkloadByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllManagerWRWorkloadByEpochResponse, error) {
+	out := new(QueryGetAllManagerWRWorkloadByEpochResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/AllManagerWRWorkloadByEpoch", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) ManagerRPWorkload(ctx context.Context, in *QueryGetManagerRPWorkloadRequest, opts ...grpc.CallOption) (*QueryGetManagerRPWorkloadResponse, error) {
+	out := new(QueryGetManagerRPWorkloadResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/ManagerRPWorkload", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) AllManagerRPWorkloadByEra(ctx context.Context, in *QueryGetAllManagerRPWorkloadByEraRequest, opts ...grpc.CallOption) (*QueryGetAllManagerRPWorkloadByEraResponse, error) {
+	out := new(QueryGetAllManagerRPWorkloadByEraResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/AllManagerRPWorkloadByEra", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2555,6 +2903,24 @@ func (c *queryClient) AllReputationPointChangeDataByEra(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *queryClient) ReputationDeltaPoint(ctx context.Context, in *QueryGetReputationDeltaPointRequest, opts ...grpc.CallOption) (*QueryGetReputationDeltaPointResponse, error) {
+	out := new(QueryGetReputationDeltaPointResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/ReputationDeltaPoint", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) AllReputationDeltaPointByEra(ctx context.Context, in *QueryGetAllReputationDeltaPointByEraRequest, opts ...grpc.CallOption) (*QueryGetAllReputationDeltaPointByEraResponse, error) {
+	out := new(QueryGetAllReputationDeltaPointByEraResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/AllReputationDeltaPointByEra", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *queryClient) ReputationPoint(ctx context.Context, in *QueryGetReputationPointRequest, opts ...grpc.CallOption) (*QueryGetReputationPointResponse, error) {
 	out := new(QueryGetReputationPointResponse)
 	err := c.cc.Invoke(ctx, "/enreach.workload.Query/ReputationPoint", in, out, opts...)
@@ -2564,18 +2930,9 @@ func (c *queryClient) ReputationPoint(ctx context.Context, in *QueryGetReputatio
 	return out, nil
 }
 
-func (c *queryClient) LatestReputationPoint(ctx context.Context, in *QueryGetLatestReputationPointRequest, opts ...grpc.CallOption) (*QueryGetLatestReputationPointResponse, error) {
-	out := new(QueryGetLatestReputationPointResponse)
-	err := c.cc.Invoke(ctx, "/enreach.workload.Query/LatestReputationPoint", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *queryClient) AllReputationPointByEra(ctx context.Context, in *QueryGetAllReputationPointByEraRequest, opts ...grpc.CallOption) (*QueryGetAllReputationPointByEraResponse, error) {
-	out := new(QueryGetAllReputationPointByEraResponse)
-	err := c.cc.Invoke(ctx, "/enreach.workload.Query/AllReputationPointByEra", in, out, opts...)
+func (c *queryClient) AllReputationPoint(ctx context.Context, in *QueryGetAllReputationPointRequest, opts ...grpc.CallOption) (*QueryGetAllReputationPointResponse, error) {
+	out := new(QueryGetAllReputationPointResponse)
+	err := c.cc.Invoke(ctx, "/enreach.workload.Query/AllReputationPoint", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2611,8 +2968,10 @@ type QueryServer interface {
 	NodeWorkload(context.Context, *QueryGetNodeWorkloadRequest) (*QueryGetNodeWorkloadResponse, error)
 	AllNodeWorkloadByEpoch(context.Context, *QueryGetAllNodeWorkloadByEpochRequest) (*QueryGetAllNodeWorkloadByEpochResponse, error)
 	// Queries a list of Manager Workload items.
-	ManagerWorkload(context.Context, *QueryGetManagerWorkloadRequest) (*QueryGetManagerWorkloadResponse, error)
-	AllManagerWorkloadByEpoch(context.Context, *QueryGetAllManagerWorkloadByEpochRequest) (*QueryGetAllManagerWorkloadByEpochResponse, error)
+	ManagerWRWorkload(context.Context, *QueryGetManagerWRWorkloadRequest) (*QueryGetManagerWRWorkloadResponse, error)
+	AllManagerWRWorkloadByEpoch(context.Context, *QueryGetAllManagerWRWorkloadByEpochRequest) (*QueryGetAllManagerWRWorkloadByEpochResponse, error)
+	ManagerRPWorkload(context.Context, *QueryGetManagerRPWorkloadRequest) (*QueryGetManagerRPWorkloadResponse, error)
+	AllManagerRPWorkloadByEra(context.Context, *QueryGetAllManagerRPWorkloadByEraRequest) (*QueryGetAllManagerRPWorkloadByEraResponse, error)
 	// Queries a list of Workreport items.
 	Workreport(context.Context, *QueryGetWorkreportRequest) (*QueryGetWorkreportResponse, error)
 	AllWorkreportByEpoch(context.Context, *QueryGetAllWorkreportByEpochRequest) (*QueryGetAllWorkreportByEpochResponse, error)
@@ -2630,9 +2989,10 @@ type QueryServer interface {
 	ReputationPointChangeData(context.Context, *QueryGetReputationPointChangeDataRequest) (*QueryGetReputationPointChangeDataResponse, error)
 	AllReputationPointChangeDataByEra(context.Context, *QueryGetAllReputationPointChangeDataByEraRequest) (*QueryGetAllReputationPointChangeDataByEraResponse, error)
 	// Queries a list of ReputationPoint items.
+	ReputationDeltaPoint(context.Context, *QueryGetReputationDeltaPointRequest) (*QueryGetReputationDeltaPointResponse, error)
+	AllReputationDeltaPointByEra(context.Context, *QueryGetAllReputationDeltaPointByEraRequest) (*QueryGetAllReputationDeltaPointByEraResponse, error)
 	ReputationPoint(context.Context, *QueryGetReputationPointRequest) (*QueryGetReputationPointResponse, error)
-	LatestReputationPoint(context.Context, *QueryGetLatestReputationPointRequest) (*QueryGetLatestReputationPointResponse, error)
-	AllReputationPointByEra(context.Context, *QueryGetAllReputationPointByEraRequest) (*QueryGetAllReputationPointByEraResponse, error)
+	AllReputationPoint(context.Context, *QueryGetAllReputationPointRequest) (*QueryGetAllReputationPointResponse, error)
 	// Queries a list of EpochProcessData items.
 	EraProcessData(context.Context, *QueryGetEraProcessDataRequest) (*QueryGetEraProcessDataResponse, error)
 	AllEraProcessData(context.Context, *QueryGetAllEraProcessDataRequest) (*QueryGetAllEraProcessDataResponse, error)
@@ -2657,11 +3017,17 @@ func (*UnimplementedQueryServer) NodeWorkload(ctx context.Context, req *QueryGet
 func (*UnimplementedQueryServer) AllNodeWorkloadByEpoch(ctx context.Context, req *QueryGetAllNodeWorkloadByEpochRequest) (*QueryGetAllNodeWorkloadByEpochResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AllNodeWorkloadByEpoch not implemented")
 }
-func (*UnimplementedQueryServer) ManagerWorkload(ctx context.Context, req *QueryGetManagerWorkloadRequest) (*QueryGetManagerWorkloadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ManagerWorkload not implemented")
+func (*UnimplementedQueryServer) ManagerWRWorkload(ctx context.Context, req *QueryGetManagerWRWorkloadRequest) (*QueryGetManagerWRWorkloadResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ManagerWRWorkload not implemented")
 }
-func (*UnimplementedQueryServer) AllManagerWorkloadByEpoch(ctx context.Context, req *QueryGetAllManagerWorkloadByEpochRequest) (*QueryGetAllManagerWorkloadByEpochResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AllManagerWorkloadByEpoch not implemented")
+func (*UnimplementedQueryServer) AllManagerWRWorkloadByEpoch(ctx context.Context, req *QueryGetAllManagerWRWorkloadByEpochRequest) (*QueryGetAllManagerWRWorkloadByEpochResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllManagerWRWorkloadByEpoch not implemented")
+}
+func (*UnimplementedQueryServer) ManagerRPWorkload(ctx context.Context, req *QueryGetManagerRPWorkloadRequest) (*QueryGetManagerRPWorkloadResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ManagerRPWorkload not implemented")
+}
+func (*UnimplementedQueryServer) AllManagerRPWorkloadByEra(ctx context.Context, req *QueryGetAllManagerRPWorkloadByEraRequest) (*QueryGetAllManagerRPWorkloadByEraResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllManagerRPWorkloadByEra not implemented")
 }
 func (*UnimplementedQueryServer) Workreport(ctx context.Context, req *QueryGetWorkreportRequest) (*QueryGetWorkreportResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Workreport not implemented")
@@ -2696,14 +3062,17 @@ func (*UnimplementedQueryServer) ReputationPointChangeData(ctx context.Context, 
 func (*UnimplementedQueryServer) AllReputationPointChangeDataByEra(ctx context.Context, req *QueryGetAllReputationPointChangeDataByEraRequest) (*QueryGetAllReputationPointChangeDataByEraResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AllReputationPointChangeDataByEra not implemented")
 }
+func (*UnimplementedQueryServer) ReputationDeltaPoint(ctx context.Context, req *QueryGetReputationDeltaPointRequest) (*QueryGetReputationDeltaPointResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReputationDeltaPoint not implemented")
+}
+func (*UnimplementedQueryServer) AllReputationDeltaPointByEra(ctx context.Context, req *QueryGetAllReputationDeltaPointByEraRequest) (*QueryGetAllReputationDeltaPointByEraResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllReputationDeltaPointByEra not implemented")
+}
 func (*UnimplementedQueryServer) ReputationPoint(ctx context.Context, req *QueryGetReputationPointRequest) (*QueryGetReputationPointResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReputationPoint not implemented")
 }
-func (*UnimplementedQueryServer) LatestReputationPoint(ctx context.Context, req *QueryGetLatestReputationPointRequest) (*QueryGetLatestReputationPointResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LatestReputationPoint not implemented")
-}
-func (*UnimplementedQueryServer) AllReputationPointByEra(ctx context.Context, req *QueryGetAllReputationPointByEraRequest) (*QueryGetAllReputationPointByEraResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AllReputationPointByEra not implemented")
+func (*UnimplementedQueryServer) AllReputationPoint(ctx context.Context, req *QueryGetAllReputationPointRequest) (*QueryGetAllReputationPointResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllReputationPoint not implemented")
 }
 func (*UnimplementedQueryServer) EraProcessData(ctx context.Context, req *QueryGetEraProcessDataRequest) (*QueryGetEraProcessDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EraProcessData not implemented")
@@ -2806,38 +3175,74 @@ func _Query_AllNodeWorkloadByEpoch_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_ManagerWorkload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetManagerWorkloadRequest)
+func _Query_ManagerWRWorkload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetManagerWRWorkloadRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).ManagerWorkload(ctx, in)
+		return srv.(QueryServer).ManagerWRWorkload(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/enreach.workload.Query/ManagerWorkload",
+		FullMethod: "/enreach.workload.Query/ManagerWRWorkload",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).ManagerWorkload(ctx, req.(*QueryGetManagerWorkloadRequest))
+		return srv.(QueryServer).ManagerWRWorkload(ctx, req.(*QueryGetManagerWRWorkloadRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_AllManagerWorkloadByEpoch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetAllManagerWorkloadByEpochRequest)
+func _Query_AllManagerWRWorkloadByEpoch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAllManagerWRWorkloadByEpochRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).AllManagerWorkloadByEpoch(ctx, in)
+		return srv.(QueryServer).AllManagerWRWorkloadByEpoch(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/enreach.workload.Query/AllManagerWorkloadByEpoch",
+		FullMethod: "/enreach.workload.Query/AllManagerWRWorkloadByEpoch",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).AllManagerWorkloadByEpoch(ctx, req.(*QueryGetAllManagerWorkloadByEpochRequest))
+		return srv.(QueryServer).AllManagerWRWorkloadByEpoch(ctx, req.(*QueryGetAllManagerWRWorkloadByEpochRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_ManagerRPWorkload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetManagerRPWorkloadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ManagerRPWorkload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/enreach.workload.Query/ManagerRPWorkload",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ManagerRPWorkload(ctx, req.(*QueryGetManagerRPWorkloadRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_AllManagerRPWorkloadByEra_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAllManagerRPWorkloadByEraRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).AllManagerRPWorkloadByEra(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/enreach.workload.Query/AllManagerRPWorkloadByEra",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).AllManagerRPWorkloadByEra(ctx, req.(*QueryGetAllManagerRPWorkloadByEraRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3040,6 +3445,42 @@ func _Query_AllReputationPointChangeDataByEra_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_ReputationDeltaPoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetReputationDeltaPointRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ReputationDeltaPoint(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/enreach.workload.Query/ReputationDeltaPoint",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ReputationDeltaPoint(ctx, req.(*QueryGetReputationDeltaPointRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_AllReputationDeltaPointByEra_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAllReputationDeltaPointByEraRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).AllReputationDeltaPointByEra(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/enreach.workload.Query/AllReputationDeltaPointByEra",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).AllReputationDeltaPointByEra(ctx, req.(*QueryGetAllReputationDeltaPointByEraRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Query_ReputationPoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryGetReputationPointRequest)
 	if err := dec(in); err != nil {
@@ -3058,38 +3499,20 @@ func _Query_ReputationPoint_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_LatestReputationPoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetLatestReputationPointRequest)
+func _Query_AllReputationPoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAllReputationPointRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).LatestReputationPoint(ctx, in)
+		return srv.(QueryServer).AllReputationPoint(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/enreach.workload.Query/LatestReputationPoint",
+		FullMethod: "/enreach.workload.Query/AllReputationPoint",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).LatestReputationPoint(ctx, req.(*QueryGetLatestReputationPointRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Query_AllReputationPointByEra_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetAllReputationPointByEraRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(QueryServer).AllReputationPointByEra(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/enreach.workload.Query/AllReputationPointByEra",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).AllReputationPointByEra(ctx, req.(*QueryGetAllReputationPointByEraRequest))
+		return srv.(QueryServer).AllReputationPoint(ctx, req.(*QueryGetAllReputationPointRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3155,12 +3578,20 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Query_AllNodeWorkloadByEpoch_Handler,
 		},
 		{
-			MethodName: "ManagerWorkload",
-			Handler:    _Query_ManagerWorkload_Handler,
+			MethodName: "ManagerWRWorkload",
+			Handler:    _Query_ManagerWRWorkload_Handler,
 		},
 		{
-			MethodName: "AllManagerWorkloadByEpoch",
-			Handler:    _Query_AllManagerWorkloadByEpoch_Handler,
+			MethodName: "AllManagerWRWorkloadByEpoch",
+			Handler:    _Query_AllManagerWRWorkloadByEpoch_Handler,
+		},
+		{
+			MethodName: "ManagerRPWorkload",
+			Handler:    _Query_ManagerRPWorkload_Handler,
+		},
+		{
+			MethodName: "AllManagerRPWorkloadByEra",
+			Handler:    _Query_AllManagerRPWorkloadByEra_Handler,
 		},
 		{
 			MethodName: "Workreport",
@@ -3207,16 +3638,20 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Query_AllReputationPointChangeDataByEra_Handler,
 		},
 		{
+			MethodName: "ReputationDeltaPoint",
+			Handler:    _Query_ReputationDeltaPoint_Handler,
+		},
+		{
+			MethodName: "AllReputationDeltaPointByEra",
+			Handler:    _Query_AllReputationDeltaPointByEra_Handler,
+		},
+		{
 			MethodName: "ReputationPoint",
 			Handler:    _Query_ReputationPoint_Handler,
 		},
 		{
-			MethodName: "LatestReputationPoint",
-			Handler:    _Query_LatestReputationPoint_Handler,
-		},
-		{
-			MethodName: "AllReputationPointByEra",
-			Handler:    _Query_AllReputationPointByEra_Handler,
+			MethodName: "AllReputationPoint",
+			Handler:    _Query_AllReputationPoint_Handler,
 		},
 		{
 			MethodName: "EraProcessData",
@@ -3546,7 +3981,7 @@ func (m *QueryGetAllNodeWorkloadByEpochResponse) MarshalToSizedBuffer(dAtA []byt
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryGetManagerWorkloadRequest) Marshal() (dAtA []byte, err error) {
+func (m *QueryGetManagerWRWorkloadRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -3556,12 +3991,12 @@ func (m *QueryGetManagerWorkloadRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryGetManagerWorkloadRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryGetManagerWRWorkloadRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryGetManagerWorkloadRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryGetManagerWRWorkloadRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -3581,7 +4016,7 @@ func (m *QueryGetManagerWorkloadRequest) MarshalToSizedBuffer(dAtA []byte) (int,
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryGetManagerWorkloadResponse) Marshal() (dAtA []byte, err error) {
+func (m *QueryGetManagerWRWorkloadResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -3591,18 +4026,18 @@ func (m *QueryGetManagerWorkloadResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryGetManagerWorkloadResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryGetManagerWRWorkloadResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryGetManagerWorkloadResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryGetManagerWRWorkloadResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
 	{
-		size, err := m.ManagerWorkload.MarshalToSizedBuffer(dAtA[:i])
+		size, err := m.ManagerWRWorkload.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
 			return 0, err
 		}
@@ -3614,7 +4049,7 @@ func (m *QueryGetManagerWorkloadResponse) MarshalToSizedBuffer(dAtA []byte) (int
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryGetAllManagerWorkloadByEpochRequest) Marshal() (dAtA []byte, err error) {
+func (m *QueryGetAllManagerWRWorkloadByEpochRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -3624,12 +4059,12 @@ func (m *QueryGetAllManagerWorkloadByEpochRequest) Marshal() (dAtA []byte, err e
 	return dAtA[:n], nil
 }
 
-func (m *QueryGetAllManagerWorkloadByEpochRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryGetAllManagerWRWorkloadByEpochRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryGetAllManagerWorkloadByEpochRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryGetAllManagerWRWorkloadByEpochRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -3654,7 +4089,7 @@ func (m *QueryGetAllManagerWorkloadByEpochRequest) MarshalToSizedBuffer(dAtA []b
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryGetAllManagerWorkloadByEpochResponse) Marshal() (dAtA []byte, err error) {
+func (m *QueryGetAllManagerWRWorkloadByEpochResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -3664,12 +4099,12 @@ func (m *QueryGetAllManagerWorkloadByEpochResponse) Marshal() (dAtA []byte, err 
 	return dAtA[:n], nil
 }
 
-func (m *QueryGetAllManagerWorkloadByEpochResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryGetAllManagerWRWorkloadByEpochResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryGetAllManagerWorkloadByEpochResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryGetAllManagerWRWorkloadByEpochResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -3686,10 +4121,167 @@ func (m *QueryGetAllManagerWorkloadByEpochResponse) MarshalToSizedBuffer(dAtA []
 		i--
 		dAtA[i] = 0x12
 	}
-	if len(m.ManagerWorkloads) > 0 {
-		for iNdEx := len(m.ManagerWorkloads) - 1; iNdEx >= 0; iNdEx-- {
+	if len(m.ManagerWRWorkloads) > 0 {
+		for iNdEx := len(m.ManagerWRWorkloads) - 1; iNdEx >= 0; iNdEx-- {
 			{
-				size, err := m.ManagerWorkloads[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				size, err := m.ManagerWRWorkloads[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetManagerRPWorkloadRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetManagerRPWorkloadRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetManagerRPWorkloadRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.ManagerAccount) > 0 {
+		i -= len(m.ManagerAccount)
+		copy(dAtA[i:], m.ManagerAccount)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.ManagerAccount)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Era != 0 {
+		i = encodeVarintQuery(dAtA, i, uint64(m.Era))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetManagerRPWorkloadResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetManagerRPWorkloadResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetManagerRPWorkloadResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.ManagerRPWorkload.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetAllManagerRPWorkloadByEraRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetAllManagerRPWorkloadByEraRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetAllManagerRPWorkloadByEraRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Era != 0 {
+		i = encodeVarintQuery(dAtA, i, uint64(m.Era))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetAllManagerRPWorkloadByEraResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetAllManagerRPWorkloadByEraResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetAllManagerRPWorkloadByEraResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.ManagerRPWorkloads) > 0 {
+		for iNdEx := len(m.ManagerRPWorkloads) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.ManagerRPWorkloads[iNdEx].MarshalToSizedBuffer(dAtA[:i])
 				if err != nil {
 					return 0, err
 				}
@@ -4422,6 +5014,163 @@ func (m *QueryGetAllReputationPointChangeDataByEraResponse) MarshalToSizedBuffer
 	return len(dAtA) - i, nil
 }
 
+func (m *QueryGetReputationDeltaPointRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetReputationDeltaPointRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetReputationDeltaPointRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.NodeID) > 0 {
+		i -= len(m.NodeID)
+		copy(dAtA[i:], m.NodeID)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.NodeID)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Era != 0 {
+		i = encodeVarintQuery(dAtA, i, uint64(m.Era))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetReputationDeltaPointResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetReputationDeltaPointResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetReputationDeltaPointResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.ReputationDeltaPoint.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetAllReputationDeltaPointByEraRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetAllReputationDeltaPointByEraRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetAllReputationDeltaPointByEraRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Era != 0 {
+		i = encodeVarintQuery(dAtA, i, uint64(m.Era))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetAllReputationDeltaPointByEraResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetAllReputationDeltaPointByEraResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetAllReputationDeltaPointByEraResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.ReputationDeltaPoints) > 0 {
+		for iNdEx := len(m.ReputationDeltaPoints) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.ReputationDeltaPoints[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
 func (m *QueryGetReputationPointRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -4447,12 +5196,7 @@ func (m *QueryGetReputationPointRequest) MarshalToSizedBuffer(dAtA []byte) (int,
 		copy(dAtA[i:], m.NodeID)
 		i = encodeVarintQuery(dAtA, i, uint64(len(m.NodeID)))
 		i--
-		dAtA[i] = 0x12
-	}
-	if m.Era != 0 {
-		i = encodeVarintQuery(dAtA, i, uint64(m.Era))
-		i--
-		dAtA[i] = 0x8
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -4490,7 +5234,7 @@ func (m *QueryGetReputationPointResponse) MarshalToSizedBuffer(dAtA []byte) (int
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryGetLatestReputationPointRequest) Marshal() (dAtA []byte, err error) {
+func (m *QueryGetAllReputationPointRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -4500,75 +5244,12 @@ func (m *QueryGetLatestReputationPointRequest) Marshal() (dAtA []byte, err error
 	return dAtA[:n], nil
 }
 
-func (m *QueryGetLatestReputationPointRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryGetAllReputationPointRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryGetLatestReputationPointRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.NodeID) > 0 {
-		i -= len(m.NodeID)
-		copy(dAtA[i:], m.NodeID)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.NodeID)))
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *QueryGetLatestReputationPointResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *QueryGetLatestReputationPointResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *QueryGetLatestReputationPointResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	{
-		size, err := m.ReputationPoint.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintQuery(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0xa
-	return len(dAtA) - i, nil
-}
-
-func (m *QueryGetAllReputationPointByEraRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *QueryGetAllReputationPointByEraRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *QueryGetAllReputationPointByEraRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryGetAllReputationPointRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -4583,17 +5264,12 @@ func (m *QueryGetAllReputationPointByEraRequest) MarshalToSizedBuffer(dAtA []byt
 			i = encodeVarintQuery(dAtA, i, uint64(size))
 		}
 		i--
-		dAtA[i] = 0x12
-	}
-	if m.Era != 0 {
-		i = encodeVarintQuery(dAtA, i, uint64(m.Era))
-		i--
-		dAtA[i] = 0x8
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryGetAllReputationPointByEraResponse) Marshal() (dAtA []byte, err error) {
+func (m *QueryGetAllReputationPointResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -4603,12 +5279,12 @@ func (m *QueryGetAllReputationPointByEraResponse) Marshal() (dAtA []byte, err er
 	return dAtA[:n], nil
 }
 
-func (m *QueryGetAllReputationPointByEraResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryGetAllReputationPointResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryGetAllReputationPointByEraResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryGetAllReputationPointResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -4922,7 +5598,7 @@ func (m *QueryGetAllNodeWorkloadByEpochResponse) Size() (n int) {
 	return n
 }
 
-func (m *QueryGetManagerWorkloadRequest) Size() (n int) {
+func (m *QueryGetManagerWRWorkloadRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -4938,18 +5614,18 @@ func (m *QueryGetManagerWorkloadRequest) Size() (n int) {
 	return n
 }
 
-func (m *QueryGetManagerWorkloadResponse) Size() (n int) {
+func (m *QueryGetManagerWRWorkloadResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = m.ManagerWorkload.Size()
+	l = m.ManagerWRWorkload.Size()
 	n += 1 + l + sovQuery(uint64(l))
 	return n
 }
 
-func (m *QueryGetAllManagerWorkloadByEpochRequest) Size() (n int) {
+func (m *QueryGetAllManagerWRWorkloadByEpochRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -4965,14 +5641,76 @@ func (m *QueryGetAllManagerWorkloadByEpochRequest) Size() (n int) {
 	return n
 }
 
-func (m *QueryGetAllManagerWorkloadByEpochResponse) Size() (n int) {
+func (m *QueryGetAllManagerWRWorkloadByEpochResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if len(m.ManagerWorkloads) > 0 {
-		for _, e := range m.ManagerWorkloads {
+	if len(m.ManagerWRWorkloads) > 0 {
+		for _, e := range m.ManagerWRWorkloads {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetManagerRPWorkloadRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Era != 0 {
+		n += 1 + sovQuery(uint64(m.Era))
+	}
+	l = len(m.ManagerAccount)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetManagerRPWorkloadResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.ManagerRPWorkload.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryGetAllManagerRPWorkloadByEraRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Era != 0 {
+		n += 1 + sovQuery(uint64(m.Era))
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetAllManagerRPWorkloadByEraResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.ManagerRPWorkloads) > 0 {
+		for _, e := range m.ManagerRPWorkloads {
 			l = e.Size()
 			n += 1 + l + sovQuery(uint64(l))
 		}
@@ -5267,7 +6005,7 @@ func (m *QueryGetAllReputationPointChangeDataByEraResponse) Size() (n int) {
 	return n
 }
 
-func (m *QueryGetReputationPointRequest) Size() (n int) {
+func (m *QueryGetReputationDeltaPointRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -5276,6 +6014,65 @@ func (m *QueryGetReputationPointRequest) Size() (n int) {
 	if m.Era != 0 {
 		n += 1 + sovQuery(uint64(m.Era))
 	}
+	l = len(m.NodeID)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetReputationDeltaPointResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.ReputationDeltaPoint.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryGetAllReputationDeltaPointByEraRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Era != 0 {
+		n += 1 + sovQuery(uint64(m.Era))
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetAllReputationDeltaPointByEraResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.ReputationDeltaPoints) > 0 {
+		for _, e := range m.ReputationDeltaPoints {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetReputationPointRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
 	l = len(m.NodeID)
 	if l > 0 {
 		n += 1 + l + sovQuery(uint64(l))
@@ -5294,39 +6091,12 @@ func (m *QueryGetReputationPointResponse) Size() (n int) {
 	return n
 }
 
-func (m *QueryGetLatestReputationPointRequest) Size() (n int) {
+func (m *QueryGetAllReputationPointRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = len(m.NodeID)
-	if l > 0 {
-		n += 1 + l + sovQuery(uint64(l))
-	}
-	return n
-}
-
-func (m *QueryGetLatestReputationPointResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = m.ReputationPoint.Size()
-	n += 1 + l + sovQuery(uint64(l))
-	return n
-}
-
-func (m *QueryGetAllReputationPointByEraRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Era != 0 {
-		n += 1 + sovQuery(uint64(m.Era))
-	}
 	if m.Pagination != nil {
 		l = m.Pagination.Size()
 		n += 1 + l + sovQuery(uint64(l))
@@ -5334,7 +6104,7 @@ func (m *QueryGetAllReputationPointByEraRequest) Size() (n int) {
 	return n
 }
 
-func (m *QueryGetAllReputationPointByEraResponse) Size() (n int) {
+func (m *QueryGetAllReputationPointResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -6194,7 +6964,7 @@ func (m *QueryGetAllNodeWorkloadByEpochResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryGetManagerWorkloadRequest) Unmarshal(dAtA []byte) error {
+func (m *QueryGetManagerWRWorkloadRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -6217,10 +6987,10 @@ func (m *QueryGetManagerWorkloadRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryGetManagerWorkloadRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryGetManagerWRWorkloadRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryGetManagerWorkloadRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryGetManagerWRWorkloadRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -6295,7 +7065,7 @@ func (m *QueryGetManagerWorkloadRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryGetManagerWorkloadResponse) Unmarshal(dAtA []byte) error {
+func (m *QueryGetManagerWRWorkloadResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -6318,15 +7088,15 @@ func (m *QueryGetManagerWorkloadResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryGetManagerWorkloadResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryGetManagerWRWorkloadResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryGetManagerWorkloadResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryGetManagerWRWorkloadResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ManagerWorkload", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field ManagerWRWorkload", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -6353,7 +7123,7 @@ func (m *QueryGetManagerWorkloadResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.ManagerWorkload.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := m.ManagerWRWorkload.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -6378,7 +7148,7 @@ func (m *QueryGetManagerWorkloadResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryGetAllManagerWorkloadByEpochRequest) Unmarshal(dAtA []byte) error {
+func (m *QueryGetAllManagerWRWorkloadByEpochRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -6401,10 +7171,10 @@ func (m *QueryGetAllManagerWorkloadByEpochRequest) Unmarshal(dAtA []byte) error 
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryGetAllManagerWorkloadByEpochRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryGetAllManagerWRWorkloadByEpochRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryGetAllManagerWorkloadByEpochRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryGetAllManagerWRWorkloadByEpochRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -6483,7 +7253,7 @@ func (m *QueryGetAllManagerWorkloadByEpochRequest) Unmarshal(dAtA []byte) error 
 	}
 	return nil
 }
-func (m *QueryGetAllManagerWorkloadByEpochResponse) Unmarshal(dAtA []byte) error {
+func (m *QueryGetAllManagerWRWorkloadByEpochResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -6506,15 +7276,15 @@ func (m *QueryGetAllManagerWorkloadByEpochResponse) Unmarshal(dAtA []byte) error
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryGetAllManagerWorkloadByEpochResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryGetAllManagerWRWorkloadByEpochResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryGetAllManagerWorkloadByEpochResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryGetAllManagerWRWorkloadByEpochResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ManagerWorkloads", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field ManagerWRWorkloads", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -6541,8 +7311,417 @@ func (m *QueryGetAllManagerWorkloadByEpochResponse) Unmarshal(dAtA []byte) error
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.ManagerWorkloads = append(m.ManagerWorkloads, ManagerWorkload{})
-			if err := m.ManagerWorkloads[len(m.ManagerWorkloads)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			m.ManagerWRWorkloads = append(m.ManagerWRWorkloads, ManagerWRWorkload{})
+			if err := m.ManagerWRWorkloads[len(m.ManagerWRWorkloads)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetManagerRPWorkloadRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetManagerRPWorkloadRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetManagerRPWorkloadRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Era", wireType)
+			}
+			m.Era = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Era |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ManagerAccount", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ManagerAccount = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetManagerRPWorkloadResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetManagerRPWorkloadResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetManagerRPWorkloadResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ManagerRPWorkload", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.ManagerRPWorkload.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetAllManagerRPWorkloadByEraRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetAllManagerRPWorkloadByEraRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetAllManagerRPWorkloadByEraRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Era", wireType)
+			}
+			m.Era = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Era |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetAllManagerRPWorkloadByEraResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetAllManagerRPWorkloadByEraResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetAllManagerRPWorkloadByEraResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ManagerRPWorkloads", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ManagerRPWorkloads = append(m.ManagerRPWorkloads, ManagerRPWorkload{})
+			if err := m.ManagerRPWorkloads[len(m.ManagerRPWorkloads)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -8388,6 +9567,415 @@ func (m *QueryGetAllReputationPointChangeDataByEraResponse) Unmarshal(dAtA []byt
 	}
 	return nil
 }
+func (m *QueryGetReputationDeltaPointRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetReputationDeltaPointRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetReputationDeltaPointRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Era", wireType)
+			}
+			m.Era = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Era |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field NodeID", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.NodeID = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetReputationDeltaPointResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetReputationDeltaPointResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetReputationDeltaPointResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ReputationDeltaPoint", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.ReputationDeltaPoint.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetAllReputationDeltaPointByEraRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetAllReputationDeltaPointByEraRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetAllReputationDeltaPointByEraRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Era", wireType)
+			}
+			m.Era = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Era |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetAllReputationDeltaPointByEraResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetAllReputationDeltaPointByEraResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetAllReputationDeltaPointByEraResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ReputationDeltaPoints", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ReputationDeltaPoints = append(m.ReputationDeltaPoints, ReputationDeltaPoint{})
+			if err := m.ReputationDeltaPoints[len(m.ReputationDeltaPoints)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
 func (m *QueryGetReputationPointRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -8418,25 +10006,6 @@ func (m *QueryGetReputationPointRequest) Unmarshal(dAtA []byte) error {
 		}
 		switch fieldNum {
 		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Era", wireType)
-			}
-			m.Era = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Era |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 2:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field NodeID", wireType)
 			}
@@ -8572,7 +10141,7 @@ func (m *QueryGetReputationPointResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryGetLatestReputationPointRequest) Unmarshal(dAtA []byte) error {
+func (m *QueryGetAllReputationPointRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -8595,197 +10164,13 @@ func (m *QueryGetLatestReputationPointRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryGetLatestReputationPointRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryGetAllReputationPointRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryGetLatestReputationPointRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryGetAllReputationPointRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field NodeID", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.NodeID = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipQuery(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *QueryGetLatestReputationPointResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowQuery
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: QueryGetLatestReputationPointResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryGetLatestReputationPointResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ReputationPoint", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if err := m.ReputationPoint.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipQuery(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *QueryGetAllReputationPointByEraRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowQuery
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: QueryGetAllReputationPointByEraRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryGetAllReputationPointByEraRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Era", wireType)
-			}
-			m.Era = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Era |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 2:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
 			}
@@ -8842,7 +10227,7 @@ func (m *QueryGetAllReputationPointByEraRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryGetAllReputationPointByEraResponse) Unmarshal(dAtA []byte) error {
+func (m *QueryGetAllReputationPointResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -8865,10 +10250,10 @@ func (m *QueryGetAllReputationPointByEraResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryGetAllReputationPointByEraResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryGetAllReputationPointResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryGetAllReputationPointByEraResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryGetAllReputationPointResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:

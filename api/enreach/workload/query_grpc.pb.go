@@ -24,8 +24,10 @@ const (
 	Query_CurrentEpoch_FullMethodName                      = "/enreach.workload.Query/CurrentEpoch"
 	Query_NodeWorkload_FullMethodName                      = "/enreach.workload.Query/NodeWorkload"
 	Query_AllNodeWorkloadByEpoch_FullMethodName            = "/enreach.workload.Query/AllNodeWorkloadByEpoch"
-	Query_ManagerWorkload_FullMethodName                   = "/enreach.workload.Query/ManagerWorkload"
-	Query_AllManagerWorkloadByEpoch_FullMethodName         = "/enreach.workload.Query/AllManagerWorkloadByEpoch"
+	Query_ManagerWRWorkload_FullMethodName                 = "/enreach.workload.Query/ManagerWRWorkload"
+	Query_AllManagerWRWorkloadByEpoch_FullMethodName       = "/enreach.workload.Query/AllManagerWRWorkloadByEpoch"
+	Query_ManagerRPWorkload_FullMethodName                 = "/enreach.workload.Query/ManagerRPWorkload"
+	Query_AllManagerRPWorkloadByEra_FullMethodName         = "/enreach.workload.Query/AllManagerRPWorkloadByEra"
 	Query_Workreport_FullMethodName                        = "/enreach.workload.Query/Workreport"
 	Query_AllWorkreportByEpoch_FullMethodName              = "/enreach.workload.Query/AllWorkreportByEpoch"
 	Query_WorkreportProcessBatchSize_FullMethodName        = "/enreach.workload.Query/WorkreportProcessBatchSize"
@@ -37,9 +39,10 @@ const (
 	Query_CurrentEra_FullMethodName                        = "/enreach.workload.Query/CurrentEra"
 	Query_ReputationPointChangeData_FullMethodName         = "/enreach.workload.Query/ReputationPointChangeData"
 	Query_AllReputationPointChangeDataByEra_FullMethodName = "/enreach.workload.Query/AllReputationPointChangeDataByEra"
+	Query_ReputationDeltaPoint_FullMethodName              = "/enreach.workload.Query/ReputationDeltaPoint"
+	Query_AllReputationDeltaPointByEra_FullMethodName      = "/enreach.workload.Query/AllReputationDeltaPointByEra"
 	Query_ReputationPoint_FullMethodName                   = "/enreach.workload.Query/ReputationPoint"
-	Query_LatestReputationPoint_FullMethodName             = "/enreach.workload.Query/LatestReputationPoint"
-	Query_AllReputationPointByEra_FullMethodName           = "/enreach.workload.Query/AllReputationPointByEra"
+	Query_AllReputationPoint_FullMethodName                = "/enreach.workload.Query/AllReputationPoint"
 	Query_EraProcessData_FullMethodName                    = "/enreach.workload.Query/EraProcessData"
 	Query_AllEraProcessData_FullMethodName                 = "/enreach.workload.Query/AllEraProcessData"
 )
@@ -57,8 +60,10 @@ type QueryClient interface {
 	NodeWorkload(ctx context.Context, in *QueryGetNodeWorkloadRequest, opts ...grpc.CallOption) (*QueryGetNodeWorkloadResponse, error)
 	AllNodeWorkloadByEpoch(ctx context.Context, in *QueryGetAllNodeWorkloadByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllNodeWorkloadByEpochResponse, error)
 	// Queries a list of Manager Workload items.
-	ManagerWorkload(ctx context.Context, in *QueryGetManagerWorkloadRequest, opts ...grpc.CallOption) (*QueryGetManagerWorkloadResponse, error)
-	AllManagerWorkloadByEpoch(ctx context.Context, in *QueryGetAllManagerWorkloadByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllManagerWorkloadByEpochResponse, error)
+	ManagerWRWorkload(ctx context.Context, in *QueryGetManagerWRWorkloadRequest, opts ...grpc.CallOption) (*QueryGetManagerWRWorkloadResponse, error)
+	AllManagerWRWorkloadByEpoch(ctx context.Context, in *QueryGetAllManagerWRWorkloadByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllManagerWRWorkloadByEpochResponse, error)
+	ManagerRPWorkload(ctx context.Context, in *QueryGetManagerRPWorkloadRequest, opts ...grpc.CallOption) (*QueryGetManagerRPWorkloadResponse, error)
+	AllManagerRPWorkloadByEra(ctx context.Context, in *QueryGetAllManagerRPWorkloadByEraRequest, opts ...grpc.CallOption) (*QueryGetAllManagerRPWorkloadByEraResponse, error)
 	// Queries a list of Workreport items.
 	Workreport(ctx context.Context, in *QueryGetWorkreportRequest, opts ...grpc.CallOption) (*QueryGetWorkreportResponse, error)
 	AllWorkreportByEpoch(ctx context.Context, in *QueryGetAllWorkreportByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllWorkreportByEpochResponse, error)
@@ -76,9 +81,10 @@ type QueryClient interface {
 	ReputationPointChangeData(ctx context.Context, in *QueryGetReputationPointChangeDataRequest, opts ...grpc.CallOption) (*QueryGetReputationPointChangeDataResponse, error)
 	AllReputationPointChangeDataByEra(ctx context.Context, in *QueryGetAllReputationPointChangeDataByEraRequest, opts ...grpc.CallOption) (*QueryGetAllReputationPointChangeDataByEraResponse, error)
 	// Queries a list of ReputationPoint items.
+	ReputationDeltaPoint(ctx context.Context, in *QueryGetReputationDeltaPointRequest, opts ...grpc.CallOption) (*QueryGetReputationDeltaPointResponse, error)
+	AllReputationDeltaPointByEra(ctx context.Context, in *QueryGetAllReputationDeltaPointByEraRequest, opts ...grpc.CallOption) (*QueryGetAllReputationDeltaPointByEraResponse, error)
 	ReputationPoint(ctx context.Context, in *QueryGetReputationPointRequest, opts ...grpc.CallOption) (*QueryGetReputationPointResponse, error)
-	LatestReputationPoint(ctx context.Context, in *QueryGetLatestReputationPointRequest, opts ...grpc.CallOption) (*QueryGetLatestReputationPointResponse, error)
-	AllReputationPointByEra(ctx context.Context, in *QueryGetAllReputationPointByEraRequest, opts ...grpc.CallOption) (*QueryGetAllReputationPointByEraResponse, error)
+	AllReputationPoint(ctx context.Context, in *QueryGetAllReputationPointRequest, opts ...grpc.CallOption) (*QueryGetAllReputationPointResponse, error)
 	// Queries a list of EpochProcessData items.
 	EraProcessData(ctx context.Context, in *QueryGetEraProcessDataRequest, opts ...grpc.CallOption) (*QueryGetEraProcessDataResponse, error)
 	AllEraProcessData(ctx context.Context, in *QueryGetAllEraProcessDataRequest, opts ...grpc.CallOption) (*QueryGetAllEraProcessDataResponse, error)
@@ -137,18 +143,36 @@ func (c *queryClient) AllNodeWorkloadByEpoch(ctx context.Context, in *QueryGetAl
 	return out, nil
 }
 
-func (c *queryClient) ManagerWorkload(ctx context.Context, in *QueryGetManagerWorkloadRequest, opts ...grpc.CallOption) (*QueryGetManagerWorkloadResponse, error) {
-	out := new(QueryGetManagerWorkloadResponse)
-	err := c.cc.Invoke(ctx, Query_ManagerWorkload_FullMethodName, in, out, opts...)
+func (c *queryClient) ManagerWRWorkload(ctx context.Context, in *QueryGetManagerWRWorkloadRequest, opts ...grpc.CallOption) (*QueryGetManagerWRWorkloadResponse, error) {
+	out := new(QueryGetManagerWRWorkloadResponse)
+	err := c.cc.Invoke(ctx, Query_ManagerWRWorkload_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *queryClient) AllManagerWorkloadByEpoch(ctx context.Context, in *QueryGetAllManagerWorkloadByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllManagerWorkloadByEpochResponse, error) {
-	out := new(QueryGetAllManagerWorkloadByEpochResponse)
-	err := c.cc.Invoke(ctx, Query_AllManagerWorkloadByEpoch_FullMethodName, in, out, opts...)
+func (c *queryClient) AllManagerWRWorkloadByEpoch(ctx context.Context, in *QueryGetAllManagerWRWorkloadByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllManagerWRWorkloadByEpochResponse, error) {
+	out := new(QueryGetAllManagerWRWorkloadByEpochResponse)
+	err := c.cc.Invoke(ctx, Query_AllManagerWRWorkloadByEpoch_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) ManagerRPWorkload(ctx context.Context, in *QueryGetManagerRPWorkloadRequest, opts ...grpc.CallOption) (*QueryGetManagerRPWorkloadResponse, error) {
+	out := new(QueryGetManagerRPWorkloadResponse)
+	err := c.cc.Invoke(ctx, Query_ManagerRPWorkload_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) AllManagerRPWorkloadByEra(ctx context.Context, in *QueryGetAllManagerRPWorkloadByEraRequest, opts ...grpc.CallOption) (*QueryGetAllManagerRPWorkloadByEraResponse, error) {
+	out := new(QueryGetAllManagerRPWorkloadByEraResponse)
+	err := c.cc.Invoke(ctx, Query_AllManagerRPWorkloadByEra_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -254,6 +278,24 @@ func (c *queryClient) AllReputationPointChangeDataByEra(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *queryClient) ReputationDeltaPoint(ctx context.Context, in *QueryGetReputationDeltaPointRequest, opts ...grpc.CallOption) (*QueryGetReputationDeltaPointResponse, error) {
+	out := new(QueryGetReputationDeltaPointResponse)
+	err := c.cc.Invoke(ctx, Query_ReputationDeltaPoint_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) AllReputationDeltaPointByEra(ctx context.Context, in *QueryGetAllReputationDeltaPointByEraRequest, opts ...grpc.CallOption) (*QueryGetAllReputationDeltaPointByEraResponse, error) {
+	out := new(QueryGetAllReputationDeltaPointByEraResponse)
+	err := c.cc.Invoke(ctx, Query_AllReputationDeltaPointByEra_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *queryClient) ReputationPoint(ctx context.Context, in *QueryGetReputationPointRequest, opts ...grpc.CallOption) (*QueryGetReputationPointResponse, error) {
 	out := new(QueryGetReputationPointResponse)
 	err := c.cc.Invoke(ctx, Query_ReputationPoint_FullMethodName, in, out, opts...)
@@ -263,18 +305,9 @@ func (c *queryClient) ReputationPoint(ctx context.Context, in *QueryGetReputatio
 	return out, nil
 }
 
-func (c *queryClient) LatestReputationPoint(ctx context.Context, in *QueryGetLatestReputationPointRequest, opts ...grpc.CallOption) (*QueryGetLatestReputationPointResponse, error) {
-	out := new(QueryGetLatestReputationPointResponse)
-	err := c.cc.Invoke(ctx, Query_LatestReputationPoint_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *queryClient) AllReputationPointByEra(ctx context.Context, in *QueryGetAllReputationPointByEraRequest, opts ...grpc.CallOption) (*QueryGetAllReputationPointByEraResponse, error) {
-	out := new(QueryGetAllReputationPointByEraResponse)
-	err := c.cc.Invoke(ctx, Query_AllReputationPointByEra_FullMethodName, in, out, opts...)
+func (c *queryClient) AllReputationPoint(ctx context.Context, in *QueryGetAllReputationPointRequest, opts ...grpc.CallOption) (*QueryGetAllReputationPointResponse, error) {
+	out := new(QueryGetAllReputationPointResponse)
+	err := c.cc.Invoke(ctx, Query_AllReputationPoint_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -312,8 +345,10 @@ type QueryServer interface {
 	NodeWorkload(context.Context, *QueryGetNodeWorkloadRequest) (*QueryGetNodeWorkloadResponse, error)
 	AllNodeWorkloadByEpoch(context.Context, *QueryGetAllNodeWorkloadByEpochRequest) (*QueryGetAllNodeWorkloadByEpochResponse, error)
 	// Queries a list of Manager Workload items.
-	ManagerWorkload(context.Context, *QueryGetManagerWorkloadRequest) (*QueryGetManagerWorkloadResponse, error)
-	AllManagerWorkloadByEpoch(context.Context, *QueryGetAllManagerWorkloadByEpochRequest) (*QueryGetAllManagerWorkloadByEpochResponse, error)
+	ManagerWRWorkload(context.Context, *QueryGetManagerWRWorkloadRequest) (*QueryGetManagerWRWorkloadResponse, error)
+	AllManagerWRWorkloadByEpoch(context.Context, *QueryGetAllManagerWRWorkloadByEpochRequest) (*QueryGetAllManagerWRWorkloadByEpochResponse, error)
+	ManagerRPWorkload(context.Context, *QueryGetManagerRPWorkloadRequest) (*QueryGetManagerRPWorkloadResponse, error)
+	AllManagerRPWorkloadByEra(context.Context, *QueryGetAllManagerRPWorkloadByEraRequest) (*QueryGetAllManagerRPWorkloadByEraResponse, error)
 	// Queries a list of Workreport items.
 	Workreport(context.Context, *QueryGetWorkreportRequest) (*QueryGetWorkreportResponse, error)
 	AllWorkreportByEpoch(context.Context, *QueryGetAllWorkreportByEpochRequest) (*QueryGetAllWorkreportByEpochResponse, error)
@@ -331,9 +366,10 @@ type QueryServer interface {
 	ReputationPointChangeData(context.Context, *QueryGetReputationPointChangeDataRequest) (*QueryGetReputationPointChangeDataResponse, error)
 	AllReputationPointChangeDataByEra(context.Context, *QueryGetAllReputationPointChangeDataByEraRequest) (*QueryGetAllReputationPointChangeDataByEraResponse, error)
 	// Queries a list of ReputationPoint items.
+	ReputationDeltaPoint(context.Context, *QueryGetReputationDeltaPointRequest) (*QueryGetReputationDeltaPointResponse, error)
+	AllReputationDeltaPointByEra(context.Context, *QueryGetAllReputationDeltaPointByEraRequest) (*QueryGetAllReputationDeltaPointByEraResponse, error)
 	ReputationPoint(context.Context, *QueryGetReputationPointRequest) (*QueryGetReputationPointResponse, error)
-	LatestReputationPoint(context.Context, *QueryGetLatestReputationPointRequest) (*QueryGetLatestReputationPointResponse, error)
-	AllReputationPointByEra(context.Context, *QueryGetAllReputationPointByEraRequest) (*QueryGetAllReputationPointByEraResponse, error)
+	AllReputationPoint(context.Context, *QueryGetAllReputationPointRequest) (*QueryGetAllReputationPointResponse, error)
 	// Queries a list of EpochProcessData items.
 	EraProcessData(context.Context, *QueryGetEraProcessDataRequest) (*QueryGetEraProcessDataResponse, error)
 	AllEraProcessData(context.Context, *QueryGetAllEraProcessDataRequest) (*QueryGetAllEraProcessDataResponse, error)
@@ -359,11 +395,17 @@ func (UnimplementedQueryServer) NodeWorkload(context.Context, *QueryGetNodeWorkl
 func (UnimplementedQueryServer) AllNodeWorkloadByEpoch(context.Context, *QueryGetAllNodeWorkloadByEpochRequest) (*QueryGetAllNodeWorkloadByEpochResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AllNodeWorkloadByEpoch not implemented")
 }
-func (UnimplementedQueryServer) ManagerWorkload(context.Context, *QueryGetManagerWorkloadRequest) (*QueryGetManagerWorkloadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ManagerWorkload not implemented")
+func (UnimplementedQueryServer) ManagerWRWorkload(context.Context, *QueryGetManagerWRWorkloadRequest) (*QueryGetManagerWRWorkloadResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ManagerWRWorkload not implemented")
 }
-func (UnimplementedQueryServer) AllManagerWorkloadByEpoch(context.Context, *QueryGetAllManagerWorkloadByEpochRequest) (*QueryGetAllManagerWorkloadByEpochResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AllManagerWorkloadByEpoch not implemented")
+func (UnimplementedQueryServer) AllManagerWRWorkloadByEpoch(context.Context, *QueryGetAllManagerWRWorkloadByEpochRequest) (*QueryGetAllManagerWRWorkloadByEpochResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllManagerWRWorkloadByEpoch not implemented")
+}
+func (UnimplementedQueryServer) ManagerRPWorkload(context.Context, *QueryGetManagerRPWorkloadRequest) (*QueryGetManagerRPWorkloadResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ManagerRPWorkload not implemented")
+}
+func (UnimplementedQueryServer) AllManagerRPWorkloadByEra(context.Context, *QueryGetAllManagerRPWorkloadByEraRequest) (*QueryGetAllManagerRPWorkloadByEraResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllManagerRPWorkloadByEra not implemented")
 }
 func (UnimplementedQueryServer) Workreport(context.Context, *QueryGetWorkreportRequest) (*QueryGetWorkreportResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Workreport not implemented")
@@ -398,14 +440,17 @@ func (UnimplementedQueryServer) ReputationPointChangeData(context.Context, *Quer
 func (UnimplementedQueryServer) AllReputationPointChangeDataByEra(context.Context, *QueryGetAllReputationPointChangeDataByEraRequest) (*QueryGetAllReputationPointChangeDataByEraResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AllReputationPointChangeDataByEra not implemented")
 }
+func (UnimplementedQueryServer) ReputationDeltaPoint(context.Context, *QueryGetReputationDeltaPointRequest) (*QueryGetReputationDeltaPointResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReputationDeltaPoint not implemented")
+}
+func (UnimplementedQueryServer) AllReputationDeltaPointByEra(context.Context, *QueryGetAllReputationDeltaPointByEraRequest) (*QueryGetAllReputationDeltaPointByEraResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllReputationDeltaPointByEra not implemented")
+}
 func (UnimplementedQueryServer) ReputationPoint(context.Context, *QueryGetReputationPointRequest) (*QueryGetReputationPointResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReputationPoint not implemented")
 }
-func (UnimplementedQueryServer) LatestReputationPoint(context.Context, *QueryGetLatestReputationPointRequest) (*QueryGetLatestReputationPointResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LatestReputationPoint not implemented")
-}
-func (UnimplementedQueryServer) AllReputationPointByEra(context.Context, *QueryGetAllReputationPointByEraRequest) (*QueryGetAllReputationPointByEraResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AllReputationPointByEra not implemented")
+func (UnimplementedQueryServer) AllReputationPoint(context.Context, *QueryGetAllReputationPointRequest) (*QueryGetAllReputationPointResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllReputationPoint not implemented")
 }
 func (UnimplementedQueryServer) EraProcessData(context.Context, *QueryGetEraProcessDataRequest) (*QueryGetEraProcessDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EraProcessData not implemented")
@@ -516,38 +561,74 @@ func _Query_AllNodeWorkloadByEpoch_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_ManagerWorkload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetManagerWorkloadRequest)
+func _Query_ManagerWRWorkload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetManagerWRWorkloadRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).ManagerWorkload(ctx, in)
+		return srv.(QueryServer).ManagerWRWorkload(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Query_ManagerWorkload_FullMethodName,
+		FullMethod: Query_ManagerWRWorkload_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).ManagerWorkload(ctx, req.(*QueryGetManagerWorkloadRequest))
+		return srv.(QueryServer).ManagerWRWorkload(ctx, req.(*QueryGetManagerWRWorkloadRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_AllManagerWorkloadByEpoch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetAllManagerWorkloadByEpochRequest)
+func _Query_AllManagerWRWorkloadByEpoch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAllManagerWRWorkloadByEpochRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).AllManagerWorkloadByEpoch(ctx, in)
+		return srv.(QueryServer).AllManagerWRWorkloadByEpoch(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Query_AllManagerWorkloadByEpoch_FullMethodName,
+		FullMethod: Query_AllManagerWRWorkloadByEpoch_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).AllManagerWorkloadByEpoch(ctx, req.(*QueryGetAllManagerWorkloadByEpochRequest))
+		return srv.(QueryServer).AllManagerWRWorkloadByEpoch(ctx, req.(*QueryGetAllManagerWRWorkloadByEpochRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_ManagerRPWorkload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetManagerRPWorkloadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ManagerRPWorkload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_ManagerRPWorkload_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ManagerRPWorkload(ctx, req.(*QueryGetManagerRPWorkloadRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_AllManagerRPWorkloadByEra_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAllManagerRPWorkloadByEraRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).AllManagerRPWorkloadByEra(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_AllManagerRPWorkloadByEra_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).AllManagerRPWorkloadByEra(ctx, req.(*QueryGetAllManagerRPWorkloadByEraRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -750,6 +831,42 @@ func _Query_AllReputationPointChangeDataByEra_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_ReputationDeltaPoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetReputationDeltaPointRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ReputationDeltaPoint(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_ReputationDeltaPoint_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ReputationDeltaPoint(ctx, req.(*QueryGetReputationDeltaPointRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_AllReputationDeltaPointByEra_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAllReputationDeltaPointByEraRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).AllReputationDeltaPointByEra(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_AllReputationDeltaPointByEra_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).AllReputationDeltaPointByEra(ctx, req.(*QueryGetAllReputationDeltaPointByEraRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Query_ReputationPoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryGetReputationPointRequest)
 	if err := dec(in); err != nil {
@@ -768,38 +885,20 @@ func _Query_ReputationPoint_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_LatestReputationPoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetLatestReputationPointRequest)
+func _Query_AllReputationPoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAllReputationPointRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).LatestReputationPoint(ctx, in)
+		return srv.(QueryServer).AllReputationPoint(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Query_LatestReputationPoint_FullMethodName,
+		FullMethod: Query_AllReputationPoint_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).LatestReputationPoint(ctx, req.(*QueryGetLatestReputationPointRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Query_AllReputationPointByEra_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetAllReputationPointByEraRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(QueryServer).AllReputationPointByEra(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Query_AllReputationPointByEra_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).AllReputationPointByEra(ctx, req.(*QueryGetAllReputationPointByEraRequest))
+		return srv.(QueryServer).AllReputationPoint(ctx, req.(*QueryGetAllReputationPointRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -868,12 +967,20 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Query_AllNodeWorkloadByEpoch_Handler,
 		},
 		{
-			MethodName: "ManagerWorkload",
-			Handler:    _Query_ManagerWorkload_Handler,
+			MethodName: "ManagerWRWorkload",
+			Handler:    _Query_ManagerWRWorkload_Handler,
 		},
 		{
-			MethodName: "AllManagerWorkloadByEpoch",
-			Handler:    _Query_AllManagerWorkloadByEpoch_Handler,
+			MethodName: "AllManagerWRWorkloadByEpoch",
+			Handler:    _Query_AllManagerWRWorkloadByEpoch_Handler,
+		},
+		{
+			MethodName: "ManagerRPWorkload",
+			Handler:    _Query_ManagerRPWorkload_Handler,
+		},
+		{
+			MethodName: "AllManagerRPWorkloadByEra",
+			Handler:    _Query_AllManagerRPWorkloadByEra_Handler,
 		},
 		{
 			MethodName: "Workreport",
@@ -920,16 +1027,20 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Query_AllReputationPointChangeDataByEra_Handler,
 		},
 		{
+			MethodName: "ReputationDeltaPoint",
+			Handler:    _Query_ReputationDeltaPoint_Handler,
+		},
+		{
+			MethodName: "AllReputationDeltaPointByEra",
+			Handler:    _Query_AllReputationDeltaPointByEra_Handler,
+		},
+		{
 			MethodName: "ReputationPoint",
 			Handler:    _Query_ReputationPoint_Handler,
 		},
 		{
-			MethodName: "LatestReputationPoint",
-			Handler:    _Query_LatestReputationPoint_Handler,
-		},
-		{
-			MethodName: "AllReputationPointByEra",
-			Handler:    _Query_AllReputationPointByEra_Handler,
+			MethodName: "AllReputationPoint",
+			Handler:    _Query_AllReputationPoint_Handler,
 		},
 		{
 			MethodName: "EraProcessData",

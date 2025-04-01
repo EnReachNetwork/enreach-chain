@@ -159,6 +159,9 @@ func (am AppModule) BeginBlock(goCtx context.Context) error {
 	// Process epoch workload
 	k.ProcessEpochWorkload(goCtx)
 
+	// Process era reputation point
+	k.ProcessEraReputationPoint(goCtx)
+
 	if types.IsEpochStart(goCtx) {
 		currentEpoch := types.GetCurrentEpoch(ctx)
 		blockHeight := uint64(ctx.BlockHeight())

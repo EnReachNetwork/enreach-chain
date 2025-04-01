@@ -143,7 +143,7 @@ func createNewEpochProcessData(ctx sdk.Context, k Keeper, epoch uint64, totalNod
 
 func processWorkReportBatch(ctx sdk.Context, k Keeper, epoch uint64, workreports *[]types.Workreport) error {
 
-	aggregatedManagerWorkloadMap := make(map[string]types.ManagerWorkload)
+	aggregatedManagerWRWorkloadMap := make(map[string]types.ManagerWRWorkload)
 	blockHeight := uint64(ctx.BlockHeight())
 
 	for _, workreport := range *workreports {
@@ -160,22 +160,22 @@ func processWorkReportBatch(ctx sdk.Context, k Keeper, epoch uint64, workreports
 		k.AppendNodeWorkload(ctx, &nodeWorkload)
 
 		for managerAccount, managerWorkload := range managerWorkloadMap {
-			if aggregatedWorkload, ok := aggregatedManagerWorkloadMap[managerAccount]; !ok {
-				aggregatedManagerWorkloadMap[managerAccount] = managerWorkload
+			if aggregatedWorkload, ok := aggregatedManagerWRWorkloadMap[managerAccount]; !ok {
+				aggregatedManagerWRWorkloadMap[managerAccount] = managerWorkload
 			} else {
 				aggregatedWorkload.ReportedNodesCount += managerWorkload.ReportedNodesCount
 				aggregatedWorkload.Score += managerWorkload.Score
-				aggregatedManagerWorkloadMap[managerAccount] = aggregatedWorkload
+				aggregatedManagerWRWorkloadMap[managerAccount] = aggregatedWorkload
 			}
 		}
 	}
 
-	for managerAccount, aggregatedWorkload := range aggregatedManagerWorkloadMap {
+	for managerAccount, aggregatedWorkload := range aggregatedManagerWRWorkloadMap {
 
-		managerWorkloadDB, found := k.GetManagerWorkload(ctx, epoch, managerAccount)
+		managerWorkloadDB, found := k.GetManagerWRWorkload(ctx, epoch, managerAccount)
 		if !found {
-			// Create a new ManagerWorkload to store
-			managerWorkloadDB = types.ManagerWorkload{
+			// Create a new ManagerWRWorkload to store
+			managerWorkloadDB = types.ManagerWRWorkload{
 				Epoch:              epoch,
 				ManagerAccount:     managerAccount,
 				ReportedNodesCount: aggregatedWorkload.ReportedNodesCount,
@@ -183,12 +183,12 @@ func processWorkReportBatch(ctx sdk.Context, k Keeper, epoch uint64, workreports
 				CreateAt:           blockHeight,
 				UpdateAt:           blockHeight,
 			}
-			k.AppendManagerWorkload(ctx, &managerWorkloadDB)
+			k.AppendManagerWRWorkload(ctx, &managerWorkloadDB)
 		} else {
-			// Aggregate and update the existing ManagerWorkload
+			// Aggregate and update the existing ManagerWRWorkload
 			managerWorkloadDB.ReportedNodesCount += aggregatedWorkload.ReportedNodesCount
 			managerWorkloadDB.Score += aggregatedWorkload.Score
-			k.SetManagerWorkload(ctx, &managerWorkloadDB)
+			k.SetManagerWRWorkload(ctx, &managerWorkloadDB)
 		}
 
 	}
@@ -196,19 +196,19 @@ func processWorkReportBatch(ctx sdk.Context, k Keeper, epoch uint64, workreports
 	return nil
 }
 
-func processWorkReport(workreport *types.Workreport) (uint64, map[string]types.ManagerWorkload) {
+func processWorkReport(workreport *types.Workreport) (uint64, map[string]types.ManagerWRWorkload) {
 
 	/// PS: Right now we simply calculate the average score among all managers
 	/// 	After we have a detail design for the keeper workload/reputation system design,
 	///     we will re-implement this logic
 
-	managerWorkloadMap := make(map[string]types.ManagerWorkload, len(workreport.ManagerScoreMap))
+	managerWorkloadMap := make(map[string]types.ManagerWRWorkload, len(workreport.ManagerScoreMap))
 
 	var totalNodeScore uint64 = 0
 	for manager, nodeScore := range workreport.ManagerScoreMap {
 		totalNodeScore += nodeScore.Score
 
-		managerWorkloadMap[manager] = types.ManagerWorkload{
+		managerWorkloadMap[manager] = types.ManagerWRWorkload{
 			ReportedNodesCount: 1,
 			Score:              1, // Simply earn 1 point for 1 node reported
 		}

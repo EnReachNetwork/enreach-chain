@@ -10101,29 +10101,36 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /enreach/workload/latest_reputation_point/{nodeID}:
+  /enreach/workload/manager_rp_workload/{era}/{managerAccount}:
     get:
-      operationId: EnreachWorkloadQuery_LatestReputationPoint
+      operationId: EnreachWorkloadQuery_ManagerRPWorkload
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
             properties:
-              ReputationPoint:
+              ManagerRPWorkload:
                 type: object
                 properties:
                   era:
                     type: string
                     format: uint64
-                  nodeID:
+                  managerAccount:
                     type: string
-                  point:
+                  reportedNodesCount:
+                    type: string
+                    format: uint64
+                  score:
                     type: string
                     format: uint64
                   createAt:
                     type: string
                     format: uint64
+                  updateAt:
+                    type: string
+                    format: uint64
+                title: Manager ReputationPoint Process Workload
         default:
           description: An unexpected error response.
           schema:
@@ -10143,23 +10150,170 @@ paths:
                       type: string
                   additionalProperties: {}
       parameters:
-        - name: nodeID
+        - name: era
+          in: path
+          required: true
+          type: string
+          format: uint64
+        - name: managerAccount
           in: path
           required: true
           type: string
       tags:
         - Query
-  /enreach/workload/manager_workload/{epoch}/{managerAccount}:
+  /enreach/workload/manager_rp_workloads/{era}:
     get:
-      summary: Queries a list of Manager Workload items.
-      operationId: EnreachWorkloadQuery_ManagerWorkload
+      operationId: EnreachWorkloadQuery_AllManagerRPWorkloadByEra
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
             properties:
-              ManagerWorkload:
+              ManagerRPWorkloads:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    era:
+                      type: string
+                      format: uint64
+                    managerAccount:
+                      type: string
+                    reportedNodesCount:
+                      type: string
+                      format: uint64
+                    score:
+                      type: string
+                      format: uint64
+                    createAt:
+                      type: string
+                      format: uint64
+                    updateAt:
+                      type: string
+                      format: uint64
+                  title: Manager ReputationPoint Process Workload
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    description: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently. It will be empty if
+                      there are no more results.
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: era
+          in: path
+          required: true
+          type: string
+          format: uint64
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  /enreach/workload/manager_wr_workload/{epoch}/{managerAccount}:
+    get:
+      summary: Queries a list of Manager Workload items.
+      operationId: EnreachWorkloadQuery_ManagerWRWorkload
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              ManagerWRWorkload:
                 type: object
                 properties:
                   epoch:
@@ -10179,6 +10333,7 @@ paths:
                   updateAt:
                     type: string
                     format: uint64
+                title: Manager Workreport Process Workload
         default:
           description: An unexpected error response.
           schema:
@@ -10209,16 +10364,16 @@ paths:
           type: string
       tags:
         - Query
-  /enreach/workload/manager_workloads/{epoch}:
+  /enreach/workload/manager_wr_workloads/{epoch}:
     get:
-      operationId: EnreachWorkloadQuery_AllManagerWorkloadByEpoch
+      operationId: EnreachWorkloadQuery_AllManagerWRWorkloadByEpoch
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
             properties:
-              ManagerWorkloads:
+              ManagerWRWorkloads:
                 type: array
                 items:
                   type: object
@@ -10240,6 +10395,7 @@ paths:
                     updateAt:
                       type: string
                       format: uint64
+                  title: Manager Workreport Process Workload
               pagination:
                 type: object
                 properties:
@@ -10575,17 +10731,17 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /enreach/workload/reputation_point/{era}/{nodeID}:
+  /enreach/workload/reputation_delta_point/{era}/{nodeID}:
     get:
       summary: Queries a list of ReputationPoint items.
-      operationId: EnreachWorkloadQuery_ReputationPoint
+      operationId: EnreachWorkloadQuery_ReputationDeltaPoint
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
             properties:
-              ReputationPoint:
+              ReputationDeltaPoint:
                 type: object
                 properties:
                   era:
@@ -10593,9 +10749,9 @@ paths:
                     format: uint64
                   nodeID:
                     type: string
-                  point:
+                  deltaPoint:
                     type: string
-                    format: uint64
+                    format: int64
                   createAt:
                     type: string
                     format: uint64
@@ -10623,6 +10779,189 @@ paths:
           required: true
           type: string
           format: uint64
+        - name: nodeID
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /enreach/workload/reputation_delta_points/{era}:
+    get:
+      operationId: EnreachWorkloadQuery_AllReputationDeltaPointByEra
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              ReputationDeltaPoints:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    era:
+                      type: string
+                      format: uint64
+                    nodeID:
+                      type: string
+                    deltaPoint:
+                      type: string
+                      format: int64
+                    createAt:
+                      type: string
+                      format: uint64
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    description: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently. It will be empty if
+                      there are no more results.
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: era
+          in: path
+          required: true
+          type: string
+          format: uint64
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  /enreach/workload/reputation_point/{nodeID}:
+    get:
+      operationId: EnreachWorkloadQuery_ReputationPoint
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              ReputationPoint:
+                type: object
+                properties:
+                  nodeID:
+                    type: string
+                  point:
+                    type: string
+                    format: int64
+                  createAt:
+                    type: string
+                    format: uint64
+                  updateAt:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
         - name: nodeID
           in: path
           required: true
@@ -10834,9 +11173,9 @@ paths:
           type: boolean
       tags:
         - Query
-  /enreach/workload/reputation_points/{era}:
+  /enreach/workload/reputation_points:
     get:
-      operationId: EnreachWorkloadQuery_AllReputationPointByEra
+      operationId: EnreachWorkloadQuery_AllReputationPoint
       responses:
         '200':
           description: A successful response.
@@ -10848,15 +11187,15 @@ paths:
                 items:
                   type: object
                   properties:
-                    era:
-                      type: string
-                      format: uint64
                     nodeID:
                       type: string
                     point:
                       type: string
-                      format: uint64
+                      format: int64
                     createAt:
+                      type: string
+                      format: uint64
+                    updateAt:
                       type: string
                       format: uint64
               pagination:
@@ -10906,11 +11245,6 @@ paths:
                       type: string
                   additionalProperties: {}
       parameters:
-        - name: era
-          in: path
-          required: true
-          type: string
-          format: uint64
         - name: pagination.key
           description: |-
             key is a value returned in PageResponse.next_key to begin
@@ -23272,7 +23606,28 @@ definitions:
                    repeated Bar results = 1;
                    PageResponse page = 2;
            }
-  enreach.workload.ManagerWorkload:
+  enreach.workload.ManagerRPWorkload:
+    type: object
+    properties:
+      era:
+        type: string
+        format: uint64
+      managerAccount:
+        type: string
+      reportedNodesCount:
+        type: string
+        format: uint64
+      score:
+        type: string
+        format: uint64
+      createAt:
+        type: string
+        format: uint64
+      updateAt:
+        type: string
+        format: uint64
+    title: Manager ReputationPoint Process Workload
+  enreach.workload.ManagerWRWorkload:
     type: object
     properties:
       epoch:
@@ -23292,6 +23647,7 @@ definitions:
       updateAt:
         type: string
         format: uint64
+    title: Manager Workreport Process Workload
   enreach.workload.NodeScoreDB:
     type: object
     properties:
@@ -23483,10 +23839,62 @@ definitions:
                    repeated Bar results = 1;
                    PageResponse page = 2;
            }
-  enreach.workload.QueryGetAllManagerWorkloadByEpochResponse:
+  enreach.workload.QueryGetAllManagerRPWorkloadByEraResponse:
     type: object
     properties:
-      ManagerWorkloads:
+      ManagerRPWorkloads:
+        type: array
+        items:
+          type: object
+          properties:
+            era:
+              type: string
+              format: uint64
+            managerAccount:
+              type: string
+            reportedNodesCount:
+              type: string
+              format: uint64
+            score:
+              type: string
+              format: uint64
+            createAt:
+              type: string
+              format: uint64
+            updateAt:
+              type: string
+              format: uint64
+          title: Manager ReputationPoint Process Workload
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            description: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently. It will be empty if
+              there are no more results.
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  enreach.workload.QueryGetAllManagerWRWorkloadByEpochResponse:
+    type: object
+    properties:
+      ManagerWRWorkloads:
         type: array
         items:
           type: object
@@ -23508,6 +23916,7 @@ definitions:
             updateAt:
               type: string
               format: uint64
+          title: Manager Workreport Process Workload
       pagination:
         type: object
         properties:
@@ -23579,10 +23988,10 @@ definitions:
                    repeated Bar results = 1;
                    PageResponse page = 2;
            }
-  enreach.workload.QueryGetAllReputationPointByEraResponse:
+  enreach.workload.QueryGetAllReputationDeltaPointByEraResponse:
     type: object
     properties:
-      ReputationPoints:
+      ReputationDeltaPoints:
         type: array
         items:
           type: object
@@ -23592,9 +24001,9 @@ definitions:
               format: uint64
             nodeID:
               type: string
-            point:
+            deltaPoint:
               type: string
-              format: uint64
+              format: int64
             createAt:
               type: string
               format: uint64
@@ -23651,6 +24060,51 @@ definitions:
                   updateAt:
                     type: string
                     format: uint64
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            description: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently. It will be empty if
+              there are no more results.
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  enreach.workload.QueryGetAllReputationPointResponse:
+    type: object
+    properties:
+      ReputationPoints:
+        type: array
+        items:
+          type: object
+          properties:
+            nodeID:
+              type: string
+            point:
+              type: string
+              format: int64
+            createAt:
+              type: string
+              format: uint64
+            updateAt:
+              type: string
+              format: uint64
       pagination:
         type: object
         properties:
@@ -23862,27 +24316,34 @@ definitions:
       depth:
         type: string
         format: uint64
-  enreach.workload.QueryGetLatestReputationPointResponse:
+  enreach.workload.QueryGetManagerRPWorkloadResponse:
     type: object
     properties:
-      ReputationPoint:
+      ManagerRPWorkload:
         type: object
         properties:
           era:
             type: string
             format: uint64
-          nodeID:
+          managerAccount:
             type: string
-          point:
+          reportedNodesCount:
+            type: string
+            format: uint64
+          score:
             type: string
             format: uint64
           createAt:
             type: string
             format: uint64
-  enreach.workload.QueryGetManagerWorkloadResponse:
+          updateAt:
+            type: string
+            format: uint64
+        title: Manager ReputationPoint Process Workload
+  enreach.workload.QueryGetManagerWRWorkloadResponse:
     type: object
     properties:
-      ManagerWorkload:
+      ManagerWRWorkload:
         type: object
         properties:
           epoch:
@@ -23902,6 +24363,7 @@ definitions:
           updateAt:
             type: string
             format: uint64
+        title: Manager Workreport Process Workload
   enreach.workload.QueryGetNodeWorkloadResponse:
     type: object
     properties:
@@ -23916,6 +24378,23 @@ definitions:
           score:
             type: string
             format: uint64
+          createAt:
+            type: string
+            format: uint64
+  enreach.workload.QueryGetReputationDeltaPointResponse:
+    type: object
+    properties:
+      ReputationDeltaPoint:
+        type: object
+        properties:
+          era:
+            type: string
+            format: uint64
+          nodeID:
+            type: string
+          deltaPoint:
+            type: string
+            format: int64
           createAt:
             type: string
             format: uint64
@@ -23950,15 +24429,15 @@ definitions:
       ReputationPoint:
         type: object
         properties:
-          era:
-            type: string
-            format: uint64
           nodeID:
             type: string
           point:
             type: string
-            format: uint64
+            format: int64
           createAt:
+            type: string
+            format: uint64
+          updateAt:
             type: string
             format: uint64
   enreach.workload.QueryGetSuperiorResponse:
@@ -24019,7 +24498,7 @@ definitions:
         description: params holds all the parameters of this module.
         type: object
     description: QueryParamsResponse is response type for the Query/Params RPC method.
-  enreach.workload.ReputationPoint:
+  enreach.workload.ReputationDeltaPoint:
     type: object
     properties:
       era:
@@ -24027,10 +24506,24 @@ definitions:
         format: uint64
       nodeID:
         type: string
-      point:
+      deltaPoint:
+        type: string
+        format: int64
+      createAt:
         type: string
         format: uint64
+  enreach.workload.ReputationPoint:
+    type: object
+    properties:
+      nodeID:
+        type: string
+      point:
+        type: string
+        format: int64
       createAt:
+        type: string
+        format: uint64
+      updateAt:
         type: string
         format: uint64
   enreach.workload.ReputationPointChangeData:
