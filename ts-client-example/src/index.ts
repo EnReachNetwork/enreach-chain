@@ -64,6 +64,8 @@ async function main() {
   await testEdgenode(edgenodeApi);
 
   await testWorkload();
+
+  await testReputationPoint();
 }
 
 async function testManager(operatorApi: OperatorApi, managerApi: ManagerApi) {
@@ -220,6 +222,64 @@ async function testWorkload() {
   console.log("Workreports:", JSON.stringify(allWorkreports_A, (key, value) => typeof value === 'bigint' ? value.toString() : value, 2));
 } 
 
+
+async function testReputationPoint() {
+
+  const currentEra = (await workload_A_Api.getCurrentEra()).currentEra;
+  const previsouEra = currentEra - 1;
+
+  const reputationPointChangeData_A = {
+    managerAccount: workload_A_Api.account,
+    era: previsouEra,
+    nodePoints: [
+      {
+        nodeID: "node1",
+        deltaPoint: 1,
+      },
+      {
+        nodeID: "node2",
+        deltaPoint: -1,
+      },
+    ],
+  };
+  const reputationPointChangeData_B = {
+    managerAccount: workload_B_Api.account,
+    era: previsouEra,
+    nodePoints: [
+      {
+        nodeID: "node1",
+        deltaPoint: 2,
+      },
+      {
+        nodeID: "node2",
+        deltaPoint: -2,
+      },
+    ],
+  };
+  const reputationPointChangeData_C = {
+    managerAccount: workload_C_Api.account,
+    era: previsouEra,
+    nodePoints: [
+      {
+        nodeID: "node1",
+        deltaPoint: 3,
+      },
+      {
+        nodeID: "node2",
+        deltaPoint: -3,
+      },
+    ],
+  };
+  
+  await workload_A_Api.submitReputationPointChangeData(reputationPointChangeData_A);
+  await workload_B_Api.submitReputationPointChangeData(reputationPointChangeData_B);
+  await workload_C_Api.submitReputationPointChangeData(reputationPointChangeData_C);
+
+  console.log("===Query all data");
+  const allReputationPointChangeDatas = await workload_A_Api.queryAllReputationChangeDataByEra(previsouEra);
+  console.log("Reputation Point Change Data:", jsonify(allReputationPointChangeDatas));
+} 
+
 async function listenEvents() {
 
   const tmClient = await Tendermint37Client.connect(CHAIN_WS_URL);
@@ -237,6 +297,12 @@ async function listenEvents() {
           } else if (event.type === "EventEpochEnd") {
             const epoch = event.attributes.find(attr => attr.key === "epoch")?.value;
             console.log(`!!!Epoch '${epoch}' end at block '${blockHeight}'`);
+          } else if (event.type === "EventEraStart") {
+            const era = event.attributes.find(attr => attr.key === "era")?.value;
+            console.log(`###Era '${era}' start at block '${blockHeight}'`);
+          } else if (event.type === "EventEraEnd") {
+            const era = event.attributes.find(attr => attr.key === "era")?.value;
+            console.log(`###Era '${era}' end at block '${blockHeight}'`);
           } else if (event.type === "EventEpochWorkloadProcessStarted") {
             const epoch = event.attributes.find(attr => attr.key === "epoch")?.value;
             console.log(`!!!Epoch workload process started: ${event.attributes.map(item => `'${item.key}':'${item.value}'`).join(', ')}`);
@@ -249,13 +315,33 @@ async function listenEvents() {
               // query all workload by epoch and print them out
               console.log("===Query all workload data");
               const nodeWorkloads = await workload_A_Api.queryAllNodeWorkloadByEpoch(Number(epoch));
-              console.log(`Node Workloads of epoch-${epoch}:`, JSON.stringify(nodeWorkloads, (key, value) => typeof value === 'bigint' ? value.toString() : value, 2));
+              console.log(`Node Workloads of epoch-${epoch}:`, jsonify(nodeWorkloads));
 
-              const managerWorkloads = await workload_A_Api.queryAllManagerWorkloadByEpoch(Number(epoch));
-              console.log(`Manager Workloads of epoch-${epoch}:`, JSON.stringify(managerWorkloads, (key, value) => typeof value === 'bigint' ? value.toString() : value, 2));
+              const managerWorkloads = await workload_A_Api.queryAllManagerWRWorkloadByEpoch(Number(epoch));
+              console.log(`Manager Workloads of epoch-${epoch}:`, jsonify(managerWorkloads));
 
               const allEpochProcessDatas = await workload_A_Api.queryAllEpochProcessData();
-              console.log(`All Epoch Process Datas:`, JSON.stringify(allEpochProcessDatas, (key, value) => typeof value === 'bigint' ? value.toString() : value, 2));
+              console.log(`All Epoch Process Datas:`, jsonify(allEpochProcessDatas));
+            }
+          } else if (event.type === "EventEraReputationPointProcessStarted") {
+            const era = event.attributes.find(attr => attr.key === "era")?.value;
+            console.log(`!!!Era reputation point process started: ${event.attributes.map(item => `'${item.key}':'${item.value}'`).join(', ')}`);
+          } else if (event.type === "EventEraReputationPointProcessEnded") {
+            const era = event.attributes.find(attr => attr.key === "era")?.value;
+            const totalNodesCount = Number(event.attributes.find(attr => attr.key === "totalNodesCount")?.value);
+            console.log(`!!!Era reputation point process ended: ${event.attributes.map(item => `'${item.key}':'${item.value}'`).join(', ')}`);
+
+            if (totalNodesCount > 0) {
+              // query all reputation point by era and print them out
+              console.log("===Query all reputation point data");
+              const reputationDeltaPoints = await workload_A_Api.queryAllReputationDeltaPointByEra(Number(era));
+              console.log(`Reputation Delta Points of era-${era}:`, jsonify(reputationDeltaPoints));
+
+              const reputationPoints = await workload_A_Api.queryAllReputationPoint();
+              console.log(`Reputation Points of era-${era}:`, jsonify(reputationPoints));
+
+              const allEraProcessDatas = await workload_A_Api.queryAllEraProcessData();
+              console.log(`All Era Process Datas:`, jsonify(allEraProcessDatas));
             }
           }
         });
@@ -313,6 +399,9 @@ async function getFinalizeBlockEvents(tmClient:Tendermint37Client, height: numbe
   return [];
 }
 
+function jsonify(obj: any) {
+  return JSON.stringify(obj, (key, value) => typeof value === 'bigint' ? value.toString() : value, 2);
+}
 function sleep(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
