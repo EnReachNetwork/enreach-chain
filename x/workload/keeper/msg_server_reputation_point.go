@@ -103,7 +103,7 @@ func (k msgServer) SubmitReputationPointChangeData(goCtx context.Context, msg *t
 
 	// Emit event
 	ctx.EventManager().EmitEvent(
-		sdk.NewEvent(types.EventTypeWorkreportsSubmitted,
+		sdk.NewEvent(types.EventTypeReputationPointChangeDataSubmitted,
 			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
 			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.ManagerAccount),
 			sdk.NewAttribute(types.AttributeKeyEra, strconv.FormatUint(msg.Era, 10)),

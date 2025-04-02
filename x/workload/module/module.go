@@ -166,8 +166,7 @@ func (am AppModule) BeginBlock(goCtx context.Context) error {
 		currentEpoch := types.GetCurrentEpoch(ctx)
 		blockHeight := uint64(ctx.BlockHeight())
 
-		/// Delete old epoch related data
-		// Get the HistoryEpochDepth
+		/// TODO: Delete old epoch related data
 
 		ctx.EventManager().EmitEvent(
 			sdk.NewEvent(types.EventTypeEpochStart,
@@ -177,6 +176,22 @@ func (am AppModule) BeginBlock(goCtx context.Context) error {
 			),
 		)
 	}
+
+	if types.IsEraStart(goCtx) {
+		currentEra := types.GetCurrentEra(ctx)
+		blockHeight := uint64(ctx.BlockHeight())
+
+		/// TODO: Delete old era related data
+
+		ctx.EventManager().EmitEvent(
+			sdk.NewEvent(types.EventTypeEraStart,
+				sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+				sdk.NewAttribute(types.AttributeKeyEra, strconv.FormatUint(currentEra, 10)),
+				sdk.NewAttribute(types.AttributeKeyBlockHeight, strconv.FormatUint(blockHeight, 10)),
+			),
+		)
+	}
+
 	return nil
 }
 
@@ -195,6 +210,21 @@ func (am AppModule) EndBlock(goCtx context.Context) error {
 			sdk.NewEvent(types.EventTypeEpochEnd,
 				sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
 				sdk.NewAttribute(types.AttributeKeyEpoch, strconv.FormatUint(currentEpoch, 10)),
+				sdk.NewAttribute(types.AttributeKeyBlockHeight, strconv.FormatUint(blockHeight, 10)),
+			),
+		)
+	}
+
+	if types.IsEraEnd(goCtx) {
+		currentEra := types.GetCurrentEra(ctx)
+		blockHeight := uint64(ctx.BlockHeight())
+
+		/// TODO: Delete old era related data
+
+		ctx.EventManager().EmitEvent(
+			sdk.NewEvent(types.EventTypeEraEnd,
+				sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+				sdk.NewAttribute(types.AttributeKeyEra, strconv.FormatUint(currentEra, 10)),
 				sdk.NewAttribute(types.AttributeKeyBlockHeight, strconv.FormatUint(blockHeight, 10)),
 			),
 		)

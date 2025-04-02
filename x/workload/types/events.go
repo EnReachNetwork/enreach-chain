@@ -1,9 +1,14 @@
 package types
 
 const (
-	EventTypeWorkreportsSubmitted = "EventWorkreportsSubmitted"
-	EventTypeEpochStart           = "EventEpochStart"
-	EventTypeEpochEnd             = "EventEpochEnd"
+	EventTypeWorkreportsSubmitted               = "EventWorkreportsSubmitted"
+	EventTypeReputationPointChangeDataSubmitted = "EventReputationPointChangeDataSubmitted"
+
+	EventTypeEpochStart = "EventEpochStart"
+	EventTypeEpochEnd   = "EventEpochEnd"
+
+	EventTypeEraStart = "EventEraStart"
+	EventTypeEraEnd   = "EventEraEnd"
 
 	EventTypeSuperiorCreated = "EventSuperiorCreated"
 	EventTypeSuperiorUpdated = "EventSuperiorUpdated"
@@ -14,8 +19,8 @@ const (
 	EventTypeEpochWorkloadProcessStarted = "EventEpochWorkloadProcessStarted"
 	EventTypeEpochWorkloadProcessEnded   = "EventEpochWorkloadProcessEnded"
 
-	EventTypeEraReputationPointProcessStarted = "EraReputationPointProcessStarted"
-	EventTypeEraReputationPointProcessEnded   = "EraReputationPointProcessEnded"
+	EventTypeEraReputationPointProcessStarted = "EventEraReputationPointProcessStarted"
+	EventTypeEraReputationPointProcessEnded   = "EventEraReputationPointProcessEnded"
 
 	AttributeKeyTxSigner            = "signer"
 	AttributeKeyManagerAccount      = "managerAccount"
