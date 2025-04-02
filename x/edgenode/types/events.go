@@ -11,12 +11,15 @@ const (
 	EventTypeNodeBoundAndActivated = "EventNodeBoundAndActivated"
 	EventTypeNodeUnbound           = "EventNodeUnbound"
 
-	AttributeKeyTxSigner   = "signer"
-	AttributeKeySuperior   = "superior"
-	AttributeKeyUserID     = "userID"
-	AttributeKeyEvmAccount = "evmAccount"
-	AttributeKeyNodeID     = "nodeID"
-	AttributeKeyDeviceType = "deviceType"
-	AttributeKeyNodeName   = "nodeName"
-	AttributeKeyRegionCode = "regionCode"
+	EventTypeNodeTrafficTypeUpdated = "EventNodeTrafficTypeUpdated"
+
+	AttributeKeyTxSigner          = "signer"
+	AttributeKeySuperior          = "superior"
+	AttributeKeyUserID            = "userID"
+	AttributeKeyEvmAccount        = "evmAccount"
+	AttributeKeyNodeID            = "nodeID"
+	AttributeKeyDeviceType        = "deviceType"
+	AttributeKeyNodeName          = "nodeName"
+	AttributeKeyRegionCode        = "regionCode"
+	AttributeKeyUpdatedNodesCount = "updatedNodesCount"
 )

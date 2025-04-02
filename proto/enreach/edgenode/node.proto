@@ -9,10 +9,11 @@ message Node {
   string nodeName = 3;
   string deviceType = 4; 
   string regionCode = 5;
-  string registerStatus = 6; 
-  string workingStatus = 7; 
-  string creator = 8; 
-  uint64 createAt = 9; 
-  string updator = 10; 
-  uint64 updateAt = 11;
+  uint32 trafficType = 6; // Default 0 - stands for Enreach traffic
+  string registerStatus = 7; 
+  string workingStatus = 8; 
+  string creator = 9; 
+  uint64 createAt = 10; 
+  string updator = 11; 
+  uint64 updateAt = 12;
 }

@@ -27,6 +27,7 @@ service Msg {
   rpc UnbindNode          (MsgUnbindNode         ) returns (MsgUnbindNodeResponse          );
   rpc CreateSuperior      (MsgCreateSuperior     ) returns (MsgCreateSuperiorResponse     );
   rpc UpdateSuperior      (MsgUpdateSuperior     ) returns (MsgUpdateSuperiorResponse     );
+  rpc UpdateNodeTrafficTypeBatch (MsgUpdateNodeTrafficTypeBatch) returns (MsgUpdateNodeTrafficTypeBatchResponse);
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -109,4 +110,12 @@ message MsgUpdateSuperior {
 
 message MsgUpdateSuperiorResponse {}
 
+message MsgUpdateNodeTrafficTypeBatch {
+  option (cosmos.msg.v1.signer) = "signer";
+  string signer                 = 1;
+  uint32 trafficType            = 2;
+  repeated string nodeIDs       = 3;
+  bool skipNonExistNode         = 4;
+}
 
+message MsgUpdateNodeTrafficTypeBatchResponse {}

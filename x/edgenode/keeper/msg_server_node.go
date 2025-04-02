@@ -2,6 +2,7 @@ package keeper
 
 import (
 	"context"
+	"strconv"
 
 	"enreach/x/edgenode/types"
 	registrytypes "enreach/x/registry/types"
@@ -34,6 +35,7 @@ func (k msgServer) RegisterNode(goCtx context.Context, msg *types.MsgRegisterNod
 	var node = types.Node{
 		NodeID:         msg.NodeID,
 		DeviceType:     msg.DeviceType,
+		TrafficType:    0, // Default is 0, stands for Enreach traffic
 		RegisterStatus: string(types.RS_PENDING_BIND),
 		Creator:        msg.Signer,
 		CreateAt:       blockHeight,
@@ -162,4 +164,48 @@ func (k msgServer) UnbindNode(goCtx context.Context, msg *types.MsgUnbindNode) (
 	)
 
 	return &types.MsgUnbindNodeResponse{}, nil
+}
+
+func (k msgServer) UpdateNodeTrafficTypeBatch(goCtx context.Context, msg *types.MsgUpdateNodeTrafficTypeBatch) (*types.MsgUpdateNodeTrafficTypeBatchResponse, error) {
+	ctx := sdk.UnwrapSDKContext(goCtx)
+
+	// tx caller must be superior
+	superior, isFound := k.GetSuperior(ctx)
+	if !isFound {
+		return nil, types.ErrSuperiorNotSet
+	}
+	if superior.Account != msg.Signer {
+		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only superior can execute this call")
+	}
+
+	blockHeight := uint64(ctx.BlockHeight())
+	var updatedNodesCount uint64 = 0
+	for _, nodeID := range msg.NodeIDs {
+		node, found := k.GetNode(ctx, nodeID)
+		if !found {
+			if msg.SkipNonExistNode {
+				continue
+			} else {
+				return nil, errorsmod.Wrapf(sdkerrors.ErrKeyNotFound, "Node '%s' doesn't exist", nodeID)
+			}
+		}
+
+		node.TrafficType = msg.TrafficType
+		node.Updator = msg.Signer
+		node.UpdateAt = blockHeight
+
+		k.SetNode(ctx, node)
+		updatedNodesCount++
+	}
+
+	// Emit event
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeNodeTrafficTypeUpdated,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.Signer),
+			sdk.NewAttribute(types.AttributeKeyUpdatedNodesCount, strconv.FormatUint(updatedNodesCount, 10)),
+		),
+	)
+
+	return &types.MsgUpdateNodeTrafficTypeBatchResponse{}, nil
 }

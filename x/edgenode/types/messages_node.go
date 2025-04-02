@@ -87,3 +87,27 @@ func (msg *MsgBindAndActivateNode) ValidateBasic() error {
 
 	return nil
 }
+
+var _ sdk.Msg = &MsgUpdateNodeTrafficTypeBatch{}
+
+func NewMsgUpdateNodeTrafficTypeBatch(signer string, trafficeType uint32, nodeIDs []string, skipNonExistNode bool) *MsgUpdateNodeTrafficTypeBatch {
+	return &MsgUpdateNodeTrafficTypeBatch{
+		Signer:           signer,
+		TrafficType:      trafficeType,
+		NodeIDs:          nodeIDs,
+		SkipNonExistNode: skipNonExistNode,
+	}
+}
+
+func (msg *MsgUpdateNodeTrafficTypeBatch) ValidateBasic() error {
+	_, err := sdk.AccAddressFromBech32(msg.Signer)
+	if err != nil {
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid signer address (%s)", err)
+	}
+
+	if len(msg.NodeIDs) > NODES_COUNT_PER_REQ {
+		return errorsmod.Wrapf(ErrNodeTrafficTypesCountExceedPerReqLimit, "nodeTrafficTypes element count exceed per request limit %d", NODES_COUNT_PER_REQ)
+	}
+
+	return nil
+}

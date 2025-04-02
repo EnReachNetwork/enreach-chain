@@ -19,14 +19,15 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Msg_UpdateParams_FullMethodName        = "/enreach.edgenode.Msg/UpdateParams"
-	Msg_CreateUser_FullMethodName          = "/enreach.edgenode.Msg/CreateUser"
-	Msg_BindUserEVMAccount_FullMethodName  = "/enreach.edgenode.Msg/BindUserEVMAccount"
-	Msg_RegisterNode_FullMethodName        = "/enreach.edgenode.Msg/RegisterNode"
-	Msg_BindAndActivateNode_FullMethodName = "/enreach.edgenode.Msg/BindAndActivateNode"
-	Msg_UnbindNode_FullMethodName          = "/enreach.edgenode.Msg/UnbindNode"
-	Msg_CreateSuperior_FullMethodName      = "/enreach.edgenode.Msg/CreateSuperior"
-	Msg_UpdateSuperior_FullMethodName      = "/enreach.edgenode.Msg/UpdateSuperior"
+	Msg_UpdateParams_FullMethodName               = "/enreach.edgenode.Msg/UpdateParams"
+	Msg_CreateUser_FullMethodName                 = "/enreach.edgenode.Msg/CreateUser"
+	Msg_BindUserEVMAccount_FullMethodName         = "/enreach.edgenode.Msg/BindUserEVMAccount"
+	Msg_RegisterNode_FullMethodName               = "/enreach.edgenode.Msg/RegisterNode"
+	Msg_BindAndActivateNode_FullMethodName        = "/enreach.edgenode.Msg/BindAndActivateNode"
+	Msg_UnbindNode_FullMethodName                 = "/enreach.edgenode.Msg/UnbindNode"
+	Msg_CreateSuperior_FullMethodName             = "/enreach.edgenode.Msg/CreateSuperior"
+	Msg_UpdateSuperior_FullMethodName             = "/enreach.edgenode.Msg/UpdateSuperior"
+	Msg_UpdateNodeTrafficTypeBatch_FullMethodName = "/enreach.edgenode.Msg/UpdateNodeTrafficTypeBatch"
 )
 
 // MsgClient is the client API for Msg service.
@@ -43,6 +44,7 @@ type MsgClient interface {
 	UnbindNode(ctx context.Context, in *MsgUnbindNode, opts ...grpc.CallOption) (*MsgUnbindNodeResponse, error)
 	CreateSuperior(ctx context.Context, in *MsgCreateSuperior, opts ...grpc.CallOption) (*MsgCreateSuperiorResponse, error)
 	UpdateSuperior(ctx context.Context, in *MsgUpdateSuperior, opts ...grpc.CallOption) (*MsgUpdateSuperiorResponse, error)
+	UpdateNodeTrafficTypeBatch(ctx context.Context, in *MsgUpdateNodeTrafficTypeBatch, opts ...grpc.CallOption) (*MsgUpdateNodeTrafficTypeBatchResponse, error)
 }
 
 type msgClient struct {
@@ -125,6 +127,15 @@ func (c *msgClient) UpdateSuperior(ctx context.Context, in *MsgUpdateSuperior, o
 	return out, nil
 }
 
+func (c *msgClient) UpdateNodeTrafficTypeBatch(ctx context.Context, in *MsgUpdateNodeTrafficTypeBatch, opts ...grpc.CallOption) (*MsgUpdateNodeTrafficTypeBatchResponse, error) {
+	out := new(MsgUpdateNodeTrafficTypeBatchResponse)
+	err := c.cc.Invoke(ctx, Msg_UpdateNodeTrafficTypeBatch_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -139,6 +150,7 @@ type MsgServer interface {
 	UnbindNode(context.Context, *MsgUnbindNode) (*MsgUnbindNodeResponse, error)
 	CreateSuperior(context.Context, *MsgCreateSuperior) (*MsgCreateSuperiorResponse, error)
 	UpdateSuperior(context.Context, *MsgUpdateSuperior) (*MsgUpdateSuperiorResponse, error)
+	UpdateNodeTrafficTypeBatch(context.Context, *MsgUpdateNodeTrafficTypeBatch) (*MsgUpdateNodeTrafficTypeBatchResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -169,6 +181,9 @@ func (UnimplementedMsgServer) CreateSuperior(context.Context, *MsgCreateSuperior
 }
 func (UnimplementedMsgServer) UpdateSuperior(context.Context, *MsgUpdateSuperior) (*MsgUpdateSuperiorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateSuperior not implemented")
+}
+func (UnimplementedMsgServer) UpdateNodeTrafficTypeBatch(context.Context, *MsgUpdateNodeTrafficTypeBatch) (*MsgUpdateNodeTrafficTypeBatchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateNodeTrafficTypeBatch not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -327,6 +342,24 @@ func _Msg_UpdateSuperior_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_UpdateNodeTrafficTypeBatch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgUpdateNodeTrafficTypeBatch)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).UpdateNodeTrafficTypeBatch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_UpdateNodeTrafficTypeBatch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).UpdateNodeTrafficTypeBatch(ctx, req.(*MsgUpdateNodeTrafficTypeBatch))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -365,6 +398,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateSuperior",
 			Handler:    _Msg_UpdateSuperior_Handler,
+		},
+		{
+			MethodName: "UpdateNodeTrafficTypeBatch",
+			Handler:    _Msg_UpdateNodeTrafficTypeBatch_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
