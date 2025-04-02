@@ -6,8 +6,18 @@ export interface NodeWorkload {
     score: number;
     createAt: number;
 }
-export interface ManagerWorkload {
+/** Manager Workreport Process Workload */
+export interface ManagerWRWorkload {
     epoch: number;
+    managerAccount: string;
+    reportedNodesCount: number;
+    score: number;
+    createAt: number;
+    updateAt: number;
+}
+/** Manager ReputationPoint Process Workload */
+export interface ManagerRPWorkload {
+    era: number;
     managerAccount: string;
     reportedNodesCount: number;
     score: number;
@@ -22,13 +32,21 @@ export declare const NodeWorkload: {
     create<I extends Exact<DeepPartial<NodeWorkload>, I>>(base?: I): NodeWorkload;
     fromPartial<I extends Exact<DeepPartial<NodeWorkload>, I>>(object: I): NodeWorkload;
 };
-export declare const ManagerWorkload: {
-    encode(message: ManagerWorkload, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): ManagerWorkload;
-    fromJSON(object: any): ManagerWorkload;
-    toJSON(message: ManagerWorkload): unknown;
-    create<I extends Exact<DeepPartial<ManagerWorkload>, I>>(base?: I): ManagerWorkload;
-    fromPartial<I extends Exact<DeepPartial<ManagerWorkload>, I>>(object: I): ManagerWorkload;
+export declare const ManagerWRWorkload: {
+    encode(message: ManagerWRWorkload, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ManagerWRWorkload;
+    fromJSON(object: any): ManagerWRWorkload;
+    toJSON(message: ManagerWRWorkload): unknown;
+    create<I extends Exact<DeepPartial<ManagerWRWorkload>, I>>(base?: I): ManagerWRWorkload;
+    fromPartial<I extends Exact<DeepPartial<ManagerWRWorkload>, I>>(object: I): ManagerWRWorkload;
+};
+export declare const ManagerRPWorkload: {
+    encode(message: ManagerRPWorkload, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ManagerRPWorkload;
+    fromJSON(object: any): ManagerRPWorkload;
+    toJSON(message: ManagerRPWorkload): unknown;
+    create<I extends Exact<DeepPartial<ManagerRPWorkload>, I>>(base?: I): ManagerRPWorkload;
+    fromPartial<I extends Exact<DeepPartial<ManagerRPWorkload>, I>>(object: I): ManagerRPWorkload;
 };
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {

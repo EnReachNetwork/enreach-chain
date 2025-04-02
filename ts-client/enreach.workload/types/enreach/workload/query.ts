@@ -3,8 +3,9 @@ import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
 import { Params } from "./params";
+import { EraProcessData, ReputationDeltaPoint, ReputationPoint, ReputationPointChangeData } from "./reputationpoint";
 import { Superior } from "./superior";
-import { ManagerWorkload, NodeWorkload } from "./workload";
+import { ManagerRPWorkload, ManagerWRWorkload, NodeWorkload } from "./workload";
 import { EpochProcessData, Workreport } from "./workreport";
 
 export const protobufPackage = "enreach.workload";
@@ -52,22 +53,41 @@ export interface QueryGetAllNodeWorkloadByEpochResponse {
   pagination: PageResponse | undefined;
 }
 
-export interface QueryGetManagerWorkloadRequest {
+export interface QueryGetManagerWRWorkloadRequest {
   epoch: number;
   managerAccount: string;
 }
 
-export interface QueryGetManagerWorkloadResponse {
-  ManagerWorkload: ManagerWorkload | undefined;
+export interface QueryGetManagerWRWorkloadResponse {
+  ManagerWRWorkload: ManagerWRWorkload | undefined;
 }
 
-export interface QueryGetAllManagerWorkloadByEpochRequest {
+export interface QueryGetAllManagerWRWorkloadByEpochRequest {
   epoch: number;
   pagination: PageRequest | undefined;
 }
 
-export interface QueryGetAllManagerWorkloadByEpochResponse {
-  ManagerWorkloads: ManagerWorkload[];
+export interface QueryGetAllManagerWRWorkloadByEpochResponse {
+  ManagerWRWorkloads: ManagerWRWorkload[];
+  pagination: PageResponse | undefined;
+}
+
+export interface QueryGetManagerRPWorkloadRequest {
+  era: number;
+  managerAccount: string;
+}
+
+export interface QueryGetManagerRPWorkloadResponse {
+  ManagerRPWorkload: ManagerRPWorkload | undefined;
+}
+
+export interface QueryGetAllManagerRPWorkloadByEraRequest {
+  era: number;
+  pagination: PageRequest | undefined;
+}
+
+export interface QueryGetAllManagerRPWorkloadByEraResponse {
+  ManagerRPWorkloads: ManagerRPWorkload[];
   pagination: PageResponse | undefined;
 }
 
@@ -126,6 +146,92 @@ export interface QueryGetSuperiorRequest {
 
 export interface QueryGetSuperiorResponse {
   Superior: Superior | undefined;
+}
+
+export interface QueryGetEraLengthRequest {
+}
+
+export interface QueryGetEraLengthResponse {
+  eraLength: number;
+}
+
+export interface QueryGetCurrentEraRequest {
+}
+
+export interface QueryGetCurrentEraResponse {
+  currentEra: number;
+}
+
+export interface QueryGetReputationPointChangeDataRequest {
+  era: number;
+  nodeID: string;
+}
+
+export interface QueryGetReputationPointChangeDataResponse {
+  ReputationPointChangeData: ReputationPointChangeData | undefined;
+}
+
+export interface QueryGetAllReputationPointChangeDataByEraRequest {
+  era: number;
+  pagination: PageRequest | undefined;
+}
+
+export interface QueryGetAllReputationPointChangeDataByEraResponse {
+  ReputationPointChangeDatas: ReputationPointChangeData[];
+  pagination: PageResponse | undefined;
+}
+
+export interface QueryGetReputationDeltaPointRequest {
+  era: number;
+  nodeID: string;
+}
+
+export interface QueryGetReputationDeltaPointResponse {
+  ReputationDeltaPoint: ReputationDeltaPoint | undefined;
+}
+
+export interface QueryGetAllReputationDeltaPointByEraRequest {
+  era: number;
+  pagination: PageRequest | undefined;
+}
+
+export interface QueryGetAllReputationDeltaPointByEraResponse {
+  ReputationDeltaPoints: ReputationDeltaPoint[];
+  pagination: PageResponse | undefined;
+}
+
+export interface QueryGetReputationPointRequest {
+  nodeID: string;
+}
+
+export interface QueryGetReputationPointResponse {
+  ReputationPoint: ReputationPoint | undefined;
+}
+
+export interface QueryGetAllReputationPointRequest {
+  pagination: PageRequest | undefined;
+}
+
+export interface QueryGetAllReputationPointResponse {
+  ReputationPoints: ReputationPoint[];
+  pagination: PageResponse | undefined;
+}
+
+export interface QueryGetEraProcessDataRequest {
+  era: number;
+}
+
+export interface QueryGetEraProcessDataResponse {
+  EraProcessData: EraProcessData | undefined;
+}
+
+export interface QueryGetAllEraProcessDataRequest {
+  pagination: PageRequest | undefined;
+}
+
+export interface QueryGetAllEraProcessDataResponse {
+  EraProcessDatas: EraProcessData[];
+  pagination: PageResponse | undefined;
 }
 
 function createBaseQueryParamsRequest(): QueryParamsRequest {
@@ -725,12 +831,12 @@ export const QueryGetAllNodeWorkloadByEpochResponse = {
   },
 };
 
-function createBaseQueryGetManagerWorkloadRequest(): QueryGetManagerWorkloadRequest {
+function createBaseQueryGetManagerWRWorkloadRequest(): QueryGetManagerWRWorkloadRequest {
   return { epoch: 0, managerAccount: "" };
 }
 
-export const QueryGetManagerWorkloadRequest = {
-  encode(message: QueryGetManagerWorkloadRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const QueryGetManagerWRWorkloadRequest = {
+  encode(message: QueryGetManagerWRWorkloadRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.epoch !== 0) {
       writer.uint32(8).uint64(message.epoch);
     }
@@ -740,10 +846,10 @@ export const QueryGetManagerWorkloadRequest = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetManagerWorkloadRequest {
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetManagerWRWorkloadRequest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetManagerWorkloadRequest();
+    const message = createBaseQueryGetManagerWRWorkloadRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -770,14 +876,14 @@ export const QueryGetManagerWorkloadRequest = {
     return message;
   },
 
-  fromJSON(object: any): QueryGetManagerWorkloadRequest {
+  fromJSON(object: any): QueryGetManagerWRWorkloadRequest {
     return {
       epoch: isSet(object.epoch) ? Number(object.epoch) : 0,
       managerAccount: isSet(object.managerAccount) ? String(object.managerAccount) : "",
     };
   },
 
-  toJSON(message: QueryGetManagerWorkloadRequest): unknown {
+  toJSON(message: QueryGetManagerWRWorkloadRequest): unknown {
     const obj: any = {};
     if (message.epoch !== 0) {
       obj.epoch = Math.round(message.epoch);
@@ -788,35 +894,37 @@ export const QueryGetManagerWorkloadRequest = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryGetManagerWorkloadRequest>, I>>(base?: I): QueryGetManagerWorkloadRequest {
-    return QueryGetManagerWorkloadRequest.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<QueryGetManagerWRWorkloadRequest>, I>>(
+    base?: I,
+  ): QueryGetManagerWRWorkloadRequest {
+    return QueryGetManagerWRWorkloadRequest.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<QueryGetManagerWorkloadRequest>, I>>(
+  fromPartial<I extends Exact<DeepPartial<QueryGetManagerWRWorkloadRequest>, I>>(
     object: I,
-  ): QueryGetManagerWorkloadRequest {
-    const message = createBaseQueryGetManagerWorkloadRequest();
+  ): QueryGetManagerWRWorkloadRequest {
+    const message = createBaseQueryGetManagerWRWorkloadRequest();
     message.epoch = object.epoch ?? 0;
     message.managerAccount = object.managerAccount ?? "";
     return message;
   },
 };
 
-function createBaseQueryGetManagerWorkloadResponse(): QueryGetManagerWorkloadResponse {
-  return { ManagerWorkload: undefined };
+function createBaseQueryGetManagerWRWorkloadResponse(): QueryGetManagerWRWorkloadResponse {
+  return { ManagerWRWorkload: undefined };
 }
 
-export const QueryGetManagerWorkloadResponse = {
-  encode(message: QueryGetManagerWorkloadResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.ManagerWorkload !== undefined) {
-      ManagerWorkload.encode(message.ManagerWorkload, writer.uint32(10).fork()).ldelim();
+export const QueryGetManagerWRWorkloadResponse = {
+  encode(message: QueryGetManagerWRWorkloadResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.ManagerWRWorkload !== undefined) {
+      ManagerWRWorkload.encode(message.ManagerWRWorkload, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetManagerWorkloadResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetManagerWRWorkloadResponse {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetManagerWorkloadResponse();
+    const message = createBaseQueryGetManagerWRWorkloadResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -825,7 +933,7 @@ export const QueryGetManagerWorkloadResponse = {
             break;
           }
 
-          message.ManagerWorkload = ManagerWorkload.decode(reader, reader.uint32());
+          message.ManagerWRWorkload = ManagerWRWorkload.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -836,40 +944,44 @@ export const QueryGetManagerWorkloadResponse = {
     return message;
   },
 
-  fromJSON(object: any): QueryGetManagerWorkloadResponse {
+  fromJSON(object: any): QueryGetManagerWRWorkloadResponse {
     return {
-      ManagerWorkload: isSet(object.ManagerWorkload) ? ManagerWorkload.fromJSON(object.ManagerWorkload) : undefined,
+      ManagerWRWorkload: isSet(object.ManagerWRWorkload)
+        ? ManagerWRWorkload.fromJSON(object.ManagerWRWorkload)
+        : undefined,
     };
   },
 
-  toJSON(message: QueryGetManagerWorkloadResponse): unknown {
+  toJSON(message: QueryGetManagerWRWorkloadResponse): unknown {
     const obj: any = {};
-    if (message.ManagerWorkload !== undefined) {
-      obj.ManagerWorkload = ManagerWorkload.toJSON(message.ManagerWorkload);
+    if (message.ManagerWRWorkload !== undefined) {
+      obj.ManagerWRWorkload = ManagerWRWorkload.toJSON(message.ManagerWRWorkload);
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryGetManagerWorkloadResponse>, I>>(base?: I): QueryGetManagerWorkloadResponse {
-    return QueryGetManagerWorkloadResponse.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<QueryGetManagerWRWorkloadResponse>, I>>(
+    base?: I,
+  ): QueryGetManagerWRWorkloadResponse {
+    return QueryGetManagerWRWorkloadResponse.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<QueryGetManagerWorkloadResponse>, I>>(
+  fromPartial<I extends Exact<DeepPartial<QueryGetManagerWRWorkloadResponse>, I>>(
     object: I,
-  ): QueryGetManagerWorkloadResponse {
-    const message = createBaseQueryGetManagerWorkloadResponse();
-    message.ManagerWorkload = (object.ManagerWorkload !== undefined && object.ManagerWorkload !== null)
-      ? ManagerWorkload.fromPartial(object.ManagerWorkload)
+  ): QueryGetManagerWRWorkloadResponse {
+    const message = createBaseQueryGetManagerWRWorkloadResponse();
+    message.ManagerWRWorkload = (object.ManagerWRWorkload !== undefined && object.ManagerWRWorkload !== null)
+      ? ManagerWRWorkload.fromPartial(object.ManagerWRWorkload)
       : undefined;
     return message;
   },
 };
 
-function createBaseQueryGetAllManagerWorkloadByEpochRequest(): QueryGetAllManagerWorkloadByEpochRequest {
+function createBaseQueryGetAllManagerWRWorkloadByEpochRequest(): QueryGetAllManagerWRWorkloadByEpochRequest {
   return { epoch: 0, pagination: undefined };
 }
 
-export const QueryGetAllManagerWorkloadByEpochRequest = {
-  encode(message: QueryGetAllManagerWorkloadByEpochRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const QueryGetAllManagerWRWorkloadByEpochRequest = {
+  encode(message: QueryGetAllManagerWRWorkloadByEpochRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.epoch !== 0) {
       writer.uint32(8).uint64(message.epoch);
     }
@@ -879,10 +991,10 @@ export const QueryGetAllManagerWorkloadByEpochRequest = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllManagerWorkloadByEpochRequest {
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllManagerWRWorkloadByEpochRequest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetAllManagerWorkloadByEpochRequest();
+    const message = createBaseQueryGetAllManagerWRWorkloadByEpochRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -909,14 +1021,14 @@ export const QueryGetAllManagerWorkloadByEpochRequest = {
     return message;
   },
 
-  fromJSON(object: any): QueryGetAllManagerWorkloadByEpochRequest {
+  fromJSON(object: any): QueryGetAllManagerWRWorkloadByEpochRequest {
     return {
       epoch: isSet(object.epoch) ? Number(object.epoch) : 0,
       pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
     };
   },
 
-  toJSON(message: QueryGetAllManagerWorkloadByEpochRequest): unknown {
+  toJSON(message: QueryGetAllManagerWRWorkloadByEpochRequest): unknown {
     const obj: any = {};
     if (message.epoch !== 0) {
       obj.epoch = Math.round(message.epoch);
@@ -927,15 +1039,15 @@ export const QueryGetAllManagerWorkloadByEpochRequest = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryGetAllManagerWorkloadByEpochRequest>, I>>(
+  create<I extends Exact<DeepPartial<QueryGetAllManagerWRWorkloadByEpochRequest>, I>>(
     base?: I,
-  ): QueryGetAllManagerWorkloadByEpochRequest {
-    return QueryGetAllManagerWorkloadByEpochRequest.fromPartial(base ?? ({} as any));
+  ): QueryGetAllManagerWRWorkloadByEpochRequest {
+    return QueryGetAllManagerWRWorkloadByEpochRequest.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<QueryGetAllManagerWorkloadByEpochRequest>, I>>(
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllManagerWRWorkloadByEpochRequest>, I>>(
     object: I,
-  ): QueryGetAllManagerWorkloadByEpochRequest {
-    const message = createBaseQueryGetAllManagerWorkloadByEpochRequest();
+  ): QueryGetAllManagerWRWorkloadByEpochRequest {
+    const message = createBaseQueryGetAllManagerWRWorkloadByEpochRequest();
     message.epoch = object.epoch ?? 0;
     message.pagination = (object.pagination !== undefined && object.pagination !== null)
       ? PageRequest.fromPartial(object.pagination)
@@ -944,14 +1056,14 @@ export const QueryGetAllManagerWorkloadByEpochRequest = {
   },
 };
 
-function createBaseQueryGetAllManagerWorkloadByEpochResponse(): QueryGetAllManagerWorkloadByEpochResponse {
-  return { ManagerWorkloads: [], pagination: undefined };
+function createBaseQueryGetAllManagerWRWorkloadByEpochResponse(): QueryGetAllManagerWRWorkloadByEpochResponse {
+  return { ManagerWRWorkloads: [], pagination: undefined };
 }
 
-export const QueryGetAllManagerWorkloadByEpochResponse = {
-  encode(message: QueryGetAllManagerWorkloadByEpochResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    for (const v of message.ManagerWorkloads) {
-      ManagerWorkload.encode(v!, writer.uint32(10).fork()).ldelim();
+export const QueryGetAllManagerWRWorkloadByEpochResponse = {
+  encode(message: QueryGetAllManagerWRWorkloadByEpochResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.ManagerWRWorkloads) {
+      ManagerWRWorkload.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     if (message.pagination !== undefined) {
       PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
@@ -959,10 +1071,10 @@ export const QueryGetAllManagerWorkloadByEpochResponse = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllManagerWorkloadByEpochResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllManagerWRWorkloadByEpochResponse {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetAllManagerWorkloadByEpochResponse();
+    const message = createBaseQueryGetAllManagerWRWorkloadByEpochResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -971,7 +1083,7 @@ export const QueryGetAllManagerWorkloadByEpochResponse = {
             break;
           }
 
-          message.ManagerWorkloads.push(ManagerWorkload.decode(reader, reader.uint32()));
+          message.ManagerWRWorkloads.push(ManagerWRWorkload.decode(reader, reader.uint32()));
           continue;
         case 2:
           if (tag !== 18) {
@@ -989,19 +1101,19 @@ export const QueryGetAllManagerWorkloadByEpochResponse = {
     return message;
   },
 
-  fromJSON(object: any): QueryGetAllManagerWorkloadByEpochResponse {
+  fromJSON(object: any): QueryGetAllManagerWRWorkloadByEpochResponse {
     return {
-      ManagerWorkloads: Array.isArray(object?.ManagerWorkloads)
-        ? object.ManagerWorkloads.map((e: any) => ManagerWorkload.fromJSON(e))
+      ManagerWRWorkloads: Array.isArray(object?.ManagerWRWorkloads)
+        ? object.ManagerWRWorkloads.map((e: any) => ManagerWRWorkload.fromJSON(e))
         : [],
       pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
     };
   },
 
-  toJSON(message: QueryGetAllManagerWorkloadByEpochResponse): unknown {
+  toJSON(message: QueryGetAllManagerWRWorkloadByEpochResponse): unknown {
     const obj: any = {};
-    if (message.ManagerWorkloads?.length) {
-      obj.ManagerWorkloads = message.ManagerWorkloads.map((e) => ManagerWorkload.toJSON(e));
+    if (message.ManagerWRWorkloads?.length) {
+      obj.ManagerWRWorkloads = message.ManagerWRWorkloads.map((e) => ManagerWRWorkload.toJSON(e));
     }
     if (message.pagination !== undefined) {
       obj.pagination = PageResponse.toJSON(message.pagination);
@@ -1009,16 +1121,323 @@ export const QueryGetAllManagerWorkloadByEpochResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryGetAllManagerWorkloadByEpochResponse>, I>>(
+  create<I extends Exact<DeepPartial<QueryGetAllManagerWRWorkloadByEpochResponse>, I>>(
     base?: I,
-  ): QueryGetAllManagerWorkloadByEpochResponse {
-    return QueryGetAllManagerWorkloadByEpochResponse.fromPartial(base ?? ({} as any));
+  ): QueryGetAllManagerWRWorkloadByEpochResponse {
+    return QueryGetAllManagerWRWorkloadByEpochResponse.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<QueryGetAllManagerWorkloadByEpochResponse>, I>>(
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllManagerWRWorkloadByEpochResponse>, I>>(
     object: I,
-  ): QueryGetAllManagerWorkloadByEpochResponse {
-    const message = createBaseQueryGetAllManagerWorkloadByEpochResponse();
-    message.ManagerWorkloads = object.ManagerWorkloads?.map((e) => ManagerWorkload.fromPartial(e)) || [];
+  ): QueryGetAllManagerWRWorkloadByEpochResponse {
+    const message = createBaseQueryGetAllManagerWRWorkloadByEpochResponse();
+    message.ManagerWRWorkloads = object.ManagerWRWorkloads?.map((e) => ManagerWRWorkload.fromPartial(e)) || [];
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageResponse.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetManagerRPWorkloadRequest(): QueryGetManagerRPWorkloadRequest {
+  return { era: 0, managerAccount: "" };
+}
+
+export const QueryGetManagerRPWorkloadRequest = {
+  encode(message: QueryGetManagerRPWorkloadRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.era !== 0) {
+      writer.uint32(8).uint64(message.era);
+    }
+    if (message.managerAccount !== "") {
+      writer.uint32(18).string(message.managerAccount);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetManagerRPWorkloadRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetManagerRPWorkloadRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.era = longToNumber(reader.uint64() as Long);
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.managerAccount = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetManagerRPWorkloadRequest {
+    return {
+      era: isSet(object.era) ? Number(object.era) : 0,
+      managerAccount: isSet(object.managerAccount) ? String(object.managerAccount) : "",
+    };
+  },
+
+  toJSON(message: QueryGetManagerRPWorkloadRequest): unknown {
+    const obj: any = {};
+    if (message.era !== 0) {
+      obj.era = Math.round(message.era);
+    }
+    if (message.managerAccount !== "") {
+      obj.managerAccount = message.managerAccount;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetManagerRPWorkloadRequest>, I>>(
+    base?: I,
+  ): QueryGetManagerRPWorkloadRequest {
+    return QueryGetManagerRPWorkloadRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetManagerRPWorkloadRequest>, I>>(
+    object: I,
+  ): QueryGetManagerRPWorkloadRequest {
+    const message = createBaseQueryGetManagerRPWorkloadRequest();
+    message.era = object.era ?? 0;
+    message.managerAccount = object.managerAccount ?? "";
+    return message;
+  },
+};
+
+function createBaseQueryGetManagerRPWorkloadResponse(): QueryGetManagerRPWorkloadResponse {
+  return { ManagerRPWorkload: undefined };
+}
+
+export const QueryGetManagerRPWorkloadResponse = {
+  encode(message: QueryGetManagerRPWorkloadResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.ManagerRPWorkload !== undefined) {
+      ManagerRPWorkload.encode(message.ManagerRPWorkload, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetManagerRPWorkloadResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetManagerRPWorkloadResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.ManagerRPWorkload = ManagerRPWorkload.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetManagerRPWorkloadResponse {
+    return {
+      ManagerRPWorkload: isSet(object.ManagerRPWorkload)
+        ? ManagerRPWorkload.fromJSON(object.ManagerRPWorkload)
+        : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetManagerRPWorkloadResponse): unknown {
+    const obj: any = {};
+    if (message.ManagerRPWorkload !== undefined) {
+      obj.ManagerRPWorkload = ManagerRPWorkload.toJSON(message.ManagerRPWorkload);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetManagerRPWorkloadResponse>, I>>(
+    base?: I,
+  ): QueryGetManagerRPWorkloadResponse {
+    return QueryGetManagerRPWorkloadResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetManagerRPWorkloadResponse>, I>>(
+    object: I,
+  ): QueryGetManagerRPWorkloadResponse {
+    const message = createBaseQueryGetManagerRPWorkloadResponse();
+    message.ManagerRPWorkload = (object.ManagerRPWorkload !== undefined && object.ManagerRPWorkload !== null)
+      ? ManagerRPWorkload.fromPartial(object.ManagerRPWorkload)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllManagerRPWorkloadByEraRequest(): QueryGetAllManagerRPWorkloadByEraRequest {
+  return { era: 0, pagination: undefined };
+}
+
+export const QueryGetAllManagerRPWorkloadByEraRequest = {
+  encode(message: QueryGetAllManagerRPWorkloadByEraRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.era !== 0) {
+      writer.uint32(8).uint64(message.era);
+    }
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllManagerRPWorkloadByEraRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllManagerRPWorkloadByEraRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.era = longToNumber(reader.uint64() as Long);
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllManagerRPWorkloadByEraRequest {
+    return {
+      era: isSet(object.era) ? Number(object.era) : 0,
+      pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetAllManagerRPWorkloadByEraRequest): unknown {
+    const obj: any = {};
+    if (message.era !== 0) {
+      obj.era = Math.round(message.era);
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageRequest.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllManagerRPWorkloadByEraRequest>, I>>(
+    base?: I,
+  ): QueryGetAllManagerRPWorkloadByEraRequest {
+    return QueryGetAllManagerRPWorkloadByEraRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllManagerRPWorkloadByEraRequest>, I>>(
+    object: I,
+  ): QueryGetAllManagerRPWorkloadByEraRequest {
+    const message = createBaseQueryGetAllManagerRPWorkloadByEraRequest();
+    message.era = object.era ?? 0;
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageRequest.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllManagerRPWorkloadByEraResponse(): QueryGetAllManagerRPWorkloadByEraResponse {
+  return { ManagerRPWorkloads: [], pagination: undefined };
+}
+
+export const QueryGetAllManagerRPWorkloadByEraResponse = {
+  encode(message: QueryGetAllManagerRPWorkloadByEraResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.ManagerRPWorkloads) {
+      ManagerRPWorkload.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllManagerRPWorkloadByEraResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllManagerRPWorkloadByEraResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.ManagerRPWorkloads.push(ManagerRPWorkload.decode(reader, reader.uint32()));
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllManagerRPWorkloadByEraResponse {
+    return {
+      ManagerRPWorkloads: Array.isArray(object?.ManagerRPWorkloads)
+        ? object.ManagerRPWorkloads.map((e: any) => ManagerRPWorkload.fromJSON(e))
+        : [],
+      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetAllManagerRPWorkloadByEraResponse): unknown {
+    const obj: any = {};
+    if (message.ManagerRPWorkloads?.length) {
+      obj.ManagerRPWorkloads = message.ManagerRPWorkloads.map((e) => ManagerRPWorkload.toJSON(e));
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllManagerRPWorkloadByEraResponse>, I>>(
+    base?: I,
+  ): QueryGetAllManagerRPWorkloadByEraResponse {
+    return QueryGetAllManagerRPWorkloadByEraResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllManagerRPWorkloadByEraResponse>, I>>(
+    object: I,
+  ): QueryGetAllManagerRPWorkloadByEraResponse {
+    const message = createBaseQueryGetAllManagerRPWorkloadByEraResponse();
+    message.ManagerRPWorkloads = object.ManagerRPWorkloads?.map((e) => ManagerRPWorkload.fromPartial(e)) || [];
     message.pagination = (object.pagination !== undefined && object.pagination !== null)
       ? PageResponse.fromPartial(object.pagination)
       : undefined;
@@ -1906,6 +2325,1364 @@ export const QueryGetSuperiorResponse = {
   },
 };
 
+function createBaseQueryGetEraLengthRequest(): QueryGetEraLengthRequest {
+  return {};
+}
+
+export const QueryGetEraLengthRequest = {
+  encode(_: QueryGetEraLengthRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEraLengthRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetEraLengthRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): QueryGetEraLengthRequest {
+    return {};
+  },
+
+  toJSON(_: QueryGetEraLengthRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetEraLengthRequest>, I>>(base?: I): QueryGetEraLengthRequest {
+    return QueryGetEraLengthRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetEraLengthRequest>, I>>(_: I): QueryGetEraLengthRequest {
+    const message = createBaseQueryGetEraLengthRequest();
+    return message;
+  },
+};
+
+function createBaseQueryGetEraLengthResponse(): QueryGetEraLengthResponse {
+  return { eraLength: 0 };
+}
+
+export const QueryGetEraLengthResponse = {
+  encode(message: QueryGetEraLengthResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.eraLength !== 0) {
+      writer.uint32(8).uint64(message.eraLength);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEraLengthResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetEraLengthResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.eraLength = longToNumber(reader.uint64() as Long);
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetEraLengthResponse {
+    return { eraLength: isSet(object.eraLength) ? Number(object.eraLength) : 0 };
+  },
+
+  toJSON(message: QueryGetEraLengthResponse): unknown {
+    const obj: any = {};
+    if (message.eraLength !== 0) {
+      obj.eraLength = Math.round(message.eraLength);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetEraLengthResponse>, I>>(base?: I): QueryGetEraLengthResponse {
+    return QueryGetEraLengthResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetEraLengthResponse>, I>>(object: I): QueryGetEraLengthResponse {
+    const message = createBaseQueryGetEraLengthResponse();
+    message.eraLength = object.eraLength ?? 0;
+    return message;
+  },
+};
+
+function createBaseQueryGetCurrentEraRequest(): QueryGetCurrentEraRequest {
+  return {};
+}
+
+export const QueryGetCurrentEraRequest = {
+  encode(_: QueryGetCurrentEraRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetCurrentEraRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetCurrentEraRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): QueryGetCurrentEraRequest {
+    return {};
+  },
+
+  toJSON(_: QueryGetCurrentEraRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetCurrentEraRequest>, I>>(base?: I): QueryGetCurrentEraRequest {
+    return QueryGetCurrentEraRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetCurrentEraRequest>, I>>(_: I): QueryGetCurrentEraRequest {
+    const message = createBaseQueryGetCurrentEraRequest();
+    return message;
+  },
+};
+
+function createBaseQueryGetCurrentEraResponse(): QueryGetCurrentEraResponse {
+  return { currentEra: 0 };
+}
+
+export const QueryGetCurrentEraResponse = {
+  encode(message: QueryGetCurrentEraResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.currentEra !== 0) {
+      writer.uint32(8).uint64(message.currentEra);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetCurrentEraResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetCurrentEraResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.currentEra = longToNumber(reader.uint64() as Long);
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetCurrentEraResponse {
+    return { currentEra: isSet(object.currentEra) ? Number(object.currentEra) : 0 };
+  },
+
+  toJSON(message: QueryGetCurrentEraResponse): unknown {
+    const obj: any = {};
+    if (message.currentEra !== 0) {
+      obj.currentEra = Math.round(message.currentEra);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetCurrentEraResponse>, I>>(base?: I): QueryGetCurrentEraResponse {
+    return QueryGetCurrentEraResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetCurrentEraResponse>, I>>(object: I): QueryGetCurrentEraResponse {
+    const message = createBaseQueryGetCurrentEraResponse();
+    message.currentEra = object.currentEra ?? 0;
+    return message;
+  },
+};
+
+function createBaseQueryGetReputationPointChangeDataRequest(): QueryGetReputationPointChangeDataRequest {
+  return { era: 0, nodeID: "" };
+}
+
+export const QueryGetReputationPointChangeDataRequest = {
+  encode(message: QueryGetReputationPointChangeDataRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.era !== 0) {
+      writer.uint32(8).uint64(message.era);
+    }
+    if (message.nodeID !== "") {
+      writer.uint32(18).string(message.nodeID);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetReputationPointChangeDataRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetReputationPointChangeDataRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.era = longToNumber(reader.uint64() as Long);
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.nodeID = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetReputationPointChangeDataRequest {
+    return {
+      era: isSet(object.era) ? Number(object.era) : 0,
+      nodeID: isSet(object.nodeID) ? String(object.nodeID) : "",
+    };
+  },
+
+  toJSON(message: QueryGetReputationPointChangeDataRequest): unknown {
+    const obj: any = {};
+    if (message.era !== 0) {
+      obj.era = Math.round(message.era);
+    }
+    if (message.nodeID !== "") {
+      obj.nodeID = message.nodeID;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetReputationPointChangeDataRequest>, I>>(
+    base?: I,
+  ): QueryGetReputationPointChangeDataRequest {
+    return QueryGetReputationPointChangeDataRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetReputationPointChangeDataRequest>, I>>(
+    object: I,
+  ): QueryGetReputationPointChangeDataRequest {
+    const message = createBaseQueryGetReputationPointChangeDataRequest();
+    message.era = object.era ?? 0;
+    message.nodeID = object.nodeID ?? "";
+    return message;
+  },
+};
+
+function createBaseQueryGetReputationPointChangeDataResponse(): QueryGetReputationPointChangeDataResponse {
+  return { ReputationPointChangeData: undefined };
+}
+
+export const QueryGetReputationPointChangeDataResponse = {
+  encode(message: QueryGetReputationPointChangeDataResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.ReputationPointChangeData !== undefined) {
+      ReputationPointChangeData.encode(message.ReputationPointChangeData, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetReputationPointChangeDataResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetReputationPointChangeDataResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.ReputationPointChangeData = ReputationPointChangeData.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetReputationPointChangeDataResponse {
+    return {
+      ReputationPointChangeData: isSet(object.ReputationPointChangeData)
+        ? ReputationPointChangeData.fromJSON(object.ReputationPointChangeData)
+        : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetReputationPointChangeDataResponse): unknown {
+    const obj: any = {};
+    if (message.ReputationPointChangeData !== undefined) {
+      obj.ReputationPointChangeData = ReputationPointChangeData.toJSON(message.ReputationPointChangeData);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetReputationPointChangeDataResponse>, I>>(
+    base?: I,
+  ): QueryGetReputationPointChangeDataResponse {
+    return QueryGetReputationPointChangeDataResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetReputationPointChangeDataResponse>, I>>(
+    object: I,
+  ): QueryGetReputationPointChangeDataResponse {
+    const message = createBaseQueryGetReputationPointChangeDataResponse();
+    message.ReputationPointChangeData =
+      (object.ReputationPointChangeData !== undefined && object.ReputationPointChangeData !== null)
+        ? ReputationPointChangeData.fromPartial(object.ReputationPointChangeData)
+        : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllReputationPointChangeDataByEraRequest(): QueryGetAllReputationPointChangeDataByEraRequest {
+  return { era: 0, pagination: undefined };
+}
+
+export const QueryGetAllReputationPointChangeDataByEraRequest = {
+  encode(
+    message: QueryGetAllReputationPointChangeDataByEraRequest,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
+    if (message.era !== 0) {
+      writer.uint32(8).uint64(message.era);
+    }
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllReputationPointChangeDataByEraRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllReputationPointChangeDataByEraRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.era = longToNumber(reader.uint64() as Long);
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllReputationPointChangeDataByEraRequest {
+    return {
+      era: isSet(object.era) ? Number(object.era) : 0,
+      pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetAllReputationPointChangeDataByEraRequest): unknown {
+    const obj: any = {};
+    if (message.era !== 0) {
+      obj.era = Math.round(message.era);
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageRequest.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllReputationPointChangeDataByEraRequest>, I>>(
+    base?: I,
+  ): QueryGetAllReputationPointChangeDataByEraRequest {
+    return QueryGetAllReputationPointChangeDataByEraRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllReputationPointChangeDataByEraRequest>, I>>(
+    object: I,
+  ): QueryGetAllReputationPointChangeDataByEraRequest {
+    const message = createBaseQueryGetAllReputationPointChangeDataByEraRequest();
+    message.era = object.era ?? 0;
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageRequest.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllReputationPointChangeDataByEraResponse(): QueryGetAllReputationPointChangeDataByEraResponse {
+  return { ReputationPointChangeDatas: [], pagination: undefined };
+}
+
+export const QueryGetAllReputationPointChangeDataByEraResponse = {
+  encode(
+    message: QueryGetAllReputationPointChangeDataByEraResponse,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
+    for (const v of message.ReputationPointChangeDatas) {
+      ReputationPointChangeData.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllReputationPointChangeDataByEraResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllReputationPointChangeDataByEraResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.ReputationPointChangeDatas.push(ReputationPointChangeData.decode(reader, reader.uint32()));
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllReputationPointChangeDataByEraResponse {
+    return {
+      ReputationPointChangeDatas: Array.isArray(object?.ReputationPointChangeDatas)
+        ? object.ReputationPointChangeDatas.map((e: any) => ReputationPointChangeData.fromJSON(e))
+        : [],
+      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetAllReputationPointChangeDataByEraResponse): unknown {
+    const obj: any = {};
+    if (message.ReputationPointChangeDatas?.length) {
+      obj.ReputationPointChangeDatas = message.ReputationPointChangeDatas.map((e) =>
+        ReputationPointChangeData.toJSON(e)
+      );
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllReputationPointChangeDataByEraResponse>, I>>(
+    base?: I,
+  ): QueryGetAllReputationPointChangeDataByEraResponse {
+    return QueryGetAllReputationPointChangeDataByEraResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllReputationPointChangeDataByEraResponse>, I>>(
+    object: I,
+  ): QueryGetAllReputationPointChangeDataByEraResponse {
+    const message = createBaseQueryGetAllReputationPointChangeDataByEraResponse();
+    message.ReputationPointChangeDatas =
+      object.ReputationPointChangeDatas?.map((e) => ReputationPointChangeData.fromPartial(e)) || [];
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageResponse.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetReputationDeltaPointRequest(): QueryGetReputationDeltaPointRequest {
+  return { era: 0, nodeID: "" };
+}
+
+export const QueryGetReputationDeltaPointRequest = {
+  encode(message: QueryGetReputationDeltaPointRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.era !== 0) {
+      writer.uint32(8).uint64(message.era);
+    }
+    if (message.nodeID !== "") {
+      writer.uint32(18).string(message.nodeID);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetReputationDeltaPointRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetReputationDeltaPointRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.era = longToNumber(reader.uint64() as Long);
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.nodeID = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetReputationDeltaPointRequest {
+    return {
+      era: isSet(object.era) ? Number(object.era) : 0,
+      nodeID: isSet(object.nodeID) ? String(object.nodeID) : "",
+    };
+  },
+
+  toJSON(message: QueryGetReputationDeltaPointRequest): unknown {
+    const obj: any = {};
+    if (message.era !== 0) {
+      obj.era = Math.round(message.era);
+    }
+    if (message.nodeID !== "") {
+      obj.nodeID = message.nodeID;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetReputationDeltaPointRequest>, I>>(
+    base?: I,
+  ): QueryGetReputationDeltaPointRequest {
+    return QueryGetReputationDeltaPointRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetReputationDeltaPointRequest>, I>>(
+    object: I,
+  ): QueryGetReputationDeltaPointRequest {
+    const message = createBaseQueryGetReputationDeltaPointRequest();
+    message.era = object.era ?? 0;
+    message.nodeID = object.nodeID ?? "";
+    return message;
+  },
+};
+
+function createBaseQueryGetReputationDeltaPointResponse(): QueryGetReputationDeltaPointResponse {
+  return { ReputationDeltaPoint: undefined };
+}
+
+export const QueryGetReputationDeltaPointResponse = {
+  encode(message: QueryGetReputationDeltaPointResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.ReputationDeltaPoint !== undefined) {
+      ReputationDeltaPoint.encode(message.ReputationDeltaPoint, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetReputationDeltaPointResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetReputationDeltaPointResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.ReputationDeltaPoint = ReputationDeltaPoint.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetReputationDeltaPointResponse {
+    return {
+      ReputationDeltaPoint: isSet(object.ReputationDeltaPoint)
+        ? ReputationDeltaPoint.fromJSON(object.ReputationDeltaPoint)
+        : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetReputationDeltaPointResponse): unknown {
+    const obj: any = {};
+    if (message.ReputationDeltaPoint !== undefined) {
+      obj.ReputationDeltaPoint = ReputationDeltaPoint.toJSON(message.ReputationDeltaPoint);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetReputationDeltaPointResponse>, I>>(
+    base?: I,
+  ): QueryGetReputationDeltaPointResponse {
+    return QueryGetReputationDeltaPointResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetReputationDeltaPointResponse>, I>>(
+    object: I,
+  ): QueryGetReputationDeltaPointResponse {
+    const message = createBaseQueryGetReputationDeltaPointResponse();
+    message.ReputationDeltaPoint = (object.ReputationDeltaPoint !== undefined && object.ReputationDeltaPoint !== null)
+      ? ReputationDeltaPoint.fromPartial(object.ReputationDeltaPoint)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllReputationDeltaPointByEraRequest(): QueryGetAllReputationDeltaPointByEraRequest {
+  return { era: 0, pagination: undefined };
+}
+
+export const QueryGetAllReputationDeltaPointByEraRequest = {
+  encode(message: QueryGetAllReputationDeltaPointByEraRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.era !== 0) {
+      writer.uint32(8).uint64(message.era);
+    }
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllReputationDeltaPointByEraRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllReputationDeltaPointByEraRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.era = longToNumber(reader.uint64() as Long);
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllReputationDeltaPointByEraRequest {
+    return {
+      era: isSet(object.era) ? Number(object.era) : 0,
+      pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetAllReputationDeltaPointByEraRequest): unknown {
+    const obj: any = {};
+    if (message.era !== 0) {
+      obj.era = Math.round(message.era);
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageRequest.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllReputationDeltaPointByEraRequest>, I>>(
+    base?: I,
+  ): QueryGetAllReputationDeltaPointByEraRequest {
+    return QueryGetAllReputationDeltaPointByEraRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllReputationDeltaPointByEraRequest>, I>>(
+    object: I,
+  ): QueryGetAllReputationDeltaPointByEraRequest {
+    const message = createBaseQueryGetAllReputationDeltaPointByEraRequest();
+    message.era = object.era ?? 0;
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageRequest.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllReputationDeltaPointByEraResponse(): QueryGetAllReputationDeltaPointByEraResponse {
+  return { ReputationDeltaPoints: [], pagination: undefined };
+}
+
+export const QueryGetAllReputationDeltaPointByEraResponse = {
+  encode(message: QueryGetAllReputationDeltaPointByEraResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.ReputationDeltaPoints) {
+      ReputationDeltaPoint.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllReputationDeltaPointByEraResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllReputationDeltaPointByEraResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.ReputationDeltaPoints.push(ReputationDeltaPoint.decode(reader, reader.uint32()));
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllReputationDeltaPointByEraResponse {
+    return {
+      ReputationDeltaPoints: Array.isArray(object?.ReputationDeltaPoints)
+        ? object.ReputationDeltaPoints.map((e: any) => ReputationDeltaPoint.fromJSON(e))
+        : [],
+      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetAllReputationDeltaPointByEraResponse): unknown {
+    const obj: any = {};
+    if (message.ReputationDeltaPoints?.length) {
+      obj.ReputationDeltaPoints = message.ReputationDeltaPoints.map((e) => ReputationDeltaPoint.toJSON(e));
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllReputationDeltaPointByEraResponse>, I>>(
+    base?: I,
+  ): QueryGetAllReputationDeltaPointByEraResponse {
+    return QueryGetAllReputationDeltaPointByEraResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllReputationDeltaPointByEraResponse>, I>>(
+    object: I,
+  ): QueryGetAllReputationDeltaPointByEraResponse {
+    const message = createBaseQueryGetAllReputationDeltaPointByEraResponse();
+    message.ReputationDeltaPoints = object.ReputationDeltaPoints?.map((e) => ReputationDeltaPoint.fromPartial(e)) || [];
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageResponse.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetReputationPointRequest(): QueryGetReputationPointRequest {
+  return { nodeID: "" };
+}
+
+export const QueryGetReputationPointRequest = {
+  encode(message: QueryGetReputationPointRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.nodeID !== "") {
+      writer.uint32(10).string(message.nodeID);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetReputationPointRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetReputationPointRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.nodeID = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetReputationPointRequest {
+    return { nodeID: isSet(object.nodeID) ? String(object.nodeID) : "" };
+  },
+
+  toJSON(message: QueryGetReputationPointRequest): unknown {
+    const obj: any = {};
+    if (message.nodeID !== "") {
+      obj.nodeID = message.nodeID;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetReputationPointRequest>, I>>(base?: I): QueryGetReputationPointRequest {
+    return QueryGetReputationPointRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetReputationPointRequest>, I>>(
+    object: I,
+  ): QueryGetReputationPointRequest {
+    const message = createBaseQueryGetReputationPointRequest();
+    message.nodeID = object.nodeID ?? "";
+    return message;
+  },
+};
+
+function createBaseQueryGetReputationPointResponse(): QueryGetReputationPointResponse {
+  return { ReputationPoint: undefined };
+}
+
+export const QueryGetReputationPointResponse = {
+  encode(message: QueryGetReputationPointResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.ReputationPoint !== undefined) {
+      ReputationPoint.encode(message.ReputationPoint, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetReputationPointResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetReputationPointResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.ReputationPoint = ReputationPoint.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetReputationPointResponse {
+    return {
+      ReputationPoint: isSet(object.ReputationPoint) ? ReputationPoint.fromJSON(object.ReputationPoint) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetReputationPointResponse): unknown {
+    const obj: any = {};
+    if (message.ReputationPoint !== undefined) {
+      obj.ReputationPoint = ReputationPoint.toJSON(message.ReputationPoint);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetReputationPointResponse>, I>>(base?: I): QueryGetReputationPointResponse {
+    return QueryGetReputationPointResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetReputationPointResponse>, I>>(
+    object: I,
+  ): QueryGetReputationPointResponse {
+    const message = createBaseQueryGetReputationPointResponse();
+    message.ReputationPoint = (object.ReputationPoint !== undefined && object.ReputationPoint !== null)
+      ? ReputationPoint.fromPartial(object.ReputationPoint)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllReputationPointRequest(): QueryGetAllReputationPointRequest {
+  return { pagination: undefined };
+}
+
+export const QueryGetAllReputationPointRequest = {
+  encode(message: QueryGetAllReputationPointRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllReputationPointRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllReputationPointRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllReputationPointRequest {
+    return { pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined };
+  },
+
+  toJSON(message: QueryGetAllReputationPointRequest): unknown {
+    const obj: any = {};
+    if (message.pagination !== undefined) {
+      obj.pagination = PageRequest.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllReputationPointRequest>, I>>(
+    base?: I,
+  ): QueryGetAllReputationPointRequest {
+    return QueryGetAllReputationPointRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllReputationPointRequest>, I>>(
+    object: I,
+  ): QueryGetAllReputationPointRequest {
+    const message = createBaseQueryGetAllReputationPointRequest();
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageRequest.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllReputationPointResponse(): QueryGetAllReputationPointResponse {
+  return { ReputationPoints: [], pagination: undefined };
+}
+
+export const QueryGetAllReputationPointResponse = {
+  encode(message: QueryGetAllReputationPointResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.ReputationPoints) {
+      ReputationPoint.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllReputationPointResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllReputationPointResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.ReputationPoints.push(ReputationPoint.decode(reader, reader.uint32()));
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllReputationPointResponse {
+    return {
+      ReputationPoints: Array.isArray(object?.ReputationPoints)
+        ? object.ReputationPoints.map((e: any) => ReputationPoint.fromJSON(e))
+        : [],
+      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetAllReputationPointResponse): unknown {
+    const obj: any = {};
+    if (message.ReputationPoints?.length) {
+      obj.ReputationPoints = message.ReputationPoints.map((e) => ReputationPoint.toJSON(e));
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllReputationPointResponse>, I>>(
+    base?: I,
+  ): QueryGetAllReputationPointResponse {
+    return QueryGetAllReputationPointResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllReputationPointResponse>, I>>(
+    object: I,
+  ): QueryGetAllReputationPointResponse {
+    const message = createBaseQueryGetAllReputationPointResponse();
+    message.ReputationPoints = object.ReputationPoints?.map((e) => ReputationPoint.fromPartial(e)) || [];
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageResponse.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetEraProcessDataRequest(): QueryGetEraProcessDataRequest {
+  return { era: 0 };
+}
+
+export const QueryGetEraProcessDataRequest = {
+  encode(message: QueryGetEraProcessDataRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.era !== 0) {
+      writer.uint32(8).uint64(message.era);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEraProcessDataRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetEraProcessDataRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.era = longToNumber(reader.uint64() as Long);
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetEraProcessDataRequest {
+    return { era: isSet(object.era) ? Number(object.era) : 0 };
+  },
+
+  toJSON(message: QueryGetEraProcessDataRequest): unknown {
+    const obj: any = {};
+    if (message.era !== 0) {
+      obj.era = Math.round(message.era);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetEraProcessDataRequest>, I>>(base?: I): QueryGetEraProcessDataRequest {
+    return QueryGetEraProcessDataRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetEraProcessDataRequest>, I>>(
+    object: I,
+  ): QueryGetEraProcessDataRequest {
+    const message = createBaseQueryGetEraProcessDataRequest();
+    message.era = object.era ?? 0;
+    return message;
+  },
+};
+
+function createBaseQueryGetEraProcessDataResponse(): QueryGetEraProcessDataResponse {
+  return { EraProcessData: undefined };
+}
+
+export const QueryGetEraProcessDataResponse = {
+  encode(message: QueryGetEraProcessDataResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.EraProcessData !== undefined) {
+      EraProcessData.encode(message.EraProcessData, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEraProcessDataResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetEraProcessDataResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.EraProcessData = EraProcessData.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetEraProcessDataResponse {
+    return {
+      EraProcessData: isSet(object.EraProcessData) ? EraProcessData.fromJSON(object.EraProcessData) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetEraProcessDataResponse): unknown {
+    const obj: any = {};
+    if (message.EraProcessData !== undefined) {
+      obj.EraProcessData = EraProcessData.toJSON(message.EraProcessData);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetEraProcessDataResponse>, I>>(base?: I): QueryGetEraProcessDataResponse {
+    return QueryGetEraProcessDataResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetEraProcessDataResponse>, I>>(
+    object: I,
+  ): QueryGetEraProcessDataResponse {
+    const message = createBaseQueryGetEraProcessDataResponse();
+    message.EraProcessData = (object.EraProcessData !== undefined && object.EraProcessData !== null)
+      ? EraProcessData.fromPartial(object.EraProcessData)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllEraProcessDataRequest(): QueryGetAllEraProcessDataRequest {
+  return { pagination: undefined };
+}
+
+export const QueryGetAllEraProcessDataRequest = {
+  encode(message: QueryGetAllEraProcessDataRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllEraProcessDataRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllEraProcessDataRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllEraProcessDataRequest {
+    return { pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined };
+  },
+
+  toJSON(message: QueryGetAllEraProcessDataRequest): unknown {
+    const obj: any = {};
+    if (message.pagination !== undefined) {
+      obj.pagination = PageRequest.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllEraProcessDataRequest>, I>>(
+    base?: I,
+  ): QueryGetAllEraProcessDataRequest {
+    return QueryGetAllEraProcessDataRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllEraProcessDataRequest>, I>>(
+    object: I,
+  ): QueryGetAllEraProcessDataRequest {
+    const message = createBaseQueryGetAllEraProcessDataRequest();
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageRequest.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllEraProcessDataResponse(): QueryGetAllEraProcessDataResponse {
+  return { EraProcessDatas: [], pagination: undefined };
+}
+
+export const QueryGetAllEraProcessDataResponse = {
+  encode(message: QueryGetAllEraProcessDataResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.EraProcessDatas) {
+      EraProcessData.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllEraProcessDataResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllEraProcessDataResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.EraProcessDatas.push(EraProcessData.decode(reader, reader.uint32()));
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllEraProcessDataResponse {
+    return {
+      EraProcessDatas: Array.isArray(object?.EraProcessDatas)
+        ? object.EraProcessDatas.map((e: any) => EraProcessData.fromJSON(e))
+        : [],
+      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetAllEraProcessDataResponse): unknown {
+    const obj: any = {};
+    if (message.EraProcessDatas?.length) {
+      obj.EraProcessDatas = message.EraProcessDatas.map((e) => EraProcessData.toJSON(e));
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllEraProcessDataResponse>, I>>(
+    base?: I,
+  ): QueryGetAllEraProcessDataResponse {
+    return QueryGetAllEraProcessDataResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllEraProcessDataResponse>, I>>(
+    object: I,
+  ): QueryGetAllEraProcessDataResponse {
+    const message = createBaseQueryGetAllEraProcessDataResponse();
+    message.EraProcessDatas = object.EraProcessDatas?.map((e) => EraProcessData.fromPartial(e)) || [];
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageResponse.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Parameters queries the parameters of the module. */
@@ -1919,10 +3696,14 @@ export interface Query {
     request: QueryGetAllNodeWorkloadByEpochRequest,
   ): Promise<QueryGetAllNodeWorkloadByEpochResponse>;
   /** Queries a list of Manager Workload items. */
-  ManagerWorkload(request: QueryGetManagerWorkloadRequest): Promise<QueryGetManagerWorkloadResponse>;
-  AllManagerWorkloadByEpoch(
-    request: QueryGetAllManagerWorkloadByEpochRequest,
-  ): Promise<QueryGetAllManagerWorkloadByEpochResponse>;
+  ManagerWRWorkload(request: QueryGetManagerWRWorkloadRequest): Promise<QueryGetManagerWRWorkloadResponse>;
+  AllManagerWRWorkloadByEpoch(
+    request: QueryGetAllManagerWRWorkloadByEpochRequest,
+  ): Promise<QueryGetAllManagerWRWorkloadByEpochResponse>;
+  ManagerRPWorkload(request: QueryGetManagerRPWorkloadRequest): Promise<QueryGetManagerRPWorkloadResponse>;
+  AllManagerRPWorkloadByEra(
+    request: QueryGetAllManagerRPWorkloadByEraRequest,
+  ): Promise<QueryGetAllManagerRPWorkloadByEraResponse>;
   /** Queries a list of Workreport items. */
   Workreport(request: QueryGetWorkreportRequest): Promise<QueryGetWorkreportResponse>;
   AllWorkreportByEpoch(request: QueryGetAllWorkreportByEpochRequest): Promise<QueryGetAllWorkreportByEpochResponse>;
@@ -1935,6 +3716,26 @@ export interface Query {
   AllEpochProcessData(request: QueryGetAllEpochProcessDataRequest): Promise<QueryGetAllEpochProcessDataResponse>;
   /** Queries a Superior */
   Superior(request: QueryGetSuperiorRequest): Promise<QueryGetSuperiorResponse>;
+  /** Queries era */
+  EraLength(request: QueryGetEraLengthRequest): Promise<QueryGetEraLengthResponse>;
+  CurrentEra(request: QueryGetCurrentEraRequest): Promise<QueryGetCurrentEraResponse>;
+  /** Queries a list of ReputationPointChangeData items. */
+  ReputationPointChangeData(
+    request: QueryGetReputationPointChangeDataRequest,
+  ): Promise<QueryGetReputationPointChangeDataResponse>;
+  AllReputationPointChangeDataByEra(
+    request: QueryGetAllReputationPointChangeDataByEraRequest,
+  ): Promise<QueryGetAllReputationPointChangeDataByEraResponse>;
+  /** Queries a list of ReputationPoint items. */
+  ReputationDeltaPoint(request: QueryGetReputationDeltaPointRequest): Promise<QueryGetReputationDeltaPointResponse>;
+  AllReputationDeltaPointByEra(
+    request: QueryGetAllReputationDeltaPointByEraRequest,
+  ): Promise<QueryGetAllReputationDeltaPointByEraResponse>;
+  ReputationPoint(request: QueryGetReputationPointRequest): Promise<QueryGetReputationPointResponse>;
+  AllReputationPoint(request: QueryGetAllReputationPointRequest): Promise<QueryGetAllReputationPointResponse>;
+  /** Queries a list of EpochProcessData items. */
+  EraProcessData(request: QueryGetEraProcessDataRequest): Promise<QueryGetEraProcessDataResponse>;
+  AllEraProcessData(request: QueryGetAllEraProcessDataRequest): Promise<QueryGetAllEraProcessDataResponse>;
 }
 
 export const QueryServiceName = "enreach.workload.Query";
@@ -1949,8 +3750,10 @@ export class QueryClientImpl implements Query {
     this.CurrentEpoch = this.CurrentEpoch.bind(this);
     this.NodeWorkload = this.NodeWorkload.bind(this);
     this.AllNodeWorkloadByEpoch = this.AllNodeWorkloadByEpoch.bind(this);
-    this.ManagerWorkload = this.ManagerWorkload.bind(this);
-    this.AllManagerWorkloadByEpoch = this.AllManagerWorkloadByEpoch.bind(this);
+    this.ManagerWRWorkload = this.ManagerWRWorkload.bind(this);
+    this.AllManagerWRWorkloadByEpoch = this.AllManagerWRWorkloadByEpoch.bind(this);
+    this.ManagerRPWorkload = this.ManagerRPWorkload.bind(this);
+    this.AllManagerRPWorkloadByEra = this.AllManagerRPWorkloadByEra.bind(this);
     this.Workreport = this.Workreport.bind(this);
     this.AllWorkreportByEpoch = this.AllWorkreportByEpoch.bind(this);
     this.WorkreportProcessBatchSize = this.WorkreportProcessBatchSize.bind(this);
@@ -1958,6 +3761,16 @@ export class QueryClientImpl implements Query {
     this.EpochProcessData = this.EpochProcessData.bind(this);
     this.AllEpochProcessData = this.AllEpochProcessData.bind(this);
     this.Superior = this.Superior.bind(this);
+    this.EraLength = this.EraLength.bind(this);
+    this.CurrentEra = this.CurrentEra.bind(this);
+    this.ReputationPointChangeData = this.ReputationPointChangeData.bind(this);
+    this.AllReputationPointChangeDataByEra = this.AllReputationPointChangeDataByEra.bind(this);
+    this.ReputationDeltaPoint = this.ReputationDeltaPoint.bind(this);
+    this.AllReputationDeltaPointByEra = this.AllReputationDeltaPointByEra.bind(this);
+    this.ReputationPoint = this.ReputationPoint.bind(this);
+    this.AllReputationPoint = this.AllReputationPoint.bind(this);
+    this.EraProcessData = this.EraProcessData.bind(this);
+    this.AllEraProcessData = this.AllEraProcessData.bind(this);
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
@@ -1991,18 +3804,32 @@ export class QueryClientImpl implements Query {
     return promise.then((data) => QueryGetAllNodeWorkloadByEpochResponse.decode(_m0.Reader.create(data)));
   }
 
-  ManagerWorkload(request: QueryGetManagerWorkloadRequest): Promise<QueryGetManagerWorkloadResponse> {
-    const data = QueryGetManagerWorkloadRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ManagerWorkload", data);
-    return promise.then((data) => QueryGetManagerWorkloadResponse.decode(_m0.Reader.create(data)));
+  ManagerWRWorkload(request: QueryGetManagerWRWorkloadRequest): Promise<QueryGetManagerWRWorkloadResponse> {
+    const data = QueryGetManagerWRWorkloadRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "ManagerWRWorkload", data);
+    return promise.then((data) => QueryGetManagerWRWorkloadResponse.decode(_m0.Reader.create(data)));
   }
 
-  AllManagerWorkloadByEpoch(
-    request: QueryGetAllManagerWorkloadByEpochRequest,
-  ): Promise<QueryGetAllManagerWorkloadByEpochResponse> {
-    const data = QueryGetAllManagerWorkloadByEpochRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "AllManagerWorkloadByEpoch", data);
-    return promise.then((data) => QueryGetAllManagerWorkloadByEpochResponse.decode(_m0.Reader.create(data)));
+  AllManagerWRWorkloadByEpoch(
+    request: QueryGetAllManagerWRWorkloadByEpochRequest,
+  ): Promise<QueryGetAllManagerWRWorkloadByEpochResponse> {
+    const data = QueryGetAllManagerWRWorkloadByEpochRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "AllManagerWRWorkloadByEpoch", data);
+    return promise.then((data) => QueryGetAllManagerWRWorkloadByEpochResponse.decode(_m0.Reader.create(data)));
+  }
+
+  ManagerRPWorkload(request: QueryGetManagerRPWorkloadRequest): Promise<QueryGetManagerRPWorkloadResponse> {
+    const data = QueryGetManagerRPWorkloadRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "ManagerRPWorkload", data);
+    return promise.then((data) => QueryGetManagerRPWorkloadResponse.decode(_m0.Reader.create(data)));
+  }
+
+  AllManagerRPWorkloadByEra(
+    request: QueryGetAllManagerRPWorkloadByEraRequest,
+  ): Promise<QueryGetAllManagerRPWorkloadByEraResponse> {
+    const data = QueryGetAllManagerRPWorkloadByEraRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "AllManagerRPWorkloadByEra", data);
+    return promise.then((data) => QueryGetAllManagerRPWorkloadByEraResponse.decode(_m0.Reader.create(data)));
   }
 
   Workreport(request: QueryGetWorkreportRequest): Promise<QueryGetWorkreportResponse> {
@@ -2047,6 +3874,72 @@ export class QueryClientImpl implements Query {
     const data = QueryGetSuperiorRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "Superior", data);
     return promise.then((data) => QueryGetSuperiorResponse.decode(_m0.Reader.create(data)));
+  }
+
+  EraLength(request: QueryGetEraLengthRequest): Promise<QueryGetEraLengthResponse> {
+    const data = QueryGetEraLengthRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "EraLength", data);
+    return promise.then((data) => QueryGetEraLengthResponse.decode(_m0.Reader.create(data)));
+  }
+
+  CurrentEra(request: QueryGetCurrentEraRequest): Promise<QueryGetCurrentEraResponse> {
+    const data = QueryGetCurrentEraRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "CurrentEra", data);
+    return promise.then((data) => QueryGetCurrentEraResponse.decode(_m0.Reader.create(data)));
+  }
+
+  ReputationPointChangeData(
+    request: QueryGetReputationPointChangeDataRequest,
+  ): Promise<QueryGetReputationPointChangeDataResponse> {
+    const data = QueryGetReputationPointChangeDataRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "ReputationPointChangeData", data);
+    return promise.then((data) => QueryGetReputationPointChangeDataResponse.decode(_m0.Reader.create(data)));
+  }
+
+  AllReputationPointChangeDataByEra(
+    request: QueryGetAllReputationPointChangeDataByEraRequest,
+  ): Promise<QueryGetAllReputationPointChangeDataByEraResponse> {
+    const data = QueryGetAllReputationPointChangeDataByEraRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "AllReputationPointChangeDataByEra", data);
+    return promise.then((data) => QueryGetAllReputationPointChangeDataByEraResponse.decode(_m0.Reader.create(data)));
+  }
+
+  ReputationDeltaPoint(request: QueryGetReputationDeltaPointRequest): Promise<QueryGetReputationDeltaPointResponse> {
+    const data = QueryGetReputationDeltaPointRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "ReputationDeltaPoint", data);
+    return promise.then((data) => QueryGetReputationDeltaPointResponse.decode(_m0.Reader.create(data)));
+  }
+
+  AllReputationDeltaPointByEra(
+    request: QueryGetAllReputationDeltaPointByEraRequest,
+  ): Promise<QueryGetAllReputationDeltaPointByEraResponse> {
+    const data = QueryGetAllReputationDeltaPointByEraRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "AllReputationDeltaPointByEra", data);
+    return promise.then((data) => QueryGetAllReputationDeltaPointByEraResponse.decode(_m0.Reader.create(data)));
+  }
+
+  ReputationPoint(request: QueryGetReputationPointRequest): Promise<QueryGetReputationPointResponse> {
+    const data = QueryGetReputationPointRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "ReputationPoint", data);
+    return promise.then((data) => QueryGetReputationPointResponse.decode(_m0.Reader.create(data)));
+  }
+
+  AllReputationPoint(request: QueryGetAllReputationPointRequest): Promise<QueryGetAllReputationPointResponse> {
+    const data = QueryGetAllReputationPointRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "AllReputationPoint", data);
+    return promise.then((data) => QueryGetAllReputationPointResponse.decode(_m0.Reader.create(data)));
+  }
+
+  EraProcessData(request: QueryGetEraProcessDataRequest): Promise<QueryGetEraProcessDataResponse> {
+    const data = QueryGetEraProcessDataRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "EraProcessData", data);
+    return promise.then((data) => QueryGetEraProcessDataResponse.decode(_m0.Reader.create(data)));
+  }
+
+  AllEraProcessData(request: QueryGetAllEraProcessDataRequest): Promise<QueryGetAllEraProcessDataResponse> {
+    const data = QueryGetAllEraProcessDataRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "AllEraProcessData", data);
+    return promise.then((data) => QueryGetAllEraProcessDataResponse.decode(_m0.Reader.create(data)));
   }
 }
 

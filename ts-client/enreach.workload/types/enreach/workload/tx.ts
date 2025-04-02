@@ -2,6 +2,7 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Params } from "./params";
+import { ReputationPointChangeRawData } from "./reputationpoint";
 import { NodeScore } from "./workreport";
 
 export const protobufPackage = "enreach.workload";
@@ -60,6 +61,15 @@ export interface MsgUpdateSuperior {
 }
 
 export interface MsgUpdateSuperiorResponse {
+}
+
+export interface MsgSubmitReputationPointChangeData {
+  managerAccount: string;
+  era: number;
+  nodePoints: ReputationPointChangeRawData[];
+}
+
+export interface MsgSubmitReputationPointChangeDataResponse {
 }
 
 function createBaseMsgUpdateParams(): MsgUpdateParams {
@@ -795,6 +805,148 @@ export const MsgUpdateSuperiorResponse = {
   },
 };
 
+function createBaseMsgSubmitReputationPointChangeData(): MsgSubmitReputationPointChangeData {
+  return { managerAccount: "", era: 0, nodePoints: [] };
+}
+
+export const MsgSubmitReputationPointChangeData = {
+  encode(message: MsgSubmitReputationPointChangeData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.managerAccount !== "") {
+      writer.uint32(10).string(message.managerAccount);
+    }
+    if (message.era !== 0) {
+      writer.uint32(16).uint64(message.era);
+    }
+    for (const v of message.nodePoints) {
+      ReputationPointChangeRawData.encode(v!, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitReputationPointChangeData {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgSubmitReputationPointChangeData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.managerAccount = reader.string();
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.era = longToNumber(reader.uint64() as Long);
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.nodePoints.push(ReputationPointChangeRawData.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgSubmitReputationPointChangeData {
+    return {
+      managerAccount: isSet(object.managerAccount) ? String(object.managerAccount) : "",
+      era: isSet(object.era) ? Number(object.era) : 0,
+      nodePoints: Array.isArray(object?.nodePoints)
+        ? object.nodePoints.map((e: any) => ReputationPointChangeRawData.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: MsgSubmitReputationPointChangeData): unknown {
+    const obj: any = {};
+    if (message.managerAccount !== "") {
+      obj.managerAccount = message.managerAccount;
+    }
+    if (message.era !== 0) {
+      obj.era = Math.round(message.era);
+    }
+    if (message.nodePoints?.length) {
+      obj.nodePoints = message.nodePoints.map((e) => ReputationPointChangeRawData.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgSubmitReputationPointChangeData>, I>>(
+    base?: I,
+  ): MsgSubmitReputationPointChangeData {
+    return MsgSubmitReputationPointChangeData.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgSubmitReputationPointChangeData>, I>>(
+    object: I,
+  ): MsgSubmitReputationPointChangeData {
+    const message = createBaseMsgSubmitReputationPointChangeData();
+    message.managerAccount = object.managerAccount ?? "";
+    message.era = object.era ?? 0;
+    message.nodePoints = object.nodePoints?.map((e) => ReputationPointChangeRawData.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseMsgSubmitReputationPointChangeDataResponse(): MsgSubmitReputationPointChangeDataResponse {
+  return {};
+}
+
+export const MsgSubmitReputationPointChangeDataResponse = {
+  encode(_: MsgSubmitReputationPointChangeDataResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitReputationPointChangeDataResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgSubmitReputationPointChangeDataResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgSubmitReputationPointChangeDataResponse {
+    return {};
+  },
+
+  toJSON(_: MsgSubmitReputationPointChangeDataResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgSubmitReputationPointChangeDataResponse>, I>>(
+    base?: I,
+  ): MsgSubmitReputationPointChangeDataResponse {
+    return MsgSubmitReputationPointChangeDataResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgSubmitReputationPointChangeDataResponse>, I>>(
+    _: I,
+  ): MsgSubmitReputationPointChangeDataResponse {
+    const message = createBaseMsgSubmitReputationPointChangeDataResponse();
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   /**
@@ -809,6 +961,9 @@ export interface Msg {
   UpdateHistoryEpochDataDepth(request: MsgUpdateHistoryEpochDataDepth): Promise<MsgUpdateHistoryEpochDataDepthResponse>;
   CreateSuperior(request: MsgCreateSuperior): Promise<MsgCreateSuperiorResponse>;
   UpdateSuperior(request: MsgUpdateSuperior): Promise<MsgUpdateSuperiorResponse>;
+  SubmitReputationPointChangeData(
+    request: MsgSubmitReputationPointChangeData,
+  ): Promise<MsgSubmitReputationPointChangeDataResponse>;
 }
 
 export const MsgServiceName = "enreach.workload.Msg";
@@ -824,6 +979,7 @@ export class MsgClientImpl implements Msg {
     this.UpdateHistoryEpochDataDepth = this.UpdateHistoryEpochDataDepth.bind(this);
     this.CreateSuperior = this.CreateSuperior.bind(this);
     this.UpdateSuperior = this.UpdateSuperior.bind(this);
+    this.SubmitReputationPointChangeData = this.SubmitReputationPointChangeData.bind(this);
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
@@ -863,6 +1019,14 @@ export class MsgClientImpl implements Msg {
     const data = MsgUpdateSuperior.encode(request).finish();
     const promise = this.rpc.request(this.service, "UpdateSuperior", data);
     return promise.then((data) => MsgUpdateSuperiorResponse.decode(_m0.Reader.create(data)));
+  }
+
+  SubmitReputationPointChangeData(
+    request: MsgSubmitReputationPointChangeData,
+  ): Promise<MsgSubmitReputationPointChangeDataResponse> {
+    const data = MsgSubmitReputationPointChangeData.encode(request).finish();
+    const promise = this.rpc.request(this.service, "SubmitReputationPointChangeData", data);
+    return promise.then((data) => MsgSubmitReputationPointChangeDataResponse.decode(_m0.Reader.create(data)));
   }
 }
 

@@ -2,161 +2,161 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.msgTypes = void 0;
 const query_1 = require("./types/cosmos/group/v1/query");
-const tx_1 = require("./types/cosmos/group/v1/tx");
-const events_1 = require("./types/cosmos/group/v1/events");
 const query_2 = require("./types/cosmos/group/v1/query");
 const query_3 = require("./types/cosmos/group/v1/query");
-const events_2 = require("./types/cosmos/group/v1/events");
-const events_3 = require("./types/cosmos/group/v1/events");
+const tx_1 = require("./types/cosmos/group/v1/tx");
 const query_4 = require("./types/cosmos/group/v1/query");
-const types_1 = require("./types/cosmos/group/v1/types");
-const tx_2 = require("./types/cosmos/group/v1/tx");
-const types_2 = require("./types/cosmos/group/v1/types");
-const types_3 = require("./types/cosmos/group/v1/types");
-const events_4 = require("./types/cosmos/group/v1/events");
-const tx_3 = require("./types/cosmos/group/v1/tx");
-const tx_4 = require("./types/cosmos/group/v1/tx");
-const events_5 = require("./types/cosmos/group/v1/events");
-const events_6 = require("./types/cosmos/group/v1/events");
-const tx_5 = require("./types/cosmos/group/v1/tx");
-const tx_6 = require("./types/cosmos/group/v1/tx");
 const query_5 = require("./types/cosmos/group/v1/query");
-const tx_7 = require("./types/cosmos/group/v1/tx");
-const tx_8 = require("./types/cosmos/group/v1/tx");
-const tx_9 = require("./types/cosmos/group/v1/tx");
-const tx_10 = require("./types/cosmos/group/v1/tx");
 const query_6 = require("./types/cosmos/group/v1/query");
 const query_7 = require("./types/cosmos/group/v1/query");
+const events_1 = require("./types/cosmos/group/v1/events");
+const events_2 = require("./types/cosmos/group/v1/events");
+const types_1 = require("./types/cosmos/group/v1/types");
 const query_8 = require("./types/cosmos/group/v1/query");
-const genesis_1 = require("./types/cosmos/group/v1/genesis");
-const tx_11 = require("./types/cosmos/group/v1/tx");
-const tx_12 = require("./types/cosmos/group/v1/tx");
-const types_4 = require("./types/cosmos/group/v1/types");
-const types_5 = require("./types/cosmos/group/v1/types");
 const query_9 = require("./types/cosmos/group/v1/query");
+const tx_2 = require("./types/cosmos/group/v1/tx");
+const tx_3 = require("./types/cosmos/group/v1/tx");
+const tx_4 = require("./types/cosmos/group/v1/tx");
+const tx_5 = require("./types/cosmos/group/v1/tx");
+const tx_6 = require("./types/cosmos/group/v1/tx");
+const types_2 = require("./types/cosmos/group/v1/types");
 const query_10 = require("./types/cosmos/group/v1/query");
-const events_7 = require("./types/cosmos/group/v1/events");
 const query_11 = require("./types/cosmos/group/v1/query");
+const tx_7 = require("./types/cosmos/group/v1/tx");
+const tx_8 = require("./types/cosmos/group/v1/tx");
+const types_3 = require("./types/cosmos/group/v1/types");
+const events_3 = require("./types/cosmos/group/v1/events");
 const query_12 = require("./types/cosmos/group/v1/query");
-const tx_13 = require("./types/cosmos/group/v1/tx");
-const events_8 = require("./types/cosmos/group/v1/events");
-const events_9 = require("./types/cosmos/group/v1/events");
 const query_13 = require("./types/cosmos/group/v1/query");
 const query_14 = require("./types/cosmos/group/v1/query");
-const tx_14 = require("./types/cosmos/group/v1/tx");
-const types_6 = require("./types/cosmos/group/v1/types");
+const tx_9 = require("./types/cosmos/group/v1/tx");
+const tx_10 = require("./types/cosmos/group/v1/tx");
+const events_4 = require("./types/cosmos/group/v1/events");
+const events_5 = require("./types/cosmos/group/v1/events");
+const tx_11 = require("./types/cosmos/group/v1/tx");
+const genesis_1 = require("./types/cosmos/group/v1/genesis");
+const types_4 = require("./types/cosmos/group/v1/types");
 const query_15 = require("./types/cosmos/group/v1/query");
 const query_16 = require("./types/cosmos/group/v1/query");
-const tx_15 = require("./types/cosmos/group/v1/tx");
-const tx_16 = require("./types/cosmos/group/v1/tx");
 const query_17 = require("./types/cosmos/group/v1/query");
-const tx_17 = require("./types/cosmos/group/v1/tx");
+const tx_12 = require("./types/cosmos/group/v1/tx");
+const tx_13 = require("./types/cosmos/group/v1/tx");
+const types_5 = require("./types/cosmos/group/v1/types");
 const query_18 = require("./types/cosmos/group/v1/query");
 const query_19 = require("./types/cosmos/group/v1/query");
-const tx_18 = require("./types/cosmos/group/v1/tx");
-const events_10 = require("./types/cosmos/group/v1/events");
-const tx_19 = require("./types/cosmos/group/v1/tx");
-const types_7 = require("./types/cosmos/group/v1/types");
+const tx_14 = require("./types/cosmos/group/v1/tx");
 const query_20 = require("./types/cosmos/group/v1/query");
-const tx_20 = require("./types/cosmos/group/v1/tx");
-const tx_21 = require("./types/cosmos/group/v1/tx");
-const tx_22 = require("./types/cosmos/group/v1/tx");
-const types_8 = require("./types/cosmos/group/v1/types");
-const tx_23 = require("./types/cosmos/group/v1/tx");
-const tx_24 = require("./types/cosmos/group/v1/tx");
 const query_21 = require("./types/cosmos/group/v1/query");
-const tx_25 = require("./types/cosmos/group/v1/tx");
 const query_22 = require("./types/cosmos/group/v1/query");
-const tx_26 = require("./types/cosmos/group/v1/tx");
-const types_9 = require("./types/cosmos/group/v1/types");
+const events_6 = require("./types/cosmos/group/v1/events");
+const tx_15 = require("./types/cosmos/group/v1/tx");
+const types_6 = require("./types/cosmos/group/v1/types");
+const tx_16 = require("./types/cosmos/group/v1/tx");
+const tx_17 = require("./types/cosmos/group/v1/tx");
 const query_23 = require("./types/cosmos/group/v1/query");
 const query_24 = require("./types/cosmos/group/v1/query");
 const query_25 = require("./types/cosmos/group/v1/query");
+const tx_18 = require("./types/cosmos/group/v1/tx");
+const events_7 = require("./types/cosmos/group/v1/events");
+const tx_19 = require("./types/cosmos/group/v1/tx");
+const tx_20 = require("./types/cosmos/group/v1/tx");
+const tx_21 = require("./types/cosmos/group/v1/tx");
+const tx_22 = require("./types/cosmos/group/v1/tx");
+const tx_23 = require("./types/cosmos/group/v1/tx");
+const events_8 = require("./types/cosmos/group/v1/events");
+const types_7 = require("./types/cosmos/group/v1/types");
+const types_8 = require("./types/cosmos/group/v1/types");
 const query_26 = require("./types/cosmos/group/v1/query");
-const tx_27 = require("./types/cosmos/group/v1/tx");
+const tx_24 = require("./types/cosmos/group/v1/tx");
+const types_9 = require("./types/cosmos/group/v1/types");
+const events_9 = require("./types/cosmos/group/v1/events");
 const types_10 = require("./types/cosmos/group/v1/types");
+const events_10 = require("./types/cosmos/group/v1/events");
 const types_11 = require("./types/cosmos/group/v1/types");
 const query_27 = require("./types/cosmos/group/v1/query");
 const query_28 = require("./types/cosmos/group/v1/query");
+const tx_25 = require("./types/cosmos/group/v1/tx");
+const tx_26 = require("./types/cosmos/group/v1/tx");
+const tx_27 = require("./types/cosmos/group/v1/tx");
 const tx_28 = require("./types/cosmos/group/v1/tx");
 const msgTypes = [
-    ["/cosmos.group.v1.QueryVotesByProposalResponse", query_1.QueryVotesByProposalResponse],
-    ["/cosmos.group.v1.MsgWithdrawProposalResponse", tx_1.MsgWithdrawProposalResponse],
-    ["/cosmos.group.v1.EventSubmitProposal", events_1.EventSubmitProposal],
-    ["/cosmos.group.v1.QueryProposalResponse", query_2.QueryProposalResponse],
-    ["/cosmos.group.v1.QueryProposalsByGroupPolicyResponse", query_3.QueryProposalsByGroupPolicyResponse],
-    ["/cosmos.group.v1.EventWithdrawProposal", events_2.EventWithdrawProposal],
-    ["/cosmos.group.v1.EventLeaveGroup", events_3.EventLeaveGroup],
-    ["/cosmos.group.v1.QueryProposalsByGroupPolicyRequest", query_4.QueryProposalsByGroupPolicyRequest],
-    ["/cosmos.group.v1.MemberRequest", types_1.MemberRequest],
-    ["/cosmos.group.v1.MsgExec", tx_2.MsgExec],
+    ["/cosmos.group.v1.QueryGroupPoliciesByGroupResponse", query_1.QueryGroupPoliciesByGroupResponse],
+    ["/cosmos.group.v1.QueryGroupInfoResponse", query_2.QueryGroupInfoResponse],
+    ["/cosmos.group.v1.QueryVoteByProposalVoterResponse", query_3.QueryVoteByProposalVoterResponse],
+    ["/cosmos.group.v1.MsgSubmitProposal", tx_1.MsgSubmitProposal],
+    ["/cosmos.group.v1.QueryProposalsByGroupPolicyResponse", query_4.QueryProposalsByGroupPolicyResponse],
+    ["/cosmos.group.v1.QueryVotesByProposalRequest", query_5.QueryVotesByProposalRequest],
+    ["/cosmos.group.v1.QueryTallyResultRequest", query_6.QueryTallyResultRequest],
+    ["/cosmos.group.v1.QueryGroupsResponse", query_7.QueryGroupsResponse],
+    ["/cosmos.group.v1.EventCreateGroupPolicy", events_1.EventCreateGroupPolicy],
+    ["/cosmos.group.v1.EventLeaveGroup", events_2.EventLeaveGroup],
+    ["/cosmos.group.v1.Member", types_1.Member],
+    ["/cosmos.group.v1.QueryGroupInfoRequest", query_8.QueryGroupInfoRequest],
+    ["/cosmos.group.v1.QueryVotesByVoterResponse", query_9.QueryVotesByVoterResponse],
+    ["/cosmos.group.v1.MsgUpdateGroupMetadata", tx_2.MsgUpdateGroupMetadata],
+    ["/cosmos.group.v1.MsgUpdateGroupPolicyAdmin", tx_3.MsgUpdateGroupPolicyAdmin],
+    ["/cosmos.group.v1.MsgCreateGroupWithPolicy", tx_4.MsgCreateGroupWithPolicy],
+    ["/cosmos.group.v1.MsgUpdateGroupPolicyMetadataResponse", tx_5.MsgUpdateGroupPolicyMetadataResponse],
+    ["/cosmos.group.v1.MsgExecResponse", tx_6.MsgExecResponse],
     ["/cosmos.group.v1.TallyResult", types_2.TallyResult],
-    ["/cosmos.group.v1.Vote", types_3.Vote],
-    ["/cosmos.group.v1.EventProposalPruned", events_4.EventProposalPruned],
-    ["/cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicy", tx_3.MsgUpdateGroupPolicyDecisionPolicy],
-    ["/cosmos.group.v1.MsgUpdateGroupPolicyAdminResponse", tx_4.MsgUpdateGroupPolicyAdminResponse],
-    ["/cosmos.group.v1.EventCreateGroup", events_5.EventCreateGroup],
-    ["/cosmos.group.v1.EventUpdateGroupPolicy", events_6.EventUpdateGroupPolicy],
-    ["/cosmos.group.v1.MsgUpdateGroupMembers", tx_5.MsgUpdateGroupMembers],
-    ["/cosmos.group.v1.MsgUpdateGroupPolicyAdmin", tx_6.MsgUpdateGroupPolicyAdmin],
-    ["/cosmos.group.v1.QueryGroupsResponse", query_5.QueryGroupsResponse],
-    ["/cosmos.group.v1.MsgUpdateGroupMembersResponse", tx_7.MsgUpdateGroupMembersResponse],
-    ["/cosmos.group.v1.MsgUpdateGroupAdminResponse", tx_8.MsgUpdateGroupAdminResponse],
-    ["/cosmos.group.v1.MsgUpdateGroupMetadataResponse", tx_9.MsgUpdateGroupMetadataResponse],
-    ["/cosmos.group.v1.MsgUpdateGroupPolicyMetadataResponse", tx_10.MsgUpdateGroupPolicyMetadataResponse],
-    ["/cosmos.group.v1.QueryGroupPolicyInfoResponse", query_6.QueryGroupPolicyInfoResponse],
-    ["/cosmos.group.v1.QueryVoteByProposalVoterResponse", query_7.QueryVoteByProposalVoterResponse],
-    ["/cosmos.group.v1.QueryGroupPoliciesByAdminResponse", query_8.QueryGroupPoliciesByAdminResponse],
+    ["/cosmos.group.v1.QueryGroupPoliciesByAdminRequest", query_10.QueryGroupPoliciesByAdminRequest],
+    ["/cosmos.group.v1.QueryVoteByProposalVoterRequest", query_11.QueryVoteByProposalVoterRequest],
+    ["/cosmos.group.v1.MsgWithdrawProposal", tx_7.MsgWithdrawProposal],
+    ["/cosmos.group.v1.MsgExec", tx_8.MsgExec],
+    ["/cosmos.group.v1.MemberRequest", types_3.MemberRequest],
+    ["/cosmos.group.v1.EventUpdateGroupPolicy", events_3.EventUpdateGroupPolicy],
+    ["/cosmos.group.v1.QueryGroupMembersResponse", query_12.QueryGroupMembersResponse],
+    ["/cosmos.group.v1.QueryGroupsByAdminRequest", query_13.QueryGroupsByAdminRequest],
+    ["/cosmos.group.v1.QueryTallyResultResponse", query_14.QueryTallyResultResponse],
+    ["/cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicy", tx_9.MsgUpdateGroupPolicyDecisionPolicy],
+    ["/cosmos.group.v1.MsgVote", tx_10.MsgVote],
+    ["/cosmos.group.v1.EventUpdateGroup", events_4.EventUpdateGroup],
+    ["/cosmos.group.v1.EventWithdrawProposal", events_5.EventWithdrawProposal],
+    ["/cosmos.group.v1.MsgSubmitProposalResponse", tx_11.MsgSubmitProposalResponse],
     ["/cosmos.group.v1.GenesisState", genesis_1.GenesisState],
-    ["/cosmos.group.v1.MsgCreateGroupPolicyResponse", tx_11.MsgCreateGroupPolicyResponse],
-    ["/cosmos.group.v1.MsgLeaveGroupResponse", tx_12.MsgLeaveGroupResponse],
-    ["/cosmos.group.v1.PercentageDecisionPolicy", types_4.PercentageDecisionPolicy],
-    ["/cosmos.group.v1.GroupPolicyInfo", types_5.GroupPolicyInfo],
-    ["/cosmos.group.v1.QueryGroupInfoRequest", query_9.QueryGroupInfoRequest],
-    ["/cosmos.group.v1.QueryGroupPoliciesByGroupRequest", query_10.QueryGroupPoliciesByGroupRequest],
-    ["/cosmos.group.v1.EventExec", events_7.EventExec],
-    ["/cosmos.group.v1.QueryVotesByVoterRequest", query_11.QueryVotesByVoterRequest],
-    ["/cosmos.group.v1.QueryVotesByVoterResponse", query_12.QueryVotesByVoterResponse],
-    ["/cosmos.group.v1.MsgWithdrawProposal", tx_13.MsgWithdrawProposal],
-    ["/cosmos.group.v1.EventCreateGroupPolicy", events_8.EventCreateGroupPolicy],
-    ["/cosmos.group.v1.EventVote", events_9.EventVote],
-    ["/cosmos.group.v1.QueryGroupPolicyInfoRequest", query_13.QueryGroupPolicyInfoRequest],
-    ["/cosmos.group.v1.QueryGroupMembersRequest", query_14.QueryGroupMembersRequest],
-    ["/cosmos.group.v1.MsgCreateGroupResponse", tx_14.MsgCreateGroupResponse],
-    ["/cosmos.group.v1.GroupInfo", types_6.GroupInfo],
-    ["/cosmos.group.v1.QueryGroupPoliciesByGroupResponse", query_15.QueryGroupPoliciesByGroupResponse],
-    ["/cosmos.group.v1.QueryTallyResultResponse", query_16.QueryTallyResultResponse],
-    ["/cosmos.group.v1.MsgCreateGroup", tx_15.MsgCreateGroup],
-    ["/cosmos.group.v1.MsgCreateGroupWithPolicyResponse", tx_16.MsgCreateGroupWithPolicyResponse],
-    ["/cosmos.group.v1.QueryGroupMembersResponse", query_17.QueryGroupMembersResponse],
-    ["/cosmos.group.v1.MsgUpdateGroupMetadata", tx_17.MsgUpdateGroupMetadata],
-    ["/cosmos.group.v1.QueryGroupInfoResponse", query_18.QueryGroupInfoResponse],
-    ["/cosmos.group.v1.QueryGroupsByAdminResponse", query_19.QueryGroupsByAdminResponse],
-    ["/cosmos.group.v1.MsgUpdateGroupPolicyMetadata", tx_18.MsgUpdateGroupPolicyMetadata],
-    ["/cosmos.group.v1.EventUpdateGroup", events_10.EventUpdateGroup],
-    ["/cosmos.group.v1.MsgCreateGroupWithPolicy", tx_19.MsgCreateGroupWithPolicy],
-    ["/cosmos.group.v1.Proposal", types_7.Proposal],
-    ["/cosmos.group.v1.QueryGroupsByMemberRequest", query_20.QueryGroupsByMemberRequest],
-    ["/cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicyResponse", tx_20.MsgUpdateGroupPolicyDecisionPolicyResponse],
-    ["/cosmos.group.v1.MsgExecResponse", tx_21.MsgExecResponse],
-    ["/cosmos.group.v1.MsgLeaveGroup", tx_22.MsgLeaveGroup],
-    ["/cosmos.group.v1.ThresholdDecisionPolicy", types_8.ThresholdDecisionPolicy],
-    ["/cosmos.group.v1.MsgCreateGroupPolicy", tx_23.MsgCreateGroupPolicy],
-    ["/cosmos.group.v1.MsgSubmitProposal", tx_24.MsgSubmitProposal],
-    ["/cosmos.group.v1.QueryProposalRequest", query_21.QueryProposalRequest],
-    ["/cosmos.group.v1.MsgVoteResponse", tx_25.MsgVoteResponse],
+    ["/cosmos.group.v1.Proposal", types_4.Proposal],
+    ["/cosmos.group.v1.QueryGroupPolicyInfoRequest", query_15.QueryGroupPolicyInfoRequest],
+    ["/cosmos.group.v1.QueryGroupPolicyInfoResponse", query_16.QueryGroupPolicyInfoResponse],
+    ["/cosmos.group.v1.QueryProposalResponse", query_17.QueryProposalResponse],
+    ["/cosmos.group.v1.MsgCreateGroup", tx_12.MsgCreateGroup],
+    ["/cosmos.group.v1.MsgUpdateGroupAdmin", tx_13.MsgUpdateGroupAdmin],
+    ["/cosmos.group.v1.Vote", types_5.Vote],
+    ["/cosmos.group.v1.QueryGroupMembersRequest", query_18.QueryGroupMembersRequest],
+    ["/cosmos.group.v1.QueryGroupPoliciesByGroupRequest", query_19.QueryGroupPoliciesByGroupRequest],
+    ["/cosmos.group.v1.MsgUpdateGroupPolicyMetadata", tx_14.MsgUpdateGroupPolicyMetadata],
+    ["/cosmos.group.v1.QueryVotesByVoterRequest", query_20.QueryVotesByVoterRequest],
+    ["/cosmos.group.v1.QueryGroupsByMemberRequest", query_21.QueryGroupsByMemberRequest],
     ["/cosmos.group.v1.QueryGroupsRequest", query_22.QueryGroupsRequest],
-    ["/cosmos.group.v1.MsgSubmitProposalResponse", tx_26.MsgSubmitProposalResponse],
-    ["/cosmos.group.v1.GroupMember", types_9.GroupMember],
-    ["/cosmos.group.v1.QueryGroupPoliciesByAdminRequest", query_23.QueryGroupPoliciesByAdminRequest],
-    ["/cosmos.group.v1.QueryTallyResultRequest", query_24.QueryTallyResultRequest],
-    ["/cosmos.group.v1.QueryVotesByProposalRequest", query_25.QueryVotesByProposalRequest],
-    ["/cosmos.group.v1.QueryGroupsByMemberResponse", query_26.QueryGroupsByMemberResponse],
-    ["/cosmos.group.v1.MsgVote", tx_27.MsgVote],
-    ["/cosmos.group.v1.Member", types_10.Member],
-    ["/cosmos.group.v1.DecisionPolicyWindows", types_11.DecisionPolicyWindows],
-    ["/cosmos.group.v1.QueryGroupsByAdminRequest", query_27.QueryGroupsByAdminRequest],
-    ["/cosmos.group.v1.QueryVoteByProposalVoterRequest", query_28.QueryVoteByProposalVoterRequest],
-    ["/cosmos.group.v1.MsgUpdateGroupAdmin", tx_28.MsgUpdateGroupAdmin],
+    ["/cosmos.group.v1.EventProposalPruned", events_6.EventProposalPruned],
+    ["/cosmos.group.v1.MsgCreateGroupWithPolicyResponse", tx_15.MsgCreateGroupWithPolicyResponse],
+    ["/cosmos.group.v1.GroupPolicyInfo", types_6.GroupPolicyInfo],
+    ["/cosmos.group.v1.MsgUpdateGroupMembers", tx_16.MsgUpdateGroupMembers],
+    ["/cosmos.group.v1.MsgUpdateGroupPolicyAdminResponse", tx_17.MsgUpdateGroupPolicyAdminResponse],
+    ["/cosmos.group.v1.QueryProposalRequest", query_23.QueryProposalRequest],
+    ["/cosmos.group.v1.QueryProposalsByGroupPolicyRequest", query_24.QueryProposalsByGroupPolicyRequest],
+    ["/cosmos.group.v1.QueryVotesByProposalResponse", query_25.QueryVotesByProposalResponse],
+    ["/cosmos.group.v1.MsgCreateGroupPolicy", tx_18.MsgCreateGroupPolicy],
+    ["/cosmos.group.v1.EventCreateGroup", events_7.EventCreateGroup],
+    ["/cosmos.group.v1.MsgUpdateGroupMetadataResponse", tx_19.MsgUpdateGroupMetadataResponse],
+    ["/cosmos.group.v1.MsgWithdrawProposalResponse", tx_20.MsgWithdrawProposalResponse],
+    ["/cosmos.group.v1.MsgLeaveGroup", tx_21.MsgLeaveGroup],
+    ["/cosmos.group.v1.MsgCreateGroupResponse", tx_22.MsgCreateGroupResponse],
+    ["/cosmos.group.v1.MsgCreateGroupPolicyResponse", tx_23.MsgCreateGroupPolicyResponse],
+    ["/cosmos.group.v1.EventVote", events_8.EventVote],
+    ["/cosmos.group.v1.ThresholdDecisionPolicy", types_7.ThresholdDecisionPolicy],
+    ["/cosmos.group.v1.GroupMember", types_8.GroupMember],
+    ["/cosmos.group.v1.QueryGroupsByAdminResponse", query_26.QueryGroupsByAdminResponse],
+    ["/cosmos.group.v1.MsgVoteResponse", tx_24.MsgVoteResponse],
+    ["/cosmos.group.v1.DecisionPolicyWindows", types_9.DecisionPolicyWindows],
+    ["/cosmos.group.v1.EventExec", events_9.EventExec],
+    ["/cosmos.group.v1.GroupInfo", types_10.GroupInfo],
+    ["/cosmos.group.v1.EventSubmitProposal", events_10.EventSubmitProposal],
+    ["/cosmos.group.v1.PercentageDecisionPolicy", types_11.PercentageDecisionPolicy],
+    ["/cosmos.group.v1.QueryGroupPoliciesByAdminResponse", query_27.QueryGroupPoliciesByAdminResponse],
+    ["/cosmos.group.v1.QueryGroupsByMemberResponse", query_28.QueryGroupsByMemberResponse],
+    ["/cosmos.group.v1.MsgUpdateGroupMembersResponse", tx_25.MsgUpdateGroupMembersResponse],
+    ["/cosmos.group.v1.MsgUpdateGroupAdminResponse", tx_26.MsgUpdateGroupAdminResponse],
+    ["/cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicyResponse", tx_27.MsgUpdateGroupPolicyDecisionPolicyResponse],
+    ["/cosmos.group.v1.MsgLeaveGroupResponse", tx_28.MsgLeaveGroupResponse],
 ];
 exports.msgTypes = msgTypes;

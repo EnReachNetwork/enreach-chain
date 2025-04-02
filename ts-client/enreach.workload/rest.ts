@@ -65,8 +65,33 @@ export interface QueryGetAllEpochProcessDataResponse {
   pagination?: { next_key?: string; total?: string };
 }
 
-export interface QueryGetAllManagerWorkloadByEpochResponse {
-  ManagerWorkloads?: {
+export interface QueryGetAllEraProcessDataResponse {
+  EraProcessDatas?: {
+    era?: string;
+    totalNodesCount?: string;
+    processedNodesCount?: string;
+    startAt?: string;
+    updateAt?: string;
+    status?: string;
+    pagination?: { next_key?: string; total?: string };
+  }[];
+  pagination?: { next_key?: string; total?: string };
+}
+
+export interface QueryGetAllManagerRPWorkloadByEraResponse {
+  ManagerRPWorkloads?: {
+    era?: string;
+    managerAccount?: string;
+    reportedNodesCount?: string;
+    score?: string;
+    createAt?: string;
+    updateAt?: string;
+  }[];
+  pagination?: { next_key?: string; total?: string };
+}
+
+export interface QueryGetAllManagerWRWorkloadByEpochResponse {
+  ManagerWRWorkloads?: {
     epoch?: string;
     managerAccount?: string;
     reportedNodesCount?: string;
@@ -82,6 +107,25 @@ export interface QueryGetAllNodeWorkloadByEpochResponse {
   pagination?: { next_key?: string; total?: string };
 }
 
+export interface QueryGetAllReputationDeltaPointByEraResponse {
+  ReputationDeltaPoints?: { era?: string; nodeID?: string; deltaPoint?: string; createAt?: string }[];
+  pagination?: { next_key?: string; total?: string };
+}
+
+export interface QueryGetAllReputationPointChangeDataByEraResponse {
+  ReputationPointChangeDatas?: {
+    era?: string;
+    nodeID?: string;
+    data?: Record<string, { deltaPoint?: string; createAt?: string; updateAt?: string }>;
+  }[];
+  pagination?: { next_key?: string; total?: string };
+}
+
+export interface QueryGetAllReputationPointResponse {
+  ReputationPoints?: { nodeID?: string; point?: string; createAt?: string; updateAt?: string }[];
+  pagination?: { next_key?: string; total?: string };
+}
+
 export interface QueryGetAllWorkreportByEpochResponse {
   Workreports?: {
     epoch?: string;
@@ -94,6 +138,11 @@ export interface QueryGetAllWorkreportByEpochResponse {
 export interface QueryGetCurrentEpochResponse {
   /** @format uint64 */
   currentEpoch?: string;
+}
+
+export interface QueryGetCurrentEraResponse {
+  /** @format uint64 */
+  currentEra?: string;
 }
 
 export interface QueryGetEpochLengthResponse {
@@ -113,13 +162,41 @@ export interface QueryGetEpochProcessDataResponse {
   };
 }
 
+export interface QueryGetEraLengthResponse {
+  /** @format uint64 */
+  eraLength?: string;
+}
+
+export interface QueryGetEraProcessDataResponse {
+  EraProcessData?: {
+    era?: string;
+    totalNodesCount?: string;
+    processedNodesCount?: string;
+    startAt?: string;
+    updateAt?: string;
+    status?: string;
+    pagination?: { next_key?: string; total?: string };
+  };
+}
+
 export interface QueryGetHistoryEpochDataDepthResponse {
   /** @format uint64 */
   depth?: string;
 }
 
-export interface QueryGetManagerWorkloadResponse {
-  ManagerWorkload?: {
+export interface QueryGetManagerRPWorkloadResponse {
+  ManagerRPWorkload?: {
+    era?: string;
+    managerAccount?: string;
+    reportedNodesCount?: string;
+    score?: string;
+    createAt?: string;
+    updateAt?: string;
+  };
+}
+
+export interface QueryGetManagerWRWorkloadResponse {
+  ManagerWRWorkload?: {
     epoch?: string;
     managerAccount?: string;
     reportedNodesCount?: string;
@@ -131,6 +208,22 @@ export interface QueryGetManagerWorkloadResponse {
 
 export interface QueryGetNodeWorkloadResponse {
   NodeWorkload?: { epoch?: string; nodeID?: string; score?: string; createAt?: string };
+}
+
+export interface QueryGetReputationDeltaPointResponse {
+  ReputationDeltaPoint?: { era?: string; nodeID?: string; deltaPoint?: string; createAt?: string };
+}
+
+export interface QueryGetReputationPointChangeDataResponse {
+  ReputationPointChangeData?: {
+    era?: string;
+    nodeID?: string;
+    data?: Record<string, { deltaPoint?: string; createAt?: string; updateAt?: string }>;
+  };
+}
+
+export interface QueryGetReputationPointResponse {
+  ReputationPoint?: { nodeID?: string; point?: string; createAt?: string; updateAt?: string };
 }
 
 export interface QueryGetSuperiorResponse {
@@ -161,6 +254,17 @@ export interface QueryParamsResponse {
   params?: object;
 }
 
+export interface ReputationPointChangeRawDataDB {
+  /** @format int64 */
+  deltaPoint?: string;
+
+  /** @format uint64 */
+  createAt?: string;
+
+  /** @format uint64 */
+  updateAt?: string;
+}
+
 export interface WorkloadEpochProcessData {
   /** @format uint64 */
   epoch?: string;
@@ -180,7 +284,44 @@ export interface WorkloadEpochProcessData {
   pagination?: { next_key?: string; total?: string };
 }
 
-export interface WorkloadManagerWorkload {
+export interface WorkloadEraProcessData {
+  /** @format uint64 */
+  era?: string;
+
+  /** @format uint64 */
+  totalNodesCount?: string;
+
+  /** @format uint64 */
+  processedNodesCount?: string;
+
+  /** @format uint64 */
+  startAt?: string;
+
+  /** @format uint64 */
+  updateAt?: string;
+  status?: string;
+  pagination?: { next_key?: string; total?: string };
+}
+
+export interface WorkloadManagerRPWorkload {
+  /** @format uint64 */
+  era?: string;
+  managerAccount?: string;
+
+  /** @format uint64 */
+  reportedNodesCount?: string;
+
+  /** @format uint64 */
+  score?: string;
+
+  /** @format uint64 */
+  createAt?: string;
+
+  /** @format uint64 */
+  updateAt?: string;
+}
+
+export interface WorkloadManagerWRWorkload {
   /** @format uint64 */
   epoch?: string;
   managerAccount?: string;
@@ -212,6 +353,38 @@ export interface WorkloadNodeWorkload {
 
 export type WorkloadParams = object;
 
+export interface WorkloadReputationDeltaPoint {
+  /** @format uint64 */
+  era?: string;
+  nodeID?: string;
+
+  /** @format int64 */
+  deltaPoint?: string;
+
+  /** @format uint64 */
+  createAt?: string;
+}
+
+export interface WorkloadReputationPoint {
+  nodeID?: string;
+
+  /** @format int64 */
+  point?: string;
+
+  /** @format uint64 */
+  createAt?: string;
+
+  /** @format uint64 */
+  updateAt?: string;
+}
+
+export interface WorkloadReputationPointChangeData {
+  /** @format uint64 */
+  era?: string;
+  nodeID?: string;
+  data?: Record<string, { deltaPoint?: string; createAt?: string; updateAt?: string }>;
+}
+
 export interface WorkloadSuperior {
   account?: string;
   creator?: string;
@@ -234,6 +407,8 @@ export interface WorkloadWorkreport {
 
 export type MsgCreateSuperiorResponse = object;
 
+export type MsgSubmitReputationPointChangeDataResponse = object;
+
 export type MsgSubmitWorkreportsResponse = object;
 
 export type MsgUpdateHistoryEpochDataDepthResponse = object;
@@ -252,6 +427,13 @@ export interface NodeScore {
 }
 
 export type Params = object;
+
+export interface ReputationPointChangeRawData {
+  nodeID?: string;
+
+  /** @format int64 */
+  deltaPoint?: string;
+}
 
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
 
@@ -409,13 +591,105 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * No description
    *
    * @tags Query
-   * @name QueryManagerWorkload
-   * @request GET:/enreach/workload/manager_workload/{epoch}/{managerAccount}
+   * @name QueryCurrentEra
+   * @request GET:/enreach/workload/era/currentera
    */
-  queryManagerWorkload = (epoch: string, managerAccount: string, params: RequestParams = {}) =>
+  queryCurrentEra = (params: RequestParams = {}) =>
+    this.request<{ currentEra?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+      path: `/enreach/workload/era/currentera`,
+      method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryEraLength
+   * @request GET:/enreach/workload/era/length
+   */
+  queryEraLength = (params: RequestParams = {}) =>
+    this.request<{ eraLength?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+      path: `/enreach/workload/era/length`,
+      method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryManagerRpWorkload
+   * @request GET:/enreach/workload/manager_rp_workload/{era}/{managerAccount}
+   */
+  queryManagerRPWorkload = (era: string, managerAccount: string, params: RequestParams = {}) =>
     this.request<
       {
-        ManagerWorkload?: {
+        ManagerRPWorkload?: {
+          era?: string;
+          managerAccount?: string;
+          reportedNodesCount?: string;
+          score?: string;
+          createAt?: string;
+          updateAt?: string;
+        };
+      },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/workload/manager_rp_workload/${era}/${managerAccount}`,
+      method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryAllManagerRpWorkloadByEra
+   * @request GET:/enreach/workload/manager_rp_workloads/{era}
+   */
+  queryAllManagerRPWorkloadByEra = (
+    era: string,
+    query?: {
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<
+      {
+        ManagerRPWorkloads?: {
+          era?: string;
+          managerAccount?: string;
+          reportedNodesCount?: string;
+          score?: string;
+          createAt?: string;
+          updateAt?: string;
+        }[];
+        pagination?: { next_key?: string; total?: string };
+      },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/workload/manager_rp_workloads/${era}`,
+      method: "GET",
+      query: query,
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryManagerWrWorkload
+   * @request GET:/enreach/workload/manager_wr_workload/{epoch}/{managerAccount}
+   */
+  queryManagerWRWorkload = (epoch: string, managerAccount: string, params: RequestParams = {}) =>
+    this.request<
+      {
+        ManagerWRWorkload?: {
           epoch?: string;
           managerAccount?: string;
           reportedNodesCount?: string;
@@ -426,7 +700,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       },
       { code?: number; message?: string; details?: { "@type"?: string }[] }
     >({
-      path: `/enreach/workload/manager_workload/${epoch}/${managerAccount}`,
+      path: `/enreach/workload/manager_wr_workload/${epoch}/${managerAccount}`,
       method: "GET",
       ...params,
     });
@@ -435,10 +709,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * No description
    *
    * @tags Query
-   * @name QueryAllManagerWorkloadByEpoch
-   * @request GET:/enreach/workload/manager_workloads/{epoch}
+   * @name QueryAllManagerWrWorkloadByEpoch
+   * @request GET:/enreach/workload/manager_wr_workloads/{epoch}
    */
-  queryAllManagerWorkloadByEpoch = (
+  queryAllManagerWRWorkloadByEpoch = (
     epoch: string,
     query?: {
       "pagination.key"?: string;
@@ -451,7 +725,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   ) =>
     this.request<
       {
-        ManagerWorkloads?: {
+        ManagerWRWorkloads?: {
           epoch?: string;
           managerAccount?: string;
           reportedNodesCount?: string;
@@ -463,7 +737,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       },
       { code?: number; message?: string; details?: { "@type"?: string }[] }
     >({
-      path: `/enreach/workload/manager_workloads/${epoch}`,
+      path: `/enreach/workload/manager_wr_workloads/${epoch}`,
       method: "GET",
       query: query,
       ...params,
@@ -528,6 +802,159 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     this.request<{ params?: object }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
       path: `/enreach/workload/params`,
       method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryReputationDeltaPoint
+   * @request GET:/enreach/workload/reputation_delta_point/{era}/{nodeID}
+   */
+  queryReputationDeltaPoint = (era: string, nodeId: string, params: RequestParams = {}) =>
+    this.request<
+      { ReputationDeltaPoint?: { era?: string; nodeID?: string; deltaPoint?: string; createAt?: string } },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/workload/reputation_delta_point/${era}/${nodeId}`,
+      method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryAllReputationDeltaPointByEra
+   * @request GET:/enreach/workload/reputation_delta_points/{era}
+   */
+  queryAllReputationDeltaPointByEra = (
+    era: string,
+    query?: {
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<
+      {
+        ReputationDeltaPoints?: { era?: string; nodeID?: string; deltaPoint?: string; createAt?: string }[];
+        pagination?: { next_key?: string; total?: string };
+      },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/workload/reputation_delta_points/${era}`,
+      method: "GET",
+      query: query,
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryReputationPoint
+   * @request GET:/enreach/workload/reputation_point/{nodeID}
+   */
+  queryReputationPoint = (nodeId: string, params: RequestParams = {}) =>
+    this.request<
+      { ReputationPoint?: { nodeID?: string; point?: string; createAt?: string; updateAt?: string } },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/workload/reputation_point/${nodeId}`,
+      method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryReputationPointChangeData
+   * @request GET:/enreach/workload/reputation_point_change_data/{era}/{nodeID}
+   */
+  queryReputationPointChangeData = (era: string, nodeId: string, params: RequestParams = {}) =>
+    this.request<
+      {
+        ReputationPointChangeData?: {
+          era?: string;
+          nodeID?: string;
+          data?: Record<string, { deltaPoint?: string; createAt?: string; updateAt?: string }>;
+        };
+      },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/workload/reputation_point_change_data/${era}/${nodeId}`,
+      method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryAllReputationPointChangeDataByEra
+   * @request GET:/enreach/workload/reputation_point_change_datas/{era}
+   */
+  queryAllReputationPointChangeDataByEra = (
+    era: string,
+    query?: {
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<
+      {
+        ReputationPointChangeDatas?: {
+          era?: string;
+          nodeID?: string;
+          data?: Record<string, { deltaPoint?: string; createAt?: string; updateAt?: string }>;
+        }[];
+        pagination?: { next_key?: string; total?: string };
+      },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/workload/reputation_point_change_datas/${era}`,
+      method: "GET",
+      query: query,
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryAllReputationPoint
+   * @request GET:/enreach/workload/reputation_points
+   */
+  queryAllReputationPoint = (
+    query?: {
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<
+      {
+        ReputationPoints?: { nodeID?: string; point?: string; createAt?: string; updateAt?: string }[];
+        pagination?: { next_key?: string; total?: string };
+      },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/workload/reputation_points`,
+      method: "GET",
+      query: query,
       ...params,
     });
 
@@ -617,6 +1044,71 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       { code?: number; message?: string; details?: { "@type"?: string }[] }
     >({
       path: `/enreach/workload/workreport/epoch_process_datas`,
+      method: "GET",
+      query: query,
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryEraProcessData
+   * @request GET:/enreach/workload/workreport/era_process_data/{era}
+   */
+  queryEraProcessData = (era: string, params: RequestParams = {}) =>
+    this.request<
+      {
+        EraProcessData?: {
+          era?: string;
+          totalNodesCount?: string;
+          processedNodesCount?: string;
+          startAt?: string;
+          updateAt?: string;
+          status?: string;
+          pagination?: { next_key?: string; total?: string };
+        };
+      },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/workload/workreport/era_process_data/${era}`,
+      method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryAllEraProcessData
+   * @request GET:/enreach/workload/workreport/era_process_datas
+   */
+  queryAllEraProcessData = (
+    query?: {
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<
+      {
+        EraProcessDatas?: {
+          era?: string;
+          totalNodesCount?: string;
+          processedNodesCount?: string;
+          startAt?: string;
+          updateAt?: string;
+          status?: string;
+          pagination?: { next_key?: string; total?: string };
+        }[];
+        pagination?: { next_key?: string; total?: string };
+      },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/workload/workreport/era_process_datas`,
       method: "GET",
       query: query,
       ...params,

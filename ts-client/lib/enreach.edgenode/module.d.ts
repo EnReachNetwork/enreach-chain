@@ -2,157 +2,42 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { MsgUpdateSuperior } from "./types/enreach/edgenode/tx";
-import { MsgCreateUserResponse } from "./types/enreach/edgenode/tx";
-import { MsgRegisterNode } from "./types/enreach/edgenode/tx";
-import { MsgCreateSuperiorResponse } from "./types/enreach/edgenode/tx";
-import { Node } from "./types/enreach/edgenode/node";
-import { Superior } from "./types/enreach/edgenode/superior";
-import { User } from "./types/enreach/edgenode/user";
-import { QueryParamsRequest } from "./types/enreach/edgenode/query";
-import { QueryGetUserRequest } from "./types/enreach/edgenode/query";
-import { QueryGetSuperiorResponse } from "./types/enreach/edgenode/query";
-import { Params } from "./types/enreach/edgenode/params";
 import { MsgUpdateParamsResponse } from "./types/enreach/edgenode/tx";
-import { MsgRegisterNodeResponse } from "./types/enreach/edgenode/tx";
-import { MsgUnbindNodeResponse } from "./types/enreach/edgenode/tx";
-import { MsgUpdateSuperiorResponse } from "./types/enreach/edgenode/tx";
-import { GenesisState } from "./types/enreach/edgenode/genesis";
-import { QueryAllUserRequest } from "./types/enreach/edgenode/query";
-import { QueryAllNodeResponse } from "./types/enreach/edgenode/query";
-import { MsgCreateUser } from "./types/enreach/edgenode/tx";
-import { MsgBindAndActivateNode } from "./types/enreach/edgenode/tx";
-import { MsgBindAndActivateNodeResponse } from "./types/enreach/edgenode/tx";
-import { MsgUnbindNode } from "./types/enreach/edgenode/tx";
-import { QueryParamsResponse } from "./types/enreach/edgenode/query";
-import { QueryGetUserResponse } from "./types/enreach/edgenode/query";
 import { QueryGetSuperiorRequest } from "./types/enreach/edgenode/query";
 import { MsgUpdateParams } from "./types/enreach/edgenode/tx";
+import { MsgUnbindNodeResponse } from "./types/enreach/edgenode/tx";
+import { QueryGetUserResponse } from "./types/enreach/edgenode/query";
 import { QueryGetNodeRequest } from "./types/enreach/edgenode/query";
-import { QueryGetNodeResponse } from "./types/enreach/edgenode/query";
-import { MsgCreateSuperior } from "./types/enreach/edgenode/tx";
+import { QueryAllNodeResponse } from "./types/enreach/edgenode/query";
+import { MsgBindAndActivateNodeResponse } from "./types/enreach/edgenode/tx";
+import { MsgUpdateSuperior } from "./types/enreach/edgenode/tx";
+import { Params } from "./types/enreach/edgenode/params";
+import { QueryParamsRequest } from "./types/enreach/edgenode/query";
+import { MsgCreateUser } from "./types/enreach/edgenode/tx";
 import { MsgBindUserEVMAccount } from "./types/enreach/edgenode/tx";
 import { MsgBindUserEVMAccountResponse } from "./types/enreach/edgenode/tx";
+import { MsgBindAndActivateNode } from "./types/enreach/edgenode/tx";
+import { GenesisState } from "./types/enreach/edgenode/genesis";
+import { QueryGetSuperiorResponse } from "./types/enreach/edgenode/query";
+import { MsgCreateSuperiorResponse } from "./types/enreach/edgenode/tx";
+import { MsgUpdateSuperiorResponse } from "./types/enreach/edgenode/tx";
+import { QueryAllUserRequest } from "./types/enreach/edgenode/query";
+import { MsgRegisterNodeResponse } from "./types/enreach/edgenode/tx";
+import { MsgCreateSuperior } from "./types/enreach/edgenode/tx";
+import { Node } from "./types/enreach/edgenode/node";
 import { QueryAllUserResponse } from "./types/enreach/edgenode/query";
+import { QueryGetNodeResponse } from "./types/enreach/edgenode/query";
 import { QueryAllNodeRequest } from "./types/enreach/edgenode/query";
-export { MsgUpdateSuperior, MsgCreateUserResponse, MsgRegisterNode, MsgCreateSuperiorResponse, Node, Superior, User, QueryParamsRequest, QueryGetUserRequest, QueryGetSuperiorResponse, Params, MsgUpdateParamsResponse, MsgRegisterNodeResponse, MsgUnbindNodeResponse, MsgUpdateSuperiorResponse, GenesisState, QueryAllUserRequest, QueryAllNodeResponse, MsgCreateUser, MsgBindAndActivateNode, MsgBindAndActivateNodeResponse, MsgUnbindNode, QueryParamsResponse, QueryGetUserResponse, QueryGetSuperiorRequest, MsgUpdateParams, QueryGetNodeRequest, QueryGetNodeResponse, MsgCreateSuperior, MsgBindUserEVMAccount, MsgBindUserEVMAccountResponse, QueryAllUserResponse, QueryAllNodeRequest };
-type sendMsgUpdateSuperiorParams = {
-    value: MsgUpdateSuperior;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgCreateUserResponseParams = {
-    value: MsgCreateUserResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgRegisterNodeParams = {
-    value: MsgRegisterNode;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgCreateSuperiorResponseParams = {
-    value: MsgCreateSuperiorResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendNodeParams = {
-    value: Node;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendSuperiorParams = {
-    value: Superior;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendUserParams = {
-    value: User;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryParamsRequestParams = {
-    value: QueryParamsRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGetUserRequestParams = {
-    value: QueryGetUserRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGetSuperiorResponseParams = {
-    value: QueryGetSuperiorResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendParamsParams = {
-    value: Params;
-    fee?: StdFee;
-    memo?: string;
-};
+import { MsgUnbindNode } from "./types/enreach/edgenode/tx";
+import { QueryParamsResponse } from "./types/enreach/edgenode/query";
+import { User } from "./types/enreach/edgenode/user";
+import { Superior } from "./types/enreach/edgenode/superior";
+import { MsgCreateUserResponse } from "./types/enreach/edgenode/tx";
+import { MsgRegisterNode } from "./types/enreach/edgenode/tx";
+import { QueryGetUserRequest } from "./types/enreach/edgenode/query";
+export { MsgUpdateParamsResponse, QueryGetSuperiorRequest, MsgUpdateParams, MsgUnbindNodeResponse, QueryGetUserResponse, QueryGetNodeRequest, QueryAllNodeResponse, MsgBindAndActivateNodeResponse, MsgUpdateSuperior, Params, QueryParamsRequest, MsgCreateUser, MsgBindUserEVMAccount, MsgBindUserEVMAccountResponse, MsgBindAndActivateNode, GenesisState, QueryGetSuperiorResponse, MsgCreateSuperiorResponse, MsgUpdateSuperiorResponse, QueryAllUserRequest, MsgRegisterNodeResponse, MsgCreateSuperior, Node, QueryAllUserResponse, QueryGetNodeResponse, QueryAllNodeRequest, MsgUnbindNode, QueryParamsResponse, User, Superior, MsgCreateUserResponse, MsgRegisterNode, QueryGetUserRequest };
 type sendMsgUpdateParamsResponseParams = {
     value: MsgUpdateParamsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgRegisterNodeResponseParams = {
-    value: MsgRegisterNodeResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUnbindNodeResponseParams = {
-    value: MsgUnbindNodeResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUpdateSuperiorResponseParams = {
-    value: MsgUpdateSuperiorResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendGenesisStateParams = {
-    value: GenesisState;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryAllUserRequestParams = {
-    value: QueryAllUserRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryAllNodeResponseParams = {
-    value: QueryAllNodeResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgCreateUserParams = {
-    value: MsgCreateUser;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgBindAndActivateNodeParams = {
-    value: MsgBindAndActivateNode;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgBindAndActivateNodeResponseParams = {
-    value: MsgBindAndActivateNodeResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUnbindNodeParams = {
-    value: MsgUnbindNode;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryParamsResponseParams = {
-    value: QueryParamsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGetUserResponseParams = {
-    value: QueryGetUserResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -166,18 +51,48 @@ type sendMsgUpdateParamsParams = {
     fee?: StdFee;
     memo?: string;
 };
+type sendMsgUnbindNodeResponseParams = {
+    value: MsgUnbindNodeResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryGetUserResponseParams = {
+    value: QueryGetUserResponse;
+    fee?: StdFee;
+    memo?: string;
+};
 type sendQueryGetNodeRequestParams = {
     value: QueryGetNodeRequest;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryGetNodeResponseParams = {
-    value: QueryGetNodeResponse;
+type sendQueryAllNodeResponseParams = {
+    value: QueryAllNodeResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgCreateSuperiorParams = {
-    value: MsgCreateSuperior;
+type sendMsgBindAndActivateNodeResponseParams = {
+    value: MsgBindAndActivateNodeResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateSuperiorParams = {
+    value: MsgUpdateSuperior;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendParamsParams = {
+    value: Params;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryParamsRequestParams = {
+    value: QueryParamsRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgCreateUserParams = {
+    value: MsgCreateUser;
     fee?: StdFee;
     memo?: string;
 };
@@ -191,8 +106,58 @@ type sendMsgBindUserEVMAccountResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
+type sendMsgBindAndActivateNodeParams = {
+    value: MsgBindAndActivateNode;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendGenesisStateParams = {
+    value: GenesisState;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryGetSuperiorResponseParams = {
+    value: QueryGetSuperiorResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgCreateSuperiorResponseParams = {
+    value: MsgCreateSuperiorResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateSuperiorResponseParams = {
+    value: MsgUpdateSuperiorResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryAllUserRequestParams = {
+    value: QueryAllUserRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgRegisterNodeResponseParams = {
+    value: MsgRegisterNodeResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgCreateSuperiorParams = {
+    value: MsgCreateSuperior;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendNodeParams = {
+    value: Node;
+    fee?: StdFee;
+    memo?: string;
+};
 type sendQueryAllUserResponseParams = {
     value: QueryAllUserResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryGetNodeResponseParams = {
+    value: QueryGetNodeResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -201,77 +166,43 @@ type sendQueryAllNodeRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
-type msgUpdateSuperiorParams = {
-    value: MsgUpdateSuperior;
+type sendMsgUnbindNodeParams = {
+    value: MsgUnbindNode;
+    fee?: StdFee;
+    memo?: string;
 };
-type msgCreateUserResponseParams = {
-    value: MsgCreateUserResponse;
+type sendQueryParamsResponseParams = {
+    value: QueryParamsResponse;
+    fee?: StdFee;
+    memo?: string;
 };
-type msgRegisterNodeParams = {
-    value: MsgRegisterNode;
-};
-type msgCreateSuperiorResponseParams = {
-    value: MsgCreateSuperiorResponse;
-};
-type nodeParams = {
-    value: Node;
-};
-type superiorParams = {
-    value: Superior;
-};
-type userParams = {
+type sendUserParams = {
     value: User;
+    fee?: StdFee;
+    memo?: string;
 };
-type queryParamsRequestParams = {
-    value: QueryParamsRequest;
+type sendSuperiorParams = {
+    value: Superior;
+    fee?: StdFee;
+    memo?: string;
 };
-type queryGetUserRequestParams = {
+type sendMsgCreateUserResponseParams = {
+    value: MsgCreateUserResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgRegisterNodeParams = {
+    value: MsgRegisterNode;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryGetUserRequestParams = {
     value: QueryGetUserRequest;
-};
-type queryGetSuperiorResponseParams = {
-    value: QueryGetSuperiorResponse;
-};
-type paramsParams = {
-    value: Params;
+    fee?: StdFee;
+    memo?: string;
 };
 type msgUpdateParamsResponseParams = {
     value: MsgUpdateParamsResponse;
-};
-type msgRegisterNodeResponseParams = {
-    value: MsgRegisterNodeResponse;
-};
-type msgUnbindNodeResponseParams = {
-    value: MsgUnbindNodeResponse;
-};
-type msgUpdateSuperiorResponseParams = {
-    value: MsgUpdateSuperiorResponse;
-};
-type genesisStateParams = {
-    value: GenesisState;
-};
-type queryAllUserRequestParams = {
-    value: QueryAllUserRequest;
-};
-type queryAllNodeResponseParams = {
-    value: QueryAllNodeResponse;
-};
-type msgCreateUserParams = {
-    value: MsgCreateUser;
-};
-type msgBindAndActivateNodeParams = {
-    value: MsgBindAndActivateNode;
-};
-type msgBindAndActivateNodeResponseParams = {
-    value: MsgBindAndActivateNodeResponse;
-};
-type msgUnbindNodeParams = {
-    value: MsgUnbindNode;
-};
-type queryParamsResponseParams = {
-    value: QueryParamsResponse;
-};
-type queryGetUserResponseParams = {
-    value: QueryGetUserResponse;
 };
 type queryGetSuperiorRequestParams = {
     value: QueryGetSuperiorRequest;
@@ -279,14 +210,32 @@ type queryGetSuperiorRequestParams = {
 type msgUpdateParamsParams = {
     value: MsgUpdateParams;
 };
+type msgUnbindNodeResponseParams = {
+    value: MsgUnbindNodeResponse;
+};
+type queryGetUserResponseParams = {
+    value: QueryGetUserResponse;
+};
 type queryGetNodeRequestParams = {
     value: QueryGetNodeRequest;
 };
-type queryGetNodeResponseParams = {
-    value: QueryGetNodeResponse;
+type queryAllNodeResponseParams = {
+    value: QueryAllNodeResponse;
 };
-type msgCreateSuperiorParams = {
-    value: MsgCreateSuperior;
+type msgBindAndActivateNodeResponseParams = {
+    value: MsgBindAndActivateNodeResponse;
+};
+type msgUpdateSuperiorParams = {
+    value: MsgUpdateSuperior;
+};
+type paramsParams = {
+    value: Params;
+};
+type queryParamsRequestParams = {
+    value: QueryParamsRequest;
+};
+type msgCreateUserParams = {
+    value: MsgCreateUser;
 };
 type msgBindUserEvmaccountParams = {
     value: MsgBindUserEVMAccount;
@@ -294,11 +243,62 @@ type msgBindUserEvmaccountParams = {
 type msgBindUserEvmaccountResponseParams = {
     value: MsgBindUserEVMAccountResponse;
 };
+type msgBindAndActivateNodeParams = {
+    value: MsgBindAndActivateNode;
+};
+type genesisStateParams = {
+    value: GenesisState;
+};
+type queryGetSuperiorResponseParams = {
+    value: QueryGetSuperiorResponse;
+};
+type msgCreateSuperiorResponseParams = {
+    value: MsgCreateSuperiorResponse;
+};
+type msgUpdateSuperiorResponseParams = {
+    value: MsgUpdateSuperiorResponse;
+};
+type queryAllUserRequestParams = {
+    value: QueryAllUserRequest;
+};
+type msgRegisterNodeResponseParams = {
+    value: MsgRegisterNodeResponse;
+};
+type msgCreateSuperiorParams = {
+    value: MsgCreateSuperior;
+};
+type nodeParams = {
+    value: Node;
+};
 type queryAllUserResponseParams = {
     value: QueryAllUserResponse;
 };
+type queryGetNodeResponseParams = {
+    value: QueryGetNodeResponse;
+};
 type queryAllNodeRequestParams = {
     value: QueryAllNodeRequest;
+};
+type msgUnbindNodeParams = {
+    value: MsgUnbindNode;
+};
+type queryParamsResponseParams = {
+    value: QueryParamsResponse;
+};
+type userParams = {
+    value: User;
+};
+type superiorParams = {
+    value: Superior;
+};
+type msgCreateUserResponseParams = {
+    value: MsgCreateUserResponse;
+};
+type msgRegisterNodeParams = {
+    value: MsgRegisterNode;
+};
+type queryGetUserRequestParams = {
+    value: QueryGetUserRequest;
 };
 export declare const registry: any;
 interface TxClientOptions {
@@ -307,72 +307,72 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendMsgUpdateSuperior({ value, fee, memo }: sendMsgUpdateSuperiorParams): Promise<DeliverTxResponse>;
-    sendMsgCreateUserResponse({ value, fee, memo }: sendMsgCreateUserResponseParams): Promise<DeliverTxResponse>;
-    sendMsgRegisterNode({ value, fee, memo }: sendMsgRegisterNodeParams): Promise<DeliverTxResponse>;
-    sendMsgCreateSuperiorResponse({ value, fee, memo }: sendMsgCreateSuperiorResponseParams): Promise<DeliverTxResponse>;
-    sendNode({ value, fee, memo }: sendNodeParams): Promise<DeliverTxResponse>;
-    sendSuperior({ value, fee, memo }: sendSuperiorParams): Promise<DeliverTxResponse>;
-    sendUser({ value, fee, memo }: sendUserParams): Promise<DeliverTxResponse>;
-    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
-    sendQueryGetUserRequest({ value, fee, memo }: sendQueryGetUserRequestParams): Promise<DeliverTxResponse>;
-    sendQueryGetSuperiorResponse({ value, fee, memo }: sendQueryGetSuperiorResponseParams): Promise<DeliverTxResponse>;
-    sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
     sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
-    sendMsgRegisterNodeResponse({ value, fee, memo }: sendMsgRegisterNodeResponseParams): Promise<DeliverTxResponse>;
-    sendMsgUnbindNodeResponse({ value, fee, memo }: sendMsgUnbindNodeResponseParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateSuperiorResponse({ value, fee, memo }: sendMsgUpdateSuperiorResponseParams): Promise<DeliverTxResponse>;
-    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
-    sendQueryAllUserRequest({ value, fee, memo }: sendQueryAllUserRequestParams): Promise<DeliverTxResponse>;
-    sendQueryAllNodeResponse({ value, fee, memo }: sendQueryAllNodeResponseParams): Promise<DeliverTxResponse>;
-    sendMsgCreateUser({ value, fee, memo }: sendMsgCreateUserParams): Promise<DeliverTxResponse>;
-    sendMsgBindAndActivateNode({ value, fee, memo }: sendMsgBindAndActivateNodeParams): Promise<DeliverTxResponse>;
-    sendMsgBindAndActivateNodeResponse({ value, fee, memo }: sendMsgBindAndActivateNodeResponseParams): Promise<DeliverTxResponse>;
-    sendMsgUnbindNode({ value, fee, memo }: sendMsgUnbindNodeParams): Promise<DeliverTxResponse>;
-    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
-    sendQueryGetUserResponse({ value, fee, memo }: sendQueryGetUserResponseParams): Promise<DeliverTxResponse>;
     sendQueryGetSuperiorRequest({ value, fee, memo }: sendQueryGetSuperiorRequestParams): Promise<DeliverTxResponse>;
     sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
+    sendMsgUnbindNodeResponse({ value, fee, memo }: sendMsgUnbindNodeResponseParams): Promise<DeliverTxResponse>;
+    sendQueryGetUserResponse({ value, fee, memo }: sendQueryGetUserResponseParams): Promise<DeliverTxResponse>;
     sendQueryGetNodeRequest({ value, fee, memo }: sendQueryGetNodeRequestParams): Promise<DeliverTxResponse>;
-    sendQueryGetNodeResponse({ value, fee, memo }: sendQueryGetNodeResponseParams): Promise<DeliverTxResponse>;
-    sendMsgCreateSuperior({ value, fee, memo }: sendMsgCreateSuperiorParams): Promise<DeliverTxResponse>;
+    sendQueryAllNodeResponse({ value, fee, memo }: sendQueryAllNodeResponseParams): Promise<DeliverTxResponse>;
+    sendMsgBindAndActivateNodeResponse({ value, fee, memo }: sendMsgBindAndActivateNodeResponseParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateSuperior({ value, fee, memo }: sendMsgUpdateSuperiorParams): Promise<DeliverTxResponse>;
+    sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
+    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
+    sendMsgCreateUser({ value, fee, memo }: sendMsgCreateUserParams): Promise<DeliverTxResponse>;
     sendMsgBindUserEVMAccount({ value, fee, memo }: sendMsgBindUserEVMAccountParams): Promise<DeliverTxResponse>;
     sendMsgBindUserEVMAccountResponse({ value, fee, memo }: sendMsgBindUserEVMAccountResponseParams): Promise<DeliverTxResponse>;
+    sendMsgBindAndActivateNode({ value, fee, memo }: sendMsgBindAndActivateNodeParams): Promise<DeliverTxResponse>;
+    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
+    sendQueryGetSuperiorResponse({ value, fee, memo }: sendQueryGetSuperiorResponseParams): Promise<DeliverTxResponse>;
+    sendMsgCreateSuperiorResponse({ value, fee, memo }: sendMsgCreateSuperiorResponseParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateSuperiorResponse({ value, fee, memo }: sendMsgUpdateSuperiorResponseParams): Promise<DeliverTxResponse>;
+    sendQueryAllUserRequest({ value, fee, memo }: sendQueryAllUserRequestParams): Promise<DeliverTxResponse>;
+    sendMsgRegisterNodeResponse({ value, fee, memo }: sendMsgRegisterNodeResponseParams): Promise<DeliverTxResponse>;
+    sendMsgCreateSuperior({ value, fee, memo }: sendMsgCreateSuperiorParams): Promise<DeliverTxResponse>;
+    sendNode({ value, fee, memo }: sendNodeParams): Promise<DeliverTxResponse>;
     sendQueryAllUserResponse({ value, fee, memo }: sendQueryAllUserResponseParams): Promise<DeliverTxResponse>;
+    sendQueryGetNodeResponse({ value, fee, memo }: sendQueryGetNodeResponseParams): Promise<DeliverTxResponse>;
     sendQueryAllNodeRequest({ value, fee, memo }: sendQueryAllNodeRequestParams): Promise<DeliverTxResponse>;
-    msgUpdateSuperior({ value }: msgUpdateSuperiorParams): EncodeObject;
-    msgCreateUserResponse({ value }: msgCreateUserResponseParams): EncodeObject;
-    msgRegisterNode({ value }: msgRegisterNodeParams): EncodeObject;
-    msgCreateSuperiorResponse({ value }: msgCreateSuperiorResponseParams): EncodeObject;
-    node({ value }: nodeParams): EncodeObject;
-    superior({ value }: superiorParams): EncodeObject;
-    user({ value }: userParams): EncodeObject;
-    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
-    queryGetUserRequest({ value }: queryGetUserRequestParams): EncodeObject;
-    queryGetSuperiorResponse({ value }: queryGetSuperiorResponseParams): EncodeObject;
-    params({ value }: paramsParams): EncodeObject;
+    sendMsgUnbindNode({ value, fee, memo }: sendMsgUnbindNodeParams): Promise<DeliverTxResponse>;
+    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
+    sendUser({ value, fee, memo }: sendUserParams): Promise<DeliverTxResponse>;
+    sendSuperior({ value, fee, memo }: sendSuperiorParams): Promise<DeliverTxResponse>;
+    sendMsgCreateUserResponse({ value, fee, memo }: sendMsgCreateUserResponseParams): Promise<DeliverTxResponse>;
+    sendMsgRegisterNode({ value, fee, memo }: sendMsgRegisterNodeParams): Promise<DeliverTxResponse>;
+    sendQueryGetUserRequest({ value, fee, memo }: sendQueryGetUserRequestParams): Promise<DeliverTxResponse>;
     msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
-    msgRegisterNodeResponse({ value }: msgRegisterNodeResponseParams): EncodeObject;
-    msgUnbindNodeResponse({ value }: msgUnbindNodeResponseParams): EncodeObject;
-    msgUpdateSuperiorResponse({ value }: msgUpdateSuperiorResponseParams): EncodeObject;
-    genesisState({ value }: genesisStateParams): EncodeObject;
-    queryAllUserRequest({ value }: queryAllUserRequestParams): EncodeObject;
-    queryAllNodeResponse({ value }: queryAllNodeResponseParams): EncodeObject;
-    msgCreateUser({ value }: msgCreateUserParams): EncodeObject;
-    msgBindAndActivateNode({ value }: msgBindAndActivateNodeParams): EncodeObject;
-    msgBindAndActivateNodeResponse({ value }: msgBindAndActivateNodeResponseParams): EncodeObject;
-    msgUnbindNode({ value }: msgUnbindNodeParams): EncodeObject;
-    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
-    queryGetUserResponse({ value }: queryGetUserResponseParams): EncodeObject;
     queryGetSuperiorRequest({ value }: queryGetSuperiorRequestParams): EncodeObject;
     msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
+    msgUnbindNodeResponse({ value }: msgUnbindNodeResponseParams): EncodeObject;
+    queryGetUserResponse({ value }: queryGetUserResponseParams): EncodeObject;
     queryGetNodeRequest({ value }: queryGetNodeRequestParams): EncodeObject;
-    queryGetNodeResponse({ value }: queryGetNodeResponseParams): EncodeObject;
-    msgCreateSuperior({ value }: msgCreateSuperiorParams): EncodeObject;
+    queryAllNodeResponse({ value }: queryAllNodeResponseParams): EncodeObject;
+    msgBindAndActivateNodeResponse({ value }: msgBindAndActivateNodeResponseParams): EncodeObject;
+    msgUpdateSuperior({ value }: msgUpdateSuperiorParams): EncodeObject;
+    params({ value }: paramsParams): EncodeObject;
+    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
+    msgCreateUser({ value }: msgCreateUserParams): EncodeObject;
     msgBindUserEvmaccount({ value }: msgBindUserEvmaccountParams): EncodeObject;
     msgBindUserEvmaccountResponse({ value }: msgBindUserEvmaccountResponseParams): EncodeObject;
+    msgBindAndActivateNode({ value }: msgBindAndActivateNodeParams): EncodeObject;
+    genesisState({ value }: genesisStateParams): EncodeObject;
+    queryGetSuperiorResponse({ value }: queryGetSuperiorResponseParams): EncodeObject;
+    msgCreateSuperiorResponse({ value }: msgCreateSuperiorResponseParams): EncodeObject;
+    msgUpdateSuperiorResponse({ value }: msgUpdateSuperiorResponseParams): EncodeObject;
+    queryAllUserRequest({ value }: queryAllUserRequestParams): EncodeObject;
+    msgRegisterNodeResponse({ value }: msgRegisterNodeResponseParams): EncodeObject;
+    msgCreateSuperior({ value }: msgCreateSuperiorParams): EncodeObject;
+    node({ value }: nodeParams): EncodeObject;
     queryAllUserResponse({ value }: queryAllUserResponseParams): EncodeObject;
+    queryGetNodeResponse({ value }: queryGetNodeResponseParams): EncodeObject;
     queryAllNodeRequest({ value }: queryAllNodeRequestParams): EncodeObject;
+    msgUnbindNode({ value }: msgUnbindNodeParams): EncodeObject;
+    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
+    user({ value }: userParams): EncodeObject;
+    superior({ value }: superiorParams): EncodeObject;
+    msgCreateUserResponse({ value }: msgCreateUserResponseParams): EncodeObject;
+    msgRegisterNode({ value }: msgRegisterNodeParams): EncodeObject;
+    queryGetUserRequest({ value }: queryGetUserRequestParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

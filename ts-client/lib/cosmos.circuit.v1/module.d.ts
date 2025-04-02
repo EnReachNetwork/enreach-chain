@@ -2,44 +2,24 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { GenesisState } from "./types/cosmos/circuit/v1/types";
-import { QueryAccountRequest } from "./types/cosmos/circuit/v1/query";
-import { AccountsResponse } from "./types/cosmos/circuit/v1/query";
-import { QueryAccountsRequest } from "./types/cosmos/circuit/v1/query";
-import { MsgAuthorizeCircuitBreakerResponse } from "./types/cosmos/circuit/v1/tx";
-import { MsgResetCircuitBreakerResponse } from "./types/cosmos/circuit/v1/tx";
-import { QueryDisabledListRequest } from "./types/cosmos/circuit/v1/query";
-import { DisabledListResponse } from "./types/cosmos/circuit/v1/query";
-import { MsgAuthorizeCircuitBreaker } from "./types/cosmos/circuit/v1/tx";
-import { AccountResponse } from "./types/cosmos/circuit/v1/query";
 import { MsgTripCircuitBreaker } from "./types/cosmos/circuit/v1/tx";
+import { MsgResetCircuitBreakerResponse } from "./types/cosmos/circuit/v1/tx";
+import { AccountResponse } from "./types/cosmos/circuit/v1/query";
+import { QueryAccountsRequest } from "./types/cosmos/circuit/v1/query";
+import { DisabledListResponse } from "./types/cosmos/circuit/v1/query";
+import { Permissions } from "./types/cosmos/circuit/v1/types";
+import { QueryAccountRequest } from "./types/cosmos/circuit/v1/query";
 import { MsgTripCircuitBreakerResponse } from "./types/cosmos/circuit/v1/tx";
 import { MsgResetCircuitBreaker } from "./types/cosmos/circuit/v1/tx";
-import { Permissions } from "./types/cosmos/circuit/v1/types";
 import { GenesisAccountPermissions } from "./types/cosmos/circuit/v1/types";
-export { GenesisState, QueryAccountRequest, AccountsResponse, QueryAccountsRequest, MsgAuthorizeCircuitBreakerResponse, MsgResetCircuitBreakerResponse, QueryDisabledListRequest, DisabledListResponse, MsgAuthorizeCircuitBreaker, AccountResponse, MsgTripCircuitBreaker, MsgTripCircuitBreakerResponse, MsgResetCircuitBreaker, Permissions, GenesisAccountPermissions };
-type sendGenesisStateParams = {
-    value: GenesisState;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryAccountRequestParams = {
-    value: QueryAccountRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendAccountsResponseParams = {
-    value: AccountsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryAccountsRequestParams = {
-    value: QueryAccountsRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgAuthorizeCircuitBreakerResponseParams = {
-    value: MsgAuthorizeCircuitBreakerResponse;
+import { GenesisState } from "./types/cosmos/circuit/v1/types";
+import { QueryDisabledListRequest } from "./types/cosmos/circuit/v1/query";
+import { MsgAuthorizeCircuitBreakerResponse } from "./types/cosmos/circuit/v1/tx";
+import { MsgAuthorizeCircuitBreaker } from "./types/cosmos/circuit/v1/tx";
+import { AccountsResponse } from "./types/cosmos/circuit/v1/query";
+export { MsgTripCircuitBreaker, MsgResetCircuitBreakerResponse, AccountResponse, QueryAccountsRequest, DisabledListResponse, Permissions, QueryAccountRequest, MsgTripCircuitBreakerResponse, MsgResetCircuitBreaker, GenesisAccountPermissions, GenesisState, QueryDisabledListRequest, MsgAuthorizeCircuitBreakerResponse, MsgAuthorizeCircuitBreaker, AccountsResponse };
+type sendMsgTripCircuitBreakerParams = {
+    value: MsgTripCircuitBreaker;
     fee?: StdFee;
     memo?: string;
 };
@@ -48,8 +28,13 @@ type sendMsgResetCircuitBreakerResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryDisabledListRequestParams = {
-    value: QueryDisabledListRequest;
+type sendAccountResponseParams = {
+    value: AccountResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryAccountsRequestParams = {
+    value: QueryAccountsRequest;
     fee?: StdFee;
     memo?: string;
 };
@@ -58,18 +43,13 @@ type sendDisabledListResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgAuthorizeCircuitBreakerParams = {
-    value: MsgAuthorizeCircuitBreaker;
+type sendPermissionsParams = {
+    value: Permissions;
     fee?: StdFee;
     memo?: string;
 };
-type sendAccountResponseParams = {
-    value: AccountResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgTripCircuitBreakerParams = {
-    value: MsgTripCircuitBreaker;
+type sendQueryAccountRequestParams = {
+    value: QueryAccountRequest;
     fee?: StdFee;
     memo?: string;
 };
@@ -83,48 +63,56 @@ type sendMsgResetCircuitBreakerParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendPermissionsParams = {
-    value: Permissions;
-    fee?: StdFee;
-    memo?: string;
-};
 type sendGenesisAccountPermissionsParams = {
     value: GenesisAccountPermissions;
     fee?: StdFee;
     memo?: string;
 };
-type genesisStateParams = {
+type sendGenesisStateParams = {
     value: GenesisState;
+    fee?: StdFee;
+    memo?: string;
 };
-type queryAccountRequestParams = {
-    value: QueryAccountRequest;
+type sendQueryDisabledListRequestParams = {
+    value: QueryDisabledListRequest;
+    fee?: StdFee;
+    memo?: string;
 };
-type accountsResponseParams = {
-    value: AccountsResponse;
-};
-type queryAccountsRequestParams = {
-    value: QueryAccountsRequest;
-};
-type msgAuthorizeCircuitBreakerResponseParams = {
+type sendMsgAuthorizeCircuitBreakerResponseParams = {
     value: MsgAuthorizeCircuitBreakerResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgAuthorizeCircuitBreakerParams = {
+    value: MsgAuthorizeCircuitBreaker;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendAccountsResponseParams = {
+    value: AccountsResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type msgTripCircuitBreakerParams = {
+    value: MsgTripCircuitBreaker;
 };
 type msgResetCircuitBreakerResponseParams = {
     value: MsgResetCircuitBreakerResponse;
 };
-type queryDisabledListRequestParams = {
-    value: QueryDisabledListRequest;
+type accountResponseParams = {
+    value: AccountResponse;
+};
+type queryAccountsRequestParams = {
+    value: QueryAccountsRequest;
 };
 type disabledListResponseParams = {
     value: DisabledListResponse;
 };
-type msgAuthorizeCircuitBreakerParams = {
-    value: MsgAuthorizeCircuitBreaker;
+type permissionsParams = {
+    value: Permissions;
 };
-type accountResponseParams = {
-    value: AccountResponse;
-};
-type msgTripCircuitBreakerParams = {
-    value: MsgTripCircuitBreaker;
+type queryAccountRequestParams = {
+    value: QueryAccountRequest;
 };
 type msgTripCircuitBreakerResponseParams = {
     value: MsgTripCircuitBreakerResponse;
@@ -132,11 +120,23 @@ type msgTripCircuitBreakerResponseParams = {
 type msgResetCircuitBreakerParams = {
     value: MsgResetCircuitBreaker;
 };
-type permissionsParams = {
-    value: Permissions;
-};
 type genesisAccountPermissionsParams = {
     value: GenesisAccountPermissions;
+};
+type genesisStateParams = {
+    value: GenesisState;
+};
+type queryDisabledListRequestParams = {
+    value: QueryDisabledListRequest;
+};
+type msgAuthorizeCircuitBreakerResponseParams = {
+    value: MsgAuthorizeCircuitBreakerResponse;
+};
+type msgAuthorizeCircuitBreakerParams = {
+    value: MsgAuthorizeCircuitBreaker;
+};
+type accountsResponseParams = {
+    value: AccountsResponse;
 };
 export declare const registry: any;
 interface TxClientOptions {
@@ -145,36 +145,36 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
-    sendQueryAccountRequest({ value, fee, memo }: sendQueryAccountRequestParams): Promise<DeliverTxResponse>;
-    sendAccountsResponse({ value, fee, memo }: sendAccountsResponseParams): Promise<DeliverTxResponse>;
-    sendQueryAccountsRequest({ value, fee, memo }: sendQueryAccountsRequestParams): Promise<DeliverTxResponse>;
-    sendMsgAuthorizeCircuitBreakerResponse({ value, fee, memo }: sendMsgAuthorizeCircuitBreakerResponseParams): Promise<DeliverTxResponse>;
-    sendMsgResetCircuitBreakerResponse({ value, fee, memo }: sendMsgResetCircuitBreakerResponseParams): Promise<DeliverTxResponse>;
-    sendQueryDisabledListRequest({ value, fee, memo }: sendQueryDisabledListRequestParams): Promise<DeliverTxResponse>;
-    sendDisabledListResponse({ value, fee, memo }: sendDisabledListResponseParams): Promise<DeliverTxResponse>;
-    sendMsgAuthorizeCircuitBreaker({ value, fee, memo }: sendMsgAuthorizeCircuitBreakerParams): Promise<DeliverTxResponse>;
-    sendAccountResponse({ value, fee, memo }: sendAccountResponseParams): Promise<DeliverTxResponse>;
     sendMsgTripCircuitBreaker({ value, fee, memo }: sendMsgTripCircuitBreakerParams): Promise<DeliverTxResponse>;
+    sendMsgResetCircuitBreakerResponse({ value, fee, memo }: sendMsgResetCircuitBreakerResponseParams): Promise<DeliverTxResponse>;
+    sendAccountResponse({ value, fee, memo }: sendAccountResponseParams): Promise<DeliverTxResponse>;
+    sendQueryAccountsRequest({ value, fee, memo }: sendQueryAccountsRequestParams): Promise<DeliverTxResponse>;
+    sendDisabledListResponse({ value, fee, memo }: sendDisabledListResponseParams): Promise<DeliverTxResponse>;
+    sendPermissions({ value, fee, memo }: sendPermissionsParams): Promise<DeliverTxResponse>;
+    sendQueryAccountRequest({ value, fee, memo }: sendQueryAccountRequestParams): Promise<DeliverTxResponse>;
     sendMsgTripCircuitBreakerResponse({ value, fee, memo }: sendMsgTripCircuitBreakerResponseParams): Promise<DeliverTxResponse>;
     sendMsgResetCircuitBreaker({ value, fee, memo }: sendMsgResetCircuitBreakerParams): Promise<DeliverTxResponse>;
-    sendPermissions({ value, fee, memo }: sendPermissionsParams): Promise<DeliverTxResponse>;
     sendGenesisAccountPermissions({ value, fee, memo }: sendGenesisAccountPermissionsParams): Promise<DeliverTxResponse>;
-    genesisState({ value }: genesisStateParams): EncodeObject;
-    queryAccountRequest({ value }: queryAccountRequestParams): EncodeObject;
-    accountsResponse({ value }: accountsResponseParams): EncodeObject;
-    queryAccountsRequest({ value }: queryAccountsRequestParams): EncodeObject;
-    msgAuthorizeCircuitBreakerResponse({ value }: msgAuthorizeCircuitBreakerResponseParams): EncodeObject;
-    msgResetCircuitBreakerResponse({ value }: msgResetCircuitBreakerResponseParams): EncodeObject;
-    queryDisabledListRequest({ value }: queryDisabledListRequestParams): EncodeObject;
-    disabledListResponse({ value }: disabledListResponseParams): EncodeObject;
-    msgAuthorizeCircuitBreaker({ value }: msgAuthorizeCircuitBreakerParams): EncodeObject;
-    accountResponse({ value }: accountResponseParams): EncodeObject;
+    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
+    sendQueryDisabledListRequest({ value, fee, memo }: sendQueryDisabledListRequestParams): Promise<DeliverTxResponse>;
+    sendMsgAuthorizeCircuitBreakerResponse({ value, fee, memo }: sendMsgAuthorizeCircuitBreakerResponseParams): Promise<DeliverTxResponse>;
+    sendMsgAuthorizeCircuitBreaker({ value, fee, memo }: sendMsgAuthorizeCircuitBreakerParams): Promise<DeliverTxResponse>;
+    sendAccountsResponse({ value, fee, memo }: sendAccountsResponseParams): Promise<DeliverTxResponse>;
     msgTripCircuitBreaker({ value }: msgTripCircuitBreakerParams): EncodeObject;
+    msgResetCircuitBreakerResponse({ value }: msgResetCircuitBreakerResponseParams): EncodeObject;
+    accountResponse({ value }: accountResponseParams): EncodeObject;
+    queryAccountsRequest({ value }: queryAccountsRequestParams): EncodeObject;
+    disabledListResponse({ value }: disabledListResponseParams): EncodeObject;
+    permissions({ value }: permissionsParams): EncodeObject;
+    queryAccountRequest({ value }: queryAccountRequestParams): EncodeObject;
     msgTripCircuitBreakerResponse({ value }: msgTripCircuitBreakerResponseParams): EncodeObject;
     msgResetCircuitBreaker({ value }: msgResetCircuitBreakerParams): EncodeObject;
-    permissions({ value }: permissionsParams): EncodeObject;
     genesisAccountPermissions({ value }: genesisAccountPermissionsParams): EncodeObject;
+    genesisState({ value }: genesisStateParams): EncodeObject;
+    queryDisabledListRequest({ value }: queryDisabledListRequestParams): EncodeObject;
+    msgAuthorizeCircuitBreakerResponse({ value }: msgAuthorizeCircuitBreakerResponseParams): EncodeObject;
+    msgAuthorizeCircuitBreaker({ value }: msgAuthorizeCircuitBreakerParams): EncodeObject;
+    accountsResponse({ value }: accountsResponseParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

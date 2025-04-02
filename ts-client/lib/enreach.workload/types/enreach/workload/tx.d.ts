@@ -1,5 +1,6 @@
 import _m0 from "protobufjs/minimal";
 import { Params } from "./params";
+import { ReputationPointChangeRawData } from "./reputationpoint";
 import { NodeScore } from "./workreport";
 export declare const protobufPackage = "enreach.workload";
 /** MsgUpdateParams is the Msg/UpdateParams request type. */
@@ -45,6 +46,13 @@ export interface MsgUpdateSuperior {
     account: string;
 }
 export interface MsgUpdateSuperiorResponse {
+}
+export interface MsgSubmitReputationPointChangeData {
+    managerAccount: string;
+    era: number;
+    nodePoints: ReputationPointChangeRawData[];
+}
+export interface MsgSubmitReputationPointChangeDataResponse {
 }
 export declare const MsgUpdateParams: {
     encode(message: MsgUpdateParams, writer?: _m0.Writer): _m0.Writer;
@@ -142,6 +150,22 @@ export declare const MsgUpdateSuperiorResponse: {
     create<I extends Exact<DeepPartial<MsgUpdateSuperiorResponse>, I>>(base?: I): MsgUpdateSuperiorResponse;
     fromPartial<I extends Exact<DeepPartial<MsgUpdateSuperiorResponse>, I>>(_: I): MsgUpdateSuperiorResponse;
 };
+export declare const MsgSubmitReputationPointChangeData: {
+    encode(message: MsgSubmitReputationPointChangeData, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitReputationPointChangeData;
+    fromJSON(object: any): MsgSubmitReputationPointChangeData;
+    toJSON(message: MsgSubmitReputationPointChangeData): unknown;
+    create<I extends Exact<DeepPartial<MsgSubmitReputationPointChangeData>, I>>(base?: I): MsgSubmitReputationPointChangeData;
+    fromPartial<I extends Exact<DeepPartial<MsgSubmitReputationPointChangeData>, I>>(object: I): MsgSubmitReputationPointChangeData;
+};
+export declare const MsgSubmitReputationPointChangeDataResponse: {
+    encode(_: MsgSubmitReputationPointChangeDataResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitReputationPointChangeDataResponse;
+    fromJSON(_: any): MsgSubmitReputationPointChangeDataResponse;
+    toJSON(_: MsgSubmitReputationPointChangeDataResponse): unknown;
+    create<I extends Exact<DeepPartial<MsgSubmitReputationPointChangeDataResponse>, I>>(base?: I): MsgSubmitReputationPointChangeDataResponse;
+    fromPartial<I extends Exact<DeepPartial<MsgSubmitReputationPointChangeDataResponse>, I>>(_: I): MsgSubmitReputationPointChangeDataResponse;
+};
 /** Msg defines the Msg service. */
 export interface Msg {
     /**
@@ -154,6 +178,7 @@ export interface Msg {
     UpdateHistoryEpochDataDepth(request: MsgUpdateHistoryEpochDataDepth): Promise<MsgUpdateHistoryEpochDataDepthResponse>;
     CreateSuperior(request: MsgCreateSuperior): Promise<MsgCreateSuperiorResponse>;
     UpdateSuperior(request: MsgUpdateSuperior): Promise<MsgUpdateSuperiorResponse>;
+    SubmitReputationPointChangeData(request: MsgSubmitReputationPointChangeData): Promise<MsgSubmitReputationPointChangeDataResponse>;
 }
 export declare const MsgServiceName = "enreach.workload.Msg";
 export declare class MsgClientImpl implements Msg {
@@ -168,6 +193,7 @@ export declare class MsgClientImpl implements Msg {
     UpdateHistoryEpochDataDepth(request: MsgUpdateHistoryEpochDataDepth): Promise<MsgUpdateHistoryEpochDataDepthResponse>;
     CreateSuperior(request: MsgCreateSuperior): Promise<MsgCreateSuperiorResponse>;
     UpdateSuperior(request: MsgUpdateSuperior): Promise<MsgUpdateSuperiorResponse>;
+    SubmitReputationPointChangeData(request: MsgSubmitReputationPointChangeData): Promise<MsgSubmitReputationPointChangeDataResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

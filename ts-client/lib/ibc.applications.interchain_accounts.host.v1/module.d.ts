@@ -2,29 +2,19 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { QueryParamsResponse } from "./types/ibc/applications/interchain_accounts/host/v1/query";
-import { MsgUpdateParamsResponse } from "./types/ibc/applications/interchain_accounts/host/v1/tx";
 import { Params } from "./types/ibc/applications/interchain_accounts/host/v1/host";
-import { QueryParamsRequest } from "./types/ibc/applications/interchain_accounts/host/v1/query";
+import { QueryParamsResponse } from "./types/ibc/applications/interchain_accounts/host/v1/query";
 import { MsgUpdateParams } from "./types/ibc/applications/interchain_accounts/host/v1/tx";
-export { QueryParamsResponse, MsgUpdateParamsResponse, Params, QueryParamsRequest, MsgUpdateParams };
-type sendQueryParamsResponseParams = {
-    value: QueryParamsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUpdateParamsResponseParams = {
-    value: MsgUpdateParamsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
+import { QueryParamsRequest } from "./types/ibc/applications/interchain_accounts/host/v1/query";
+import { MsgUpdateParamsResponse } from "./types/ibc/applications/interchain_accounts/host/v1/tx";
+export { Params, QueryParamsResponse, MsgUpdateParams, QueryParamsRequest, MsgUpdateParamsResponse };
 type sendParamsParams = {
     value: Params;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryParamsRequestParams = {
-    value: QueryParamsRequest;
+type sendQueryParamsResponseParams = {
+    value: QueryParamsResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -33,20 +23,30 @@ type sendMsgUpdateParamsParams = {
     fee?: StdFee;
     memo?: string;
 };
-type queryParamsResponseParams = {
-    value: QueryParamsResponse;
+type sendQueryParamsRequestParams = {
+    value: QueryParamsRequest;
+    fee?: StdFee;
+    memo?: string;
 };
-type msgUpdateParamsResponseParams = {
+type sendMsgUpdateParamsResponseParams = {
     value: MsgUpdateParamsResponse;
+    fee?: StdFee;
+    memo?: string;
 };
 type paramsParams = {
     value: Params;
 };
-type queryParamsRequestParams = {
-    value: QueryParamsRequest;
+type queryParamsResponseParams = {
+    value: QueryParamsResponse;
 };
 type msgUpdateParamsParams = {
     value: MsgUpdateParams;
+};
+type queryParamsRequestParams = {
+    value: QueryParamsRequest;
+};
+type msgUpdateParamsResponseParams = {
+    value: MsgUpdateParamsResponse;
 };
 export declare const registry: any;
 interface TxClientOptions {
@@ -55,16 +55,16 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
     sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
-    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
+    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
     sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
-    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
-    msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
+    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
     params({ value }: paramsParams): EncodeObject;
-    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
+    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
     msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
+    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
+    msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;
