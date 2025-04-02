@@ -156,6 +156,7 @@ async function testEdgenode(edgenodeApi: EdgenodeApi) {
   await edgenodeApi.registerNode({signer:edgenodeApi.account, nodeID: nodeID2, deviceType: "X86"});
   await edgenodeApi.bindAndActivateNode({signer:edgenodeApi.account, nodeID: nodeID2, userID: userID, nodeName: "My X86 Node", regionCode: "US"});
 
+  await edgenodeApi.updateNodeTrafficTypeBatch({signer:edgenodeApi.account, trafficType: 1, nodeIDs: [nodeID1, nodeID2], skipNonExistNode: true});
 
   console.log("===Query all data");
   const allUsers = await edgenodeApi.queryAllUser();
