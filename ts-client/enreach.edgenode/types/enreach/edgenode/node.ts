@@ -10,6 +10,8 @@ export interface Node {
   nodeName: string;
   deviceType: string;
   regionCode: string;
+  /** Default 0 - stands for Enreach traffic */
+  trafficType: number;
   registerStatus: string;
   workingStatus: string;
   creator: string;
@@ -25,6 +27,7 @@ function createBaseNode(): Node {
     nodeName: "",
     deviceType: "",
     regionCode: "",
+    trafficType: 0,
     registerStatus: "",
     workingStatus: "",
     creator: "",
@@ -51,23 +54,26 @@ export const Node = {
     if (message.regionCode !== "") {
       writer.uint32(42).string(message.regionCode);
     }
+    if (message.trafficType !== 0) {
+      writer.uint32(48).uint32(message.trafficType);
+    }
     if (message.registerStatus !== "") {
-      writer.uint32(50).string(message.registerStatus);
+      writer.uint32(58).string(message.registerStatus);
     }
     if (message.workingStatus !== "") {
-      writer.uint32(58).string(message.workingStatus);
+      writer.uint32(66).string(message.workingStatus);
     }
     if (message.creator !== "") {
-      writer.uint32(66).string(message.creator);
+      writer.uint32(74).string(message.creator);
     }
     if (message.createAt !== 0) {
-      writer.uint32(72).uint64(message.createAt);
+      writer.uint32(80).uint64(message.createAt);
     }
     if (message.updator !== "") {
-      writer.uint32(82).string(message.updator);
+      writer.uint32(90).string(message.updator);
     }
     if (message.updateAt !== 0) {
-      writer.uint32(88).uint64(message.updateAt);
+      writer.uint32(96).uint64(message.updateAt);
     }
     return writer;
   },
@@ -115,42 +121,49 @@ export const Node = {
           message.regionCode = reader.string();
           continue;
         case 6:
-          if (tag !== 50) {
+          if (tag !== 48) {
             break;
           }
 
-          message.registerStatus = reader.string();
+          message.trafficType = reader.uint32();
           continue;
         case 7:
           if (tag !== 58) {
             break;
           }
 
-          message.workingStatus = reader.string();
+          message.registerStatus = reader.string();
           continue;
         case 8:
           if (tag !== 66) {
             break;
           }
 
-          message.creator = reader.string();
+          message.workingStatus = reader.string();
           continue;
         case 9:
-          if (tag !== 72) {
+          if (tag !== 74) {
+            break;
+          }
+
+          message.creator = reader.string();
+          continue;
+        case 10:
+          if (tag !== 80) {
             break;
           }
 
           message.createAt = longToNumber(reader.uint64() as Long);
           continue;
-        case 10:
-          if (tag !== 82) {
+        case 11:
+          if (tag !== 90) {
             break;
           }
 
           message.updator = reader.string();
           continue;
-        case 11:
-          if (tag !== 88) {
+        case 12:
+          if (tag !== 96) {
             break;
           }
 
@@ -172,6 +185,7 @@ export const Node = {
       nodeName: isSet(object.nodeName) ? String(object.nodeName) : "",
       deviceType: isSet(object.deviceType) ? String(object.deviceType) : "",
       regionCode: isSet(object.regionCode) ? String(object.regionCode) : "",
+      trafficType: isSet(object.trafficType) ? Number(object.trafficType) : 0,
       registerStatus: isSet(object.registerStatus) ? String(object.registerStatus) : "",
       workingStatus: isSet(object.workingStatus) ? String(object.workingStatus) : "",
       creator: isSet(object.creator) ? String(object.creator) : "",
@@ -197,6 +211,9 @@ export const Node = {
     }
     if (message.regionCode !== "") {
       obj.regionCode = message.regionCode;
+    }
+    if (message.trafficType !== 0) {
+      obj.trafficType = Math.round(message.trafficType);
     }
     if (message.registerStatus !== "") {
       obj.registerStatus = message.registerStatus;
@@ -229,6 +246,7 @@ export const Node = {
     message.nodeName = object.nodeName ?? "";
     message.deviceType = object.deviceType ?? "";
     message.regionCode = object.regionCode ?? "";
+    message.trafficType = object.trafficType ?? 0;
     message.registerStatus = object.registerStatus ?? "";
     message.workingStatus = object.workingStatus ?? "";
     message.creator = object.creator ?? "";

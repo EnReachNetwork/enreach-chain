@@ -32,6 +32,7 @@ export interface QueryAllNodeResponse {
         nodeName?: string;
         deviceType?: string;
         regionCode?: string;
+        trafficType?: number;
         registerStatus?: string;
         workingStatus?: string;
         creator?: string;
@@ -65,6 +66,7 @@ export interface QueryGetNodeResponse {
         nodeName?: string;
         deviceType?: string;
         regionCode?: string;
+        trafficType?: number;
         registerStatus?: string;
         workingStatus?: string;
         creator?: string;
@@ -101,6 +103,8 @@ export interface EdgenodeNode {
     nodeName?: string;
     deviceType?: string;
     regionCode?: string;
+    /** @format int64 */
+    trafficType?: number;
     registerStatus?: string;
     workingStatus?: string;
     creator?: string;
@@ -136,6 +140,7 @@ export type MsgCreateSuperiorResponse = object;
 export type MsgCreateUserResponse = object;
 export type MsgRegisterNodeResponse = object;
 export type MsgUnbindNodeResponse = object;
+export type MsgUpdateNodeTrafficTypeBatchResponse = object;
 export type MsgUpdateParamsResponse = object;
 export type MsgUpdateSuperiorResponse = object;
 export type Params = object;

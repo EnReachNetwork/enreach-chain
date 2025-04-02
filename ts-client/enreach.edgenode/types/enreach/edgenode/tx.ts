@@ -82,6 +82,16 @@ export interface MsgUpdateSuperior {
 export interface MsgUpdateSuperiorResponse {
 }
 
+export interface MsgUpdateNodeTrafficTypeBatch {
+  signer: string;
+  trafficType: number;
+  nodeIDs: string[];
+  skipNonExistNode: boolean;
+}
+
+export interface MsgUpdateNodeTrafficTypeBatchResponse {
+}
+
 function createBaseMsgUpdateParams(): MsgUpdateParams {
   return { authority: "", params: undefined };
 }
@@ -1125,6 +1135,159 @@ export const MsgUpdateSuperiorResponse = {
   },
 };
 
+function createBaseMsgUpdateNodeTrafficTypeBatch(): MsgUpdateNodeTrafficTypeBatch {
+  return { signer: "", trafficType: 0, nodeIDs: [], skipNonExistNode: false };
+}
+
+export const MsgUpdateNodeTrafficTypeBatch = {
+  encode(message: MsgUpdateNodeTrafficTypeBatch, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.signer !== "") {
+      writer.uint32(10).string(message.signer);
+    }
+    if (message.trafficType !== 0) {
+      writer.uint32(16).uint32(message.trafficType);
+    }
+    for (const v of message.nodeIDs) {
+      writer.uint32(26).string(v!);
+    }
+    if (message.skipNonExistNode === true) {
+      writer.uint32(32).bool(message.skipNonExistNode);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateNodeTrafficTypeBatch {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgUpdateNodeTrafficTypeBatch();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.signer = reader.string();
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.trafficType = reader.uint32();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.nodeIDs.push(reader.string());
+          continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+
+          message.skipNonExistNode = reader.bool();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgUpdateNodeTrafficTypeBatch {
+    return {
+      signer: isSet(object.signer) ? String(object.signer) : "",
+      trafficType: isSet(object.trafficType) ? Number(object.trafficType) : 0,
+      nodeIDs: Array.isArray(object?.nodeIDs) ? object.nodeIDs.map((e: any) => String(e)) : [],
+      skipNonExistNode: isSet(object.skipNonExistNode) ? Boolean(object.skipNonExistNode) : false,
+    };
+  },
+
+  toJSON(message: MsgUpdateNodeTrafficTypeBatch): unknown {
+    const obj: any = {};
+    if (message.signer !== "") {
+      obj.signer = message.signer;
+    }
+    if (message.trafficType !== 0) {
+      obj.trafficType = Math.round(message.trafficType);
+    }
+    if (message.nodeIDs?.length) {
+      obj.nodeIDs = message.nodeIDs;
+    }
+    if (message.skipNonExistNode === true) {
+      obj.skipNonExistNode = message.skipNonExistNode;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgUpdateNodeTrafficTypeBatch>, I>>(base?: I): MsgUpdateNodeTrafficTypeBatch {
+    return MsgUpdateNodeTrafficTypeBatch.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateNodeTrafficTypeBatch>, I>>(
+    object: I,
+  ): MsgUpdateNodeTrafficTypeBatch {
+    const message = createBaseMsgUpdateNodeTrafficTypeBatch();
+    message.signer = object.signer ?? "";
+    message.trafficType = object.trafficType ?? 0;
+    message.nodeIDs = object.nodeIDs?.map((e) => e) || [];
+    message.skipNonExistNode = object.skipNonExistNode ?? false;
+    return message;
+  },
+};
+
+function createBaseMsgUpdateNodeTrafficTypeBatchResponse(): MsgUpdateNodeTrafficTypeBatchResponse {
+  return {};
+}
+
+export const MsgUpdateNodeTrafficTypeBatchResponse = {
+  encode(_: MsgUpdateNodeTrafficTypeBatchResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateNodeTrafficTypeBatchResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgUpdateNodeTrafficTypeBatchResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgUpdateNodeTrafficTypeBatchResponse {
+    return {};
+  },
+
+  toJSON(_: MsgUpdateNodeTrafficTypeBatchResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgUpdateNodeTrafficTypeBatchResponse>, I>>(
+    base?: I,
+  ): MsgUpdateNodeTrafficTypeBatchResponse {
+    return MsgUpdateNodeTrafficTypeBatchResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateNodeTrafficTypeBatchResponse>, I>>(
+    _: I,
+  ): MsgUpdateNodeTrafficTypeBatchResponse {
+    const message = createBaseMsgUpdateNodeTrafficTypeBatchResponse();
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   /**
@@ -1139,6 +1302,7 @@ export interface Msg {
   UnbindNode(request: MsgUnbindNode): Promise<MsgUnbindNodeResponse>;
   CreateSuperior(request: MsgCreateSuperior): Promise<MsgCreateSuperiorResponse>;
   UpdateSuperior(request: MsgUpdateSuperior): Promise<MsgUpdateSuperiorResponse>;
+  UpdateNodeTrafficTypeBatch(request: MsgUpdateNodeTrafficTypeBatch): Promise<MsgUpdateNodeTrafficTypeBatchResponse>;
 }
 
 export const MsgServiceName = "enreach.edgenode.Msg";
@@ -1156,6 +1320,7 @@ export class MsgClientImpl implements Msg {
     this.UnbindNode = this.UnbindNode.bind(this);
     this.CreateSuperior = this.CreateSuperior.bind(this);
     this.UpdateSuperior = this.UpdateSuperior.bind(this);
+    this.UpdateNodeTrafficTypeBatch = this.UpdateNodeTrafficTypeBatch.bind(this);
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
@@ -1203,6 +1368,12 @@ export class MsgClientImpl implements Msg {
     const data = MsgUpdateSuperior.encode(request).finish();
     const promise = this.rpc.request(this.service, "UpdateSuperior", data);
     return promise.then((data) => MsgUpdateSuperiorResponse.decode(_m0.Reader.create(data)));
+  }
+
+  UpdateNodeTrafficTypeBatch(request: MsgUpdateNodeTrafficTypeBatch): Promise<MsgUpdateNodeTrafficTypeBatchResponse> {
+    const data = MsgUpdateNodeTrafficTypeBatch.encode(request).finish();
+    const promise = this.rpc.request(this.service, "UpdateNodeTrafficTypeBatch", data);
+    return promise.then((data) => MsgUpdateNodeTrafficTypeBatchResponse.decode(_m0.Reader.create(data)));
   }
 }
 

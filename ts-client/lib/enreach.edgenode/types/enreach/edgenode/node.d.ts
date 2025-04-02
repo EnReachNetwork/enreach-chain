@@ -6,6 +6,8 @@ export interface Node {
     nodeName: string;
     deviceType: string;
     regionCode: string;
+    /** Default 0 - stands for Enreach traffic */
+    trafficType: number;
     registerStatus: string;
     workingStatus: string;
     creator: string;

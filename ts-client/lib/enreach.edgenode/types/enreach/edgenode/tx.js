@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MsgClientImpl = exports.MsgServiceName = exports.MsgUpdateSuperiorResponse = exports.MsgUpdateSuperior = exports.MsgCreateSuperiorResponse = exports.MsgCreateSuperior = exports.MsgUnbindNodeResponse = exports.MsgUnbindNode = exports.MsgBindAndActivateNodeResponse = exports.MsgBindAndActivateNode = exports.MsgRegisterNodeResponse = exports.MsgRegisterNode = exports.MsgBindUserEVMAccountResponse = exports.MsgBindUserEVMAccount = exports.MsgCreateUserResponse = exports.MsgCreateUser = exports.MsgUpdateParamsResponse = exports.MsgUpdateParams = exports.protobufPackage = void 0;
+exports.MsgClientImpl = exports.MsgServiceName = exports.MsgUpdateNodeTrafficTypeBatchResponse = exports.MsgUpdateNodeTrafficTypeBatch = exports.MsgUpdateSuperiorResponse = exports.MsgUpdateSuperior = exports.MsgCreateSuperiorResponse = exports.MsgCreateSuperior = exports.MsgUnbindNodeResponse = exports.MsgUnbindNode = exports.MsgBindAndActivateNodeResponse = exports.MsgBindAndActivateNode = exports.MsgRegisterNodeResponse = exports.MsgRegisterNode = exports.MsgBindUserEVMAccountResponse = exports.MsgBindUserEVMAccount = exports.MsgCreateUserResponse = exports.MsgCreateUser = exports.MsgUpdateParamsResponse = exports.MsgUpdateParams = exports.protobufPackage = void 0;
 /* eslint-disable */
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const params_1 = require("./params");
@@ -932,6 +932,137 @@ exports.MsgUpdateSuperiorResponse = {
         return message;
     },
 };
+function createBaseMsgUpdateNodeTrafficTypeBatch() {
+    return { signer: "", trafficType: 0, nodeIDs: [], skipNonExistNode: false };
+}
+exports.MsgUpdateNodeTrafficTypeBatch = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.signer !== "") {
+            writer.uint32(10).string(message.signer);
+        }
+        if (message.trafficType !== 0) {
+            writer.uint32(16).uint32(message.trafficType);
+        }
+        for (const v of message.nodeIDs) {
+            writer.uint32(26).string(v);
+        }
+        if (message.skipNonExistNode === true) {
+            writer.uint32(32).bool(message.skipNonExistNode);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseMsgUpdateNodeTrafficTypeBatch();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.signer = reader.string();
+                    continue;
+                case 2:
+                    if (tag !== 16) {
+                        break;
+                    }
+                    message.trafficType = reader.uint32();
+                    continue;
+                case 3:
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.nodeIDs.push(reader.string());
+                    continue;
+                case 4:
+                    if (tag !== 32) {
+                        break;
+                    }
+                    message.skipNonExistNode = reader.bool();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            signer: isSet(object.signer) ? String(object.signer) : "",
+            trafficType: isSet(object.trafficType) ? Number(object.trafficType) : 0,
+            nodeIDs: Array.isArray(object?.nodeIDs) ? object.nodeIDs.map((e) => String(e)) : [],
+            skipNonExistNode: isSet(object.skipNonExistNode) ? Boolean(object.skipNonExistNode) : false,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.signer !== "") {
+            obj.signer = message.signer;
+        }
+        if (message.trafficType !== 0) {
+            obj.trafficType = Math.round(message.trafficType);
+        }
+        if (message.nodeIDs?.length) {
+            obj.nodeIDs = message.nodeIDs;
+        }
+        if (message.skipNonExistNode === true) {
+            obj.skipNonExistNode = message.skipNonExistNode;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.MsgUpdateNodeTrafficTypeBatch.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseMsgUpdateNodeTrafficTypeBatch();
+        message.signer = object.signer ?? "";
+        message.trafficType = object.trafficType ?? 0;
+        message.nodeIDs = object.nodeIDs?.map((e) => e) || [];
+        message.skipNonExistNode = object.skipNonExistNode ?? false;
+        return message;
+    },
+};
+function createBaseMsgUpdateNodeTrafficTypeBatchResponse() {
+    return {};
+}
+exports.MsgUpdateNodeTrafficTypeBatchResponse = {
+    encode(_, writer = minimal_1.default.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseMsgUpdateNodeTrafficTypeBatchResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(_) {
+        return {};
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    create(base) {
+        return exports.MsgUpdateNodeTrafficTypeBatchResponse.fromPartial(base ?? {});
+    },
+    fromPartial(_) {
+        const message = createBaseMsgUpdateNodeTrafficTypeBatchResponse();
+        return message;
+    },
+};
 exports.MsgServiceName = "enreach.edgenode.Msg";
 class MsgClientImpl {
     constructor(rpc, opts) {
@@ -945,6 +1076,7 @@ class MsgClientImpl {
         this.UnbindNode = this.UnbindNode.bind(this);
         this.CreateSuperior = this.CreateSuperior.bind(this);
         this.UpdateSuperior = this.UpdateSuperior.bind(this);
+        this.UpdateNodeTrafficTypeBatch = this.UpdateNodeTrafficTypeBatch.bind(this);
     }
     UpdateParams(request) {
         const data = exports.MsgUpdateParams.encode(request).finish();
@@ -985,6 +1117,11 @@ class MsgClientImpl {
         const data = exports.MsgUpdateSuperior.encode(request).finish();
         const promise = this.rpc.request(this.service, "UpdateSuperior", data);
         return promise.then((data) => exports.MsgUpdateSuperiorResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    UpdateNodeTrafficTypeBatch(request) {
+        const data = exports.MsgUpdateNodeTrafficTypeBatch.encode(request).finish();
+        const promise = this.rpc.request(this.service, "UpdateNodeTrafficTypeBatch", data);
+        return promise.then((data) => exports.MsgUpdateNodeTrafficTypeBatchResponse.decode(minimal_1.default.Reader.create(data)));
     }
 }
 exports.MsgClientImpl = MsgClientImpl;

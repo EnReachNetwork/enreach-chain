@@ -26,6 +26,9 @@ paths:
                     type: string
                   regionCode:
                     type: string
+                  trafficType:
+                    type: integer
+                    format: int64
                   registerStatus:
                     type: string
                   workingStatus:
@@ -89,6 +92,9 @@ paths:
                       type: string
                     regionCode:
                       type: string
+                    trafficType:
+                      type: integer
+                      format: int64
                     registerStatus:
                       type: string
                     workingStatus:
@@ -429,6 +435,9 @@ definitions:
               type: string
             regionCode:
               type: string
+            trafficType:
+              type: integer
+              format: int64
             registerStatus:
               type: string
             workingStatus:
@@ -499,6 +508,9 @@ definitions:
             type: string
           regionCode:
             type: string
+          trafficType:
+            type: integer
+            format: int64
           registerStatus:
             type: string
           workingStatus:
@@ -569,6 +581,9 @@ definitions:
         type: string
       regionCode:
         type: string
+      trafficType:
+        type: integer
+        format: int64
       registerStatus:
         type: string
       workingStatus:
@@ -628,6 +643,8 @@ definitions:
   MsgRegisterNodeResponse:
     type: object
   MsgUnbindNodeResponse:
+    type: object
+  MsgUpdateNodeTrafficTypeBatchResponse:
     type: object
   MsgUpdateParamsResponse:
     type: object

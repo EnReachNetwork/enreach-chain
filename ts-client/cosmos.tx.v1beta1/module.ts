@@ -6,67 +6,43 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
-import { SimulateRequest } from "./types/cosmos/tx/v1beta1/service";
-import { TxDecodeRequest } from "./types/cosmos/tx/v1beta1/service";
 import { SimulateResponse } from "./types/cosmos/tx/v1beta1/service";
-import { GetTxResponse } from "./types/cosmos/tx/v1beta1/service";
-import { SignDocDirectAux } from "./types/cosmos/tx/v1beta1/tx";
 import { ModeInfo_Multi } from "./types/cosmos/tx/v1beta1/tx";
-import { SignerInfo } from "./types/cosmos/tx/v1beta1/tx";
-import { ModeInfo_Single } from "./types/cosmos/tx/v1beta1/tx";
-import { TxDecodeResponse } from "./types/cosmos/tx/v1beta1/service";
-import { TxEncodeResponse } from "./types/cosmos/tx/v1beta1/service";
-import { TxRaw } from "./types/cosmos/tx/v1beta1/tx";
 import { TxBody } from "./types/cosmos/tx/v1beta1/tx";
+import { TxEncodeRequest } from "./types/cosmos/tx/v1beta1/service";
+import { TxEncodeResponse } from "./types/cosmos/tx/v1beta1/service";
+import { TxDecodeAminoRequest } from "./types/cosmos/tx/v1beta1/service";
+import { TxRaw } from "./types/cosmos/tx/v1beta1/tx";
 import { AuthInfo } from "./types/cosmos/tx/v1beta1/tx";
 import { GetTxsEventResponse } from "./types/cosmos/tx/v1beta1/service";
-import { GetBlockWithTxsRequest } from "./types/cosmos/tx/v1beta1/service";
-import { TxDecodeAminoResponse } from "./types/cosmos/tx/v1beta1/service";
-import { Tip } from "./types/cosmos/tx/v1beta1/tx";
 import { BroadcastTxRequest } from "./types/cosmos/tx/v1beta1/service";
-import { GetBlockWithTxsResponse } from "./types/cosmos/tx/v1beta1/service";
-import { ModeInfo } from "./types/cosmos/tx/v1beta1/tx";
-import { GetTxsEventRequest } from "./types/cosmos/tx/v1beta1/service";
+import { TxEncodeAminoRequest } from "./types/cosmos/tx/v1beta1/service";
+import { SignDoc } from "./types/cosmos/tx/v1beta1/tx";
+import { AuxSignerData } from "./types/cosmos/tx/v1beta1/tx";
 import { BroadcastTxResponse } from "./types/cosmos/tx/v1beta1/service";
 import { GetTxRequest } from "./types/cosmos/tx/v1beta1/service";
-import { TxEncodeRequest } from "./types/cosmos/tx/v1beta1/service";
-import { TxEncodeAminoRequest } from "./types/cosmos/tx/v1beta1/service";
-import { TxDecodeAminoRequest } from "./types/cosmos/tx/v1beta1/service";
-import { AuxSignerData } from "./types/cosmos/tx/v1beta1/tx";
+import { TxDecodeResponse } from "./types/cosmos/tx/v1beta1/service";
 import { TxEncodeAminoResponse } from "./types/cosmos/tx/v1beta1/service";
-import { Tx } from "./types/cosmos/tx/v1beta1/tx";
-import { SignDoc } from "./types/cosmos/tx/v1beta1/tx";
+import { TxDecodeAminoResponse } from "./types/cosmos/tx/v1beta1/service";
+import { ModeInfo_Single } from "./types/cosmos/tx/v1beta1/tx";
+import { Tip } from "./types/cosmos/tx/v1beta1/tx";
+import { GetTxsEventRequest } from "./types/cosmos/tx/v1beta1/service";
+import { TxDecodeRequest } from "./types/cosmos/tx/v1beta1/service";
+import { SignerInfo } from "./types/cosmos/tx/v1beta1/tx";
 import { Fee } from "./types/cosmos/tx/v1beta1/tx";
+import { SimulateRequest } from "./types/cosmos/tx/v1beta1/service";
+import { GetTxResponse } from "./types/cosmos/tx/v1beta1/service";
+import { SignDocDirectAux } from "./types/cosmos/tx/v1beta1/tx";
+import { ModeInfo } from "./types/cosmos/tx/v1beta1/tx";
+import { GetBlockWithTxsRequest } from "./types/cosmos/tx/v1beta1/service";
+import { GetBlockWithTxsResponse } from "./types/cosmos/tx/v1beta1/service";
+import { Tx } from "./types/cosmos/tx/v1beta1/tx";
 
 
-export { SimulateRequest, TxDecodeRequest, SimulateResponse, GetTxResponse, SignDocDirectAux, ModeInfo_Multi, SignerInfo, ModeInfo_Single, TxDecodeResponse, TxEncodeResponse, TxRaw, TxBody, AuthInfo, GetTxsEventResponse, GetBlockWithTxsRequest, TxDecodeAminoResponse, Tip, BroadcastTxRequest, GetBlockWithTxsResponse, ModeInfo, GetTxsEventRequest, BroadcastTxResponse, GetTxRequest, TxEncodeRequest, TxEncodeAminoRequest, TxDecodeAminoRequest, AuxSignerData, TxEncodeAminoResponse, Tx, SignDoc, Fee };
-
-type sendSimulateRequestParams = {
-  value: SimulateRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendTxDecodeRequestParams = {
-  value: TxDecodeRequest,
-  fee?: StdFee,
-  memo?: string
-};
+export { SimulateResponse, ModeInfo_Multi, TxBody, TxEncodeRequest, TxEncodeResponse, TxDecodeAminoRequest, TxRaw, AuthInfo, GetTxsEventResponse, BroadcastTxRequest, TxEncodeAminoRequest, SignDoc, AuxSignerData, BroadcastTxResponse, GetTxRequest, TxDecodeResponse, TxEncodeAminoResponse, TxDecodeAminoResponse, ModeInfo_Single, Tip, GetTxsEventRequest, TxDecodeRequest, SignerInfo, Fee, SimulateRequest, GetTxResponse, SignDocDirectAux, ModeInfo, GetBlockWithTxsRequest, GetBlockWithTxsResponse, Tx };
 
 type sendSimulateResponseParams = {
   value: SimulateResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendGetTxResponseParams = {
-  value: GetTxResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendSignDocDirectAuxParams = {
-  value: SignDocDirectAux,
   fee?: StdFee,
   memo?: string
 };
@@ -77,20 +53,14 @@ type sendModeInfo_MultiParams = {
   memo?: string
 };
 
-type sendSignerInfoParams = {
-  value: SignerInfo,
+type sendTxBodyParams = {
+  value: TxBody,
   fee?: StdFee,
   memo?: string
 };
 
-type sendModeInfo_SingleParams = {
-  value: ModeInfo_Single,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendTxDecodeResponseParams = {
-  value: TxDecodeResponse,
+type sendTxEncodeRequestParams = {
+  value: TxEncodeRequest,
   fee?: StdFee,
   memo?: string
 };
@@ -101,14 +71,14 @@ type sendTxEncodeResponseParams = {
   memo?: string
 };
 
-type sendTxRawParams = {
-  value: TxRaw,
+type sendTxDecodeAminoRequestParams = {
+  value: TxDecodeAminoRequest,
   fee?: StdFee,
   memo?: string
 };
 
-type sendTxBodyParams = {
-  value: TxBody,
+type sendTxRawParams = {
+  value: TxRaw,
   fee?: StdFee,
   memo?: string
 };
@@ -125,44 +95,26 @@ type sendGetTxsEventResponseParams = {
   memo?: string
 };
 
-type sendGetBlockWithTxsRequestParams = {
-  value: GetBlockWithTxsRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendTxDecodeAminoResponseParams = {
-  value: TxDecodeAminoResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendTipParams = {
-  value: Tip,
-  fee?: StdFee,
-  memo?: string
-};
-
 type sendBroadcastTxRequestParams = {
   value: BroadcastTxRequest,
   fee?: StdFee,
   memo?: string
 };
 
-type sendGetBlockWithTxsResponseParams = {
-  value: GetBlockWithTxsResponse,
+type sendTxEncodeAminoRequestParams = {
+  value: TxEncodeAminoRequest,
   fee?: StdFee,
   memo?: string
 };
 
-type sendModeInfoParams = {
-  value: ModeInfo,
+type sendSignDocParams = {
+  value: SignDoc,
   fee?: StdFee,
   memo?: string
 };
 
-type sendGetTxsEventRequestParams = {
-  value: GetTxsEventRequest,
+type sendAuxSignerDataParams = {
+  value: AuxSignerData,
   fee?: StdFee,
   memo?: string
 };
@@ -179,26 +131,8 @@ type sendGetTxRequestParams = {
   memo?: string
 };
 
-type sendTxEncodeRequestParams = {
-  value: TxEncodeRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendTxEncodeAminoRequestParams = {
-  value: TxEncodeAminoRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendTxDecodeAminoRequestParams = {
-  value: TxDecodeAminoRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendAuxSignerDataParams = {
-  value: AuxSignerData,
+type sendTxDecodeResponseParams = {
+  value: TxDecodeResponse,
   fee?: StdFee,
   memo?: string
 };
@@ -209,14 +143,38 @@ type sendTxEncodeAminoResponseParams = {
   memo?: string
 };
 
-type sendTxParams = {
-  value: Tx,
+type sendTxDecodeAminoResponseParams = {
+  value: TxDecodeAminoResponse,
   fee?: StdFee,
   memo?: string
 };
 
-type sendSignDocParams = {
-  value: SignDoc,
+type sendModeInfo_SingleParams = {
+  value: ModeInfo_Single,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendTipParams = {
+  value: Tip,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendGetTxsEventRequestParams = {
+  value: GetTxsEventRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendTxDecodeRequestParams = {
+  value: TxDecodeRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendSignerInfoParams = {
+  value: SignerInfo,
   fee?: StdFee,
   memo?: string
 };
@@ -227,53 +185,75 @@ type sendFeeParams = {
   memo?: string
 };
 
-
-type simulateRequestParams = {
+type sendSimulateRequestParams = {
   value: SimulateRequest,
+  fee?: StdFee,
+  memo?: string
 };
 
-type txDecodeRequestParams = {
-  value: TxDecodeRequest,
+type sendGetTxResponseParams = {
+  value: GetTxResponse,
+  fee?: StdFee,
+  memo?: string
 };
+
+type sendSignDocDirectAuxParams = {
+  value: SignDocDirectAux,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendModeInfoParams = {
+  value: ModeInfo,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendGetBlockWithTxsRequestParams = {
+  value: GetBlockWithTxsRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendGetBlockWithTxsResponseParams = {
+  value: GetBlockWithTxsResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendTxParams = {
+  value: Tx,
+  fee?: StdFee,
+  memo?: string
+};
+
 
 type simulateResponseParams = {
   value: SimulateResponse,
-};
-
-type getTxResponseParams = {
-  value: GetTxResponse,
-};
-
-type signDocDirectAuxParams = {
-  value: SignDocDirectAux,
 };
 
 type modeInfoMultiParams = {
   value: ModeInfo_Multi,
 };
 
-type signerInfoParams = {
-  value: SignerInfo,
+type txBodyParams = {
+  value: TxBody,
 };
 
-type modeInfoSingleParams = {
-  value: ModeInfo_Single,
-};
-
-type txDecodeResponseParams = {
-  value: TxDecodeResponse,
+type txEncodeRequestParams = {
+  value: TxEncodeRequest,
 };
 
 type txEncodeResponseParams = {
   value: TxEncodeResponse,
 };
 
-type txRawParams = {
-  value: TxRaw,
+type txDecodeAminoRequestParams = {
+  value: TxDecodeAminoRequest,
 };
 
-type txBodyParams = {
-  value: TxBody,
+type txRawParams = {
+  value: TxRaw,
 };
 
 type authInfoParams = {
@@ -284,32 +264,20 @@ type getTxsEventResponseParams = {
   value: GetTxsEventResponse,
 };
 
-type getBlockWithTxsRequestParams = {
-  value: GetBlockWithTxsRequest,
-};
-
-type txDecodeAminoResponseParams = {
-  value: TxDecodeAminoResponse,
-};
-
-type tipParams = {
-  value: Tip,
-};
-
 type broadcastTxRequestParams = {
   value: BroadcastTxRequest,
 };
 
-type getBlockWithTxsResponseParams = {
-  value: GetBlockWithTxsResponse,
+type txEncodeAminoRequestParams = {
+  value: TxEncodeAminoRequest,
 };
 
-type modeInfoParams = {
-  value: ModeInfo,
+type signDocParams = {
+  value: SignDoc,
 };
 
-type getTxsEventRequestParams = {
-  value: GetTxsEventRequest,
+type auxSignerDataParams = {
+  value: AuxSignerData,
 };
 
 type broadcastTxResponseParams = {
@@ -320,36 +288,68 @@ type getTxRequestParams = {
   value: GetTxRequest,
 };
 
-type txEncodeRequestParams = {
-  value: TxEncodeRequest,
-};
-
-type txEncodeAminoRequestParams = {
-  value: TxEncodeAminoRequest,
-};
-
-type txDecodeAminoRequestParams = {
-  value: TxDecodeAminoRequest,
-};
-
-type auxSignerDataParams = {
-  value: AuxSignerData,
+type txDecodeResponseParams = {
+  value: TxDecodeResponse,
 };
 
 type txEncodeAminoResponseParams = {
   value: TxEncodeAminoResponse,
 };
 
-type txParams = {
-  value: Tx,
+type txDecodeAminoResponseParams = {
+  value: TxDecodeAminoResponse,
 };
 
-type signDocParams = {
-  value: SignDoc,
+type modeInfoSingleParams = {
+  value: ModeInfo_Single,
+};
+
+type tipParams = {
+  value: Tip,
+};
+
+type getTxsEventRequestParams = {
+  value: GetTxsEventRequest,
+};
+
+type txDecodeRequestParams = {
+  value: TxDecodeRequest,
+};
+
+type signerInfoParams = {
+  value: SignerInfo,
 };
 
 type feeParams = {
   value: Fee,
+};
+
+type simulateRequestParams = {
+  value: SimulateRequest,
+};
+
+type getTxResponseParams = {
+  value: GetTxResponse,
+};
+
+type signDocDirectAuxParams = {
+  value: SignDocDirectAux,
+};
+
+type modeInfoParams = {
+  value: ModeInfo,
+};
+
+type getBlockWithTxsRequestParams = {
+  value: GetBlockWithTxsRequest,
+};
+
+type getBlockWithTxsResponseParams = {
+  value: GetBlockWithTxsResponse,
+};
+
+type txParams = {
+  value: Tx,
 };
 
 
@@ -382,34 +382,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 
   return {
 		
-		async sendSimulateRequest({ value, fee, memo }: sendSimulateRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendSimulateRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.simulateRequest({ value: SimulateRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendSimulateRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendTxDecodeRequest({ value, fee, memo }: sendTxDecodeRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendTxDecodeRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.txDecodeRequest({ value: TxDecodeRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendTxDecodeRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
 		async sendSimulateResponse({ value, fee, memo }: sendSimulateResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendSimulateResponse: Unable to sign Tx. Signer is not present.')
@@ -421,34 +393,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
 				throw new Error('TxClient:sendSimulateResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendGetTxResponse({ value, fee, memo }: sendGetTxResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendGetTxResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.getTxResponse({ value: GetTxResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendGetTxResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendSignDocDirectAux({ value, fee, memo }: sendSignDocDirectAuxParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendSignDocDirectAux: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.signDocDirectAux({ value: SignDocDirectAux.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendSignDocDirectAux: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -466,45 +410,31 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendSignerInfo({ value, fee, memo }: sendSignerInfoParams): Promise<DeliverTxResponse> {
+		async sendTxBody({ value, fee, memo }: sendTxBodyParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendSignerInfo: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendTxBody: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.signerInfo({ value: SignerInfo.fromPartial(value) })
+				let msg = this.txBody({ value: TxBody.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendSignerInfo: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendTxBody: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendModeInfo_Single({ value, fee, memo }: sendModeInfo_SingleParams): Promise<DeliverTxResponse> {
+		async sendTxEncodeRequest({ value, fee, memo }: sendTxEncodeRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendModeInfo_Single: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendTxEncodeRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.modeInfoSingle({ value: ModeInfo_Single.fromPartial(value) })
+				let msg = this.txEncodeRequest({ value: TxEncodeRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendModeInfo_Single: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendTxDecodeResponse({ value, fee, memo }: sendTxDecodeResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendTxDecodeResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.txDecodeResponse({ value: TxDecodeResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendTxDecodeResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendTxEncodeRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -522,6 +452,20 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		async sendTxDecodeAminoRequest({ value, fee, memo }: sendTxDecodeAminoRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendTxDecodeAminoRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.txDecodeAminoRequest({ value: TxDecodeAminoRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendTxDecodeAminoRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
 		async sendTxRaw({ value, fee, memo }: sendTxRawParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendTxRaw: Unable to sign Tx. Signer is not present.')
@@ -533,20 +477,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
 				throw new Error('TxClient:sendTxRaw: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendTxBody({ value, fee, memo }: sendTxBodyParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendTxBody: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.txBody({ value: TxBody.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendTxBody: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -578,48 +508,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendGetBlockWithTxsRequest({ value, fee, memo }: sendGetBlockWithTxsRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendGetBlockWithTxsRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.getBlockWithTxsRequest({ value: GetBlockWithTxsRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendGetBlockWithTxsRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendTxDecodeAminoResponse({ value, fee, memo }: sendTxDecodeAminoResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendTxDecodeAminoResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.txDecodeAminoResponse({ value: TxDecodeAminoResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendTxDecodeAminoResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendTip({ value, fee, memo }: sendTipParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendTip: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.tip({ value: Tip.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendTip: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
 		async sendBroadcastTxRequest({ value, fee, memo }: sendBroadcastTxRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendBroadcastTxRequest: Unable to sign Tx. Signer is not present.')
@@ -634,45 +522,45 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendGetBlockWithTxsResponse({ value, fee, memo }: sendGetBlockWithTxsResponseParams): Promise<DeliverTxResponse> {
+		async sendTxEncodeAminoRequest({ value, fee, memo }: sendTxEncodeAminoRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendGetBlockWithTxsResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendTxEncodeAminoRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.getBlockWithTxsResponse({ value: GetBlockWithTxsResponse.fromPartial(value) })
+				let msg = this.txEncodeAminoRequest({ value: TxEncodeAminoRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendGetBlockWithTxsResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendTxEncodeAminoRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendModeInfo({ value, fee, memo }: sendModeInfoParams): Promise<DeliverTxResponse> {
+		async sendSignDoc({ value, fee, memo }: sendSignDocParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendModeInfo: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendSignDoc: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.modeInfo({ value: ModeInfo.fromPartial(value) })
+				let msg = this.signDoc({ value: SignDoc.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendModeInfo: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendSignDoc: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendGetTxsEventRequest({ value, fee, memo }: sendGetTxsEventRequestParams): Promise<DeliverTxResponse> {
+		async sendAuxSignerData({ value, fee, memo }: sendAuxSignerDataParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendGetTxsEventRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendAuxSignerData: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.getTxsEventRequest({ value: GetTxsEventRequest.fromPartial(value) })
+				let msg = this.auxSignerData({ value: AuxSignerData.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendGetTxsEventRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendAuxSignerData: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -704,59 +592,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendTxEncodeRequest({ value, fee, memo }: sendTxEncodeRequestParams): Promise<DeliverTxResponse> {
+		async sendTxDecodeResponse({ value, fee, memo }: sendTxDecodeResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendTxEncodeRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendTxDecodeResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.txEncodeRequest({ value: TxEncodeRequest.fromPartial(value) })
+				let msg = this.txDecodeResponse({ value: TxDecodeResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendTxEncodeRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendTxEncodeAminoRequest({ value, fee, memo }: sendTxEncodeAminoRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendTxEncodeAminoRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.txEncodeAminoRequest({ value: TxEncodeAminoRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendTxEncodeAminoRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendTxDecodeAminoRequest({ value, fee, memo }: sendTxDecodeAminoRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendTxDecodeAminoRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.txDecodeAminoRequest({ value: TxDecodeAminoRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendTxDecodeAminoRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendAuxSignerData({ value, fee, memo }: sendAuxSignerDataParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendAuxSignerData: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.auxSignerData({ value: AuxSignerData.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendAuxSignerData: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendTxDecodeResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -774,31 +620,87 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendTx({ value, fee, memo }: sendTxParams): Promise<DeliverTxResponse> {
+		async sendTxDecodeAminoResponse({ value, fee, memo }: sendTxDecodeAminoResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendTx: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendTxDecodeAminoResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.tx({ value: Tx.fromPartial(value) })
+				let msg = this.txDecodeAminoResponse({ value: TxDecodeAminoResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendTx: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendTxDecodeAminoResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendSignDoc({ value, fee, memo }: sendSignDocParams): Promise<DeliverTxResponse> {
+		async sendModeInfo_Single({ value, fee, memo }: sendModeInfo_SingleParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendSignDoc: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendModeInfo_Single: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.signDoc({ value: SignDoc.fromPartial(value) })
+				let msg = this.modeInfoSingle({ value: ModeInfo_Single.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendSignDoc: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendModeInfo_Single: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendTip({ value, fee, memo }: sendTipParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendTip: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.tip({ value: Tip.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendTip: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendGetTxsEventRequest({ value, fee, memo }: sendGetTxsEventRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendGetTxsEventRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.getTxsEventRequest({ value: GetTxsEventRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendGetTxsEventRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendTxDecodeRequest({ value, fee, memo }: sendTxDecodeRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendTxDecodeRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.txDecodeRequest({ value: TxDecodeRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendTxDecodeRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendSignerInfo({ value, fee, memo }: sendSignerInfoParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendSignerInfo: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.signerInfo({ value: SignerInfo.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendSignerInfo: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -816,44 +718,110 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		
-		simulateRequest({ value }: simulateRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.tx.v1beta1.SimulateRequest", value: SimulateRequest.fromPartial( value ) }  
+		async sendSimulateRequest({ value, fee, memo }: sendSimulateRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendSimulateRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.simulateRequest({ value: SimulateRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:SimulateRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendSimulateRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		txDecodeRequest({ value }: txDecodeRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.tx.v1beta1.TxDecodeRequest", value: TxDecodeRequest.fromPartial( value ) }  
+		async sendGetTxResponse({ value, fee, memo }: sendGetTxResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendGetTxResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.getTxResponse({ value: GetTxResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:TxDecodeRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendGetTxResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
+		
+		async sendSignDocDirectAux({ value, fee, memo }: sendSignDocDirectAuxParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendSignDocDirectAux: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.signDocDirectAux({ value: SignDocDirectAux.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendSignDocDirectAux: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendModeInfo({ value, fee, memo }: sendModeInfoParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendModeInfo: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.modeInfo({ value: ModeInfo.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendModeInfo: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendGetBlockWithTxsRequest({ value, fee, memo }: sendGetBlockWithTxsRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendGetBlockWithTxsRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.getBlockWithTxsRequest({ value: GetBlockWithTxsRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendGetBlockWithTxsRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendGetBlockWithTxsResponse({ value, fee, memo }: sendGetBlockWithTxsResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendGetBlockWithTxsResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.getBlockWithTxsResponse({ value: GetBlockWithTxsResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendGetBlockWithTxsResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendTx({ value, fee, memo }: sendTxParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendTx: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.tx({ value: Tx.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendTx: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
 		
 		simulateResponse({ value }: simulateResponseParams): EncodeObject {
 			try {
 				return { typeUrl: "/cosmos.tx.v1beta1.SimulateResponse", value: SimulateResponse.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:SimulateResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		getTxResponse({ value }: getTxResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.tx.v1beta1.GetTxResponse", value: GetTxResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:GetTxResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		signDocDirectAux({ value }: signDocDirectAuxParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.tx.v1beta1.SignDocDirectAux", value: SignDocDirectAux.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:SignDocDirectAux: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -865,27 +833,19 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		signerInfo({ value }: signerInfoParams): EncodeObject {
+		txBody({ value }: txBodyParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.tx.v1beta1.SignerInfo", value: SignerInfo.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.tx.v1beta1.TxBody", value: TxBody.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:SignerInfo: Could not create message: ' + e.message)
+				throw new Error('TxClient:TxBody: Could not create message: ' + e.message)
 			}
 		},
 		
-		modeInfoSingle({ value }: modeInfoSingleParams): EncodeObject {
+		txEncodeRequest({ value }: txEncodeRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.tx.v1beta1.ModeInfo_Single", value: ModeInfo_Single.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.tx.v1beta1.TxEncodeRequest", value: TxEncodeRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:ModeInfo_Single: Could not create message: ' + e.message)
-			}
-		},
-		
-		txDecodeResponse({ value }: txDecodeResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.tx.v1beta1.TxDecodeResponse", value: TxDecodeResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:TxDecodeResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:TxEncodeRequest: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -897,19 +857,19 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		txDecodeAminoRequest({ value }: txDecodeAminoRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.tx.v1beta1.TxDecodeAminoRequest", value: TxDecodeAminoRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:TxDecodeAminoRequest: Could not create message: ' + e.message)
+			}
+		},
+		
 		txRaw({ value }: txRawParams): EncodeObject {
 			try {
 				return { typeUrl: "/cosmos.tx.v1beta1.TxRaw", value: TxRaw.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:TxRaw: Could not create message: ' + e.message)
-			}
-		},
-		
-		txBody({ value }: txBodyParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.tx.v1beta1.TxBody", value: TxBody.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:TxBody: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -929,30 +889,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		getBlockWithTxsRequest({ value }: getBlockWithTxsRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.tx.v1beta1.GetBlockWithTxsRequest", value: GetBlockWithTxsRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:GetBlockWithTxsRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		txDecodeAminoResponse({ value }: txDecodeAminoResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.tx.v1beta1.TxDecodeAminoResponse", value: TxDecodeAminoResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:TxDecodeAminoResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		tip({ value }: tipParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.tx.v1beta1.Tip", value: Tip.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:Tip: Could not create message: ' + e.message)
-			}
-		},
-		
 		broadcastTxRequest({ value }: broadcastTxRequestParams): EncodeObject {
 			try {
 				return { typeUrl: "/cosmos.tx.v1beta1.BroadcastTxRequest", value: BroadcastTxRequest.fromPartial( value ) }  
@@ -961,27 +897,27 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		getBlockWithTxsResponse({ value }: getBlockWithTxsResponseParams): EncodeObject {
+		txEncodeAminoRequest({ value }: txEncodeAminoRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.tx.v1beta1.GetBlockWithTxsResponse", value: GetBlockWithTxsResponse.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.tx.v1beta1.TxEncodeAminoRequest", value: TxEncodeAminoRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:GetBlockWithTxsResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:TxEncodeAminoRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		modeInfo({ value }: modeInfoParams): EncodeObject {
+		signDoc({ value }: signDocParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.tx.v1beta1.ModeInfo", value: ModeInfo.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.tx.v1beta1.SignDoc", value: SignDoc.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:ModeInfo: Could not create message: ' + e.message)
+				throw new Error('TxClient:SignDoc: Could not create message: ' + e.message)
 			}
 		},
 		
-		getTxsEventRequest({ value }: getTxsEventRequestParams): EncodeObject {
+		auxSignerData({ value }: auxSignerDataParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.tx.v1beta1.GetTxsEventRequest", value: GetTxsEventRequest.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.tx.v1beta1.AuxSignerData", value: AuxSignerData.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:GetTxsEventRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:AuxSignerData: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -1001,35 +937,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		txEncodeRequest({ value }: txEncodeRequestParams): EncodeObject {
+		txDecodeResponse({ value }: txDecodeResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.tx.v1beta1.TxEncodeRequest", value: TxEncodeRequest.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.tx.v1beta1.TxDecodeResponse", value: TxDecodeResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:TxEncodeRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		txEncodeAminoRequest({ value }: txEncodeAminoRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.tx.v1beta1.TxEncodeAminoRequest", value: TxEncodeAminoRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:TxEncodeAminoRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		txDecodeAminoRequest({ value }: txDecodeAminoRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.tx.v1beta1.TxDecodeAminoRequest", value: TxDecodeAminoRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:TxDecodeAminoRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		auxSignerData({ value }: auxSignerDataParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.tx.v1beta1.AuxSignerData", value: AuxSignerData.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:AuxSignerData: Could not create message: ' + e.message)
+				throw new Error('TxClient:TxDecodeResponse: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -1041,19 +953,51 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		tx({ value }: txParams): EncodeObject {
+		txDecodeAminoResponse({ value }: txDecodeAminoResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.tx.v1beta1.Tx", value: Tx.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.tx.v1beta1.TxDecodeAminoResponse", value: TxDecodeAminoResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:Tx: Could not create message: ' + e.message)
+				throw new Error('TxClient:TxDecodeAminoResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		signDoc({ value }: signDocParams): EncodeObject {
+		modeInfoSingle({ value }: modeInfoSingleParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.tx.v1beta1.SignDoc", value: SignDoc.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.tx.v1beta1.ModeInfo_Single", value: ModeInfo_Single.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:SignDoc: Could not create message: ' + e.message)
+				throw new Error('TxClient:ModeInfo_Single: Could not create message: ' + e.message)
+			}
+		},
+		
+		tip({ value }: tipParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.tx.v1beta1.Tip", value: Tip.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:Tip: Could not create message: ' + e.message)
+			}
+		},
+		
+		getTxsEventRequest({ value }: getTxsEventRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.tx.v1beta1.GetTxsEventRequest", value: GetTxsEventRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:GetTxsEventRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		txDecodeRequest({ value }: txDecodeRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.tx.v1beta1.TxDecodeRequest", value: TxDecodeRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:TxDecodeRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		signerInfo({ value }: signerInfoParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.tx.v1beta1.SignerInfo", value: SignerInfo.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:SignerInfo: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -1062,6 +1006,62 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 				return { typeUrl: "/cosmos.tx.v1beta1.Fee", value: Fee.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:Fee: Could not create message: ' + e.message)
+			}
+		},
+		
+		simulateRequest({ value }: simulateRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.tx.v1beta1.SimulateRequest", value: SimulateRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:SimulateRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		getTxResponse({ value }: getTxResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.tx.v1beta1.GetTxResponse", value: GetTxResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:GetTxResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		signDocDirectAux({ value }: signDocDirectAuxParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.tx.v1beta1.SignDocDirectAux", value: SignDocDirectAux.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:SignDocDirectAux: Could not create message: ' + e.message)
+			}
+		},
+		
+		modeInfo({ value }: modeInfoParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.tx.v1beta1.ModeInfo", value: ModeInfo.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:ModeInfo: Could not create message: ' + e.message)
+			}
+		},
+		
+		getBlockWithTxsRequest({ value }: getBlockWithTxsRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.tx.v1beta1.GetBlockWithTxsRequest", value: GetBlockWithTxsRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:GetBlockWithTxsRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		getBlockWithTxsResponse({ value }: getBlockWithTxsResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.tx.v1beta1.GetBlockWithTxsResponse", value: GetBlockWithTxsResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:GetBlockWithTxsResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		tx({ value }: txParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.tx.v1beta1.Tx", value: Tx.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:Tx: Could not create message: ' + e.message)
 			}
 		},
 		

@@ -63,6 +63,14 @@ export interface MsgUpdateSuperior {
 }
 export interface MsgUpdateSuperiorResponse {
 }
+export interface MsgUpdateNodeTrafficTypeBatch {
+    signer: string;
+    trafficType: number;
+    nodeIDs: string[];
+    skipNonExistNode: boolean;
+}
+export interface MsgUpdateNodeTrafficTypeBatchResponse {
+}
 export declare const MsgUpdateParams: {
     encode(message: MsgUpdateParams, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateParams;
@@ -191,6 +199,22 @@ export declare const MsgUpdateSuperiorResponse: {
     create<I extends Exact<DeepPartial<MsgUpdateSuperiorResponse>, I>>(base?: I): MsgUpdateSuperiorResponse;
     fromPartial<I extends Exact<DeepPartial<MsgUpdateSuperiorResponse>, I>>(_: I): MsgUpdateSuperiorResponse;
 };
+export declare const MsgUpdateNodeTrafficTypeBatch: {
+    encode(message: MsgUpdateNodeTrafficTypeBatch, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateNodeTrafficTypeBatch;
+    fromJSON(object: any): MsgUpdateNodeTrafficTypeBatch;
+    toJSON(message: MsgUpdateNodeTrafficTypeBatch): unknown;
+    create<I extends Exact<DeepPartial<MsgUpdateNodeTrafficTypeBatch>, I>>(base?: I): MsgUpdateNodeTrafficTypeBatch;
+    fromPartial<I extends Exact<DeepPartial<MsgUpdateNodeTrafficTypeBatch>, I>>(object: I): MsgUpdateNodeTrafficTypeBatch;
+};
+export declare const MsgUpdateNodeTrafficTypeBatchResponse: {
+    encode(_: MsgUpdateNodeTrafficTypeBatchResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateNodeTrafficTypeBatchResponse;
+    fromJSON(_: any): MsgUpdateNodeTrafficTypeBatchResponse;
+    toJSON(_: MsgUpdateNodeTrafficTypeBatchResponse): unknown;
+    create<I extends Exact<DeepPartial<MsgUpdateNodeTrafficTypeBatchResponse>, I>>(base?: I): MsgUpdateNodeTrafficTypeBatchResponse;
+    fromPartial<I extends Exact<DeepPartial<MsgUpdateNodeTrafficTypeBatchResponse>, I>>(_: I): MsgUpdateNodeTrafficTypeBatchResponse;
+};
 /** Msg defines the Msg service. */
 export interface Msg {
     /**
@@ -205,6 +229,7 @@ export interface Msg {
     UnbindNode(request: MsgUnbindNode): Promise<MsgUnbindNodeResponse>;
     CreateSuperior(request: MsgCreateSuperior): Promise<MsgCreateSuperiorResponse>;
     UpdateSuperior(request: MsgUpdateSuperior): Promise<MsgUpdateSuperiorResponse>;
+    UpdateNodeTrafficTypeBatch(request: MsgUpdateNodeTrafficTypeBatch): Promise<MsgUpdateNodeTrafficTypeBatchResponse>;
 }
 export declare const MsgServiceName = "enreach.edgenode.Msg";
 export declare class MsgClientImpl implements Msg {
@@ -221,6 +246,7 @@ export declare class MsgClientImpl implements Msg {
     UnbindNode(request: MsgUnbindNode): Promise<MsgUnbindNodeResponse>;
     CreateSuperior(request: MsgCreateSuperior): Promise<MsgCreateSuperiorResponse>;
     UpdateSuperior(request: MsgUpdateSuperior): Promise<MsgUpdateSuperiorResponse>;
+    UpdateNodeTrafficTypeBatch(request: MsgUpdateNodeTrafficTypeBatch): Promise<MsgUpdateNodeTrafficTypeBatchResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
