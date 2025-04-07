@@ -54,3 +54,10 @@ const (
 	LastEraProcessDataKey  = "EraProcessData/last/"
 	EraProcessDataCountKey = "EraProcessData/count/"
 )
+
+const (
+	CurrentEpochKey      = "CurrentEpoch/value/"
+	PendingNextEpochKey  = "PendingNextEpoch/value/"
+	HistoryEpochCountKey = "HistoryEpoch/count"
+	HistoryEpochKey      = "HistoryEpoch/value"
+)

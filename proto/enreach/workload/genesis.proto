@@ -6,6 +6,8 @@ import "amino/amino.proto";
 import "gogoproto/gogo.proto";
 import "enreach/workload/params.proto";
 import "enreach/workload/workload.proto";
+import "enreach/workload/superior.proto";
+import "enreach/workload/epoch_info.proto";
 
 option go_package = "enreach/x/workload/types";
 
@@ -13,6 +15,9 @@ option go_package = "enreach/x/workload/types";
 message GenesisState {
   
   // params defines all the parameters of the module.
-           Params   params        = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  Params    params    = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  Superior  superior  = 2;
+  EpochInfo currentEpoch = 3;
+  EpochInfo pendingNextEpoch = 4;
 }
 

@@ -12,7 +12,14 @@ import (
 func (k Keeper) ProcessEpochWorkload(goCtx context.Context) error {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	currentEpoch := types.GetCurrentEpoch(ctx)
+	_, found := k.GetPendingNextEpoch(ctx)
+	if found {
+		// during epoch change, skip this block to avoid any unknown boundary issue
+		return nil
+	}
+
+	currentEpochInfo, _ := k.GetCurrentEpoch(ctx)
+	currentEpoch := currentEpochInfo.Number
 	blockHeight := uint64(ctx.BlockHeight())
 
 	// Only start to process workreports data when the current epoch is >= 3

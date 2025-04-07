@@ -28,6 +28,22 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:     "Get current epoch",
 				},
 				{
+					RpcMethod: "PendingNextEpoch",
+					Use:       "get-pending-next-epoch",
+					Short:     "Get pending next epoch",
+				},
+				{
+					RpcMethod:      "HistoryEpoch",
+					Use:            "get-history-epoch [epochNumber]",
+					Short:          "Get history epoch",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "epochNumber"}},
+				},
+				{
+					RpcMethod: "AllHistoryEpoch",
+					Use:       "get-all-history-epoch",
+					Short:     "Get all history epoch",
+				},
+				{
 					RpcMethod: "EraLength",
 					Use:       "get-era-length",
 					Short:     "Get era length",

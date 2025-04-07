@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"strconv"
+	"time"
 
 	"cosmossdk.io/core/appmodule"
 	"cosmossdk.io/core/store"
@@ -154,28 +155,16 @@ func (AppModule) ConsensusVersion() uint64 { return 1 }
 // The begin block implementation is optional.
 func (am AppModule) BeginBlock(goCtx context.Context) error {
 	ctx := sdk.UnwrapSDKContext(goCtx)
-
 	k := am.keeper
+
+	// Handle epoch change
+	am.handleEpochChange(goCtx)
+
 	// Process epoch workload
 	k.ProcessEpochWorkload(goCtx)
 
 	// Process era reputation point
 	k.ProcessEraReputationPoint(goCtx)
-
-	if types.IsEpochStart(goCtx) {
-		currentEpoch := types.GetCurrentEpoch(ctx)
-		blockHeight := uint64(ctx.BlockHeight())
-
-		/// TODO: Delete old epoch related data
-
-		ctx.EventManager().EmitEvent(
-			sdk.NewEvent(types.EventTypeEpochStart,
-				sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
-				sdk.NewAttribute(types.AttributeKeyEpoch, strconv.FormatUint(currentEpoch, 10)),
-				sdk.NewAttribute(types.AttributeKeyBlockHeight, strconv.FormatUint(blockHeight, 10)),
-			),
-		)
-	}
 
 	if types.IsEraStart(goCtx) {
 		currentEra := types.GetCurrentEra(ctx)
@@ -195,25 +184,75 @@ func (am AppModule) BeginBlock(goCtx context.Context) error {
 	return nil
 }
 
+func (am AppModule) handleEpochChange(goCtx context.Context) error {
+	ctx := sdk.UnwrapSDKContext(goCtx)
+	k := am.keeper
+	blockHeight := uint64(ctx.BlockHeight())
+	currentTime := ctx.BlockTime()
+
+	// Handle epoch start
+	pendingNextEpoch, found := k.GetPendingNextEpoch(ctx)
+	if found {
+		// Update current epoch and clear the pending next epoch
+		// 更新当前 Epoch 并清空 Pending
+		newEpoch := types.EpochInfo{
+			Number:     pendingNextEpoch.Number,
+			StartTime:  pendingNextEpoch.StartTime,
+			StartBlock: blockHeight,
+			EndTime:    pendingNextEpoch.EndTime,
+		}
+		k.SetCurrentEpoch(ctx, newEpoch)
+		k.SetPendingNextEpoch(ctx, nil)
+
+		// Emit epoch start event
+		ctx.EventManager().EmitEvent(
+			sdk.NewEvent(types.EventTypeEpochStart,
+				sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+				sdk.NewAttribute(types.AttributeKeyEpoch, strconv.FormatUint(newEpoch.Number, 10)),
+				sdk.NewAttribute(types.AttributeKeyEpochStartTime, newEpoch.StartTime.Format(time.RFC3339)),
+				sdk.NewAttribute(types.AttributeKeyEpochStartBlock, strconv.FormatUint(newEpoch.StartBlock, 10)),
+				sdk.NewAttribute(types.AttributeKeyEpochEndTime, newEpoch.EndTime.Format(time.RFC3339)),
+			),
+		)
+	}
+
+	// Handle epoch end
+	currentEpoch, _ := k.GetCurrentEpoch(ctx)
+	if currentTime.After(currentEpoch.EndTime) || currentTime.Equal(currentEpoch.EndTime) {
+		// Set the end block
+		currentEpoch.EndBlock = blockHeight
+
+		// Add to the history epoch list
+		k.AppendHistoryEpoch(ctx, &currentEpoch)
+
+		// Calculate next epoch and store in DB to be processed by next begin_block
+		nextEpoch := types.EpochInfo{
+			Number:    currentEpoch.Number + 1,
+			StartTime: currentEpoch.EndTime,
+			EndTime:   currentEpoch.EndTime.Add(time.Hour),
+		}
+		k.SetPendingNextEpoch(ctx, &nextEpoch)
+
+		// Emit epoch end event
+		ctx.EventManager().EmitEvent(
+			sdk.NewEvent(types.EventTypeEpochEnd,
+				sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+				sdk.NewAttribute(types.AttributeKeyEpoch, strconv.FormatUint(currentEpoch.Number, 10)),
+				sdk.NewAttribute(types.AttributeKeyEpochStartTime, currentEpoch.StartTime.Format(time.RFC3339)),
+				sdk.NewAttribute(types.AttributeKeyEpochStartBlock, strconv.FormatUint(currentEpoch.StartBlock, 10)),
+				sdk.NewAttribute(types.AttributeKeyEpochEndTime, currentEpoch.EndTime.Format(time.RFC3339)),
+				sdk.NewAttribute(types.AttributeKeyEpochEndBlock, strconv.FormatUint(currentEpoch.EndBlock, 10)),
+			),
+		)
+	}
+
+	return nil
+}
+
 // EndBlock contains the logic that is automatically triggered at the end of each block.
 // The end block implementation is optional.
 func (am AppModule) EndBlock(goCtx context.Context) error {
 	ctx := sdk.UnwrapSDKContext(goCtx)
-
-	blockHeight := uint64(ctx.BlockHeight())
-	if types.IsEpochEnd(ctx) {
-		currentEpoch := types.GetCurrentEpoch(goCtx)
-
-		/// TODO: Necessary logic to process at the end of epoch
-
-		ctx.EventManager().EmitEvent(
-			sdk.NewEvent(types.EventTypeEpochEnd,
-				sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
-				sdk.NewAttribute(types.AttributeKeyEpoch, strconv.FormatUint(currentEpoch, 10)),
-				sdk.NewAttribute(types.AttributeKeyBlockHeight, strconv.FormatUint(blockHeight, 10)),
-			),
-		)
-	}
 
 	if types.IsEraEnd(goCtx) {
 		currentEra := types.GetCurrentEra(ctx)

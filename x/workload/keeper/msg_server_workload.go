@@ -35,7 +35,8 @@ func (k msgServer) SubmitWorkreports(goCtx context.Context, msg *types.MsgSubmit
 	}
 
 	// The submitted epoch must be the previous epoch, since the current epoch is not yet finalized.
-	currentEpoch := types.GetCurrentEpoch(goCtx)
+	currentEpochInfo, _ := k.GetCurrentEpoch(ctx)
+	currentEpoch := currentEpochInfo.Number
 	previousEpoch := currentEpoch - 1
 	if currentEpoch == 1 {
 		return nil, errorsmod.Wrap(types.ErrInvalidEpoch, "Epoch_1 is not allowed to submit workreports")

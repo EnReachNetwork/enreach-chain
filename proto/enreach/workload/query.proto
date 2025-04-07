@@ -11,6 +11,7 @@ import "enreach/workload/workload.proto";
 import "enreach/workload/workreport.proto";
 import "enreach/workload/superior.proto";
 import "enreach/workload/reputationpoint.proto";
+import "enreach/workload/epoch_info.proto";
 
 option go_package = "enreach/x/workload/types";
 
@@ -22,19 +23,31 @@ service Query {
     option (google.api.http).get = "/enreach/workload/params";
   
   }
-
+  
   // Queries epoch
   rpc EpochLength  (QueryGetEpochLengthRequest ) returns (QueryGetEpochLengthResponse ) {
     option (google.api.http).get = "/enreach/workload/epoch/length";
   
   }
   rpc CurrentEpoch (QueryGetCurrentEpochRequest) returns (QueryGetCurrentEpochResponse) {
-    option (google.api.http).get = "/enreach/workload/epoch/currentepoch";
+    option (google.api.http).get = "/enreach/workload/epoch/current_epoch";
+  
+  }
+  rpc PendingNextEpoch (QueryGetPendingNextEpochRequest) returns (QueryGetPendingNextEpochResponse) {
+    option (google.api.http).get = "/enreach/workload/epoch/pending_next_epoch";
+  
+  }
+  rpc HistoryEpoch (QueryGetHistoryEpochRequest) returns (QueryGetHistoryEpochResponse) {
+    option (google.api.http).get = "/enreach/workload/epoch/history_epoch/{epochNumber}";
+  
+  }
+  rpc AllHistoryEpoch (QueryGetAllHistoryEpochRequest) returns (QueryGetAllHistoryEpochResponse) {
+    option (google.api.http).get = "/enreach/workload/epoch/history_epochs";
   
   }
   
   // Queries a list of Node Workload items.
-  rpc NodeWorkload    (QueryGetNodeWorkloadRequest) returns (QueryGetNodeWorkloadResponse) {
+  rpc NodeWorkload           (QueryGetNodeWorkloadRequest          ) returns (QueryGetNodeWorkloadResponse          ) {
     option (google.api.http).get = "/enreach/workload/node_workload/{epoch}/{nodeID}";
   
   }
@@ -42,9 +55,9 @@ service Query {
     option (google.api.http).get = "/enreach/workload/node_workloads/{epoch}";
   
   }
-
+  
   // Queries a list of Manager Workload items.
-  rpc ManagerWRWorkload    (QueryGetManagerWRWorkloadRequest) returns (QueryGetManagerWRWorkloadResponse) {
+  rpc ManagerWRWorkload           (QueryGetManagerWRWorkloadRequest          ) returns (QueryGetManagerWRWorkloadResponse          ) {
     option (google.api.http).get = "/enreach/workload/manager_wr_workload/{epoch}/{managerAccount}";
   
   }
@@ -52,17 +65,17 @@ service Query {
     option (google.api.http).get = "/enreach/workload/manager_wr_workloads/{epoch}";
   
   }
-  rpc ManagerRPWorkload    (QueryGetManagerRPWorkloadRequest) returns (QueryGetManagerRPWorkloadResponse) {
+  rpc ManagerRPWorkload           (QueryGetManagerRPWorkloadRequest          ) returns (QueryGetManagerRPWorkloadResponse          ) {
     option (google.api.http).get = "/enreach/workload/manager_rp_workload/{era}/{managerAccount}";
   
   }
-  rpc AllManagerRPWorkloadByEra (QueryGetAllManagerRPWorkloadByEraRequest) returns (QueryGetAllManagerRPWorkloadByEraResponse) {
+  rpc AllManagerRPWorkloadByEra   (QueryGetAllManagerRPWorkloadByEraRequest  ) returns (QueryGetAllManagerRPWorkloadByEraResponse  ) {
     option (google.api.http).get = "/enreach/workload/manager_rp_workloads/{era}";
   
   }
-
+  
   // Queries a list of Workreport items.
-  rpc Workreport    (QueryGetWorkreportRequest) returns (QueryGetWorkreportResponse) {
+  rpc Workreport           (QueryGetWorkreportRequest          ) returns (QueryGetWorkreportResponse          ) {
     option (google.api.http).get = "/enreach/workload/workreport/{epoch}/{nodeID}";
   
   }
@@ -70,32 +83,31 @@ service Query {
     option (google.api.http).get = "/enreach/workload/workreports/{epoch}";
   
   }
-
+  
   // Queries some param settings
-  rpc WorkreportProcessBatchSize    (QueryGetWorkreportProcessBatchSizeRequest) returns (QueryGetWorkreportProcessBatchSizeResponse) {
+  rpc WorkreportProcessBatchSize (QueryGetWorkreportProcessBatchSizeRequest) returns (QueryGetWorkreportProcessBatchSizeResponse) {
     option (google.api.http).get = "/enreach/workload/workreport/process_batch_size";
   
   }
-  rpc HistoryEpochDataDepth    (QueryGetHistoryEpochDataDepthRequest) returns (QueryGetHistoryEpochDataDepthResponse) {
+  rpc HistoryEpochDataDepth      (QueryGetHistoryEpochDataDepthRequest     ) returns (QueryGetHistoryEpochDataDepthResponse     ) {
     option (google.api.http).get = "/enreach/workload/workreport/history_epoch_data_depth";
   
   }
-  rpc EpochProcessData    (QueryGetEpochProcessDataRequest) returns (QueryGetEpochProcessDataResponse) {
+  rpc EpochProcessData           (QueryGetEpochProcessDataRequest          ) returns (QueryGetEpochProcessDataResponse          ) {
     option (google.api.http).get = "/enreach/workload/workreport/epoch_process_data/{epoch}";
   
   }
-  rpc AllEpochProcessData    (QueryGetAllEpochProcessDataRequest) returns (QueryGetAllEpochProcessDataResponse) {
+  rpc AllEpochProcessData        (QueryGetAllEpochProcessDataRequest       ) returns (QueryGetAllEpochProcessDataResponse       ) {
     option (google.api.http).get = "/enreach/workload/workreport/epoch_process_datas";
   
   }
-
+  
   // Queries a Superior
   rpc Superior (QueryGetSuperiorRequest) returns (QueryGetSuperiorResponse) {
     option (google.api.http).get = "/enreach/workload/superior";
   
   }
-
-
+  
   // Queries era
   rpc EraLength  (QueryGetEraLengthRequest ) returns (QueryGetEraLengthResponse ) {
     option (google.api.http).get = "/enreach/workload/era/length";
@@ -105,9 +117,9 @@ service Query {
     option (google.api.http).get = "/enreach/workload/era/currentera";
   
   }
-
+  
   // Queries a list of ReputationPointChangeData items.
-  rpc ReputationPointChangeData    (QueryGetReputationPointChangeDataRequest) returns (QueryGetReputationPointChangeDataResponse) {
+  rpc ReputationPointChangeData         (QueryGetReputationPointChangeDataRequest        ) returns (QueryGetReputationPointChangeDataResponse        ) {
     option (google.api.http).get = "/enreach/workload/reputation_point_change_data/{era}/{nodeID}";
   
   }
@@ -115,8 +127,9 @@ service Query {
     option (google.api.http).get = "/enreach/workload/reputation_point_change_datas/{era}";
   
   }
+  
   // Queries a list of ReputationPoint items.
-  rpc ReputationDeltaPoint    (QueryGetReputationDeltaPointRequest) returns (QueryGetReputationDeltaPointResponse) {
+  rpc ReputationDeltaPoint         (QueryGetReputationDeltaPointRequest        ) returns (QueryGetReputationDeltaPointResponse        ) {
     option (google.api.http).get = "/enreach/workload/reputation_delta_point/{era}/{nodeID}";
   
   }
@@ -124,24 +137,25 @@ service Query {
     option (google.api.http).get = "/enreach/workload/reputation_delta_points/{era}";
   
   }
-  rpc ReputationPoint    (QueryGetReputationPointRequest) returns (QueryGetReputationPointResponse) {
+  rpc ReputationPoint              (QueryGetReputationPointRequest             ) returns (QueryGetReputationPointResponse             ) {
     option (google.api.http).get = "/enreach/workload/reputation_point/{nodeID}";
   
   }
-  rpc AllReputationPoint    (QueryGetAllReputationPointRequest) returns (QueryGetAllReputationPointResponse) {
+  rpc AllReputationPoint           (QueryGetAllReputationPointRequest          ) returns (QueryGetAllReputationPointResponse          ) {
     option (google.api.http).get = "/enreach/workload/reputation_points";
   
   }
-
+  
   // Queries a list of EpochProcessData items.
-  rpc EraProcessData    (QueryGetEraProcessDataRequest) returns (QueryGetEraProcessDataResponse) {
+  rpc EraProcessData    (QueryGetEraProcessDataRequest   ) returns (QueryGetEraProcessDataResponse   ) {
     option (google.api.http).get = "/enreach/workload/workreport/era_process_data/{era}";
   
   }
-  rpc AllEraProcessData    (QueryGetAllEraProcessDataRequest) returns (QueryGetAllEraProcessDataResponse) {
+  rpc AllEraProcessData (QueryGetAllEraProcessDataRequest) returns (QueryGetAllEraProcessDataResponse) {
     option (google.api.http).get = "/enreach/workload/workreport/era_process_datas";
   
   }
+
 }
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
@@ -162,11 +176,34 @@ message QueryGetEpochLengthResponse {
 message QueryGetCurrentEpochRequest {}
 
 message QueryGetCurrentEpochResponse {
-  uint64 currentEpoch = 1;
+  EpochInfo EpochInfo = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetPendingNextEpochRequest {}
+
+message QueryGetPendingNextEpochResponse {
+  EpochInfo EpochInfo = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetHistoryEpochRequest {
+  uint64 epochNumber      = 1;
+}
+
+message QueryGetHistoryEpochResponse {
+  EpochInfo EpochInfo = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetAllHistoryEpochRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryGetAllHistoryEpochResponse {
+  repeated EpochInfo  EpochInfos = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination        = 2;
 }
 
 message QueryGetNodeWorkloadRequest {
-  uint64 epoch = 1;
+  uint64 epoch  = 1;
   string nodeID = 2;
 }
 
@@ -175,17 +212,17 @@ message QueryGetNodeWorkloadResponse {
 }
 
 message QueryGetAllNodeWorkloadByEpochRequest {
-  uint64 epoch = 1;
+  uint64                                epoch      = 1;
   cosmos.base.query.v1beta1.PageRequest pagination = 2;
 }
 
 message QueryGetAllNodeWorkloadByEpochResponse {
-  repeated NodeWorkload NodeWorkloads   = 1 [(gogoproto.nullable) = false];
-  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+  repeated NodeWorkload                           NodeWorkloads = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination    = 2;
 }
 
 message QueryGetManagerWRWorkloadRequest {
-  uint64 epoch = 1;
+  uint64 epoch          = 1;
   string managerAccount = 2;
 }
 
@@ -194,17 +231,17 @@ message QueryGetManagerWRWorkloadResponse {
 }
 
 message QueryGetAllManagerWRWorkloadByEpochRequest {
-  uint64 epoch = 1;
+  uint64                                epoch      = 1;
   cosmos.base.query.v1beta1.PageRequest pagination = 2;
 }
 
 message QueryGetAllManagerWRWorkloadByEpochResponse {
-  repeated ManagerWRWorkload ManagerWRWorkloads   = 1 [(gogoproto.nullable) = false];
-  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+  repeated ManagerWRWorkload                      ManagerWRWorkloads = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination         = 2;
 }
 
 message QueryGetManagerRPWorkloadRequest {
-  uint64 era = 1;
+  uint64 era            = 1;
   string managerAccount = 2;
 }
 
@@ -213,17 +250,17 @@ message QueryGetManagerRPWorkloadResponse {
 }
 
 message QueryGetAllManagerRPWorkloadByEraRequest {
-  uint64 era = 1;
+  uint64                                era        = 1;
   cosmos.base.query.v1beta1.PageRequest pagination = 2;
 }
 
 message QueryGetAllManagerRPWorkloadByEraResponse {
-  repeated ManagerRPWorkload ManagerRPWorkloads   = 1 [(gogoproto.nullable) = false];
-  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+  repeated ManagerRPWorkload                      ManagerRPWorkloads = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination         = 2;
 }
 
 message QueryGetWorkreportRequest {
-  uint64 epoch = 1;
+  uint64 epoch  = 1;
   string nodeID = 2;
 }
 
@@ -232,31 +269,29 @@ message QueryGetWorkreportResponse {
 }
 
 message QueryGetAllWorkreportByEpochRequest {
-  uint64 epoch = 1;
+  uint64                                epoch      = 1;
   cosmos.base.query.v1beta1.PageRequest pagination = 2;
 }
 
 message QueryGetAllWorkreportByEpochResponse {
-  repeated Workreport Workreports   = 1 [(gogoproto.nullable) = false];
-  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+  repeated Workreport                             Workreports = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination  = 2;
 }
 
-message QueryGetWorkreportProcessBatchSizeRequest {
-}
+message QueryGetWorkreportProcessBatchSizeRequest {}
 
 message QueryGetWorkreportProcessBatchSizeResponse {
-  uint64   batchSize = 1;
+  uint64 batchSize = 1;
 }
 
-message QueryGetHistoryEpochDataDepthRequest {
-}
+message QueryGetHistoryEpochDataDepthRequest {}
 
 message QueryGetHistoryEpochDataDepthResponse {
-  uint64   depth = 1;
+  uint64 depth = 1;
 }
 
 message QueryGetEpochProcessDataRequest {
-  uint64   epoch = 1;
+  uint64 epoch = 1;
 }
 
 message QueryGetEpochProcessDataResponse {
@@ -268,8 +303,8 @@ message QueryGetAllEpochProcessDataRequest {
 }
 
 message QueryGetAllEpochProcessDataResponse {
-  repeated EpochProcessData EpochProcessDatas = 1 [(gogoproto.nullable) = false];
-  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+  repeated EpochProcessData                       EpochProcessDatas = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination        = 2;
 }
 
 message QueryGetSuperiorRequest {}
@@ -277,7 +312,6 @@ message QueryGetSuperiorRequest {}
 message QueryGetSuperiorResponse {
   Superior Superior = 1 [(gogoproto.nullable) = false];
 }
-
 
 message QueryGetEraLengthRequest {}
 
@@ -292,7 +326,7 @@ message QueryGetCurrentEraResponse {
 }
 
 message QueryGetReputationPointChangeDataRequest {
-  uint64 era = 1;
+  uint64 era    = 1;
   string nodeID = 2;
 }
 
@@ -301,17 +335,17 @@ message QueryGetReputationPointChangeDataResponse {
 }
 
 message QueryGetAllReputationPointChangeDataByEraRequest {
-  uint64 era = 1;
+  uint64                                era        = 1;
   cosmos.base.query.v1beta1.PageRequest pagination = 2;
 }
 
 message QueryGetAllReputationPointChangeDataByEraResponse {
-  repeated ReputationPointChangeData ReputationPointChangeDatas   = 1 [(gogoproto.nullable) = false];
-  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+  repeated ReputationPointChangeData              ReputationPointChangeDatas = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination                 = 2;
 }
 
 message QueryGetReputationDeltaPointRequest {
-  uint64 era = 1;
+  uint64 era    = 1;
   string nodeID = 2;
 }
 
@@ -320,13 +354,13 @@ message QueryGetReputationDeltaPointResponse {
 }
 
 message QueryGetAllReputationDeltaPointByEraRequest {
-  uint64 era = 1;
+  uint64                                era        = 1;
   cosmos.base.query.v1beta1.PageRequest pagination = 2;
 }
 
 message QueryGetAllReputationDeltaPointByEraResponse {
-  repeated ReputationDeltaPoint ReputationDeltaPoints   = 1 [(gogoproto.nullable) = false];
-  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+  repeated ReputationDeltaPoint                   ReputationDeltaPoints = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination            = 2;
 }
 
 message QueryGetReputationPointRequest {
@@ -342,12 +376,12 @@ message QueryGetAllReputationPointRequest {
 }
 
 message QueryGetAllReputationPointResponse {
-  repeated ReputationPoint ReputationPoints = 1 [(gogoproto.nullable) = false];
-  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+  repeated ReputationPoint                        ReputationPoints = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination       = 2;
 }
 
 message QueryGetEraProcessDataRequest {
-  uint64   era = 1;
+  uint64 era = 1;
 }
 
 message QueryGetEraProcessDataResponse {
@@ -359,6 +393,7 @@ message QueryGetAllEraProcessDataRequest {
 }
 
 message QueryGetAllEraProcessDataResponse {
-  repeated EraProcessData EraProcessDatas = 1 [(gogoproto.nullable) = false];
-  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+  repeated EraProcessData                         EraProcessDatas = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination      = 2;
 }
+

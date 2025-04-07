@@ -38,4 +38,8 @@ const (
 	AttributeKeyProcessedNodesCount = "processedNodesCount"
 	AttributeKeyEra                 = "era"
 	AttributeKeyNodePointsCount     = "nodePointsCount"
+	AttributeKeyEpochStartTime      = "epochStartTime"
+	AttributeKeyEpochStartBlock     = "epochStartBlock"
+	AttributeKeyEpochEndTime        = "epochEndTime"
+	AttributeKeyEpochEndBlock       = "epochEndBlock"
 )

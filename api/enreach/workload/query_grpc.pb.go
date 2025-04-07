@@ -22,6 +22,9 @@ const (
 	Query_Params_FullMethodName                            = "/enreach.workload.Query/Params"
 	Query_EpochLength_FullMethodName                       = "/enreach.workload.Query/EpochLength"
 	Query_CurrentEpoch_FullMethodName                      = "/enreach.workload.Query/CurrentEpoch"
+	Query_PendingNextEpoch_FullMethodName                  = "/enreach.workload.Query/PendingNextEpoch"
+	Query_HistoryEpoch_FullMethodName                      = "/enreach.workload.Query/HistoryEpoch"
+	Query_AllHistoryEpoch_FullMethodName                   = "/enreach.workload.Query/AllHistoryEpoch"
 	Query_NodeWorkload_FullMethodName                      = "/enreach.workload.Query/NodeWorkload"
 	Query_AllNodeWorkloadByEpoch_FullMethodName            = "/enreach.workload.Query/AllNodeWorkloadByEpoch"
 	Query_ManagerWRWorkload_FullMethodName                 = "/enreach.workload.Query/ManagerWRWorkload"
@@ -56,6 +59,9 @@ type QueryClient interface {
 	// Queries epoch
 	EpochLength(ctx context.Context, in *QueryGetEpochLengthRequest, opts ...grpc.CallOption) (*QueryGetEpochLengthResponse, error)
 	CurrentEpoch(ctx context.Context, in *QueryGetCurrentEpochRequest, opts ...grpc.CallOption) (*QueryGetCurrentEpochResponse, error)
+	PendingNextEpoch(ctx context.Context, in *QueryGetPendingNextEpochRequest, opts ...grpc.CallOption) (*QueryGetPendingNextEpochResponse, error)
+	HistoryEpoch(ctx context.Context, in *QueryGetHistoryEpochRequest, opts ...grpc.CallOption) (*QueryGetHistoryEpochResponse, error)
+	AllHistoryEpoch(ctx context.Context, in *QueryGetAllHistoryEpochRequest, opts ...grpc.CallOption) (*QueryGetAllHistoryEpochResponse, error)
 	// Queries a list of Node Workload items.
 	NodeWorkload(ctx context.Context, in *QueryGetNodeWorkloadRequest, opts ...grpc.CallOption) (*QueryGetNodeWorkloadResponse, error)
 	AllNodeWorkloadByEpoch(ctx context.Context, in *QueryGetAllNodeWorkloadByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllNodeWorkloadByEpochResponse, error)
@@ -119,6 +125,33 @@ func (c *queryClient) EpochLength(ctx context.Context, in *QueryGetEpochLengthRe
 func (c *queryClient) CurrentEpoch(ctx context.Context, in *QueryGetCurrentEpochRequest, opts ...grpc.CallOption) (*QueryGetCurrentEpochResponse, error) {
 	out := new(QueryGetCurrentEpochResponse)
 	err := c.cc.Invoke(ctx, Query_CurrentEpoch_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) PendingNextEpoch(ctx context.Context, in *QueryGetPendingNextEpochRequest, opts ...grpc.CallOption) (*QueryGetPendingNextEpochResponse, error) {
+	out := new(QueryGetPendingNextEpochResponse)
+	err := c.cc.Invoke(ctx, Query_PendingNextEpoch_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) HistoryEpoch(ctx context.Context, in *QueryGetHistoryEpochRequest, opts ...grpc.CallOption) (*QueryGetHistoryEpochResponse, error) {
+	out := new(QueryGetHistoryEpochResponse)
+	err := c.cc.Invoke(ctx, Query_HistoryEpoch_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) AllHistoryEpoch(ctx context.Context, in *QueryGetAllHistoryEpochRequest, opts ...grpc.CallOption) (*QueryGetAllHistoryEpochResponse, error) {
+	out := new(QueryGetAllHistoryEpochResponse)
+	err := c.cc.Invoke(ctx, Query_AllHistoryEpoch_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -341,6 +374,9 @@ type QueryServer interface {
 	// Queries epoch
 	EpochLength(context.Context, *QueryGetEpochLengthRequest) (*QueryGetEpochLengthResponse, error)
 	CurrentEpoch(context.Context, *QueryGetCurrentEpochRequest) (*QueryGetCurrentEpochResponse, error)
+	PendingNextEpoch(context.Context, *QueryGetPendingNextEpochRequest) (*QueryGetPendingNextEpochResponse, error)
+	HistoryEpoch(context.Context, *QueryGetHistoryEpochRequest) (*QueryGetHistoryEpochResponse, error)
+	AllHistoryEpoch(context.Context, *QueryGetAllHistoryEpochRequest) (*QueryGetAllHistoryEpochResponse, error)
 	// Queries a list of Node Workload items.
 	NodeWorkload(context.Context, *QueryGetNodeWorkloadRequest) (*QueryGetNodeWorkloadResponse, error)
 	AllNodeWorkloadByEpoch(context.Context, *QueryGetAllNodeWorkloadByEpochRequest) (*QueryGetAllNodeWorkloadByEpochResponse, error)
@@ -388,6 +424,15 @@ func (UnimplementedQueryServer) EpochLength(context.Context, *QueryGetEpochLengt
 }
 func (UnimplementedQueryServer) CurrentEpoch(context.Context, *QueryGetCurrentEpochRequest) (*QueryGetCurrentEpochResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CurrentEpoch not implemented")
+}
+func (UnimplementedQueryServer) PendingNextEpoch(context.Context, *QueryGetPendingNextEpochRequest) (*QueryGetPendingNextEpochResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PendingNextEpoch not implemented")
+}
+func (UnimplementedQueryServer) HistoryEpoch(context.Context, *QueryGetHistoryEpochRequest) (*QueryGetHistoryEpochResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HistoryEpoch not implemented")
+}
+func (UnimplementedQueryServer) AllHistoryEpoch(context.Context, *QueryGetAllHistoryEpochRequest) (*QueryGetAllHistoryEpochResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllHistoryEpoch not implemented")
 }
 func (UnimplementedQueryServer) NodeWorkload(context.Context, *QueryGetNodeWorkloadRequest) (*QueryGetNodeWorkloadResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method NodeWorkload not implemented")
@@ -521,6 +566,60 @@ func _Query_CurrentEpoch_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(QueryServer).CurrentEpoch(ctx, req.(*QueryGetCurrentEpochRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_PendingNextEpoch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetPendingNextEpochRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).PendingNextEpoch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_PendingNextEpoch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).PendingNextEpoch(ctx, req.(*QueryGetPendingNextEpochRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_HistoryEpoch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetHistoryEpochRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).HistoryEpoch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_HistoryEpoch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).HistoryEpoch(ctx, req.(*QueryGetHistoryEpochRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_AllHistoryEpoch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAllHistoryEpochRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).AllHistoryEpoch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_AllHistoryEpoch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).AllHistoryEpoch(ctx, req.(*QueryGetAllHistoryEpochRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -957,6 +1056,18 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CurrentEpoch",
 			Handler:    _Query_CurrentEpoch_Handler,
+		},
+		{
+			MethodName: "PendingNextEpoch",
+			Handler:    _Query_PendingNextEpoch_Handler,
+		},
+		{
+			MethodName: "HistoryEpoch",
+			Handler:    _Query_HistoryEpoch_Handler,
+		},
+		{
+			MethodName: "AllHistoryEpoch",
+			Handler:    _Query_AllHistoryEpoch_Handler,
 		},
 		{
 			MethodName: "NodeWorkload",

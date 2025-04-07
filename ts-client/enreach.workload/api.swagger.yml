@@ -68,6 +68,53 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
+  /enreach/workload/epoch_info:
+    get:
+      operationId: Query_EpochInfo
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              EpochInfo:
+                type: object
+                properties:
+                  number:
+                    type: string
+                    format: uint64
+                  startTime:
+                    type: string
+                    format: uint64
+                  startBlock:
+                    type: string
+                    format: uint64
+                  endTime:
+                    type: string
+                    format: uint64
+                  endBlock:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
   /enreach/workload/era/currentera:
     get:
       operationId: Query_CurrentEra
@@ -1967,6 +2014,27 @@ definitions:
       currentEra:
         type: string
         format: uint64
+  QueryGetEpochInfoResponse:
+    type: object
+    properties:
+      EpochInfo:
+        type: object
+        properties:
+          number:
+            type: string
+            format: uint64
+          startTime:
+            type: string
+            format: uint64
+          startBlock:
+            type: string
+            format: uint64
+          endTime:
+            type: string
+            format: uint64
+          endBlock:
+            type: string
+            format: uint64
   QueryGetEpochLengthResponse:
     type: object
     properties:
@@ -2237,6 +2305,24 @@ definitions:
         type: string
         format: uint64
       updateAt:
+        type: string
+        format: uint64
+  workload.EpochInfo:
+    type: object
+    properties:
+      number:
+        type: string
+        format: uint64
+      startTime:
+        type: string
+        format: uint64
+      startBlock:
+        type: string
+        format: uint64
+      endTime:
+        type: string
+        format: uint64
+      endBlock:
         type: string
         format: uint64
   workload.EpochProcessData:

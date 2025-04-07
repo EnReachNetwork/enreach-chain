@@ -2,6 +2,7 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
+import { EpochInfo } from "./epoch_info";
 import { Params } from "./params";
 import { EraProcessData, ReputationDeltaPoint, ReputationPoint, ReputationPointChangeData } from "./reputationpoint";
 import { Superior } from "./superior";
@@ -232,6 +233,13 @@ export interface QueryGetAllEraProcessDataRequest {
 export interface QueryGetAllEraProcessDataResponse {
   EraProcessDatas: EraProcessData[];
   pagination: PageResponse | undefined;
+}
+
+export interface QueryGetEpochInfoRequest {
+}
+
+export interface QueryGetEpochInfoResponse {
+  EpochInfo: EpochInfo | undefined;
 }
 
 function createBaseQueryParamsRequest(): QueryParamsRequest {
@@ -3683,6 +3691,108 @@ export const QueryGetAllEraProcessDataResponse = {
   },
 };
 
+function createBaseQueryGetEpochInfoRequest(): QueryGetEpochInfoRequest {
+  return {};
+}
+
+export const QueryGetEpochInfoRequest = {
+  encode(_: QueryGetEpochInfoRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEpochInfoRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetEpochInfoRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): QueryGetEpochInfoRequest {
+    return {};
+  },
+
+  toJSON(_: QueryGetEpochInfoRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetEpochInfoRequest>, I>>(base?: I): QueryGetEpochInfoRequest {
+    return QueryGetEpochInfoRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetEpochInfoRequest>, I>>(_: I): QueryGetEpochInfoRequest {
+    const message = createBaseQueryGetEpochInfoRequest();
+    return message;
+  },
+};
+
+function createBaseQueryGetEpochInfoResponse(): QueryGetEpochInfoResponse {
+  return { EpochInfo: undefined };
+}
+
+export const QueryGetEpochInfoResponse = {
+  encode(message: QueryGetEpochInfoResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.EpochInfo !== undefined) {
+      EpochInfo.encode(message.EpochInfo, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEpochInfoResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetEpochInfoResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.EpochInfo = EpochInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetEpochInfoResponse {
+    return { EpochInfo: isSet(object.EpochInfo) ? EpochInfo.fromJSON(object.EpochInfo) : undefined };
+  },
+
+  toJSON(message: QueryGetEpochInfoResponse): unknown {
+    const obj: any = {};
+    if (message.EpochInfo !== undefined) {
+      obj.EpochInfo = EpochInfo.toJSON(message.EpochInfo);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetEpochInfoResponse>, I>>(base?: I): QueryGetEpochInfoResponse {
+    return QueryGetEpochInfoResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetEpochInfoResponse>, I>>(object: I): QueryGetEpochInfoResponse {
+    const message = createBaseQueryGetEpochInfoResponse();
+    message.EpochInfo = (object.EpochInfo !== undefined && object.EpochInfo !== null)
+      ? EpochInfo.fromPartial(object.EpochInfo)
+      : undefined;
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Parameters queries the parameters of the module. */
@@ -3736,6 +3846,8 @@ export interface Query {
   /** Queries a list of EpochProcessData items. */
   EraProcessData(request: QueryGetEraProcessDataRequest): Promise<QueryGetEraProcessDataResponse>;
   AllEraProcessData(request: QueryGetAllEraProcessDataRequest): Promise<QueryGetAllEraProcessDataResponse>;
+  /** Queries a EpochInfo by index. */
+  EpochInfo(request: QueryGetEpochInfoRequest): Promise<QueryGetEpochInfoResponse>;
 }
 
 export const QueryServiceName = "enreach.workload.Query";
@@ -3771,6 +3883,7 @@ export class QueryClientImpl implements Query {
     this.AllReputationPoint = this.AllReputationPoint.bind(this);
     this.EraProcessData = this.EraProcessData.bind(this);
     this.AllEraProcessData = this.AllEraProcessData.bind(this);
+    this.EpochInfo = this.EpochInfo.bind(this);
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
@@ -3940,6 +4053,12 @@ export class QueryClientImpl implements Query {
     const data = QueryGetAllEraProcessDataRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "AllEraProcessData", data);
     return promise.then((data) => QueryGetAllEraProcessDataResponse.decode(_m0.Reader.create(data)));
+  }
+
+  EpochInfo(request: QueryGetEpochInfoRequest): Promise<QueryGetEpochInfoResponse> {
+    const data = QueryGetEpochInfoRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "EpochInfo", data);
+    return promise.then((data) => QueryGetEpochInfoResponse.decode(_m0.Reader.create(data)));
   }
 }
 

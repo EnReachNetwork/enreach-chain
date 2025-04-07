@@ -1,6 +1,8 @@
 /* eslint-disable */
 import _m0 from "protobufjs/minimal";
+import { EpochInfo } from "./epoch_info";
 import { Params } from "./params";
+import { Superior } from "./superior";
 
 export const protobufPackage = "enreach.workload";
 
@@ -8,16 +10,24 @@ export const protobufPackage = "enreach.workload";
 export interface GenesisState {
   /** params defines all the parameters of the module. */
   params: Params | undefined;
+  superior: Superior | undefined;
+  epochInfo: EpochInfo | undefined;
 }
 
 function createBaseGenesisState(): GenesisState {
-  return { params: undefined };
+  return { params: undefined, superior: undefined, epochInfo: undefined };
 }
 
 export const GenesisState = {
   encode(message: GenesisState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.params !== undefined) {
       Params.encode(message.params, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.superior !== undefined) {
+      Superior.encode(message.superior, writer.uint32(18).fork()).ldelim();
+    }
+    if (message.epochInfo !== undefined) {
+      EpochInfo.encode(message.epochInfo, writer.uint32(26).fork()).ldelim();
     }
     return writer;
   },
@@ -36,6 +46,20 @@ export const GenesisState = {
 
           message.params = Params.decode(reader, reader.uint32());
           continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.superior = Superior.decode(reader, reader.uint32());
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.epochInfo = EpochInfo.decode(reader, reader.uint32());
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -46,13 +70,23 @@ export const GenesisState = {
   },
 
   fromJSON(object: any): GenesisState {
-    return { params: isSet(object.params) ? Params.fromJSON(object.params) : undefined };
+    return {
+      params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
+      superior: isSet(object.superior) ? Superior.fromJSON(object.superior) : undefined,
+      epochInfo: isSet(object.epochInfo) ? EpochInfo.fromJSON(object.epochInfo) : undefined,
+    };
   },
 
   toJSON(message: GenesisState): unknown {
     const obj: any = {};
     if (message.params !== undefined) {
       obj.params = Params.toJSON(message.params);
+    }
+    if (message.superior !== undefined) {
+      obj.superior = Superior.toJSON(message.superior);
+    }
+    if (message.epochInfo !== undefined) {
+      obj.epochInfo = EpochInfo.toJSON(message.epochInfo);
     }
     return obj;
   },
@@ -64,6 +98,12 @@ export const GenesisState = {
     const message = createBaseGenesisState();
     message.params = (object.params !== undefined && object.params !== null)
       ? Params.fromPartial(object.params)
+      : undefined;
+    message.superior = (object.superior !== undefined && object.superior !== null)
+      ? Superior.fromPartial(object.superior)
+      : undefined;
+    message.epochInfo = (object.epochInfo !== undefined && object.epochInfo !== null)
+      ? EpochInfo.fromPartial(object.epochInfo)
       : undefined;
     return message;
   },
