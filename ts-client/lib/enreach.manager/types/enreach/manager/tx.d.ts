@@ -39,7 +39,8 @@ export interface MsgSetManagerRegionResponse {
 export interface MsgUpdateManagerConnParams {
     operatorAccount: string;
     hostAddress: string;
-    managerPort: number;
+    managerHTTPPort: number;
+    managerWSPort: number;
     trackerPort: number;
     chainAPIPort: number;
     chainRPCPort: number;
@@ -70,7 +71,8 @@ export interface MsgUpdateOperatorBasicInfoResponse {
 export interface MsgRegisterManager {
     managerAccount: string;
     hostAddress: string;
-    managerPort: number;
+    managerHTTPPort: number;
+    managerWSPort: number;
     trackerPort: number;
     chainAPIPort: number;
     chainRPCPort: number;

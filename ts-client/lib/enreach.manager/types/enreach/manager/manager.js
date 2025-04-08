@@ -13,7 +13,8 @@ function createBaseManager() {
         managerAccount: "",
         operatorAccount: "",
         hostAddress: "",
-        managerPort: 0,
+        managerHTTPPort: 0,
+        managerWSPort: 0,
         trackerPort: 0,
         chainAPIPort: 0,
         chainRPCPort: 0,
@@ -37,38 +38,41 @@ exports.Manager = {
         if (message.hostAddress !== "") {
             writer.uint32(26).string(message.hostAddress);
         }
-        if (message.managerPort !== 0) {
-            writer.uint32(32).uint32(message.managerPort);
+        if (message.managerHTTPPort !== 0) {
+            writer.uint32(32).uint32(message.managerHTTPPort);
+        }
+        if (message.managerWSPort !== 0) {
+            writer.uint32(40).uint32(message.managerWSPort);
         }
         if (message.trackerPort !== 0) {
-            writer.uint32(40).uint32(message.trackerPort);
+            writer.uint32(48).uint32(message.trackerPort);
         }
         if (message.chainAPIPort !== 0) {
-            writer.uint32(48).uint32(message.chainAPIPort);
+            writer.uint32(56).uint32(message.chainAPIPort);
         }
         if (message.chainRPCPort !== 0) {
-            writer.uint32(56).uint32(message.chainRPCPort);
+            writer.uint32(64).uint32(message.chainRPCPort);
         }
         if (message.regionCode !== "") {
-            writer.uint32(66).string(message.regionCode);
+            writer.uint32(74).string(message.regionCode);
         }
         if (message.registerStatus !== "") {
-            writer.uint32(74).string(message.registerStatus);
+            writer.uint32(82).string(message.registerStatus);
         }
         if (message.workingStatus !== "") {
-            writer.uint32(82).string(message.workingStatus);
+            writer.uint32(90).string(message.workingStatus);
         }
         if (message.creator !== "") {
-            writer.uint32(90).string(message.creator);
+            writer.uint32(98).string(message.creator);
         }
         if (message.createAt !== 0) {
-            writer.uint32(96).uint64(message.createAt);
+            writer.uint32(104).uint64(message.createAt);
         }
         if (message.updator !== "") {
-            writer.uint32(106).string(message.updator);
+            writer.uint32(114).string(message.updator);
         }
         if (message.updateAt !== 0) {
-            writer.uint32(112).uint64(message.updateAt);
+            writer.uint32(120).uint64(message.updateAt);
         }
         return writer;
     },
@@ -101,64 +105,70 @@ exports.Manager = {
                     if (tag !== 32) {
                         break;
                     }
-                    message.managerPort = reader.uint32();
+                    message.managerHTTPPort = reader.uint32();
                     continue;
                 case 5:
                     if (tag !== 40) {
                         break;
                     }
-                    message.trackerPort = reader.uint32();
+                    message.managerWSPort = reader.uint32();
                     continue;
                 case 6:
                     if (tag !== 48) {
                         break;
                     }
-                    message.chainAPIPort = reader.uint32();
+                    message.trackerPort = reader.uint32();
                     continue;
                 case 7:
                     if (tag !== 56) {
                         break;
                     }
-                    message.chainRPCPort = reader.uint32();
+                    message.chainAPIPort = reader.uint32();
                     continue;
                 case 8:
-                    if (tag !== 66) {
+                    if (tag !== 64) {
                         break;
                     }
-                    message.regionCode = reader.string();
+                    message.chainRPCPort = reader.uint32();
                     continue;
                 case 9:
                     if (tag !== 74) {
                         break;
                     }
-                    message.registerStatus = reader.string();
+                    message.regionCode = reader.string();
                     continue;
                 case 10:
                     if (tag !== 82) {
                         break;
                     }
-                    message.workingStatus = reader.string();
+                    message.registerStatus = reader.string();
                     continue;
                 case 11:
                     if (tag !== 90) {
                         break;
                     }
-                    message.creator = reader.string();
+                    message.workingStatus = reader.string();
                     continue;
                 case 12:
-                    if (tag !== 96) {
+                    if (tag !== 98) {
+                        break;
+                    }
+                    message.creator = reader.string();
+                    continue;
+                case 13:
+                    if (tag !== 104) {
                         break;
                     }
                     message.createAt = longToNumber(reader.uint64());
                     continue;
-                case 13:
-                    if (tag !== 106) {
+                case 14:
+                    if (tag !== 114) {
                         break;
                     }
                     message.updator = reader.string();
                     continue;
-                case 14:
-                    if (tag !== 112) {
+                case 15:
+                    if (tag !== 120) {
                         break;
                     }
                     message.updateAt = longToNumber(reader.uint64());
@@ -176,7 +186,8 @@ exports.Manager = {
             managerAccount: isSet(object.managerAccount) ? String(object.managerAccount) : "",
             operatorAccount: isSet(object.operatorAccount) ? String(object.operatorAccount) : "",
             hostAddress: isSet(object.hostAddress) ? String(object.hostAddress) : "",
-            managerPort: isSet(object.managerPort) ? Number(object.managerPort) : 0,
+            managerHTTPPort: isSet(object.managerHTTPPort) ? Number(object.managerHTTPPort) : 0,
+            managerWSPort: isSet(object.managerWSPort) ? Number(object.managerWSPort) : 0,
             trackerPort: isSet(object.trackerPort) ? Number(object.trackerPort) : 0,
             chainAPIPort: isSet(object.chainAPIPort) ? Number(object.chainAPIPort) : 0,
             chainRPCPort: isSet(object.chainRPCPort) ? Number(object.chainRPCPort) : 0,
@@ -200,8 +211,11 @@ exports.Manager = {
         if (message.hostAddress !== "") {
             obj.hostAddress = message.hostAddress;
         }
-        if (message.managerPort !== 0) {
-            obj.managerPort = Math.round(message.managerPort);
+        if (message.managerHTTPPort !== 0) {
+            obj.managerHTTPPort = Math.round(message.managerHTTPPort);
+        }
+        if (message.managerWSPort !== 0) {
+            obj.managerWSPort = Math.round(message.managerWSPort);
         }
         if (message.trackerPort !== 0) {
             obj.trackerPort = Math.round(message.trackerPort);
@@ -243,7 +257,8 @@ exports.Manager = {
         message.managerAccount = object.managerAccount ?? "";
         message.operatorAccount = object.operatorAccount ?? "";
         message.hostAddress = object.hostAddress ?? "";
-        message.managerPort = object.managerPort ?? 0;
+        message.managerHTTPPort = object.managerHTTPPort ?? 0;
+        message.managerWSPort = object.managerWSPort ?? 0;
         message.trackerPort = object.trackerPort ?? 0;
         message.chainAPIPort = object.chainAPIPort ?? 0;
         message.chainRPCPort = object.chainRPCPort ?? 0;

@@ -24,7 +24,10 @@ paths:
                       type: string
                     hostAddress:
                       type: string
-                    managerPort:
+                    managerHTTPPort:
+                      type: integer
+                      format: int64
+                    managerWSPort:
                       type: integer
                       format: int64
                     trackerPort:
@@ -95,7 +98,10 @@ paths:
                     type: string
                   hostAddress:
                     type: string
-                  managerPort:
+                  managerHTTPPort:
+                    type: integer
+                    format: int64
+                  managerWSPort:
                     type: integer
                     format: int64
                   trackerPort:
@@ -168,7 +174,10 @@ paths:
                       type: string
                     hostAddress:
                       type: string
-                    managerPort:
+                    managerHTTPPort:
+                      type: integer
+                      format: int64
+                    managerWSPort:
                       type: integer
                       format: int64
                     trackerPort:
@@ -536,7 +545,10 @@ definitions:
               type: string
             hostAddress:
               type: string
-            managerPort:
+            managerHTTPPort:
+              type: integer
+              format: int64
+            managerWSPort:
               type: integer
               format: int64
             trackerPort:
@@ -626,7 +638,10 @@ definitions:
               type: string
             hostAddress:
               type: string
-            managerPort:
+            managerHTTPPort:
+              type: integer
+              format: int64
+            managerWSPort:
               type: integer
               format: int64
             trackerPort:
@@ -666,7 +681,10 @@ definitions:
             type: string
           hostAddress:
             type: string
-          managerPort:
+          managerHTTPPort:
+            type: integer
+            format: int64
+          managerWSPort:
             type: integer
             format: int64
           trackerPort:
@@ -756,7 +774,10 @@ definitions:
         type: string
       hostAddress:
         type: string
-      managerPort:
+      managerHTTPPort:
+        type: integer
+        format: int64
+      managerWSPort:
         type: integer
         format: int64
       trackerPort:

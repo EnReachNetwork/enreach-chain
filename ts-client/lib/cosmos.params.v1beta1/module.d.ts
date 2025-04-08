@@ -2,14 +2,24 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
+import { QuerySubspacesResponse } from "./types/cosmos/params/v1beta1/query";
+import { Subspace } from "./types/cosmos/params/v1beta1/query";
 import { ParameterChangeProposal } from "./types/cosmos/params/v1beta1/params";
 import { QueryParamsRequest } from "./types/cosmos/params/v1beta1/query";
 import { QueryParamsResponse } from "./types/cosmos/params/v1beta1/query";
 import { QuerySubspacesRequest } from "./types/cosmos/params/v1beta1/query";
 import { ParamChange } from "./types/cosmos/params/v1beta1/params";
-import { QuerySubspacesResponse } from "./types/cosmos/params/v1beta1/query";
-import { Subspace } from "./types/cosmos/params/v1beta1/query";
-export { ParameterChangeProposal, QueryParamsRequest, QueryParamsResponse, QuerySubspacesRequest, ParamChange, QuerySubspacesResponse, Subspace };
+export { QuerySubspacesResponse, Subspace, ParameterChangeProposal, QueryParamsRequest, QueryParamsResponse, QuerySubspacesRequest, ParamChange };
+type sendQuerySubspacesResponseParams = {
+    value: QuerySubspacesResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendSubspaceParams = {
+    value: Subspace;
+    fee?: StdFee;
+    memo?: string;
+};
 type sendParameterChangeProposalParams = {
     value: ParameterChangeProposal;
     fee?: StdFee;
@@ -35,15 +45,11 @@ type sendParamChangeParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQuerySubspacesResponseParams = {
+type querySubspacesResponseParams = {
     value: QuerySubspacesResponse;
-    fee?: StdFee;
-    memo?: string;
 };
-type sendSubspaceParams = {
+type subspaceParams = {
     value: Subspace;
-    fee?: StdFee;
-    memo?: string;
 };
 type parameterChangeProposalParams = {
     value: ParameterChangeProposal;
@@ -60,12 +66,6 @@ type querySubspacesRequestParams = {
 type paramChangeParams = {
     value: ParamChange;
 };
-type querySubspacesResponseParams = {
-    value: QuerySubspacesResponse;
-};
-type subspaceParams = {
-    value: Subspace;
-};
 export declare const registry: any;
 interface TxClientOptions {
     addr: string;
@@ -73,20 +73,20 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
+    sendQuerySubspacesResponse({ value, fee, memo }: sendQuerySubspacesResponseParams): Promise<DeliverTxResponse>;
+    sendSubspace({ value, fee, memo }: sendSubspaceParams): Promise<DeliverTxResponse>;
     sendParameterChangeProposal({ value, fee, memo }: sendParameterChangeProposalParams): Promise<DeliverTxResponse>;
     sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
     sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
     sendQuerySubspacesRequest({ value, fee, memo }: sendQuerySubspacesRequestParams): Promise<DeliverTxResponse>;
     sendParamChange({ value, fee, memo }: sendParamChangeParams): Promise<DeliverTxResponse>;
-    sendQuerySubspacesResponse({ value, fee, memo }: sendQuerySubspacesResponseParams): Promise<DeliverTxResponse>;
-    sendSubspace({ value, fee, memo }: sendSubspaceParams): Promise<DeliverTxResponse>;
+    querySubspacesResponse({ value }: querySubspacesResponseParams): EncodeObject;
+    subspace({ value }: subspaceParams): EncodeObject;
     parameterChangeProposal({ value }: parameterChangeProposalParams): EncodeObject;
     queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
     queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
     querySubspacesRequest({ value }: querySubspacesRequestParams): EncodeObject;
     paramChange({ value }: paramChangeParams): EncodeObject;
-    querySubspacesResponse({ value }: querySubspacesResponseParams): EncodeObject;
-    subspace({ value }: subspaceParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

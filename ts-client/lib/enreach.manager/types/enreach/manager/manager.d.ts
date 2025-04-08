@@ -4,7 +4,8 @@ export interface Manager {
     managerAccount: string;
     operatorAccount: string;
     hostAddress: string;
-    managerPort: number;
+    managerHTTPPort: number;
+    managerWSPort: number;
     trackerPort: number;
     chainAPIPort: number;
     chainRPCPort: number;

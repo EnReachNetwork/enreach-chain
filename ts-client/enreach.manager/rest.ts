@@ -46,7 +46,8 @@ export interface QueryAllManagerResponse {
     managerAccount?: string;
     operatorAccount?: string;
     hostAddress?: string;
-    managerPort?: number;
+    managerHTTPPort?: number;
+    managerWSPort?: number;
     trackerPort?: number;
     chainAPIPort?: number;
     chainRPCPort?: number;
@@ -82,7 +83,8 @@ export interface QueryGetManagerByRegionResponse {
     managerAccount?: string;
     operatorAccount?: string;
     hostAddress?: string;
-    managerPort?: number;
+    managerHTTPPort?: number;
+    managerWSPort?: number;
     trackerPort?: number;
     chainAPIPort?: number;
     chainRPCPort?: number;
@@ -101,7 +103,8 @@ export interface QueryGetManagerResponse {
     managerAccount?: string;
     operatorAccount?: string;
     hostAddress?: string;
-    managerPort?: number;
+    managerHTTPPort?: number;
+    managerWSPort?: number;
     trackerPort?: number;
     chainAPIPort?: number;
     chainRPCPort?: number;
@@ -151,7 +154,10 @@ export interface ManagerManager {
   hostAddress?: string;
 
   /** @format int64 */
-  managerPort?: number;
+  managerHTTPPort?: number;
+
+  /** @format int64 */
+  managerWSPort?: number;
 
   /** @format int64 */
   trackerPort?: number;
@@ -370,7 +376,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           managerAccount?: string;
           operatorAccount?: string;
           hostAddress?: string;
-          managerPort?: number;
+          managerHTTPPort?: number;
+          managerWSPort?: number;
           trackerPort?: number;
           chainAPIPort?: number;
           chainRPCPort?: number;
@@ -404,7 +411,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           managerAccount?: string;
           operatorAccount?: string;
           hostAddress?: string;
-          managerPort?: number;
+          managerHTTPPort?: number;
+          managerWSPort?: number;
           trackerPort?: number;
           chainAPIPort?: number;
           chainRPCPort?: number;
@@ -447,7 +455,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           managerAccount?: string;
           operatorAccount?: string;
           hostAddress?: string;
-          managerPort?: number;
+          managerHTTPPort?: number;
+          managerWSPort?: number;
           trackerPort?: number;
           chainAPIPort?: number;
           chainRPCPort?: number;

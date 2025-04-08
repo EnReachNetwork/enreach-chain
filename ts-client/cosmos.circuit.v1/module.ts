@@ -6,42 +6,24 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
-import { AccountsResponse } from "./types/cosmos/circuit/v1/query";
-import { QueryDisabledListRequest } from "./types/cosmos/circuit/v1/query";
-import { MsgResetCircuitBreaker } from "./types/cosmos/circuit/v1/tx";
 import { AccountResponse } from "./types/cosmos/circuit/v1/query";
+import { AccountsResponse } from "./types/cosmos/circuit/v1/query";
+import { DisabledListResponse } from "./types/cosmos/circuit/v1/query";
+import { MsgAuthorizeCircuitBreakerResponse } from "./types/cosmos/circuit/v1/tx";
 import { MsgAuthorizeCircuitBreaker } from "./types/cosmos/circuit/v1/tx";
+import { MsgTripCircuitBreakerResponse } from "./types/cosmos/circuit/v1/tx";
+import { MsgResetCircuitBreaker } from "./types/cosmos/circuit/v1/tx";
 import { MsgResetCircuitBreakerResponse } from "./types/cosmos/circuit/v1/tx";
 import { Permissions } from "./types/cosmos/circuit/v1/types";
-import { GenesisState } from "./types/cosmos/circuit/v1/types";
+import { GenesisAccountPermissions } from "./types/cosmos/circuit/v1/types";
 import { QueryAccountRequest } from "./types/cosmos/circuit/v1/query";
 import { QueryAccountsRequest } from "./types/cosmos/circuit/v1/query";
-import { MsgAuthorizeCircuitBreakerResponse } from "./types/cosmos/circuit/v1/tx";
-import { MsgTripCircuitBreakerResponse } from "./types/cosmos/circuit/v1/tx";
-import { DisabledListResponse } from "./types/cosmos/circuit/v1/query";
+import { GenesisState } from "./types/cosmos/circuit/v1/types";
+import { QueryDisabledListRequest } from "./types/cosmos/circuit/v1/query";
 import { MsgTripCircuitBreaker } from "./types/cosmos/circuit/v1/tx";
-import { GenesisAccountPermissions } from "./types/cosmos/circuit/v1/types";
 
 
-export { AccountsResponse, QueryDisabledListRequest, MsgResetCircuitBreaker, AccountResponse, MsgAuthorizeCircuitBreaker, MsgResetCircuitBreakerResponse, Permissions, GenesisState, QueryAccountRequest, QueryAccountsRequest, MsgAuthorizeCircuitBreakerResponse, MsgTripCircuitBreakerResponse, DisabledListResponse, MsgTripCircuitBreaker, GenesisAccountPermissions };
-
-type sendAccountsResponseParams = {
-  value: AccountsResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryDisabledListRequestParams = {
-  value: QueryDisabledListRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgResetCircuitBreakerParams = {
-  value: MsgResetCircuitBreaker,
-  fee?: StdFee,
-  memo?: string
-};
+export { AccountResponse, AccountsResponse, DisabledListResponse, MsgAuthorizeCircuitBreakerResponse, MsgAuthorizeCircuitBreaker, MsgTripCircuitBreakerResponse, MsgResetCircuitBreaker, MsgResetCircuitBreakerResponse, Permissions, GenesisAccountPermissions, QueryAccountRequest, QueryAccountsRequest, GenesisState, QueryDisabledListRequest, MsgTripCircuitBreaker };
 
 type sendAccountResponseParams = {
   value: AccountResponse,
@@ -49,8 +31,38 @@ type sendAccountResponseParams = {
   memo?: string
 };
 
+type sendAccountsResponseParams = {
+  value: AccountsResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendDisabledListResponseParams = {
+  value: DisabledListResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgAuthorizeCircuitBreakerResponseParams = {
+  value: MsgAuthorizeCircuitBreakerResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
 type sendMsgAuthorizeCircuitBreakerParams = {
   value: MsgAuthorizeCircuitBreaker,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgTripCircuitBreakerResponseParams = {
+  value: MsgTripCircuitBreakerResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgResetCircuitBreakerParams = {
+  value: MsgResetCircuitBreaker,
   fee?: StdFee,
   memo?: string
 };
@@ -67,8 +79,8 @@ type sendPermissionsParams = {
   memo?: string
 };
 
-type sendGenesisStateParams = {
-  value: GenesisState,
+type sendGenesisAccountPermissionsParams = {
+  value: GenesisAccountPermissions,
   fee?: StdFee,
   memo?: string
 };
@@ -85,20 +97,14 @@ type sendQueryAccountsRequestParams = {
   memo?: string
 };
 
-type sendMsgAuthorizeCircuitBreakerResponseParams = {
-  value: MsgAuthorizeCircuitBreakerResponse,
+type sendGenesisStateParams = {
+  value: GenesisState,
   fee?: StdFee,
   memo?: string
 };
 
-type sendMsgTripCircuitBreakerResponseParams = {
-  value: MsgTripCircuitBreakerResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendDisabledListResponseParams = {
-  value: DisabledListResponse,
+type sendQueryDisabledListRequestParams = {
+  value: QueryDisabledListRequest,
   fee?: StdFee,
   memo?: string
 };
@@ -109,31 +115,33 @@ type sendMsgTripCircuitBreakerParams = {
   memo?: string
 };
 
-type sendGenesisAccountPermissionsParams = {
-  value: GenesisAccountPermissions,
-  fee?: StdFee,
-  memo?: string
-};
-
-
-type accountsResponseParams = {
-  value: AccountsResponse,
-};
-
-type queryDisabledListRequestParams = {
-  value: QueryDisabledListRequest,
-};
-
-type msgResetCircuitBreakerParams = {
-  value: MsgResetCircuitBreaker,
-};
 
 type accountResponseParams = {
   value: AccountResponse,
 };
 
+type accountsResponseParams = {
+  value: AccountsResponse,
+};
+
+type disabledListResponseParams = {
+  value: DisabledListResponse,
+};
+
+type msgAuthorizeCircuitBreakerResponseParams = {
+  value: MsgAuthorizeCircuitBreakerResponse,
+};
+
 type msgAuthorizeCircuitBreakerParams = {
   value: MsgAuthorizeCircuitBreaker,
+};
+
+type msgTripCircuitBreakerResponseParams = {
+  value: MsgTripCircuitBreakerResponse,
+};
+
+type msgResetCircuitBreakerParams = {
+  value: MsgResetCircuitBreaker,
 };
 
 type msgResetCircuitBreakerResponseParams = {
@@ -144,8 +152,8 @@ type permissionsParams = {
   value: Permissions,
 };
 
-type genesisStateParams = {
-  value: GenesisState,
+type genesisAccountPermissionsParams = {
+  value: GenesisAccountPermissions,
 };
 
 type queryAccountRequestParams = {
@@ -156,24 +164,16 @@ type queryAccountsRequestParams = {
   value: QueryAccountsRequest,
 };
 
-type msgAuthorizeCircuitBreakerResponseParams = {
-  value: MsgAuthorizeCircuitBreakerResponse,
+type genesisStateParams = {
+  value: GenesisState,
 };
 
-type msgTripCircuitBreakerResponseParams = {
-  value: MsgTripCircuitBreakerResponse,
-};
-
-type disabledListResponseParams = {
-  value: DisabledListResponse,
+type queryDisabledListRequestParams = {
+  value: QueryDisabledListRequest,
 };
 
 type msgTripCircuitBreakerParams = {
   value: MsgTripCircuitBreaker,
-};
-
-type genesisAccountPermissionsParams = {
-  value: GenesisAccountPermissions,
 };
 
 
@@ -206,48 +206,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 
   return {
 		
-		async sendAccountsResponse({ value, fee, memo }: sendAccountsResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendAccountsResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.accountsResponse({ value: AccountsResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendAccountsResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryDisabledListRequest({ value, fee, memo }: sendQueryDisabledListRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryDisabledListRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryDisabledListRequest({ value: QueryDisabledListRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryDisabledListRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgResetCircuitBreaker({ value, fee, memo }: sendMsgResetCircuitBreakerParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgResetCircuitBreaker: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgResetCircuitBreaker({ value: MsgResetCircuitBreaker.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgResetCircuitBreaker: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
 		async sendAccountResponse({ value, fee, memo }: sendAccountResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendAccountResponse: Unable to sign Tx. Signer is not present.')
@@ -262,6 +220,48 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		async sendAccountsResponse({ value, fee, memo }: sendAccountsResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendAccountsResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.accountsResponse({ value: AccountsResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendAccountsResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendDisabledListResponse({ value, fee, memo }: sendDisabledListResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendDisabledListResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.disabledListResponse({ value: DisabledListResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendDisabledListResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgAuthorizeCircuitBreakerResponse({ value, fee, memo }: sendMsgAuthorizeCircuitBreakerResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgAuthorizeCircuitBreakerResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgAuthorizeCircuitBreakerResponse({ value: MsgAuthorizeCircuitBreakerResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgAuthorizeCircuitBreakerResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
 		async sendMsgAuthorizeCircuitBreaker({ value, fee, memo }: sendMsgAuthorizeCircuitBreakerParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendMsgAuthorizeCircuitBreaker: Unable to sign Tx. Signer is not present.')
@@ -273,6 +273,34 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
 				throw new Error('TxClient:sendMsgAuthorizeCircuitBreaker: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgTripCircuitBreakerResponse({ value, fee, memo }: sendMsgTripCircuitBreakerResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgTripCircuitBreakerResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgTripCircuitBreakerResponse({ value: MsgTripCircuitBreakerResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgTripCircuitBreakerResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgResetCircuitBreaker({ value, fee, memo }: sendMsgResetCircuitBreakerParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgResetCircuitBreaker: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgResetCircuitBreaker({ value: MsgResetCircuitBreaker.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgResetCircuitBreaker: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -304,17 +332,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
+		async sendGenesisAccountPermissions({ value, fee, memo }: sendGenesisAccountPermissionsParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendGenesisAccountPermissions: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
+				let msg = this.genesisAccountPermissions({ value: GenesisAccountPermissions.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendGenesisAccountPermissions: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -346,45 +374,31 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendMsgAuthorizeCircuitBreakerResponse({ value, fee, memo }: sendMsgAuthorizeCircuitBreakerResponseParams): Promise<DeliverTxResponse> {
+		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgAuthorizeCircuitBreakerResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgAuthorizeCircuitBreakerResponse({ value: MsgAuthorizeCircuitBreakerResponse.fromPartial(value) })
+				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgAuthorizeCircuitBreakerResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendMsgTripCircuitBreakerResponse({ value, fee, memo }: sendMsgTripCircuitBreakerResponseParams): Promise<DeliverTxResponse> {
+		async sendQueryDisabledListRequest({ value, fee, memo }: sendQueryDisabledListRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgTripCircuitBreakerResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryDisabledListRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgTripCircuitBreakerResponse({ value: MsgTripCircuitBreakerResponse.fromPartial(value) })
+				let msg = this.queryDisabledListRequest({ value: QueryDisabledListRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgTripCircuitBreakerResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendDisabledListResponse({ value, fee, memo }: sendDisabledListResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendDisabledListResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.disabledListResponse({ value: DisabledListResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendDisabledListResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryDisabledListRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -402,44 +416,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendGenesisAccountPermissions({ value, fee, memo }: sendGenesisAccountPermissionsParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendGenesisAccountPermissions: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.genesisAccountPermissions({ value: GenesisAccountPermissions.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendGenesisAccountPermissions: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		
-		accountsResponse({ value }: accountsResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.circuit.v1.AccountsResponse", value: AccountsResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:AccountsResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryDisabledListRequest({ value }: queryDisabledListRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.circuit.v1.QueryDisabledListRequest", value: QueryDisabledListRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryDisabledListRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgResetCircuitBreaker({ value }: msgResetCircuitBreakerParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.circuit.v1.MsgResetCircuitBreaker", value: MsgResetCircuitBreaker.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgResetCircuitBreaker: Could not create message: ' + e.message)
-			}
-		},
 		
 		accountResponse({ value }: accountResponseParams): EncodeObject {
 			try {
@@ -449,11 +425,51 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		accountsResponse({ value }: accountsResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.circuit.v1.AccountsResponse", value: AccountsResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:AccountsResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		disabledListResponse({ value }: disabledListResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.circuit.v1.DisabledListResponse", value: DisabledListResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:DisabledListResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgAuthorizeCircuitBreakerResponse({ value }: msgAuthorizeCircuitBreakerResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.circuit.v1.MsgAuthorizeCircuitBreakerResponse", value: MsgAuthorizeCircuitBreakerResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgAuthorizeCircuitBreakerResponse: Could not create message: ' + e.message)
+			}
+		},
+		
 		msgAuthorizeCircuitBreaker({ value }: msgAuthorizeCircuitBreakerParams): EncodeObject {
 			try {
 				return { typeUrl: "/cosmos.circuit.v1.MsgAuthorizeCircuitBreaker", value: MsgAuthorizeCircuitBreaker.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:MsgAuthorizeCircuitBreaker: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgTripCircuitBreakerResponse({ value }: msgTripCircuitBreakerResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.circuit.v1.MsgTripCircuitBreakerResponse", value: MsgTripCircuitBreakerResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgTripCircuitBreakerResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgResetCircuitBreaker({ value }: msgResetCircuitBreakerParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.circuit.v1.MsgResetCircuitBreaker", value: MsgResetCircuitBreaker.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgResetCircuitBreaker: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -473,11 +489,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		genesisState({ value }: genesisStateParams): EncodeObject {
+		genesisAccountPermissions({ value }: genesisAccountPermissionsParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.circuit.v1.GenesisState", value: GenesisState.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.circuit.v1.GenesisAccountPermissions", value: GenesisAccountPermissions.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
+				throw new Error('TxClient:GenesisAccountPermissions: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -497,27 +513,19 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		msgAuthorizeCircuitBreakerResponse({ value }: msgAuthorizeCircuitBreakerResponseParams): EncodeObject {
+		genesisState({ value }: genesisStateParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.circuit.v1.MsgAuthorizeCircuitBreakerResponse", value: MsgAuthorizeCircuitBreakerResponse.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.circuit.v1.GenesisState", value: GenesisState.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgAuthorizeCircuitBreakerResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
 			}
 		},
 		
-		msgTripCircuitBreakerResponse({ value }: msgTripCircuitBreakerResponseParams): EncodeObject {
+		queryDisabledListRequest({ value }: queryDisabledListRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.circuit.v1.MsgTripCircuitBreakerResponse", value: MsgTripCircuitBreakerResponse.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.circuit.v1.QueryDisabledListRequest", value: QueryDisabledListRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgTripCircuitBreakerResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		disabledListResponse({ value }: disabledListResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.circuit.v1.DisabledListResponse", value: DisabledListResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:DisabledListResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryDisabledListRequest: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -526,14 +534,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 				return { typeUrl: "/cosmos.circuit.v1.MsgTripCircuitBreaker", value: MsgTripCircuitBreaker.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:MsgTripCircuitBreaker: Could not create message: ' + e.message)
-			}
-		},
-		
-		genesisAccountPermissions({ value }: genesisAccountPermissionsParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.circuit.v1.GenesisAccountPermissions", value: GenesisAccountPermissions.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:GenesisAccountPermissions: Could not create message: ' + e.message)
 			}
 		},
 		

@@ -30,7 +30,8 @@ export interface QueryAllManagerResponse {
         managerAccount?: string;
         operatorAccount?: string;
         hostAddress?: string;
-        managerPort?: number;
+        managerHTTPPort?: number;
+        managerWSPort?: number;
         trackerPort?: number;
         chainAPIPort?: number;
         chainRPCPort?: number;
@@ -70,7 +71,8 @@ export interface QueryGetManagerByRegionResponse {
         managerAccount?: string;
         operatorAccount?: string;
         hostAddress?: string;
-        managerPort?: number;
+        managerHTTPPort?: number;
+        managerWSPort?: number;
         trackerPort?: number;
         chainAPIPort?: number;
         chainRPCPort?: number;
@@ -88,7 +90,8 @@ export interface QueryGetManagerResponse {
         managerAccount?: string;
         operatorAccount?: string;
         hostAddress?: string;
-        managerPort?: number;
+        managerHTTPPort?: number;
+        managerWSPort?: number;
         trackerPort?: number;
         chainAPIPort?: number;
         chainRPCPort?: number;
@@ -133,7 +136,9 @@ export interface ManagerManager {
     operatorAccount?: string;
     hostAddress?: string;
     /** @format int64 */
-    managerPort?: number;
+    managerHTTPPort?: number;
+    /** @format int64 */
+    managerWSPort?: number;
     /** @format int64 */
     trackerPort?: number;
     /** @format int64 */

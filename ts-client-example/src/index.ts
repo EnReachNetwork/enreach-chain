@@ -75,7 +75,7 @@ async function testManager(operatorApi: OperatorApi, managerApi: ManagerApi) {
   const [evmAccount, sig] = await getEvmSignature(operatorApi.account);
   await operatorApi.bindOperatorEVMAccount({operatorAccount: operatorApi.account, evmAccount: evmAccount, evmSignature: ethers.utils.arrayify(sig)})
 
-  await managerApi.registerManager({managerAccount: managerApi.account, hostAddress:"127.0.0.1",managerPort:100,trackerPort:200,chainAPIPort:1337, chainRPCPort:26657});
+  await managerApi.registerManager({managerAccount: managerApi.account, hostAddress:"127.0.0.1",managerHTTPPort:100,managerWSPort:180,trackerPort:200,chainAPIPort:1337, chainRPCPort:26657});
   
   const managerSignature = await getManagerSignature(operatorApi.account, managerApi.wallet);
   await operatorApi.bindOperatorManagerAccount({operatorAccount: operatorApi.account, managerAccount: managerApi.account, managerSignature: managerSignature, forceUnbind: true});

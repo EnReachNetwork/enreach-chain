@@ -479,7 +479,15 @@ exports.MsgSetManagerRegionResponse = {
     },
 };
 function createBaseMsgUpdateManagerConnParams() {
-    return { operatorAccount: "", hostAddress: "", managerPort: 0, trackerPort: 0, chainAPIPort: 0, chainRPCPort: 0 };
+    return {
+        operatorAccount: "",
+        hostAddress: "",
+        managerHTTPPort: 0,
+        managerWSPort: 0,
+        trackerPort: 0,
+        chainAPIPort: 0,
+        chainRPCPort: 0,
+    };
 }
 exports.MsgUpdateManagerConnParams = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -489,17 +497,20 @@ exports.MsgUpdateManagerConnParams = {
         if (message.hostAddress !== "") {
             writer.uint32(18).string(message.hostAddress);
         }
-        if (message.managerPort !== 0) {
-            writer.uint32(24).uint32(message.managerPort);
+        if (message.managerHTTPPort !== 0) {
+            writer.uint32(24).uint32(message.managerHTTPPort);
+        }
+        if (message.managerWSPort !== 0) {
+            writer.uint32(32).uint32(message.managerWSPort);
         }
         if (message.trackerPort !== 0) {
-            writer.uint32(32).uint32(message.trackerPort);
+            writer.uint32(40).uint32(message.trackerPort);
         }
         if (message.chainAPIPort !== 0) {
-            writer.uint32(40).uint32(message.chainAPIPort);
+            writer.uint32(48).uint32(message.chainAPIPort);
         }
         if (message.chainRPCPort !== 0) {
-            writer.uint32(48).uint32(message.chainRPCPort);
+            writer.uint32(56).uint32(message.chainRPCPort);
         }
         return writer;
     },
@@ -526,22 +537,28 @@ exports.MsgUpdateManagerConnParams = {
                     if (tag !== 24) {
                         break;
                     }
-                    message.managerPort = reader.uint32();
+                    message.managerHTTPPort = reader.uint32();
                     continue;
                 case 4:
                     if (tag !== 32) {
                         break;
                     }
-                    message.trackerPort = reader.uint32();
+                    message.managerWSPort = reader.uint32();
                     continue;
                 case 5:
                     if (tag !== 40) {
                         break;
                     }
-                    message.chainAPIPort = reader.uint32();
+                    message.trackerPort = reader.uint32();
                     continue;
                 case 6:
                     if (tag !== 48) {
+                        break;
+                    }
+                    message.chainAPIPort = reader.uint32();
+                    continue;
+                case 7:
+                    if (tag !== 56) {
                         break;
                     }
                     message.chainRPCPort = reader.uint32();
@@ -558,7 +575,8 @@ exports.MsgUpdateManagerConnParams = {
         return {
             operatorAccount: isSet(object.operatorAccount) ? String(object.operatorAccount) : "",
             hostAddress: isSet(object.hostAddress) ? String(object.hostAddress) : "",
-            managerPort: isSet(object.managerPort) ? Number(object.managerPort) : 0,
+            managerHTTPPort: isSet(object.managerHTTPPort) ? Number(object.managerHTTPPort) : 0,
+            managerWSPort: isSet(object.managerWSPort) ? Number(object.managerWSPort) : 0,
             trackerPort: isSet(object.trackerPort) ? Number(object.trackerPort) : 0,
             chainAPIPort: isSet(object.chainAPIPort) ? Number(object.chainAPIPort) : 0,
             chainRPCPort: isSet(object.chainRPCPort) ? Number(object.chainRPCPort) : 0,
@@ -572,8 +590,11 @@ exports.MsgUpdateManagerConnParams = {
         if (message.hostAddress !== "") {
             obj.hostAddress = message.hostAddress;
         }
-        if (message.managerPort !== 0) {
-            obj.managerPort = Math.round(message.managerPort);
+        if (message.managerHTTPPort !== 0) {
+            obj.managerHTTPPort = Math.round(message.managerHTTPPort);
+        }
+        if (message.managerWSPort !== 0) {
+            obj.managerWSPort = Math.round(message.managerWSPort);
         }
         if (message.trackerPort !== 0) {
             obj.trackerPort = Math.round(message.trackerPort);
@@ -593,7 +614,8 @@ exports.MsgUpdateManagerConnParams = {
         const message = createBaseMsgUpdateManagerConnParams();
         message.operatorAccount = object.operatorAccount ?? "";
         message.hostAddress = object.hostAddress ?? "";
-        message.managerPort = object.managerPort ?? 0;
+        message.managerHTTPPort = object.managerHTTPPort ?? 0;
+        message.managerWSPort = object.managerWSPort ?? 0;
         message.trackerPort = object.trackerPort ?? 0;
         message.chainAPIPort = object.chainAPIPort ?? 0;
         message.chainRPCPort = object.chainRPCPort ?? 0;
@@ -989,7 +1011,15 @@ exports.MsgUpdateOperatorBasicInfoResponse = {
     },
 };
 function createBaseMsgRegisterManager() {
-    return { managerAccount: "", hostAddress: "", managerPort: 0, trackerPort: 0, chainAPIPort: 0, chainRPCPort: 0 };
+    return {
+        managerAccount: "",
+        hostAddress: "",
+        managerHTTPPort: 0,
+        managerWSPort: 0,
+        trackerPort: 0,
+        chainAPIPort: 0,
+        chainRPCPort: 0,
+    };
 }
 exports.MsgRegisterManager = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -999,17 +1029,20 @@ exports.MsgRegisterManager = {
         if (message.hostAddress !== "") {
             writer.uint32(18).string(message.hostAddress);
         }
-        if (message.managerPort !== 0) {
-            writer.uint32(24).uint32(message.managerPort);
+        if (message.managerHTTPPort !== 0) {
+            writer.uint32(24).uint32(message.managerHTTPPort);
+        }
+        if (message.managerWSPort !== 0) {
+            writer.uint32(32).uint32(message.managerWSPort);
         }
         if (message.trackerPort !== 0) {
-            writer.uint32(32).uint32(message.trackerPort);
+            writer.uint32(40).uint32(message.trackerPort);
         }
         if (message.chainAPIPort !== 0) {
-            writer.uint32(40).uint32(message.chainAPIPort);
+            writer.uint32(48).uint32(message.chainAPIPort);
         }
         if (message.chainRPCPort !== 0) {
-            writer.uint32(48).uint32(message.chainRPCPort);
+            writer.uint32(56).uint32(message.chainRPCPort);
         }
         return writer;
     },
@@ -1036,22 +1069,28 @@ exports.MsgRegisterManager = {
                     if (tag !== 24) {
                         break;
                     }
-                    message.managerPort = reader.uint32();
+                    message.managerHTTPPort = reader.uint32();
                     continue;
                 case 4:
                     if (tag !== 32) {
                         break;
                     }
-                    message.trackerPort = reader.uint32();
+                    message.managerWSPort = reader.uint32();
                     continue;
                 case 5:
                     if (tag !== 40) {
                         break;
                     }
-                    message.chainAPIPort = reader.uint32();
+                    message.trackerPort = reader.uint32();
                     continue;
                 case 6:
                     if (tag !== 48) {
+                        break;
+                    }
+                    message.chainAPIPort = reader.uint32();
+                    continue;
+                case 7:
+                    if (tag !== 56) {
                         break;
                     }
                     message.chainRPCPort = reader.uint32();
@@ -1068,7 +1107,8 @@ exports.MsgRegisterManager = {
         return {
             managerAccount: isSet(object.managerAccount) ? String(object.managerAccount) : "",
             hostAddress: isSet(object.hostAddress) ? String(object.hostAddress) : "",
-            managerPort: isSet(object.managerPort) ? Number(object.managerPort) : 0,
+            managerHTTPPort: isSet(object.managerHTTPPort) ? Number(object.managerHTTPPort) : 0,
+            managerWSPort: isSet(object.managerWSPort) ? Number(object.managerWSPort) : 0,
             trackerPort: isSet(object.trackerPort) ? Number(object.trackerPort) : 0,
             chainAPIPort: isSet(object.chainAPIPort) ? Number(object.chainAPIPort) : 0,
             chainRPCPort: isSet(object.chainRPCPort) ? Number(object.chainRPCPort) : 0,
@@ -1082,8 +1122,11 @@ exports.MsgRegisterManager = {
         if (message.hostAddress !== "") {
             obj.hostAddress = message.hostAddress;
         }
-        if (message.managerPort !== 0) {
-            obj.managerPort = Math.round(message.managerPort);
+        if (message.managerHTTPPort !== 0) {
+            obj.managerHTTPPort = Math.round(message.managerHTTPPort);
+        }
+        if (message.managerWSPort !== 0) {
+            obj.managerWSPort = Math.round(message.managerWSPort);
         }
         if (message.trackerPort !== 0) {
             obj.trackerPort = Math.round(message.trackerPort);
@@ -1103,7 +1146,8 @@ exports.MsgRegisterManager = {
         const message = createBaseMsgRegisterManager();
         message.managerAccount = object.managerAccount ?? "";
         message.hostAddress = object.hostAddress ?? "";
-        message.managerPort = object.managerPort ?? 0;
+        message.managerHTTPPort = object.managerHTTPPort ?? 0;
+        message.managerWSPort = object.managerWSPort ?? 0;
         message.trackerPort = object.trackerPort ?? 0;
         message.chainAPIPort = object.chainAPIPort ?? 0;
         message.chainRPCPort = object.chainRPCPort ?? 0;
