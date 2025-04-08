@@ -231,7 +231,12 @@ async function testWorkload() {
 
 async function testReputationPoint() {
 
-  const currentEra = (await workload_A_Api.getCurrentEra()).currentEra;
+  let currentEra = await workload_A_Api.getCurrentEra();
+  while(currentEra < 2) {
+    console.log(`Waiting for era_2 to be started...`);
+    await sleep(3000);
+    currentEra = await workload_A_Api.getCurrentEra();
+  }
   const previsouEra = currentEra - 1;
 
   const reputationPointChangeData_A = {
