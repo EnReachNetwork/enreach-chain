@@ -100,11 +100,12 @@ func (msg *MsgSetManagerRegion) ValidateBasic() error {
 
 var _ sdk.Msg = &MsgUpdateManagerConnParams{}
 
-func NewMsgUpdateManagerConnParams(operatorAccount string, hostAddress string, managerPort uint32, trackerPort uint32, chainAPIPort uint32, chainRPCPort uint32) *MsgUpdateManagerConnParams {
+func NewMsgUpdateManagerConnParams(operatorAccount string, hostAddress string, managerHTTPPort uint32, managerWSPort uint32, trackerPort uint32, chainAPIPort uint32, chainRPCPort uint32) *MsgUpdateManagerConnParams {
 	return &MsgUpdateManagerConnParams{
 		OperatorAccount: operatorAccount,
 		HostAddress:     hostAddress,
-		ManagerPort:     managerPort,
+		ManagerHTTPPort: managerHTTPPort,
+		ManagerWSPort:   managerWSPort,
 		TrackerPort:     trackerPort,
 		ChainAPIPort:    chainAPIPort,
 		ChainRPCPort:    chainRPCPort,
@@ -124,8 +125,11 @@ func (msg *MsgUpdateManagerConnParams) ValidateBasic() error {
 		return errorsmod.Wrapf(ErrInvalidParamLength, "HostAddress exceed max length %d", HOST_ADDRESS_MAX_LENGTH)
 	}
 
-	if msg.ManagerPort > PORT_MAX_VALUE {
-		return errorsmod.Wrap(ErrInvalidParamLength, "Invalid manager port number")
+	if msg.ManagerHTTPPort > PORT_MAX_VALUE {
+		return errorsmod.Wrap(ErrInvalidParamLength, "Invalid manager http port number")
+	}
+	if msg.ManagerWSPort > PORT_MAX_VALUE {
+		return errorsmod.Wrap(ErrInvalidParamLength, "Invalid manager ws port number")
 	}
 	if msg.TrackerPort > PORT_MAX_VALUE {
 		return errorsmod.Wrap(ErrInvalidParamLength, "Invalid tracker port number")

@@ -7,15 +7,16 @@ message Manager {
   string managerAccount =1;
   string operatorAccount = 2; 
   string hostAddress = 3;
-  uint32 managerPort = 4;
-  uint32 trackerPort = 5;
-  uint32 chainAPIPort = 6;
-  uint32 chainRPCPort = 7;
-  string regionCode = 8; 
-  string registerStatus = 9; 
-  string workingStatus = 10;
-  string creator = 11;
-  uint64 createAt = 12;
-  string updator = 13;
-  uint64 updateAt = 14;
+  uint32 managerHTTPPort = 4;
+  uint32 managerWSPort = 5;
+  uint32 trackerPort = 6;
+  uint32 chainAPIPort = 7;
+  uint32 chainRPCPort = 8;
+  string regionCode = 9; 
+  string registerStatus = 10; 
+  string workingStatus = 11;
+  string creator = 12;
+  uint64 createAt = 13;
+  string updator = 14;
+  uint64 updateAt = 15;
 }

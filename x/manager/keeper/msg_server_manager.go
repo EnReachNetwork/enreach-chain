@@ -23,17 +23,18 @@ func (k msgServer) RegisterManager(goCtx context.Context, msg *types.MsgRegister
 
 	blockHeight := uint64(ctx.BlockHeight())
 	var manager = types.Manager{
-		ManagerAccount: msg.ManagerAccount,
-		HostAddress:    msg.HostAddress,
-		ManagerPort:    msg.ManagerPort,
-		TrackerPort:    msg.TrackerPort,
-		ChainAPIPort:   msg.ChainAPIPort,
-		ChainRPCPort:   msg.ChainRPCPort,
-		Creator:        msg.ManagerAccount,
-		CreateAt:       blockHeight,
-		Updator:        msg.ManagerAccount,
-		UpdateAt:       blockHeight,
-		RegisterStatus: string(types.RS_PENDING_BIND), // New register manager start with "Pending_Bind" register status
+		ManagerAccount:  msg.ManagerAccount,
+		HostAddress:     msg.HostAddress,
+		ManagerHTTPPort: msg.ManagerHTTPPort,
+		ManagerWSPort:   msg.ManagerWSPort,
+		TrackerPort:     msg.TrackerPort,
+		ChainAPIPort:    msg.ChainAPIPort,
+		ChainRPCPort:    msg.ChainRPCPort,
+		Creator:         msg.ManagerAccount,
+		CreateAt:        blockHeight,
+		Updator:         msg.ManagerAccount,
+		UpdateAt:        blockHeight,
+		RegisterStatus:  string(types.RS_PENDING_BIND), // New register manager start with "Pending_Bind" register status
 	}
 	// Add manager to the store
 	k.AppendManager(ctx, manager)
@@ -43,7 +44,8 @@ func (k msgServer) RegisterManager(goCtx context.Context, msg *types.MsgRegister
 			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
 			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.ManagerAccount),
 			sdk.NewAttribute(types.AttributeKeyHostAddress, msg.HostAddress),
-			sdk.NewAttribute(types.AttributeKeyManagerPort, strconv.FormatUint(uint64(msg.ManagerPort), 10)),
+			sdk.NewAttribute(types.AttributeKeyManagerHTTPPort, strconv.FormatUint(uint64(msg.ManagerHTTPPort), 10)),
+			sdk.NewAttribute(types.AttributeKeyManagerWSPort, strconv.FormatUint(uint64(msg.ManagerWSPort), 10)),
 			sdk.NewAttribute(types.AttributeKeyTrackerPort, strconv.FormatUint(uint64(msg.TrackerPort), 10)),
 			sdk.NewAttribute(types.AttributeKeyChainAPIPort, strconv.FormatUint(uint64(msg.ChainAPIPort), 10)),
 			sdk.NewAttribute(types.AttributeKeyChainRPCPort, strconv.FormatUint(uint64(msg.ChainRPCPort), 10)),
@@ -78,7 +80,7 @@ func (k msgServer) GoWorking(goCtx context.Context, msg *types.MsgGoWorking) (*t
 	}
 
 	// The conn params should have been set before go working, otherwise edge nodes could not connect
-	if len(manager.HostAddress) == 0 || manager.ManagerPort == 0 ||
+	if len(manager.HostAddress) == 0 || manager.ManagerHTTPPort == 0 || manager.ManagerWSPort == 0 ||
 		manager.TrackerPort == 0 || manager.ChainAPIPort == 0 || manager.ChainRPCPort == 0 {
 		return nil, errorsmod.Wrap(types.ErrManagerConnParamsNotSet, "manager should have set connection params before go working")
 	}

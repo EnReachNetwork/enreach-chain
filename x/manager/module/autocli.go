@@ -64,10 +64,10 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				},
 				{
 					RpcMethod: "RegisterManager",
-					Use:       "register-manager [managerAccount] [hostAddress] [managerPort] [trackerPort] [chainAPIPort] [chainRPCPort]",
+					Use:       "register-manager [managerAccount] [hostAddress] [managerHTTPPort] [managerWSPort] [trackerPort] [chainAPIPort] [chainRPCPort]",
 					Short:     "register manager",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "managerAccount"},
-						{ProtoField: "hostAddress"}, {ProtoField: "managerPort"}, {ProtoField: "trackerPort"}, {ProtoField: "chainAPIPort"}, {ProtoField: "chainRPCPort"}},
+						{ProtoField: "hostAddress"}, {ProtoField: "managerHTTPPort"}, {ProtoField: "managerWSPort"}, {ProtoField: "trackerPort"}, {ProtoField: "chainAPIPort"}, {ProtoField: "chainRPCPort"}},
 				},
 				{
 					RpcMethod:      "SetManagerRegion",
@@ -77,10 +77,10 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				},
 				{
 					RpcMethod: "UpdateManagerConnParams",
-					Use:       "update-manager-conn-params [operatorAccount]  [hostAddress] [managerPort] [trackerPort] [chainAPIPort] [chainRPCPort]",
+					Use:       "update-manager-conn-params [operatorAccount]  [hostAddress] [managerHTTPPort] [managerWSPort] [trackerPort] [chainAPIPort] [chainRPCPort]",
 					Short:     "Update manager conn params",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "operatorAccount"},
-						{ProtoField: "hostAddress"}, {ProtoField: "managerPort"}, {ProtoField: "trackerPort"}, {ProtoField: "chainAPIPort"}, {ProtoField: "chainRPCPort"}},
+						{ProtoField: "hostAddress"}, {ProtoField: "managerHTTPPort"}, {ProtoField: "managerWSPort"}, {ProtoField: "trackerPort"}, {ProtoField: "chainAPIPort"}, {ProtoField: "chainRPCPort"}},
 				},
 				{
 					RpcMethod:      "GoWorking",

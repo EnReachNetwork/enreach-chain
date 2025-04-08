@@ -247,7 +247,8 @@ func (k msgServer) UpdateManagerConnParams(goCtx context.Context, msg *types.Msg
 	// Update and set to the store
 	blockHeight := uint64(ctx.BlockHeight())
 	manager.HostAddress = msg.HostAddress
-	manager.ManagerPort = msg.ManagerPort
+	manager.ManagerHTTPPort = msg.ManagerHTTPPort
+	manager.ManagerWSPort = msg.ManagerWSPort
 	manager.TrackerPort = msg.TrackerPort
 	manager.ChainAPIPort = msg.ChainAPIPort
 	manager.ChainRPCPort = msg.ChainRPCPort
@@ -260,7 +261,8 @@ func (k msgServer) UpdateManagerConnParams(goCtx context.Context, msg *types.Msg
 			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
 			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.OperatorAccount),
 			sdk.NewAttribute(types.AttributeKeyHostAddress, msg.HostAddress),
-			sdk.NewAttribute(types.AttributeKeyManagerPort, strconv.FormatUint(uint64(msg.ManagerPort), 10)),
+			sdk.NewAttribute(types.AttributeKeyManagerHTTPPort, strconv.FormatUint(uint64(msg.ManagerHTTPPort), 10)),
+			sdk.NewAttribute(types.AttributeKeyManagerWSPort, strconv.FormatUint(uint64(msg.ManagerWSPort), 10)),
 			sdk.NewAttribute(types.AttributeKeyTrackerPort, strconv.FormatUint(uint64(msg.TrackerPort), 10)),
 			sdk.NewAttribute(types.AttributeKeyChainAPIPort, strconv.FormatUint(uint64(msg.ChainAPIPort), 10)),
 			sdk.NewAttribute(types.AttributeKeyChainRPCPort, strconv.FormatUint(uint64(msg.ChainRPCPort), 10)),
@@ -314,7 +316,7 @@ func (k msgServer) ActivateManager(goCtx context.Context, msg *types.MsgActivate
 	}
 
 	// Double check the manager region code setting and connection params
-	if len(manager.HostAddress) == 0 || manager.ManagerPort == 0 ||
+	if len(manager.HostAddress) == 0 || manager.ManagerHTTPPort == 0 || manager.ManagerWSPort == 0 ||
 		manager.TrackerPort == 0 || manager.ChainAPIPort == 0 || manager.ChainRPCPort == 0 {
 		return nil, errorsmod.Wrap(types.ErrManagerConnParamsNotSet,
 			"Activate manager is not allow due to manager connection params not properly set")

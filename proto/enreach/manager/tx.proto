@@ -82,10 +82,11 @@ message MsgUpdateManagerConnParams {
   option (cosmos.msg.v1.signer) = "operatorAccount";
   string operatorAccount = 1;
   string hostAddress     = 2;
-  uint32 managerPort     = 3;
-  uint32 trackerPort     = 4;
-  uint32 chainAPIPort    = 5;
-  uint32 chainRPCPort    = 6;
+  uint32 managerHTTPPort = 3;
+  uint32 managerWSPort   = 4;
+  uint32 trackerPort     = 5;
+  uint32 chainAPIPort    = 6;
+  uint32 chainRPCPort    = 7;
 }
 
 message MsgUpdateManagerConnParamsResponse {}
@@ -121,10 +122,11 @@ message MsgRegisterManager {
   option (cosmos.msg.v1.signer) = "managerAccount";
   string managerAccount = 1;
   string hostAddress    = 2;
-  uint32 managerPort    = 3;
-  uint32 trackerPort    = 4;
-  uint32 chainAPIPort   = 5;
-  uint32 chainRPCPort   = 6;
+  uint32 managerHTTPPort = 3;
+  uint32 managerWSPort   = 4;
+  uint32 trackerPort    = 5;
+  uint32 chainAPIPort   = 6;
+  uint32 chainRPCPort   = 7;
 }
 
 message MsgRegisterManagerResponse {}
