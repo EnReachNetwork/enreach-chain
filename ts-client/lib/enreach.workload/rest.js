@@ -154,11 +154,36 @@ class Api extends HttpClient {
          *
          * @tags Query
          * @name QueryCurrentEra
-         * @request GET:/enreach/workload/era/currentera
+         * @request GET:/enreach/workload/era/current_era
          */
         this.queryCurrentEra = (params = {}) => this.request({
-            path: `/enreach/workload/era/currentera`,
+            path: `/enreach/workload/era/current_era`,
             method: "GET",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryHistoryEra
+         * @request GET:/enreach/workload/era/history_era/{eraNumber}
+         */
+        this.queryHistoryEra = (eraNumber, params = {}) => this.request({
+            path: `/enreach/workload/era/history_era/${eraNumber}`,
+            method: "GET",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryAllHistoryEra
+         * @request GET:/enreach/workload/era/history_eras
+         */
+        this.queryAllHistoryEra = (query, params = {}) => this.request({
+            path: `/enreach/workload/era/history_eras`,
+            method: "GET",
+            query: query,
             ...params,
         });
         /**
@@ -170,6 +195,18 @@ class Api extends HttpClient {
          */
         this.queryEraLength = (params = {}) => this.request({
             path: `/enreach/workload/era/length`,
+            method: "GET",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryPendingNextEra
+         * @request GET:/enreach/workload/era/pending_next_era
+         */
+        this.queryPendingNextEra = (params = {}) => this.request({
+            path: `/enreach/workload/era/pending_next_era`,
             method: "GET",
             ...params,
         });

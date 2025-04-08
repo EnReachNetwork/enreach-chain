@@ -21,6 +21,18 @@ export interface EpochInfo {
     /** @format uint64 */
     endBlock?: string;
 }
+export interface EraInfo {
+    /** @format uint64 */
+    number?: string;
+    /** @format date-time */
+    startTime?: string;
+    /** @format uint64 */
+    startBlock?: string;
+    /** @format date-time */
+    endTime?: string;
+    /** @format uint64 */
+    endBlock?: string;
+}
 export interface NodeScoreDB {
     /** @format uint64 */
     score?: string;
@@ -83,6 +95,19 @@ export interface QueryGetAllEraProcessDataResponse {
 }
 export interface QueryGetAllHistoryEpochResponse {
     EpochInfos?: {
+        number?: string;
+        startTime?: string;
+        startBlock?: string;
+        endTime?: string;
+        endBlock?: string;
+    }[];
+    pagination?: {
+        next_key?: string;
+        total?: string;
+    };
+}
+export interface QueryGetAllHistoryEraResponse {
+    EraInfos?: {
         number?: string;
         startTime?: string;
         startBlock?: string;
@@ -198,8 +223,13 @@ export interface QueryGetCurrentEpochResponse {
     };
 }
 export interface QueryGetCurrentEraResponse {
-    /** @format uint64 */
-    currentEra?: string;
+    EraInfo?: {
+        number?: string;
+        startTime?: string;
+        startBlock?: string;
+        endTime?: string;
+        endBlock?: string;
+    };
 }
 export interface QueryGetEpochLengthResponse {
     /** @format uint64 */
@@ -250,6 +280,15 @@ export interface QueryGetHistoryEpochResponse {
         endBlock?: string;
     };
 }
+export interface QueryGetHistoryEraResponse {
+    EraInfo?: {
+        number?: string;
+        startTime?: string;
+        startBlock?: string;
+        endTime?: string;
+        endBlock?: string;
+    };
+}
 export interface QueryGetManagerRPWorkloadResponse {
     ManagerRPWorkload?: {
         era?: string;
@@ -280,6 +319,15 @@ export interface QueryGetNodeWorkloadResponse {
 }
 export interface QueryGetPendingNextEpochResponse {
     EpochInfo?: {
+        number?: string;
+        startTime?: string;
+        startBlock?: string;
+        endTime?: string;
+        endBlock?: string;
+    };
+}
+export interface QueryGetPendingNextEraResponse {
+    EraInfo?: {
         number?: string;
         startTime?: string;
         startBlock?: string;
@@ -580,9 +628,31 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      *
      * @tags Query
      * @name QueryCurrentEra
-     * @request GET:/enreach/workload/era/currentera
+     * @request GET:/enreach/workload/era/current_era
      */
     queryCurrentEra: (params?: RequestParams) => Promise<AxiosResponse<T>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryHistoryEra
+     * @request GET:/enreach/workload/era/history_era/{eraNumber}
+     */
+    queryHistoryEra: (eraNumber: string, params?: RequestParams) => Promise<AxiosResponse<T>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryAllHistoryEra
+     * @request GET:/enreach/workload/era/history_eras
+     */
+    queryAllHistoryEra: (query?: {
+        "pagination.key"?: string;
+        "pagination.offset"?: string;
+        "pagination.limit"?: string;
+        "pagination.count_total"?: boolean;
+        "pagination.reverse"?: boolean;
+    }, params?: RequestParams) => Promise<AxiosResponse<T>>;
     /**
      * No description
      *
@@ -591,6 +661,14 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * @request GET:/enreach/workload/era/length
      */
     queryEraLength: (params?: RequestParams) => Promise<AxiosResponse<T>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryPendingNextEra
+     * @request GET:/enreach/workload/era/pending_next_era
+     */
+    queryPendingNextEra: (params?: RequestParams) => Promise<AxiosResponse<T>>;
     /**
      * No description
      *

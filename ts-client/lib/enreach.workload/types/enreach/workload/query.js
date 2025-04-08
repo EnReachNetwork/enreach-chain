@@ -3,13 +3,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.QueryGetAllReputationDeltaPointByEraRequest = exports.QueryGetReputationDeltaPointResponse = exports.QueryGetReputationDeltaPointRequest = exports.QueryGetAllReputationPointChangeDataByEraResponse = exports.QueryGetAllReputationPointChangeDataByEraRequest = exports.QueryGetReputationPointChangeDataResponse = exports.QueryGetReputationPointChangeDataRequest = exports.QueryGetCurrentEraResponse = exports.QueryGetCurrentEraRequest = exports.QueryGetEraLengthResponse = exports.QueryGetEraLengthRequest = exports.QueryGetSuperiorResponse = exports.QueryGetSuperiorRequest = exports.QueryGetAllEpochProcessDataResponse = exports.QueryGetAllEpochProcessDataRequest = exports.QueryGetEpochProcessDataResponse = exports.QueryGetEpochProcessDataRequest = exports.QueryGetHistoryEpochDataDepthResponse = exports.QueryGetHistoryEpochDataDepthRequest = exports.QueryGetWorkreportProcessBatchSizeResponse = exports.QueryGetWorkreportProcessBatchSizeRequest = exports.QueryGetAllWorkreportByEpochResponse = exports.QueryGetAllWorkreportByEpochRequest = exports.QueryGetWorkreportResponse = exports.QueryGetWorkreportRequest = exports.QueryGetAllManagerRPWorkloadByEraResponse = exports.QueryGetAllManagerRPWorkloadByEraRequest = exports.QueryGetManagerRPWorkloadResponse = exports.QueryGetManagerRPWorkloadRequest = exports.QueryGetAllManagerWRWorkloadByEpochResponse = exports.QueryGetAllManagerWRWorkloadByEpochRequest = exports.QueryGetManagerWRWorkloadResponse = exports.QueryGetManagerWRWorkloadRequest = exports.QueryGetAllNodeWorkloadByEpochResponse = exports.QueryGetAllNodeWorkloadByEpochRequest = exports.QueryGetNodeWorkloadResponse = exports.QueryGetNodeWorkloadRequest = exports.QueryGetAllHistoryEpochResponse = exports.QueryGetAllHistoryEpochRequest = exports.QueryGetHistoryEpochResponse = exports.QueryGetHistoryEpochRequest = exports.QueryGetPendingNextEpochResponse = exports.QueryGetPendingNextEpochRequest = exports.QueryGetCurrentEpochResponse = exports.QueryGetCurrentEpochRequest = exports.QueryGetEpochLengthResponse = exports.QueryGetEpochLengthRequest = exports.QueryParamsResponse = exports.QueryParamsRequest = exports.protobufPackage = void 0;
-exports.QueryClientImpl = exports.QueryServiceName = exports.QueryGetAllEraProcessDataResponse = exports.QueryGetAllEraProcessDataRequest = exports.QueryGetEraProcessDataResponse = exports.QueryGetEraProcessDataRequest = exports.QueryGetAllReputationPointResponse = exports.QueryGetAllReputationPointRequest = exports.QueryGetReputationPointResponse = exports.QueryGetReputationPointRequest = exports.QueryGetAllReputationDeltaPointByEraResponse = void 0;
+exports.QueryGetReputationPointChangeDataRequest = exports.QueryGetAllHistoryEraResponse = exports.QueryGetAllHistoryEraRequest = exports.QueryGetHistoryEraResponse = exports.QueryGetHistoryEraRequest = exports.QueryGetPendingNextEraResponse = exports.QueryGetPendingNextEraRequest = exports.QueryGetCurrentEraResponse = exports.QueryGetCurrentEraRequest = exports.QueryGetEraLengthResponse = exports.QueryGetEraLengthRequest = exports.QueryGetSuperiorResponse = exports.QueryGetSuperiorRequest = exports.QueryGetAllEpochProcessDataResponse = exports.QueryGetAllEpochProcessDataRequest = exports.QueryGetEpochProcessDataResponse = exports.QueryGetEpochProcessDataRequest = exports.QueryGetHistoryEpochDataDepthResponse = exports.QueryGetHistoryEpochDataDepthRequest = exports.QueryGetWorkreportProcessBatchSizeResponse = exports.QueryGetWorkreportProcessBatchSizeRequest = exports.QueryGetAllWorkreportByEpochResponse = exports.QueryGetAllWorkreportByEpochRequest = exports.QueryGetWorkreportResponse = exports.QueryGetWorkreportRequest = exports.QueryGetAllManagerRPWorkloadByEraResponse = exports.QueryGetAllManagerRPWorkloadByEraRequest = exports.QueryGetManagerRPWorkloadResponse = exports.QueryGetManagerRPWorkloadRequest = exports.QueryGetAllManagerWRWorkloadByEpochResponse = exports.QueryGetAllManagerWRWorkloadByEpochRequest = exports.QueryGetManagerWRWorkloadResponse = exports.QueryGetManagerWRWorkloadRequest = exports.QueryGetAllNodeWorkloadByEpochResponse = exports.QueryGetAllNodeWorkloadByEpochRequest = exports.QueryGetNodeWorkloadResponse = exports.QueryGetNodeWorkloadRequest = exports.QueryGetAllHistoryEpochResponse = exports.QueryGetAllHistoryEpochRequest = exports.QueryGetHistoryEpochResponse = exports.QueryGetHistoryEpochRequest = exports.QueryGetPendingNextEpochResponse = exports.QueryGetPendingNextEpochRequest = exports.QueryGetCurrentEpochResponse = exports.QueryGetCurrentEpochRequest = exports.QueryGetEpochLengthResponse = exports.QueryGetEpochLengthRequest = exports.QueryParamsResponse = exports.QueryParamsRequest = exports.protobufPackage = void 0;
+exports.QueryClientImpl = exports.QueryServiceName = exports.QueryGetAllEraProcessDataResponse = exports.QueryGetAllEraProcessDataRequest = exports.QueryGetEraProcessDataResponse = exports.QueryGetEraProcessDataRequest = exports.QueryGetAllReputationPointResponse = exports.QueryGetAllReputationPointRequest = exports.QueryGetReputationPointResponse = exports.QueryGetReputationPointRequest = exports.QueryGetAllReputationDeltaPointByEraResponse = exports.QueryGetAllReputationDeltaPointByEraRequest = exports.QueryGetReputationDeltaPointResponse = exports.QueryGetReputationDeltaPointRequest = exports.QueryGetAllReputationPointChangeDataByEraResponse = exports.QueryGetAllReputationPointChangeDataByEraRequest = exports.QueryGetReputationPointChangeDataResponse = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const pagination_1 = require("../../cosmos/base/query/v1beta1/pagination");
 const epoch_info_1 = require("./epoch_info");
+const era_info_1 = require("./era_info");
 const params_1 = require("./params");
 const reputationpoint_1 = require("./reputationpoint");
 const superior_1 = require("./superior");
@@ -2236,12 +2237,12 @@ exports.QueryGetCurrentEraRequest = {
     },
 };
 function createBaseQueryGetCurrentEraResponse() {
-    return { currentEra: 0 };
+    return { EraInfo: undefined };
 }
 exports.QueryGetCurrentEraResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.currentEra !== 0) {
-            writer.uint32(8).uint64(message.currentEra);
+        if (message.EraInfo !== undefined) {
+            era_info_1.EraInfo.encode(message.EraInfo, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
@@ -2253,10 +2254,10 @@ exports.QueryGetCurrentEraResponse = {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    if (tag !== 8) {
+                    if (tag !== 10) {
                         break;
                     }
-                    message.currentEra = longToNumber(reader.uint64());
+                    message.EraInfo = era_info_1.EraInfo.decode(reader, reader.uint32());
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -2267,12 +2268,12 @@ exports.QueryGetCurrentEraResponse = {
         return message;
     },
     fromJSON(object) {
-        return { currentEra: isSet(object.currentEra) ? Number(object.currentEra) : 0 };
+        return { EraInfo: isSet(object.EraInfo) ? era_info_1.EraInfo.fromJSON(object.EraInfo) : undefined };
     },
     toJSON(message) {
         const obj = {};
-        if (message.currentEra !== 0) {
-            obj.currentEra = Math.round(message.currentEra);
+        if (message.EraInfo !== undefined) {
+            obj.EraInfo = era_info_1.EraInfo.toJSON(message.EraInfo);
         }
         return obj;
     },
@@ -2281,7 +2282,320 @@ exports.QueryGetCurrentEraResponse = {
     },
     fromPartial(object) {
         const message = createBaseQueryGetCurrentEraResponse();
-        message.currentEra = object.currentEra ?? 0;
+        message.EraInfo = (object.EraInfo !== undefined && object.EraInfo !== null)
+            ? era_info_1.EraInfo.fromPartial(object.EraInfo)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetPendingNextEraRequest() {
+    return {};
+}
+exports.QueryGetPendingNextEraRequest = {
+    encode(_, writer = minimal_1.default.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetPendingNextEraRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(_) {
+        return {};
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetPendingNextEraRequest.fromPartial(base ?? {});
+    },
+    fromPartial(_) {
+        const message = createBaseQueryGetPendingNextEraRequest();
+        return message;
+    },
+};
+function createBaseQueryGetPendingNextEraResponse() {
+    return { EraInfo: undefined };
+}
+exports.QueryGetPendingNextEraResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.EraInfo !== undefined) {
+            era_info_1.EraInfo.encode(message.EraInfo, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetPendingNextEraResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.EraInfo = era_info_1.EraInfo.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { EraInfo: isSet(object.EraInfo) ? era_info_1.EraInfo.fromJSON(object.EraInfo) : undefined };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.EraInfo !== undefined) {
+            obj.EraInfo = era_info_1.EraInfo.toJSON(message.EraInfo);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetPendingNextEraResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetPendingNextEraResponse();
+        message.EraInfo = (object.EraInfo !== undefined && object.EraInfo !== null)
+            ? era_info_1.EraInfo.fromPartial(object.EraInfo)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetHistoryEraRequest() {
+    return { eraNumber: 0 };
+}
+exports.QueryGetHistoryEraRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.eraNumber !== 0) {
+            writer.uint32(8).uint64(message.eraNumber);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetHistoryEraRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 8) {
+                        break;
+                    }
+                    message.eraNumber = longToNumber(reader.uint64());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { eraNumber: isSet(object.eraNumber) ? Number(object.eraNumber) : 0 };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.eraNumber !== 0) {
+            obj.eraNumber = Math.round(message.eraNumber);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetHistoryEraRequest.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetHistoryEraRequest();
+        message.eraNumber = object.eraNumber ?? 0;
+        return message;
+    },
+};
+function createBaseQueryGetHistoryEraResponse() {
+    return { EraInfo: undefined };
+}
+exports.QueryGetHistoryEraResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.EraInfo !== undefined) {
+            era_info_1.EraInfo.encode(message.EraInfo, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetHistoryEraResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.EraInfo = era_info_1.EraInfo.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { EraInfo: isSet(object.EraInfo) ? era_info_1.EraInfo.fromJSON(object.EraInfo) : undefined };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.EraInfo !== undefined) {
+            obj.EraInfo = era_info_1.EraInfo.toJSON(message.EraInfo);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetHistoryEraResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetHistoryEraResponse();
+        message.EraInfo = (object.EraInfo !== undefined && object.EraInfo !== null)
+            ? era_info_1.EraInfo.fromPartial(object.EraInfo)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetAllHistoryEraRequest() {
+    return { pagination: undefined };
+}
+exports.QueryGetAllHistoryEraRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.pagination !== undefined) {
+            pagination_1.PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetAllHistoryEraRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.pagination = pagination_1.PageRequest.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { pagination: isSet(object.pagination) ? pagination_1.PageRequest.fromJSON(object.pagination) : undefined };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.pagination !== undefined) {
+            obj.pagination = pagination_1.PageRequest.toJSON(message.pagination);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetAllHistoryEraRequest.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetAllHistoryEraRequest();
+        message.pagination = (object.pagination !== undefined && object.pagination !== null)
+            ? pagination_1.PageRequest.fromPartial(object.pagination)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetAllHistoryEraResponse() {
+    return { EraInfos: [], pagination: undefined };
+}
+exports.QueryGetAllHistoryEraResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        for (const v of message.EraInfos) {
+            era_info_1.EraInfo.encode(v, writer.uint32(10).fork()).ldelim();
+        }
+        if (message.pagination !== undefined) {
+            pagination_1.PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetAllHistoryEraResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.EraInfos.push(era_info_1.EraInfo.decode(reader, reader.uint32()));
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.pagination = pagination_1.PageResponse.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            EraInfos: Array.isArray(object?.EraInfos) ? object.EraInfos.map((e) => era_info_1.EraInfo.fromJSON(e)) : [],
+            pagination: isSet(object.pagination) ? pagination_1.PageResponse.fromJSON(object.pagination) : undefined,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.EraInfos?.length) {
+            obj.EraInfos = message.EraInfos.map((e) => era_info_1.EraInfo.toJSON(e));
+        }
+        if (message.pagination !== undefined) {
+            obj.pagination = pagination_1.PageResponse.toJSON(message.pagination);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetAllHistoryEraResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetAllHistoryEraResponse();
+        message.EraInfos = object.EraInfos?.map((e) => era_info_1.EraInfo.fromPartial(e)) || [];
+        message.pagination = (object.pagination !== undefined && object.pagination !== null)
+            ? pagination_1.PageResponse.fromPartial(object.pagination)
+            : undefined;
         return message;
     },
 };
@@ -3285,6 +3599,9 @@ class QueryClientImpl {
         this.Superior = this.Superior.bind(this);
         this.EraLength = this.EraLength.bind(this);
         this.CurrentEra = this.CurrentEra.bind(this);
+        this.PendingNextEra = this.PendingNextEra.bind(this);
+        this.HistoryEra = this.HistoryEra.bind(this);
+        this.AllHistoryEra = this.AllHistoryEra.bind(this);
         this.ReputationPointChangeData = this.ReputationPointChangeData.bind(this);
         this.AllReputationPointChangeDataByEra = this.AllReputationPointChangeDataByEra.bind(this);
         this.ReputationDeltaPoint = this.ReputationDeltaPoint.bind(this);
@@ -3398,6 +3715,21 @@ class QueryClientImpl {
         const data = exports.QueryGetCurrentEraRequest.encode(request).finish();
         const promise = this.rpc.request(this.service, "CurrentEra", data);
         return promise.then((data) => exports.QueryGetCurrentEraResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    PendingNextEra(request) {
+        const data = exports.QueryGetPendingNextEraRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "PendingNextEra", data);
+        return promise.then((data) => exports.QueryGetPendingNextEraResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    HistoryEra(request) {
+        const data = exports.QueryGetHistoryEraRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "HistoryEra", data);
+        return promise.then((data) => exports.QueryGetHistoryEraResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    AllHistoryEra(request) {
+        const data = exports.QueryGetAllHistoryEraRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "AllHistoryEra", data);
+        return promise.then((data) => exports.QueryGetAllHistoryEraResponse.decode(minimal_1.default.Reader.create(data)));
     }
     ReputationPointChangeData(request) {
         const data = exports.QueryGetReputationPointChangeDataRequest.encode(request).finish();

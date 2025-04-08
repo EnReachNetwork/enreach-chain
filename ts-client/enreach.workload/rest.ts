@@ -37,6 +37,23 @@ export interface EpochInfo {
   endBlock?: string;
 }
 
+export interface EraInfo {
+  /** @format uint64 */
+  number?: string;
+
+  /** @format date-time */
+  startTime?: string;
+
+  /** @format uint64 */
+  startBlock?: string;
+
+  /** @format date-time */
+  endTime?: string;
+
+  /** @format uint64 */
+  endBlock?: string;
+}
+
 export interface NodeScoreDB {
   /** @format uint64 */
   score?: string;
@@ -97,6 +114,11 @@ export interface QueryGetAllEraProcessDataResponse {
 
 export interface QueryGetAllHistoryEpochResponse {
   EpochInfos?: { number?: string; startTime?: string; startBlock?: string; endTime?: string; endBlock?: string }[];
+  pagination?: { next_key?: string; total?: string };
+}
+
+export interface QueryGetAllHistoryEraResponse {
+  EraInfos?: { number?: string; startTime?: string; startBlock?: string; endTime?: string; endBlock?: string }[];
   pagination?: { next_key?: string; total?: string };
 }
 
@@ -162,8 +184,7 @@ export interface QueryGetCurrentEpochResponse {
 }
 
 export interface QueryGetCurrentEraResponse {
-  /** @format uint64 */
-  currentEra?: string;
+  EraInfo?: { number?: string; startTime?: string; startBlock?: string; endTime?: string; endBlock?: string };
 }
 
 export interface QueryGetEpochLengthResponse {
@@ -209,6 +230,10 @@ export interface QueryGetHistoryEpochResponse {
   EpochInfo?: { number?: string; startTime?: string; startBlock?: string; endTime?: string; endBlock?: string };
 }
 
+export interface QueryGetHistoryEraResponse {
+  EraInfo?: { number?: string; startTime?: string; startBlock?: string; endTime?: string; endBlock?: string };
+}
+
 export interface QueryGetManagerRPWorkloadResponse {
   ManagerRPWorkload?: {
     era?: string;
@@ -237,6 +262,10 @@ export interface QueryGetNodeWorkloadResponse {
 
 export interface QueryGetPendingNextEpochResponse {
   EpochInfo?: { number?: string; startTime?: string; startBlock?: string; endTime?: string; endBlock?: string };
+}
+
+export interface QueryGetPendingNextEraResponse {
+  EraInfo?: { number?: string; startTime?: string; startBlock?: string; endTime?: string; endBlock?: string };
 }
 
 export interface QueryGetReputationDeltaPointResponse {
@@ -694,12 +723,62 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    *
    * @tags Query
    * @name QueryCurrentEra
-   * @request GET:/enreach/workload/era/currentera
+   * @request GET:/enreach/workload/era/current_era
    */
   queryCurrentEra = (params: RequestParams = {}) =>
-    this.request<{ currentEra?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
-      path: `/enreach/workload/era/currentera`,
+    this.request<
+      { EraInfo?: { number?: string; startTime?: string; startBlock?: string; endTime?: string; endBlock?: string } },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/workload/era/current_era`,
       method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryHistoryEra
+   * @request GET:/enreach/workload/era/history_era/{eraNumber}
+   */
+  queryHistoryEra = (eraNumber: string, params: RequestParams = {}) =>
+    this.request<
+      { EraInfo?: { number?: string; startTime?: string; startBlock?: string; endTime?: string; endBlock?: string } },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/workload/era/history_era/${eraNumber}`,
+      method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryAllHistoryEra
+   * @request GET:/enreach/workload/era/history_eras
+   */
+  queryAllHistoryEra = (
+    query?: {
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<
+      {
+        EraInfos?: { number?: string; startTime?: string; startBlock?: string; endTime?: string; endBlock?: string }[];
+        pagination?: { next_key?: string; total?: string };
+      },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/workload/era/history_eras`,
+      method: "GET",
+      query: query,
       ...params,
     });
 
@@ -713,6 +792,23 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryEraLength = (params: RequestParams = {}) =>
     this.request<{ eraLength?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
       path: `/enreach/workload/era/length`,
+      method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryPendingNextEra
+   * @request GET:/enreach/workload/era/pending_next_era
+   */
+  queryPendingNextEra = (params: RequestParams = {}) =>
+    this.request<
+      { EraInfo?: { number?: string; startTime?: string; startBlock?: string; endTime?: string; endBlock?: string } },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/workload/era/pending_next_era`,
       method: "GET",
       ...params,
     });

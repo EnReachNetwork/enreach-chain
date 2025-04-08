@@ -1,6 +1,7 @@
 import _m0 from "protobufjs/minimal";
 import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
 import { EpochInfo } from "./epoch_info";
+import { EraInfo } from "./era_info";
 import { Params } from "./params";
 import { EraProcessData, ReputationDeltaPoint, ReputationPoint, ReputationPointChangeData } from "./reputationpoint";
 import { Superior } from "./superior";
@@ -136,10 +137,29 @@ export interface QueryGetEraLengthRequest {
 export interface QueryGetEraLengthResponse {
     eraLength: number;
 }
+/** //////////////// */
 export interface QueryGetCurrentEraRequest {
 }
 export interface QueryGetCurrentEraResponse {
-    currentEra: number;
+    EraInfo: EraInfo | undefined;
+}
+export interface QueryGetPendingNextEraRequest {
+}
+export interface QueryGetPendingNextEraResponse {
+    EraInfo: EraInfo | undefined;
+}
+export interface QueryGetHistoryEraRequest {
+    eraNumber: number;
+}
+export interface QueryGetHistoryEraResponse {
+    EraInfo: EraInfo | undefined;
+}
+export interface QueryGetAllHistoryEraRequest {
+    pagination: PageRequest | undefined;
+}
+export interface QueryGetAllHistoryEraResponse {
+    EraInfos: EraInfo[];
+    pagination: PageResponse | undefined;
 }
 export interface QueryGetReputationPointChangeDataRequest {
     era: number;
@@ -533,6 +553,54 @@ export declare const QueryGetCurrentEraResponse: {
     create<I extends Exact<DeepPartial<QueryGetCurrentEraResponse>, I>>(base?: I): QueryGetCurrentEraResponse;
     fromPartial<I extends Exact<DeepPartial<QueryGetCurrentEraResponse>, I>>(object: I): QueryGetCurrentEraResponse;
 };
+export declare const QueryGetPendingNextEraRequest: {
+    encode(_: QueryGetPendingNextEraRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetPendingNextEraRequest;
+    fromJSON(_: any): QueryGetPendingNextEraRequest;
+    toJSON(_: QueryGetPendingNextEraRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryGetPendingNextEraRequest>, I>>(base?: I): QueryGetPendingNextEraRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryGetPendingNextEraRequest>, I>>(_: I): QueryGetPendingNextEraRequest;
+};
+export declare const QueryGetPendingNextEraResponse: {
+    encode(message: QueryGetPendingNextEraResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetPendingNextEraResponse;
+    fromJSON(object: any): QueryGetPendingNextEraResponse;
+    toJSON(message: QueryGetPendingNextEraResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryGetPendingNextEraResponse>, I>>(base?: I): QueryGetPendingNextEraResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryGetPendingNextEraResponse>, I>>(object: I): QueryGetPendingNextEraResponse;
+};
+export declare const QueryGetHistoryEraRequest: {
+    encode(message: QueryGetHistoryEraRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetHistoryEraRequest;
+    fromJSON(object: any): QueryGetHistoryEraRequest;
+    toJSON(message: QueryGetHistoryEraRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryGetHistoryEraRequest>, I>>(base?: I): QueryGetHistoryEraRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryGetHistoryEraRequest>, I>>(object: I): QueryGetHistoryEraRequest;
+};
+export declare const QueryGetHistoryEraResponse: {
+    encode(message: QueryGetHistoryEraResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetHistoryEraResponse;
+    fromJSON(object: any): QueryGetHistoryEraResponse;
+    toJSON(message: QueryGetHistoryEraResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryGetHistoryEraResponse>, I>>(base?: I): QueryGetHistoryEraResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryGetHistoryEraResponse>, I>>(object: I): QueryGetHistoryEraResponse;
+};
+export declare const QueryGetAllHistoryEraRequest: {
+    encode(message: QueryGetAllHistoryEraRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllHistoryEraRequest;
+    fromJSON(object: any): QueryGetAllHistoryEraRequest;
+    toJSON(message: QueryGetAllHistoryEraRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryGetAllHistoryEraRequest>, I>>(base?: I): QueryGetAllHistoryEraRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryGetAllHistoryEraRequest>, I>>(object: I): QueryGetAllHistoryEraRequest;
+};
+export declare const QueryGetAllHistoryEraResponse: {
+    encode(message: QueryGetAllHistoryEraResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllHistoryEraResponse;
+    fromJSON(object: any): QueryGetAllHistoryEraResponse;
+    toJSON(message: QueryGetAllHistoryEraResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryGetAllHistoryEraResponse>, I>>(base?: I): QueryGetAllHistoryEraResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryGetAllHistoryEraResponse>, I>>(object: I): QueryGetAllHistoryEraResponse;
+};
 export declare const QueryGetReputationPointChangeDataRequest: {
     encode(message: QueryGetReputationPointChangeDataRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetReputationPointChangeDataRequest;
@@ -692,6 +760,9 @@ export interface Query {
     /** Queries era */
     EraLength(request: QueryGetEraLengthRequest): Promise<QueryGetEraLengthResponse>;
     CurrentEra(request: QueryGetCurrentEraRequest): Promise<QueryGetCurrentEraResponse>;
+    PendingNextEra(request: QueryGetPendingNextEraRequest): Promise<QueryGetPendingNextEraResponse>;
+    HistoryEra(request: QueryGetHistoryEraRequest): Promise<QueryGetHistoryEraResponse>;
+    AllHistoryEra(request: QueryGetAllHistoryEraRequest): Promise<QueryGetAllHistoryEraResponse>;
     /** Queries a list of ReputationPointChangeData items. */
     ReputationPointChangeData(request: QueryGetReputationPointChangeDataRequest): Promise<QueryGetReputationPointChangeDataResponse>;
     AllReputationPointChangeDataByEra(request: QueryGetAllReputationPointChangeDataByEraRequest): Promise<QueryGetAllReputationPointChangeDataByEraResponse>;
@@ -732,6 +803,9 @@ export declare class QueryClientImpl implements Query {
     Superior(request: QueryGetSuperiorRequest): Promise<QueryGetSuperiorResponse>;
     EraLength(request: QueryGetEraLengthRequest): Promise<QueryGetEraLengthResponse>;
     CurrentEra(request: QueryGetCurrentEraRequest): Promise<QueryGetCurrentEraResponse>;
+    PendingNextEra(request: QueryGetPendingNextEraRequest): Promise<QueryGetPendingNextEraResponse>;
+    HistoryEra(request: QueryGetHistoryEraRequest): Promise<QueryGetHistoryEraResponse>;
+    AllHistoryEra(request: QueryGetAllHistoryEraRequest): Promise<QueryGetAllHistoryEraResponse>;
     ReputationPointChangeData(request: QueryGetReputationPointChangeDataRequest): Promise<QueryGetReputationPointChangeDataResponse>;
     AllReputationPointChangeDataByEra(request: QueryGetAllReputationPointChangeDataByEraRequest): Promise<QueryGetAllReputationPointChangeDataByEraResponse>;
     ReputationDeltaPoint(request: QueryGetReputationDeltaPointRequest): Promise<QueryGetReputationDeltaPointResponse>;

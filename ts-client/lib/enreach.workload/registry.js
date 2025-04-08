@@ -3,186 +3,200 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.msgTypes = void 0;
 const query_1 = require("./types/enreach/workload/query");
 const query_2 = require("./types/enreach/workload/query");
-const query_3 = require("./types/enreach/workload/query");
-const workload_1 = require("./types/enreach/workload/workload");
-const reputationpoint_1 = require("./types/enreach/workload/reputationpoint");
 const tx_1 = require("./types/enreach/workload/tx");
-const tx_2 = require("./types/enreach/workload/tx");
-const tx_3 = require("./types/enreach/workload/tx");
+const query_3 = require("./types/enreach/workload/query");
+const query_4 = require("./types/enreach/workload/query");
 const workreport_1 = require("./types/enreach/workload/workreport");
 const workreport_2 = require("./types/enreach/workload/workreport");
-const query_4 = require("./types/enreach/workload/query");
-const genesis_1 = require("./types/enreach/workload/genesis");
-const query_5 = require("./types/enreach/workload/query");
 const workreport_3 = require("./types/enreach/workload/workreport");
-const workreport_4 = require("./types/enreach/workload/workreport");
+const era_info_1 = require("./types/enreach/workload/era_info");
+const query_5 = require("./types/enreach/workload/query");
 const query_6 = require("./types/enreach/workload/query");
 const query_7 = require("./types/enreach/workload/query");
 const query_8 = require("./types/enreach/workload/query");
-const tx_4 = require("./types/enreach/workload/tx");
-const reputationpoint_2 = require("./types/enreach/workload/reputationpoint");
-const workload_2 = require("./types/enreach/workload/workload");
-const tx_5 = require("./types/enreach/workload/tx");
-const workreport_5 = require("./types/enreach/workload/workreport");
 const query_9 = require("./types/enreach/workload/query");
+const tx_2 = require("./types/enreach/workload/tx");
 const query_10 = require("./types/enreach/workload/query");
+const tx_3 = require("./types/enreach/workload/tx");
 const query_11 = require("./types/enreach/workload/query");
-const reputationpoint_3 = require("./types/enreach/workload/reputationpoint");
 const query_12 = require("./types/enreach/workload/query");
+const workload_1 = require("./types/enreach/workload/workload");
 const query_13 = require("./types/enreach/workload/query");
 const query_14 = require("./types/enreach/workload/query");
-const superior_1 = require("./types/enreach/workload/superior");
+const params_1 = require("./types/enreach/workload/params");
 const query_15 = require("./types/enreach/workload/query");
 const query_16 = require("./types/enreach/workload/query");
 const query_17 = require("./types/enreach/workload/query");
-const workload_3 = require("./types/enreach/workload/workload");
 const query_18 = require("./types/enreach/workload/query");
 const query_19 = require("./types/enreach/workload/query");
-const tx_6 = require("./types/enreach/workload/tx");
-const tx_7 = require("./types/enreach/workload/tx");
+const reputationpoint_1 = require("./types/enreach/workload/reputationpoint");
 const query_20 = require("./types/enreach/workload/query");
 const query_21 = require("./types/enreach/workload/query");
 const query_22 = require("./types/enreach/workload/query");
 const query_23 = require("./types/enreach/workload/query");
 const query_24 = require("./types/enreach/workload/query");
 const query_25 = require("./types/enreach/workload/query");
+const reputationpoint_2 = require("./types/enreach/workload/reputationpoint");
 const query_26 = require("./types/enreach/workload/query");
 const query_27 = require("./types/enreach/workload/query");
 const query_28 = require("./types/enreach/workload/query");
 const query_29 = require("./types/enreach/workload/query");
-const reputationpoint_4 = require("./types/enreach/workload/reputationpoint");
-const epoch_info_1 = require("./types/enreach/workload/epoch_info");
+const workreport_4 = require("./types/enreach/workload/workreport");
+const tx_4 = require("./types/enreach/workload/tx");
+const tx_5 = require("./types/enreach/workload/tx");
 const query_30 = require("./types/enreach/workload/query");
 const query_31 = require("./types/enreach/workload/query");
+const tx_6 = require("./types/enreach/workload/tx");
 const query_32 = require("./types/enreach/workload/query");
 const query_33 = require("./types/enreach/workload/query");
 const query_34 = require("./types/enreach/workload/query");
 const query_35 = require("./types/enreach/workload/query");
-const reputationpoint_5 = require("./types/enreach/workload/reputationpoint");
 const query_36 = require("./types/enreach/workload/query");
+const workload_2 = require("./types/enreach/workload/workload");
+const tx_7 = require("./types/enreach/workload/tx");
 const query_37 = require("./types/enreach/workload/query");
 const query_38 = require("./types/enreach/workload/query");
 const query_39 = require("./types/enreach/workload/query");
 const query_40 = require("./types/enreach/workload/query");
+const reputationpoint_3 = require("./types/enreach/workload/reputationpoint");
 const tx_8 = require("./types/enreach/workload/tx");
-const tx_9 = require("./types/enreach/workload/tx");
 const query_41 = require("./types/enreach/workload/query");
 const query_42 = require("./types/enreach/workload/query");
 const query_43 = require("./types/enreach/workload/query");
-const reputationpoint_6 = require("./types/enreach/workload/reputationpoint");
-const tx_10 = require("./types/enreach/workload/tx");
-const tx_11 = require("./types/enreach/workload/tx");
 const query_44 = require("./types/enreach/workload/query");
+const epoch_info_1 = require("./types/enreach/workload/epoch_info");
+const reputationpoint_4 = require("./types/enreach/workload/reputationpoint");
+const genesis_1 = require("./types/enreach/workload/genesis");
 const query_45 = require("./types/enreach/workload/query");
+const tx_9 = require("./types/enreach/workload/tx");
+const tx_10 = require("./types/enreach/workload/tx");
 const query_46 = require("./types/enreach/workload/query");
+const reputationpoint_5 = require("./types/enreach/workload/reputationpoint");
 const query_47 = require("./types/enreach/workload/query");
 const query_48 = require("./types/enreach/workload/query");
-const tx_12 = require("./types/enreach/workload/tx");
 const query_49 = require("./types/enreach/workload/query");
-const reputationpoint_7 = require("./types/enreach/workload/reputationpoint");
-const tx_13 = require("./types/enreach/workload/tx");
-const tx_14 = require("./types/enreach/workload/tx");
 const query_50 = require("./types/enreach/workload/query");
+const workreport_5 = require("./types/enreach/workload/workreport");
+const tx_11 = require("./types/enreach/workload/tx");
 const query_51 = require("./types/enreach/workload/query");
 const query_52 = require("./types/enreach/workload/query");
+const reputationpoint_6 = require("./types/enreach/workload/reputationpoint");
+const reputationpoint_7 = require("./types/enreach/workload/reputationpoint");
+const tx_12 = require("./types/enreach/workload/tx");
 const query_53 = require("./types/enreach/workload/query");
-const params_1 = require("./types/enreach/workload/params");
 const query_54 = require("./types/enreach/workload/query");
 const query_55 = require("./types/enreach/workload/query");
+const superior_1 = require("./types/enreach/workload/superior");
 const query_56 = require("./types/enreach/workload/query");
 const query_57 = require("./types/enreach/workload/query");
 const query_58 = require("./types/enreach/workload/query");
+const query_59 = require("./types/enreach/workload/query");
+const tx_13 = require("./types/enreach/workload/tx");
+const query_60 = require("./types/enreach/workload/query");
+const tx_14 = require("./types/enreach/workload/tx");
+const query_61 = require("./types/enreach/workload/query");
+const query_62 = require("./types/enreach/workload/query");
+const query_63 = require("./types/enreach/workload/query");
+const query_64 = require("./types/enreach/workload/query");
+const workload_3 = require("./types/enreach/workload/workload");
 const msgTypes = [
-    ["/enreach.workload.QueryGetAllManagerWRWorkloadByEpochRequest", query_1.QueryGetAllManagerWRWorkloadByEpochRequest],
-    ["/enreach.workload.QueryGetSuperiorResponse", query_2.QueryGetSuperiorResponse],
-    ["/enreach.workload.QueryGetReputationPointRequest", query_3.QueryGetReputationPointRequest],
-    ["/enreach.workload.ManagerWRWorkload", workload_1.ManagerWRWorkload],
-    ["/enreach.workload.ReputationPointChangeRawDataMapDB", reputationpoint_1.ReputationPointChangeRawDataMapDB],
-    ["/enreach.workload.MsgSubmitWorkreportsResponse", tx_1.MsgSubmitWorkreportsResponse],
-    ["/enreach.workload.MsgCreateSuperiorResponse", tx_2.MsgCreateSuperiorResponse],
-    ["/enreach.workload.MsgSubmitReputationPointChangeDataResponse", tx_3.MsgSubmitReputationPointChangeDataResponse],
+    ["/enreach.workload.QueryGetCurrentEraResponse", query_1.QueryGetCurrentEraResponse],
+    ["/enreach.workload.QueryGetPendingNextEraResponse", query_2.QueryGetPendingNextEraResponse],
+    ["/enreach.workload.MsgUpdateSuperior", tx_1.MsgUpdateSuperior],
+    ["/enreach.workload.QueryGetEraLengthResponse", query_3.QueryGetEraLengthResponse],
+    ["/enreach.workload.QueryGetAllReputationDeltaPointByEraResponse", query_4.QueryGetAllReputationDeltaPointByEraResponse],
     ["/enreach.workload.NodeScore", workreport_1.NodeScore],
     ["/enreach.workload.NodeScoreDB", workreport_2.NodeScoreDB],
-    ["/enreach.workload.QueryParamsResponse", query_4.QueryParamsResponse],
-    ["/enreach.workload.GenesisState", genesis_1.GenesisState],
-    ["/enreach.workload.QueryGetCurrentEpochResponse", query_5.QueryGetCurrentEpochResponse],
-    ["/enreach.workload.ManagerNodeScoreMap", workreport_3.ManagerNodeScoreMap],
-    ["/enreach.workload.Workreport", workreport_4.Workreport],
-    ["/enreach.workload.QueryGetCurrentEpochRequest", query_6.QueryGetCurrentEpochRequest],
-    ["/enreach.workload.QueryGetManagerWRWorkloadRequest", query_7.QueryGetManagerWRWorkloadRequest],
-    ["/enreach.workload.QueryGetWorkreportProcessBatchSizeResponse", query_8.QueryGetWorkreportProcessBatchSizeResponse],
-    ["/enreach.workload.MsgUpdateWorkreportProcessBatchSizeResponse", tx_4.MsgUpdateWorkreportProcessBatchSizeResponse],
-    ["/enreach.workload.EraProcessData", reputationpoint_2.EraProcessData],
-    ["/enreach.workload.NodeWorkload", workload_2.NodeWorkload],
-    ["/enreach.workload.MsgSubmitReputationPointChangeData", tx_5.MsgSubmitReputationPointChangeData],
-    ["/enreach.workload.EpochProcessData", workreport_5.EpochProcessData],
-    ["/enreach.workload.QueryGetPendingNextEpochResponse", query_9.QueryGetPendingNextEpochResponse],
-    ["/enreach.workload.QueryGetHistoryEpochRequest", query_10.QueryGetHistoryEpochRequest],
-    ["/enreach.workload.QueryGetManagerRPWorkloadResponse", query_11.QueryGetManagerRPWorkloadResponse],
-    ["/enreach.workload.ReputationPointChangeData", reputationpoint_3.ReputationPointChangeData],
-    ["/enreach.workload.QueryGetWorkreportResponse", query_12.QueryGetWorkreportResponse],
-    ["/enreach.workload.QueryGetWorkreportProcessBatchSizeRequest", query_13.QueryGetWorkreportProcessBatchSizeRequest],
-    ["/enreach.workload.QueryGetAllEpochProcessDataResponse", query_14.QueryGetAllEpochProcessDataResponse],
-    ["/enreach.workload.Superior", superior_1.Superior],
-    ["/enreach.workload.QueryGetAllManagerRPWorkloadByEraRequest", query_15.QueryGetAllManagerRPWorkloadByEraRequest],
-    ["/enreach.workload.QueryGetAllManagerRPWorkloadByEraResponse", query_16.QueryGetAllManagerRPWorkloadByEraResponse],
-    ["/enreach.workload.QueryGetHistoryEpochResponse", query_17.QueryGetHistoryEpochResponse],
-    ["/enreach.workload.ManagerRPWorkload", workload_3.ManagerRPWorkload],
-    ["/enreach.workload.QueryGetCurrentEraResponse", query_18.QueryGetCurrentEraResponse],
-    ["/enreach.workload.QueryGetReputationDeltaPointResponse", query_19.QueryGetReputationDeltaPointResponse],
-    ["/enreach.workload.MsgUpdateWorkreportProcessBatchSize", tx_6.MsgUpdateWorkreportProcessBatchSize],
-    ["/enreach.workload.MsgUpdateHistoryEpochDataDepth", tx_7.MsgUpdateHistoryEpochDataDepth],
-    ["/enreach.workload.QueryGetEpochLengthRequest", query_20.QueryGetEpochLengthRequest],
-    ["/enreach.workload.QueryGetEpochProcessDataResponse", query_21.QueryGetEpochProcessDataResponse],
-    ["/enreach.workload.QueryGetSuperiorRequest", query_22.QueryGetSuperiorRequest],
-    ["/enreach.workload.QueryGetNodeWorkloadResponse", query_23.QueryGetNodeWorkloadResponse],
-    ["/enreach.workload.QueryGetNodeWorkloadRequest", query_24.QueryGetNodeWorkloadRequest],
-    ["/enreach.workload.QueryGetAllNodeWorkloadByEpochRequest", query_25.QueryGetAllNodeWorkloadByEpochRequest],
-    ["/enreach.workload.QueryGetManagerWRWorkloadResponse", query_26.QueryGetManagerWRWorkloadResponse],
-    ["/enreach.workload.QueryGetAllReputationDeltaPointByEraRequest", query_27.QueryGetAllReputationDeltaPointByEraRequest],
-    ["/enreach.workload.QueryGetReputationPointResponse", query_28.QueryGetReputationPointResponse],
-    ["/enreach.workload.QueryGetEraProcessDataResponse", query_29.QueryGetEraProcessDataResponse],
-    ["/enreach.workload.ReputationPointChangeRawData", reputationpoint_4.ReputationPointChangeRawData],
-    ["/enreach.workload.EpochInfo", epoch_info_1.EpochInfo],
-    ["/enreach.workload.QueryParamsRequest", query_30.QueryParamsRequest],
-    ["/enreach.workload.QueryGetEpochLengthResponse", query_31.QueryGetEpochLengthResponse],
-    ["/enreach.workload.QueryGetAllHistoryEpochRequest", query_32.QueryGetAllHistoryEpochRequest],
-    ["/enreach.workload.QueryGetEraLengthRequest", query_33.QueryGetEraLengthRequest],
-    ["/enreach.workload.QueryGetEraLengthResponse", query_34.QueryGetEraLengthResponse],
-    ["/enreach.workload.QueryGetCurrentEraRequest", query_35.QueryGetCurrentEraRequest],
-    ["/enreach.workload.ReputationPoint", reputationpoint_5.ReputationPoint],
-    ["/enreach.workload.QueryGetAllReputationPointChangeDataByEraResponse", query_36.QueryGetAllReputationPointChangeDataByEraResponse],
-    ["/enreach.workload.QueryGetAllReputationPointRequest", query_37.QueryGetAllReputationPointRequest],
-    ["/enreach.workload.QueryGetAllEraProcessDataRequest", query_38.QueryGetAllEraProcessDataRequest],
-    ["/enreach.workload.QueryGetReputationPointChangeDataResponse", query_39.QueryGetReputationPointChangeDataResponse],
-    ["/enreach.workload.QueryGetAllReputationDeltaPointByEraResponse", query_40.QueryGetAllReputationDeltaPointByEraResponse],
-    ["/enreach.workload.MsgSubmitWorkreports", tx_8.MsgSubmitWorkreports],
-    ["/enreach.workload.MsgCreateSuperior", tx_9.MsgCreateSuperior],
-    ["/enreach.workload.QueryGetAllWorkreportByEpochResponse", query_41.QueryGetAllWorkreportByEpochResponse],
-    ["/enreach.workload.QueryGetHistoryEpochDataDepthResponse", query_42.QueryGetHistoryEpochDataDepthResponse],
-    ["/enreach.workload.QueryGetReputationDeltaPointRequest", query_43.QueryGetReputationDeltaPointRequest],
-    ["/enreach.workload.ReputationDeltaPoint", reputationpoint_6.ReputationDeltaPoint],
-    ["/enreach.workload.MsgUpdateHistoryEpochDataDepthResponse", tx_10.MsgUpdateHistoryEpochDataDepthResponse],
-    ["/enreach.workload.MsgUpdateSuperiorResponse", tx_11.MsgUpdateSuperiorResponse],
-    ["/enreach.workload.QueryGetAllHistoryEpochResponse", query_44.QueryGetAllHistoryEpochResponse],
-    ["/enreach.workload.QueryGetManagerRPWorkloadRequest", query_45.QueryGetManagerRPWorkloadRequest],
-    ["/enreach.workload.QueryGetHistoryEpochDataDepthRequest", query_46.QueryGetHistoryEpochDataDepthRequest],
-    ["/enreach.workload.QueryGetAllReputationPointChangeDataByEraRequest", query_47.QueryGetAllReputationPointChangeDataByEraRequest],
-    ["/enreach.workload.QueryGetAllReputationPointResponse", query_48.QueryGetAllReputationPointResponse],
-    ["/enreach.workload.MsgUpdateSuperior", tx_12.MsgUpdateSuperior],
-    ["/enreach.workload.QueryGetAllEraProcessDataResponse", query_49.QueryGetAllEraProcessDataResponse],
-    ["/enreach.workload.ReputationPointChangeRawDataDB", reputationpoint_7.ReputationPointChangeRawDataDB],
-    ["/enreach.workload.MsgUpdateParams", tx_13.MsgUpdateParams],
-    ["/enreach.workload.MsgUpdateParamsResponse", tx_14.MsgUpdateParamsResponse],
-    ["/enreach.workload.QueryGetAllNodeWorkloadByEpochResponse", query_50.QueryGetAllNodeWorkloadByEpochResponse],
-    ["/enreach.workload.QueryGetWorkreportRequest", query_51.QueryGetWorkreportRequest],
-    ["/enreach.workload.QueryGetAllWorkreportByEpochRequest", query_52.QueryGetAllWorkreportByEpochRequest],
-    ["/enreach.workload.QueryGetEpochProcessDataRequest", query_53.QueryGetEpochProcessDataRequest],
+    ["/enreach.workload.Workreport", workreport_3.Workreport],
+    ["/enreach.workload.EraInfo", era_info_1.EraInfo],
+    ["/enreach.workload.QueryGetManagerWRWorkloadRequest", query_5.QueryGetManagerWRWorkloadRequest],
+    ["/enreach.workload.QueryGetAllReputationPointRequest", query_6.QueryGetAllReputationPointRequest],
+    ["/enreach.workload.QueryGetAllEraProcessDataRequest", query_7.QueryGetAllEraProcessDataRequest],
+    ["/enreach.workload.QueryGetAllManagerWRWorkloadByEpochRequest", query_8.QueryGetAllManagerWRWorkloadByEpochRequest],
+    ["/enreach.workload.QueryGetAllManagerRPWorkloadByEraRequest", query_9.QueryGetAllManagerRPWorkloadByEraRequest],
+    ["/enreach.workload.MsgUpdateWorkreportProcessBatchSize", tx_2.MsgUpdateWorkreportProcessBatchSize],
+    ["/enreach.workload.QueryGetAllReputationPointChangeDataByEraRequest", query_10.QueryGetAllReputationPointChangeDataByEraRequest],
+    ["/enreach.workload.MsgCreateSuperiorResponse", tx_3.MsgCreateSuperiorResponse],
+    ["/enreach.workload.QueryGetHistoryEpochResponse", query_11.QueryGetHistoryEpochResponse],
+    ["/enreach.workload.QueryGetReputationPointResponse", query_12.QueryGetReputationPointResponse],
+    ["/enreach.workload.ManagerRPWorkload", workload_1.ManagerRPWorkload],
+    ["/enreach.workload.QueryGetAllManagerRPWorkloadByEraResponse", query_13.QueryGetAllManagerRPWorkloadByEraResponse],
+    ["/enreach.workload.QueryGetAllWorkreportByEpochResponse", query_14.QueryGetAllWorkreportByEpochResponse],
     ["/enreach.workload.Params", params_1.Params],
-    ["/enreach.workload.QueryGetEraProcessDataRequest", query_54.QueryGetEraProcessDataRequest],
-    ["/enreach.workload.QueryGetAllManagerWRWorkloadByEpochResponse", query_55.QueryGetAllManagerWRWorkloadByEpochResponse],
-    ["/enreach.workload.QueryGetAllEpochProcessDataRequest", query_56.QueryGetAllEpochProcessDataRequest],
-    ["/enreach.workload.QueryGetReputationPointChangeDataRequest", query_57.QueryGetReputationPointChangeDataRequest],
-    ["/enreach.workload.QueryGetPendingNextEpochRequest", query_58.QueryGetPendingNextEpochRequest],
+    ["/enreach.workload.QueryGetWorkreportProcessBatchSizeResponse", query_15.QueryGetWorkreportProcessBatchSizeResponse],
+    ["/enreach.workload.QueryGetReputationDeltaPointResponse", query_16.QueryGetReputationDeltaPointResponse],
+    ["/enreach.workload.QueryGetAllEraProcessDataResponse", query_17.QueryGetAllEraProcessDataResponse],
+    ["/enreach.workload.QueryGetPendingNextEraRequest", query_18.QueryGetPendingNextEraRequest],
+    ["/enreach.workload.QueryGetReputationPointRequest", query_19.QueryGetReputationPointRequest],
+    ["/enreach.workload.EraProcessData", reputationpoint_1.EraProcessData],
+    ["/enreach.workload.QueryGetEpochLengthRequest", query_20.QueryGetEpochLengthRequest],
+    ["/enreach.workload.QueryGetPendingNextEpochRequest", query_21.QueryGetPendingNextEpochRequest],
+    ["/enreach.workload.QueryGetAllManagerWRWorkloadByEpochResponse", query_22.QueryGetAllManagerWRWorkloadByEpochResponse],
+    ["/enreach.workload.QueryGetManagerRPWorkloadResponse", query_23.QueryGetManagerRPWorkloadResponse],
+    ["/enreach.workload.QueryGetSuperiorResponse", query_24.QueryGetSuperiorResponse],
+    ["/enreach.workload.QueryGetEraProcessDataResponse", query_25.QueryGetEraProcessDataResponse],
+    ["/enreach.workload.ReputationPoint", reputationpoint_2.ReputationPoint],
+    ["/enreach.workload.QueryGetWorkreportRequest", query_26.QueryGetWorkreportRequest],
+    ["/enreach.workload.QueryGetAllHistoryEraRequest", query_27.QueryGetAllHistoryEraRequest],
+    ["/enreach.workload.QueryGetReputationDeltaPointRequest", query_28.QueryGetReputationDeltaPointRequest],
+    ["/enreach.workload.QueryGetEraProcessDataRequest", query_29.QueryGetEraProcessDataRequest],
+    ["/enreach.workload.EpochProcessData", workreport_4.EpochProcessData],
+    ["/enreach.workload.MsgUpdateHistoryEpochDataDepthResponse", tx_4.MsgUpdateHistoryEpochDataDepthResponse],
+    ["/enreach.workload.MsgUpdateParamsResponse", tx_5.MsgUpdateParamsResponse],
+    ["/enreach.workload.QueryGetCurrentEpochRequest", query_30.QueryGetCurrentEpochRequest],
+    ["/enreach.workload.QueryGetEpochProcessDataResponse", query_31.QueryGetEpochProcessDataResponse],
+    ["/enreach.workload.MsgSubmitReputationPointChangeDataResponse", tx_6.MsgSubmitReputationPointChangeDataResponse],
+    ["/enreach.workload.QueryGetAllHistoryEpochRequest", query_32.QueryGetAllHistoryEpochRequest],
+    ["/enreach.workload.QueryGetAllHistoryEpochResponse", query_33.QueryGetAllHistoryEpochResponse],
+    ["/enreach.workload.QueryGetHistoryEraResponse", query_34.QueryGetHistoryEraResponse],
+    ["/enreach.workload.QueryGetAllHistoryEraResponse", query_35.QueryGetAllHistoryEraResponse],
+    ["/enreach.workload.QueryGetAllReputationPointChangeDataByEraResponse", query_36.QueryGetAllReputationPointChangeDataByEraResponse],
+    ["/enreach.workload.ManagerWRWorkload", workload_2.ManagerWRWorkload],
+    ["/enreach.workload.MsgSubmitWorkreports", tx_7.MsgSubmitWorkreports],
+    ["/enreach.workload.QueryGetAllNodeWorkloadByEpochResponse", query_37.QueryGetAllNodeWorkloadByEpochResponse],
+    ["/enreach.workload.QueryGetManagerWRWorkloadResponse", query_38.QueryGetManagerWRWorkloadResponse],
+    ["/enreach.workload.QueryGetWorkreportResponse", query_39.QueryGetWorkreportResponse],
+    ["/enreach.workload.QueryGetHistoryEraRequest", query_40.QueryGetHistoryEraRequest],
+    ["/enreach.workload.ReputationPointChangeRawDataMapDB", reputationpoint_3.ReputationPointChangeRawDataMapDB],
+    ["/enreach.workload.MsgUpdateHistoryEpochDataDepth", tx_8.MsgUpdateHistoryEpochDataDepth],
+    ["/enreach.workload.QueryGetHistoryEpochDataDepthRequest", query_41.QueryGetHistoryEpochDataDepthRequest],
+    ["/enreach.workload.QueryParamsResponse", query_42.QueryParamsResponse],
+    ["/enreach.workload.QueryGetEpochProcessDataRequest", query_43.QueryGetEpochProcessDataRequest],
+    ["/enreach.workload.QueryGetSuperiorRequest", query_44.QueryGetSuperiorRequest],
+    ["/enreach.workload.EpochInfo", epoch_info_1.EpochInfo],
+    ["/enreach.workload.ReputationPointChangeRawData", reputationpoint_4.ReputationPointChangeRawData],
+    ["/enreach.workload.GenesisState", genesis_1.GenesisState],
+    ["/enreach.workload.QueryGetReputationPointChangeDataRequest", query_45.QueryGetReputationPointChangeDataRequest],
+    ["/enreach.workload.MsgUpdateParams", tx_9.MsgUpdateParams],
+    ["/enreach.workload.MsgCreateSuperior", tx_10.MsgCreateSuperior],
+    ["/enreach.workload.QueryParamsRequest", query_46.QueryParamsRequest],
+    ["/enreach.workload.ReputationPointChangeRawDataDB", reputationpoint_5.ReputationPointChangeRawDataDB],
+    ["/enreach.workload.QueryGetEpochLengthResponse", query_47.QueryGetEpochLengthResponse],
+    ["/enreach.workload.QueryGetManagerRPWorkloadRequest", query_48.QueryGetManagerRPWorkloadRequest],
+    ["/enreach.workload.QueryGetAllWorkreportByEpochRequest", query_49.QueryGetAllWorkreportByEpochRequest],
+    ["/enreach.workload.QueryGetAllReputationDeltaPointByEraRequest", query_50.QueryGetAllReputationDeltaPointByEraRequest],
+    ["/enreach.workload.ManagerNodeScoreMap", workreport_5.ManagerNodeScoreMap],
+    ["/enreach.workload.MsgUpdateWorkreportProcessBatchSizeResponse", tx_11.MsgUpdateWorkreportProcessBatchSizeResponse],
+    ["/enreach.workload.QueryGetAllNodeWorkloadByEpochRequest", query_51.QueryGetAllNodeWorkloadByEpochRequest],
+    ["/enreach.workload.QueryGetHistoryEpochDataDepthResponse", query_52.QueryGetHistoryEpochDataDepthResponse],
+    ["/enreach.workload.ReputationPointChangeData", reputationpoint_6.ReputationPointChangeData],
+    ["/enreach.workload.ReputationDeltaPoint", reputationpoint_7.ReputationDeltaPoint],
+    ["/enreach.workload.MsgSubmitWorkreportsResponse", tx_12.MsgSubmitWorkreportsResponse],
+    ["/enreach.workload.QueryGetCurrentEpochResponse", query_53.QueryGetCurrentEpochResponse],
+    ["/enreach.workload.QueryGetHistoryEpochRequest", query_54.QueryGetHistoryEpochRequest],
+    ["/enreach.workload.QueryGetEraLengthRequest", query_55.QueryGetEraLengthRequest],
+    ["/enreach.workload.Superior", superior_1.Superior],
+    ["/enreach.workload.QueryGetPendingNextEpochResponse", query_56.QueryGetPendingNextEpochResponse],
+    ["/enreach.workload.QueryGetNodeWorkloadResponse", query_57.QueryGetNodeWorkloadResponse],
+    ["/enreach.workload.QueryGetAllEpochProcessDataRequest", query_58.QueryGetAllEpochProcessDataRequest],
+    ["/enreach.workload.QueryGetAllReputationPointResponse", query_59.QueryGetAllReputationPointResponse],
+    ["/enreach.workload.MsgSubmitReputationPointChangeData", tx_13.MsgSubmitReputationPointChangeData],
+    ["/enreach.workload.QueryGetReputationPointChangeDataResponse", query_60.QueryGetReputationPointChangeDataResponse],
+    ["/enreach.workload.MsgUpdateSuperiorResponse", tx_14.MsgUpdateSuperiorResponse],
+    ["/enreach.workload.QueryGetNodeWorkloadRequest", query_61.QueryGetNodeWorkloadRequest],
+    ["/enreach.workload.QueryGetWorkreportProcessBatchSizeRequest", query_62.QueryGetWorkreportProcessBatchSizeRequest],
+    ["/enreach.workload.QueryGetAllEpochProcessDataResponse", query_63.QueryGetAllEpochProcessDataResponse],
+    ["/enreach.workload.QueryGetCurrentEraRequest", query_64.QueryGetCurrentEraRequest],
+    ["/enreach.workload.NodeWorkload", workload_3.NodeWorkload],
 ];
 exports.msgTypes = msgTypes;

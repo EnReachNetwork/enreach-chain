@@ -2,109 +2,44 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { ConnectionPaths } from "./types/ibc/core/connection/v1/connection";
-import { Params } from "./types/ibc/core/connection/v1/connection";
 import { MsgUpdateParamsResponse } from "./types/ibc/core/connection/v1/tx";
-import { MsgUpdateParams } from "./types/ibc/core/connection/v1/tx";
-import { Counterparty } from "./types/ibc/core/connection/v1/connection";
-import { ClientPaths } from "./types/ibc/core/connection/v1/connection";
-import { QueryClientConnectionsRequest } from "./types/ibc/core/connection/v1/query";
-import { QueryConnectionConsensusStateRequest } from "./types/ibc/core/connection/v1/query";
-import { MsgConnectionOpenInit } from "./types/ibc/core/connection/v1/tx";
-import { ConnectionEnd } from "./types/ibc/core/connection/v1/connection";
-import { QueryConnectionsRequest } from "./types/ibc/core/connection/v1/query";
-import { QueryConnectionsResponse } from "./types/ibc/core/connection/v1/query";
 import { QueryConnectionClientStateRequest } from "./types/ibc/core/connection/v1/query";
-import { QueryConnectionClientStateResponse } from "./types/ibc/core/connection/v1/query";
-import { MsgConnectionOpenConfirmResponse } from "./types/ibc/core/connection/v1/tx";
 import { QueryConnectionParamsResponse } from "./types/ibc/core/connection/v1/query";
 import { MsgConnectionOpenAck } from "./types/ibc/core/connection/v1/tx";
-import { MsgConnectionOpenAckResponse } from "./types/ibc/core/connection/v1/tx";
-import { QueryConnectionParamsRequest } from "./types/ibc/core/connection/v1/query";
-import { MsgConnectionOpenConfirm } from "./types/ibc/core/connection/v1/tx";
+import { QueryConnectionsRequest } from "./types/ibc/core/connection/v1/query";
+import { MsgConnectionOpenInit } from "./types/ibc/core/connection/v1/tx";
+import { MsgConnectionOpenTry } from "./types/ibc/core/connection/v1/tx";
+import { GenesisState } from "./types/ibc/core/connection/v1/genesis";
+import { MsgConnectionOpenInitResponse } from "./types/ibc/core/connection/v1/tx";
+import { MsgConnectionOpenConfirmResponse } from "./types/ibc/core/connection/v1/tx";
+import { ClientPaths } from "./types/ibc/core/connection/v1/connection";
+import { Params } from "./types/ibc/core/connection/v1/connection";
+import { ConnectionPaths } from "./types/ibc/core/connection/v1/connection";
 import { QueryConnectionRequest } from "./types/ibc/core/connection/v1/query";
 import { QueryClientConnectionsResponse } from "./types/ibc/core/connection/v1/query";
-import { MsgConnectionOpenInitResponse } from "./types/ibc/core/connection/v1/tx";
-import { GenesisState } from "./types/ibc/core/connection/v1/genesis";
-import { IdentifiedConnection } from "./types/ibc/core/connection/v1/connection";
-import { Version } from "./types/ibc/core/connection/v1/connection";
-import { QueryConnectionResponse } from "./types/ibc/core/connection/v1/query";
 import { QueryConnectionConsensusStateResponse } from "./types/ibc/core/connection/v1/query";
-import { MsgConnectionOpenTry } from "./types/ibc/core/connection/v1/tx";
+import { QueryConnectionParamsRequest } from "./types/ibc/core/connection/v1/query";
+import { MsgConnectionOpenConfirm } from "./types/ibc/core/connection/v1/tx";
+import { MsgConnectionOpenAckResponse } from "./types/ibc/core/connection/v1/tx";
+import { Counterparty } from "./types/ibc/core/connection/v1/connection";
+import { Version } from "./types/ibc/core/connection/v1/connection";
+import { QueryConnectionConsensusStateRequest } from "./types/ibc/core/connection/v1/query";
+import { QueryConnectionResponse } from "./types/ibc/core/connection/v1/query";
+import { QueryConnectionsResponse } from "./types/ibc/core/connection/v1/query";
+import { QueryClientConnectionsRequest } from "./types/ibc/core/connection/v1/query";
+import { QueryConnectionClientStateResponse } from "./types/ibc/core/connection/v1/query";
+import { MsgUpdateParams } from "./types/ibc/core/connection/v1/tx";
 import { MsgConnectionOpenTryResponse } from "./types/ibc/core/connection/v1/tx";
-export { ConnectionPaths, Params, MsgUpdateParamsResponse, MsgUpdateParams, Counterparty, ClientPaths, QueryClientConnectionsRequest, QueryConnectionConsensusStateRequest, MsgConnectionOpenInit, ConnectionEnd, QueryConnectionsRequest, QueryConnectionsResponse, QueryConnectionClientStateRequest, QueryConnectionClientStateResponse, MsgConnectionOpenConfirmResponse, QueryConnectionParamsResponse, MsgConnectionOpenAck, MsgConnectionOpenAckResponse, QueryConnectionParamsRequest, MsgConnectionOpenConfirm, QueryConnectionRequest, QueryClientConnectionsResponse, MsgConnectionOpenInitResponse, GenesisState, IdentifiedConnection, Version, QueryConnectionResponse, QueryConnectionConsensusStateResponse, MsgConnectionOpenTry, MsgConnectionOpenTryResponse };
-type sendConnectionPathsParams = {
-    value: ConnectionPaths;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendParamsParams = {
-    value: Params;
-    fee?: StdFee;
-    memo?: string;
-};
+import { ConnectionEnd } from "./types/ibc/core/connection/v1/connection";
+import { IdentifiedConnection } from "./types/ibc/core/connection/v1/connection";
+export { MsgUpdateParamsResponse, QueryConnectionClientStateRequest, QueryConnectionParamsResponse, MsgConnectionOpenAck, QueryConnectionsRequest, MsgConnectionOpenInit, MsgConnectionOpenTry, GenesisState, MsgConnectionOpenInitResponse, MsgConnectionOpenConfirmResponse, ClientPaths, Params, ConnectionPaths, QueryConnectionRequest, QueryClientConnectionsResponse, QueryConnectionConsensusStateResponse, QueryConnectionParamsRequest, MsgConnectionOpenConfirm, MsgConnectionOpenAckResponse, Counterparty, Version, QueryConnectionConsensusStateRequest, QueryConnectionResponse, QueryConnectionsResponse, QueryClientConnectionsRequest, QueryConnectionClientStateResponse, MsgUpdateParams, MsgConnectionOpenTryResponse, ConnectionEnd, IdentifiedConnection };
 type sendMsgUpdateParamsResponseParams = {
     value: MsgUpdateParamsResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgUpdateParamsParams = {
-    value: MsgUpdateParams;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendCounterpartyParams = {
-    value: Counterparty;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendClientPathsParams = {
-    value: ClientPaths;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryClientConnectionsRequestParams = {
-    value: QueryClientConnectionsRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryConnectionConsensusStateRequestParams = {
-    value: QueryConnectionConsensusStateRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgConnectionOpenInitParams = {
-    value: MsgConnectionOpenInit;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendConnectionEndParams = {
-    value: ConnectionEnd;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryConnectionsRequestParams = {
-    value: QueryConnectionsRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryConnectionsResponseParams = {
-    value: QueryConnectionsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
 type sendQueryConnectionClientStateRequestParams = {
     value: QueryConnectionClientStateRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryConnectionClientStateResponseParams = {
-    value: QueryConnectionClientStateResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgConnectionOpenConfirmResponseParams = {
-    value: MsgConnectionOpenConfirmResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -118,18 +53,48 @@ type sendMsgConnectionOpenAckParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgConnectionOpenAckResponseParams = {
-    value: MsgConnectionOpenAckResponse;
+type sendQueryConnectionsRequestParams = {
+    value: QueryConnectionsRequest;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryConnectionParamsRequestParams = {
-    value: QueryConnectionParamsRequest;
+type sendMsgConnectionOpenInitParams = {
+    value: MsgConnectionOpenInit;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgConnectionOpenConfirmParams = {
-    value: MsgConnectionOpenConfirm;
+type sendMsgConnectionOpenTryParams = {
+    value: MsgConnectionOpenTry;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendGenesisStateParams = {
+    value: GenesisState;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgConnectionOpenInitResponseParams = {
+    value: MsgConnectionOpenInitResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgConnectionOpenConfirmResponseParams = {
+    value: MsgConnectionOpenConfirmResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendClientPathsParams = {
+    value: ClientPaths;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendParamsParams = {
+    value: Params;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendConnectionPathsParams = {
+    value: ConnectionPaths;
     fee?: StdFee;
     memo?: string;
 };
@@ -143,18 +108,28 @@ type sendQueryClientConnectionsResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgConnectionOpenInitResponseParams = {
-    value: MsgConnectionOpenInitResponse;
+type sendQueryConnectionConsensusStateResponseParams = {
+    value: QueryConnectionConsensusStateResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendGenesisStateParams = {
-    value: GenesisState;
+type sendQueryConnectionParamsRequestParams = {
+    value: QueryConnectionParamsRequest;
     fee?: StdFee;
     memo?: string;
 };
-type sendIdentifiedConnectionParams = {
-    value: IdentifiedConnection;
+type sendMsgConnectionOpenConfirmParams = {
+    value: MsgConnectionOpenConfirm;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgConnectionOpenAckResponseParams = {
+    value: MsgConnectionOpenAckResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendCounterpartyParams = {
+    value: Counterparty;
     fee?: StdFee;
     memo?: string;
 };
@@ -163,18 +138,33 @@ type sendVersionParams = {
     fee?: StdFee;
     memo?: string;
 };
+type sendQueryConnectionConsensusStateRequestParams = {
+    value: QueryConnectionConsensusStateRequest;
+    fee?: StdFee;
+    memo?: string;
+};
 type sendQueryConnectionResponseParams = {
     value: QueryConnectionResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryConnectionConsensusStateResponseParams = {
-    value: QueryConnectionConsensusStateResponse;
+type sendQueryConnectionsResponseParams = {
+    value: QueryConnectionsResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgConnectionOpenTryParams = {
-    value: MsgConnectionOpenTry;
+type sendQueryClientConnectionsRequestParams = {
+    value: QueryClientConnectionsRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryConnectionClientStateResponseParams = {
+    value: QueryConnectionClientStateResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateParamsParams = {
+    value: MsgUpdateParams;
     fee?: StdFee;
     memo?: string;
 };
@@ -183,50 +173,21 @@ type sendMsgConnectionOpenTryResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type connectionPathsParams = {
-    value: ConnectionPaths;
+type sendConnectionEndParams = {
+    value: ConnectionEnd;
+    fee?: StdFee;
+    memo?: string;
 };
-type paramsParams = {
-    value: Params;
+type sendIdentifiedConnectionParams = {
+    value: IdentifiedConnection;
+    fee?: StdFee;
+    memo?: string;
 };
 type msgUpdateParamsResponseParams = {
     value: MsgUpdateParamsResponse;
 };
-type msgUpdateParamsParams = {
-    value: MsgUpdateParams;
-};
-type counterpartyParams = {
-    value: Counterparty;
-};
-type clientPathsParams = {
-    value: ClientPaths;
-};
-type queryClientConnectionsRequestParams = {
-    value: QueryClientConnectionsRequest;
-};
-type queryConnectionConsensusStateRequestParams = {
-    value: QueryConnectionConsensusStateRequest;
-};
-type msgConnectionOpenInitParams = {
-    value: MsgConnectionOpenInit;
-};
-type connectionEndParams = {
-    value: ConnectionEnd;
-};
-type queryConnectionsRequestParams = {
-    value: QueryConnectionsRequest;
-};
-type queryConnectionsResponseParams = {
-    value: QueryConnectionsResponse;
-};
 type queryConnectionClientStateRequestParams = {
     value: QueryConnectionClientStateRequest;
-};
-type queryConnectionClientStateResponseParams = {
-    value: QueryConnectionClientStateResponse;
-};
-type msgConnectionOpenConfirmResponseParams = {
-    value: MsgConnectionOpenConfirmResponse;
 };
 type queryConnectionParamsResponseParams = {
     value: QueryConnectionParamsResponse;
@@ -234,14 +195,32 @@ type queryConnectionParamsResponseParams = {
 type msgConnectionOpenAckParams = {
     value: MsgConnectionOpenAck;
 };
-type msgConnectionOpenAckResponseParams = {
-    value: MsgConnectionOpenAckResponse;
+type queryConnectionsRequestParams = {
+    value: QueryConnectionsRequest;
 };
-type queryConnectionParamsRequestParams = {
-    value: QueryConnectionParamsRequest;
+type msgConnectionOpenInitParams = {
+    value: MsgConnectionOpenInit;
 };
-type msgConnectionOpenConfirmParams = {
-    value: MsgConnectionOpenConfirm;
+type msgConnectionOpenTryParams = {
+    value: MsgConnectionOpenTry;
+};
+type genesisStateParams = {
+    value: GenesisState;
+};
+type msgConnectionOpenInitResponseParams = {
+    value: MsgConnectionOpenInitResponse;
+};
+type msgConnectionOpenConfirmResponseParams = {
+    value: MsgConnectionOpenConfirmResponse;
+};
+type clientPathsParams = {
+    value: ClientPaths;
+};
+type paramsParams = {
+    value: Params;
+};
+type connectionPathsParams = {
+    value: ConnectionPaths;
 };
 type queryConnectionRequestParams = {
     value: QueryConnectionRequest;
@@ -249,29 +228,50 @@ type queryConnectionRequestParams = {
 type queryClientConnectionsResponseParams = {
     value: QueryClientConnectionsResponse;
 };
-type msgConnectionOpenInitResponseParams = {
-    value: MsgConnectionOpenInitResponse;
+type queryConnectionConsensusStateResponseParams = {
+    value: QueryConnectionConsensusStateResponse;
 };
-type genesisStateParams = {
-    value: GenesisState;
+type queryConnectionParamsRequestParams = {
+    value: QueryConnectionParamsRequest;
 };
-type identifiedConnectionParams = {
-    value: IdentifiedConnection;
+type msgConnectionOpenConfirmParams = {
+    value: MsgConnectionOpenConfirm;
+};
+type msgConnectionOpenAckResponseParams = {
+    value: MsgConnectionOpenAckResponse;
+};
+type counterpartyParams = {
+    value: Counterparty;
 };
 type versionParams = {
     value: Version;
 };
+type queryConnectionConsensusStateRequestParams = {
+    value: QueryConnectionConsensusStateRequest;
+};
 type queryConnectionResponseParams = {
     value: QueryConnectionResponse;
 };
-type queryConnectionConsensusStateResponseParams = {
-    value: QueryConnectionConsensusStateResponse;
+type queryConnectionsResponseParams = {
+    value: QueryConnectionsResponse;
 };
-type msgConnectionOpenTryParams = {
-    value: MsgConnectionOpenTry;
+type queryClientConnectionsRequestParams = {
+    value: QueryClientConnectionsRequest;
+};
+type queryConnectionClientStateResponseParams = {
+    value: QueryConnectionClientStateResponse;
+};
+type msgUpdateParamsParams = {
+    value: MsgUpdateParams;
 };
 type msgConnectionOpenTryResponseParams = {
     value: MsgConnectionOpenTryResponse;
+};
+type connectionEndParams = {
+    value: ConnectionEnd;
+};
+type identifiedConnectionParams = {
+    value: IdentifiedConnection;
 };
 export declare const registry: any;
 interface TxClientOptions {
@@ -280,66 +280,66 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendConnectionPaths({ value, fee, memo }: sendConnectionPathsParams): Promise<DeliverTxResponse>;
-    sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
     sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
-    sendCounterparty({ value, fee, memo }: sendCounterpartyParams): Promise<DeliverTxResponse>;
-    sendClientPaths({ value, fee, memo }: sendClientPathsParams): Promise<DeliverTxResponse>;
-    sendQueryClientConnectionsRequest({ value, fee, memo }: sendQueryClientConnectionsRequestParams): Promise<DeliverTxResponse>;
-    sendQueryConnectionConsensusStateRequest({ value, fee, memo }: sendQueryConnectionConsensusStateRequestParams): Promise<DeliverTxResponse>;
-    sendMsgConnectionOpenInit({ value, fee, memo }: sendMsgConnectionOpenInitParams): Promise<DeliverTxResponse>;
-    sendConnectionEnd({ value, fee, memo }: sendConnectionEndParams): Promise<DeliverTxResponse>;
-    sendQueryConnectionsRequest({ value, fee, memo }: sendQueryConnectionsRequestParams): Promise<DeliverTxResponse>;
-    sendQueryConnectionsResponse({ value, fee, memo }: sendQueryConnectionsResponseParams): Promise<DeliverTxResponse>;
     sendQueryConnectionClientStateRequest({ value, fee, memo }: sendQueryConnectionClientStateRequestParams): Promise<DeliverTxResponse>;
-    sendQueryConnectionClientStateResponse({ value, fee, memo }: sendQueryConnectionClientStateResponseParams): Promise<DeliverTxResponse>;
-    sendMsgConnectionOpenConfirmResponse({ value, fee, memo }: sendMsgConnectionOpenConfirmResponseParams): Promise<DeliverTxResponse>;
     sendQueryConnectionParamsResponse({ value, fee, memo }: sendQueryConnectionParamsResponseParams): Promise<DeliverTxResponse>;
     sendMsgConnectionOpenAck({ value, fee, memo }: sendMsgConnectionOpenAckParams): Promise<DeliverTxResponse>;
-    sendMsgConnectionOpenAckResponse({ value, fee, memo }: sendMsgConnectionOpenAckResponseParams): Promise<DeliverTxResponse>;
-    sendQueryConnectionParamsRequest({ value, fee, memo }: sendQueryConnectionParamsRequestParams): Promise<DeliverTxResponse>;
-    sendMsgConnectionOpenConfirm({ value, fee, memo }: sendMsgConnectionOpenConfirmParams): Promise<DeliverTxResponse>;
+    sendQueryConnectionsRequest({ value, fee, memo }: sendQueryConnectionsRequestParams): Promise<DeliverTxResponse>;
+    sendMsgConnectionOpenInit({ value, fee, memo }: sendMsgConnectionOpenInitParams): Promise<DeliverTxResponse>;
+    sendMsgConnectionOpenTry({ value, fee, memo }: sendMsgConnectionOpenTryParams): Promise<DeliverTxResponse>;
+    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
+    sendMsgConnectionOpenInitResponse({ value, fee, memo }: sendMsgConnectionOpenInitResponseParams): Promise<DeliverTxResponse>;
+    sendMsgConnectionOpenConfirmResponse({ value, fee, memo }: sendMsgConnectionOpenConfirmResponseParams): Promise<DeliverTxResponse>;
+    sendClientPaths({ value, fee, memo }: sendClientPathsParams): Promise<DeliverTxResponse>;
+    sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
+    sendConnectionPaths({ value, fee, memo }: sendConnectionPathsParams): Promise<DeliverTxResponse>;
     sendQueryConnectionRequest({ value, fee, memo }: sendQueryConnectionRequestParams): Promise<DeliverTxResponse>;
     sendQueryClientConnectionsResponse({ value, fee, memo }: sendQueryClientConnectionsResponseParams): Promise<DeliverTxResponse>;
-    sendMsgConnectionOpenInitResponse({ value, fee, memo }: sendMsgConnectionOpenInitResponseParams): Promise<DeliverTxResponse>;
-    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
-    sendIdentifiedConnection({ value, fee, memo }: sendIdentifiedConnectionParams): Promise<DeliverTxResponse>;
-    sendVersion({ value, fee, memo }: sendVersionParams): Promise<DeliverTxResponse>;
-    sendQueryConnectionResponse({ value, fee, memo }: sendQueryConnectionResponseParams): Promise<DeliverTxResponse>;
     sendQueryConnectionConsensusStateResponse({ value, fee, memo }: sendQueryConnectionConsensusStateResponseParams): Promise<DeliverTxResponse>;
-    sendMsgConnectionOpenTry({ value, fee, memo }: sendMsgConnectionOpenTryParams): Promise<DeliverTxResponse>;
+    sendQueryConnectionParamsRequest({ value, fee, memo }: sendQueryConnectionParamsRequestParams): Promise<DeliverTxResponse>;
+    sendMsgConnectionOpenConfirm({ value, fee, memo }: sendMsgConnectionOpenConfirmParams): Promise<DeliverTxResponse>;
+    sendMsgConnectionOpenAckResponse({ value, fee, memo }: sendMsgConnectionOpenAckResponseParams): Promise<DeliverTxResponse>;
+    sendCounterparty({ value, fee, memo }: sendCounterpartyParams): Promise<DeliverTxResponse>;
+    sendVersion({ value, fee, memo }: sendVersionParams): Promise<DeliverTxResponse>;
+    sendQueryConnectionConsensusStateRequest({ value, fee, memo }: sendQueryConnectionConsensusStateRequestParams): Promise<DeliverTxResponse>;
+    sendQueryConnectionResponse({ value, fee, memo }: sendQueryConnectionResponseParams): Promise<DeliverTxResponse>;
+    sendQueryConnectionsResponse({ value, fee, memo }: sendQueryConnectionsResponseParams): Promise<DeliverTxResponse>;
+    sendQueryClientConnectionsRequest({ value, fee, memo }: sendQueryClientConnectionsRequestParams): Promise<DeliverTxResponse>;
+    sendQueryConnectionClientStateResponse({ value, fee, memo }: sendQueryConnectionClientStateResponseParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
     sendMsgConnectionOpenTryResponse({ value, fee, memo }: sendMsgConnectionOpenTryResponseParams): Promise<DeliverTxResponse>;
-    connectionPaths({ value }: connectionPathsParams): EncodeObject;
-    params({ value }: paramsParams): EncodeObject;
+    sendConnectionEnd({ value, fee, memo }: sendConnectionEndParams): Promise<DeliverTxResponse>;
+    sendIdentifiedConnection({ value, fee, memo }: sendIdentifiedConnectionParams): Promise<DeliverTxResponse>;
     msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
-    msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
-    counterparty({ value }: counterpartyParams): EncodeObject;
-    clientPaths({ value }: clientPathsParams): EncodeObject;
-    queryClientConnectionsRequest({ value }: queryClientConnectionsRequestParams): EncodeObject;
-    queryConnectionConsensusStateRequest({ value }: queryConnectionConsensusStateRequestParams): EncodeObject;
-    msgConnectionOpenInit({ value }: msgConnectionOpenInitParams): EncodeObject;
-    connectionEnd({ value }: connectionEndParams): EncodeObject;
-    queryConnectionsRequest({ value }: queryConnectionsRequestParams): EncodeObject;
-    queryConnectionsResponse({ value }: queryConnectionsResponseParams): EncodeObject;
     queryConnectionClientStateRequest({ value }: queryConnectionClientStateRequestParams): EncodeObject;
-    queryConnectionClientStateResponse({ value }: queryConnectionClientStateResponseParams): EncodeObject;
-    msgConnectionOpenConfirmResponse({ value }: msgConnectionOpenConfirmResponseParams): EncodeObject;
     queryConnectionParamsResponse({ value }: queryConnectionParamsResponseParams): EncodeObject;
     msgConnectionOpenAck({ value }: msgConnectionOpenAckParams): EncodeObject;
-    msgConnectionOpenAckResponse({ value }: msgConnectionOpenAckResponseParams): EncodeObject;
-    queryConnectionParamsRequest({ value }: queryConnectionParamsRequestParams): EncodeObject;
-    msgConnectionOpenConfirm({ value }: msgConnectionOpenConfirmParams): EncodeObject;
+    queryConnectionsRequest({ value }: queryConnectionsRequestParams): EncodeObject;
+    msgConnectionOpenInit({ value }: msgConnectionOpenInitParams): EncodeObject;
+    msgConnectionOpenTry({ value }: msgConnectionOpenTryParams): EncodeObject;
+    genesisState({ value }: genesisStateParams): EncodeObject;
+    msgConnectionOpenInitResponse({ value }: msgConnectionOpenInitResponseParams): EncodeObject;
+    msgConnectionOpenConfirmResponse({ value }: msgConnectionOpenConfirmResponseParams): EncodeObject;
+    clientPaths({ value }: clientPathsParams): EncodeObject;
+    params({ value }: paramsParams): EncodeObject;
+    connectionPaths({ value }: connectionPathsParams): EncodeObject;
     queryConnectionRequest({ value }: queryConnectionRequestParams): EncodeObject;
     queryClientConnectionsResponse({ value }: queryClientConnectionsResponseParams): EncodeObject;
-    msgConnectionOpenInitResponse({ value }: msgConnectionOpenInitResponseParams): EncodeObject;
-    genesisState({ value }: genesisStateParams): EncodeObject;
-    identifiedConnection({ value }: identifiedConnectionParams): EncodeObject;
-    version({ value }: versionParams): EncodeObject;
-    queryConnectionResponse({ value }: queryConnectionResponseParams): EncodeObject;
     queryConnectionConsensusStateResponse({ value }: queryConnectionConsensusStateResponseParams): EncodeObject;
-    msgConnectionOpenTry({ value }: msgConnectionOpenTryParams): EncodeObject;
+    queryConnectionParamsRequest({ value }: queryConnectionParamsRequestParams): EncodeObject;
+    msgConnectionOpenConfirm({ value }: msgConnectionOpenConfirmParams): EncodeObject;
+    msgConnectionOpenAckResponse({ value }: msgConnectionOpenAckResponseParams): EncodeObject;
+    counterparty({ value }: counterpartyParams): EncodeObject;
+    version({ value }: versionParams): EncodeObject;
+    queryConnectionConsensusStateRequest({ value }: queryConnectionConsensusStateRequestParams): EncodeObject;
+    queryConnectionResponse({ value }: queryConnectionResponseParams): EncodeObject;
+    queryConnectionsResponse({ value }: queryConnectionsResponseParams): EncodeObject;
+    queryClientConnectionsRequest({ value }: queryClientConnectionsRequestParams): EncodeObject;
+    queryConnectionClientStateResponse({ value }: queryConnectionClientStateResponseParams): EncodeObject;
+    msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
     msgConnectionOpenTryResponse({ value }: msgConnectionOpenTryResponseParams): EncodeObject;
+    connectionEnd({ value }: connectionEndParams): EncodeObject;
+    identifiedConnection({ value }: identifiedConnectionParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

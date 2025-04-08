@@ -265,7 +265,7 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /enreach/workload/era/currentera:
+  /enreach/workload/era/current_era:
     get:
       operationId: Query_CurrentEra
       responses:
@@ -274,7 +274,189 @@ paths:
           schema:
             type: object
             properties:
-              currentEra:
+              EraInfo:
+                type: object
+                properties:
+                  number:
+                    type: string
+                    format: uint64
+                  startTime:
+                    type: string
+                    format: date-time
+                  startBlock:
+                    type: string
+                    format: uint64
+                  endTime:
+                    type: string
+                    format: date-time
+                  endBlock:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
+  /enreach/workload/era/history_era/{eraNumber}:
+    get:
+      operationId: Query_HistoryEra
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              EraInfo:
+                type: object
+                properties:
+                  number:
+                    type: string
+                    format: uint64
+                  startTime:
+                    type: string
+                    format: date-time
+                  startBlock:
+                    type: string
+                    format: uint64
+                  endTime:
+                    type: string
+                    format: date-time
+                  endBlock:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: eraNumber
+          in: path
+          required: true
+          type: string
+          format: uint64
+      tags:
+        - Query
+  /enreach/workload/era/history_eras:
+    get:
+      operationId: Query_AllHistoryEra
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              EraInfos:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    number:
+                      type: string
+                      format: uint64
+                    startTime:
+                      type: string
+                      format: date-time
+                    startBlock:
+                      type: string
+                      format: uint64
+                    endTime:
+                      type: string
+                      format: date-time
+                    endBlock:
+                      type: string
+                      format: uint64
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                  total:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  /enreach/workload/era/length:
+    get:
+      operationId: Query_EraLength
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              eraLength:
                 type: string
                 format: uint64
         default:
@@ -297,18 +479,33 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /enreach/workload/era/length:
+  /enreach/workload/era/pending_next_era:
     get:
-      operationId: Query_EraLength
+      operationId: Query_PendingNextEra
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
             properties:
-              eraLength:
-                type: string
-                format: uint64
+              EraInfo:
+                type: object
+                properties:
+                  number:
+                    type: string
+                    format: uint64
+                  startTime:
+                    type: string
+                    format: date-time
+                  startBlock:
+                    type: string
+                    format: uint64
+                  endTime:
+                    type: string
+                    format: date-time
+                  endBlock:
+                    type: string
+                    format: uint64
         default:
           description: An unexpected error response.
           schema:
@@ -1823,6 +2020,24 @@ definitions:
       endBlock:
         type: string
         format: uint64
+  EraInfo:
+    type: object
+    properties:
+      number:
+        type: string
+        format: uint64
+      startTime:
+        type: string
+        format: date-time
+      startBlock:
+        type: string
+        format: uint64
+      endTime:
+        type: string
+        format: date-time
+      endBlock:
+        type: string
+        format: uint64
   NodeScoreDB:
     type: object
     properties:
@@ -1950,6 +2165,38 @@ definitions:
     type: object
     properties:
       EpochInfos:
+        type: array
+        items:
+          type: object
+          properties:
+            number:
+              type: string
+              format: uint64
+            startTime:
+              type: string
+              format: date-time
+            startBlock:
+              type: string
+              format: uint64
+            endTime:
+              type: string
+              format: date-time
+            endBlock:
+              type: string
+              format: uint64
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+          total:
+            type: string
+            format: uint64
+  QueryGetAllHistoryEraResponse:
+    type: object
+    properties:
+      EraInfos:
         type: array
         items:
           type: object
@@ -2226,9 +2473,24 @@ definitions:
   QueryGetCurrentEraResponse:
     type: object
     properties:
-      currentEra:
-        type: string
-        format: uint64
+      EraInfo:
+        type: object
+        properties:
+          number:
+            type: string
+            format: uint64
+          startTime:
+            type: string
+            format: date-time
+          startBlock:
+            type: string
+            format: uint64
+          endTime:
+            type: string
+            format: date-time
+          endBlock:
+            type: string
+            format: uint64
   QueryGetEpochLengthResponse:
     type: object
     properties:
@@ -2332,6 +2594,27 @@ definitions:
           endBlock:
             type: string
             format: uint64
+  QueryGetHistoryEraResponse:
+    type: object
+    properties:
+      EraInfo:
+        type: object
+        properties:
+          number:
+            type: string
+            format: uint64
+          startTime:
+            type: string
+            format: date-time
+          startBlock:
+            type: string
+            format: uint64
+          endTime:
+            type: string
+            format: date-time
+          endBlock:
+            type: string
+            format: uint64
   QueryGetManagerRPWorkloadResponse:
     type: object
     properties:
@@ -2399,6 +2682,27 @@ definitions:
     type: object
     properties:
       EpochInfo:
+        type: object
+        properties:
+          number:
+            type: string
+            format: uint64
+          startTime:
+            type: string
+            format: date-time
+          startBlock:
+            type: string
+            format: uint64
+          endTime:
+            type: string
+            format: date-time
+          endBlock:
+            type: string
+            format: uint64
+  QueryGetPendingNextEraResponse:
+    type: object
+    properties:
+      EraInfo:
         type: object
         properties:
           number:

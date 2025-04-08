@@ -1,5 +1,6 @@
 import _m0 from "protobufjs/minimal";
 import { EpochInfo } from "./epoch_info";
+import { EraInfo } from "./era_info";
 import { Params } from "./params";
 import { Superior } from "./superior";
 export declare const protobufPackage = "enreach.workload";
@@ -10,6 +11,8 @@ export interface GenesisState {
     superior: Superior | undefined;
     currentEpoch: EpochInfo | undefined;
     pendingNextEpoch: EpochInfo | undefined;
+    currentEra: EraInfo | undefined;
+    pendingNextEra: EraInfo | undefined;
 }
 export declare const GenesisState: {
     encode(message: GenesisState, writer?: _m0.Writer): _m0.Writer;

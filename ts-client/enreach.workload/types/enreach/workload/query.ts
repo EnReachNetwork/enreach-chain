@@ -3,6 +3,7 @@ import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
 import { EpochInfo } from "./epoch_info";
+import { EraInfo } from "./era_info";
 import { Params } from "./params";
 import { EraProcessData, ReputationDeltaPoint, ReputationPoint, ReputationPointChangeData } from "./reputationpoint";
 import { Superior } from "./superior";
@@ -180,11 +181,36 @@ export interface QueryGetEraLengthResponse {
   eraLength: number;
 }
 
+/** //////////////// */
 export interface QueryGetCurrentEraRequest {
 }
 
 export interface QueryGetCurrentEraResponse {
-  currentEra: number;
+  EraInfo: EraInfo | undefined;
+}
+
+export interface QueryGetPendingNextEraRequest {
+}
+
+export interface QueryGetPendingNextEraResponse {
+  EraInfo: EraInfo | undefined;
+}
+
+export interface QueryGetHistoryEraRequest {
+  eraNumber: number;
+}
+
+export interface QueryGetHistoryEraResponse {
+  EraInfo: EraInfo | undefined;
+}
+
+export interface QueryGetAllHistoryEraRequest {
+  pagination: PageRequest | undefined;
+}
+
+export interface QueryGetAllHistoryEraResponse {
+  EraInfos: EraInfo[];
+  pagination: PageResponse | undefined;
 }
 
 export interface QueryGetReputationPointChangeDataRequest {
@@ -2857,13 +2883,13 @@ export const QueryGetCurrentEraRequest = {
 };
 
 function createBaseQueryGetCurrentEraResponse(): QueryGetCurrentEraResponse {
-  return { currentEra: 0 };
+  return { EraInfo: undefined };
 }
 
 export const QueryGetCurrentEraResponse = {
   encode(message: QueryGetCurrentEraResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.currentEra !== 0) {
-      writer.uint32(8).uint64(message.currentEra);
+    if (message.EraInfo !== undefined) {
+      EraInfo.encode(message.EraInfo, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -2876,11 +2902,11 @@ export const QueryGetCurrentEraResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          if (tag !== 8) {
+          if (tag !== 10) {
             break;
           }
 
-          message.currentEra = longToNumber(reader.uint64() as Long);
+          message.EraInfo = EraInfo.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -2892,13 +2918,13 @@ export const QueryGetCurrentEraResponse = {
   },
 
   fromJSON(object: any): QueryGetCurrentEraResponse {
-    return { currentEra: isSet(object.currentEra) ? Number(object.currentEra) : 0 };
+    return { EraInfo: isSet(object.EraInfo) ? EraInfo.fromJSON(object.EraInfo) : undefined };
   },
 
   toJSON(message: QueryGetCurrentEraResponse): unknown {
     const obj: any = {};
-    if (message.currentEra !== 0) {
-      obj.currentEra = Math.round(message.currentEra);
+    if (message.EraInfo !== undefined) {
+      obj.EraInfo = EraInfo.toJSON(message.EraInfo);
     }
     return obj;
   },
@@ -2908,7 +2934,366 @@ export const QueryGetCurrentEraResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryGetCurrentEraResponse>, I>>(object: I): QueryGetCurrentEraResponse {
     const message = createBaseQueryGetCurrentEraResponse();
-    message.currentEra = object.currentEra ?? 0;
+    message.EraInfo = (object.EraInfo !== undefined && object.EraInfo !== null)
+      ? EraInfo.fromPartial(object.EraInfo)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetPendingNextEraRequest(): QueryGetPendingNextEraRequest {
+  return {};
+}
+
+export const QueryGetPendingNextEraRequest = {
+  encode(_: QueryGetPendingNextEraRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetPendingNextEraRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetPendingNextEraRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): QueryGetPendingNextEraRequest {
+    return {};
+  },
+
+  toJSON(_: QueryGetPendingNextEraRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetPendingNextEraRequest>, I>>(base?: I): QueryGetPendingNextEraRequest {
+    return QueryGetPendingNextEraRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetPendingNextEraRequest>, I>>(_: I): QueryGetPendingNextEraRequest {
+    const message = createBaseQueryGetPendingNextEraRequest();
+    return message;
+  },
+};
+
+function createBaseQueryGetPendingNextEraResponse(): QueryGetPendingNextEraResponse {
+  return { EraInfo: undefined };
+}
+
+export const QueryGetPendingNextEraResponse = {
+  encode(message: QueryGetPendingNextEraResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.EraInfo !== undefined) {
+      EraInfo.encode(message.EraInfo, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetPendingNextEraResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetPendingNextEraResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.EraInfo = EraInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetPendingNextEraResponse {
+    return { EraInfo: isSet(object.EraInfo) ? EraInfo.fromJSON(object.EraInfo) : undefined };
+  },
+
+  toJSON(message: QueryGetPendingNextEraResponse): unknown {
+    const obj: any = {};
+    if (message.EraInfo !== undefined) {
+      obj.EraInfo = EraInfo.toJSON(message.EraInfo);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetPendingNextEraResponse>, I>>(base?: I): QueryGetPendingNextEraResponse {
+    return QueryGetPendingNextEraResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetPendingNextEraResponse>, I>>(
+    object: I,
+  ): QueryGetPendingNextEraResponse {
+    const message = createBaseQueryGetPendingNextEraResponse();
+    message.EraInfo = (object.EraInfo !== undefined && object.EraInfo !== null)
+      ? EraInfo.fromPartial(object.EraInfo)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetHistoryEraRequest(): QueryGetHistoryEraRequest {
+  return { eraNumber: 0 };
+}
+
+export const QueryGetHistoryEraRequest = {
+  encode(message: QueryGetHistoryEraRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.eraNumber !== 0) {
+      writer.uint32(8).uint64(message.eraNumber);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetHistoryEraRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetHistoryEraRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.eraNumber = longToNumber(reader.uint64() as Long);
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetHistoryEraRequest {
+    return { eraNumber: isSet(object.eraNumber) ? Number(object.eraNumber) : 0 };
+  },
+
+  toJSON(message: QueryGetHistoryEraRequest): unknown {
+    const obj: any = {};
+    if (message.eraNumber !== 0) {
+      obj.eraNumber = Math.round(message.eraNumber);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetHistoryEraRequest>, I>>(base?: I): QueryGetHistoryEraRequest {
+    return QueryGetHistoryEraRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetHistoryEraRequest>, I>>(object: I): QueryGetHistoryEraRequest {
+    const message = createBaseQueryGetHistoryEraRequest();
+    message.eraNumber = object.eraNumber ?? 0;
+    return message;
+  },
+};
+
+function createBaseQueryGetHistoryEraResponse(): QueryGetHistoryEraResponse {
+  return { EraInfo: undefined };
+}
+
+export const QueryGetHistoryEraResponse = {
+  encode(message: QueryGetHistoryEraResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.EraInfo !== undefined) {
+      EraInfo.encode(message.EraInfo, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetHistoryEraResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetHistoryEraResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.EraInfo = EraInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetHistoryEraResponse {
+    return { EraInfo: isSet(object.EraInfo) ? EraInfo.fromJSON(object.EraInfo) : undefined };
+  },
+
+  toJSON(message: QueryGetHistoryEraResponse): unknown {
+    const obj: any = {};
+    if (message.EraInfo !== undefined) {
+      obj.EraInfo = EraInfo.toJSON(message.EraInfo);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetHistoryEraResponse>, I>>(base?: I): QueryGetHistoryEraResponse {
+    return QueryGetHistoryEraResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetHistoryEraResponse>, I>>(object: I): QueryGetHistoryEraResponse {
+    const message = createBaseQueryGetHistoryEraResponse();
+    message.EraInfo = (object.EraInfo !== undefined && object.EraInfo !== null)
+      ? EraInfo.fromPartial(object.EraInfo)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllHistoryEraRequest(): QueryGetAllHistoryEraRequest {
+  return { pagination: undefined };
+}
+
+export const QueryGetAllHistoryEraRequest = {
+  encode(message: QueryGetAllHistoryEraRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllHistoryEraRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllHistoryEraRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllHistoryEraRequest {
+    return { pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined };
+  },
+
+  toJSON(message: QueryGetAllHistoryEraRequest): unknown {
+    const obj: any = {};
+    if (message.pagination !== undefined) {
+      obj.pagination = PageRequest.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllHistoryEraRequest>, I>>(base?: I): QueryGetAllHistoryEraRequest {
+    return QueryGetAllHistoryEraRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllHistoryEraRequest>, I>>(object: I): QueryGetAllHistoryEraRequest {
+    const message = createBaseQueryGetAllHistoryEraRequest();
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageRequest.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllHistoryEraResponse(): QueryGetAllHistoryEraResponse {
+  return { EraInfos: [], pagination: undefined };
+}
+
+export const QueryGetAllHistoryEraResponse = {
+  encode(message: QueryGetAllHistoryEraResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.EraInfos) {
+      EraInfo.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllHistoryEraResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllHistoryEraResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.EraInfos.push(EraInfo.decode(reader, reader.uint32()));
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllHistoryEraResponse {
+    return {
+      EraInfos: Array.isArray(object?.EraInfos) ? object.EraInfos.map((e: any) => EraInfo.fromJSON(e)) : [],
+      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetAllHistoryEraResponse): unknown {
+    const obj: any = {};
+    if (message.EraInfos?.length) {
+      obj.EraInfos = message.EraInfos.map((e) => EraInfo.toJSON(e));
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllHistoryEraResponse>, I>>(base?: I): QueryGetAllHistoryEraResponse {
+    return QueryGetAllHistoryEraResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllHistoryEraResponse>, I>>(
+    object: I,
+  ): QueryGetAllHistoryEraResponse {
+    const message = createBaseQueryGetAllHistoryEraResponse();
+    message.EraInfos = object.EraInfos?.map((e) => EraInfo.fromPartial(e)) || [];
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageResponse.fromPartial(object.pagination)
+      : undefined;
     return message;
   },
 };
@@ -4110,6 +4495,9 @@ export interface Query {
   /** Queries era */
   EraLength(request: QueryGetEraLengthRequest): Promise<QueryGetEraLengthResponse>;
   CurrentEra(request: QueryGetCurrentEraRequest): Promise<QueryGetCurrentEraResponse>;
+  PendingNextEra(request: QueryGetPendingNextEraRequest): Promise<QueryGetPendingNextEraResponse>;
+  HistoryEra(request: QueryGetHistoryEraRequest): Promise<QueryGetHistoryEraResponse>;
+  AllHistoryEra(request: QueryGetAllHistoryEraRequest): Promise<QueryGetAllHistoryEraResponse>;
   /** Queries a list of ReputationPointChangeData items. */
   ReputationPointChangeData(
     request: QueryGetReputationPointChangeDataRequest,
@@ -4157,6 +4545,9 @@ export class QueryClientImpl implements Query {
     this.Superior = this.Superior.bind(this);
     this.EraLength = this.EraLength.bind(this);
     this.CurrentEra = this.CurrentEra.bind(this);
+    this.PendingNextEra = this.PendingNextEra.bind(this);
+    this.HistoryEra = this.HistoryEra.bind(this);
+    this.AllHistoryEra = this.AllHistoryEra.bind(this);
     this.ReputationPointChangeData = this.ReputationPointChangeData.bind(this);
     this.AllReputationPointChangeDataByEra = this.AllReputationPointChangeDataByEra.bind(this);
     this.ReputationDeltaPoint = this.ReputationDeltaPoint.bind(this);
@@ -4298,6 +4689,24 @@ export class QueryClientImpl implements Query {
     const data = QueryGetCurrentEraRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "CurrentEra", data);
     return promise.then((data) => QueryGetCurrentEraResponse.decode(_m0.Reader.create(data)));
+  }
+
+  PendingNextEra(request: QueryGetPendingNextEraRequest): Promise<QueryGetPendingNextEraResponse> {
+    const data = QueryGetPendingNextEraRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "PendingNextEra", data);
+    return promise.then((data) => QueryGetPendingNextEraResponse.decode(_m0.Reader.create(data)));
+  }
+
+  HistoryEra(request: QueryGetHistoryEraRequest): Promise<QueryGetHistoryEraResponse> {
+    const data = QueryGetHistoryEraRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "HistoryEra", data);
+    return promise.then((data) => QueryGetHistoryEraResponse.decode(_m0.Reader.create(data)));
+  }
+
+  AllHistoryEra(request: QueryGetAllHistoryEraRequest): Promise<QueryGetAllHistoryEraResponse> {
+    const data = QueryGetAllHistoryEraRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "AllHistoryEra", data);
+    return promise.then((data) => QueryGetAllHistoryEraResponse.decode(_m0.Reader.create(data)));
   }
 
   ReputationPointChangeData(
