@@ -14,7 +14,7 @@ import (
 
 func createTestCurrentEpoch(keeper keeper.Keeper, ctx context.Context) types.EpochInfo {
 	item := types.EpochInfo{}
-	keeper.SetCurrentEpoch(ctx, item)
+	keeper.SetCurrentEpoch(ctx, &item)
 	return item
 }
 

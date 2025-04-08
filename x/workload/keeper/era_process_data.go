@@ -84,6 +84,7 @@ func (k Keeper) SetLastEraProcessData(ctx context.Context, eraProcessData *types
 func (k Keeper) GetLastEraProcessData(ctx context.Context) (val types.EraProcessData, found bool) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, []byte{})
+
 	b := store.Get(types.KeyPrefix(types.LastEraProcessDataKey))
 	if b == nil {
 		return val, false

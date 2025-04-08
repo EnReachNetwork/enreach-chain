@@ -194,14 +194,13 @@ func (am AppModule) handleEpochChange(goCtx context.Context) error {
 	pendingNextEpoch, found := k.GetPendingNextEpoch(ctx)
 	if found {
 		// Update current epoch and clear the pending next epoch
-		// 更新当前 Epoch 并清空 Pending
 		newEpoch := types.EpochInfo{
 			Number:     pendingNextEpoch.Number,
 			StartTime:  pendingNextEpoch.StartTime,
 			StartBlock: blockHeight,
 			EndTime:    pendingNextEpoch.EndTime,
 		}
-		k.SetCurrentEpoch(ctx, newEpoch)
+		k.SetCurrentEpoch(ctx, &newEpoch)
 		k.SetPendingNextEpoch(ctx, nil)
 
 		// Emit epoch start event
@@ -226,10 +225,11 @@ func (am AppModule) handleEpochChange(goCtx context.Context) error {
 		k.AppendHistoryEpoch(ctx, &currentEpoch)
 
 		// Calculate next epoch and store in DB to be processed by next begin_block
+		epochDuration := time.Duration(types.EPOCH_LENGTH) * time.Second
 		nextEpoch := types.EpochInfo{
 			Number:    currentEpoch.Number + 1,
 			StartTime: currentEpoch.EndTime,
-			EndTime:   currentEpoch.EndTime.Add(time.Hour),
+			EndTime:   currentEpoch.EndTime.Add(epochDuration),
 		}
 		k.SetPendingNextEpoch(ctx, &nextEpoch)
 

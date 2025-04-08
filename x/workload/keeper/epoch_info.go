@@ -14,19 +14,25 @@ import (
 )
 
 // SetCurrentEpoch set current epochInfo in the store
-func (k Keeper) SetCurrentEpoch(ctx context.Context, epochInfo types.EpochInfo) {
+func (k Keeper) SetCurrentEpoch(ctx context.Context, epochInfo *types.EpochInfo) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.CurrentEpochKey))
-	b := k.cdc.MustMarshal(&epochInfo)
-	store.Set([]byte{0}, b)
+	store := prefix.NewStore(storeAdapter, []byte{})
+
+	if epochInfo == nil {
+		store.Delete(types.KeyPrefix(types.CurrentEpochKey))
+		return
+	}
+
+	b := k.cdc.MustMarshal(epochInfo)
+	store.Set(types.KeyPrefix(types.CurrentEpochKey), b)
 }
 
 // GetCurrentEpoch returns current epochInfo
 func (k Keeper) GetCurrentEpoch(ctx context.Context) (val types.EpochInfo, found bool) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.CurrentEpochKey))
+	store := prefix.NewStore(storeAdapter, []byte{})
 
-	b := store.Get([]byte{0})
+	b := store.Get(types.KeyPrefix(types.CurrentEpochKey))
 	if b == nil {
 		return val, false
 	}
@@ -38,17 +44,23 @@ func (k Keeper) GetCurrentEpoch(ctx context.Context) (val types.EpochInfo, found
 // SetPendingNextEpoch set the pending next epochInfo in the store
 func (k Keeper) SetPendingNextEpoch(ctx context.Context, epochInfo *types.EpochInfo) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PendingNextEpochKey))
+	store := prefix.NewStore(storeAdapter, []byte{})
+
+	if epochInfo == nil {
+		store.Delete(types.KeyPrefix(types.PendingNextEpochKey))
+		return
+	}
+
 	b := k.cdc.MustMarshal(epochInfo)
-	store.Set([]byte{0}, b)
+	store.Set(types.KeyPrefix(types.PendingNextEpochKey), b)
 }
 
 // GetPendingNextEpoch returns the pending next epochInfo
 func (k Keeper) GetPendingNextEpoch(ctx context.Context) (val types.EpochInfo, found bool) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PendingNextEpochKey))
+	store := prefix.NewStore(storeAdapter, []byte{})
 
-	b := store.Get([]byte{0})
+	b := store.Get(types.KeyPrefix(types.PendingNextEpochKey))
 	if b == nil {
 		return val, false
 	}
