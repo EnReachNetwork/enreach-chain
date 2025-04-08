@@ -9,6 +9,13 @@ export interface Status {
         "@type"?: string;
     }[];
 }
+export interface CheatStatusCRDB {
+    cheatStatus?: string;
+    /** @format uint64 */
+    createAt?: string;
+    /** @format uint64 */
+    updateAt?: string;
+}
 export interface EpochInfo {
     /** @format uint64 */
     number?: string;
@@ -57,9 +64,42 @@ export interface PageResponse {
     /** @format uint64 */
     total?: string;
 }
+export interface QueryGetAllCheatStatusCRDataByEraResponse {
+    CheatStatusCRDatas?: {
+        era?: string;
+        nodeID?: string;
+        data?: Record<string, {
+            cheatStatus?: string;
+            createAt?: string;
+            updateAt?: string;
+        }>;
+    }[];
+    pagination?: {
+        next_key?: string;
+        total?: string;
+    };
+}
 export interface QueryGetAllEpochProcessDataResponse {
     EpochProcessDatas?: {
         epoch?: string;
+        totalNodesCount?: string;
+        processedNodesCount?: string;
+        startAt?: string;
+        updateAt?: string;
+        status?: string;
+        pagination?: {
+            next_key?: string;
+            total?: string;
+        };
+    }[];
+    pagination?: {
+        next_key?: string;
+        total?: string;
+    };
+}
+export interface QueryGetAllEraCheatStatusProcessDataResponse {
+    EraCheatStatusProcessDatas?: {
+        era?: string;
         totalNodesCount?: string;
         processedNodesCount?: string;
         startAt?: string;
@@ -113,6 +153,20 @@ export interface QueryGetAllHistoryEraResponse {
         startBlock?: string;
         endTime?: string;
         endBlock?: string;
+    }[];
+    pagination?: {
+        next_key?: string;
+        total?: string;
+    };
+}
+export interface QueryGetAllManagerCSWorkloadByEraResponse {
+    ManagerCSWorkloads?: {
+        era?: string;
+        managerAccount?: string;
+        reportedNodesCount?: string;
+        score?: string;
+        createAt?: string;
+        updateAt?: string;
     }[];
     pagination?: {
         next_key?: string;
@@ -186,18 +240,6 @@ export interface QueryGetAllReputationPointChangeDataByEraResponse {
         total?: string;
     };
 }
-export interface QueryGetAllReputationPointResponse {
-    ReputationPoints?: {
-        nodeID?: string;
-        point?: string;
-        createAt?: string;
-        updateAt?: string;
-    }[];
-    pagination?: {
-        next_key?: string;
-        total?: string;
-    };
-}
 export interface QueryGetAllWorkreportByEpochResponse {
     Workreports?: {
         epoch?: string;
@@ -211,6 +253,17 @@ export interface QueryGetAllWorkreportByEpochResponse {
     pagination?: {
         next_key?: string;
         total?: string;
+    };
+}
+export interface QueryGetCheatStatusCRDataResponse {
+    CheatStatusCRData?: {
+        era?: string;
+        nodeID?: string;
+        data?: Record<string, {
+            cheatStatus?: string;
+            createAt?: string;
+            updateAt?: string;
+        }>;
     };
 }
 export interface QueryGetCurrentEpochResponse {
@@ -238,6 +291,20 @@ export interface QueryGetEpochLengthResponse {
 export interface QueryGetEpochProcessDataResponse {
     EpochProcessData?: {
         epoch?: string;
+        totalNodesCount?: string;
+        processedNodesCount?: string;
+        startAt?: string;
+        updateAt?: string;
+        status?: string;
+        pagination?: {
+            next_key?: string;
+            total?: string;
+        };
+    };
+}
+export interface QueryGetEraCheatStatusProcessDataResponse {
+    EraCheatStatusProcessData?: {
+        era?: string;
         totalNodesCount?: string;
         processedNodesCount?: string;
         startAt?: string;
@@ -287,6 +354,16 @@ export interface QueryGetHistoryEraResponse {
         startBlock?: string;
         endTime?: string;
         endBlock?: string;
+    };
+}
+export interface QueryGetManagerCSWorkloadResponse {
+    ManagerCSWorkload?: {
+        era?: string;
+        managerAccount?: string;
+        reportedNodesCount?: string;
+        score?: string;
+        createAt?: string;
+        updateAt?: string;
     };
 }
 export interface QueryGetManagerRPWorkloadResponse {
@@ -354,14 +431,6 @@ export interface QueryGetReputationPointChangeDataResponse {
         }>;
     };
 }
-export interface QueryGetReputationPointResponse {
-    ReputationPoint?: {
-        nodeID?: string;
-        point?: string;
-        createAt?: string;
-        updateAt?: string;
-    };
-}
 export interface QueryGetSuperiorResponse {
     Superior?: {
         account?: string;
@@ -398,9 +467,36 @@ export interface ReputationPointChangeRawDataDB {
     /** @format uint64 */
     updateAt?: string;
 }
+export interface WorkloadCheatStatusCRData {
+    /** @format uint64 */
+    era?: string;
+    nodeID?: string;
+    data?: Record<string, {
+        cheatStatus?: string;
+        createAt?: string;
+        updateAt?: string;
+    }>;
+}
 export interface WorkloadEpochProcessData {
     /** @format uint64 */
     epoch?: string;
+    /** @format uint64 */
+    totalNodesCount?: string;
+    /** @format uint64 */
+    processedNodesCount?: string;
+    /** @format uint64 */
+    startAt?: string;
+    /** @format uint64 */
+    updateAt?: string;
+    status?: string;
+    pagination?: {
+        next_key?: string;
+        total?: string;
+    };
+}
+export interface WorkloadEraCheatStatusProcessData {
+    /** @format uint64 */
+    era?: string;
     /** @format uint64 */
     totalNodesCount?: string;
     /** @format uint64 */
@@ -431,6 +527,19 @@ export interface WorkloadEraProcessData {
         next_key?: string;
         total?: string;
     };
+}
+export interface WorkloadManagerCSWorkload {
+    /** @format uint64 */
+    era?: string;
+    managerAccount?: string;
+    /** @format uint64 */
+    reportedNodesCount?: string;
+    /** @format uint64 */
+    score?: string;
+    /** @format uint64 */
+    createAt?: string;
+    /** @format uint64 */
+    updateAt?: string;
 }
 export interface WorkloadManagerRPWorkload {
     /** @format uint64 */
@@ -477,15 +586,6 @@ export interface WorkloadReputationDeltaPoint {
     /** @format uint64 */
     createAt?: string;
 }
-export interface WorkloadReputationPoint {
-    nodeID?: string;
-    /** @format int64 */
-    point?: string;
-    /** @format uint64 */
-    createAt?: string;
-    /** @format uint64 */
-    updateAt?: string;
-}
 export interface WorkloadReputationPointChangeData {
     /** @format uint64 */
     era?: string;
@@ -516,7 +616,12 @@ export interface WorkloadWorkreport {
         updateAt?: string;
     }>;
 }
+export interface CheatStatusCR {
+    nodeID?: string;
+    cheatStatus?: string;
+}
 export type MsgCreateSuperiorResponse = object;
+export type MsgSubmitCheatStatusCRResponse = object;
 export type MsgSubmitReputationPointChangeDataResponse = object;
 export type MsgSubmitWorkreportsResponse = object;
 export type MsgUpdateHistoryEpochDataDepthResponse = object;
@@ -577,6 +682,28 @@ export declare class HttpClient<SecurityDataType = unknown> {
  * @title HTTP API Console enreach.workload
  */
 export declare class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryAllCheatStatusCrDataByEra
+     * @request GET:/enreach/workload/cheat_status_cr_data/{era}
+     */
+    queryAllCheatStatusCRDataByEra: (era: string, query?: {
+        "pagination.key"?: string;
+        "pagination.offset"?: string;
+        "pagination.limit"?: string;
+        "pagination.count_total"?: boolean;
+        "pagination.reverse"?: boolean;
+    }, params?: RequestParams) => Promise<AxiosResponse<T>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryCheatStatusCrData
+     * @request GET:/enreach/workload/cheat_status_cr_data/{era}/{nodeID}
+     */
+    queryCheatStatusCRData: (era: string, nodeId: string, params?: RequestParams) => Promise<AxiosResponse<T>>;
     /**
      * No description
      *
@@ -669,6 +796,28 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * @request GET:/enreach/workload/era/pending_next_era
      */
     queryPendingNextEra: (params?: RequestParams) => Promise<AxiosResponse<T>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryManagerCsWorkload
+     * @request GET:/enreach/workload/manager_cs_workload/{era}/{managerAccount}
+     */
+    queryManagerCSWorkload: (era: string, managerAccount: string, params?: RequestParams) => Promise<AxiosResponse<T>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryAllManagerCsWorkloadByEra
+     * @request GET:/enreach/workload/manager_cs_workloads/{era}
+     */
+    queryAllManagerCSWorkloadByEra: (era: string, query?: {
+        "pagination.key"?: string;
+        "pagination.offset"?: string;
+        "pagination.limit"?: string;
+        "pagination.count_total"?: boolean;
+        "pagination.reverse"?: boolean;
+    }, params?: RequestParams) => Promise<AxiosResponse<T>>;
     /**
      * No description
      *
@@ -769,14 +918,6 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * No description
      *
      * @tags Query
-     * @name QueryReputationPoint
-     * @request GET:/enreach/workload/reputation_point/{nodeID}
-     */
-    queryReputationPoint: (nodeId: string, params?: RequestParams) => Promise<AxiosResponse<T>>;
-    /**
-     * No description
-     *
-     * @tags Query
      * @name QueryReputationPointChangeData
      * @request GET:/enreach/workload/reputation_point_change_data/{era}/{nodeID}
      */
@@ -789,20 +930,6 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * @request GET:/enreach/workload/reputation_point_change_datas/{era}
      */
     queryAllReputationPointChangeDataByEra: (era: string, query?: {
-        "pagination.key"?: string;
-        "pagination.offset"?: string;
-        "pagination.limit"?: string;
-        "pagination.count_total"?: boolean;
-        "pagination.reverse"?: boolean;
-    }, params?: RequestParams) => Promise<AxiosResponse<T>>;
-    /**
-     * No description
-     *
-     * @tags Query
-     * @name QueryAllReputationPoint
-     * @request GET:/enreach/workload/reputation_points
-     */
-    queryAllReputationPoint: (query?: {
         "pagination.key"?: string;
         "pagination.offset"?: string;
         "pagination.limit"?: string;
@@ -833,6 +960,28 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * @request GET:/enreach/workload/workreport/epoch_process_datas
      */
     queryAllEpochProcessData: (query?: {
+        "pagination.key"?: string;
+        "pagination.offset"?: string;
+        "pagination.limit"?: string;
+        "pagination.count_total"?: boolean;
+        "pagination.reverse"?: boolean;
+    }, params?: RequestParams) => Promise<AxiosResponse<T>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryEraCheatStatusProcessData
+     * @request GET:/enreach/workload/workreport/era_cheat_status_process_data/{era}
+     */
+    queryEraCheatStatusProcessData: (era: string, params?: RequestParams) => Promise<AxiosResponse<T>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryAllEraCheatStatusProcessData
+     * @request GET:/enreach/workload/workreport/era_cheat_status_process_datas
+     */
+    queryAllEraCheatStatusProcessData: (query?: {
         "pagination.key"?: string;
         "pagination.offset"?: string;
         "pagination.limit"?: string;

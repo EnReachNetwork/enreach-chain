@@ -35,6 +35,8 @@ export interface QueryAllNodeResponse {
         trafficType?: number;
         registerStatus?: string;
         workingStatus?: string;
+        cheatStatus?: string;
+        reputationPoint?: string;
         creator?: string;
         createAt?: string;
         updator?: string;
@@ -69,6 +71,8 @@ export interface QueryGetNodeResponse {
         trafficType?: number;
         registerStatus?: string;
         workingStatus?: string;
+        cheatStatus?: string;
+        reputationPoint?: string;
         creator?: string;
         createAt?: string;
         updator?: string;
@@ -107,6 +111,9 @@ export interface EdgenodeNode {
     trafficType?: number;
     registerStatus?: string;
     workingStatus?: string;
+    cheatStatus?: string;
+    /** @format int64 */
+    reputationPoint?: string;
     creator?: string;
     /** @format uint64 */
     createAt?: string;

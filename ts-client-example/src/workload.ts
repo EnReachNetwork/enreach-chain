@@ -4,9 +4,12 @@ import { queryClient } from "enreach-client-ts/lib/enreach.workload";
 import { CHAIN_API_URL, CHAIN_PREFIX, CHAIN_RPC_URL } from './consts';
 import { MsgSubmitReputationPointChangeData, MsgSubmitWorkreports, QueryGetAllEpochProcessDataResponse, 
     QueryGetAllEraProcessDataResponse, QueryGetAllManagerWRWorkloadByEpochResponse, QueryGetAllNodeWorkloadByEpochResponse, 
-    QueryGetAllReputationPointResponse, QueryGetAllWorkreportByEpochResponse, QueryGetCurrentEpochResponse,
+    QueryGetAllWorkreportByEpochResponse, QueryGetCurrentEpochResponse,
     QueryGetAllReputationDeltaPointByEraResponse, QueryGetCurrentEraResponse,
-    QueryGetAllReputationPointChangeDataByEraResponse} from 'enreach-client-ts/lib/enreach.workload/module';
+    QueryGetAllReputationPointChangeDataByEraResponse,
+    MsgSubmitCheatStatusCR, QueryGetAllEraCheatStatusProcessDataResponse, QueryGetAllManagerRPWorkloadByEraResponse,
+    QueryGetAllManagerCSWorkloadByEraResponse,
+    QueryGetAllCheatStatusCRDataByEraResponse} from 'enreach-client-ts/lib/enreach.workload/module';
 
 export default class WorkloadApi {
     private mnemonic: string;
@@ -39,6 +42,19 @@ export default class WorkloadApi {
     async submitReputationPointChangeData(msg: MsgSubmitReputationPointChangeData) {
         let tClient = txClient({ signer: this.wallet, prefix: CHAIN_PREFIX, addr: CHAIN_RPC_URL });
         const result = await tClient.sendMsgSubmitReputationPointChangeData({
+            value: {
+                ...msg,
+            }
+        })
+
+        if (result.code != 0) {
+            throw new Error(`Transaction failed: ${result.rawLog}`)
+        }
+    }
+
+    async submitCheatStatusCR(msg: MsgSubmitCheatStatusCR) {
+        let tClient = txClient({ signer: this.wallet, prefix: CHAIN_PREFIX, addr: CHAIN_RPC_URL });
+        const result = await tClient.sendMsgSubmitCheatStatusCR({
             value: {
                 ...msg,
             }
@@ -85,14 +101,33 @@ export default class WorkloadApi {
         return regions.data;
     }
 
-    async queryAllReputationPoint(): Promise<QueryGetAllReputationPointResponse> {
-        let qClient = queryClient({ addr: CHAIN_API_URL });
-        const regions = await qClient.queryAllReputationPoint();
-        return regions.data;
-    }
     async queryAllEraProcessData(): Promise<QueryGetAllEraProcessDataResponse> {
         let qClient = queryClient({ addr: CHAIN_API_URL });
         const regions = await qClient.queryAllEraProcessData();
+        return regions.data;
+    }
+
+    async queryAllManagerRPWorkloadByEra(era: number): Promise<QueryGetAllManagerRPWorkloadByEraResponse> {
+        let qClient = queryClient({ addr: CHAIN_API_URL });
+        const regions = await qClient.queryAllManagerRPWorkloadByEra(era.toString());
+        return regions.data;
+    }
+
+    async queryAllEraCheatStatusProcessData(): Promise<QueryGetAllEraCheatStatusProcessDataResponse> {
+        let qClient = queryClient({ addr: CHAIN_API_URL });
+        const regions = await qClient.queryAllEraCheatStatusProcessData();
+        return regions.data;
+    }
+
+    async queryAllCheatStatusCRDataByEra(era: number): Promise<QueryGetAllCheatStatusCRDataByEraResponse> {
+        let qClient = queryClient({ addr: CHAIN_API_URL });
+        const regions = await qClient.queryAllCheatStatusCRDataByEra(era.toString());
+        return regions.data;
+    }
+
+    async queryAllManagerCSWorkloadByEra(era: number): Promise<QueryGetAllManagerCSWorkloadByEraResponse> {
+        let qClient = queryClient({ addr: CHAIN_API_URL });
+        const regions = await qClient.queryAllManagerCSWorkloadByEra(era.toString());
         return regions.data;
     }
 

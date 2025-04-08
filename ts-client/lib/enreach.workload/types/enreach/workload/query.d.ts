@@ -1,11 +1,12 @@
 import _m0 from "protobufjs/minimal";
 import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
+import { CheatStatusCRData, EraCheatStatusProcessData } from "./cheat_status";
 import { EpochInfo } from "./epoch_info";
 import { EraInfo } from "./era_info";
 import { Params } from "./params";
-import { EraProcessData, ReputationDeltaPoint, ReputationPoint, ReputationPointChangeData } from "./reputationpoint";
+import { EraProcessData, ReputationDeltaPoint, ReputationPointChangeData } from "./reputationpoint";
 import { Superior } from "./superior";
-import { ManagerRPWorkload, ManagerWRWorkload, NodeWorkload } from "./workload";
+import { ManagerCSWorkload, ManagerRPWorkload, ManagerWRWorkload, NodeWorkload } from "./workload";
 import { EpochProcessData, Workreport } from "./workreport";
 export declare const protobufPackage = "enreach.workload";
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
@@ -16,6 +17,7 @@ export interface QueryParamsResponse {
     /** params holds all the parameters of this module. */
     params: Params | undefined;
 }
+/** ////////// */
 export interface QueryGetEpochLengthRequest {
 }
 export interface QueryGetEpochLengthResponse {
@@ -44,6 +46,7 @@ export interface QueryGetAllHistoryEpochResponse {
     EpochInfos: EpochInfo[];
     pagination: PageResponse | undefined;
 }
+/** ////////// */
 export interface QueryGetNodeWorkloadRequest {
     epoch: number;
     nodeID: string;
@@ -59,6 +62,7 @@ export interface QueryGetAllNodeWorkloadByEpochResponse {
     NodeWorkloads: NodeWorkload[];
     pagination: PageResponse | undefined;
 }
+/** ////////// */
 export interface QueryGetManagerWRWorkloadRequest {
     epoch: number;
     managerAccount: string;
@@ -74,6 +78,7 @@ export interface QueryGetAllManagerWRWorkloadByEpochResponse {
     ManagerWRWorkloads: ManagerWRWorkload[];
     pagination: PageResponse | undefined;
 }
+/** ////////// */
 export interface QueryGetManagerRPWorkloadRequest {
     era: number;
     managerAccount: string;
@@ -89,6 +94,23 @@ export interface QueryGetAllManagerRPWorkloadByEraResponse {
     ManagerRPWorkloads: ManagerRPWorkload[];
     pagination: PageResponse | undefined;
 }
+/** ////////// */
+export interface QueryGetManagerCSWorkloadRequest {
+    era: number;
+    managerAccount: string;
+}
+export interface QueryGetManagerCSWorkloadResponse {
+    ManagerCSWorkload: ManagerCSWorkload | undefined;
+}
+export interface QueryGetAllManagerCSWorkloadByEraRequest {
+    era: number;
+    pagination: PageRequest | undefined;
+}
+export interface QueryGetAllManagerCSWorkloadByEraResponse {
+    ManagerCSWorkloads: ManagerCSWorkload[];
+    pagination: PageResponse | undefined;
+}
+/** ////////// */
 export interface QueryGetWorkreportRequest {
     epoch: number;
     nodeID: string;
@@ -104,6 +126,7 @@ export interface QueryGetAllWorkreportByEpochResponse {
     Workreports: Workreport[];
     pagination: PageResponse | undefined;
 }
+/** ////////// */
 export interface QueryGetWorkreportProcessBatchSizeRequest {
 }
 export interface QueryGetWorkreportProcessBatchSizeResponse {
@@ -114,6 +137,7 @@ export interface QueryGetHistoryEpochDataDepthRequest {
 export interface QueryGetHistoryEpochDataDepthResponse {
     depth: number;
 }
+/** ////////// */
 export interface QueryGetEpochProcessDataRequest {
     epoch: number;
 }
@@ -127,17 +151,18 @@ export interface QueryGetAllEpochProcessDataResponse {
     EpochProcessDatas: EpochProcessData[];
     pagination: PageResponse | undefined;
 }
+/** ////////// */
 export interface QueryGetSuperiorRequest {
 }
 export interface QueryGetSuperiorResponse {
     Superior: Superior | undefined;
 }
+/** ////////// */
 export interface QueryGetEraLengthRequest {
 }
 export interface QueryGetEraLengthResponse {
     eraLength: number;
 }
-/** //////////////// */
 export interface QueryGetCurrentEraRequest {
 }
 export interface QueryGetCurrentEraResponse {
@@ -191,19 +216,6 @@ export interface QueryGetAllReputationDeltaPointByEraResponse {
     ReputationDeltaPoints: ReputationDeltaPoint[];
     pagination: PageResponse | undefined;
 }
-export interface QueryGetReputationPointRequest {
-    nodeID: string;
-}
-export interface QueryGetReputationPointResponse {
-    ReputationPoint: ReputationPoint | undefined;
-}
-export interface QueryGetAllReputationPointRequest {
-    pagination: PageRequest | undefined;
-}
-export interface QueryGetAllReputationPointResponse {
-    ReputationPoints: ReputationPoint[];
-    pagination: PageResponse | undefined;
-}
 export interface QueryGetEraProcessDataRequest {
     era: number;
 }
@@ -215,6 +227,35 @@ export interface QueryGetAllEraProcessDataRequest {
 }
 export interface QueryGetAllEraProcessDataResponse {
     EraProcessDatas: EraProcessData[];
+    pagination: PageResponse | undefined;
+}
+export interface QueryGetCheatStatusCRDataRequest {
+    era: number;
+    nodeID: string;
+}
+export interface QueryGetCheatStatusCRDataResponse {
+    CheatStatusCRData: CheatStatusCRData | undefined;
+}
+export interface QueryGetAllCheatStatusCRDataByEraRequest {
+    era: number;
+    pagination: PageRequest | undefined;
+}
+export interface QueryGetAllCheatStatusCRDataByEraResponse {
+    CheatStatusCRDatas: CheatStatusCRData[];
+    pagination: PageResponse | undefined;
+}
+/** ////////// */
+export interface QueryGetEraCheatStatusProcessDataRequest {
+    era: number;
+}
+export interface QueryGetEraCheatStatusProcessDataResponse {
+    EraCheatStatusProcessData: EraCheatStatusProcessData | undefined;
+}
+export interface QueryGetAllEraCheatStatusProcessDataRequest {
+    pagination: PageRequest | undefined;
+}
+export interface QueryGetAllEraCheatStatusProcessDataResponse {
+    EraCheatStatusProcessDatas: EraCheatStatusProcessData[];
     pagination: PageResponse | undefined;
 }
 export declare const QueryParamsRequest: {
@@ -408,6 +449,38 @@ export declare const QueryGetAllManagerRPWorkloadByEraResponse: {
     toJSON(message: QueryGetAllManagerRPWorkloadByEraResponse): unknown;
     create<I extends Exact<DeepPartial<QueryGetAllManagerRPWorkloadByEraResponse>, I>>(base?: I): QueryGetAllManagerRPWorkloadByEraResponse;
     fromPartial<I extends Exact<DeepPartial<QueryGetAllManagerRPWorkloadByEraResponse>, I>>(object: I): QueryGetAllManagerRPWorkloadByEraResponse;
+};
+export declare const QueryGetManagerCSWorkloadRequest: {
+    encode(message: QueryGetManagerCSWorkloadRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetManagerCSWorkloadRequest;
+    fromJSON(object: any): QueryGetManagerCSWorkloadRequest;
+    toJSON(message: QueryGetManagerCSWorkloadRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryGetManagerCSWorkloadRequest>, I>>(base?: I): QueryGetManagerCSWorkloadRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryGetManagerCSWorkloadRequest>, I>>(object: I): QueryGetManagerCSWorkloadRequest;
+};
+export declare const QueryGetManagerCSWorkloadResponse: {
+    encode(message: QueryGetManagerCSWorkloadResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetManagerCSWorkloadResponse;
+    fromJSON(object: any): QueryGetManagerCSWorkloadResponse;
+    toJSON(message: QueryGetManagerCSWorkloadResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryGetManagerCSWorkloadResponse>, I>>(base?: I): QueryGetManagerCSWorkloadResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryGetManagerCSWorkloadResponse>, I>>(object: I): QueryGetManagerCSWorkloadResponse;
+};
+export declare const QueryGetAllManagerCSWorkloadByEraRequest: {
+    encode(message: QueryGetAllManagerCSWorkloadByEraRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllManagerCSWorkloadByEraRequest;
+    fromJSON(object: any): QueryGetAllManagerCSWorkloadByEraRequest;
+    toJSON(message: QueryGetAllManagerCSWorkloadByEraRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryGetAllManagerCSWorkloadByEraRequest>, I>>(base?: I): QueryGetAllManagerCSWorkloadByEraRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryGetAllManagerCSWorkloadByEraRequest>, I>>(object: I): QueryGetAllManagerCSWorkloadByEraRequest;
+};
+export declare const QueryGetAllManagerCSWorkloadByEraResponse: {
+    encode(message: QueryGetAllManagerCSWorkloadByEraResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllManagerCSWorkloadByEraResponse;
+    fromJSON(object: any): QueryGetAllManagerCSWorkloadByEraResponse;
+    toJSON(message: QueryGetAllManagerCSWorkloadByEraResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryGetAllManagerCSWorkloadByEraResponse>, I>>(base?: I): QueryGetAllManagerCSWorkloadByEraResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryGetAllManagerCSWorkloadByEraResponse>, I>>(object: I): QueryGetAllManagerCSWorkloadByEraResponse;
 };
 export declare const QueryGetWorkreportRequest: {
     encode(message: QueryGetWorkreportRequest, writer?: _m0.Writer): _m0.Writer;
@@ -665,38 +738,6 @@ export declare const QueryGetAllReputationDeltaPointByEraResponse: {
     create<I extends Exact<DeepPartial<QueryGetAllReputationDeltaPointByEraResponse>, I>>(base?: I): QueryGetAllReputationDeltaPointByEraResponse;
     fromPartial<I extends Exact<DeepPartial<QueryGetAllReputationDeltaPointByEraResponse>, I>>(object: I): QueryGetAllReputationDeltaPointByEraResponse;
 };
-export declare const QueryGetReputationPointRequest: {
-    encode(message: QueryGetReputationPointRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetReputationPointRequest;
-    fromJSON(object: any): QueryGetReputationPointRequest;
-    toJSON(message: QueryGetReputationPointRequest): unknown;
-    create<I extends Exact<DeepPartial<QueryGetReputationPointRequest>, I>>(base?: I): QueryGetReputationPointRequest;
-    fromPartial<I extends Exact<DeepPartial<QueryGetReputationPointRequest>, I>>(object: I): QueryGetReputationPointRequest;
-};
-export declare const QueryGetReputationPointResponse: {
-    encode(message: QueryGetReputationPointResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetReputationPointResponse;
-    fromJSON(object: any): QueryGetReputationPointResponse;
-    toJSON(message: QueryGetReputationPointResponse): unknown;
-    create<I extends Exact<DeepPartial<QueryGetReputationPointResponse>, I>>(base?: I): QueryGetReputationPointResponse;
-    fromPartial<I extends Exact<DeepPartial<QueryGetReputationPointResponse>, I>>(object: I): QueryGetReputationPointResponse;
-};
-export declare const QueryGetAllReputationPointRequest: {
-    encode(message: QueryGetAllReputationPointRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllReputationPointRequest;
-    fromJSON(object: any): QueryGetAllReputationPointRequest;
-    toJSON(message: QueryGetAllReputationPointRequest): unknown;
-    create<I extends Exact<DeepPartial<QueryGetAllReputationPointRequest>, I>>(base?: I): QueryGetAllReputationPointRequest;
-    fromPartial<I extends Exact<DeepPartial<QueryGetAllReputationPointRequest>, I>>(object: I): QueryGetAllReputationPointRequest;
-};
-export declare const QueryGetAllReputationPointResponse: {
-    encode(message: QueryGetAllReputationPointResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllReputationPointResponse;
-    fromJSON(object: any): QueryGetAllReputationPointResponse;
-    toJSON(message: QueryGetAllReputationPointResponse): unknown;
-    create<I extends Exact<DeepPartial<QueryGetAllReputationPointResponse>, I>>(base?: I): QueryGetAllReputationPointResponse;
-    fromPartial<I extends Exact<DeepPartial<QueryGetAllReputationPointResponse>, I>>(object: I): QueryGetAllReputationPointResponse;
-};
 export declare const QueryGetEraProcessDataRequest: {
     encode(message: QueryGetEraProcessDataRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEraProcessDataRequest;
@@ -729,6 +770,70 @@ export declare const QueryGetAllEraProcessDataResponse: {
     create<I extends Exact<DeepPartial<QueryGetAllEraProcessDataResponse>, I>>(base?: I): QueryGetAllEraProcessDataResponse;
     fromPartial<I extends Exact<DeepPartial<QueryGetAllEraProcessDataResponse>, I>>(object: I): QueryGetAllEraProcessDataResponse;
 };
+export declare const QueryGetCheatStatusCRDataRequest: {
+    encode(message: QueryGetCheatStatusCRDataRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetCheatStatusCRDataRequest;
+    fromJSON(object: any): QueryGetCheatStatusCRDataRequest;
+    toJSON(message: QueryGetCheatStatusCRDataRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryGetCheatStatusCRDataRequest>, I>>(base?: I): QueryGetCheatStatusCRDataRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryGetCheatStatusCRDataRequest>, I>>(object: I): QueryGetCheatStatusCRDataRequest;
+};
+export declare const QueryGetCheatStatusCRDataResponse: {
+    encode(message: QueryGetCheatStatusCRDataResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetCheatStatusCRDataResponse;
+    fromJSON(object: any): QueryGetCheatStatusCRDataResponse;
+    toJSON(message: QueryGetCheatStatusCRDataResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryGetCheatStatusCRDataResponse>, I>>(base?: I): QueryGetCheatStatusCRDataResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryGetCheatStatusCRDataResponse>, I>>(object: I): QueryGetCheatStatusCRDataResponse;
+};
+export declare const QueryGetAllCheatStatusCRDataByEraRequest: {
+    encode(message: QueryGetAllCheatStatusCRDataByEraRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllCheatStatusCRDataByEraRequest;
+    fromJSON(object: any): QueryGetAllCheatStatusCRDataByEraRequest;
+    toJSON(message: QueryGetAllCheatStatusCRDataByEraRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryGetAllCheatStatusCRDataByEraRequest>, I>>(base?: I): QueryGetAllCheatStatusCRDataByEraRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryGetAllCheatStatusCRDataByEraRequest>, I>>(object: I): QueryGetAllCheatStatusCRDataByEraRequest;
+};
+export declare const QueryGetAllCheatStatusCRDataByEraResponse: {
+    encode(message: QueryGetAllCheatStatusCRDataByEraResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllCheatStatusCRDataByEraResponse;
+    fromJSON(object: any): QueryGetAllCheatStatusCRDataByEraResponse;
+    toJSON(message: QueryGetAllCheatStatusCRDataByEraResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryGetAllCheatStatusCRDataByEraResponse>, I>>(base?: I): QueryGetAllCheatStatusCRDataByEraResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryGetAllCheatStatusCRDataByEraResponse>, I>>(object: I): QueryGetAllCheatStatusCRDataByEraResponse;
+};
+export declare const QueryGetEraCheatStatusProcessDataRequest: {
+    encode(message: QueryGetEraCheatStatusProcessDataRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEraCheatStatusProcessDataRequest;
+    fromJSON(object: any): QueryGetEraCheatStatusProcessDataRequest;
+    toJSON(message: QueryGetEraCheatStatusProcessDataRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryGetEraCheatStatusProcessDataRequest>, I>>(base?: I): QueryGetEraCheatStatusProcessDataRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryGetEraCheatStatusProcessDataRequest>, I>>(object: I): QueryGetEraCheatStatusProcessDataRequest;
+};
+export declare const QueryGetEraCheatStatusProcessDataResponse: {
+    encode(message: QueryGetEraCheatStatusProcessDataResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEraCheatStatusProcessDataResponse;
+    fromJSON(object: any): QueryGetEraCheatStatusProcessDataResponse;
+    toJSON(message: QueryGetEraCheatStatusProcessDataResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryGetEraCheatStatusProcessDataResponse>, I>>(base?: I): QueryGetEraCheatStatusProcessDataResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryGetEraCheatStatusProcessDataResponse>, I>>(object: I): QueryGetEraCheatStatusProcessDataResponse;
+};
+export declare const QueryGetAllEraCheatStatusProcessDataRequest: {
+    encode(message: QueryGetAllEraCheatStatusProcessDataRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllEraCheatStatusProcessDataRequest;
+    fromJSON(object: any): QueryGetAllEraCheatStatusProcessDataRequest;
+    toJSON(message: QueryGetAllEraCheatStatusProcessDataRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryGetAllEraCheatStatusProcessDataRequest>, I>>(base?: I): QueryGetAllEraCheatStatusProcessDataRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryGetAllEraCheatStatusProcessDataRequest>, I>>(object: I): QueryGetAllEraCheatStatusProcessDataRequest;
+};
+export declare const QueryGetAllEraCheatStatusProcessDataResponse: {
+    encode(message: QueryGetAllEraCheatStatusProcessDataResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllEraCheatStatusProcessDataResponse;
+    fromJSON(object: any): QueryGetAllEraCheatStatusProcessDataResponse;
+    toJSON(message: QueryGetAllEraCheatStatusProcessDataResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryGetAllEraCheatStatusProcessDataResponse>, I>>(base?: I): QueryGetAllEraCheatStatusProcessDataResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryGetAllEraCheatStatusProcessDataResponse>, I>>(object: I): QueryGetAllEraCheatStatusProcessDataResponse;
+};
 /** Query defines the gRPC querier service. */
 export interface Query {
     /** Parameters queries the parameters of the module. */
@@ -747,6 +852,8 @@ export interface Query {
     AllManagerWRWorkloadByEpoch(request: QueryGetAllManagerWRWorkloadByEpochRequest): Promise<QueryGetAllManagerWRWorkloadByEpochResponse>;
     ManagerRPWorkload(request: QueryGetManagerRPWorkloadRequest): Promise<QueryGetManagerRPWorkloadResponse>;
     AllManagerRPWorkloadByEra(request: QueryGetAllManagerRPWorkloadByEraRequest): Promise<QueryGetAllManagerRPWorkloadByEraResponse>;
+    ManagerCSWorkload(request: QueryGetManagerCSWorkloadRequest): Promise<QueryGetManagerCSWorkloadResponse>;
+    AllManagerCSWorkloadByEra(request: QueryGetAllManagerCSWorkloadByEraRequest): Promise<QueryGetAllManagerCSWorkloadByEraResponse>;
     /** Queries a list of Workreport items. */
     Workreport(request: QueryGetWorkreportRequest): Promise<QueryGetWorkreportResponse>;
     AllWorkreportByEpoch(request: QueryGetAllWorkreportByEpochRequest): Promise<QueryGetAllWorkreportByEpochResponse>;
@@ -769,11 +876,15 @@ export interface Query {
     /** Queries a list of ReputationPoint items. */
     ReputationDeltaPoint(request: QueryGetReputationDeltaPointRequest): Promise<QueryGetReputationDeltaPointResponse>;
     AllReputationDeltaPointByEra(request: QueryGetAllReputationDeltaPointByEraRequest): Promise<QueryGetAllReputationDeltaPointByEraResponse>;
-    ReputationPoint(request: QueryGetReputationPointRequest): Promise<QueryGetReputationPointResponse>;
-    AllReputationPoint(request: QueryGetAllReputationPointRequest): Promise<QueryGetAllReputationPointResponse>;
-    /** Queries a list of EpochProcessData items. */
+    /** Queries a list of EraProcessData items. */
     EraProcessData(request: QueryGetEraProcessDataRequest): Promise<QueryGetEraProcessDataResponse>;
     AllEraProcessData(request: QueryGetAllEraProcessDataRequest): Promise<QueryGetAllEraProcessDataResponse>;
+    /** Queries a list of CheatStatusPRData items. */
+    CheatStatusCRData(request: QueryGetCheatStatusCRDataRequest): Promise<QueryGetCheatStatusCRDataResponse>;
+    AllCheatStatusCRDataByEra(request: QueryGetAllCheatStatusCRDataByEraRequest): Promise<QueryGetAllCheatStatusCRDataByEraResponse>;
+    /** Queries a list of EraCheatStatusProcessData items. */
+    EraCheatStatusProcessData(request: QueryGetEraCheatStatusProcessDataRequest): Promise<QueryGetEraCheatStatusProcessDataResponse>;
+    AllEraCheatStatusProcessData(request: QueryGetAllEraCheatStatusProcessDataRequest): Promise<QueryGetAllEraCheatStatusProcessDataResponse>;
 }
 export declare const QueryServiceName = "enreach.workload.Query";
 export declare class QueryClientImpl implements Query {
@@ -794,6 +905,8 @@ export declare class QueryClientImpl implements Query {
     AllManagerWRWorkloadByEpoch(request: QueryGetAllManagerWRWorkloadByEpochRequest): Promise<QueryGetAllManagerWRWorkloadByEpochResponse>;
     ManagerRPWorkload(request: QueryGetManagerRPWorkloadRequest): Promise<QueryGetManagerRPWorkloadResponse>;
     AllManagerRPWorkloadByEra(request: QueryGetAllManagerRPWorkloadByEraRequest): Promise<QueryGetAllManagerRPWorkloadByEraResponse>;
+    ManagerCSWorkload(request: QueryGetManagerCSWorkloadRequest): Promise<QueryGetManagerCSWorkloadResponse>;
+    AllManagerCSWorkloadByEra(request: QueryGetAllManagerCSWorkloadByEraRequest): Promise<QueryGetAllManagerCSWorkloadByEraResponse>;
     Workreport(request: QueryGetWorkreportRequest): Promise<QueryGetWorkreportResponse>;
     AllWorkreportByEpoch(request: QueryGetAllWorkreportByEpochRequest): Promise<QueryGetAllWorkreportByEpochResponse>;
     WorkreportProcessBatchSize(request: QueryGetWorkreportProcessBatchSizeRequest): Promise<QueryGetWorkreportProcessBatchSizeResponse>;
@@ -810,10 +923,12 @@ export declare class QueryClientImpl implements Query {
     AllReputationPointChangeDataByEra(request: QueryGetAllReputationPointChangeDataByEraRequest): Promise<QueryGetAllReputationPointChangeDataByEraResponse>;
     ReputationDeltaPoint(request: QueryGetReputationDeltaPointRequest): Promise<QueryGetReputationDeltaPointResponse>;
     AllReputationDeltaPointByEra(request: QueryGetAllReputationDeltaPointByEraRequest): Promise<QueryGetAllReputationDeltaPointByEraResponse>;
-    ReputationPoint(request: QueryGetReputationPointRequest): Promise<QueryGetReputationPointResponse>;
-    AllReputationPoint(request: QueryGetAllReputationPointRequest): Promise<QueryGetAllReputationPointResponse>;
     EraProcessData(request: QueryGetEraProcessDataRequest): Promise<QueryGetEraProcessDataResponse>;
     AllEraProcessData(request: QueryGetAllEraProcessDataRequest): Promise<QueryGetAllEraProcessDataResponse>;
+    CheatStatusCRData(request: QueryGetCheatStatusCRDataRequest): Promise<QueryGetCheatStatusCRDataResponse>;
+    AllCheatStatusCRDataByEra(request: QueryGetAllCheatStatusCRDataByEraRequest): Promise<QueryGetAllCheatStatusCRDataByEraResponse>;
+    EraCheatStatusProcessData(request: QueryGetEraCheatStatusProcessDataRequest): Promise<QueryGetEraCheatStatusProcessDataResponse>;
+    AllEraCheatStatusProcessData(request: QueryGetAllEraCheatStatusProcessDataRequest): Promise<QueryGetAllEraCheatStatusProcessDataResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

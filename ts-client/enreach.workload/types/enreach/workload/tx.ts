@@ -1,6 +1,7 @@
 /* eslint-disable */
 import Long from "long";
 import _m0 from "protobufjs/minimal";
+import { CheatStatusCR } from "./cheat_status";
 import { Params } from "./params";
 import { ReputationPointChangeRawData } from "./reputationpoint";
 import { NodeScore } from "./workreport";
@@ -70,6 +71,15 @@ export interface MsgSubmitReputationPointChangeData {
 }
 
 export interface MsgSubmitReputationPointChangeDataResponse {
+}
+
+export interface MsgSubmitCheatStatusCR {
+  managerAccount: string;
+  era: number;
+  nodeDatas: CheatStatusCR[];
+}
+
+export interface MsgSubmitCheatStatusCRResponse {
 }
 
 function createBaseMsgUpdateParams(): MsgUpdateParams {
@@ -947,6 +957,138 @@ export const MsgSubmitReputationPointChangeDataResponse = {
   },
 };
 
+function createBaseMsgSubmitCheatStatusCR(): MsgSubmitCheatStatusCR {
+  return { managerAccount: "", era: 0, nodeDatas: [] };
+}
+
+export const MsgSubmitCheatStatusCR = {
+  encode(message: MsgSubmitCheatStatusCR, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.managerAccount !== "") {
+      writer.uint32(10).string(message.managerAccount);
+    }
+    if (message.era !== 0) {
+      writer.uint32(16).uint64(message.era);
+    }
+    for (const v of message.nodeDatas) {
+      CheatStatusCR.encode(v!, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitCheatStatusCR {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgSubmitCheatStatusCR();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.managerAccount = reader.string();
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.era = longToNumber(reader.uint64() as Long);
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.nodeDatas.push(CheatStatusCR.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgSubmitCheatStatusCR {
+    return {
+      managerAccount: isSet(object.managerAccount) ? String(object.managerAccount) : "",
+      era: isSet(object.era) ? Number(object.era) : 0,
+      nodeDatas: Array.isArray(object?.nodeDatas) ? object.nodeDatas.map((e: any) => CheatStatusCR.fromJSON(e)) : [],
+    };
+  },
+
+  toJSON(message: MsgSubmitCheatStatusCR): unknown {
+    const obj: any = {};
+    if (message.managerAccount !== "") {
+      obj.managerAccount = message.managerAccount;
+    }
+    if (message.era !== 0) {
+      obj.era = Math.round(message.era);
+    }
+    if (message.nodeDatas?.length) {
+      obj.nodeDatas = message.nodeDatas.map((e) => CheatStatusCR.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgSubmitCheatStatusCR>, I>>(base?: I): MsgSubmitCheatStatusCR {
+    return MsgSubmitCheatStatusCR.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgSubmitCheatStatusCR>, I>>(object: I): MsgSubmitCheatStatusCR {
+    const message = createBaseMsgSubmitCheatStatusCR();
+    message.managerAccount = object.managerAccount ?? "";
+    message.era = object.era ?? 0;
+    message.nodeDatas = object.nodeDatas?.map((e) => CheatStatusCR.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseMsgSubmitCheatStatusCRResponse(): MsgSubmitCheatStatusCRResponse {
+  return {};
+}
+
+export const MsgSubmitCheatStatusCRResponse = {
+  encode(_: MsgSubmitCheatStatusCRResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitCheatStatusCRResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgSubmitCheatStatusCRResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgSubmitCheatStatusCRResponse {
+    return {};
+  },
+
+  toJSON(_: MsgSubmitCheatStatusCRResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgSubmitCheatStatusCRResponse>, I>>(base?: I): MsgSubmitCheatStatusCRResponse {
+    return MsgSubmitCheatStatusCRResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgSubmitCheatStatusCRResponse>, I>>(_: I): MsgSubmitCheatStatusCRResponse {
+    const message = createBaseMsgSubmitCheatStatusCRResponse();
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   /**
@@ -964,6 +1106,7 @@ export interface Msg {
   SubmitReputationPointChangeData(
     request: MsgSubmitReputationPointChangeData,
   ): Promise<MsgSubmitReputationPointChangeDataResponse>;
+  SubmitCheatStatusCR(request: MsgSubmitCheatStatusCR): Promise<MsgSubmitCheatStatusCRResponse>;
 }
 
 export const MsgServiceName = "enreach.workload.Msg";
@@ -980,6 +1123,7 @@ export class MsgClientImpl implements Msg {
     this.CreateSuperior = this.CreateSuperior.bind(this);
     this.UpdateSuperior = this.UpdateSuperior.bind(this);
     this.SubmitReputationPointChangeData = this.SubmitReputationPointChangeData.bind(this);
+    this.SubmitCheatStatusCR = this.SubmitCheatStatusCR.bind(this);
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
@@ -1027,6 +1171,12 @@ export class MsgClientImpl implements Msg {
     const data = MsgSubmitReputationPointChangeData.encode(request).finish();
     const promise = this.rpc.request(this.service, "SubmitReputationPointChangeData", data);
     return promise.then((data) => MsgSubmitReputationPointChangeDataResponse.decode(_m0.Reader.create(data)));
+  }
+
+  SubmitCheatStatusCR(request: MsgSubmitCheatStatusCR): Promise<MsgSubmitCheatStatusCRResponse> {
+    const data = MsgSubmitCheatStatusCR.encode(request).finish();
+    const promise = this.rpc.request(this.service, "SubmitCheatStatusCR", data);
+    return promise.then((data) => MsgSubmitCheatStatusCRResponse.decode(_m0.Reader.create(data)));
   }
 }
 

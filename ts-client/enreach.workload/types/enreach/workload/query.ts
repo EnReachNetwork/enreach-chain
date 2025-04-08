@@ -2,12 +2,13 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
+import { CheatStatusCRData, EraCheatStatusProcessData } from "./cheat_status";
 import { EpochInfo } from "./epoch_info";
 import { EraInfo } from "./era_info";
 import { Params } from "./params";
-import { EraProcessData, ReputationDeltaPoint, ReputationPoint, ReputationPointChangeData } from "./reputationpoint";
+import { EraProcessData, ReputationDeltaPoint, ReputationPointChangeData } from "./reputationpoint";
 import { Superior } from "./superior";
-import { ManagerRPWorkload, ManagerWRWorkload, NodeWorkload } from "./workload";
+import { ManagerCSWorkload, ManagerRPWorkload, ManagerWRWorkload, NodeWorkload } from "./workload";
 import { EpochProcessData, Workreport } from "./workreport";
 
 export const protobufPackage = "enreach.workload";
@@ -22,6 +23,7 @@ export interface QueryParamsResponse {
   params: Params | undefined;
 }
 
+/** ////////// */
 export interface QueryGetEpochLengthRequest {
 }
 
@@ -60,6 +62,7 @@ export interface QueryGetAllHistoryEpochResponse {
   pagination: PageResponse | undefined;
 }
 
+/** ////////// */
 export interface QueryGetNodeWorkloadRequest {
   epoch: number;
   nodeID: string;
@@ -79,6 +82,7 @@ export interface QueryGetAllNodeWorkloadByEpochResponse {
   pagination: PageResponse | undefined;
 }
 
+/** ////////// */
 export interface QueryGetManagerWRWorkloadRequest {
   epoch: number;
   managerAccount: string;
@@ -98,6 +102,7 @@ export interface QueryGetAllManagerWRWorkloadByEpochResponse {
   pagination: PageResponse | undefined;
 }
 
+/** ////////// */
 export interface QueryGetManagerRPWorkloadRequest {
   era: number;
   managerAccount: string;
@@ -117,6 +122,27 @@ export interface QueryGetAllManagerRPWorkloadByEraResponse {
   pagination: PageResponse | undefined;
 }
 
+/** ////////// */
+export interface QueryGetManagerCSWorkloadRequest {
+  era: number;
+  managerAccount: string;
+}
+
+export interface QueryGetManagerCSWorkloadResponse {
+  ManagerCSWorkload: ManagerCSWorkload | undefined;
+}
+
+export interface QueryGetAllManagerCSWorkloadByEraRequest {
+  era: number;
+  pagination: PageRequest | undefined;
+}
+
+export interface QueryGetAllManagerCSWorkloadByEraResponse {
+  ManagerCSWorkloads: ManagerCSWorkload[];
+  pagination: PageResponse | undefined;
+}
+
+/** ////////// */
 export interface QueryGetWorkreportRequest {
   epoch: number;
   nodeID: string;
@@ -136,6 +162,7 @@ export interface QueryGetAllWorkreportByEpochResponse {
   pagination: PageResponse | undefined;
 }
 
+/** ////////// */
 export interface QueryGetWorkreportProcessBatchSizeRequest {
 }
 
@@ -150,6 +177,7 @@ export interface QueryGetHistoryEpochDataDepthResponse {
   depth: number;
 }
 
+/** ////////// */
 export interface QueryGetEpochProcessDataRequest {
   epoch: number;
 }
@@ -167,6 +195,7 @@ export interface QueryGetAllEpochProcessDataResponse {
   pagination: PageResponse | undefined;
 }
 
+/** ////////// */
 export interface QueryGetSuperiorRequest {
 }
 
@@ -174,6 +203,7 @@ export interface QueryGetSuperiorResponse {
   Superior: Superior | undefined;
 }
 
+/** ////////// */
 export interface QueryGetEraLengthRequest {
 }
 
@@ -181,7 +211,6 @@ export interface QueryGetEraLengthResponse {
   eraLength: number;
 }
 
-/** //////////////// */
 export interface QueryGetCurrentEraRequest {
 }
 
@@ -251,23 +280,6 @@ export interface QueryGetAllReputationDeltaPointByEraResponse {
   pagination: PageResponse | undefined;
 }
 
-export interface QueryGetReputationPointRequest {
-  nodeID: string;
-}
-
-export interface QueryGetReputationPointResponse {
-  ReputationPoint: ReputationPoint | undefined;
-}
-
-export interface QueryGetAllReputationPointRequest {
-  pagination: PageRequest | undefined;
-}
-
-export interface QueryGetAllReputationPointResponse {
-  ReputationPoints: ReputationPoint[];
-  pagination: PageResponse | undefined;
-}
-
 export interface QueryGetEraProcessDataRequest {
   era: number;
 }
@@ -282,6 +294,43 @@ export interface QueryGetAllEraProcessDataRequest {
 
 export interface QueryGetAllEraProcessDataResponse {
   EraProcessDatas: EraProcessData[];
+  pagination: PageResponse | undefined;
+}
+
+export interface QueryGetCheatStatusCRDataRequest {
+  era: number;
+  nodeID: string;
+}
+
+export interface QueryGetCheatStatusCRDataResponse {
+  CheatStatusCRData: CheatStatusCRData | undefined;
+}
+
+export interface QueryGetAllCheatStatusCRDataByEraRequest {
+  era: number;
+  pagination: PageRequest | undefined;
+}
+
+export interface QueryGetAllCheatStatusCRDataByEraResponse {
+  CheatStatusCRDatas: CheatStatusCRData[];
+  pagination: PageResponse | undefined;
+}
+
+/** ////////// */
+export interface QueryGetEraCheatStatusProcessDataRequest {
+  era: number;
+}
+
+export interface QueryGetEraCheatStatusProcessDataResponse {
+  EraCheatStatusProcessData: EraCheatStatusProcessData | undefined;
+}
+
+export interface QueryGetAllEraCheatStatusProcessDataRequest {
+  pagination: PageRequest | undefined;
+}
+
+export interface QueryGetAllEraCheatStatusProcessDataResponse {
+  EraCheatStatusProcessDatas: EraCheatStatusProcessData[];
   pagination: PageResponse | undefined;
 }
 
@@ -1852,6 +1901,313 @@ export const QueryGetAllManagerRPWorkloadByEraResponse = {
   ): QueryGetAllManagerRPWorkloadByEraResponse {
     const message = createBaseQueryGetAllManagerRPWorkloadByEraResponse();
     message.ManagerRPWorkloads = object.ManagerRPWorkloads?.map((e) => ManagerRPWorkload.fromPartial(e)) || [];
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageResponse.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetManagerCSWorkloadRequest(): QueryGetManagerCSWorkloadRequest {
+  return { era: 0, managerAccount: "" };
+}
+
+export const QueryGetManagerCSWorkloadRequest = {
+  encode(message: QueryGetManagerCSWorkloadRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.era !== 0) {
+      writer.uint32(8).uint64(message.era);
+    }
+    if (message.managerAccount !== "") {
+      writer.uint32(18).string(message.managerAccount);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetManagerCSWorkloadRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetManagerCSWorkloadRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.era = longToNumber(reader.uint64() as Long);
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.managerAccount = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetManagerCSWorkloadRequest {
+    return {
+      era: isSet(object.era) ? Number(object.era) : 0,
+      managerAccount: isSet(object.managerAccount) ? String(object.managerAccount) : "",
+    };
+  },
+
+  toJSON(message: QueryGetManagerCSWorkloadRequest): unknown {
+    const obj: any = {};
+    if (message.era !== 0) {
+      obj.era = Math.round(message.era);
+    }
+    if (message.managerAccount !== "") {
+      obj.managerAccount = message.managerAccount;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetManagerCSWorkloadRequest>, I>>(
+    base?: I,
+  ): QueryGetManagerCSWorkloadRequest {
+    return QueryGetManagerCSWorkloadRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetManagerCSWorkloadRequest>, I>>(
+    object: I,
+  ): QueryGetManagerCSWorkloadRequest {
+    const message = createBaseQueryGetManagerCSWorkloadRequest();
+    message.era = object.era ?? 0;
+    message.managerAccount = object.managerAccount ?? "";
+    return message;
+  },
+};
+
+function createBaseQueryGetManagerCSWorkloadResponse(): QueryGetManagerCSWorkloadResponse {
+  return { ManagerCSWorkload: undefined };
+}
+
+export const QueryGetManagerCSWorkloadResponse = {
+  encode(message: QueryGetManagerCSWorkloadResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.ManagerCSWorkload !== undefined) {
+      ManagerCSWorkload.encode(message.ManagerCSWorkload, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetManagerCSWorkloadResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetManagerCSWorkloadResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.ManagerCSWorkload = ManagerCSWorkload.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetManagerCSWorkloadResponse {
+    return {
+      ManagerCSWorkload: isSet(object.ManagerCSWorkload)
+        ? ManagerCSWorkload.fromJSON(object.ManagerCSWorkload)
+        : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetManagerCSWorkloadResponse): unknown {
+    const obj: any = {};
+    if (message.ManagerCSWorkload !== undefined) {
+      obj.ManagerCSWorkload = ManagerCSWorkload.toJSON(message.ManagerCSWorkload);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetManagerCSWorkloadResponse>, I>>(
+    base?: I,
+  ): QueryGetManagerCSWorkloadResponse {
+    return QueryGetManagerCSWorkloadResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetManagerCSWorkloadResponse>, I>>(
+    object: I,
+  ): QueryGetManagerCSWorkloadResponse {
+    const message = createBaseQueryGetManagerCSWorkloadResponse();
+    message.ManagerCSWorkload = (object.ManagerCSWorkload !== undefined && object.ManagerCSWorkload !== null)
+      ? ManagerCSWorkload.fromPartial(object.ManagerCSWorkload)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllManagerCSWorkloadByEraRequest(): QueryGetAllManagerCSWorkloadByEraRequest {
+  return { era: 0, pagination: undefined };
+}
+
+export const QueryGetAllManagerCSWorkloadByEraRequest = {
+  encode(message: QueryGetAllManagerCSWorkloadByEraRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.era !== 0) {
+      writer.uint32(8).uint64(message.era);
+    }
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllManagerCSWorkloadByEraRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllManagerCSWorkloadByEraRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.era = longToNumber(reader.uint64() as Long);
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllManagerCSWorkloadByEraRequest {
+    return {
+      era: isSet(object.era) ? Number(object.era) : 0,
+      pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetAllManagerCSWorkloadByEraRequest): unknown {
+    const obj: any = {};
+    if (message.era !== 0) {
+      obj.era = Math.round(message.era);
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageRequest.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllManagerCSWorkloadByEraRequest>, I>>(
+    base?: I,
+  ): QueryGetAllManagerCSWorkloadByEraRequest {
+    return QueryGetAllManagerCSWorkloadByEraRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllManagerCSWorkloadByEraRequest>, I>>(
+    object: I,
+  ): QueryGetAllManagerCSWorkloadByEraRequest {
+    const message = createBaseQueryGetAllManagerCSWorkloadByEraRequest();
+    message.era = object.era ?? 0;
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageRequest.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllManagerCSWorkloadByEraResponse(): QueryGetAllManagerCSWorkloadByEraResponse {
+  return { ManagerCSWorkloads: [], pagination: undefined };
+}
+
+export const QueryGetAllManagerCSWorkloadByEraResponse = {
+  encode(message: QueryGetAllManagerCSWorkloadByEraResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.ManagerCSWorkloads) {
+      ManagerCSWorkload.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllManagerCSWorkloadByEraResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllManagerCSWorkloadByEraResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.ManagerCSWorkloads.push(ManagerCSWorkload.decode(reader, reader.uint32()));
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllManagerCSWorkloadByEraResponse {
+    return {
+      ManagerCSWorkloads: Array.isArray(object?.ManagerCSWorkloads)
+        ? object.ManagerCSWorkloads.map((e: any) => ManagerCSWorkload.fromJSON(e))
+        : [],
+      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetAllManagerCSWorkloadByEraResponse): unknown {
+    const obj: any = {};
+    if (message.ManagerCSWorkloads?.length) {
+      obj.ManagerCSWorkloads = message.ManagerCSWorkloads.map((e) => ManagerCSWorkload.toJSON(e));
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllManagerCSWorkloadByEraResponse>, I>>(
+    base?: I,
+  ): QueryGetAllManagerCSWorkloadByEraResponse {
+    return QueryGetAllManagerCSWorkloadByEraResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllManagerCSWorkloadByEraResponse>, I>>(
+    object: I,
+  ): QueryGetAllManagerCSWorkloadByEraResponse {
+    const message = createBaseQueryGetAllManagerCSWorkloadByEraResponse();
+    message.ManagerCSWorkloads = object.ManagerCSWorkloads?.map((e) => ManagerCSWorkload.fromPartial(e)) || [];
     message.pagination = (object.pagination !== undefined && object.pagination !== null)
       ? PageResponse.fromPartial(object.pagination)
       : undefined;
@@ -3922,273 +4278,6 @@ export const QueryGetAllReputationDeltaPointByEraResponse = {
   },
 };
 
-function createBaseQueryGetReputationPointRequest(): QueryGetReputationPointRequest {
-  return { nodeID: "" };
-}
-
-export const QueryGetReputationPointRequest = {
-  encode(message: QueryGetReputationPointRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.nodeID !== "") {
-      writer.uint32(10).string(message.nodeID);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetReputationPointRequest {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetReputationPointRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.nodeID = reader.string();
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): QueryGetReputationPointRequest {
-    return { nodeID: isSet(object.nodeID) ? String(object.nodeID) : "" };
-  },
-
-  toJSON(message: QueryGetReputationPointRequest): unknown {
-    const obj: any = {};
-    if (message.nodeID !== "") {
-      obj.nodeID = message.nodeID;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<QueryGetReputationPointRequest>, I>>(base?: I): QueryGetReputationPointRequest {
-    return QueryGetReputationPointRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<QueryGetReputationPointRequest>, I>>(
-    object: I,
-  ): QueryGetReputationPointRequest {
-    const message = createBaseQueryGetReputationPointRequest();
-    message.nodeID = object.nodeID ?? "";
-    return message;
-  },
-};
-
-function createBaseQueryGetReputationPointResponse(): QueryGetReputationPointResponse {
-  return { ReputationPoint: undefined };
-}
-
-export const QueryGetReputationPointResponse = {
-  encode(message: QueryGetReputationPointResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.ReputationPoint !== undefined) {
-      ReputationPoint.encode(message.ReputationPoint, writer.uint32(10).fork()).ldelim();
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetReputationPointResponse {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetReputationPointResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.ReputationPoint = ReputationPoint.decode(reader, reader.uint32());
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): QueryGetReputationPointResponse {
-    return {
-      ReputationPoint: isSet(object.ReputationPoint) ? ReputationPoint.fromJSON(object.ReputationPoint) : undefined,
-    };
-  },
-
-  toJSON(message: QueryGetReputationPointResponse): unknown {
-    const obj: any = {};
-    if (message.ReputationPoint !== undefined) {
-      obj.ReputationPoint = ReputationPoint.toJSON(message.ReputationPoint);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<QueryGetReputationPointResponse>, I>>(base?: I): QueryGetReputationPointResponse {
-    return QueryGetReputationPointResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<QueryGetReputationPointResponse>, I>>(
-    object: I,
-  ): QueryGetReputationPointResponse {
-    const message = createBaseQueryGetReputationPointResponse();
-    message.ReputationPoint = (object.ReputationPoint !== undefined && object.ReputationPoint !== null)
-      ? ReputationPoint.fromPartial(object.ReputationPoint)
-      : undefined;
-    return message;
-  },
-};
-
-function createBaseQueryGetAllReputationPointRequest(): QueryGetAllReputationPointRequest {
-  return { pagination: undefined };
-}
-
-export const QueryGetAllReputationPointRequest = {
-  encode(message: QueryGetAllReputationPointRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.pagination !== undefined) {
-      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllReputationPointRequest {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetAllReputationPointRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.pagination = PageRequest.decode(reader, reader.uint32());
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): QueryGetAllReputationPointRequest {
-    return { pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined };
-  },
-
-  toJSON(message: QueryGetAllReputationPointRequest): unknown {
-    const obj: any = {};
-    if (message.pagination !== undefined) {
-      obj.pagination = PageRequest.toJSON(message.pagination);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<QueryGetAllReputationPointRequest>, I>>(
-    base?: I,
-  ): QueryGetAllReputationPointRequest {
-    return QueryGetAllReputationPointRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<QueryGetAllReputationPointRequest>, I>>(
-    object: I,
-  ): QueryGetAllReputationPointRequest {
-    const message = createBaseQueryGetAllReputationPointRequest();
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
-    return message;
-  },
-};
-
-function createBaseQueryGetAllReputationPointResponse(): QueryGetAllReputationPointResponse {
-  return { ReputationPoints: [], pagination: undefined };
-}
-
-export const QueryGetAllReputationPointResponse = {
-  encode(message: QueryGetAllReputationPointResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    for (const v of message.ReputationPoints) {
-      ReputationPoint.encode(v!, writer.uint32(10).fork()).ldelim();
-    }
-    if (message.pagination !== undefined) {
-      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllReputationPointResponse {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetAllReputationPointResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.ReputationPoints.push(ReputationPoint.decode(reader, reader.uint32()));
-          continue;
-        case 2:
-          if (tag !== 18) {
-            break;
-          }
-
-          message.pagination = PageResponse.decode(reader, reader.uint32());
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): QueryGetAllReputationPointResponse {
-    return {
-      ReputationPoints: Array.isArray(object?.ReputationPoints)
-        ? object.ReputationPoints.map((e: any) => ReputationPoint.fromJSON(e))
-        : [],
-      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
-    };
-  },
-
-  toJSON(message: QueryGetAllReputationPointResponse): unknown {
-    const obj: any = {};
-    if (message.ReputationPoints?.length) {
-      obj.ReputationPoints = message.ReputationPoints.map((e) => ReputationPoint.toJSON(e));
-    }
-    if (message.pagination !== undefined) {
-      obj.pagination = PageResponse.toJSON(message.pagination);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<QueryGetAllReputationPointResponse>, I>>(
-    base?: I,
-  ): QueryGetAllReputationPointResponse {
-    return QueryGetAllReputationPointResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<QueryGetAllReputationPointResponse>, I>>(
-    object: I,
-  ): QueryGetAllReputationPointResponse {
-    const message = createBaseQueryGetAllReputationPointResponse();
-    message.ReputationPoints = object.ReputationPoints?.map((e) => ReputationPoint.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
-    return message;
-  },
-};
-
 function createBaseQueryGetEraProcessDataRequest(): QueryGetEraProcessDataRequest {
   return { era: 0 };
 }
@@ -4456,6 +4545,590 @@ export const QueryGetAllEraProcessDataResponse = {
   },
 };
 
+function createBaseQueryGetCheatStatusCRDataRequest(): QueryGetCheatStatusCRDataRequest {
+  return { era: 0, nodeID: "" };
+}
+
+export const QueryGetCheatStatusCRDataRequest = {
+  encode(message: QueryGetCheatStatusCRDataRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.era !== 0) {
+      writer.uint32(8).uint64(message.era);
+    }
+    if (message.nodeID !== "") {
+      writer.uint32(18).string(message.nodeID);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetCheatStatusCRDataRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetCheatStatusCRDataRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.era = longToNumber(reader.uint64() as Long);
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.nodeID = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetCheatStatusCRDataRequest {
+    return {
+      era: isSet(object.era) ? Number(object.era) : 0,
+      nodeID: isSet(object.nodeID) ? String(object.nodeID) : "",
+    };
+  },
+
+  toJSON(message: QueryGetCheatStatusCRDataRequest): unknown {
+    const obj: any = {};
+    if (message.era !== 0) {
+      obj.era = Math.round(message.era);
+    }
+    if (message.nodeID !== "") {
+      obj.nodeID = message.nodeID;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetCheatStatusCRDataRequest>, I>>(
+    base?: I,
+  ): QueryGetCheatStatusCRDataRequest {
+    return QueryGetCheatStatusCRDataRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetCheatStatusCRDataRequest>, I>>(
+    object: I,
+  ): QueryGetCheatStatusCRDataRequest {
+    const message = createBaseQueryGetCheatStatusCRDataRequest();
+    message.era = object.era ?? 0;
+    message.nodeID = object.nodeID ?? "";
+    return message;
+  },
+};
+
+function createBaseQueryGetCheatStatusCRDataResponse(): QueryGetCheatStatusCRDataResponse {
+  return { CheatStatusCRData: undefined };
+}
+
+export const QueryGetCheatStatusCRDataResponse = {
+  encode(message: QueryGetCheatStatusCRDataResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.CheatStatusCRData !== undefined) {
+      CheatStatusCRData.encode(message.CheatStatusCRData, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetCheatStatusCRDataResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetCheatStatusCRDataResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.CheatStatusCRData = CheatStatusCRData.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetCheatStatusCRDataResponse {
+    return {
+      CheatStatusCRData: isSet(object.CheatStatusCRData)
+        ? CheatStatusCRData.fromJSON(object.CheatStatusCRData)
+        : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetCheatStatusCRDataResponse): unknown {
+    const obj: any = {};
+    if (message.CheatStatusCRData !== undefined) {
+      obj.CheatStatusCRData = CheatStatusCRData.toJSON(message.CheatStatusCRData);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetCheatStatusCRDataResponse>, I>>(
+    base?: I,
+  ): QueryGetCheatStatusCRDataResponse {
+    return QueryGetCheatStatusCRDataResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetCheatStatusCRDataResponse>, I>>(
+    object: I,
+  ): QueryGetCheatStatusCRDataResponse {
+    const message = createBaseQueryGetCheatStatusCRDataResponse();
+    message.CheatStatusCRData = (object.CheatStatusCRData !== undefined && object.CheatStatusCRData !== null)
+      ? CheatStatusCRData.fromPartial(object.CheatStatusCRData)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllCheatStatusCRDataByEraRequest(): QueryGetAllCheatStatusCRDataByEraRequest {
+  return { era: 0, pagination: undefined };
+}
+
+export const QueryGetAllCheatStatusCRDataByEraRequest = {
+  encode(message: QueryGetAllCheatStatusCRDataByEraRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.era !== 0) {
+      writer.uint32(8).uint64(message.era);
+    }
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllCheatStatusCRDataByEraRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllCheatStatusCRDataByEraRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.era = longToNumber(reader.uint64() as Long);
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllCheatStatusCRDataByEraRequest {
+    return {
+      era: isSet(object.era) ? Number(object.era) : 0,
+      pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetAllCheatStatusCRDataByEraRequest): unknown {
+    const obj: any = {};
+    if (message.era !== 0) {
+      obj.era = Math.round(message.era);
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageRequest.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllCheatStatusCRDataByEraRequest>, I>>(
+    base?: I,
+  ): QueryGetAllCheatStatusCRDataByEraRequest {
+    return QueryGetAllCheatStatusCRDataByEraRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllCheatStatusCRDataByEraRequest>, I>>(
+    object: I,
+  ): QueryGetAllCheatStatusCRDataByEraRequest {
+    const message = createBaseQueryGetAllCheatStatusCRDataByEraRequest();
+    message.era = object.era ?? 0;
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageRequest.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllCheatStatusCRDataByEraResponse(): QueryGetAllCheatStatusCRDataByEraResponse {
+  return { CheatStatusCRDatas: [], pagination: undefined };
+}
+
+export const QueryGetAllCheatStatusCRDataByEraResponse = {
+  encode(message: QueryGetAllCheatStatusCRDataByEraResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.CheatStatusCRDatas) {
+      CheatStatusCRData.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllCheatStatusCRDataByEraResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllCheatStatusCRDataByEraResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.CheatStatusCRDatas.push(CheatStatusCRData.decode(reader, reader.uint32()));
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllCheatStatusCRDataByEraResponse {
+    return {
+      CheatStatusCRDatas: Array.isArray(object?.CheatStatusCRDatas)
+        ? object.CheatStatusCRDatas.map((e: any) => CheatStatusCRData.fromJSON(e))
+        : [],
+      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetAllCheatStatusCRDataByEraResponse): unknown {
+    const obj: any = {};
+    if (message.CheatStatusCRDatas?.length) {
+      obj.CheatStatusCRDatas = message.CheatStatusCRDatas.map((e) => CheatStatusCRData.toJSON(e));
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllCheatStatusCRDataByEraResponse>, I>>(
+    base?: I,
+  ): QueryGetAllCheatStatusCRDataByEraResponse {
+    return QueryGetAllCheatStatusCRDataByEraResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllCheatStatusCRDataByEraResponse>, I>>(
+    object: I,
+  ): QueryGetAllCheatStatusCRDataByEraResponse {
+    const message = createBaseQueryGetAllCheatStatusCRDataByEraResponse();
+    message.CheatStatusCRDatas = object.CheatStatusCRDatas?.map((e) => CheatStatusCRData.fromPartial(e)) || [];
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageResponse.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetEraCheatStatusProcessDataRequest(): QueryGetEraCheatStatusProcessDataRequest {
+  return { era: 0 };
+}
+
+export const QueryGetEraCheatStatusProcessDataRequest = {
+  encode(message: QueryGetEraCheatStatusProcessDataRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.era !== 0) {
+      writer.uint32(8).uint64(message.era);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEraCheatStatusProcessDataRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetEraCheatStatusProcessDataRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.era = longToNumber(reader.uint64() as Long);
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetEraCheatStatusProcessDataRequest {
+    return { era: isSet(object.era) ? Number(object.era) : 0 };
+  },
+
+  toJSON(message: QueryGetEraCheatStatusProcessDataRequest): unknown {
+    const obj: any = {};
+    if (message.era !== 0) {
+      obj.era = Math.round(message.era);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetEraCheatStatusProcessDataRequest>, I>>(
+    base?: I,
+  ): QueryGetEraCheatStatusProcessDataRequest {
+    return QueryGetEraCheatStatusProcessDataRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetEraCheatStatusProcessDataRequest>, I>>(
+    object: I,
+  ): QueryGetEraCheatStatusProcessDataRequest {
+    const message = createBaseQueryGetEraCheatStatusProcessDataRequest();
+    message.era = object.era ?? 0;
+    return message;
+  },
+};
+
+function createBaseQueryGetEraCheatStatusProcessDataResponse(): QueryGetEraCheatStatusProcessDataResponse {
+  return { EraCheatStatusProcessData: undefined };
+}
+
+export const QueryGetEraCheatStatusProcessDataResponse = {
+  encode(message: QueryGetEraCheatStatusProcessDataResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.EraCheatStatusProcessData !== undefined) {
+      EraCheatStatusProcessData.encode(message.EraCheatStatusProcessData, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEraCheatStatusProcessDataResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetEraCheatStatusProcessDataResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.EraCheatStatusProcessData = EraCheatStatusProcessData.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetEraCheatStatusProcessDataResponse {
+    return {
+      EraCheatStatusProcessData: isSet(object.EraCheatStatusProcessData)
+        ? EraCheatStatusProcessData.fromJSON(object.EraCheatStatusProcessData)
+        : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetEraCheatStatusProcessDataResponse): unknown {
+    const obj: any = {};
+    if (message.EraCheatStatusProcessData !== undefined) {
+      obj.EraCheatStatusProcessData = EraCheatStatusProcessData.toJSON(message.EraCheatStatusProcessData);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetEraCheatStatusProcessDataResponse>, I>>(
+    base?: I,
+  ): QueryGetEraCheatStatusProcessDataResponse {
+    return QueryGetEraCheatStatusProcessDataResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetEraCheatStatusProcessDataResponse>, I>>(
+    object: I,
+  ): QueryGetEraCheatStatusProcessDataResponse {
+    const message = createBaseQueryGetEraCheatStatusProcessDataResponse();
+    message.EraCheatStatusProcessData =
+      (object.EraCheatStatusProcessData !== undefined && object.EraCheatStatusProcessData !== null)
+        ? EraCheatStatusProcessData.fromPartial(object.EraCheatStatusProcessData)
+        : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllEraCheatStatusProcessDataRequest(): QueryGetAllEraCheatStatusProcessDataRequest {
+  return { pagination: undefined };
+}
+
+export const QueryGetAllEraCheatStatusProcessDataRequest = {
+  encode(message: QueryGetAllEraCheatStatusProcessDataRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllEraCheatStatusProcessDataRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllEraCheatStatusProcessDataRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllEraCheatStatusProcessDataRequest {
+    return { pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined };
+  },
+
+  toJSON(message: QueryGetAllEraCheatStatusProcessDataRequest): unknown {
+    const obj: any = {};
+    if (message.pagination !== undefined) {
+      obj.pagination = PageRequest.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllEraCheatStatusProcessDataRequest>, I>>(
+    base?: I,
+  ): QueryGetAllEraCheatStatusProcessDataRequest {
+    return QueryGetAllEraCheatStatusProcessDataRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllEraCheatStatusProcessDataRequest>, I>>(
+    object: I,
+  ): QueryGetAllEraCheatStatusProcessDataRequest {
+    const message = createBaseQueryGetAllEraCheatStatusProcessDataRequest();
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageRequest.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllEraCheatStatusProcessDataResponse(): QueryGetAllEraCheatStatusProcessDataResponse {
+  return { EraCheatStatusProcessDatas: [], pagination: undefined };
+}
+
+export const QueryGetAllEraCheatStatusProcessDataResponse = {
+  encode(message: QueryGetAllEraCheatStatusProcessDataResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.EraCheatStatusProcessDatas) {
+      EraCheatStatusProcessData.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllEraCheatStatusProcessDataResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllEraCheatStatusProcessDataResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.EraCheatStatusProcessDatas.push(EraCheatStatusProcessData.decode(reader, reader.uint32()));
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllEraCheatStatusProcessDataResponse {
+    return {
+      EraCheatStatusProcessDatas: Array.isArray(object?.EraCheatStatusProcessDatas)
+        ? object.EraCheatStatusProcessDatas.map((e: any) => EraCheatStatusProcessData.fromJSON(e))
+        : [],
+      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetAllEraCheatStatusProcessDataResponse): unknown {
+    const obj: any = {};
+    if (message.EraCheatStatusProcessDatas?.length) {
+      obj.EraCheatStatusProcessDatas = message.EraCheatStatusProcessDatas.map((e) =>
+        EraCheatStatusProcessData.toJSON(e)
+      );
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllEraCheatStatusProcessDataResponse>, I>>(
+    base?: I,
+  ): QueryGetAllEraCheatStatusProcessDataResponse {
+    return QueryGetAllEraCheatStatusProcessDataResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllEraCheatStatusProcessDataResponse>, I>>(
+    object: I,
+  ): QueryGetAllEraCheatStatusProcessDataResponse {
+    const message = createBaseQueryGetAllEraCheatStatusProcessDataResponse();
+    message.EraCheatStatusProcessDatas =
+      object.EraCheatStatusProcessDatas?.map((e) => EraCheatStatusProcessData.fromPartial(e)) || [];
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageResponse.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Parameters queries the parameters of the module. */
@@ -4480,6 +5153,10 @@ export interface Query {
   AllManagerRPWorkloadByEra(
     request: QueryGetAllManagerRPWorkloadByEraRequest,
   ): Promise<QueryGetAllManagerRPWorkloadByEraResponse>;
+  ManagerCSWorkload(request: QueryGetManagerCSWorkloadRequest): Promise<QueryGetManagerCSWorkloadResponse>;
+  AllManagerCSWorkloadByEra(
+    request: QueryGetAllManagerCSWorkloadByEraRequest,
+  ): Promise<QueryGetAllManagerCSWorkloadByEraResponse>;
   /** Queries a list of Workreport items. */
   Workreport(request: QueryGetWorkreportRequest): Promise<QueryGetWorkreportResponse>;
   AllWorkreportByEpoch(request: QueryGetAllWorkreportByEpochRequest): Promise<QueryGetAllWorkreportByEpochResponse>;
@@ -4510,11 +5187,21 @@ export interface Query {
   AllReputationDeltaPointByEra(
     request: QueryGetAllReputationDeltaPointByEraRequest,
   ): Promise<QueryGetAllReputationDeltaPointByEraResponse>;
-  ReputationPoint(request: QueryGetReputationPointRequest): Promise<QueryGetReputationPointResponse>;
-  AllReputationPoint(request: QueryGetAllReputationPointRequest): Promise<QueryGetAllReputationPointResponse>;
-  /** Queries a list of EpochProcessData items. */
+  /** Queries a list of EraProcessData items. */
   EraProcessData(request: QueryGetEraProcessDataRequest): Promise<QueryGetEraProcessDataResponse>;
   AllEraProcessData(request: QueryGetAllEraProcessDataRequest): Promise<QueryGetAllEraProcessDataResponse>;
+  /** Queries a list of CheatStatusPRData items. */
+  CheatStatusCRData(request: QueryGetCheatStatusCRDataRequest): Promise<QueryGetCheatStatusCRDataResponse>;
+  AllCheatStatusCRDataByEra(
+    request: QueryGetAllCheatStatusCRDataByEraRequest,
+  ): Promise<QueryGetAllCheatStatusCRDataByEraResponse>;
+  /** Queries a list of EraCheatStatusProcessData items. */
+  EraCheatStatusProcessData(
+    request: QueryGetEraCheatStatusProcessDataRequest,
+  ): Promise<QueryGetEraCheatStatusProcessDataResponse>;
+  AllEraCheatStatusProcessData(
+    request: QueryGetAllEraCheatStatusProcessDataRequest,
+  ): Promise<QueryGetAllEraCheatStatusProcessDataResponse>;
 }
 
 export const QueryServiceName = "enreach.workload.Query";
@@ -4536,6 +5223,8 @@ export class QueryClientImpl implements Query {
     this.AllManagerWRWorkloadByEpoch = this.AllManagerWRWorkloadByEpoch.bind(this);
     this.ManagerRPWorkload = this.ManagerRPWorkload.bind(this);
     this.AllManagerRPWorkloadByEra = this.AllManagerRPWorkloadByEra.bind(this);
+    this.ManagerCSWorkload = this.ManagerCSWorkload.bind(this);
+    this.AllManagerCSWorkloadByEra = this.AllManagerCSWorkloadByEra.bind(this);
     this.Workreport = this.Workreport.bind(this);
     this.AllWorkreportByEpoch = this.AllWorkreportByEpoch.bind(this);
     this.WorkreportProcessBatchSize = this.WorkreportProcessBatchSize.bind(this);
@@ -4552,10 +5241,12 @@ export class QueryClientImpl implements Query {
     this.AllReputationPointChangeDataByEra = this.AllReputationPointChangeDataByEra.bind(this);
     this.ReputationDeltaPoint = this.ReputationDeltaPoint.bind(this);
     this.AllReputationDeltaPointByEra = this.AllReputationDeltaPointByEra.bind(this);
-    this.ReputationPoint = this.ReputationPoint.bind(this);
-    this.AllReputationPoint = this.AllReputationPoint.bind(this);
     this.EraProcessData = this.EraProcessData.bind(this);
     this.AllEraProcessData = this.AllEraProcessData.bind(this);
+    this.CheatStatusCRData = this.CheatStatusCRData.bind(this);
+    this.AllCheatStatusCRDataByEra = this.AllCheatStatusCRDataByEra.bind(this);
+    this.EraCheatStatusProcessData = this.EraCheatStatusProcessData.bind(this);
+    this.AllEraCheatStatusProcessData = this.AllEraCheatStatusProcessData.bind(this);
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
@@ -4633,6 +5324,20 @@ export class QueryClientImpl implements Query {
     const data = QueryGetAllManagerRPWorkloadByEraRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "AllManagerRPWorkloadByEra", data);
     return promise.then((data) => QueryGetAllManagerRPWorkloadByEraResponse.decode(_m0.Reader.create(data)));
+  }
+
+  ManagerCSWorkload(request: QueryGetManagerCSWorkloadRequest): Promise<QueryGetManagerCSWorkloadResponse> {
+    const data = QueryGetManagerCSWorkloadRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "ManagerCSWorkload", data);
+    return promise.then((data) => QueryGetManagerCSWorkloadResponse.decode(_m0.Reader.create(data)));
+  }
+
+  AllManagerCSWorkloadByEra(
+    request: QueryGetAllManagerCSWorkloadByEraRequest,
+  ): Promise<QueryGetAllManagerCSWorkloadByEraResponse> {
+    const data = QueryGetAllManagerCSWorkloadByEraRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "AllManagerCSWorkloadByEra", data);
+    return promise.then((data) => QueryGetAllManagerCSWorkloadByEraResponse.decode(_m0.Reader.create(data)));
   }
 
   Workreport(request: QueryGetWorkreportRequest): Promise<QueryGetWorkreportResponse> {
@@ -4739,18 +5444,6 @@ export class QueryClientImpl implements Query {
     return promise.then((data) => QueryGetAllReputationDeltaPointByEraResponse.decode(_m0.Reader.create(data)));
   }
 
-  ReputationPoint(request: QueryGetReputationPointRequest): Promise<QueryGetReputationPointResponse> {
-    const data = QueryGetReputationPointRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ReputationPoint", data);
-    return promise.then((data) => QueryGetReputationPointResponse.decode(_m0.Reader.create(data)));
-  }
-
-  AllReputationPoint(request: QueryGetAllReputationPointRequest): Promise<QueryGetAllReputationPointResponse> {
-    const data = QueryGetAllReputationPointRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "AllReputationPoint", data);
-    return promise.then((data) => QueryGetAllReputationPointResponse.decode(_m0.Reader.create(data)));
-  }
-
   EraProcessData(request: QueryGetEraProcessDataRequest): Promise<QueryGetEraProcessDataResponse> {
     const data = QueryGetEraProcessDataRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "EraProcessData", data);
@@ -4761,6 +5454,36 @@ export class QueryClientImpl implements Query {
     const data = QueryGetAllEraProcessDataRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "AllEraProcessData", data);
     return promise.then((data) => QueryGetAllEraProcessDataResponse.decode(_m0.Reader.create(data)));
+  }
+
+  CheatStatusCRData(request: QueryGetCheatStatusCRDataRequest): Promise<QueryGetCheatStatusCRDataResponse> {
+    const data = QueryGetCheatStatusCRDataRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "CheatStatusCRData", data);
+    return promise.then((data) => QueryGetCheatStatusCRDataResponse.decode(_m0.Reader.create(data)));
+  }
+
+  AllCheatStatusCRDataByEra(
+    request: QueryGetAllCheatStatusCRDataByEraRequest,
+  ): Promise<QueryGetAllCheatStatusCRDataByEraResponse> {
+    const data = QueryGetAllCheatStatusCRDataByEraRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "AllCheatStatusCRDataByEra", data);
+    return promise.then((data) => QueryGetAllCheatStatusCRDataByEraResponse.decode(_m0.Reader.create(data)));
+  }
+
+  EraCheatStatusProcessData(
+    request: QueryGetEraCheatStatusProcessDataRequest,
+  ): Promise<QueryGetEraCheatStatusProcessDataResponse> {
+    const data = QueryGetEraCheatStatusProcessDataRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "EraCheatStatusProcessData", data);
+    return promise.then((data) => QueryGetEraCheatStatusProcessDataResponse.decode(_m0.Reader.create(data)));
+  }
+
+  AllEraCheatStatusProcessData(
+    request: QueryGetAllEraCheatStatusProcessDataRequest,
+  ): Promise<QueryGetAllEraCheatStatusProcessDataResponse> {
+    const data = QueryGetAllEraCheatStatusProcessDataRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "AllEraCheatStatusProcessData", data);
+    return promise.then((data) => QueryGetAllEraCheatStatusProcessDataResponse.decode(_m0.Reader.create(data)));
   }
 }
 

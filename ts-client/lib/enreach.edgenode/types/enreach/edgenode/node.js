@@ -18,6 +18,8 @@ function createBaseNode() {
         trafficType: 0,
         registerStatus: "",
         workingStatus: "",
+        cheatStatus: "",
+        reputationPoint: 0,
         creator: "",
         createAt: 0,
         updator: "",
@@ -50,17 +52,23 @@ exports.Node = {
         if (message.workingStatus !== "") {
             writer.uint32(66).string(message.workingStatus);
         }
+        if (message.cheatStatus !== "") {
+            writer.uint32(74).string(message.cheatStatus);
+        }
+        if (message.reputationPoint !== 0) {
+            writer.uint32(80).int64(message.reputationPoint);
+        }
         if (message.creator !== "") {
-            writer.uint32(74).string(message.creator);
+            writer.uint32(90).string(message.creator);
         }
         if (message.createAt !== 0) {
-            writer.uint32(80).uint64(message.createAt);
+            writer.uint32(96).uint64(message.createAt);
         }
         if (message.updator !== "") {
-            writer.uint32(90).string(message.updator);
+            writer.uint32(106).string(message.updator);
         }
         if (message.updateAt !== 0) {
-            writer.uint32(96).uint64(message.updateAt);
+            writer.uint32(112).uint64(message.updateAt);
         }
         return writer;
     },
@@ -123,22 +131,34 @@ exports.Node = {
                     if (tag !== 74) {
                         break;
                     }
-                    message.creator = reader.string();
+                    message.cheatStatus = reader.string();
                     continue;
                 case 10:
                     if (tag !== 80) {
                         break;
                     }
-                    message.createAt = longToNumber(reader.uint64());
+                    message.reputationPoint = longToNumber(reader.int64());
                     continue;
                 case 11:
                     if (tag !== 90) {
                         break;
                     }
-                    message.updator = reader.string();
+                    message.creator = reader.string();
                     continue;
                 case 12:
                     if (tag !== 96) {
+                        break;
+                    }
+                    message.createAt = longToNumber(reader.uint64());
+                    continue;
+                case 13:
+                    if (tag !== 106) {
+                        break;
+                    }
+                    message.updator = reader.string();
+                    continue;
+                case 14:
+                    if (tag !== 112) {
                         break;
                     }
                     message.updateAt = longToNumber(reader.uint64());
@@ -161,6 +181,8 @@ exports.Node = {
             trafficType: isSet(object.trafficType) ? Number(object.trafficType) : 0,
             registerStatus: isSet(object.registerStatus) ? String(object.registerStatus) : "",
             workingStatus: isSet(object.workingStatus) ? String(object.workingStatus) : "",
+            cheatStatus: isSet(object.cheatStatus) ? String(object.cheatStatus) : "",
+            reputationPoint: isSet(object.reputationPoint) ? Number(object.reputationPoint) : 0,
             creator: isSet(object.creator) ? String(object.creator) : "",
             createAt: isSet(object.createAt) ? Number(object.createAt) : 0,
             updator: isSet(object.updator) ? String(object.updator) : "",
@@ -193,6 +215,12 @@ exports.Node = {
         if (message.workingStatus !== "") {
             obj.workingStatus = message.workingStatus;
         }
+        if (message.cheatStatus !== "") {
+            obj.cheatStatus = message.cheatStatus;
+        }
+        if (message.reputationPoint !== 0) {
+            obj.reputationPoint = Math.round(message.reputationPoint);
+        }
         if (message.creator !== "") {
             obj.creator = message.creator;
         }
@@ -220,6 +248,8 @@ exports.Node = {
         message.trafficType = object.trafficType ?? 0;
         message.registerStatus = object.registerStatus ?? "";
         message.workingStatus = object.workingStatus ?? "";
+        message.cheatStatus = object.cheatStatus ?? "";
+        message.reputationPoint = object.reputationPoint ?? 0;
         message.creator = object.creator ?? "";
         message.createAt = object.createAt ?? 0;
         message.updator = object.updator ?? "";

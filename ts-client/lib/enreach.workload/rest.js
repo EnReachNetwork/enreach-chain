@@ -92,6 +92,31 @@ class Api extends HttpClient {
          * No description
          *
          * @tags Query
+         * @name QueryAllCheatStatusCrDataByEra
+         * @request GET:/enreach/workload/cheat_status_cr_data/{era}
+         */
+        this.queryAllCheatStatusCRDataByEra = (era, query, params = {}) => this.request({
+            path: `/enreach/workload/cheat_status_cr_data/${era}`,
+            method: "GET",
+            query: query,
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryCheatStatusCrData
+         * @request GET:/enreach/workload/cheat_status_cr_data/{era}/{nodeID}
+         */
+        this.queryCheatStatusCRData = (era, nodeId, params = {}) => this.request({
+            path: `/enreach/workload/cheat_status_cr_data/${era}/${nodeId}`,
+            method: "GET",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
          * @name QueryCurrentEpoch
          * @request GET:/enreach/workload/epoch/current_epoch
          */
@@ -214,6 +239,31 @@ class Api extends HttpClient {
          * No description
          *
          * @tags Query
+         * @name QueryManagerCsWorkload
+         * @request GET:/enreach/workload/manager_cs_workload/{era}/{managerAccount}
+         */
+        this.queryManagerCSWorkload = (era, managerAccount, params = {}) => this.request({
+            path: `/enreach/workload/manager_cs_workload/${era}/${managerAccount}`,
+            method: "GET",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryAllManagerCsWorkloadByEra
+         * @request GET:/enreach/workload/manager_cs_workloads/{era}
+         */
+        this.queryAllManagerCSWorkloadByEra = (era, query, params = {}) => this.request({
+            path: `/enreach/workload/manager_cs_workloads/${era}`,
+            method: "GET",
+            query: query,
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
          * @name QueryManagerRpWorkload
          * @request GET:/enreach/workload/manager_rp_workload/{era}/{managerAccount}
          */
@@ -326,18 +376,6 @@ class Api extends HttpClient {
          * No description
          *
          * @tags Query
-         * @name QueryReputationPoint
-         * @request GET:/enreach/workload/reputation_point/{nodeID}
-         */
-        this.queryReputationPoint = (nodeId, params = {}) => this.request({
-            path: `/enreach/workload/reputation_point/${nodeId}`,
-            method: "GET",
-            ...params,
-        });
-        /**
-         * No description
-         *
-         * @tags Query
          * @name QueryReputationPointChangeData
          * @request GET:/enreach/workload/reputation_point_change_data/{era}/{nodeID}
          */
@@ -355,19 +393,6 @@ class Api extends HttpClient {
          */
         this.queryAllReputationPointChangeDataByEra = (era, query, params = {}) => this.request({
             path: `/enreach/workload/reputation_point_change_datas/${era}`,
-            method: "GET",
-            query: query,
-            ...params,
-        });
-        /**
-         * No description
-         *
-         * @tags Query
-         * @name QueryAllReputationPoint
-         * @request GET:/enreach/workload/reputation_points
-         */
-        this.queryAllReputationPoint = (query, params = {}) => this.request({
-            path: `/enreach/workload/reputation_points`,
             method: "GET",
             query: query,
             ...params,
@@ -405,6 +430,31 @@ class Api extends HttpClient {
          */
         this.queryAllEpochProcessData = (query, params = {}) => this.request({
             path: `/enreach/workload/workreport/epoch_process_datas`,
+            method: "GET",
+            query: query,
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryEraCheatStatusProcessData
+         * @request GET:/enreach/workload/workreport/era_cheat_status_process_data/{era}
+         */
+        this.queryEraCheatStatusProcessData = (era, params = {}) => this.request({
+            path: `/enreach/workload/workreport/era_cheat_status_process_data/${era}`,
+            method: "GET",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryAllEraCheatStatusProcessData
+         * @request GET:/enreach/workload/workreport/era_cheat_status_process_datas
+         */
+        this.queryAllEraCheatStatusProcessData = (query, params = {}) => this.request({
+            path: `/enreach/workload/workreport/era_cheat_status_process_datas`,
             method: "GET",
             query: query,
             ...params,

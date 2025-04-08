@@ -10,6 +10,8 @@ export interface Node {
     trafficType: number;
     registerStatus: string;
     workingStatus: string;
+    cheatStatus: string;
+    reputationPoint: number;
     creator: string;
     createAt: number;
     updator: string;

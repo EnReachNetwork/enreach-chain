@@ -1,4 +1,5 @@
 import _m0 from "protobufjs/minimal";
+import { CheatStatusCR } from "./cheat_status";
 import { Params } from "./params";
 import { ReputationPointChangeRawData } from "./reputationpoint";
 import { NodeScore } from "./workreport";
@@ -53,6 +54,13 @@ export interface MsgSubmitReputationPointChangeData {
     nodePoints: ReputationPointChangeRawData[];
 }
 export interface MsgSubmitReputationPointChangeDataResponse {
+}
+export interface MsgSubmitCheatStatusCR {
+    managerAccount: string;
+    era: number;
+    nodeDatas: CheatStatusCR[];
+}
+export interface MsgSubmitCheatStatusCRResponse {
 }
 export declare const MsgUpdateParams: {
     encode(message: MsgUpdateParams, writer?: _m0.Writer): _m0.Writer;
@@ -166,6 +174,22 @@ export declare const MsgSubmitReputationPointChangeDataResponse: {
     create<I extends Exact<DeepPartial<MsgSubmitReputationPointChangeDataResponse>, I>>(base?: I): MsgSubmitReputationPointChangeDataResponse;
     fromPartial<I extends Exact<DeepPartial<MsgSubmitReputationPointChangeDataResponse>, I>>(_: I): MsgSubmitReputationPointChangeDataResponse;
 };
+export declare const MsgSubmitCheatStatusCR: {
+    encode(message: MsgSubmitCheatStatusCR, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitCheatStatusCR;
+    fromJSON(object: any): MsgSubmitCheatStatusCR;
+    toJSON(message: MsgSubmitCheatStatusCR): unknown;
+    create<I extends Exact<DeepPartial<MsgSubmitCheatStatusCR>, I>>(base?: I): MsgSubmitCheatStatusCR;
+    fromPartial<I extends Exact<DeepPartial<MsgSubmitCheatStatusCR>, I>>(object: I): MsgSubmitCheatStatusCR;
+};
+export declare const MsgSubmitCheatStatusCRResponse: {
+    encode(_: MsgSubmitCheatStatusCRResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitCheatStatusCRResponse;
+    fromJSON(_: any): MsgSubmitCheatStatusCRResponse;
+    toJSON(_: MsgSubmitCheatStatusCRResponse): unknown;
+    create<I extends Exact<DeepPartial<MsgSubmitCheatStatusCRResponse>, I>>(base?: I): MsgSubmitCheatStatusCRResponse;
+    fromPartial<I extends Exact<DeepPartial<MsgSubmitCheatStatusCRResponse>, I>>(_: I): MsgSubmitCheatStatusCRResponse;
+};
 /** Msg defines the Msg service. */
 export interface Msg {
     /**
@@ -179,6 +203,7 @@ export interface Msg {
     CreateSuperior(request: MsgCreateSuperior): Promise<MsgCreateSuperiorResponse>;
     UpdateSuperior(request: MsgUpdateSuperior): Promise<MsgUpdateSuperiorResponse>;
     SubmitReputationPointChangeData(request: MsgSubmitReputationPointChangeData): Promise<MsgSubmitReputationPointChangeDataResponse>;
+    SubmitCheatStatusCR(request: MsgSubmitCheatStatusCR): Promise<MsgSubmitCheatStatusCRResponse>;
 }
 export declare const MsgServiceName = "enreach.workload.Msg";
 export declare class MsgClientImpl implements Msg {
@@ -194,6 +219,7 @@ export declare class MsgClientImpl implements Msg {
     CreateSuperior(request: MsgCreateSuperior): Promise<MsgCreateSuperiorResponse>;
     UpdateSuperior(request: MsgUpdateSuperior): Promise<MsgUpdateSuperiorResponse>;
     SubmitReputationPointChangeData(request: MsgSubmitReputationPointChangeData): Promise<MsgSubmitReputationPointChangeDataResponse>;
+    SubmitCheatStatusCR(request: MsgSubmitCheatStatusCR): Promise<MsgSubmitCheatStatusCRResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

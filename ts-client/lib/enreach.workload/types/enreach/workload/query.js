@@ -3,12 +3,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.QueryGetReputationPointChangeDataRequest = exports.QueryGetAllHistoryEraResponse = exports.QueryGetAllHistoryEraRequest = exports.QueryGetHistoryEraResponse = exports.QueryGetHistoryEraRequest = exports.QueryGetPendingNextEraResponse = exports.QueryGetPendingNextEraRequest = exports.QueryGetCurrentEraResponse = exports.QueryGetCurrentEraRequest = exports.QueryGetEraLengthResponse = exports.QueryGetEraLengthRequest = exports.QueryGetSuperiorResponse = exports.QueryGetSuperiorRequest = exports.QueryGetAllEpochProcessDataResponse = exports.QueryGetAllEpochProcessDataRequest = exports.QueryGetEpochProcessDataResponse = exports.QueryGetEpochProcessDataRequest = exports.QueryGetHistoryEpochDataDepthResponse = exports.QueryGetHistoryEpochDataDepthRequest = exports.QueryGetWorkreportProcessBatchSizeResponse = exports.QueryGetWorkreportProcessBatchSizeRequest = exports.QueryGetAllWorkreportByEpochResponse = exports.QueryGetAllWorkreportByEpochRequest = exports.QueryGetWorkreportResponse = exports.QueryGetWorkreportRequest = exports.QueryGetAllManagerRPWorkloadByEraResponse = exports.QueryGetAllManagerRPWorkloadByEraRequest = exports.QueryGetManagerRPWorkloadResponse = exports.QueryGetManagerRPWorkloadRequest = exports.QueryGetAllManagerWRWorkloadByEpochResponse = exports.QueryGetAllManagerWRWorkloadByEpochRequest = exports.QueryGetManagerWRWorkloadResponse = exports.QueryGetManagerWRWorkloadRequest = exports.QueryGetAllNodeWorkloadByEpochResponse = exports.QueryGetAllNodeWorkloadByEpochRequest = exports.QueryGetNodeWorkloadResponse = exports.QueryGetNodeWorkloadRequest = exports.QueryGetAllHistoryEpochResponse = exports.QueryGetAllHistoryEpochRequest = exports.QueryGetHistoryEpochResponse = exports.QueryGetHistoryEpochRequest = exports.QueryGetPendingNextEpochResponse = exports.QueryGetPendingNextEpochRequest = exports.QueryGetCurrentEpochResponse = exports.QueryGetCurrentEpochRequest = exports.QueryGetEpochLengthResponse = exports.QueryGetEpochLengthRequest = exports.QueryParamsResponse = exports.QueryParamsRequest = exports.protobufPackage = void 0;
-exports.QueryClientImpl = exports.QueryServiceName = exports.QueryGetAllEraProcessDataResponse = exports.QueryGetAllEraProcessDataRequest = exports.QueryGetEraProcessDataResponse = exports.QueryGetEraProcessDataRequest = exports.QueryGetAllReputationPointResponse = exports.QueryGetAllReputationPointRequest = exports.QueryGetReputationPointResponse = exports.QueryGetReputationPointRequest = exports.QueryGetAllReputationDeltaPointByEraResponse = exports.QueryGetAllReputationDeltaPointByEraRequest = exports.QueryGetReputationDeltaPointResponse = exports.QueryGetReputationDeltaPointRequest = exports.QueryGetAllReputationPointChangeDataByEraResponse = exports.QueryGetAllReputationPointChangeDataByEraRequest = exports.QueryGetReputationPointChangeDataResponse = void 0;
+exports.QueryGetHistoryEraRequest = exports.QueryGetPendingNextEraResponse = exports.QueryGetPendingNextEraRequest = exports.QueryGetCurrentEraResponse = exports.QueryGetCurrentEraRequest = exports.QueryGetEraLengthResponse = exports.QueryGetEraLengthRequest = exports.QueryGetSuperiorResponse = exports.QueryGetSuperiorRequest = exports.QueryGetAllEpochProcessDataResponse = exports.QueryGetAllEpochProcessDataRequest = exports.QueryGetEpochProcessDataResponse = exports.QueryGetEpochProcessDataRequest = exports.QueryGetHistoryEpochDataDepthResponse = exports.QueryGetHistoryEpochDataDepthRequest = exports.QueryGetWorkreportProcessBatchSizeResponse = exports.QueryGetWorkreportProcessBatchSizeRequest = exports.QueryGetAllWorkreportByEpochResponse = exports.QueryGetAllWorkreportByEpochRequest = exports.QueryGetWorkreportResponse = exports.QueryGetWorkreportRequest = exports.QueryGetAllManagerCSWorkloadByEraResponse = exports.QueryGetAllManagerCSWorkloadByEraRequest = exports.QueryGetManagerCSWorkloadResponse = exports.QueryGetManagerCSWorkloadRequest = exports.QueryGetAllManagerRPWorkloadByEraResponse = exports.QueryGetAllManagerRPWorkloadByEraRequest = exports.QueryGetManagerRPWorkloadResponse = exports.QueryGetManagerRPWorkloadRequest = exports.QueryGetAllManagerWRWorkloadByEpochResponse = exports.QueryGetAllManagerWRWorkloadByEpochRequest = exports.QueryGetManagerWRWorkloadResponse = exports.QueryGetManagerWRWorkloadRequest = exports.QueryGetAllNodeWorkloadByEpochResponse = exports.QueryGetAllNodeWorkloadByEpochRequest = exports.QueryGetNodeWorkloadResponse = exports.QueryGetNodeWorkloadRequest = exports.QueryGetAllHistoryEpochResponse = exports.QueryGetAllHistoryEpochRequest = exports.QueryGetHistoryEpochResponse = exports.QueryGetHistoryEpochRequest = exports.QueryGetPendingNextEpochResponse = exports.QueryGetPendingNextEpochRequest = exports.QueryGetCurrentEpochResponse = exports.QueryGetCurrentEpochRequest = exports.QueryGetEpochLengthResponse = exports.QueryGetEpochLengthRequest = exports.QueryParamsResponse = exports.QueryParamsRequest = exports.protobufPackage = void 0;
+exports.QueryClientImpl = exports.QueryServiceName = exports.QueryGetAllEraCheatStatusProcessDataResponse = exports.QueryGetAllEraCheatStatusProcessDataRequest = exports.QueryGetEraCheatStatusProcessDataResponse = exports.QueryGetEraCheatStatusProcessDataRequest = exports.QueryGetAllCheatStatusCRDataByEraResponse = exports.QueryGetAllCheatStatusCRDataByEraRequest = exports.QueryGetCheatStatusCRDataResponse = exports.QueryGetCheatStatusCRDataRequest = exports.QueryGetAllEraProcessDataResponse = exports.QueryGetAllEraProcessDataRequest = exports.QueryGetEraProcessDataResponse = exports.QueryGetEraProcessDataRequest = exports.QueryGetAllReputationDeltaPointByEraResponse = exports.QueryGetAllReputationDeltaPointByEraRequest = exports.QueryGetReputationDeltaPointResponse = exports.QueryGetReputationDeltaPointRequest = exports.QueryGetAllReputationPointChangeDataByEraResponse = exports.QueryGetAllReputationPointChangeDataByEraRequest = exports.QueryGetReputationPointChangeDataResponse = exports.QueryGetReputationPointChangeDataRequest = exports.QueryGetAllHistoryEraResponse = exports.QueryGetAllHistoryEraRequest = exports.QueryGetHistoryEraResponse = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const pagination_1 = require("../../cosmos/base/query/v1beta1/pagination");
+const cheat_status_1 = require("./cheat_status");
 const epoch_info_1 = require("./epoch_info");
 const era_info_1 = require("./era_info");
 const params_1 = require("./params");
@@ -1363,6 +1364,266 @@ exports.QueryGetAllManagerRPWorkloadByEraResponse = {
     fromPartial(object) {
         const message = createBaseQueryGetAllManagerRPWorkloadByEraResponse();
         message.ManagerRPWorkloads = object.ManagerRPWorkloads?.map((e) => workload_1.ManagerRPWorkload.fromPartial(e)) || [];
+        message.pagination = (object.pagination !== undefined && object.pagination !== null)
+            ? pagination_1.PageResponse.fromPartial(object.pagination)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetManagerCSWorkloadRequest() {
+    return { era: 0, managerAccount: "" };
+}
+exports.QueryGetManagerCSWorkloadRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.era !== 0) {
+            writer.uint32(8).uint64(message.era);
+        }
+        if (message.managerAccount !== "") {
+            writer.uint32(18).string(message.managerAccount);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetManagerCSWorkloadRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 8) {
+                        break;
+                    }
+                    message.era = longToNumber(reader.uint64());
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.managerAccount = reader.string();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            era: isSet(object.era) ? Number(object.era) : 0,
+            managerAccount: isSet(object.managerAccount) ? String(object.managerAccount) : "",
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.era !== 0) {
+            obj.era = Math.round(message.era);
+        }
+        if (message.managerAccount !== "") {
+            obj.managerAccount = message.managerAccount;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetManagerCSWorkloadRequest.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetManagerCSWorkloadRequest();
+        message.era = object.era ?? 0;
+        message.managerAccount = object.managerAccount ?? "";
+        return message;
+    },
+};
+function createBaseQueryGetManagerCSWorkloadResponse() {
+    return { ManagerCSWorkload: undefined };
+}
+exports.QueryGetManagerCSWorkloadResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.ManagerCSWorkload !== undefined) {
+            workload_1.ManagerCSWorkload.encode(message.ManagerCSWorkload, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetManagerCSWorkloadResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.ManagerCSWorkload = workload_1.ManagerCSWorkload.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            ManagerCSWorkload: isSet(object.ManagerCSWorkload)
+                ? workload_1.ManagerCSWorkload.fromJSON(object.ManagerCSWorkload)
+                : undefined,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.ManagerCSWorkload !== undefined) {
+            obj.ManagerCSWorkload = workload_1.ManagerCSWorkload.toJSON(message.ManagerCSWorkload);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetManagerCSWorkloadResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetManagerCSWorkloadResponse();
+        message.ManagerCSWorkload = (object.ManagerCSWorkload !== undefined && object.ManagerCSWorkload !== null)
+            ? workload_1.ManagerCSWorkload.fromPartial(object.ManagerCSWorkload)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetAllManagerCSWorkloadByEraRequest() {
+    return { era: 0, pagination: undefined };
+}
+exports.QueryGetAllManagerCSWorkloadByEraRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.era !== 0) {
+            writer.uint32(8).uint64(message.era);
+        }
+        if (message.pagination !== undefined) {
+            pagination_1.PageRequest.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetAllManagerCSWorkloadByEraRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 8) {
+                        break;
+                    }
+                    message.era = longToNumber(reader.uint64());
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.pagination = pagination_1.PageRequest.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            era: isSet(object.era) ? Number(object.era) : 0,
+            pagination: isSet(object.pagination) ? pagination_1.PageRequest.fromJSON(object.pagination) : undefined,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.era !== 0) {
+            obj.era = Math.round(message.era);
+        }
+        if (message.pagination !== undefined) {
+            obj.pagination = pagination_1.PageRequest.toJSON(message.pagination);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetAllManagerCSWorkloadByEraRequest.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetAllManagerCSWorkloadByEraRequest();
+        message.era = object.era ?? 0;
+        message.pagination = (object.pagination !== undefined && object.pagination !== null)
+            ? pagination_1.PageRequest.fromPartial(object.pagination)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetAllManagerCSWorkloadByEraResponse() {
+    return { ManagerCSWorkloads: [], pagination: undefined };
+}
+exports.QueryGetAllManagerCSWorkloadByEraResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        for (const v of message.ManagerCSWorkloads) {
+            workload_1.ManagerCSWorkload.encode(v, writer.uint32(10).fork()).ldelim();
+        }
+        if (message.pagination !== undefined) {
+            pagination_1.PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetAllManagerCSWorkloadByEraResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.ManagerCSWorkloads.push(workload_1.ManagerCSWorkload.decode(reader, reader.uint32()));
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.pagination = pagination_1.PageResponse.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            ManagerCSWorkloads: Array.isArray(object?.ManagerCSWorkloads)
+                ? object.ManagerCSWorkloads.map((e) => workload_1.ManagerCSWorkload.fromJSON(e))
+                : [],
+            pagination: isSet(object.pagination) ? pagination_1.PageResponse.fromJSON(object.pagination) : undefined,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.ManagerCSWorkloads?.length) {
+            obj.ManagerCSWorkloads = message.ManagerCSWorkloads.map((e) => workload_1.ManagerCSWorkload.toJSON(e));
+        }
+        if (message.pagination !== undefined) {
+            obj.pagination = pagination_1.PageResponse.toJSON(message.pagination);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetAllManagerCSWorkloadByEraResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetAllManagerCSWorkloadByEraResponse();
+        message.ManagerCSWorkloads = object.ManagerCSWorkloads?.map((e) => workload_1.ManagerCSWorkload.fromPartial(e)) || [];
         message.pagination = (object.pagination !== undefined && object.pagination !== null)
             ? pagination_1.PageResponse.fromPartial(object.pagination)
             : undefined;
@@ -3121,232 +3382,6 @@ exports.QueryGetAllReputationDeltaPointByEraResponse = {
         return message;
     },
 };
-function createBaseQueryGetReputationPointRequest() {
-    return { nodeID: "" };
-}
-exports.QueryGetReputationPointRequest = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.nodeID !== "") {
-            writer.uint32(10).string(message.nodeID);
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseQueryGetReputationPointRequest();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.nodeID = reader.string();
-                    continue;
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return { nodeID: isSet(object.nodeID) ? String(object.nodeID) : "" };
-    },
-    toJSON(message) {
-        const obj = {};
-        if (message.nodeID !== "") {
-            obj.nodeID = message.nodeID;
-        }
-        return obj;
-    },
-    create(base) {
-        return exports.QueryGetReputationPointRequest.fromPartial(base ?? {});
-    },
-    fromPartial(object) {
-        const message = createBaseQueryGetReputationPointRequest();
-        message.nodeID = object.nodeID ?? "";
-        return message;
-    },
-};
-function createBaseQueryGetReputationPointResponse() {
-    return { ReputationPoint: undefined };
-}
-exports.QueryGetReputationPointResponse = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.ReputationPoint !== undefined) {
-            reputationpoint_1.ReputationPoint.encode(message.ReputationPoint, writer.uint32(10).fork()).ldelim();
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseQueryGetReputationPointResponse();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.ReputationPoint = reputationpoint_1.ReputationPoint.decode(reader, reader.uint32());
-                    continue;
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return {
-            ReputationPoint: isSet(object.ReputationPoint) ? reputationpoint_1.ReputationPoint.fromJSON(object.ReputationPoint) : undefined,
-        };
-    },
-    toJSON(message) {
-        const obj = {};
-        if (message.ReputationPoint !== undefined) {
-            obj.ReputationPoint = reputationpoint_1.ReputationPoint.toJSON(message.ReputationPoint);
-        }
-        return obj;
-    },
-    create(base) {
-        return exports.QueryGetReputationPointResponse.fromPartial(base ?? {});
-    },
-    fromPartial(object) {
-        const message = createBaseQueryGetReputationPointResponse();
-        message.ReputationPoint = (object.ReputationPoint !== undefined && object.ReputationPoint !== null)
-            ? reputationpoint_1.ReputationPoint.fromPartial(object.ReputationPoint)
-            : undefined;
-        return message;
-    },
-};
-function createBaseQueryGetAllReputationPointRequest() {
-    return { pagination: undefined };
-}
-exports.QueryGetAllReputationPointRequest = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.pagination !== undefined) {
-            pagination_1.PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseQueryGetAllReputationPointRequest();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.pagination = pagination_1.PageRequest.decode(reader, reader.uint32());
-                    continue;
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return { pagination: isSet(object.pagination) ? pagination_1.PageRequest.fromJSON(object.pagination) : undefined };
-    },
-    toJSON(message) {
-        const obj = {};
-        if (message.pagination !== undefined) {
-            obj.pagination = pagination_1.PageRequest.toJSON(message.pagination);
-        }
-        return obj;
-    },
-    create(base) {
-        return exports.QueryGetAllReputationPointRequest.fromPartial(base ?? {});
-    },
-    fromPartial(object) {
-        const message = createBaseQueryGetAllReputationPointRequest();
-        message.pagination = (object.pagination !== undefined && object.pagination !== null)
-            ? pagination_1.PageRequest.fromPartial(object.pagination)
-            : undefined;
-        return message;
-    },
-};
-function createBaseQueryGetAllReputationPointResponse() {
-    return { ReputationPoints: [], pagination: undefined };
-}
-exports.QueryGetAllReputationPointResponse = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        for (const v of message.ReputationPoints) {
-            reputationpoint_1.ReputationPoint.encode(v, writer.uint32(10).fork()).ldelim();
-        }
-        if (message.pagination !== undefined) {
-            pagination_1.PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseQueryGetAllReputationPointResponse();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.ReputationPoints.push(reputationpoint_1.ReputationPoint.decode(reader, reader.uint32()));
-                    continue;
-                case 2:
-                    if (tag !== 18) {
-                        break;
-                    }
-                    message.pagination = pagination_1.PageResponse.decode(reader, reader.uint32());
-                    continue;
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return {
-            ReputationPoints: Array.isArray(object?.ReputationPoints)
-                ? object.ReputationPoints.map((e) => reputationpoint_1.ReputationPoint.fromJSON(e))
-                : [],
-            pagination: isSet(object.pagination) ? pagination_1.PageResponse.fromJSON(object.pagination) : undefined,
-        };
-    },
-    toJSON(message) {
-        const obj = {};
-        if (message.ReputationPoints?.length) {
-            obj.ReputationPoints = message.ReputationPoints.map((e) => reputationpoint_1.ReputationPoint.toJSON(e));
-        }
-        if (message.pagination !== undefined) {
-            obj.pagination = pagination_1.PageResponse.toJSON(message.pagination);
-        }
-        return obj;
-    },
-    create(base) {
-        return exports.QueryGetAllReputationPointResponse.fromPartial(base ?? {});
-    },
-    fromPartial(object) {
-        const message = createBaseQueryGetAllReputationPointResponse();
-        message.ReputationPoints = object.ReputationPoints?.map((e) => reputationpoint_1.ReputationPoint.fromPartial(e)) || [];
-        message.pagination = (object.pagination !== undefined && object.pagination !== null)
-            ? pagination_1.PageResponse.fromPartial(object.pagination)
-            : undefined;
-        return message;
-    },
-};
 function createBaseQueryGetEraProcessDataRequest() {
     return { era: 0 };
 }
@@ -3573,6 +3608,496 @@ exports.QueryGetAllEraProcessDataResponse = {
         return message;
     },
 };
+function createBaseQueryGetCheatStatusCRDataRequest() {
+    return { era: 0, nodeID: "" };
+}
+exports.QueryGetCheatStatusCRDataRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.era !== 0) {
+            writer.uint32(8).uint64(message.era);
+        }
+        if (message.nodeID !== "") {
+            writer.uint32(18).string(message.nodeID);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetCheatStatusCRDataRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 8) {
+                        break;
+                    }
+                    message.era = longToNumber(reader.uint64());
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.nodeID = reader.string();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            era: isSet(object.era) ? Number(object.era) : 0,
+            nodeID: isSet(object.nodeID) ? String(object.nodeID) : "",
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.era !== 0) {
+            obj.era = Math.round(message.era);
+        }
+        if (message.nodeID !== "") {
+            obj.nodeID = message.nodeID;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetCheatStatusCRDataRequest.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetCheatStatusCRDataRequest();
+        message.era = object.era ?? 0;
+        message.nodeID = object.nodeID ?? "";
+        return message;
+    },
+};
+function createBaseQueryGetCheatStatusCRDataResponse() {
+    return { CheatStatusCRData: undefined };
+}
+exports.QueryGetCheatStatusCRDataResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.CheatStatusCRData !== undefined) {
+            cheat_status_1.CheatStatusCRData.encode(message.CheatStatusCRData, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetCheatStatusCRDataResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.CheatStatusCRData = cheat_status_1.CheatStatusCRData.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            CheatStatusCRData: isSet(object.CheatStatusCRData)
+                ? cheat_status_1.CheatStatusCRData.fromJSON(object.CheatStatusCRData)
+                : undefined,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.CheatStatusCRData !== undefined) {
+            obj.CheatStatusCRData = cheat_status_1.CheatStatusCRData.toJSON(message.CheatStatusCRData);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetCheatStatusCRDataResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetCheatStatusCRDataResponse();
+        message.CheatStatusCRData = (object.CheatStatusCRData !== undefined && object.CheatStatusCRData !== null)
+            ? cheat_status_1.CheatStatusCRData.fromPartial(object.CheatStatusCRData)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetAllCheatStatusCRDataByEraRequest() {
+    return { era: 0, pagination: undefined };
+}
+exports.QueryGetAllCheatStatusCRDataByEraRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.era !== 0) {
+            writer.uint32(8).uint64(message.era);
+        }
+        if (message.pagination !== undefined) {
+            pagination_1.PageRequest.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetAllCheatStatusCRDataByEraRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 8) {
+                        break;
+                    }
+                    message.era = longToNumber(reader.uint64());
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.pagination = pagination_1.PageRequest.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            era: isSet(object.era) ? Number(object.era) : 0,
+            pagination: isSet(object.pagination) ? pagination_1.PageRequest.fromJSON(object.pagination) : undefined,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.era !== 0) {
+            obj.era = Math.round(message.era);
+        }
+        if (message.pagination !== undefined) {
+            obj.pagination = pagination_1.PageRequest.toJSON(message.pagination);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetAllCheatStatusCRDataByEraRequest.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetAllCheatStatusCRDataByEraRequest();
+        message.era = object.era ?? 0;
+        message.pagination = (object.pagination !== undefined && object.pagination !== null)
+            ? pagination_1.PageRequest.fromPartial(object.pagination)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetAllCheatStatusCRDataByEraResponse() {
+    return { CheatStatusCRDatas: [], pagination: undefined };
+}
+exports.QueryGetAllCheatStatusCRDataByEraResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        for (const v of message.CheatStatusCRDatas) {
+            cheat_status_1.CheatStatusCRData.encode(v, writer.uint32(10).fork()).ldelim();
+        }
+        if (message.pagination !== undefined) {
+            pagination_1.PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetAllCheatStatusCRDataByEraResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.CheatStatusCRDatas.push(cheat_status_1.CheatStatusCRData.decode(reader, reader.uint32()));
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.pagination = pagination_1.PageResponse.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            CheatStatusCRDatas: Array.isArray(object?.CheatStatusCRDatas)
+                ? object.CheatStatusCRDatas.map((e) => cheat_status_1.CheatStatusCRData.fromJSON(e))
+                : [],
+            pagination: isSet(object.pagination) ? pagination_1.PageResponse.fromJSON(object.pagination) : undefined,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.CheatStatusCRDatas?.length) {
+            obj.CheatStatusCRDatas = message.CheatStatusCRDatas.map((e) => cheat_status_1.CheatStatusCRData.toJSON(e));
+        }
+        if (message.pagination !== undefined) {
+            obj.pagination = pagination_1.PageResponse.toJSON(message.pagination);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetAllCheatStatusCRDataByEraResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetAllCheatStatusCRDataByEraResponse();
+        message.CheatStatusCRDatas = object.CheatStatusCRDatas?.map((e) => cheat_status_1.CheatStatusCRData.fromPartial(e)) || [];
+        message.pagination = (object.pagination !== undefined && object.pagination !== null)
+            ? pagination_1.PageResponse.fromPartial(object.pagination)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetEraCheatStatusProcessDataRequest() {
+    return { era: 0 };
+}
+exports.QueryGetEraCheatStatusProcessDataRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.era !== 0) {
+            writer.uint32(8).uint64(message.era);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetEraCheatStatusProcessDataRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 8) {
+                        break;
+                    }
+                    message.era = longToNumber(reader.uint64());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { era: isSet(object.era) ? Number(object.era) : 0 };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.era !== 0) {
+            obj.era = Math.round(message.era);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetEraCheatStatusProcessDataRequest.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetEraCheatStatusProcessDataRequest();
+        message.era = object.era ?? 0;
+        return message;
+    },
+};
+function createBaseQueryGetEraCheatStatusProcessDataResponse() {
+    return { EraCheatStatusProcessData: undefined };
+}
+exports.QueryGetEraCheatStatusProcessDataResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.EraCheatStatusProcessData !== undefined) {
+            cheat_status_1.EraCheatStatusProcessData.encode(message.EraCheatStatusProcessData, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetEraCheatStatusProcessDataResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.EraCheatStatusProcessData = cheat_status_1.EraCheatStatusProcessData.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            EraCheatStatusProcessData: isSet(object.EraCheatStatusProcessData)
+                ? cheat_status_1.EraCheatStatusProcessData.fromJSON(object.EraCheatStatusProcessData)
+                : undefined,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.EraCheatStatusProcessData !== undefined) {
+            obj.EraCheatStatusProcessData = cheat_status_1.EraCheatStatusProcessData.toJSON(message.EraCheatStatusProcessData);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetEraCheatStatusProcessDataResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetEraCheatStatusProcessDataResponse();
+        message.EraCheatStatusProcessData =
+            (object.EraCheatStatusProcessData !== undefined && object.EraCheatStatusProcessData !== null)
+                ? cheat_status_1.EraCheatStatusProcessData.fromPartial(object.EraCheatStatusProcessData)
+                : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetAllEraCheatStatusProcessDataRequest() {
+    return { pagination: undefined };
+}
+exports.QueryGetAllEraCheatStatusProcessDataRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.pagination !== undefined) {
+            pagination_1.PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetAllEraCheatStatusProcessDataRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.pagination = pagination_1.PageRequest.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { pagination: isSet(object.pagination) ? pagination_1.PageRequest.fromJSON(object.pagination) : undefined };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.pagination !== undefined) {
+            obj.pagination = pagination_1.PageRequest.toJSON(message.pagination);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetAllEraCheatStatusProcessDataRequest.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetAllEraCheatStatusProcessDataRequest();
+        message.pagination = (object.pagination !== undefined && object.pagination !== null)
+            ? pagination_1.PageRequest.fromPartial(object.pagination)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetAllEraCheatStatusProcessDataResponse() {
+    return { EraCheatStatusProcessDatas: [], pagination: undefined };
+}
+exports.QueryGetAllEraCheatStatusProcessDataResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        for (const v of message.EraCheatStatusProcessDatas) {
+            cheat_status_1.EraCheatStatusProcessData.encode(v, writer.uint32(10).fork()).ldelim();
+        }
+        if (message.pagination !== undefined) {
+            pagination_1.PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetAllEraCheatStatusProcessDataResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.EraCheatStatusProcessDatas.push(cheat_status_1.EraCheatStatusProcessData.decode(reader, reader.uint32()));
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.pagination = pagination_1.PageResponse.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            EraCheatStatusProcessDatas: Array.isArray(object?.EraCheatStatusProcessDatas)
+                ? object.EraCheatStatusProcessDatas.map((e) => cheat_status_1.EraCheatStatusProcessData.fromJSON(e))
+                : [],
+            pagination: isSet(object.pagination) ? pagination_1.PageResponse.fromJSON(object.pagination) : undefined,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.EraCheatStatusProcessDatas?.length) {
+            obj.EraCheatStatusProcessDatas = message.EraCheatStatusProcessDatas.map((e) => cheat_status_1.EraCheatStatusProcessData.toJSON(e));
+        }
+        if (message.pagination !== undefined) {
+            obj.pagination = pagination_1.PageResponse.toJSON(message.pagination);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetAllEraCheatStatusProcessDataResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetAllEraCheatStatusProcessDataResponse();
+        message.EraCheatStatusProcessDatas =
+            object.EraCheatStatusProcessDatas?.map((e) => cheat_status_1.EraCheatStatusProcessData.fromPartial(e)) || [];
+        message.pagination = (object.pagination !== undefined && object.pagination !== null)
+            ? pagination_1.PageResponse.fromPartial(object.pagination)
+            : undefined;
+        return message;
+    },
+};
 exports.QueryServiceName = "enreach.workload.Query";
 class QueryClientImpl {
     constructor(rpc, opts) {
@@ -3590,6 +4115,8 @@ class QueryClientImpl {
         this.AllManagerWRWorkloadByEpoch = this.AllManagerWRWorkloadByEpoch.bind(this);
         this.ManagerRPWorkload = this.ManagerRPWorkload.bind(this);
         this.AllManagerRPWorkloadByEra = this.AllManagerRPWorkloadByEra.bind(this);
+        this.ManagerCSWorkload = this.ManagerCSWorkload.bind(this);
+        this.AllManagerCSWorkloadByEra = this.AllManagerCSWorkloadByEra.bind(this);
         this.Workreport = this.Workreport.bind(this);
         this.AllWorkreportByEpoch = this.AllWorkreportByEpoch.bind(this);
         this.WorkreportProcessBatchSize = this.WorkreportProcessBatchSize.bind(this);
@@ -3606,10 +4133,12 @@ class QueryClientImpl {
         this.AllReputationPointChangeDataByEra = this.AllReputationPointChangeDataByEra.bind(this);
         this.ReputationDeltaPoint = this.ReputationDeltaPoint.bind(this);
         this.AllReputationDeltaPointByEra = this.AllReputationDeltaPointByEra.bind(this);
-        this.ReputationPoint = this.ReputationPoint.bind(this);
-        this.AllReputationPoint = this.AllReputationPoint.bind(this);
         this.EraProcessData = this.EraProcessData.bind(this);
         this.AllEraProcessData = this.AllEraProcessData.bind(this);
+        this.CheatStatusCRData = this.CheatStatusCRData.bind(this);
+        this.AllCheatStatusCRDataByEra = this.AllCheatStatusCRDataByEra.bind(this);
+        this.EraCheatStatusProcessData = this.EraCheatStatusProcessData.bind(this);
+        this.AllEraCheatStatusProcessData = this.AllEraCheatStatusProcessData.bind(this);
     }
     Params(request) {
         const data = exports.QueryParamsRequest.encode(request).finish();
@@ -3670,6 +4199,16 @@ class QueryClientImpl {
         const data = exports.QueryGetAllManagerRPWorkloadByEraRequest.encode(request).finish();
         const promise = this.rpc.request(this.service, "AllManagerRPWorkloadByEra", data);
         return promise.then((data) => exports.QueryGetAllManagerRPWorkloadByEraResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    ManagerCSWorkload(request) {
+        const data = exports.QueryGetManagerCSWorkloadRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "ManagerCSWorkload", data);
+        return promise.then((data) => exports.QueryGetManagerCSWorkloadResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    AllManagerCSWorkloadByEra(request) {
+        const data = exports.QueryGetAllManagerCSWorkloadByEraRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "AllManagerCSWorkloadByEra", data);
+        return promise.then((data) => exports.QueryGetAllManagerCSWorkloadByEraResponse.decode(minimal_1.default.Reader.create(data)));
     }
     Workreport(request) {
         const data = exports.QueryGetWorkreportRequest.encode(request).finish();
@@ -3751,16 +4290,6 @@ class QueryClientImpl {
         const promise = this.rpc.request(this.service, "AllReputationDeltaPointByEra", data);
         return promise.then((data) => exports.QueryGetAllReputationDeltaPointByEraResponse.decode(minimal_1.default.Reader.create(data)));
     }
-    ReputationPoint(request) {
-        const data = exports.QueryGetReputationPointRequest.encode(request).finish();
-        const promise = this.rpc.request(this.service, "ReputationPoint", data);
-        return promise.then((data) => exports.QueryGetReputationPointResponse.decode(minimal_1.default.Reader.create(data)));
-    }
-    AllReputationPoint(request) {
-        const data = exports.QueryGetAllReputationPointRequest.encode(request).finish();
-        const promise = this.rpc.request(this.service, "AllReputationPoint", data);
-        return promise.then((data) => exports.QueryGetAllReputationPointResponse.decode(minimal_1.default.Reader.create(data)));
-    }
     EraProcessData(request) {
         const data = exports.QueryGetEraProcessDataRequest.encode(request).finish();
         const promise = this.rpc.request(this.service, "EraProcessData", data);
@@ -3770,6 +4299,26 @@ class QueryClientImpl {
         const data = exports.QueryGetAllEraProcessDataRequest.encode(request).finish();
         const promise = this.rpc.request(this.service, "AllEraProcessData", data);
         return promise.then((data) => exports.QueryGetAllEraProcessDataResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    CheatStatusCRData(request) {
+        const data = exports.QueryGetCheatStatusCRDataRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "CheatStatusCRData", data);
+        return promise.then((data) => exports.QueryGetCheatStatusCRDataResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    AllCheatStatusCRDataByEra(request) {
+        const data = exports.QueryGetAllCheatStatusCRDataByEraRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "AllCheatStatusCRDataByEra", data);
+        return promise.then((data) => exports.QueryGetAllCheatStatusCRDataByEraResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    EraCheatStatusProcessData(request) {
+        const data = exports.QueryGetEraCheatStatusProcessDataRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "EraCheatStatusProcessData", data);
+        return promise.then((data) => exports.QueryGetEraCheatStatusProcessDataResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    AllEraCheatStatusProcessData(request) {
+        const data = exports.QueryGetAllEraCheatStatusProcessDataRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "AllEraCheatStatusProcessData", data);
+        return promise.then((data) => exports.QueryGetAllEraCheatStatusProcessDataResponse.decode(minimal_1.default.Reader.create(data)));
     }
 }
 exports.QueryClientImpl = QueryClientImpl;

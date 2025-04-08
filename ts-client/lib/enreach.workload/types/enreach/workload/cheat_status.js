@@ -3,29 +3,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EraProcessData = exports.ReputationDeltaPoint = exports.ReputationPointChangeData_DataEntry = exports.ReputationPointChangeData = exports.ReputationPointChangeRawDataMapDB_DataEntry = exports.ReputationPointChangeRawDataMapDB = exports.ReputationPointChangeRawDataDB = exports.ReputationPointChangeRawData = exports.protobufPackage = void 0;
+exports.EraCheatStatusProcessData = exports.CheatStatusCRData_DataEntry = exports.CheatStatusCRData = exports.CheatStatusCRMapDB_DataEntry = exports.CheatStatusCRMapDB = exports.CheatStatusCRDB = exports.CheatStatusCR = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const pagination_1 = require("../../cosmos/base/query/v1beta1/pagination");
 exports.protobufPackage = "enreach.workload";
-function createBaseReputationPointChangeRawData() {
-    return { nodeID: "", deltaPoint: 0 };
+function createBaseCheatStatusCR() {
+    return { nodeID: "", cheatStatus: "" };
 }
-exports.ReputationPointChangeRawData = {
+exports.CheatStatusCR = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.nodeID !== "") {
             writer.uint32(10).string(message.nodeID);
         }
-        if (message.deltaPoint !== 0) {
-            writer.uint32(16).int64(message.deltaPoint);
+        if (message.cheatStatus !== "") {
+            writer.uint32(18).string(message.cheatStatus);
         }
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseReputationPointChangeRawData();
+        const message = createBaseCheatStatusCR();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -36,10 +36,10 @@ exports.ReputationPointChangeRawData = {
                     message.nodeID = reader.string();
                     continue;
                 case 2:
-                    if (tag !== 16) {
+                    if (tag !== 18) {
                         break;
                     }
-                    message.deltaPoint = longToNumber(reader.int64());
+                    message.cheatStatus = reader.string();
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -52,7 +52,7 @@ exports.ReputationPointChangeRawData = {
     fromJSON(object) {
         return {
             nodeID: isSet(object.nodeID) ? String(object.nodeID) : "",
-            deltaPoint: isSet(object.deltaPoint) ? Number(object.deltaPoint) : 0,
+            cheatStatus: isSet(object.cheatStatus) ? String(object.cheatStatus) : "",
         };
     },
     toJSON(message) {
@@ -60,28 +60,28 @@ exports.ReputationPointChangeRawData = {
         if (message.nodeID !== "") {
             obj.nodeID = message.nodeID;
         }
-        if (message.deltaPoint !== 0) {
-            obj.deltaPoint = Math.round(message.deltaPoint);
+        if (message.cheatStatus !== "") {
+            obj.cheatStatus = message.cheatStatus;
         }
         return obj;
     },
     create(base) {
-        return exports.ReputationPointChangeRawData.fromPartial(base ?? {});
+        return exports.CheatStatusCR.fromPartial(base ?? {});
     },
     fromPartial(object) {
-        const message = createBaseReputationPointChangeRawData();
+        const message = createBaseCheatStatusCR();
         message.nodeID = object.nodeID ?? "";
-        message.deltaPoint = object.deltaPoint ?? 0;
+        message.cheatStatus = object.cheatStatus ?? "";
         return message;
     },
 };
-function createBaseReputationPointChangeRawDataDB() {
-    return { deltaPoint: 0, createAt: 0, updateAt: 0 };
+function createBaseCheatStatusCRDB() {
+    return { cheatStatus: "", createAt: 0, updateAt: 0 };
 }
-exports.ReputationPointChangeRawDataDB = {
+exports.CheatStatusCRDB = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.deltaPoint !== 0) {
-            writer.uint32(8).int64(message.deltaPoint);
+        if (message.cheatStatus !== "") {
+            writer.uint32(10).string(message.cheatStatus);
         }
         if (message.createAt !== 0) {
             writer.uint32(16).uint64(message.createAt);
@@ -94,15 +94,15 @@ exports.ReputationPointChangeRawDataDB = {
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseReputationPointChangeRawDataDB();
+        const message = createBaseCheatStatusCRDB();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    if (tag !== 8) {
+                    if (tag !== 10) {
                         break;
                     }
-                    message.deltaPoint = longToNumber(reader.int64());
+                    message.cheatStatus = reader.string();
                     continue;
                 case 2:
                     if (tag !== 16) {
@@ -126,15 +126,15 @@ exports.ReputationPointChangeRawDataDB = {
     },
     fromJSON(object) {
         return {
-            deltaPoint: isSet(object.deltaPoint) ? Number(object.deltaPoint) : 0,
+            cheatStatus: isSet(object.cheatStatus) ? String(object.cheatStatus) : "",
             createAt: isSet(object.createAt) ? Number(object.createAt) : 0,
             updateAt: isSet(object.updateAt) ? Number(object.updateAt) : 0,
         };
     },
     toJSON(message) {
         const obj = {};
-        if (message.deltaPoint !== 0) {
-            obj.deltaPoint = Math.round(message.deltaPoint);
+        if (message.cheatStatus !== "") {
+            obj.cheatStatus = message.cheatStatus;
         }
         if (message.createAt !== 0) {
             obj.createAt = Math.round(message.createAt);
@@ -145,30 +145,30 @@ exports.ReputationPointChangeRawDataDB = {
         return obj;
     },
     create(base) {
-        return exports.ReputationPointChangeRawDataDB.fromPartial(base ?? {});
+        return exports.CheatStatusCRDB.fromPartial(base ?? {});
     },
     fromPartial(object) {
-        const message = createBaseReputationPointChangeRawDataDB();
-        message.deltaPoint = object.deltaPoint ?? 0;
+        const message = createBaseCheatStatusCRDB();
+        message.cheatStatus = object.cheatStatus ?? "";
         message.createAt = object.createAt ?? 0;
         message.updateAt = object.updateAt ?? 0;
         return message;
     },
 };
-function createBaseReputationPointChangeRawDataMapDB() {
+function createBaseCheatStatusCRMapDB() {
     return { data: {} };
 }
-exports.ReputationPointChangeRawDataMapDB = {
+exports.CheatStatusCRMapDB = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         Object.entries(message.data).forEach(([key, value]) => {
-            exports.ReputationPointChangeRawDataMapDB_DataEntry.encode({ key: key, value }, writer.uint32(10).fork()).ldelim();
+            exports.CheatStatusCRMapDB_DataEntry.encode({ key: key, value }, writer.uint32(10).fork()).ldelim();
         });
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseReputationPointChangeRawDataMapDB();
+        const message = createBaseCheatStatusCRMapDB();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -176,7 +176,7 @@ exports.ReputationPointChangeRawDataMapDB = {
                     if (tag !== 10) {
                         break;
                     }
-                    const entry1 = exports.ReputationPointChangeRawDataMapDB_DataEntry.decode(reader, reader.uint32());
+                    const entry1 = exports.CheatStatusCRMapDB_DataEntry.decode(reader, reader.uint32());
                     if (entry1.value !== undefined) {
                         message.data[entry1.key] = entry1.value;
                     }
@@ -193,7 +193,7 @@ exports.ReputationPointChangeRawDataMapDB = {
         return {
             data: isObject(object.data)
                 ? Object.entries(object.data).reduce((acc, [key, value]) => {
-                    acc[key] = exports.ReputationPointChangeRawDataDB.fromJSON(value);
+                    acc[key] = exports.CheatStatusCRDB.fromJSON(value);
                     return acc;
                 }, {})
                 : {},
@@ -206,43 +206,43 @@ exports.ReputationPointChangeRawDataMapDB = {
             if (entries.length > 0) {
                 obj.data = {};
                 entries.forEach(([k, v]) => {
-                    obj.data[k] = exports.ReputationPointChangeRawDataDB.toJSON(v);
+                    obj.data[k] = exports.CheatStatusCRDB.toJSON(v);
                 });
             }
         }
         return obj;
     },
     create(base) {
-        return exports.ReputationPointChangeRawDataMapDB.fromPartial(base ?? {});
+        return exports.CheatStatusCRMapDB.fromPartial(base ?? {});
     },
     fromPartial(object) {
-        const message = createBaseReputationPointChangeRawDataMapDB();
+        const message = createBaseCheatStatusCRMapDB();
         message.data = Object.entries(object.data ?? {}).reduce((acc, [key, value]) => {
             if (value !== undefined) {
-                acc[key] = exports.ReputationPointChangeRawDataDB.fromPartial(value);
+                acc[key] = exports.CheatStatusCRDB.fromPartial(value);
             }
             return acc;
         }, {});
         return message;
     },
 };
-function createBaseReputationPointChangeRawDataMapDB_DataEntry() {
+function createBaseCheatStatusCRMapDB_DataEntry() {
     return { key: "", value: undefined };
 }
-exports.ReputationPointChangeRawDataMapDB_DataEntry = {
+exports.CheatStatusCRMapDB_DataEntry = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.key !== "") {
             writer.uint32(10).string(message.key);
         }
         if (message.value !== undefined) {
-            exports.ReputationPointChangeRawDataDB.encode(message.value, writer.uint32(18).fork()).ldelim();
+            exports.CheatStatusCRDB.encode(message.value, writer.uint32(18).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseReputationPointChangeRawDataMapDB_DataEntry();
+        const message = createBaseCheatStatusCRMapDB_DataEntry();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -256,7 +256,7 @@ exports.ReputationPointChangeRawDataMapDB_DataEntry = {
                     if (tag !== 18) {
                         break;
                     }
-                    message.value = exports.ReputationPointChangeRawDataDB.decode(reader, reader.uint32());
+                    message.value = exports.CheatStatusCRDB.decode(reader, reader.uint32());
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -269,7 +269,7 @@ exports.ReputationPointChangeRawDataMapDB_DataEntry = {
     fromJSON(object) {
         return {
             key: isSet(object.key) ? String(object.key) : "",
-            value: isSet(object.value) ? exports.ReputationPointChangeRawDataDB.fromJSON(object.value) : undefined,
+            value: isSet(object.value) ? exports.CheatStatusCRDB.fromJSON(object.value) : undefined,
         };
     },
     toJSON(message) {
@@ -278,26 +278,26 @@ exports.ReputationPointChangeRawDataMapDB_DataEntry = {
             obj.key = message.key;
         }
         if (message.value !== undefined) {
-            obj.value = exports.ReputationPointChangeRawDataDB.toJSON(message.value);
+            obj.value = exports.CheatStatusCRDB.toJSON(message.value);
         }
         return obj;
     },
     create(base) {
-        return exports.ReputationPointChangeRawDataMapDB_DataEntry.fromPartial(base ?? {});
+        return exports.CheatStatusCRMapDB_DataEntry.fromPartial(base ?? {});
     },
     fromPartial(object) {
-        const message = createBaseReputationPointChangeRawDataMapDB_DataEntry();
+        const message = createBaseCheatStatusCRMapDB_DataEntry();
         message.key = object.key ?? "";
         message.value = (object.value !== undefined && object.value !== null)
-            ? exports.ReputationPointChangeRawDataDB.fromPartial(object.value)
+            ? exports.CheatStatusCRDB.fromPartial(object.value)
             : undefined;
         return message;
     },
 };
-function createBaseReputationPointChangeData() {
+function createBaseCheatStatusCRData() {
     return { era: 0, nodeID: "", data: {} };
 }
-exports.ReputationPointChangeData = {
+exports.CheatStatusCRData = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.era !== 0) {
             writer.uint32(8).uint64(message.era);
@@ -306,14 +306,14 @@ exports.ReputationPointChangeData = {
             writer.uint32(18).string(message.nodeID);
         }
         Object.entries(message.data).forEach(([key, value]) => {
-            exports.ReputationPointChangeData_DataEntry.encode({ key: key, value }, writer.uint32(26).fork()).ldelim();
+            exports.CheatStatusCRData_DataEntry.encode({ key: key, value }, writer.uint32(26).fork()).ldelim();
         });
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseReputationPointChangeData();
+        const message = createBaseCheatStatusCRData();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -333,7 +333,7 @@ exports.ReputationPointChangeData = {
                     if (tag !== 26) {
                         break;
                     }
-                    const entry3 = exports.ReputationPointChangeData_DataEntry.decode(reader, reader.uint32());
+                    const entry3 = exports.CheatStatusCRData_DataEntry.decode(reader, reader.uint32());
                     if (entry3.value !== undefined) {
                         message.data[entry3.key] = entry3.value;
                     }
@@ -352,7 +352,7 @@ exports.ReputationPointChangeData = {
             nodeID: isSet(object.nodeID) ? String(object.nodeID) : "",
             data: isObject(object.data)
                 ? Object.entries(object.data).reduce((acc, [key, value]) => {
-                    acc[key] = exports.ReputationPointChangeRawDataDB.fromJSON(value);
+                    acc[key] = exports.CheatStatusCRDB.fromJSON(value);
                     return acc;
                 }, {})
                 : {},
@@ -371,45 +371,45 @@ exports.ReputationPointChangeData = {
             if (entries.length > 0) {
                 obj.data = {};
                 entries.forEach(([k, v]) => {
-                    obj.data[k] = exports.ReputationPointChangeRawDataDB.toJSON(v);
+                    obj.data[k] = exports.CheatStatusCRDB.toJSON(v);
                 });
             }
         }
         return obj;
     },
     create(base) {
-        return exports.ReputationPointChangeData.fromPartial(base ?? {});
+        return exports.CheatStatusCRData.fromPartial(base ?? {});
     },
     fromPartial(object) {
-        const message = createBaseReputationPointChangeData();
+        const message = createBaseCheatStatusCRData();
         message.era = object.era ?? 0;
         message.nodeID = object.nodeID ?? "";
         message.data = Object.entries(object.data ?? {}).reduce((acc, [key, value]) => {
             if (value !== undefined) {
-                acc[key] = exports.ReputationPointChangeRawDataDB.fromPartial(value);
+                acc[key] = exports.CheatStatusCRDB.fromPartial(value);
             }
             return acc;
         }, {});
         return message;
     },
 };
-function createBaseReputationPointChangeData_DataEntry() {
+function createBaseCheatStatusCRData_DataEntry() {
     return { key: "", value: undefined };
 }
-exports.ReputationPointChangeData_DataEntry = {
+exports.CheatStatusCRData_DataEntry = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.key !== "") {
             writer.uint32(10).string(message.key);
         }
         if (message.value !== undefined) {
-            exports.ReputationPointChangeRawDataDB.encode(message.value, writer.uint32(18).fork()).ldelim();
+            exports.CheatStatusCRDB.encode(message.value, writer.uint32(18).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseReputationPointChangeData_DataEntry();
+        const message = createBaseCheatStatusCRData_DataEntry();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -423,7 +423,7 @@ exports.ReputationPointChangeData_DataEntry = {
                     if (tag !== 18) {
                         break;
                     }
-                    message.value = exports.ReputationPointChangeRawDataDB.decode(reader, reader.uint32());
+                    message.value = exports.CheatStatusCRDB.decode(reader, reader.uint32());
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -436,7 +436,7 @@ exports.ReputationPointChangeData_DataEntry = {
     fromJSON(object) {
         return {
             key: isSet(object.key) ? String(object.key) : "",
-            value: isSet(object.value) ? exports.ReputationPointChangeRawDataDB.fromJSON(object.value) : undefined,
+            value: isSet(object.value) ? exports.CheatStatusCRDB.fromJSON(object.value) : undefined,
         };
     },
     toJSON(message) {
@@ -445,117 +445,23 @@ exports.ReputationPointChangeData_DataEntry = {
             obj.key = message.key;
         }
         if (message.value !== undefined) {
-            obj.value = exports.ReputationPointChangeRawDataDB.toJSON(message.value);
+            obj.value = exports.CheatStatusCRDB.toJSON(message.value);
         }
         return obj;
     },
     create(base) {
-        return exports.ReputationPointChangeData_DataEntry.fromPartial(base ?? {});
+        return exports.CheatStatusCRData_DataEntry.fromPartial(base ?? {});
     },
     fromPartial(object) {
-        const message = createBaseReputationPointChangeData_DataEntry();
+        const message = createBaseCheatStatusCRData_DataEntry();
         message.key = object.key ?? "";
         message.value = (object.value !== undefined && object.value !== null)
-            ? exports.ReputationPointChangeRawDataDB.fromPartial(object.value)
+            ? exports.CheatStatusCRDB.fromPartial(object.value)
             : undefined;
         return message;
     },
 };
-function createBaseReputationDeltaPoint() {
-    return { era: 0, nodeID: "", deltaPoint: 0, createAt: 0 };
-}
-exports.ReputationDeltaPoint = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.era !== 0) {
-            writer.uint32(8).uint64(message.era);
-        }
-        if (message.nodeID !== "") {
-            writer.uint32(18).string(message.nodeID);
-        }
-        if (message.deltaPoint !== 0) {
-            writer.uint32(24).int64(message.deltaPoint);
-        }
-        if (message.createAt !== 0) {
-            writer.uint32(32).uint64(message.createAt);
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseReputationDeltaPoint();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 8) {
-                        break;
-                    }
-                    message.era = longToNumber(reader.uint64());
-                    continue;
-                case 2:
-                    if (tag !== 18) {
-                        break;
-                    }
-                    message.nodeID = reader.string();
-                    continue;
-                case 3:
-                    if (tag !== 24) {
-                        break;
-                    }
-                    message.deltaPoint = longToNumber(reader.int64());
-                    continue;
-                case 4:
-                    if (tag !== 32) {
-                        break;
-                    }
-                    message.createAt = longToNumber(reader.uint64());
-                    continue;
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return {
-            era: isSet(object.era) ? Number(object.era) : 0,
-            nodeID: isSet(object.nodeID) ? String(object.nodeID) : "",
-            deltaPoint: isSet(object.deltaPoint) ? Number(object.deltaPoint) : 0,
-            createAt: isSet(object.createAt) ? Number(object.createAt) : 0,
-        };
-    },
-    toJSON(message) {
-        const obj = {};
-        if (message.era !== 0) {
-            obj.era = Math.round(message.era);
-        }
-        if (message.nodeID !== "") {
-            obj.nodeID = message.nodeID;
-        }
-        if (message.deltaPoint !== 0) {
-            obj.deltaPoint = Math.round(message.deltaPoint);
-        }
-        if (message.createAt !== 0) {
-            obj.createAt = Math.round(message.createAt);
-        }
-        return obj;
-    },
-    create(base) {
-        return exports.ReputationDeltaPoint.fromPartial(base ?? {});
-    },
-    fromPartial(object) {
-        const message = createBaseReputationDeltaPoint();
-        message.era = object.era ?? 0;
-        message.nodeID = object.nodeID ?? "";
-        message.deltaPoint = object.deltaPoint ?? 0;
-        message.createAt = object.createAt ?? 0;
-        return message;
-    },
-};
-function createBaseEraProcessData() {
+function createBaseEraCheatStatusProcessData() {
     return {
         era: 0,
         totalNodesCount: 0,
@@ -566,7 +472,7 @@ function createBaseEraProcessData() {
         pagination: undefined,
     };
 }
-exports.EraProcessData = {
+exports.EraCheatStatusProcessData = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.era !== 0) {
             writer.uint32(8).uint64(message.era);
@@ -594,7 +500,7 @@ exports.EraProcessData = {
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseEraProcessData();
+        const message = createBaseEraCheatStatusProcessData();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -685,10 +591,10 @@ exports.EraProcessData = {
         return obj;
     },
     create(base) {
-        return exports.EraProcessData.fromPartial(base ?? {});
+        return exports.EraCheatStatusProcessData.fromPartial(base ?? {});
     },
     fromPartial(object) {
-        const message = createBaseEraProcessData();
+        const message = createBaseEraCheatStatusProcessData();
         message.era = object.era ?? 0;
         message.totalNodesCount = object.totalNodesCount ?? 0;
         message.processedNodesCount = object.processedNodesCount ?? 0;

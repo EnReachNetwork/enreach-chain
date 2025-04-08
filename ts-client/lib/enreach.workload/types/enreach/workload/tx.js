@@ -3,10 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MsgClientImpl = exports.MsgServiceName = exports.MsgSubmitReputationPointChangeDataResponse = exports.MsgSubmitReputationPointChangeData = exports.MsgUpdateSuperiorResponse = exports.MsgUpdateSuperior = exports.MsgCreateSuperiorResponse = exports.MsgCreateSuperior = exports.MsgUpdateHistoryEpochDataDepthResponse = exports.MsgUpdateHistoryEpochDataDepth = exports.MsgUpdateWorkreportProcessBatchSizeResponse = exports.MsgUpdateWorkreportProcessBatchSize = exports.MsgSubmitWorkreportsResponse = exports.MsgSubmitWorkreports = exports.MsgUpdateParamsResponse = exports.MsgUpdateParams = exports.protobufPackage = void 0;
+exports.MsgClientImpl = exports.MsgServiceName = exports.MsgSubmitCheatStatusCRResponse = exports.MsgSubmitCheatStatusCR = exports.MsgSubmitReputationPointChangeDataResponse = exports.MsgSubmitReputationPointChangeData = exports.MsgUpdateSuperiorResponse = exports.MsgUpdateSuperior = exports.MsgCreateSuperiorResponse = exports.MsgCreateSuperior = exports.MsgUpdateHistoryEpochDataDepthResponse = exports.MsgUpdateHistoryEpochDataDepth = exports.MsgUpdateWorkreportProcessBatchSizeResponse = exports.MsgUpdateWorkreportProcessBatchSize = exports.MsgSubmitWorkreportsResponse = exports.MsgSubmitWorkreports = exports.MsgUpdateParamsResponse = exports.MsgUpdateParams = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
+const cheat_status_1 = require("./cheat_status");
 const params_1 = require("./params");
 const reputationpoint_1 = require("./reputationpoint");
 const workreport_1 = require("./workreport");
@@ -764,6 +765,123 @@ exports.MsgSubmitReputationPointChangeDataResponse = {
         return message;
     },
 };
+function createBaseMsgSubmitCheatStatusCR() {
+    return { managerAccount: "", era: 0, nodeDatas: [] };
+}
+exports.MsgSubmitCheatStatusCR = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.managerAccount !== "") {
+            writer.uint32(10).string(message.managerAccount);
+        }
+        if (message.era !== 0) {
+            writer.uint32(16).uint64(message.era);
+        }
+        for (const v of message.nodeDatas) {
+            cheat_status_1.CheatStatusCR.encode(v, writer.uint32(26).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseMsgSubmitCheatStatusCR();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.managerAccount = reader.string();
+                    continue;
+                case 2:
+                    if (tag !== 16) {
+                        break;
+                    }
+                    message.era = longToNumber(reader.uint64());
+                    continue;
+                case 3:
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.nodeDatas.push(cheat_status_1.CheatStatusCR.decode(reader, reader.uint32()));
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            managerAccount: isSet(object.managerAccount) ? String(object.managerAccount) : "",
+            era: isSet(object.era) ? Number(object.era) : 0,
+            nodeDatas: Array.isArray(object?.nodeDatas) ? object.nodeDatas.map((e) => cheat_status_1.CheatStatusCR.fromJSON(e)) : [],
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.managerAccount !== "") {
+            obj.managerAccount = message.managerAccount;
+        }
+        if (message.era !== 0) {
+            obj.era = Math.round(message.era);
+        }
+        if (message.nodeDatas?.length) {
+            obj.nodeDatas = message.nodeDatas.map((e) => cheat_status_1.CheatStatusCR.toJSON(e));
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.MsgSubmitCheatStatusCR.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseMsgSubmitCheatStatusCR();
+        message.managerAccount = object.managerAccount ?? "";
+        message.era = object.era ?? 0;
+        message.nodeDatas = object.nodeDatas?.map((e) => cheat_status_1.CheatStatusCR.fromPartial(e)) || [];
+        return message;
+    },
+};
+function createBaseMsgSubmitCheatStatusCRResponse() {
+    return {};
+}
+exports.MsgSubmitCheatStatusCRResponse = {
+    encode(_, writer = minimal_1.default.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseMsgSubmitCheatStatusCRResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(_) {
+        return {};
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    create(base) {
+        return exports.MsgSubmitCheatStatusCRResponse.fromPartial(base ?? {});
+    },
+    fromPartial(_) {
+        const message = createBaseMsgSubmitCheatStatusCRResponse();
+        return message;
+    },
+};
 exports.MsgServiceName = "enreach.workload.Msg";
 class MsgClientImpl {
     constructor(rpc, opts) {
@@ -776,6 +894,7 @@ class MsgClientImpl {
         this.CreateSuperior = this.CreateSuperior.bind(this);
         this.UpdateSuperior = this.UpdateSuperior.bind(this);
         this.SubmitReputationPointChangeData = this.SubmitReputationPointChangeData.bind(this);
+        this.SubmitCheatStatusCR = this.SubmitCheatStatusCR.bind(this);
     }
     UpdateParams(request) {
         const data = exports.MsgUpdateParams.encode(request).finish();
@@ -811,6 +930,11 @@ class MsgClientImpl {
         const data = exports.MsgSubmitReputationPointChangeData.encode(request).finish();
         const promise = this.rpc.request(this.service, "SubmitReputationPointChangeData", data);
         return promise.then((data) => exports.MsgSubmitReputationPointChangeDataResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    SubmitCheatStatusCR(request) {
+        const data = exports.MsgSubmitCheatStatusCR.encode(request).finish();
+        const promise = this.rpc.request(this.service, "SubmitCheatStatusCR", data);
+        return promise.then((data) => exports.MsgSubmitCheatStatusCRResponse.decode(minimal_1.default.Reader.create(data)));
     }
 }
 exports.MsgClientImpl = MsgClientImpl;

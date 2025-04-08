@@ -2,54 +2,34 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { BaseAccount } from "./types/cosmos/auth/v1beta1/auth";
-import { ModuleCredential } from "./types/cosmos/auth/v1beta1/auth";
-import { QueryAccountsRequest } from "./types/cosmos/auth/v1beta1/query";
-import { AddressStringToBytesResponse } from "./types/cosmos/auth/v1beta1/query";
 import { QueryAccountInfoRequest } from "./types/cosmos/auth/v1beta1/query";
 import { ModuleAccount } from "./types/cosmos/auth/v1beta1/auth";
-import { QueryModuleAccountByNameResponse } from "./types/cosmos/auth/v1beta1/query";
 import { QueryAccountsResponse } from "./types/cosmos/auth/v1beta1/query";
-import { QueryModuleAccountsRequest } from "./types/cosmos/auth/v1beta1/query";
-import { QueryModuleAccountsResponse } from "./types/cosmos/auth/v1beta1/query";
-import { Bech32PrefixRequest } from "./types/cosmos/auth/v1beta1/query";
-import { QueryAccountAddressByIDRequest } from "./types/cosmos/auth/v1beta1/query";
-import { QueryAccountResponse } from "./types/cosmos/auth/v1beta1/query";
+import { QueryModuleAccountByNameResponse } from "./types/cosmos/auth/v1beta1/query";
+import { AddressStringToBytesResponse } from "./types/cosmos/auth/v1beta1/query";
 import { MsgUpdateParams } from "./types/cosmos/auth/v1beta1/tx";
 import { QueryParamsRequest } from "./types/cosmos/auth/v1beta1/query";
-import { QueryModuleAccountByNameRequest } from "./types/cosmos/auth/v1beta1/query";
+import { QueryParamsResponse } from "./types/cosmos/auth/v1beta1/query";
+import { AddressBytesToStringRequest } from "./types/cosmos/auth/v1beta1/query";
+import { QueryAccountAddressByIDRequest } from "./types/cosmos/auth/v1beta1/query";
+import { MsgUpdateParamsResponse } from "./types/cosmos/auth/v1beta1/tx";
 import { QueryAccountAddressByIDResponse } from "./types/cosmos/auth/v1beta1/query";
-import { QueryAccountInfoResponse } from "./types/cosmos/auth/v1beta1/query";
-import { GenesisState } from "./types/cosmos/auth/v1beta1/genesis";
+import { ModuleCredential } from "./types/cosmos/auth/v1beta1/auth";
+import { Params } from "./types/cosmos/auth/v1beta1/auth";
 import { AddressBytesToStringResponse } from "./types/cosmos/auth/v1beta1/query";
 import { AddressStringToBytesRequest } from "./types/cosmos/auth/v1beta1/query";
-import { Params } from "./types/cosmos/auth/v1beta1/auth";
-import { AddressBytesToStringRequest } from "./types/cosmos/auth/v1beta1/query";
-import { MsgUpdateParamsResponse } from "./types/cosmos/auth/v1beta1/tx";
-import { QueryAccountRequest } from "./types/cosmos/auth/v1beta1/query";
-import { QueryParamsResponse } from "./types/cosmos/auth/v1beta1/query";
+import { QueryAccountsRequest } from "./types/cosmos/auth/v1beta1/query";
+import { QueryModuleAccountsResponse } from "./types/cosmos/auth/v1beta1/query";
+import { QueryModuleAccountByNameRequest } from "./types/cosmos/auth/v1beta1/query";
 import { Bech32PrefixResponse } from "./types/cosmos/auth/v1beta1/query";
-export { BaseAccount, ModuleCredential, QueryAccountsRequest, AddressStringToBytesResponse, QueryAccountInfoRequest, ModuleAccount, QueryModuleAccountByNameResponse, QueryAccountsResponse, QueryModuleAccountsRequest, QueryModuleAccountsResponse, Bech32PrefixRequest, QueryAccountAddressByIDRequest, QueryAccountResponse, MsgUpdateParams, QueryParamsRequest, QueryModuleAccountByNameRequest, QueryAccountAddressByIDResponse, QueryAccountInfoResponse, GenesisState, AddressBytesToStringResponse, AddressStringToBytesRequest, Params, AddressBytesToStringRequest, MsgUpdateParamsResponse, QueryAccountRequest, QueryParamsResponse, Bech32PrefixResponse };
-type sendBaseAccountParams = {
-    value: BaseAccount;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendModuleCredentialParams = {
-    value: ModuleCredential;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryAccountsRequestParams = {
-    value: QueryAccountsRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendAddressStringToBytesResponseParams = {
-    value: AddressStringToBytesResponse;
-    fee?: StdFee;
-    memo?: string;
-};
+import { GenesisState } from "./types/cosmos/auth/v1beta1/genesis";
+import { QueryAccountResponse } from "./types/cosmos/auth/v1beta1/query";
+import { QueryAccountRequest } from "./types/cosmos/auth/v1beta1/query";
+import { QueryModuleAccountsRequest } from "./types/cosmos/auth/v1beta1/query";
+import { BaseAccount } from "./types/cosmos/auth/v1beta1/auth";
+import { Bech32PrefixRequest } from "./types/cosmos/auth/v1beta1/query";
+import { QueryAccountInfoResponse } from "./types/cosmos/auth/v1beta1/query";
+export { QueryAccountInfoRequest, ModuleAccount, QueryAccountsResponse, QueryModuleAccountByNameResponse, AddressStringToBytesResponse, MsgUpdateParams, QueryParamsRequest, QueryParamsResponse, AddressBytesToStringRequest, QueryAccountAddressByIDRequest, MsgUpdateParamsResponse, QueryAccountAddressByIDResponse, ModuleCredential, Params, AddressBytesToStringResponse, AddressStringToBytesRequest, QueryAccountsRequest, QueryModuleAccountsResponse, QueryModuleAccountByNameRequest, Bech32PrefixResponse, GenesisState, QueryAccountResponse, QueryAccountRequest, QueryModuleAccountsRequest, BaseAccount, Bech32PrefixRequest, QueryAccountInfoResponse };
 type sendQueryAccountInfoRequestParams = {
     value: QueryAccountInfoRequest;
     fee?: StdFee;
@@ -60,38 +40,18 @@ type sendModuleAccountParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryModuleAccountByNameResponseParams = {
-    value: QueryModuleAccountByNameResponse;
-    fee?: StdFee;
-    memo?: string;
-};
 type sendQueryAccountsResponseParams = {
     value: QueryAccountsResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryModuleAccountsRequestParams = {
-    value: QueryModuleAccountsRequest;
+type sendQueryModuleAccountByNameResponseParams = {
+    value: QueryModuleAccountByNameResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryModuleAccountsResponseParams = {
-    value: QueryModuleAccountsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendBech32PrefixRequestParams = {
-    value: Bech32PrefixRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryAccountAddressByIDRequestParams = {
-    value: QueryAccountAddressByIDRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryAccountResponseParams = {
-    value: QueryAccountResponse;
+type sendAddressStringToBytesResponseParams = {
+    value: AddressStringToBytesResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -105,8 +65,23 @@ type sendQueryParamsRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryModuleAccountByNameRequestParams = {
-    value: QueryModuleAccountByNameRequest;
+type sendQueryParamsResponseParams = {
+    value: QueryParamsResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendAddressBytesToStringRequestParams = {
+    value: AddressBytesToStringRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryAccountAddressByIDRequestParams = {
+    value: QueryAccountAddressByIDRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateParamsResponseParams = {
+    value: MsgUpdateParamsResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -115,13 +90,13 @@ type sendQueryAccountAddressByIDResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryAccountInfoResponseParams = {
-    value: QueryAccountInfoResponse;
+type sendModuleCredentialParams = {
+    value: ModuleCredential;
     fee?: StdFee;
     memo?: string;
 };
-type sendGenesisStateParams = {
-    value: GenesisState;
+type sendParamsParams = {
+    value: Params;
     fee?: StdFee;
     memo?: string;
 };
@@ -135,28 +110,18 @@ type sendAddressStringToBytesRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendParamsParams = {
-    value: Params;
+type sendQueryAccountsRequestParams = {
+    value: QueryAccountsRequest;
     fee?: StdFee;
     memo?: string;
 };
-type sendAddressBytesToStringRequestParams = {
-    value: AddressBytesToStringRequest;
+type sendQueryModuleAccountsResponseParams = {
+    value: QueryModuleAccountsResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgUpdateParamsResponseParams = {
-    value: MsgUpdateParamsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryAccountRequestParams = {
-    value: QueryAccountRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryParamsResponseParams = {
-    value: QueryParamsResponse;
+type sendQueryModuleAccountByNameRequestParams = {
+    value: QueryModuleAccountByNameRequest;
     fee?: StdFee;
     memo?: string;
 };
@@ -165,17 +130,40 @@ type sendBech32PrefixResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type baseAccountParams = {
+type sendGenesisStateParams = {
+    value: GenesisState;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryAccountResponseParams = {
+    value: QueryAccountResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryAccountRequestParams = {
+    value: QueryAccountRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryModuleAccountsRequestParams = {
+    value: QueryModuleAccountsRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendBaseAccountParams = {
     value: BaseAccount;
+    fee?: StdFee;
+    memo?: string;
 };
-type moduleCredentialParams = {
-    value: ModuleCredential;
+type sendBech32PrefixRequestParams = {
+    value: Bech32PrefixRequest;
+    fee?: StdFee;
+    memo?: string;
 };
-type queryAccountsRequestParams = {
-    value: QueryAccountsRequest;
-};
-type addressStringToBytesResponseParams = {
-    value: AddressStringToBytesResponse;
+type sendQueryAccountInfoResponseParams = {
+    value: QueryAccountInfoResponse;
+    fee?: StdFee;
+    memo?: string;
 };
 type queryAccountInfoRequestParams = {
     value: QueryAccountInfoRequest;
@@ -183,26 +171,14 @@ type queryAccountInfoRequestParams = {
 type moduleAccountParams = {
     value: ModuleAccount;
 };
-type queryModuleAccountByNameResponseParams = {
-    value: QueryModuleAccountByNameResponse;
-};
 type queryAccountsResponseParams = {
     value: QueryAccountsResponse;
 };
-type queryModuleAccountsRequestParams = {
-    value: QueryModuleAccountsRequest;
+type queryModuleAccountByNameResponseParams = {
+    value: QueryModuleAccountByNameResponse;
 };
-type queryModuleAccountsResponseParams = {
-    value: QueryModuleAccountsResponse;
-};
-type bech32PrefixRequestParams = {
-    value: Bech32PrefixRequest;
-};
-type queryAccountAddressByIdrequestParams = {
-    value: QueryAccountAddressByIDRequest;
-};
-type queryAccountResponseParams = {
-    value: QueryAccountResponse;
+type addressStringToBytesResponseParams = {
+    value: AddressStringToBytesResponse;
 };
 type msgUpdateParamsParams = {
     value: MsgUpdateParams;
@@ -210,17 +186,26 @@ type msgUpdateParamsParams = {
 type queryParamsRequestParams = {
     value: QueryParamsRequest;
 };
-type queryModuleAccountByNameRequestParams = {
-    value: QueryModuleAccountByNameRequest;
+type queryParamsResponseParams = {
+    value: QueryParamsResponse;
+};
+type addressBytesToStringRequestParams = {
+    value: AddressBytesToStringRequest;
+};
+type queryAccountAddressByIdrequestParams = {
+    value: QueryAccountAddressByIDRequest;
+};
+type msgUpdateParamsResponseParams = {
+    value: MsgUpdateParamsResponse;
 };
 type queryAccountAddressByIdresponseParams = {
     value: QueryAccountAddressByIDResponse;
 };
-type queryAccountInfoResponseParams = {
-    value: QueryAccountInfoResponse;
+type moduleCredentialParams = {
+    value: ModuleCredential;
 };
-type genesisStateParams = {
-    value: GenesisState;
+type paramsParams = {
+    value: Params;
 };
 type addressBytesToStringResponseParams = {
     value: AddressBytesToStringResponse;
@@ -228,23 +213,38 @@ type addressBytesToStringResponseParams = {
 type addressStringToBytesRequestParams = {
     value: AddressStringToBytesRequest;
 };
-type paramsParams = {
-    value: Params;
+type queryAccountsRequestParams = {
+    value: QueryAccountsRequest;
 };
-type addressBytesToStringRequestParams = {
-    value: AddressBytesToStringRequest;
+type queryModuleAccountsResponseParams = {
+    value: QueryModuleAccountsResponse;
 };
-type msgUpdateParamsResponseParams = {
-    value: MsgUpdateParamsResponse;
+type queryModuleAccountByNameRequestParams = {
+    value: QueryModuleAccountByNameRequest;
+};
+type bech32PrefixResponseParams = {
+    value: Bech32PrefixResponse;
+};
+type genesisStateParams = {
+    value: GenesisState;
+};
+type queryAccountResponseParams = {
+    value: QueryAccountResponse;
 };
 type queryAccountRequestParams = {
     value: QueryAccountRequest;
 };
-type queryParamsResponseParams = {
-    value: QueryParamsResponse;
+type queryModuleAccountsRequestParams = {
+    value: QueryModuleAccountsRequest;
 };
-type bech32PrefixResponseParams = {
-    value: Bech32PrefixResponse;
+type baseAccountParams = {
+    value: BaseAccount;
+};
+type bech32PrefixRequestParams = {
+    value: Bech32PrefixRequest;
+};
+type queryAccountInfoResponseParams = {
+    value: QueryAccountInfoResponse;
 };
 export declare const registry: any;
 interface TxClientOptions {
@@ -253,60 +253,60 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendBaseAccount({ value, fee, memo }: sendBaseAccountParams): Promise<DeliverTxResponse>;
-    sendModuleCredential({ value, fee, memo }: sendModuleCredentialParams): Promise<DeliverTxResponse>;
-    sendQueryAccountsRequest({ value, fee, memo }: sendQueryAccountsRequestParams): Promise<DeliverTxResponse>;
-    sendAddressStringToBytesResponse({ value, fee, memo }: sendAddressStringToBytesResponseParams): Promise<DeliverTxResponse>;
     sendQueryAccountInfoRequest({ value, fee, memo }: sendQueryAccountInfoRequestParams): Promise<DeliverTxResponse>;
     sendModuleAccount({ value, fee, memo }: sendModuleAccountParams): Promise<DeliverTxResponse>;
-    sendQueryModuleAccountByNameResponse({ value, fee, memo }: sendQueryModuleAccountByNameResponseParams): Promise<DeliverTxResponse>;
     sendQueryAccountsResponse({ value, fee, memo }: sendQueryAccountsResponseParams): Promise<DeliverTxResponse>;
-    sendQueryModuleAccountsRequest({ value, fee, memo }: sendQueryModuleAccountsRequestParams): Promise<DeliverTxResponse>;
-    sendQueryModuleAccountsResponse({ value, fee, memo }: sendQueryModuleAccountsResponseParams): Promise<DeliverTxResponse>;
-    sendBech32PrefixRequest({ value, fee, memo }: sendBech32PrefixRequestParams): Promise<DeliverTxResponse>;
-    sendQueryAccountAddressByIDRequest({ value, fee, memo }: sendQueryAccountAddressByIDRequestParams): Promise<DeliverTxResponse>;
-    sendQueryAccountResponse({ value, fee, memo }: sendQueryAccountResponseParams): Promise<DeliverTxResponse>;
+    sendQueryModuleAccountByNameResponse({ value, fee, memo }: sendQueryModuleAccountByNameResponseParams): Promise<DeliverTxResponse>;
+    sendAddressStringToBytesResponse({ value, fee, memo }: sendAddressStringToBytesResponseParams): Promise<DeliverTxResponse>;
     sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
     sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
-    sendQueryModuleAccountByNameRequest({ value, fee, memo }: sendQueryModuleAccountByNameRequestParams): Promise<DeliverTxResponse>;
+    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
+    sendAddressBytesToStringRequest({ value, fee, memo }: sendAddressBytesToStringRequestParams): Promise<DeliverTxResponse>;
+    sendQueryAccountAddressByIDRequest({ value, fee, memo }: sendQueryAccountAddressByIDRequestParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
     sendQueryAccountAddressByIDResponse({ value, fee, memo }: sendQueryAccountAddressByIDResponseParams): Promise<DeliverTxResponse>;
-    sendQueryAccountInfoResponse({ value, fee, memo }: sendQueryAccountInfoResponseParams): Promise<DeliverTxResponse>;
-    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
+    sendModuleCredential({ value, fee, memo }: sendModuleCredentialParams): Promise<DeliverTxResponse>;
+    sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
     sendAddressBytesToStringResponse({ value, fee, memo }: sendAddressBytesToStringResponseParams): Promise<DeliverTxResponse>;
     sendAddressStringToBytesRequest({ value, fee, memo }: sendAddressStringToBytesRequestParams): Promise<DeliverTxResponse>;
-    sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
-    sendAddressBytesToStringRequest({ value, fee, memo }: sendAddressBytesToStringRequestParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
-    sendQueryAccountRequest({ value, fee, memo }: sendQueryAccountRequestParams): Promise<DeliverTxResponse>;
-    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
+    sendQueryAccountsRequest({ value, fee, memo }: sendQueryAccountsRequestParams): Promise<DeliverTxResponse>;
+    sendQueryModuleAccountsResponse({ value, fee, memo }: sendQueryModuleAccountsResponseParams): Promise<DeliverTxResponse>;
+    sendQueryModuleAccountByNameRequest({ value, fee, memo }: sendQueryModuleAccountByNameRequestParams): Promise<DeliverTxResponse>;
     sendBech32PrefixResponse({ value, fee, memo }: sendBech32PrefixResponseParams): Promise<DeliverTxResponse>;
-    baseAccount({ value }: baseAccountParams): EncodeObject;
-    moduleCredential({ value }: moduleCredentialParams): EncodeObject;
-    queryAccountsRequest({ value }: queryAccountsRequestParams): EncodeObject;
-    addressStringToBytesResponse({ value }: addressStringToBytesResponseParams): EncodeObject;
+    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
+    sendQueryAccountResponse({ value, fee, memo }: sendQueryAccountResponseParams): Promise<DeliverTxResponse>;
+    sendQueryAccountRequest({ value, fee, memo }: sendQueryAccountRequestParams): Promise<DeliverTxResponse>;
+    sendQueryModuleAccountsRequest({ value, fee, memo }: sendQueryModuleAccountsRequestParams): Promise<DeliverTxResponse>;
+    sendBaseAccount({ value, fee, memo }: sendBaseAccountParams): Promise<DeliverTxResponse>;
+    sendBech32PrefixRequest({ value, fee, memo }: sendBech32PrefixRequestParams): Promise<DeliverTxResponse>;
+    sendQueryAccountInfoResponse({ value, fee, memo }: sendQueryAccountInfoResponseParams): Promise<DeliverTxResponse>;
     queryAccountInfoRequest({ value }: queryAccountInfoRequestParams): EncodeObject;
     moduleAccount({ value }: moduleAccountParams): EncodeObject;
-    queryModuleAccountByNameResponse({ value }: queryModuleAccountByNameResponseParams): EncodeObject;
     queryAccountsResponse({ value }: queryAccountsResponseParams): EncodeObject;
-    queryModuleAccountsRequest({ value }: queryModuleAccountsRequestParams): EncodeObject;
-    queryModuleAccountsResponse({ value }: queryModuleAccountsResponseParams): EncodeObject;
-    bech32PrefixRequest({ value }: bech32PrefixRequestParams): EncodeObject;
-    queryAccountAddressByIdrequest({ value }: queryAccountAddressByIdrequestParams): EncodeObject;
-    queryAccountResponse({ value }: queryAccountResponseParams): EncodeObject;
+    queryModuleAccountByNameResponse({ value }: queryModuleAccountByNameResponseParams): EncodeObject;
+    addressStringToBytesResponse({ value }: addressStringToBytesResponseParams): EncodeObject;
     msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
     queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
-    queryModuleAccountByNameRequest({ value }: queryModuleAccountByNameRequestParams): EncodeObject;
+    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
+    addressBytesToStringRequest({ value }: addressBytesToStringRequestParams): EncodeObject;
+    queryAccountAddressByIdrequest({ value }: queryAccountAddressByIdrequestParams): EncodeObject;
+    msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
     queryAccountAddressByIdresponse({ value }: queryAccountAddressByIdresponseParams): EncodeObject;
-    queryAccountInfoResponse({ value }: queryAccountInfoResponseParams): EncodeObject;
-    genesisState({ value }: genesisStateParams): EncodeObject;
+    moduleCredential({ value }: moduleCredentialParams): EncodeObject;
+    params({ value }: paramsParams): EncodeObject;
     addressBytesToStringResponse({ value }: addressBytesToStringResponseParams): EncodeObject;
     addressStringToBytesRequest({ value }: addressStringToBytesRequestParams): EncodeObject;
-    params({ value }: paramsParams): EncodeObject;
-    addressBytesToStringRequest({ value }: addressBytesToStringRequestParams): EncodeObject;
-    msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
-    queryAccountRequest({ value }: queryAccountRequestParams): EncodeObject;
-    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
+    queryAccountsRequest({ value }: queryAccountsRequestParams): EncodeObject;
+    queryModuleAccountsResponse({ value }: queryModuleAccountsResponseParams): EncodeObject;
+    queryModuleAccountByNameRequest({ value }: queryModuleAccountByNameRequestParams): EncodeObject;
     bech32PrefixResponse({ value }: bech32PrefixResponseParams): EncodeObject;
+    genesisState({ value }: genesisStateParams): EncodeObject;
+    queryAccountResponse({ value }: queryAccountResponseParams): EncodeObject;
+    queryAccountRequest({ value }: queryAccountRequestParams): EncodeObject;
+    queryModuleAccountsRequest({ value }: queryModuleAccountsRequestParams): EncodeObject;
+    baseAccount({ value }: baseAccountParams): EncodeObject;
+    bech32PrefixRequest({ value }: bech32PrefixRequestParams): EncodeObject;
+    queryAccountInfoResponse({ value }: queryAccountInfoResponseParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

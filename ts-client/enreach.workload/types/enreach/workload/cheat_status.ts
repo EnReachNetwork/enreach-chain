@@ -5,46 +5,40 @@ import { PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
 
 export const protobufPackage = "enreach.workload";
 
-export interface ReputationPointChangeRawData {
+/** CR -> Change Request */
+export interface CheatStatusCR {
   nodeID: string;
-  deltaPoint: number;
+  cheatStatus: string;
 }
 
-export interface ReputationPointChangeRawDataDB {
-  deltaPoint: number;
+export interface CheatStatusCRDB {
+  cheatStatus: string;
   createAt: number;
   updateAt: number;
 }
 
-export interface ReputationPointChangeRawDataMapDB {
-  /** manager_account => reputation point request */
-  data: { [key: string]: ReputationPointChangeRawDataDB };
+export interface CheatStatusCRMapDB {
+  /** manager_account => cheating status */
+  data: { [key: string]: CheatStatusCRDB };
 }
 
-export interface ReputationPointChangeRawDataMapDB_DataEntry {
+export interface CheatStatusCRMapDB_DataEntry {
   key: string;
-  value: ReputationPointChangeRawDataDB | undefined;
+  value: CheatStatusCRDB | undefined;
 }
 
-export interface ReputationPointChangeData {
+export interface CheatStatusCRData {
   era: number;
   nodeID: string;
-  data: { [key: string]: ReputationPointChangeRawDataDB };
+  data: { [key: string]: CheatStatusCRDB };
 }
 
-export interface ReputationPointChangeData_DataEntry {
+export interface CheatStatusCRData_DataEntry {
   key: string;
-  value: ReputationPointChangeRawDataDB | undefined;
+  value: CheatStatusCRDB | undefined;
 }
 
-export interface ReputationDeltaPoint {
-  era: number;
-  nodeID: string;
-  deltaPoint: number;
-  createAt: number;
-}
-
-export interface EraProcessData {
+export interface EraCheatStatusProcessData {
   era: number;
   /** total nodes count need to be processed */
   totalNodesCount: number;
@@ -56,25 +50,25 @@ export interface EraProcessData {
   pagination: PageResponse | undefined;
 }
 
-function createBaseReputationPointChangeRawData(): ReputationPointChangeRawData {
-  return { nodeID: "", deltaPoint: 0 };
+function createBaseCheatStatusCR(): CheatStatusCR {
+  return { nodeID: "", cheatStatus: "" };
 }
 
-export const ReputationPointChangeRawData = {
-  encode(message: ReputationPointChangeRawData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const CheatStatusCR = {
+  encode(message: CheatStatusCR, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.nodeID !== "") {
       writer.uint32(10).string(message.nodeID);
     }
-    if (message.deltaPoint !== 0) {
-      writer.uint32(16).int64(message.deltaPoint);
+    if (message.cheatStatus !== "") {
+      writer.uint32(18).string(message.cheatStatus);
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): ReputationPointChangeRawData {
+  decode(input: _m0.Reader | Uint8Array, length?: number): CheatStatusCR {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseReputationPointChangeRawData();
+    const message = createBaseCheatStatusCR();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -86,11 +80,11 @@ export const ReputationPointChangeRawData = {
           message.nodeID = reader.string();
           continue;
         case 2:
-          if (tag !== 16) {
+          if (tag !== 18) {
             break;
           }
 
-          message.deltaPoint = longToNumber(reader.int64() as Long);
+          message.cheatStatus = reader.string();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -101,43 +95,43 @@ export const ReputationPointChangeRawData = {
     return message;
   },
 
-  fromJSON(object: any): ReputationPointChangeRawData {
+  fromJSON(object: any): CheatStatusCR {
     return {
       nodeID: isSet(object.nodeID) ? String(object.nodeID) : "",
-      deltaPoint: isSet(object.deltaPoint) ? Number(object.deltaPoint) : 0,
+      cheatStatus: isSet(object.cheatStatus) ? String(object.cheatStatus) : "",
     };
   },
 
-  toJSON(message: ReputationPointChangeRawData): unknown {
+  toJSON(message: CheatStatusCR): unknown {
     const obj: any = {};
     if (message.nodeID !== "") {
       obj.nodeID = message.nodeID;
     }
-    if (message.deltaPoint !== 0) {
-      obj.deltaPoint = Math.round(message.deltaPoint);
+    if (message.cheatStatus !== "") {
+      obj.cheatStatus = message.cheatStatus;
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<ReputationPointChangeRawData>, I>>(base?: I): ReputationPointChangeRawData {
-    return ReputationPointChangeRawData.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<CheatStatusCR>, I>>(base?: I): CheatStatusCR {
+    return CheatStatusCR.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<ReputationPointChangeRawData>, I>>(object: I): ReputationPointChangeRawData {
-    const message = createBaseReputationPointChangeRawData();
+  fromPartial<I extends Exact<DeepPartial<CheatStatusCR>, I>>(object: I): CheatStatusCR {
+    const message = createBaseCheatStatusCR();
     message.nodeID = object.nodeID ?? "";
-    message.deltaPoint = object.deltaPoint ?? 0;
+    message.cheatStatus = object.cheatStatus ?? "";
     return message;
   },
 };
 
-function createBaseReputationPointChangeRawDataDB(): ReputationPointChangeRawDataDB {
-  return { deltaPoint: 0, createAt: 0, updateAt: 0 };
+function createBaseCheatStatusCRDB(): CheatStatusCRDB {
+  return { cheatStatus: "", createAt: 0, updateAt: 0 };
 }
 
-export const ReputationPointChangeRawDataDB = {
-  encode(message: ReputationPointChangeRawDataDB, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.deltaPoint !== 0) {
-      writer.uint32(8).int64(message.deltaPoint);
+export const CheatStatusCRDB = {
+  encode(message: CheatStatusCRDB, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.cheatStatus !== "") {
+      writer.uint32(10).string(message.cheatStatus);
     }
     if (message.createAt !== 0) {
       writer.uint32(16).uint64(message.createAt);
@@ -148,19 +142,19 @@ export const ReputationPointChangeRawDataDB = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): ReputationPointChangeRawDataDB {
+  decode(input: _m0.Reader | Uint8Array, length?: number): CheatStatusCRDB {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseReputationPointChangeRawDataDB();
+    const message = createBaseCheatStatusCRDB();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          if (tag !== 8) {
+          if (tag !== 10) {
             break;
           }
 
-          message.deltaPoint = longToNumber(reader.int64() as Long);
+          message.cheatStatus = reader.string();
           continue;
         case 2:
           if (tag !== 16) {
@@ -185,18 +179,18 @@ export const ReputationPointChangeRawDataDB = {
     return message;
   },
 
-  fromJSON(object: any): ReputationPointChangeRawDataDB {
+  fromJSON(object: any): CheatStatusCRDB {
     return {
-      deltaPoint: isSet(object.deltaPoint) ? Number(object.deltaPoint) : 0,
+      cheatStatus: isSet(object.cheatStatus) ? String(object.cheatStatus) : "",
       createAt: isSet(object.createAt) ? Number(object.createAt) : 0,
       updateAt: isSet(object.updateAt) ? Number(object.updateAt) : 0,
     };
   },
 
-  toJSON(message: ReputationPointChangeRawDataDB): unknown {
+  toJSON(message: CheatStatusCRDB): unknown {
     const obj: any = {};
-    if (message.deltaPoint !== 0) {
-      obj.deltaPoint = Math.round(message.deltaPoint);
+    if (message.cheatStatus !== "") {
+      obj.cheatStatus = message.cheatStatus;
     }
     if (message.createAt !== 0) {
       obj.createAt = Math.round(message.createAt);
@@ -207,36 +201,34 @@ export const ReputationPointChangeRawDataDB = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<ReputationPointChangeRawDataDB>, I>>(base?: I): ReputationPointChangeRawDataDB {
-    return ReputationPointChangeRawDataDB.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<CheatStatusCRDB>, I>>(base?: I): CheatStatusCRDB {
+    return CheatStatusCRDB.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<ReputationPointChangeRawDataDB>, I>>(
-    object: I,
-  ): ReputationPointChangeRawDataDB {
-    const message = createBaseReputationPointChangeRawDataDB();
-    message.deltaPoint = object.deltaPoint ?? 0;
+  fromPartial<I extends Exact<DeepPartial<CheatStatusCRDB>, I>>(object: I): CheatStatusCRDB {
+    const message = createBaseCheatStatusCRDB();
+    message.cheatStatus = object.cheatStatus ?? "";
     message.createAt = object.createAt ?? 0;
     message.updateAt = object.updateAt ?? 0;
     return message;
   },
 };
 
-function createBaseReputationPointChangeRawDataMapDB(): ReputationPointChangeRawDataMapDB {
+function createBaseCheatStatusCRMapDB(): CheatStatusCRMapDB {
   return { data: {} };
 }
 
-export const ReputationPointChangeRawDataMapDB = {
-  encode(message: ReputationPointChangeRawDataMapDB, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const CheatStatusCRMapDB = {
+  encode(message: CheatStatusCRMapDB, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     Object.entries(message.data).forEach(([key, value]) => {
-      ReputationPointChangeRawDataMapDB_DataEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).ldelim();
+      CheatStatusCRMapDB_DataEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).ldelim();
     });
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): ReputationPointChangeRawDataMapDB {
+  decode(input: _m0.Reader | Uint8Array, length?: number): CheatStatusCRMapDB {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseReputationPointChangeRawDataMapDB();
+    const message = createBaseCheatStatusCRMapDB();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -245,7 +237,7 @@ export const ReputationPointChangeRawDataMapDB = {
             break;
           }
 
-          const entry1 = ReputationPointChangeRawDataMapDB_DataEntry.decode(reader, reader.uint32());
+          const entry1 = CheatStatusCRMapDB_DataEntry.decode(reader, reader.uint32());
           if (entry1.value !== undefined) {
             message.data[entry1.key] = entry1.value;
           }
@@ -259,72 +251,65 @@ export const ReputationPointChangeRawDataMapDB = {
     return message;
   },
 
-  fromJSON(object: any): ReputationPointChangeRawDataMapDB {
+  fromJSON(object: any): CheatStatusCRMapDB {
     return {
       data: isObject(object.data)
-        ? Object.entries(object.data).reduce<{ [key: string]: ReputationPointChangeRawDataDB }>((acc, [key, value]) => {
-          acc[key] = ReputationPointChangeRawDataDB.fromJSON(value);
+        ? Object.entries(object.data).reduce<{ [key: string]: CheatStatusCRDB }>((acc, [key, value]) => {
+          acc[key] = CheatStatusCRDB.fromJSON(value);
           return acc;
         }, {})
         : {},
     };
   },
 
-  toJSON(message: ReputationPointChangeRawDataMapDB): unknown {
+  toJSON(message: CheatStatusCRMapDB): unknown {
     const obj: any = {};
     if (message.data) {
       const entries = Object.entries(message.data);
       if (entries.length > 0) {
         obj.data = {};
         entries.forEach(([k, v]) => {
-          obj.data[k] = ReputationPointChangeRawDataDB.toJSON(v);
+          obj.data[k] = CheatStatusCRDB.toJSON(v);
         });
       }
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<ReputationPointChangeRawDataMapDB>, I>>(
-    base?: I,
-  ): ReputationPointChangeRawDataMapDB {
-    return ReputationPointChangeRawDataMapDB.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<CheatStatusCRMapDB>, I>>(base?: I): CheatStatusCRMapDB {
+    return CheatStatusCRMapDB.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<ReputationPointChangeRawDataMapDB>, I>>(
-    object: I,
-  ): ReputationPointChangeRawDataMapDB {
-    const message = createBaseReputationPointChangeRawDataMapDB();
-    message.data = Object.entries(object.data ?? {}).reduce<{ [key: string]: ReputationPointChangeRawDataDB }>(
-      (acc, [key, value]) => {
-        if (value !== undefined) {
-          acc[key] = ReputationPointChangeRawDataDB.fromPartial(value);
-        }
-        return acc;
-      },
-      {},
-    );
+  fromPartial<I extends Exact<DeepPartial<CheatStatusCRMapDB>, I>>(object: I): CheatStatusCRMapDB {
+    const message = createBaseCheatStatusCRMapDB();
+    message.data = Object.entries(object.data ?? {}).reduce<{ [key: string]: CheatStatusCRDB }>((acc, [key, value]) => {
+      if (value !== undefined) {
+        acc[key] = CheatStatusCRDB.fromPartial(value);
+      }
+      return acc;
+    }, {});
     return message;
   },
 };
 
-function createBaseReputationPointChangeRawDataMapDB_DataEntry(): ReputationPointChangeRawDataMapDB_DataEntry {
+function createBaseCheatStatusCRMapDB_DataEntry(): CheatStatusCRMapDB_DataEntry {
   return { key: "", value: undefined };
 }
 
-export const ReputationPointChangeRawDataMapDB_DataEntry = {
-  encode(message: ReputationPointChangeRawDataMapDB_DataEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const CheatStatusCRMapDB_DataEntry = {
+  encode(message: CheatStatusCRMapDB_DataEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.key !== "") {
       writer.uint32(10).string(message.key);
     }
     if (message.value !== undefined) {
-      ReputationPointChangeRawDataDB.encode(message.value, writer.uint32(18).fork()).ldelim();
+      CheatStatusCRDB.encode(message.value, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): ReputationPointChangeRawDataMapDB_DataEntry {
+  decode(input: _m0.Reader | Uint8Array, length?: number): CheatStatusCRMapDB_DataEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseReputationPointChangeRawDataMapDB_DataEntry();
+    const message = createBaseCheatStatusCRMapDB_DataEntry();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -340,7 +325,7 @@ export const ReputationPointChangeRawDataMapDB_DataEntry = {
             break;
           }
 
-          message.value = ReputationPointChangeRawDataDB.decode(reader, reader.uint32());
+          message.value = CheatStatusCRDB.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -351,47 +336,43 @@ export const ReputationPointChangeRawDataMapDB_DataEntry = {
     return message;
   },
 
-  fromJSON(object: any): ReputationPointChangeRawDataMapDB_DataEntry {
+  fromJSON(object: any): CheatStatusCRMapDB_DataEntry {
     return {
       key: isSet(object.key) ? String(object.key) : "",
-      value: isSet(object.value) ? ReputationPointChangeRawDataDB.fromJSON(object.value) : undefined,
+      value: isSet(object.value) ? CheatStatusCRDB.fromJSON(object.value) : undefined,
     };
   },
 
-  toJSON(message: ReputationPointChangeRawDataMapDB_DataEntry): unknown {
+  toJSON(message: CheatStatusCRMapDB_DataEntry): unknown {
     const obj: any = {};
     if (message.key !== "") {
       obj.key = message.key;
     }
     if (message.value !== undefined) {
-      obj.value = ReputationPointChangeRawDataDB.toJSON(message.value);
+      obj.value = CheatStatusCRDB.toJSON(message.value);
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<ReputationPointChangeRawDataMapDB_DataEntry>, I>>(
-    base?: I,
-  ): ReputationPointChangeRawDataMapDB_DataEntry {
-    return ReputationPointChangeRawDataMapDB_DataEntry.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<CheatStatusCRMapDB_DataEntry>, I>>(base?: I): CheatStatusCRMapDB_DataEntry {
+    return CheatStatusCRMapDB_DataEntry.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<ReputationPointChangeRawDataMapDB_DataEntry>, I>>(
-    object: I,
-  ): ReputationPointChangeRawDataMapDB_DataEntry {
-    const message = createBaseReputationPointChangeRawDataMapDB_DataEntry();
+  fromPartial<I extends Exact<DeepPartial<CheatStatusCRMapDB_DataEntry>, I>>(object: I): CheatStatusCRMapDB_DataEntry {
+    const message = createBaseCheatStatusCRMapDB_DataEntry();
     message.key = object.key ?? "";
     message.value = (object.value !== undefined && object.value !== null)
-      ? ReputationPointChangeRawDataDB.fromPartial(object.value)
+      ? CheatStatusCRDB.fromPartial(object.value)
       : undefined;
     return message;
   },
 };
 
-function createBaseReputationPointChangeData(): ReputationPointChangeData {
+function createBaseCheatStatusCRData(): CheatStatusCRData {
   return { era: 0, nodeID: "", data: {} };
 }
 
-export const ReputationPointChangeData = {
-  encode(message: ReputationPointChangeData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const CheatStatusCRData = {
+  encode(message: CheatStatusCRData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.era !== 0) {
       writer.uint32(8).uint64(message.era);
     }
@@ -399,15 +380,15 @@ export const ReputationPointChangeData = {
       writer.uint32(18).string(message.nodeID);
     }
     Object.entries(message.data).forEach(([key, value]) => {
-      ReputationPointChangeData_DataEntry.encode({ key: key as any, value }, writer.uint32(26).fork()).ldelim();
+      CheatStatusCRData_DataEntry.encode({ key: key as any, value }, writer.uint32(26).fork()).ldelim();
     });
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): ReputationPointChangeData {
+  decode(input: _m0.Reader | Uint8Array, length?: number): CheatStatusCRData {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseReputationPointChangeData();
+    const message = createBaseCheatStatusCRData();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -430,7 +411,7 @@ export const ReputationPointChangeData = {
             break;
           }
 
-          const entry3 = ReputationPointChangeData_DataEntry.decode(reader, reader.uint32());
+          const entry3 = CheatStatusCRData_DataEntry.decode(reader, reader.uint32());
           if (entry3.value !== undefined) {
             message.data[entry3.key] = entry3.value;
           }
@@ -444,20 +425,20 @@ export const ReputationPointChangeData = {
     return message;
   },
 
-  fromJSON(object: any): ReputationPointChangeData {
+  fromJSON(object: any): CheatStatusCRData {
     return {
       era: isSet(object.era) ? Number(object.era) : 0,
       nodeID: isSet(object.nodeID) ? String(object.nodeID) : "",
       data: isObject(object.data)
-        ? Object.entries(object.data).reduce<{ [key: string]: ReputationPointChangeRawDataDB }>((acc, [key, value]) => {
-          acc[key] = ReputationPointChangeRawDataDB.fromJSON(value);
+        ? Object.entries(object.data).reduce<{ [key: string]: CheatStatusCRDB }>((acc, [key, value]) => {
+          acc[key] = CheatStatusCRDB.fromJSON(value);
           return acc;
         }, {})
         : {},
     };
   },
 
-  toJSON(message: ReputationPointChangeData): unknown {
+  toJSON(message: CheatStatusCRData): unknown {
     const obj: any = {};
     if (message.era !== 0) {
       obj.era = Math.round(message.era);
@@ -470,52 +451,49 @@ export const ReputationPointChangeData = {
       if (entries.length > 0) {
         obj.data = {};
         entries.forEach(([k, v]) => {
-          obj.data[k] = ReputationPointChangeRawDataDB.toJSON(v);
+          obj.data[k] = CheatStatusCRDB.toJSON(v);
         });
       }
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<ReputationPointChangeData>, I>>(base?: I): ReputationPointChangeData {
-    return ReputationPointChangeData.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<CheatStatusCRData>, I>>(base?: I): CheatStatusCRData {
+    return CheatStatusCRData.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<ReputationPointChangeData>, I>>(object: I): ReputationPointChangeData {
-    const message = createBaseReputationPointChangeData();
+  fromPartial<I extends Exact<DeepPartial<CheatStatusCRData>, I>>(object: I): CheatStatusCRData {
+    const message = createBaseCheatStatusCRData();
     message.era = object.era ?? 0;
     message.nodeID = object.nodeID ?? "";
-    message.data = Object.entries(object.data ?? {}).reduce<{ [key: string]: ReputationPointChangeRawDataDB }>(
-      (acc, [key, value]) => {
-        if (value !== undefined) {
-          acc[key] = ReputationPointChangeRawDataDB.fromPartial(value);
-        }
-        return acc;
-      },
-      {},
-    );
+    message.data = Object.entries(object.data ?? {}).reduce<{ [key: string]: CheatStatusCRDB }>((acc, [key, value]) => {
+      if (value !== undefined) {
+        acc[key] = CheatStatusCRDB.fromPartial(value);
+      }
+      return acc;
+    }, {});
     return message;
   },
 };
 
-function createBaseReputationPointChangeData_DataEntry(): ReputationPointChangeData_DataEntry {
+function createBaseCheatStatusCRData_DataEntry(): CheatStatusCRData_DataEntry {
   return { key: "", value: undefined };
 }
 
-export const ReputationPointChangeData_DataEntry = {
-  encode(message: ReputationPointChangeData_DataEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const CheatStatusCRData_DataEntry = {
+  encode(message: CheatStatusCRData_DataEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.key !== "") {
       writer.uint32(10).string(message.key);
     }
     if (message.value !== undefined) {
-      ReputationPointChangeRawDataDB.encode(message.value, writer.uint32(18).fork()).ldelim();
+      CheatStatusCRDB.encode(message.value, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): ReputationPointChangeData_DataEntry {
+  decode(input: _m0.Reader | Uint8Array, length?: number): CheatStatusCRData_DataEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseReputationPointChangeData_DataEntry();
+    const message = createBaseCheatStatusCRData_DataEntry();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -531,7 +509,7 @@ export const ReputationPointChangeData_DataEntry = {
             break;
           }
 
-          message.value = ReputationPointChangeRawDataDB.decode(reader, reader.uint32());
+          message.value = CheatStatusCRDB.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -542,146 +520,38 @@ export const ReputationPointChangeData_DataEntry = {
     return message;
   },
 
-  fromJSON(object: any): ReputationPointChangeData_DataEntry {
+  fromJSON(object: any): CheatStatusCRData_DataEntry {
     return {
       key: isSet(object.key) ? String(object.key) : "",
-      value: isSet(object.value) ? ReputationPointChangeRawDataDB.fromJSON(object.value) : undefined,
+      value: isSet(object.value) ? CheatStatusCRDB.fromJSON(object.value) : undefined,
     };
   },
 
-  toJSON(message: ReputationPointChangeData_DataEntry): unknown {
+  toJSON(message: CheatStatusCRData_DataEntry): unknown {
     const obj: any = {};
     if (message.key !== "") {
       obj.key = message.key;
     }
     if (message.value !== undefined) {
-      obj.value = ReputationPointChangeRawDataDB.toJSON(message.value);
+      obj.value = CheatStatusCRDB.toJSON(message.value);
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<ReputationPointChangeData_DataEntry>, I>>(
-    base?: I,
-  ): ReputationPointChangeData_DataEntry {
-    return ReputationPointChangeData_DataEntry.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<CheatStatusCRData_DataEntry>, I>>(base?: I): CheatStatusCRData_DataEntry {
+    return CheatStatusCRData_DataEntry.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<ReputationPointChangeData_DataEntry>, I>>(
-    object: I,
-  ): ReputationPointChangeData_DataEntry {
-    const message = createBaseReputationPointChangeData_DataEntry();
+  fromPartial<I extends Exact<DeepPartial<CheatStatusCRData_DataEntry>, I>>(object: I): CheatStatusCRData_DataEntry {
+    const message = createBaseCheatStatusCRData_DataEntry();
     message.key = object.key ?? "";
     message.value = (object.value !== undefined && object.value !== null)
-      ? ReputationPointChangeRawDataDB.fromPartial(object.value)
+      ? CheatStatusCRDB.fromPartial(object.value)
       : undefined;
     return message;
   },
 };
 
-function createBaseReputationDeltaPoint(): ReputationDeltaPoint {
-  return { era: 0, nodeID: "", deltaPoint: 0, createAt: 0 };
-}
-
-export const ReputationDeltaPoint = {
-  encode(message: ReputationDeltaPoint, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.era !== 0) {
-      writer.uint32(8).uint64(message.era);
-    }
-    if (message.nodeID !== "") {
-      writer.uint32(18).string(message.nodeID);
-    }
-    if (message.deltaPoint !== 0) {
-      writer.uint32(24).int64(message.deltaPoint);
-    }
-    if (message.createAt !== 0) {
-      writer.uint32(32).uint64(message.createAt);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): ReputationDeltaPoint {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseReputationDeltaPoint();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 8) {
-            break;
-          }
-
-          message.era = longToNumber(reader.uint64() as Long);
-          continue;
-        case 2:
-          if (tag !== 18) {
-            break;
-          }
-
-          message.nodeID = reader.string();
-          continue;
-        case 3:
-          if (tag !== 24) {
-            break;
-          }
-
-          message.deltaPoint = longToNumber(reader.int64() as Long);
-          continue;
-        case 4:
-          if (tag !== 32) {
-            break;
-          }
-
-          message.createAt = longToNumber(reader.uint64() as Long);
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): ReputationDeltaPoint {
-    return {
-      era: isSet(object.era) ? Number(object.era) : 0,
-      nodeID: isSet(object.nodeID) ? String(object.nodeID) : "",
-      deltaPoint: isSet(object.deltaPoint) ? Number(object.deltaPoint) : 0,
-      createAt: isSet(object.createAt) ? Number(object.createAt) : 0,
-    };
-  },
-
-  toJSON(message: ReputationDeltaPoint): unknown {
-    const obj: any = {};
-    if (message.era !== 0) {
-      obj.era = Math.round(message.era);
-    }
-    if (message.nodeID !== "") {
-      obj.nodeID = message.nodeID;
-    }
-    if (message.deltaPoint !== 0) {
-      obj.deltaPoint = Math.round(message.deltaPoint);
-    }
-    if (message.createAt !== 0) {
-      obj.createAt = Math.round(message.createAt);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ReputationDeltaPoint>, I>>(base?: I): ReputationDeltaPoint {
-    return ReputationDeltaPoint.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ReputationDeltaPoint>, I>>(object: I): ReputationDeltaPoint {
-    const message = createBaseReputationDeltaPoint();
-    message.era = object.era ?? 0;
-    message.nodeID = object.nodeID ?? "";
-    message.deltaPoint = object.deltaPoint ?? 0;
-    message.createAt = object.createAt ?? 0;
-    return message;
-  },
-};
-
-function createBaseEraProcessData(): EraProcessData {
+function createBaseEraCheatStatusProcessData(): EraCheatStatusProcessData {
   return {
     era: 0,
     totalNodesCount: 0,
@@ -693,8 +563,8 @@ function createBaseEraProcessData(): EraProcessData {
   };
 }
 
-export const EraProcessData = {
-  encode(message: EraProcessData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const EraCheatStatusProcessData = {
+  encode(message: EraCheatStatusProcessData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.era !== 0) {
       writer.uint32(8).uint64(message.era);
     }
@@ -719,10 +589,10 @@ export const EraProcessData = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): EraProcessData {
+  decode(input: _m0.Reader | Uint8Array, length?: number): EraCheatStatusProcessData {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseEraProcessData();
+    const message = createBaseEraCheatStatusProcessData();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -784,7 +654,7 @@ export const EraProcessData = {
     return message;
   },
 
-  fromJSON(object: any): EraProcessData {
+  fromJSON(object: any): EraCheatStatusProcessData {
     return {
       era: isSet(object.era) ? Number(object.era) : 0,
       totalNodesCount: isSet(object.totalNodesCount) ? Number(object.totalNodesCount) : 0,
@@ -796,7 +666,7 @@ export const EraProcessData = {
     };
   },
 
-  toJSON(message: EraProcessData): unknown {
+  toJSON(message: EraCheatStatusProcessData): unknown {
     const obj: any = {};
     if (message.era !== 0) {
       obj.era = Math.round(message.era);
@@ -822,11 +692,11 @@ export const EraProcessData = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<EraProcessData>, I>>(base?: I): EraProcessData {
-    return EraProcessData.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<EraCheatStatusProcessData>, I>>(base?: I): EraCheatStatusProcessData {
+    return EraCheatStatusProcessData.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<EraProcessData>, I>>(object: I): EraProcessData {
-    const message = createBaseEraProcessData();
+  fromPartial<I extends Exact<DeepPartial<EraCheatStatusProcessData>, I>>(object: I): EraCheatStatusProcessData {
+    const message = createBaseEraCheatStatusProcessData();
     message.era = object.era ?? 0;
     message.totalNodesCount = object.totalNodesCount ?? 0;
     message.processedNodesCount = object.processedNodesCount ?? 0;

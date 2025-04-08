@@ -24,6 +24,15 @@ export interface ManagerRPWorkload {
     createAt: number;
     updateAt: number;
 }
+/** Manager CheatStatus Process Workload */
+export interface ManagerCSWorkload {
+    era: number;
+    managerAccount: string;
+    reportedNodesCount: number;
+    score: number;
+    createAt: number;
+    updateAt: number;
+}
 export declare const NodeWorkload: {
     encode(message: NodeWorkload, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): NodeWorkload;
@@ -47,6 +56,14 @@ export declare const ManagerRPWorkload: {
     toJSON(message: ManagerRPWorkload): unknown;
     create<I extends Exact<DeepPartial<ManagerRPWorkload>, I>>(base?: I): ManagerRPWorkload;
     fromPartial<I extends Exact<DeepPartial<ManagerRPWorkload>, I>>(object: I): ManagerRPWorkload;
+};
+export declare const ManagerCSWorkload: {
+    encode(message: ManagerCSWorkload, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ManagerCSWorkload;
+    fromJSON(object: any): ManagerCSWorkload;
+    toJSON(message: ManagerCSWorkload): unknown;
+    create<I extends Exact<DeepPartial<ManagerCSWorkload>, I>>(base?: I): ManagerCSWorkload;
+    fromPartial<I extends Exact<DeepPartial<ManagerCSWorkload>, I>>(object: I): ManagerCSWorkload;
 };
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {

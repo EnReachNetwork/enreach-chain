@@ -37,12 +37,6 @@ export interface ReputationDeltaPoint {
     deltaPoint: number;
     createAt: number;
 }
-export interface ReputationPoint {
-    nodeID: string;
-    point: number;
-    createAt: number;
-    updateAt: number;
-}
 export interface EraProcessData {
     era: number;
     /** total nodes count need to be processed */
@@ -109,14 +103,6 @@ export declare const ReputationDeltaPoint: {
     toJSON(message: ReputationDeltaPoint): unknown;
     create<I extends Exact<DeepPartial<ReputationDeltaPoint>, I>>(base?: I): ReputationDeltaPoint;
     fromPartial<I extends Exact<DeepPartial<ReputationDeltaPoint>, I>>(object: I): ReputationDeltaPoint;
-};
-export declare const ReputationPoint: {
-    encode(message: ReputationPoint, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): ReputationPoint;
-    fromJSON(object: any): ReputationPoint;
-    toJSON(message: ReputationPoint): unknown;
-    create<I extends Exact<DeepPartial<ReputationPoint>, I>>(base?: I): ReputationPoint;
-    fromPartial<I extends Exact<DeepPartial<ReputationPoint>, I>>(object: I): ReputationPoint;
 };
 export declare const EraProcessData: {
     encode(message: EraProcessData, writer?: _m0.Writer): _m0.Writer;

@@ -66,6 +66,8 @@ async function main() {
   await testWorkload();
 
   await testReputationPoint();
+
+  await testCheatStatus();
 }
 
 async function testManager(operatorApi: OperatorApi, managerApi: ManagerApi) {
@@ -291,6 +293,68 @@ async function testReputationPoint() {
   console.log("Reputation Point Change Data:", jsonify(allReputationPointChangeDatas));
 } 
 
+async function testCheatStatus() {
+
+  let currentEra = await workload_A_Api.getCurrentEra();
+  while(currentEra < 2) {
+    console.log(`Waiting for era_2 to be started...`);
+    await sleep(3000);
+    currentEra = await workload_A_Api.getCurrentEra();
+  }
+  const previsouEra = currentEra - 1;
+
+  const cheatStatusCR_A = {
+    managerAccount: workload_A_Api.account,
+    era: previsouEra,
+    nodeDatas: [
+      {
+        nodeID: "node1",
+        cheatStatus: "Suspicious",
+      },
+      {
+        nodeID: "node2",
+        cheatStatus: "Normal",
+      },
+    ],
+  };
+  const cheatStatusCR_B = {
+    managerAccount: workload_B_Api.account,
+    era: previsouEra,
+    nodeDatas: [
+      {
+        nodeID: "node1",
+        cheatStatus: "Suspicious",
+      },
+      {
+        nodeID: "node2",
+        cheatStatus: "Suspicious",
+      },
+    ],
+  };
+  const cheatStatusCR_C = {
+    managerAccount: workload_C_Api.account,
+    era: previsouEra,
+    nodeDatas: [
+      {
+        nodeID: "node1",
+        cheatStatus: "Normal",
+      },
+      {
+        nodeID: "node2",
+        cheatStatus: "Blacklist",
+      },
+    ],
+  };
+  
+  await workload_A_Api.submitCheatStatusCR(cheatStatusCR_A);
+  await workload_B_Api.submitCheatStatusCR(cheatStatusCR_B);
+  await workload_C_Api.submitCheatStatusCR(cheatStatusCR_C);
+
+  console.log("===Query all data");
+  const cheatStatusCRData = await workload_A_Api.queryAllCheatStatusCRDataByEra(Number(previsouEra));
+  console.log(`Cheat Status CR Data of era-${previsouEra}:`, jsonify(cheatStatusCRData));
+} 
+
 async function listenEvents() {
 
   const tmClient = await Tendermint37Client.connect(CHAIN_WS_URL);
@@ -329,18 +393,18 @@ async function listenEvents() {
               console.log(`Node Workloads of epoch-${epoch}:`, jsonify(nodeWorkloads));
 
               const managerWorkloads = await workload_A_Api.queryAllManagerWRWorkloadByEpoch(Number(epoch));
-              console.log(`Manager Workloads of epoch-${epoch}:`, jsonify(managerWorkloads));
+              console.log(`Manager Workreport Workloads of epoch-${epoch}:`, jsonify(managerWorkloads));
 
               const allEpochProcessDatas = await workload_A_Api.queryAllEpochProcessData();
               console.log(`All Epoch Process Datas:`, jsonify(allEpochProcessDatas));
             }
           } else if (event.type === "EventEraReputationPointProcessStarted") {
             const era = event.attributes.find(attr => attr.key === "era")?.value;
-            console.log(`!!!Era reputation point process started: ${event.attributes.map(item => `'${item.key}':'${item.value}'`).join(', ')}`);
+            console.log(`###Era reputation point process started: ${event.attributes.map(item => `'${item.key}':'${item.value}'`).join(', ')}`);
           } else if (event.type === "EventEraReputationPointProcessEnded") {
             const era = event.attributes.find(attr => attr.key === "era")?.value;
             const totalNodesCount = Number(event.attributes.find(attr => attr.key === "totalNodesCount")?.value);
-            console.log(`!!!Era reputation point process ended: ${event.attributes.map(item => `'${item.key}':'${item.value}'`).join(', ')}`);
+            console.log(`###Era reputation point process ended: ${event.attributes.map(item => `'${item.key}':'${item.value}'`).join(', ')}`);
 
             if (totalNodesCount > 0) {
               // query all reputation point by era and print them out
@@ -348,11 +412,34 @@ async function listenEvents() {
               const reputationDeltaPoints = await workload_A_Api.queryAllReputationDeltaPointByEra(Number(era));
               console.log(`Reputation Delta Points of era-${era}:`, jsonify(reputationDeltaPoints));
 
-              const reputationPoints = await workload_A_Api.queryAllReputationPoint();
-              console.log(`Reputation Points of era-${era}:`, jsonify(reputationPoints));
+              const reputationPointsOfNodes = await edgenodeApi.queryAllNode();
+              console.log(`Reputation Points of era-${era}:`, jsonify(reputationPointsOfNodes));
+
+              const managerWorkloads = await workload_A_Api.queryAllManagerRPWorkloadByEra(Number(era));
+              console.log(`Manager Reputation Point Workloads of era-${era}:`, jsonify(managerWorkloads));
 
               const allEraProcessDatas = await workload_A_Api.queryAllEraProcessData();
               console.log(`All Era Process Datas:`, jsonify(allEraProcessDatas));
+            }
+          } else if (event.type === "EventEraCheatStatusProcessStarted") {
+            const era = event.attributes.find(attr => attr.key === "era")?.value;
+            console.log(`###Era cheat status process started: ${event.attributes.map(item => `'${item.key}':'${item.value}'`).join(', ')}`);
+          } else if (event.type === "EventEraCheatStatusProcessEnded") {
+            const era = event.attributes.find(attr => attr.key === "era")?.value;
+            const totalNodesCount = Number(event.attributes.find(attr => attr.key === "totalNodesCount")?.value);
+            console.log(`###Era cheat status process ended: ${event.attributes.map(item => `'${item.key}':'${item.value}'`).join(', ')}`);
+
+            if (totalNodesCount > 0) {
+              // query all cheat status by era and print them out
+              console.log("===Query all cheat status data");
+              const cheatStatusOfNodes = await edgenodeApi.queryAllNode();
+              console.log(`Cheat Status of era-${era}:`, jsonify(cheatStatusOfNodes));
+
+              const managerWorkloads = await workload_A_Api.queryAllManagerCSWorkloadByEra(Number(era));
+              console.log(`Manager Cheat Status Workloads of era-${era}:`, jsonify(managerWorkloads));
+
+              const allEraCheatStatusProcessDatas = await workload_A_Api.queryAllEraCheatStatusProcessData();
+              console.log(`All Era Cheata Status Process Datas:`, jsonify(allEraCheatStatusProcessDatas));
             }
           }
         });

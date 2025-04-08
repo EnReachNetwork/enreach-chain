@@ -33,6 +33,11 @@ paths:
                     type: string
                   workingStatus:
                     type: string
+                  cheatStatus:
+                    type: string
+                  reputationPoint:
+                    type: string
+                    format: int64
                   creator:
                     type: string
                   createAt:
@@ -99,6 +104,11 @@ paths:
                       type: string
                     workingStatus:
                       type: string
+                    cheatStatus:
+                      type: string
+                    reputationPoint:
+                      type: string
+                      format: int64
                     creator:
                       type: string
                     createAt:
@@ -442,6 +452,11 @@ definitions:
               type: string
             workingStatus:
               type: string
+            cheatStatus:
+              type: string
+            reputationPoint:
+              type: string
+              format: int64
             creator:
               type: string
             createAt:
@@ -515,6 +530,11 @@ definitions:
             type: string
           workingStatus:
             type: string
+          cheatStatus:
+            type: string
+          reputationPoint:
+            type: string
+            format: int64
           creator:
             type: string
           createAt:
@@ -588,6 +608,11 @@ definitions:
         type: string
       workingStatus:
         type: string
+      cheatStatus:
+        type: string
+      reputationPoint:
+        type: string
+        format: int64
       creator:
         type: string
       createAt:

@@ -4,6 +4,156 @@ info:
   name: ''
   description: ''
 paths:
+  /enreach/workload/cheat_status_cr_data/{era}:
+    get:
+      operationId: Query_AllCheatStatusCRDataByEra
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              CheatStatusCRDatas:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    era:
+                      type: string
+                      format: uint64
+                    nodeID:
+                      type: string
+                    data:
+                      type: object
+                      additionalProperties:
+                        type: object
+                        properties:
+                          cheatStatus:
+                            type: string
+                          createAt:
+                            type: string
+                            format: uint64
+                          updateAt:
+                            type: string
+                            format: uint64
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                  total:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: era
+          in: path
+          required: true
+          type: string
+          format: uint64
+        - name: pagination.key
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  /enreach/workload/cheat_status_cr_data/{era}/{nodeID}:
+    get:
+      operationId: Query_CheatStatusCRData
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              CheatStatusCRData:
+                type: object
+                properties:
+                  era:
+                    type: string
+                    format: uint64
+                  nodeID:
+                    type: string
+                  data:
+                    type: object
+                    additionalProperties:
+                      type: object
+                      properties:
+                        cheatStatus:
+                          type: string
+                        createAt:
+                          type: string
+                          format: uint64
+                        updateAt:
+                          type: string
+                          format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: era
+          in: path
+          required: true
+          type: string
+          format: uint64
+        - name: nodeID
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
   /enreach/workload/epoch/current_epoch:
     get:
       operationId: Query_CurrentEpoch
@@ -524,6 +674,154 @@ paths:
                     '@type':
                       type: string
                   additionalProperties: {}
+      tags:
+        - Query
+  /enreach/workload/manager_cs_workload/{era}/{managerAccount}:
+    get:
+      operationId: Query_ManagerCSWorkload
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              ManagerCSWorkload:
+                type: object
+                properties:
+                  era:
+                    type: string
+                    format: uint64
+                  managerAccount:
+                    type: string
+                  reportedNodesCount:
+                    type: string
+                    format: uint64
+                  score:
+                    type: string
+                    format: uint64
+                  createAt:
+                    type: string
+                    format: uint64
+                  updateAt:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: era
+          in: path
+          required: true
+          type: string
+          format: uint64
+        - name: managerAccount
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /enreach/workload/manager_cs_workloads/{era}:
+    get:
+      operationId: Query_AllManagerCSWorkloadByEra
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              ManagerCSWorkloads:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    era:
+                      type: string
+                      format: uint64
+                    managerAccount:
+                      type: string
+                    reportedNodesCount:
+                      type: string
+                      format: uint64
+                    score:
+                      type: string
+                      format: uint64
+                    createAt:
+                      type: string
+                      format: uint64
+                    updateAt:
+                      type: string
+                      format: uint64
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                  total:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: era
+          in: path
+          required: true
+          type: string
+          format: uint64
+        - name: pagination.key
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          in: query
+          required: false
+          type: boolean
       tags:
         - Query
   /enreach/workload/manager_rp_workload/{era}/{managerAccount}:
@@ -1125,54 +1423,6 @@ paths:
           type: boolean
       tags:
         - Query
-  /enreach/workload/reputation_point/{nodeID}:
-    get:
-      operationId: Query_ReputationPoint
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              ReputationPoint:
-                type: object
-                properties:
-                  nodeID:
-                    type: string
-                  point:
-                    type: string
-                    format: int64
-                  createAt:
-                    type: string
-                    format: uint64
-                  updateAt:
-                    type: string
-                    format: uint64
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: nodeID
-          in: path
-          required: true
-          type: string
-      tags:
-        - Query
   /enreach/workload/reputation_point_change_data/{era}/{nodeID}:
     get:
       operationId: Query_ReputationPointChangeData
@@ -1325,84 +1575,6 @@ paths:
           type: boolean
       tags:
         - Query
-  /enreach/workload/reputation_points:
-    get:
-      operationId: Query_AllReputationPoint
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              ReputationPoints:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    nodeID:
-                      type: string
-                    point:
-                      type: string
-                      format: int64
-                    createAt:
-                      type: string
-                      format: uint64
-                    updateAt:
-                      type: string
-                      format: uint64
-              pagination:
-                type: object
-                properties:
-                  next_key:
-                    type: string
-                    format: byte
-                  total:
-                    type: string
-                    format: uint64
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: pagination.key
-          in: query
-          required: false
-          type: string
-          format: byte
-        - name: pagination.offset
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.limit
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.count_total
-          in: query
-          required: false
-          type: boolean
-        - name: pagination.reverse
-          in: query
-          required: false
-          type: boolean
-      tags:
-        - Query
   /enreach/workload/superior:
     get:
       operationId: Query_Superior
@@ -1528,6 +1700,163 @@ paths:
                   type: object
                   properties:
                     epoch:
+                      type: string
+                      format: uint64
+                    totalNodesCount:
+                      type: string
+                      format: uint64
+                    processedNodesCount:
+                      type: string
+                      format: uint64
+                    startAt:
+                      type: string
+                      format: uint64
+                    updateAt:
+                      type: string
+                      format: uint64
+                    status:
+                      type: string
+                    pagination:
+                      type: object
+                      properties:
+                        next_key:
+                          type: string
+                          format: byte
+                        total:
+                          type: string
+                          format: uint64
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                  total:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  /enreach/workload/workreport/era_cheat_status_process_data/{era}:
+    get:
+      operationId: Query_EraCheatStatusProcessData
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              EraCheatStatusProcessData:
+                type: object
+                properties:
+                  era:
+                    type: string
+                    format: uint64
+                  totalNodesCount:
+                    type: string
+                    format: uint64
+                  processedNodesCount:
+                    type: string
+                    format: uint64
+                  startAt:
+                    type: string
+                    format: uint64
+                  updateAt:
+                    type: string
+                    format: uint64
+                  status:
+                    type: string
+                  pagination:
+                    type: object
+                    properties:
+                      next_key:
+                        type: string
+                        format: byte
+                      total:
+                        type: string
+                        format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: era
+          in: path
+          required: true
+          type: string
+          format: uint64
+      tags:
+        - Query
+  /enreach/workload/workreport/era_cheat_status_process_datas:
+    get:
+      operationId: Query_AllEraCheatStatusProcessData
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              EraCheatStatusProcessDatas:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    era:
                       type: string
                       format: uint64
                     totalNodesCount:
@@ -2002,6 +2331,17 @@ definitions:
             '@type':
               type: string
           additionalProperties: {}
+  CheatStatusCRDB:
+    type: object
+    properties:
+      cheatStatus:
+        type: string
+      createAt:
+        type: string
+        format: uint64
+      updateAt:
+        type: string
+        format: uint64
   EpochInfo:
     type: object
     properties:
@@ -2075,6 +2415,41 @@ definitions:
       total:
         type: string
         format: uint64
+  QueryGetAllCheatStatusCRDataByEraResponse:
+    type: object
+    properties:
+      CheatStatusCRDatas:
+        type: array
+        items:
+          type: object
+          properties:
+            era:
+              type: string
+              format: uint64
+            nodeID:
+              type: string
+            data:
+              type: object
+              additionalProperties:
+                type: object
+                properties:
+                  cheatStatus:
+                    type: string
+                  createAt:
+                    type: string
+                    format: uint64
+                  updateAt:
+                    type: string
+                    format: uint64
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+          total:
+            type: string
+            format: uint64
   QueryGetAllEpochProcessDataResponse:
     type: object
     properties:
@@ -2084,6 +2459,49 @@ definitions:
           type: object
           properties:
             epoch:
+              type: string
+              format: uint64
+            totalNodesCount:
+              type: string
+              format: uint64
+            processedNodesCount:
+              type: string
+              format: uint64
+            startAt:
+              type: string
+              format: uint64
+            updateAt:
+              type: string
+              format: uint64
+            status:
+              type: string
+            pagination:
+              type: object
+              properties:
+                next_key:
+                  type: string
+                  format: byte
+                total:
+                  type: string
+                  format: uint64
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+          total:
+            type: string
+            format: uint64
+  QueryGetAllEraCheatStatusProcessDataResponse:
+    type: object
+    properties:
+      EraCheatStatusProcessDatas:
+        type: array
+        items:
+          type: object
+          properties:
+            era:
               type: string
               format: uint64
             totalNodesCount:
@@ -2214,6 +2632,40 @@ definitions:
               type: string
               format: date-time
             endBlock:
+              type: string
+              format: uint64
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+          total:
+            type: string
+            format: uint64
+  QueryGetAllManagerCSWorkloadByEraResponse:
+    type: object
+    properties:
+      ManagerCSWorkloads:
+        type: array
+        items:
+          type: object
+          properties:
+            era:
+              type: string
+              format: uint64
+            managerAccount:
+              type: string
+            reportedNodesCount:
+              type: string
+              format: uint64
+            score:
+              type: string
+              format: uint64
+            createAt:
+              type: string
+              format: uint64
+            updateAt:
               type: string
               format: uint64
       pagination:
@@ -2385,34 +2837,6 @@ definitions:
           total:
             type: string
             format: uint64
-  QueryGetAllReputationPointResponse:
-    type: object
-    properties:
-      ReputationPoints:
-        type: array
-        items:
-          type: object
-          properties:
-            nodeID:
-              type: string
-            point:
-              type: string
-              format: int64
-            createAt:
-              type: string
-              format: uint64
-            updateAt:
-              type: string
-              format: uint64
-      pagination:
-        type: object
-        properties:
-          next_key:
-            type: string
-            format: byte
-          total:
-            type: string
-            format: uint64
   QueryGetAllWorkreportByEpochResponse:
     type: object
     properties:
@@ -2449,6 +2873,30 @@ definitions:
           total:
             type: string
             format: uint64
+  QueryGetCheatStatusCRDataResponse:
+    type: object
+    properties:
+      CheatStatusCRData:
+        type: object
+        properties:
+          era:
+            type: string
+            format: uint64
+          nodeID:
+            type: string
+          data:
+            type: object
+            additionalProperties:
+              type: object
+              properties:
+                cheatStatus:
+                  type: string
+                createAt:
+                  type: string
+                  format: uint64
+                updateAt:
+                  type: string
+                  format: uint64
   QueryGetCurrentEpochResponse:
     type: object
     properties:
@@ -2504,6 +2952,38 @@ definitions:
         type: object
         properties:
           epoch:
+            type: string
+            format: uint64
+          totalNodesCount:
+            type: string
+            format: uint64
+          processedNodesCount:
+            type: string
+            format: uint64
+          startAt:
+            type: string
+            format: uint64
+          updateAt:
+            type: string
+            format: uint64
+          status:
+            type: string
+          pagination:
+            type: object
+            properties:
+              next_key:
+                type: string
+                format: byte
+              total:
+                type: string
+                format: uint64
+  QueryGetEraCheatStatusProcessDataResponse:
+    type: object
+    properties:
+      EraCheatStatusProcessData:
+        type: object
+        properties:
+          era:
             type: string
             format: uint64
           totalNodesCount:
@@ -2613,6 +3093,29 @@ definitions:
             type: string
             format: date-time
           endBlock:
+            type: string
+            format: uint64
+  QueryGetManagerCSWorkloadResponse:
+    type: object
+    properties:
+      ManagerCSWorkload:
+        type: object
+        properties:
+          era:
+            type: string
+            format: uint64
+          managerAccount:
+            type: string
+          reportedNodesCount:
+            type: string
+            format: uint64
+          score:
+            type: string
+            format: uint64
+          createAt:
+            type: string
+            format: uint64
+          updateAt:
             type: string
             format: uint64
   QueryGetManagerRPWorkloadResponse:
@@ -2762,23 +3265,6 @@ definitions:
                 updateAt:
                   type: string
                   format: uint64
-  QueryGetReputationPointResponse:
-    type: object
-    properties:
-      ReputationPoint:
-        type: object
-        properties:
-          nodeID:
-            type: string
-          point:
-            type: string
-            format: int64
-          createAt:
-            type: string
-            format: uint64
-          updateAt:
-            type: string
-            format: uint64
   QueryGetSuperiorResponse:
     type: object
     properties:
@@ -2847,10 +3333,60 @@ definitions:
       updateAt:
         type: string
         format: uint64
+  workload.CheatStatusCRData:
+    type: object
+    properties:
+      era:
+        type: string
+        format: uint64
+      nodeID:
+        type: string
+      data:
+        type: object
+        additionalProperties:
+          type: object
+          properties:
+            cheatStatus:
+              type: string
+            createAt:
+              type: string
+              format: uint64
+            updateAt:
+              type: string
+              format: uint64
   workload.EpochProcessData:
     type: object
     properties:
       epoch:
+        type: string
+        format: uint64
+      totalNodesCount:
+        type: string
+        format: uint64
+      processedNodesCount:
+        type: string
+        format: uint64
+      startAt:
+        type: string
+        format: uint64
+      updateAt:
+        type: string
+        format: uint64
+      status:
+        type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+          total:
+            type: string
+            format: uint64
+  workload.EraCheatStatusProcessData:
+    type: object
+    properties:
+      era:
         type: string
         format: uint64
       totalNodesCount:
@@ -2905,6 +3441,26 @@ definitions:
           total:
             type: string
             format: uint64
+  workload.ManagerCSWorkload:
+    type: object
+    properties:
+      era:
+        type: string
+        format: uint64
+      managerAccount:
+        type: string
+      reportedNodesCount:
+        type: string
+        format: uint64
+      score:
+        type: string
+        format: uint64
+      createAt:
+        type: string
+        format: uint64
+      updateAt:
+        type: string
+        format: uint64
   workload.ManagerRPWorkload:
     type: object
     properties:
@@ -2975,20 +3531,6 @@ definitions:
       createAt:
         type: string
         format: uint64
-  workload.ReputationPoint:
-    type: object
-    properties:
-      nodeID:
-        type: string
-      point:
-        type: string
-        format: int64
-      createAt:
-        type: string
-        format: uint64
-      updateAt:
-        type: string
-        format: uint64
   workload.ReputationPointChangeData:
     type: object
     properties:
@@ -3050,7 +3592,16 @@ definitions:
             updateAt:
               type: string
               format: uint64
+  CheatStatusCR:
+    type: object
+    properties:
+      nodeID:
+        type: string
+      cheatStatus:
+        type: string
   MsgCreateSuperiorResponse:
+    type: object
+  MsgSubmitCheatStatusCRResponse:
     type: object
   MsgSubmitReputationPointChangeDataResponse:
     type: object

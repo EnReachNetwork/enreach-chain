@@ -6,107 +6,782 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
+import { ReputationPointChangeRawData } from "./types/enreach/workload/reputationpoint";
+import { ReputationDeltaPoint } from "./types/enreach/workload/reputationpoint";
+import { QueryGetAllCheatStatusCRDataByEraRequest } from "./types/enreach/workload/query";
+import { EraCheatStatusProcessData } from "./types/enreach/workload/cheat_status";
+import { MsgUpdateHistoryEpochDataDepth } from "./types/enreach/workload/tx";
+import { QueryGetPendingNextEpochResponse } from "./types/enreach/workload/query";
+import { QueryGetAllReputationDeltaPointByEraResponse } from "./types/enreach/workload/query";
+import { MsgCreateSuperior } from "./types/enreach/workload/tx";
+import { QueryGetSuperiorResponse } from "./types/enreach/workload/query";
+import { QueryGetAllReputationPointChangeDataByEraRequest } from "./types/enreach/workload/query";
+import { QueryParamsResponse } from "./types/enreach/workload/query";
+import { QueryGetManagerCSWorkloadRequest } from "./types/enreach/workload/query";
+import { QueryGetCurrentEraRequest } from "./types/enreach/workload/query";
+import { Params } from "./types/enreach/workload/params";
+import { QueryGetAllEraProcessDataRequest } from "./types/enreach/workload/query";
+import { QueryGetEraCheatStatusProcessDataRequest } from "./types/enreach/workload/query";
+import { MsgUpdateSuperior } from "./types/enreach/workload/tx";
+import { MsgSubmitCheatStatusCRResponse } from "./types/enreach/workload/tx";
+import { QueryGetHistoryEpochRequest } from "./types/enreach/workload/query";
+import { QueryGetPendingNextEraResponse } from "./types/enreach/workload/query";
+import { NodeWorkload } from "./types/enreach/workload/workload";
+import { QueryGetAllManagerRPWorkloadByEraRequest } from "./types/enreach/workload/query";
+import { QueryGetAllEpochProcessDataResponse } from "./types/enreach/workload/query";
+import { MsgUpdateWorkreportProcessBatchSizeResponse } from "./types/enreach/workload/tx";
+import { QueryGetReputationDeltaPointRequest } from "./types/enreach/workload/query";
+import { QueryGetCurrentEraResponse } from "./types/enreach/workload/query";
+import { QueryGetAllHistoryEraRequest } from "./types/enreach/workload/query";
+import { QueryGetCheatStatusCRDataResponse } from "./types/enreach/workload/query";
+import { CheatStatusCRDB } from "./types/enreach/workload/cheat_status";
+import { MsgSubmitWorkreports } from "./types/enreach/workload/tx";
+import { QueryGetWorkreportRequest } from "./types/enreach/workload/query";
+import { QueryGetWorkreportProcessBatchSizeRequest } from "./types/enreach/workload/query";
+import { ManagerRPWorkload } from "./types/enreach/workload/workload";
+import { QueryGetAllHistoryEpochResponse } from "./types/enreach/workload/query";
+import { QueryGetAllManagerCSWorkloadByEraResponse } from "./types/enreach/workload/query";
+import { QueryGetAllReputationPointChangeDataByEraResponse } from "./types/enreach/workload/query";
+import { MsgSubmitWorkreportsResponse } from "./types/enreach/workload/tx";
+import { MsgSubmitCheatStatusCR } from "./types/enreach/workload/tx";
+import { EraProcessData } from "./types/enreach/workload/reputationpoint";
+import { NodeScoreDB } from "./types/enreach/workload/workreport";
+import { QueryGetNodeWorkloadRequest } from "./types/enreach/workload/query";
+import { QueryGetCheatStatusCRDataRequest } from "./types/enreach/workload/query";
+import { QueryGetAllManagerRPWorkloadByEraResponse } from "./types/enreach/workload/query";
+import { QueryGetSuperiorRequest } from "./types/enreach/workload/query";
+import { QueryGetAllCheatStatusCRDataByEraResponse } from "./types/enreach/workload/query";
+import { EraInfo } from "./types/enreach/workload/era_info";
+import { QueryGetWorkreportProcessBatchSizeResponse } from "./types/enreach/workload/query";
+import { QueryGetEraProcessDataResponse } from "./types/enreach/workload/query";
+import { ManagerWRWorkload } from "./types/enreach/workload/workload";
+import { MsgUpdateSuperiorResponse } from "./types/enreach/workload/tx";
+import { QueryGetAllManagerWRWorkloadByEpochRequest } from "./types/enreach/workload/query";
+import { QueryGetAllReputationDeltaPointByEraRequest } from "./types/enreach/workload/query";
+import { Superior } from "./types/enreach/workload/superior";
+import { QueryGetCurrentEpochRequest } from "./types/enreach/workload/query";
+import { QueryGetManagerRPWorkloadRequest } from "./types/enreach/workload/query";
+import { CheatStatusCRData } from "./types/enreach/workload/cheat_status";
+import { QueryGetAllWorkreportByEpochRequest } from "./types/enreach/workload/query";
+import { QueryGetAllHistoryEraResponse } from "./types/enreach/workload/query";
+import { QueryGetEraCheatStatusProcessDataResponse } from "./types/enreach/workload/query";
+import { QueryGetReputationDeltaPointResponse } from "./types/enreach/workload/query";
+import { NodeScore } from "./types/enreach/workload/workreport";
+import { QueryGetCurrentEpochResponse } from "./types/enreach/workload/query";
+import { QueryGetEraLengthResponse } from "./types/enreach/workload/query";
+import { QueryGetManagerCSWorkloadResponse } from "./types/enreach/workload/query";
+import { QueryGetEraProcessDataRequest } from "./types/enreach/workload/query";
+import { CheatStatusCRMapDB } from "./types/enreach/workload/cheat_status";
+import { ManagerCSWorkload } from "./types/enreach/workload/workload";
+import { ReputationPointChangeRawDataDB } from "./types/enreach/workload/reputationpoint";
+import { QueryGetAllManagerWRWorkloadByEpochResponse } from "./types/enreach/workload/query";
+import { MsgUpdateHistoryEpochDataDepthResponse } from "./types/enreach/workload/tx";
+import { QueryGetAllManagerCSWorkloadByEraRequest } from "./types/enreach/workload/query";
+import { QueryGetReputationPointChangeDataRequest } from "./types/enreach/workload/query";
+import { QueryGetReputationPointChangeDataResponse } from "./types/enreach/workload/query";
+import { QueryGetAllEraCheatStatusProcessDataResponse } from "./types/enreach/workload/query";
+import { Workreport } from "./types/enreach/workload/workreport";
+import { ReputationPointChangeData } from "./types/enreach/workload/reputationpoint";
+import { QueryParamsRequest } from "./types/enreach/workload/query";
+import { QueryGetHistoryEraRequest } from "./types/enreach/workload/query";
+import { QueryGetAllNodeWorkloadByEpochRequest } from "./types/enreach/workload/query";
+import { QueryGetAllEpochProcessDataRequest } from "./types/enreach/workload/query";
+import { EpochProcessData } from "./types/enreach/workload/workreport";
+import { ReputationPointChangeRawDataMapDB } from "./types/enreach/workload/reputationpoint";
+import { QueryGetHistoryEpochResponse } from "./types/enreach/workload/query";
+import { QueryGetManagerWRWorkloadRequest } from "./types/enreach/workload/query";
+import { ManagerNodeScoreMap } from "./types/enreach/workload/workreport";
+import { MsgCreateSuperiorResponse } from "./types/enreach/workload/tx";
+import { MsgSubmitReputationPointChangeData } from "./types/enreach/workload/tx";
+import { QueryGetAllHistoryEpochRequest } from "./types/enreach/workload/query";
+import { QueryGetEpochLengthResponse } from "./types/enreach/workload/query";
+import { QueryGetAllEraProcessDataResponse } from "./types/enreach/workload/query";
+import { CheatStatusCR } from "./types/enreach/workload/cheat_status";
+import { MsgUpdateParams } from "./types/enreach/workload/tx";
+import { MsgUpdateWorkreportProcessBatchSize } from "./types/enreach/workload/tx";
+import { QueryGetEpochLengthRequest } from "./types/enreach/workload/query";
+import { QueryGetAllNodeWorkloadByEpochResponse } from "./types/enreach/workload/query";
+import { GenesisState } from "./types/enreach/workload/genesis";
+import { MsgSubmitReputationPointChangeDataResponse } from "./types/enreach/workload/tx";
+import { EpochInfo } from "./types/enreach/workload/epoch_info";
+import { QueryGetPendingNextEraRequest } from "./types/enreach/workload/query";
+import { QueryGetAllEraCheatStatusProcessDataRequest } from "./types/enreach/workload/query";
+import { QueryGetManagerRPWorkloadResponse } from "./types/enreach/workload/query";
+import { QueryGetHistoryEpochDataDepthResponse } from "./types/enreach/workload/query";
+import { QueryGetEpochProcessDataRequest } from "./types/enreach/workload/query";
+import { QueryGetWorkreportResponse } from "./types/enreach/workload/query";
+import { QueryGetEpochProcessDataResponse } from "./types/enreach/workload/query";
+import { MsgUpdateParamsResponse } from "./types/enreach/workload/tx";
+import { QueryGetPendingNextEpochRequest } from "./types/enreach/workload/query";
+import { QueryGetHistoryEpochDataDepthRequest } from "./types/enreach/workload/query";
+import { QueryGetEraLengthRequest } from "./types/enreach/workload/query";
+import { QueryGetHistoryEraResponse } from "./types/enreach/workload/query";
 import { QueryGetNodeWorkloadResponse } from "./types/enreach/workload/query";
 import { QueryGetManagerWRWorkloadResponse } from "./types/enreach/workload/query";
-import { QueryGetAllManagerRPWorkloadByEraResponse } from "./types/enreach/workload/query";
-import { MsgUpdateHistoryEpochDataDepthResponse } from "./types/enreach/workload/tx";
-import { QueryGetEpochLengthResponse } from "./types/enreach/workload/query";
-import { QueryGetAllNodeWorkloadByEpochResponse } from "./types/enreach/workload/query";
-import { MsgUpdateParamsResponse } from "./types/enreach/workload/tx";
-import { QueryGetAllHistoryEraResponse } from "./types/enreach/workload/query";
-import { QueryGetSuperiorRequest } from "./types/enreach/workload/query";
-import { ReputationPoint } from "./types/enreach/workload/reputationpoint";
-import { QueryGetHistoryEpochDataDepthResponse } from "./types/enreach/workload/query";
-import { QueryGetAllEpochProcessDataResponse } from "./types/enreach/workload/query";
-import { Superior } from "./types/enreach/workload/superior";
-import { MsgUpdateHistoryEpochDataDepth } from "./types/enreach/workload/tx";
-import { Workreport } from "./types/enreach/workload/workreport";
-import { QueryGetCurrentEpochRequest } from "./types/enreach/workload/query";
-import { QueryGetPendingNextEraResponse } from "./types/enreach/workload/query";
-import { ReputationPointChangeRawData } from "./types/enreach/workload/reputationpoint";
-import { QueryGetAllReputationPointResponse } from "./types/enreach/workload/query";
-import { EpochProcessData } from "./types/enreach/workload/workreport";
 import { QueryGetAllWorkreportByEpochResponse } from "./types/enreach/workload/query";
-import { QueryGetEpochProcessDataRequest } from "./types/enreach/workload/query";
-import { QueryGetEraLengthResponse } from "./types/enreach/workload/query";
-import { QueryGetCurrentEraRequest } from "./types/enreach/workload/query";
-import { MsgSubmitReputationPointChangeData } from "./types/enreach/workload/tx";
-import { ReputationDeltaPoint } from "./types/enreach/workload/reputationpoint";
-import { ManagerWRWorkload } from "./types/enreach/workload/workload";
-import { QueryGetAllManagerRPWorkloadByEraRequest } from "./types/enreach/workload/query";
-import { QueryGetWorkreportResponse } from "./types/enreach/workload/query";
-import { QueryGetReputationPointChangeDataRequest } from "./types/enreach/workload/query";
-import { MsgUpdateSuperiorResponse } from "./types/enreach/workload/tx";
-import { QueryGetManagerRPWorkloadRequest } from "./types/enreach/workload/query";
-import { ReputationPointChangeRawDataMapDB } from "./types/enreach/workload/reputationpoint";
-import { QueryGetNodeWorkloadRequest } from "./types/enreach/workload/query";
-import { QueryGetPendingNextEraRequest } from "./types/enreach/workload/query";
-import { QueryGetAllReputationDeltaPointByEraRequest } from "./types/enreach/workload/query";
-import { NodeScoreDB } from "./types/enreach/workload/workreport";
-import { EraProcessData } from "./types/enreach/workload/reputationpoint";
-import { QueryGetPendingNextEpochRequest } from "./types/enreach/workload/query";
-import { QueryGetAllHistoryEpochRequest } from "./types/enreach/workload/query";
-import { QueryGetAllReputationPointChangeDataByEraRequest } from "./types/enreach/workload/query";
-import { QueryGetAllReputationPointChangeDataByEraResponse } from "./types/enreach/workload/query";
-import { QueryGetHistoryEpochResponse } from "./types/enreach/workload/query";
-import { EraInfo } from "./types/enreach/workload/era_info";
-import { QueryGetAllManagerWRWorkloadByEpochRequest } from "./types/enreach/workload/query";
-import { QueryGetWorkreportProcessBatchSizeRequest } from "./types/enreach/workload/query";
-import { QueryGetCurrentEraResponse } from "./types/enreach/workload/query";
-import { MsgSubmitWorkreports } from "./types/enreach/workload/tx";
-import { MsgUpdateWorkreportProcessBatchSize } from "./types/enreach/workload/tx";
-import { ManagerNodeScoreMap } from "./types/enreach/workload/workreport";
-import { QueryGetManagerWRWorkloadRequest } from "./types/enreach/workload/query";
-import { QueryGetAllWorkreportByEpochRequest } from "./types/enreach/workload/query";
-import { QueryGetWorkreportProcessBatchSizeResponse } from "./types/enreach/workload/query";
-import { QueryGetAllReputationDeltaPointByEraResponse } from "./types/enreach/workload/query";
-import { MsgUpdateParams } from "./types/enreach/workload/tx";
-import { QueryGetAllEpochProcessDataRequest } from "./types/enreach/workload/query";
-import { QueryGetReputationPointResponse } from "./types/enreach/workload/query";
-import { QueryGetAllNodeWorkloadByEpochRequest } from "./types/enreach/workload/query";
-import { QueryGetCurrentEpochResponse } from "./types/enreach/workload/query";
-import { QueryGetEpochProcessDataResponse } from "./types/enreach/workload/query";
-import { QueryGetEraProcessDataResponse } from "./types/enreach/workload/query";
-import { ReputationPointChangeData } from "./types/enreach/workload/reputationpoint";
-import { EpochInfo } from "./types/enreach/workload/epoch_info";
-import { QueryGetHistoryEraResponse } from "./types/enreach/workload/query";
-import { MsgCreateSuperior } from "./types/enreach/workload/tx";
-import { MsgSubmitReputationPointChangeDataResponse } from "./types/enreach/workload/tx";
-import { MsgCreateSuperiorResponse } from "./types/enreach/workload/tx";
-import { ManagerRPWorkload } from "./types/enreach/workload/workload";
-import { QueryGetEpochLengthRequest } from "./types/enreach/workload/query";
-import { QueryGetAllHistoryEraRequest } from "./types/enreach/workload/query";
-import { QueryGetReputationPointChangeDataResponse } from "./types/enreach/workload/query";
-import { QueryGetReputationDeltaPointRequest } from "./types/enreach/workload/query";
-import { QueryGetReputationDeltaPointResponse } from "./types/enreach/workload/query";
-import { QueryGetEraProcessDataRequest } from "./types/enreach/workload/query";
-import { GenesisState } from "./types/enreach/workload/genesis";
-import { QueryGetAllReputationPointRequest } from "./types/enreach/workload/query";
-import { ReputationPointChangeRawDataDB } from "./types/enreach/workload/reputationpoint";
-import { Params } from "./types/enreach/workload/params";
-import { QueryGetManagerRPWorkloadResponse } from "./types/enreach/workload/query";
-import { QueryGetAllEraProcessDataRequest } from "./types/enreach/workload/query";
-import { NodeWorkload } from "./types/enreach/workload/workload";
-import { QueryGetPendingNextEpochResponse } from "./types/enreach/workload/query";
-import { QueryGetAllManagerWRWorkloadByEpochResponse } from "./types/enreach/workload/query";
-import { MsgUpdateWorkreportProcessBatchSizeResponse } from "./types/enreach/workload/tx";
-import { QueryGetHistoryEpochDataDepthRequest } from "./types/enreach/workload/query";
-import { QueryParamsRequest } from "./types/enreach/workload/query";
-import { QueryGetWorkreportRequest } from "./types/enreach/workload/query";
-import { QueryGetEraLengthRequest } from "./types/enreach/workload/query";
-import { QueryGetAllEraProcessDataResponse } from "./types/enreach/workload/query";
-import { QueryParamsResponse } from "./types/enreach/workload/query";
-import { MsgUpdateSuperior } from "./types/enreach/workload/tx";
-import { QueryGetAllHistoryEpochResponse } from "./types/enreach/workload/query";
-import { NodeScore } from "./types/enreach/workload/workreport";
-import { QueryGetHistoryEpochRequest } from "./types/enreach/workload/query";
-import { QueryGetSuperiorResponse } from "./types/enreach/workload/query";
-import { QueryGetHistoryEraRequest } from "./types/enreach/workload/query";
-import { QueryGetReputationPointRequest } from "./types/enreach/workload/query";
-import { MsgSubmitWorkreportsResponse } from "./types/enreach/workload/tx";
 
 
-export { QueryGetNodeWorkloadResponse, QueryGetManagerWRWorkloadResponse, QueryGetAllManagerRPWorkloadByEraResponse, MsgUpdateHistoryEpochDataDepthResponse, QueryGetEpochLengthResponse, QueryGetAllNodeWorkloadByEpochResponse, MsgUpdateParamsResponse, QueryGetAllHistoryEraResponse, QueryGetSuperiorRequest, ReputationPoint, QueryGetHistoryEpochDataDepthResponse, QueryGetAllEpochProcessDataResponse, Superior, MsgUpdateHistoryEpochDataDepth, Workreport, QueryGetCurrentEpochRequest, QueryGetPendingNextEraResponse, ReputationPointChangeRawData, QueryGetAllReputationPointResponse, EpochProcessData, QueryGetAllWorkreportByEpochResponse, QueryGetEpochProcessDataRequest, QueryGetEraLengthResponse, QueryGetCurrentEraRequest, MsgSubmitReputationPointChangeData, ReputationDeltaPoint, ManagerWRWorkload, QueryGetAllManagerRPWorkloadByEraRequest, QueryGetWorkreportResponse, QueryGetReputationPointChangeDataRequest, MsgUpdateSuperiorResponse, QueryGetManagerRPWorkloadRequest, ReputationPointChangeRawDataMapDB, QueryGetNodeWorkloadRequest, QueryGetPendingNextEraRequest, QueryGetAllReputationDeltaPointByEraRequest, NodeScoreDB, EraProcessData, QueryGetPendingNextEpochRequest, QueryGetAllHistoryEpochRequest, QueryGetAllReputationPointChangeDataByEraRequest, QueryGetAllReputationPointChangeDataByEraResponse, QueryGetHistoryEpochResponse, EraInfo, QueryGetAllManagerWRWorkloadByEpochRequest, QueryGetWorkreportProcessBatchSizeRequest, QueryGetCurrentEraResponse, MsgSubmitWorkreports, MsgUpdateWorkreportProcessBatchSize, ManagerNodeScoreMap, QueryGetManagerWRWorkloadRequest, QueryGetAllWorkreportByEpochRequest, QueryGetWorkreportProcessBatchSizeResponse, QueryGetAllReputationDeltaPointByEraResponse, MsgUpdateParams, QueryGetAllEpochProcessDataRequest, QueryGetReputationPointResponse, QueryGetAllNodeWorkloadByEpochRequest, QueryGetCurrentEpochResponse, QueryGetEpochProcessDataResponse, QueryGetEraProcessDataResponse, ReputationPointChangeData, EpochInfo, QueryGetHistoryEraResponse, MsgCreateSuperior, MsgSubmitReputationPointChangeDataResponse, MsgCreateSuperiorResponse, ManagerRPWorkload, QueryGetEpochLengthRequest, QueryGetAllHistoryEraRequest, QueryGetReputationPointChangeDataResponse, QueryGetReputationDeltaPointRequest, QueryGetReputationDeltaPointResponse, QueryGetEraProcessDataRequest, GenesisState, QueryGetAllReputationPointRequest, ReputationPointChangeRawDataDB, Params, QueryGetManagerRPWorkloadResponse, QueryGetAllEraProcessDataRequest, NodeWorkload, QueryGetPendingNextEpochResponse, QueryGetAllManagerWRWorkloadByEpochResponse, MsgUpdateWorkreportProcessBatchSizeResponse, QueryGetHistoryEpochDataDepthRequest, QueryParamsRequest, QueryGetWorkreportRequest, QueryGetEraLengthRequest, QueryGetAllEraProcessDataResponse, QueryParamsResponse, MsgUpdateSuperior, QueryGetAllHistoryEpochResponse, NodeScore, QueryGetHistoryEpochRequest, QueryGetSuperiorResponse, QueryGetHistoryEraRequest, QueryGetReputationPointRequest, MsgSubmitWorkreportsResponse };
+export { ReputationPointChangeRawData, ReputationDeltaPoint, QueryGetAllCheatStatusCRDataByEraRequest, EraCheatStatusProcessData, MsgUpdateHistoryEpochDataDepth, QueryGetPendingNextEpochResponse, QueryGetAllReputationDeltaPointByEraResponse, MsgCreateSuperior, QueryGetSuperiorResponse, QueryGetAllReputationPointChangeDataByEraRequest, QueryParamsResponse, QueryGetManagerCSWorkloadRequest, QueryGetCurrentEraRequest, Params, QueryGetAllEraProcessDataRequest, QueryGetEraCheatStatusProcessDataRequest, MsgUpdateSuperior, MsgSubmitCheatStatusCRResponse, QueryGetHistoryEpochRequest, QueryGetPendingNextEraResponse, NodeWorkload, QueryGetAllManagerRPWorkloadByEraRequest, QueryGetAllEpochProcessDataResponse, MsgUpdateWorkreportProcessBatchSizeResponse, QueryGetReputationDeltaPointRequest, QueryGetCurrentEraResponse, QueryGetAllHistoryEraRequest, QueryGetCheatStatusCRDataResponse, CheatStatusCRDB, MsgSubmitWorkreports, QueryGetWorkreportRequest, QueryGetWorkreportProcessBatchSizeRequest, ManagerRPWorkload, QueryGetAllHistoryEpochResponse, QueryGetAllManagerCSWorkloadByEraResponse, QueryGetAllReputationPointChangeDataByEraResponse, MsgSubmitWorkreportsResponse, MsgSubmitCheatStatusCR, EraProcessData, NodeScoreDB, QueryGetNodeWorkloadRequest, QueryGetCheatStatusCRDataRequest, QueryGetAllManagerRPWorkloadByEraResponse, QueryGetSuperiorRequest, QueryGetAllCheatStatusCRDataByEraResponse, EraInfo, QueryGetWorkreportProcessBatchSizeResponse, QueryGetEraProcessDataResponse, ManagerWRWorkload, MsgUpdateSuperiorResponse, QueryGetAllManagerWRWorkloadByEpochRequest, QueryGetAllReputationDeltaPointByEraRequest, Superior, QueryGetCurrentEpochRequest, QueryGetManagerRPWorkloadRequest, CheatStatusCRData, QueryGetAllWorkreportByEpochRequest, QueryGetAllHistoryEraResponse, QueryGetEraCheatStatusProcessDataResponse, QueryGetReputationDeltaPointResponse, NodeScore, QueryGetCurrentEpochResponse, QueryGetEraLengthResponse, QueryGetManagerCSWorkloadResponse, QueryGetEraProcessDataRequest, CheatStatusCRMapDB, ManagerCSWorkload, ReputationPointChangeRawDataDB, QueryGetAllManagerWRWorkloadByEpochResponse, MsgUpdateHistoryEpochDataDepthResponse, QueryGetAllManagerCSWorkloadByEraRequest, QueryGetReputationPointChangeDataRequest, QueryGetReputationPointChangeDataResponse, QueryGetAllEraCheatStatusProcessDataResponse, Workreport, ReputationPointChangeData, QueryParamsRequest, QueryGetHistoryEraRequest, QueryGetAllNodeWorkloadByEpochRequest, QueryGetAllEpochProcessDataRequest, EpochProcessData, ReputationPointChangeRawDataMapDB, QueryGetHistoryEpochResponse, QueryGetManagerWRWorkloadRequest, ManagerNodeScoreMap, MsgCreateSuperiorResponse, MsgSubmitReputationPointChangeData, QueryGetAllHistoryEpochRequest, QueryGetEpochLengthResponse, QueryGetAllEraProcessDataResponse, CheatStatusCR, MsgUpdateParams, MsgUpdateWorkreportProcessBatchSize, QueryGetEpochLengthRequest, QueryGetAllNodeWorkloadByEpochResponse, GenesisState, MsgSubmitReputationPointChangeDataResponse, EpochInfo, QueryGetPendingNextEraRequest, QueryGetAllEraCheatStatusProcessDataRequest, QueryGetManagerRPWorkloadResponse, QueryGetHistoryEpochDataDepthResponse, QueryGetEpochProcessDataRequest, QueryGetWorkreportResponse, QueryGetEpochProcessDataResponse, MsgUpdateParamsResponse, QueryGetPendingNextEpochRequest, QueryGetHistoryEpochDataDepthRequest, QueryGetEraLengthRequest, QueryGetHistoryEraResponse, QueryGetNodeWorkloadResponse, QueryGetManagerWRWorkloadResponse, QueryGetAllWorkreportByEpochResponse };
+
+type sendReputationPointChangeRawDataParams = {
+  value: ReputationPointChangeRawData,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendReputationDeltaPointParams = {
+  value: ReputationDeltaPoint,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllCheatStatusCRDataByEraRequestParams = {
+  value: QueryGetAllCheatStatusCRDataByEraRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendEraCheatStatusProcessDataParams = {
+  value: EraCheatStatusProcessData,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateHistoryEpochDataDepthParams = {
+  value: MsgUpdateHistoryEpochDataDepth,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetPendingNextEpochResponseParams = {
+  value: QueryGetPendingNextEpochResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllReputationDeltaPointByEraResponseParams = {
+  value: QueryGetAllReputationDeltaPointByEraResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgCreateSuperiorParams = {
+  value: MsgCreateSuperior,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetSuperiorResponseParams = {
+  value: QueryGetSuperiorResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllReputationPointChangeDataByEraRequestParams = {
+  value: QueryGetAllReputationPointChangeDataByEraRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryParamsResponseParams = {
+  value: QueryParamsResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetManagerCSWorkloadRequestParams = {
+  value: QueryGetManagerCSWorkloadRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetCurrentEraRequestParams = {
+  value: QueryGetCurrentEraRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendParamsParams = {
+  value: Params,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllEraProcessDataRequestParams = {
+  value: QueryGetAllEraProcessDataRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetEraCheatStatusProcessDataRequestParams = {
+  value: QueryGetEraCheatStatusProcessDataRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateSuperiorParams = {
+  value: MsgUpdateSuperior,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgSubmitCheatStatusCRResponseParams = {
+  value: MsgSubmitCheatStatusCRResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetHistoryEpochRequestParams = {
+  value: QueryGetHistoryEpochRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetPendingNextEraResponseParams = {
+  value: QueryGetPendingNextEraResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendNodeWorkloadParams = {
+  value: NodeWorkload,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllManagerRPWorkloadByEraRequestParams = {
+  value: QueryGetAllManagerRPWorkloadByEraRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllEpochProcessDataResponseParams = {
+  value: QueryGetAllEpochProcessDataResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateWorkreportProcessBatchSizeResponseParams = {
+  value: MsgUpdateWorkreportProcessBatchSizeResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetReputationDeltaPointRequestParams = {
+  value: QueryGetReputationDeltaPointRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetCurrentEraResponseParams = {
+  value: QueryGetCurrentEraResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllHistoryEraRequestParams = {
+  value: QueryGetAllHistoryEraRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetCheatStatusCRDataResponseParams = {
+  value: QueryGetCheatStatusCRDataResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendCheatStatusCRDBParams = {
+  value: CheatStatusCRDB,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgSubmitWorkreportsParams = {
+  value: MsgSubmitWorkreports,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetWorkreportRequestParams = {
+  value: QueryGetWorkreportRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetWorkreportProcessBatchSizeRequestParams = {
+  value: QueryGetWorkreportProcessBatchSizeRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendManagerRPWorkloadParams = {
+  value: ManagerRPWorkload,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllHistoryEpochResponseParams = {
+  value: QueryGetAllHistoryEpochResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllManagerCSWorkloadByEraResponseParams = {
+  value: QueryGetAllManagerCSWorkloadByEraResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllReputationPointChangeDataByEraResponseParams = {
+  value: QueryGetAllReputationPointChangeDataByEraResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgSubmitWorkreportsResponseParams = {
+  value: MsgSubmitWorkreportsResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgSubmitCheatStatusCRParams = {
+  value: MsgSubmitCheatStatusCR,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendEraProcessDataParams = {
+  value: EraProcessData,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendNodeScoreDBParams = {
+  value: NodeScoreDB,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetNodeWorkloadRequestParams = {
+  value: QueryGetNodeWorkloadRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetCheatStatusCRDataRequestParams = {
+  value: QueryGetCheatStatusCRDataRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllManagerRPWorkloadByEraResponseParams = {
+  value: QueryGetAllManagerRPWorkloadByEraResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetSuperiorRequestParams = {
+  value: QueryGetSuperiorRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllCheatStatusCRDataByEraResponseParams = {
+  value: QueryGetAllCheatStatusCRDataByEraResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendEraInfoParams = {
+  value: EraInfo,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetWorkreportProcessBatchSizeResponseParams = {
+  value: QueryGetWorkreportProcessBatchSizeResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetEraProcessDataResponseParams = {
+  value: QueryGetEraProcessDataResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendManagerWRWorkloadParams = {
+  value: ManagerWRWorkload,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateSuperiorResponseParams = {
+  value: MsgUpdateSuperiorResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllManagerWRWorkloadByEpochRequestParams = {
+  value: QueryGetAllManagerWRWorkloadByEpochRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllReputationDeltaPointByEraRequestParams = {
+  value: QueryGetAllReputationDeltaPointByEraRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendSuperiorParams = {
+  value: Superior,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetCurrentEpochRequestParams = {
+  value: QueryGetCurrentEpochRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetManagerRPWorkloadRequestParams = {
+  value: QueryGetManagerRPWorkloadRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendCheatStatusCRDataParams = {
+  value: CheatStatusCRData,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllWorkreportByEpochRequestParams = {
+  value: QueryGetAllWorkreportByEpochRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllHistoryEraResponseParams = {
+  value: QueryGetAllHistoryEraResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetEraCheatStatusProcessDataResponseParams = {
+  value: QueryGetEraCheatStatusProcessDataResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetReputationDeltaPointResponseParams = {
+  value: QueryGetReputationDeltaPointResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendNodeScoreParams = {
+  value: NodeScore,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetCurrentEpochResponseParams = {
+  value: QueryGetCurrentEpochResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetEraLengthResponseParams = {
+  value: QueryGetEraLengthResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetManagerCSWorkloadResponseParams = {
+  value: QueryGetManagerCSWorkloadResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetEraProcessDataRequestParams = {
+  value: QueryGetEraProcessDataRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendCheatStatusCRMapDBParams = {
+  value: CheatStatusCRMapDB,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendManagerCSWorkloadParams = {
+  value: ManagerCSWorkload,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendReputationPointChangeRawDataDBParams = {
+  value: ReputationPointChangeRawDataDB,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllManagerWRWorkloadByEpochResponseParams = {
+  value: QueryGetAllManagerWRWorkloadByEpochResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateHistoryEpochDataDepthResponseParams = {
+  value: MsgUpdateHistoryEpochDataDepthResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllManagerCSWorkloadByEraRequestParams = {
+  value: QueryGetAllManagerCSWorkloadByEraRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetReputationPointChangeDataRequestParams = {
+  value: QueryGetReputationPointChangeDataRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetReputationPointChangeDataResponseParams = {
+  value: QueryGetReputationPointChangeDataResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllEraCheatStatusProcessDataResponseParams = {
+  value: QueryGetAllEraCheatStatusProcessDataResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendWorkreportParams = {
+  value: Workreport,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendReputationPointChangeDataParams = {
+  value: ReputationPointChangeData,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryParamsRequestParams = {
+  value: QueryParamsRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetHistoryEraRequestParams = {
+  value: QueryGetHistoryEraRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllNodeWorkloadByEpochRequestParams = {
+  value: QueryGetAllNodeWorkloadByEpochRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllEpochProcessDataRequestParams = {
+  value: QueryGetAllEpochProcessDataRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendEpochProcessDataParams = {
+  value: EpochProcessData,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendReputationPointChangeRawDataMapDBParams = {
+  value: ReputationPointChangeRawDataMapDB,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetHistoryEpochResponseParams = {
+  value: QueryGetHistoryEpochResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetManagerWRWorkloadRequestParams = {
+  value: QueryGetManagerWRWorkloadRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendManagerNodeScoreMapParams = {
+  value: ManagerNodeScoreMap,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgCreateSuperiorResponseParams = {
+  value: MsgCreateSuperiorResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgSubmitReputationPointChangeDataParams = {
+  value: MsgSubmitReputationPointChangeData,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllHistoryEpochRequestParams = {
+  value: QueryGetAllHistoryEpochRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetEpochLengthResponseParams = {
+  value: QueryGetEpochLengthResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllEraProcessDataResponseParams = {
+  value: QueryGetAllEraProcessDataResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendCheatStatusCRParams = {
+  value: CheatStatusCR,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateParamsParams = {
+  value: MsgUpdateParams,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateWorkreportProcessBatchSizeParams = {
+  value: MsgUpdateWorkreportProcessBatchSize,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetEpochLengthRequestParams = {
+  value: QueryGetEpochLengthRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllNodeWorkloadByEpochResponseParams = {
+  value: QueryGetAllNodeWorkloadByEpochResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendGenesisStateParams = {
+  value: GenesisState,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgSubmitReputationPointChangeDataResponseParams = {
+  value: MsgSubmitReputationPointChangeDataResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendEpochInfoParams = {
+  value: EpochInfo,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetPendingNextEraRequestParams = {
+  value: QueryGetPendingNextEraRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetAllEraCheatStatusProcessDataRequestParams = {
+  value: QueryGetAllEraCheatStatusProcessDataRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetManagerRPWorkloadResponseParams = {
+  value: QueryGetManagerRPWorkloadResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetHistoryEpochDataDepthResponseParams = {
+  value: QueryGetHistoryEpochDataDepthResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetEpochProcessDataRequestParams = {
+  value: QueryGetEpochProcessDataRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetWorkreportResponseParams = {
+  value: QueryGetWorkreportResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetEpochProcessDataResponseParams = {
+  value: QueryGetEpochProcessDataResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateParamsResponseParams = {
+  value: MsgUpdateParamsResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetPendingNextEpochRequestParams = {
+  value: QueryGetPendingNextEpochRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetHistoryEpochDataDepthRequestParams = {
+  value: QueryGetHistoryEpochDataDepthRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetEraLengthRequestParams = {
+  value: QueryGetEraLengthRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetHistoryEraResponseParams = {
+  value: QueryGetHistoryEraResponse,
+  fee?: StdFee,
+  memo?: string
+};
 
 type sendQueryGetNodeWorkloadResponseParams = {
   value: QueryGetNodeWorkloadResponse,
@@ -120,582 +795,452 @@ type sendQueryGetManagerWRWorkloadResponseParams = {
   memo?: string
 };
 
-type sendQueryGetAllManagerRPWorkloadByEraResponseParams = {
-  value: QueryGetAllManagerRPWorkloadByEraResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateHistoryEpochDataDepthResponseParams = {
-  value: MsgUpdateHistoryEpochDataDepthResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetEpochLengthResponseParams = {
-  value: QueryGetEpochLengthResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetAllNodeWorkloadByEpochResponseParams = {
-  value: QueryGetAllNodeWorkloadByEpochResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateParamsResponseParams = {
-  value: MsgUpdateParamsResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetAllHistoryEraResponseParams = {
-  value: QueryGetAllHistoryEraResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetSuperiorRequestParams = {
-  value: QueryGetSuperiorRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendReputationPointParams = {
-  value: ReputationPoint,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetHistoryEpochDataDepthResponseParams = {
-  value: QueryGetHistoryEpochDataDepthResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetAllEpochProcessDataResponseParams = {
-  value: QueryGetAllEpochProcessDataResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendSuperiorParams = {
-  value: Superior,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateHistoryEpochDataDepthParams = {
-  value: MsgUpdateHistoryEpochDataDepth,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendWorkreportParams = {
-  value: Workreport,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetCurrentEpochRequestParams = {
-  value: QueryGetCurrentEpochRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetPendingNextEraResponseParams = {
-  value: QueryGetPendingNextEraResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendReputationPointChangeRawDataParams = {
-  value: ReputationPointChangeRawData,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetAllReputationPointResponseParams = {
-  value: QueryGetAllReputationPointResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendEpochProcessDataParams = {
-  value: EpochProcessData,
-  fee?: StdFee,
-  memo?: string
-};
-
 type sendQueryGetAllWorkreportByEpochResponseParams = {
   value: QueryGetAllWorkreportByEpochResponse,
   fee?: StdFee,
   memo?: string
 };
 
-type sendQueryGetEpochProcessDataRequestParams = {
-  value: QueryGetEpochProcessDataRequest,
-  fee?: StdFee,
-  memo?: string
+
+type reputationPointChangeRawDataParams = {
+  value: ReputationPointChangeRawData,
 };
 
-type sendQueryGetEraLengthResponseParams = {
-  value: QueryGetEraLengthResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetCurrentEraRequestParams = {
-  value: QueryGetCurrentEraRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgSubmitReputationPointChangeDataParams = {
-  value: MsgSubmitReputationPointChangeData,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendReputationDeltaPointParams = {
+type reputationDeltaPointParams = {
   value: ReputationDeltaPoint,
-  fee?: StdFee,
-  memo?: string
 };
 
-type sendManagerWRWorkloadParams = {
-  value: ManagerWRWorkload,
-  fee?: StdFee,
-  memo?: string
+type queryGetAllCheatStatusCrdataByEraRequestParams = {
+  value: QueryGetAllCheatStatusCRDataByEraRequest,
 };
 
-type sendQueryGetAllManagerRPWorkloadByEraRequestParams = {
-  value: QueryGetAllManagerRPWorkloadByEraRequest,
-  fee?: StdFee,
-  memo?: string
+type eraCheatStatusProcessDataParams = {
+  value: EraCheatStatusProcessData,
 };
 
-type sendQueryGetWorkreportResponseParams = {
-  value: QueryGetWorkreportResponse,
-  fee?: StdFee,
-  memo?: string
+type msgUpdateHistoryEpochDataDepthParams = {
+  value: MsgUpdateHistoryEpochDataDepth,
 };
 
-type sendQueryGetReputationPointChangeDataRequestParams = {
-  value: QueryGetReputationPointChangeDataRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateSuperiorResponseParams = {
-  value: MsgUpdateSuperiorResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetManagerRPWorkloadRequestParams = {
-  value: QueryGetManagerRPWorkloadRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendReputationPointChangeRawDataMapDBParams = {
-  value: ReputationPointChangeRawDataMapDB,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetNodeWorkloadRequestParams = {
-  value: QueryGetNodeWorkloadRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetPendingNextEraRequestParams = {
-  value: QueryGetPendingNextEraRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetAllReputationDeltaPointByEraRequestParams = {
-  value: QueryGetAllReputationDeltaPointByEraRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendNodeScoreDBParams = {
-  value: NodeScoreDB,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendEraProcessDataParams = {
-  value: EraProcessData,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetPendingNextEpochRequestParams = {
-  value: QueryGetPendingNextEpochRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetAllHistoryEpochRequestParams = {
-  value: QueryGetAllHistoryEpochRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetAllReputationPointChangeDataByEraRequestParams = {
-  value: QueryGetAllReputationPointChangeDataByEraRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetAllReputationPointChangeDataByEraResponseParams = {
-  value: QueryGetAllReputationPointChangeDataByEraResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetHistoryEpochResponseParams = {
-  value: QueryGetHistoryEpochResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendEraInfoParams = {
-  value: EraInfo,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetAllManagerWRWorkloadByEpochRequestParams = {
-  value: QueryGetAllManagerWRWorkloadByEpochRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetWorkreportProcessBatchSizeRequestParams = {
-  value: QueryGetWorkreportProcessBatchSizeRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetCurrentEraResponseParams = {
-  value: QueryGetCurrentEraResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgSubmitWorkreportsParams = {
-  value: MsgSubmitWorkreports,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateWorkreportProcessBatchSizeParams = {
-  value: MsgUpdateWorkreportProcessBatchSize,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendManagerNodeScoreMapParams = {
-  value: ManagerNodeScoreMap,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetManagerWRWorkloadRequestParams = {
-  value: QueryGetManagerWRWorkloadRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetAllWorkreportByEpochRequestParams = {
-  value: QueryGetAllWorkreportByEpochRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetWorkreportProcessBatchSizeResponseParams = {
-  value: QueryGetWorkreportProcessBatchSizeResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetAllReputationDeltaPointByEraResponseParams = {
-  value: QueryGetAllReputationDeltaPointByEraResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateParamsParams = {
-  value: MsgUpdateParams,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetAllEpochProcessDataRequestParams = {
-  value: QueryGetAllEpochProcessDataRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetReputationPointResponseParams = {
-  value: QueryGetReputationPointResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetAllNodeWorkloadByEpochRequestParams = {
-  value: QueryGetAllNodeWorkloadByEpochRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetCurrentEpochResponseParams = {
-  value: QueryGetCurrentEpochResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetEpochProcessDataResponseParams = {
-  value: QueryGetEpochProcessDataResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetEraProcessDataResponseParams = {
-  value: QueryGetEraProcessDataResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendReputationPointChangeDataParams = {
-  value: ReputationPointChangeData,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendEpochInfoParams = {
-  value: EpochInfo,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetHistoryEraResponseParams = {
-  value: QueryGetHistoryEraResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgCreateSuperiorParams = {
-  value: MsgCreateSuperior,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgSubmitReputationPointChangeDataResponseParams = {
-  value: MsgSubmitReputationPointChangeDataResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgCreateSuperiorResponseParams = {
-  value: MsgCreateSuperiorResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendManagerRPWorkloadParams = {
-  value: ManagerRPWorkload,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetEpochLengthRequestParams = {
-  value: QueryGetEpochLengthRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetAllHistoryEraRequestParams = {
-  value: QueryGetAllHistoryEraRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetReputationPointChangeDataResponseParams = {
-  value: QueryGetReputationPointChangeDataResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetReputationDeltaPointRequestParams = {
-  value: QueryGetReputationDeltaPointRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetReputationDeltaPointResponseParams = {
-  value: QueryGetReputationDeltaPointResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetEraProcessDataRequestParams = {
-  value: QueryGetEraProcessDataRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendGenesisStateParams = {
-  value: GenesisState,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetAllReputationPointRequestParams = {
-  value: QueryGetAllReputationPointRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendReputationPointChangeRawDataDBParams = {
-  value: ReputationPointChangeRawDataDB,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendParamsParams = {
-  value: Params,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetManagerRPWorkloadResponseParams = {
-  value: QueryGetManagerRPWorkloadResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetAllEraProcessDataRequestParams = {
-  value: QueryGetAllEraProcessDataRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendNodeWorkloadParams = {
-  value: NodeWorkload,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetPendingNextEpochResponseParams = {
+type queryGetPendingNextEpochResponseParams = {
   value: QueryGetPendingNextEpochResponse,
-  fee?: StdFee,
-  memo?: string
 };
 
-type sendQueryGetAllManagerWRWorkloadByEpochResponseParams = {
-  value: QueryGetAllManagerWRWorkloadByEpochResponse,
-  fee?: StdFee,
-  memo?: string
+type queryGetAllReputationDeltaPointByEraResponseParams = {
+  value: QueryGetAllReputationDeltaPointByEraResponse,
 };
 
-type sendMsgUpdateWorkreportProcessBatchSizeResponseParams = {
-  value: MsgUpdateWorkreportProcessBatchSizeResponse,
-  fee?: StdFee,
-  memo?: string
+type msgCreateSuperiorParams = {
+  value: MsgCreateSuperior,
 };
 
-type sendQueryGetHistoryEpochDataDepthRequestParams = {
-  value: QueryGetHistoryEpochDataDepthRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryParamsRequestParams = {
-  value: QueryParamsRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetWorkreportRequestParams = {
-  value: QueryGetWorkreportRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetEraLengthRequestParams = {
-  value: QueryGetEraLengthRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetAllEraProcessDataResponseParams = {
-  value: QueryGetAllEraProcessDataResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryParamsResponseParams = {
-  value: QueryParamsResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateSuperiorParams = {
-  value: MsgUpdateSuperior,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetAllHistoryEpochResponseParams = {
-  value: QueryGetAllHistoryEpochResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendNodeScoreParams = {
-  value: NodeScore,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetHistoryEpochRequestParams = {
-  value: QueryGetHistoryEpochRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGetSuperiorResponseParams = {
+type queryGetSuperiorResponseParams = {
   value: QueryGetSuperiorResponse,
-  fee?: StdFee,
-  memo?: string
 };
 
-type sendQueryGetHistoryEraRequestParams = {
-  value: QueryGetHistoryEraRequest,
-  fee?: StdFee,
-  memo?: string
+type queryGetAllReputationPointChangeDataByEraRequestParams = {
+  value: QueryGetAllReputationPointChangeDataByEraRequest,
 };
 
-type sendQueryGetReputationPointRequestParams = {
-  value: QueryGetReputationPointRequest,
-  fee?: StdFee,
-  memo?: string
+type queryParamsResponseParams = {
+  value: QueryParamsResponse,
 };
 
-type sendMsgSubmitWorkreportsResponseParams = {
+type queryGetManagerCsworkloadRequestParams = {
+  value: QueryGetManagerCSWorkloadRequest,
+};
+
+type queryGetCurrentEraRequestParams = {
+  value: QueryGetCurrentEraRequest,
+};
+
+type paramsParams = {
+  value: Params,
+};
+
+type queryGetAllEraProcessDataRequestParams = {
+  value: QueryGetAllEraProcessDataRequest,
+};
+
+type queryGetEraCheatStatusProcessDataRequestParams = {
+  value: QueryGetEraCheatStatusProcessDataRequest,
+};
+
+type msgUpdateSuperiorParams = {
+  value: MsgUpdateSuperior,
+};
+
+type msgSubmitCheatStatusCrresponseParams = {
+  value: MsgSubmitCheatStatusCRResponse,
+};
+
+type queryGetHistoryEpochRequestParams = {
+  value: QueryGetHistoryEpochRequest,
+};
+
+type queryGetPendingNextEraResponseParams = {
+  value: QueryGetPendingNextEraResponse,
+};
+
+type nodeWorkloadParams = {
+  value: NodeWorkload,
+};
+
+type queryGetAllManagerRpworkloadByEraRequestParams = {
+  value: QueryGetAllManagerRPWorkloadByEraRequest,
+};
+
+type queryGetAllEpochProcessDataResponseParams = {
+  value: QueryGetAllEpochProcessDataResponse,
+};
+
+type msgUpdateWorkreportProcessBatchSizeResponseParams = {
+  value: MsgUpdateWorkreportProcessBatchSizeResponse,
+};
+
+type queryGetReputationDeltaPointRequestParams = {
+  value: QueryGetReputationDeltaPointRequest,
+};
+
+type queryGetCurrentEraResponseParams = {
+  value: QueryGetCurrentEraResponse,
+};
+
+type queryGetAllHistoryEraRequestParams = {
+  value: QueryGetAllHistoryEraRequest,
+};
+
+type queryGetCheatStatusCrdataResponseParams = {
+  value: QueryGetCheatStatusCRDataResponse,
+};
+
+type cheatStatusCrdbParams = {
+  value: CheatStatusCRDB,
+};
+
+type msgSubmitWorkreportsParams = {
+  value: MsgSubmitWorkreports,
+};
+
+type queryGetWorkreportRequestParams = {
+  value: QueryGetWorkreportRequest,
+};
+
+type queryGetWorkreportProcessBatchSizeRequestParams = {
+  value: QueryGetWorkreportProcessBatchSizeRequest,
+};
+
+type managerRpworkloadParams = {
+  value: ManagerRPWorkload,
+};
+
+type queryGetAllHistoryEpochResponseParams = {
+  value: QueryGetAllHistoryEpochResponse,
+};
+
+type queryGetAllManagerCsworkloadByEraResponseParams = {
+  value: QueryGetAllManagerCSWorkloadByEraResponse,
+};
+
+type queryGetAllReputationPointChangeDataByEraResponseParams = {
+  value: QueryGetAllReputationPointChangeDataByEraResponse,
+};
+
+type msgSubmitWorkreportsResponseParams = {
   value: MsgSubmitWorkreportsResponse,
-  fee?: StdFee,
-  memo?: string
 };
 
+type msgSubmitCheatStatusCrParams = {
+  value: MsgSubmitCheatStatusCR,
+};
+
+type eraProcessDataParams = {
+  value: EraProcessData,
+};
+
+type nodeScoreDbParams = {
+  value: NodeScoreDB,
+};
+
+type queryGetNodeWorkloadRequestParams = {
+  value: QueryGetNodeWorkloadRequest,
+};
+
+type queryGetCheatStatusCrdataRequestParams = {
+  value: QueryGetCheatStatusCRDataRequest,
+};
+
+type queryGetAllManagerRpworkloadByEraResponseParams = {
+  value: QueryGetAllManagerRPWorkloadByEraResponse,
+};
+
+type queryGetSuperiorRequestParams = {
+  value: QueryGetSuperiorRequest,
+};
+
+type queryGetAllCheatStatusCrdataByEraResponseParams = {
+  value: QueryGetAllCheatStatusCRDataByEraResponse,
+};
+
+type eraInfoParams = {
+  value: EraInfo,
+};
+
+type queryGetWorkreportProcessBatchSizeResponseParams = {
+  value: QueryGetWorkreportProcessBatchSizeResponse,
+};
+
+type queryGetEraProcessDataResponseParams = {
+  value: QueryGetEraProcessDataResponse,
+};
+
+type managerWrworkloadParams = {
+  value: ManagerWRWorkload,
+};
+
+type msgUpdateSuperiorResponseParams = {
+  value: MsgUpdateSuperiorResponse,
+};
+
+type queryGetAllManagerWrworkloadByEpochRequestParams = {
+  value: QueryGetAllManagerWRWorkloadByEpochRequest,
+};
+
+type queryGetAllReputationDeltaPointByEraRequestParams = {
+  value: QueryGetAllReputationDeltaPointByEraRequest,
+};
+
+type superiorParams = {
+  value: Superior,
+};
+
+type queryGetCurrentEpochRequestParams = {
+  value: QueryGetCurrentEpochRequest,
+};
+
+type queryGetManagerRpworkloadRequestParams = {
+  value: QueryGetManagerRPWorkloadRequest,
+};
+
+type cheatStatusCrdataParams = {
+  value: CheatStatusCRData,
+};
+
+type queryGetAllWorkreportByEpochRequestParams = {
+  value: QueryGetAllWorkreportByEpochRequest,
+};
+
+type queryGetAllHistoryEraResponseParams = {
+  value: QueryGetAllHistoryEraResponse,
+};
+
+type queryGetEraCheatStatusProcessDataResponseParams = {
+  value: QueryGetEraCheatStatusProcessDataResponse,
+};
+
+type queryGetReputationDeltaPointResponseParams = {
+  value: QueryGetReputationDeltaPointResponse,
+};
+
+type nodeScoreParams = {
+  value: NodeScore,
+};
+
+type queryGetCurrentEpochResponseParams = {
+  value: QueryGetCurrentEpochResponse,
+};
+
+type queryGetEraLengthResponseParams = {
+  value: QueryGetEraLengthResponse,
+};
+
+type queryGetManagerCsworkloadResponseParams = {
+  value: QueryGetManagerCSWorkloadResponse,
+};
+
+type queryGetEraProcessDataRequestParams = {
+  value: QueryGetEraProcessDataRequest,
+};
+
+type cheatStatusCrmapDbParams = {
+  value: CheatStatusCRMapDB,
+};
+
+type managerCsworkloadParams = {
+  value: ManagerCSWorkload,
+};
+
+type reputationPointChangeRawDataDbParams = {
+  value: ReputationPointChangeRawDataDB,
+};
+
+type queryGetAllManagerWrworkloadByEpochResponseParams = {
+  value: QueryGetAllManagerWRWorkloadByEpochResponse,
+};
+
+type msgUpdateHistoryEpochDataDepthResponseParams = {
+  value: MsgUpdateHistoryEpochDataDepthResponse,
+};
+
+type queryGetAllManagerCsworkloadByEraRequestParams = {
+  value: QueryGetAllManagerCSWorkloadByEraRequest,
+};
+
+type queryGetReputationPointChangeDataRequestParams = {
+  value: QueryGetReputationPointChangeDataRequest,
+};
+
+type queryGetReputationPointChangeDataResponseParams = {
+  value: QueryGetReputationPointChangeDataResponse,
+};
+
+type queryGetAllEraCheatStatusProcessDataResponseParams = {
+  value: QueryGetAllEraCheatStatusProcessDataResponse,
+};
+
+type workreportParams = {
+  value: Workreport,
+};
+
+type reputationPointChangeDataParams = {
+  value: ReputationPointChangeData,
+};
+
+type queryParamsRequestParams = {
+  value: QueryParamsRequest,
+};
+
+type queryGetHistoryEraRequestParams = {
+  value: QueryGetHistoryEraRequest,
+};
+
+type queryGetAllNodeWorkloadByEpochRequestParams = {
+  value: QueryGetAllNodeWorkloadByEpochRequest,
+};
+
+type queryGetAllEpochProcessDataRequestParams = {
+  value: QueryGetAllEpochProcessDataRequest,
+};
+
+type epochProcessDataParams = {
+  value: EpochProcessData,
+};
+
+type reputationPointChangeRawDataMapDbParams = {
+  value: ReputationPointChangeRawDataMapDB,
+};
+
+type queryGetHistoryEpochResponseParams = {
+  value: QueryGetHistoryEpochResponse,
+};
+
+type queryGetManagerWrworkloadRequestParams = {
+  value: QueryGetManagerWRWorkloadRequest,
+};
+
+type managerNodeScoreMapParams = {
+  value: ManagerNodeScoreMap,
+};
+
+type msgCreateSuperiorResponseParams = {
+  value: MsgCreateSuperiorResponse,
+};
+
+type msgSubmitReputationPointChangeDataParams = {
+  value: MsgSubmitReputationPointChangeData,
+};
+
+type queryGetAllHistoryEpochRequestParams = {
+  value: QueryGetAllHistoryEpochRequest,
+};
+
+type queryGetEpochLengthResponseParams = {
+  value: QueryGetEpochLengthResponse,
+};
+
+type queryGetAllEraProcessDataResponseParams = {
+  value: QueryGetAllEraProcessDataResponse,
+};
+
+type cheatStatusCrParams = {
+  value: CheatStatusCR,
+};
+
+type msgUpdateParamsParams = {
+  value: MsgUpdateParams,
+};
+
+type msgUpdateWorkreportProcessBatchSizeParams = {
+  value: MsgUpdateWorkreportProcessBatchSize,
+};
+
+type queryGetEpochLengthRequestParams = {
+  value: QueryGetEpochLengthRequest,
+};
+
+type queryGetAllNodeWorkloadByEpochResponseParams = {
+  value: QueryGetAllNodeWorkloadByEpochResponse,
+};
+
+type genesisStateParams = {
+  value: GenesisState,
+};
+
+type msgSubmitReputationPointChangeDataResponseParams = {
+  value: MsgSubmitReputationPointChangeDataResponse,
+};
+
+type epochInfoParams = {
+  value: EpochInfo,
+};
+
+type queryGetPendingNextEraRequestParams = {
+  value: QueryGetPendingNextEraRequest,
+};
+
+type queryGetAllEraCheatStatusProcessDataRequestParams = {
+  value: QueryGetAllEraCheatStatusProcessDataRequest,
+};
+
+type queryGetManagerRpworkloadResponseParams = {
+  value: QueryGetManagerRPWorkloadResponse,
+};
+
+type queryGetHistoryEpochDataDepthResponseParams = {
+  value: QueryGetHistoryEpochDataDepthResponse,
+};
+
+type queryGetEpochProcessDataRequestParams = {
+  value: QueryGetEpochProcessDataRequest,
+};
+
+type queryGetWorkreportResponseParams = {
+  value: QueryGetWorkreportResponse,
+};
+
+type queryGetEpochProcessDataResponseParams = {
+  value: QueryGetEpochProcessDataResponse,
+};
+
+type msgUpdateParamsResponseParams = {
+  value: MsgUpdateParamsResponse,
+};
+
+type queryGetPendingNextEpochRequestParams = {
+  value: QueryGetPendingNextEpochRequest,
+};
+
+type queryGetHistoryEpochDataDepthRequestParams = {
+  value: QueryGetHistoryEpochDataDepthRequest,
+};
+
+type queryGetEraLengthRequestParams = {
+  value: QueryGetEraLengthRequest,
+};
+
+type queryGetHistoryEraResponseParams = {
+  value: QueryGetHistoryEraResponse,
+};
 
 type queryGetNodeWorkloadResponseParams = {
   value: QueryGetNodeWorkloadResponse,
@@ -705,388 +1250,8 @@ type queryGetManagerWrworkloadResponseParams = {
   value: QueryGetManagerWRWorkloadResponse,
 };
 
-type queryGetAllManagerRpworkloadByEraResponseParams = {
-  value: QueryGetAllManagerRPWorkloadByEraResponse,
-};
-
-type msgUpdateHistoryEpochDataDepthResponseParams = {
-  value: MsgUpdateHistoryEpochDataDepthResponse,
-};
-
-type queryGetEpochLengthResponseParams = {
-  value: QueryGetEpochLengthResponse,
-};
-
-type queryGetAllNodeWorkloadByEpochResponseParams = {
-  value: QueryGetAllNodeWorkloadByEpochResponse,
-};
-
-type msgUpdateParamsResponseParams = {
-  value: MsgUpdateParamsResponse,
-};
-
-type queryGetAllHistoryEraResponseParams = {
-  value: QueryGetAllHistoryEraResponse,
-};
-
-type queryGetSuperiorRequestParams = {
-  value: QueryGetSuperiorRequest,
-};
-
-type reputationPointParams = {
-  value: ReputationPoint,
-};
-
-type queryGetHistoryEpochDataDepthResponseParams = {
-  value: QueryGetHistoryEpochDataDepthResponse,
-};
-
-type queryGetAllEpochProcessDataResponseParams = {
-  value: QueryGetAllEpochProcessDataResponse,
-};
-
-type superiorParams = {
-  value: Superior,
-};
-
-type msgUpdateHistoryEpochDataDepthParams = {
-  value: MsgUpdateHistoryEpochDataDepth,
-};
-
-type workreportParams = {
-  value: Workreport,
-};
-
-type queryGetCurrentEpochRequestParams = {
-  value: QueryGetCurrentEpochRequest,
-};
-
-type queryGetPendingNextEraResponseParams = {
-  value: QueryGetPendingNextEraResponse,
-};
-
-type reputationPointChangeRawDataParams = {
-  value: ReputationPointChangeRawData,
-};
-
-type queryGetAllReputationPointResponseParams = {
-  value: QueryGetAllReputationPointResponse,
-};
-
-type epochProcessDataParams = {
-  value: EpochProcessData,
-};
-
 type queryGetAllWorkreportByEpochResponseParams = {
   value: QueryGetAllWorkreportByEpochResponse,
-};
-
-type queryGetEpochProcessDataRequestParams = {
-  value: QueryGetEpochProcessDataRequest,
-};
-
-type queryGetEraLengthResponseParams = {
-  value: QueryGetEraLengthResponse,
-};
-
-type queryGetCurrentEraRequestParams = {
-  value: QueryGetCurrentEraRequest,
-};
-
-type msgSubmitReputationPointChangeDataParams = {
-  value: MsgSubmitReputationPointChangeData,
-};
-
-type reputationDeltaPointParams = {
-  value: ReputationDeltaPoint,
-};
-
-type managerWrworkloadParams = {
-  value: ManagerWRWorkload,
-};
-
-type queryGetAllManagerRpworkloadByEraRequestParams = {
-  value: QueryGetAllManagerRPWorkloadByEraRequest,
-};
-
-type queryGetWorkreportResponseParams = {
-  value: QueryGetWorkreportResponse,
-};
-
-type queryGetReputationPointChangeDataRequestParams = {
-  value: QueryGetReputationPointChangeDataRequest,
-};
-
-type msgUpdateSuperiorResponseParams = {
-  value: MsgUpdateSuperiorResponse,
-};
-
-type queryGetManagerRpworkloadRequestParams = {
-  value: QueryGetManagerRPWorkloadRequest,
-};
-
-type reputationPointChangeRawDataMapDbParams = {
-  value: ReputationPointChangeRawDataMapDB,
-};
-
-type queryGetNodeWorkloadRequestParams = {
-  value: QueryGetNodeWorkloadRequest,
-};
-
-type queryGetPendingNextEraRequestParams = {
-  value: QueryGetPendingNextEraRequest,
-};
-
-type queryGetAllReputationDeltaPointByEraRequestParams = {
-  value: QueryGetAllReputationDeltaPointByEraRequest,
-};
-
-type nodeScoreDbParams = {
-  value: NodeScoreDB,
-};
-
-type eraProcessDataParams = {
-  value: EraProcessData,
-};
-
-type queryGetPendingNextEpochRequestParams = {
-  value: QueryGetPendingNextEpochRequest,
-};
-
-type queryGetAllHistoryEpochRequestParams = {
-  value: QueryGetAllHistoryEpochRequest,
-};
-
-type queryGetAllReputationPointChangeDataByEraRequestParams = {
-  value: QueryGetAllReputationPointChangeDataByEraRequest,
-};
-
-type queryGetAllReputationPointChangeDataByEraResponseParams = {
-  value: QueryGetAllReputationPointChangeDataByEraResponse,
-};
-
-type queryGetHistoryEpochResponseParams = {
-  value: QueryGetHistoryEpochResponse,
-};
-
-type eraInfoParams = {
-  value: EraInfo,
-};
-
-type queryGetAllManagerWrworkloadByEpochRequestParams = {
-  value: QueryGetAllManagerWRWorkloadByEpochRequest,
-};
-
-type queryGetWorkreportProcessBatchSizeRequestParams = {
-  value: QueryGetWorkreportProcessBatchSizeRequest,
-};
-
-type queryGetCurrentEraResponseParams = {
-  value: QueryGetCurrentEraResponse,
-};
-
-type msgSubmitWorkreportsParams = {
-  value: MsgSubmitWorkreports,
-};
-
-type msgUpdateWorkreportProcessBatchSizeParams = {
-  value: MsgUpdateWorkreportProcessBatchSize,
-};
-
-type managerNodeScoreMapParams = {
-  value: ManagerNodeScoreMap,
-};
-
-type queryGetManagerWrworkloadRequestParams = {
-  value: QueryGetManagerWRWorkloadRequest,
-};
-
-type queryGetAllWorkreportByEpochRequestParams = {
-  value: QueryGetAllWorkreportByEpochRequest,
-};
-
-type queryGetWorkreportProcessBatchSizeResponseParams = {
-  value: QueryGetWorkreportProcessBatchSizeResponse,
-};
-
-type queryGetAllReputationDeltaPointByEraResponseParams = {
-  value: QueryGetAllReputationDeltaPointByEraResponse,
-};
-
-type msgUpdateParamsParams = {
-  value: MsgUpdateParams,
-};
-
-type queryGetAllEpochProcessDataRequestParams = {
-  value: QueryGetAllEpochProcessDataRequest,
-};
-
-type queryGetReputationPointResponseParams = {
-  value: QueryGetReputationPointResponse,
-};
-
-type queryGetAllNodeWorkloadByEpochRequestParams = {
-  value: QueryGetAllNodeWorkloadByEpochRequest,
-};
-
-type queryGetCurrentEpochResponseParams = {
-  value: QueryGetCurrentEpochResponse,
-};
-
-type queryGetEpochProcessDataResponseParams = {
-  value: QueryGetEpochProcessDataResponse,
-};
-
-type queryGetEraProcessDataResponseParams = {
-  value: QueryGetEraProcessDataResponse,
-};
-
-type reputationPointChangeDataParams = {
-  value: ReputationPointChangeData,
-};
-
-type epochInfoParams = {
-  value: EpochInfo,
-};
-
-type queryGetHistoryEraResponseParams = {
-  value: QueryGetHistoryEraResponse,
-};
-
-type msgCreateSuperiorParams = {
-  value: MsgCreateSuperior,
-};
-
-type msgSubmitReputationPointChangeDataResponseParams = {
-  value: MsgSubmitReputationPointChangeDataResponse,
-};
-
-type msgCreateSuperiorResponseParams = {
-  value: MsgCreateSuperiorResponse,
-};
-
-type managerRpworkloadParams = {
-  value: ManagerRPWorkload,
-};
-
-type queryGetEpochLengthRequestParams = {
-  value: QueryGetEpochLengthRequest,
-};
-
-type queryGetAllHistoryEraRequestParams = {
-  value: QueryGetAllHistoryEraRequest,
-};
-
-type queryGetReputationPointChangeDataResponseParams = {
-  value: QueryGetReputationPointChangeDataResponse,
-};
-
-type queryGetReputationDeltaPointRequestParams = {
-  value: QueryGetReputationDeltaPointRequest,
-};
-
-type queryGetReputationDeltaPointResponseParams = {
-  value: QueryGetReputationDeltaPointResponse,
-};
-
-type queryGetEraProcessDataRequestParams = {
-  value: QueryGetEraProcessDataRequest,
-};
-
-type genesisStateParams = {
-  value: GenesisState,
-};
-
-type queryGetAllReputationPointRequestParams = {
-  value: QueryGetAllReputationPointRequest,
-};
-
-type reputationPointChangeRawDataDbParams = {
-  value: ReputationPointChangeRawDataDB,
-};
-
-type paramsParams = {
-  value: Params,
-};
-
-type queryGetManagerRpworkloadResponseParams = {
-  value: QueryGetManagerRPWorkloadResponse,
-};
-
-type queryGetAllEraProcessDataRequestParams = {
-  value: QueryGetAllEraProcessDataRequest,
-};
-
-type nodeWorkloadParams = {
-  value: NodeWorkload,
-};
-
-type queryGetPendingNextEpochResponseParams = {
-  value: QueryGetPendingNextEpochResponse,
-};
-
-type queryGetAllManagerWrworkloadByEpochResponseParams = {
-  value: QueryGetAllManagerWRWorkloadByEpochResponse,
-};
-
-type msgUpdateWorkreportProcessBatchSizeResponseParams = {
-  value: MsgUpdateWorkreportProcessBatchSizeResponse,
-};
-
-type queryGetHistoryEpochDataDepthRequestParams = {
-  value: QueryGetHistoryEpochDataDepthRequest,
-};
-
-type queryParamsRequestParams = {
-  value: QueryParamsRequest,
-};
-
-type queryGetWorkreportRequestParams = {
-  value: QueryGetWorkreportRequest,
-};
-
-type queryGetEraLengthRequestParams = {
-  value: QueryGetEraLengthRequest,
-};
-
-type queryGetAllEraProcessDataResponseParams = {
-  value: QueryGetAllEraProcessDataResponse,
-};
-
-type queryParamsResponseParams = {
-  value: QueryParamsResponse,
-};
-
-type msgUpdateSuperiorParams = {
-  value: MsgUpdateSuperior,
-};
-
-type queryGetAllHistoryEpochResponseParams = {
-  value: QueryGetAllHistoryEpochResponse,
-};
-
-type nodeScoreParams = {
-  value: NodeScore,
-};
-
-type queryGetHistoryEpochRequestParams = {
-  value: QueryGetHistoryEpochRequest,
-};
-
-type queryGetSuperiorResponseParams = {
-  value: QueryGetSuperiorResponse,
-};
-
-type queryGetHistoryEraRequestParams = {
-  value: QueryGetHistoryEraRequest,
-};
-
-type queryGetReputationPointRequestParams = {
-  value: QueryGetReputationPointRequest,
-};
-
-type msgSubmitWorkreportsResponseParams = {
-  value: MsgSubmitWorkreportsResponse,
 };
 
 
@@ -1119,6 +1284,1546 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 
   return {
 		
+		async sendReputationPointChangeRawData({ value, fee, memo }: sendReputationPointChangeRawDataParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendReputationPointChangeRawData: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.reputationPointChangeRawData({ value: ReputationPointChangeRawData.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendReputationPointChangeRawData: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendReputationDeltaPoint({ value, fee, memo }: sendReputationDeltaPointParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendReputationDeltaPoint: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.reputationDeltaPoint({ value: ReputationDeltaPoint.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendReputationDeltaPoint: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllCheatStatusCRDataByEraRequest({ value, fee, memo }: sendQueryGetAllCheatStatusCRDataByEraRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllCheatStatusCRDataByEraRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllCheatStatusCrdataByEraRequest({ value: QueryGetAllCheatStatusCRDataByEraRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllCheatStatusCRDataByEraRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendEraCheatStatusProcessData({ value, fee, memo }: sendEraCheatStatusProcessDataParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendEraCheatStatusProcessData: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.eraCheatStatusProcessData({ value: EraCheatStatusProcessData.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendEraCheatStatusProcessData: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateHistoryEpochDataDepth({ value, fee, memo }: sendMsgUpdateHistoryEpochDataDepthParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateHistoryEpochDataDepth: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateHistoryEpochDataDepth({ value: MsgUpdateHistoryEpochDataDepth.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateHistoryEpochDataDepth: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetPendingNextEpochResponse({ value, fee, memo }: sendQueryGetPendingNextEpochResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetPendingNextEpochResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetPendingNextEpochResponse({ value: QueryGetPendingNextEpochResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetPendingNextEpochResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllReputationDeltaPointByEraResponse({ value, fee, memo }: sendQueryGetAllReputationDeltaPointByEraResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllReputationDeltaPointByEraResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllReputationDeltaPointByEraResponse({ value: QueryGetAllReputationDeltaPointByEraResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllReputationDeltaPointByEraResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgCreateSuperior({ value, fee, memo }: sendMsgCreateSuperiorParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateSuperior: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgCreateSuperior({ value: MsgCreateSuperior.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgCreateSuperior: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetSuperiorResponse({ value, fee, memo }: sendQueryGetSuperiorResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetSuperiorResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetSuperiorResponse({ value: QueryGetSuperiorResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetSuperiorResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllReputationPointChangeDataByEraRequest({ value, fee, memo }: sendQueryGetAllReputationPointChangeDataByEraRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllReputationPointChangeDataByEraRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllReputationPointChangeDataByEraRequest({ value: QueryGetAllReputationPointChangeDataByEraRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllReputationPointChangeDataByEraRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryParamsResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryParamsResponse({ value: QueryParamsResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryParamsResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetManagerCSWorkloadRequest({ value, fee, memo }: sendQueryGetManagerCSWorkloadRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetManagerCSWorkloadRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetManagerCsworkloadRequest({ value: QueryGetManagerCSWorkloadRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetManagerCSWorkloadRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetCurrentEraRequest({ value, fee, memo }: sendQueryGetCurrentEraRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetCurrentEraRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetCurrentEraRequest({ value: QueryGetCurrentEraRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetCurrentEraRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendParams: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.params({ value: Params.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendParams: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllEraProcessDataRequest({ value, fee, memo }: sendQueryGetAllEraProcessDataRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllEraProcessDataRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllEraProcessDataRequest({ value: QueryGetAllEraProcessDataRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllEraProcessDataRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetEraCheatStatusProcessDataRequest({ value, fee, memo }: sendQueryGetEraCheatStatusProcessDataRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetEraCheatStatusProcessDataRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetEraCheatStatusProcessDataRequest({ value: QueryGetEraCheatStatusProcessDataRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetEraCheatStatusProcessDataRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateSuperior({ value, fee, memo }: sendMsgUpdateSuperiorParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateSuperior: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateSuperior({ value: MsgUpdateSuperior.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateSuperior: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgSubmitCheatStatusCRResponse({ value, fee, memo }: sendMsgSubmitCheatStatusCRResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgSubmitCheatStatusCRResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgSubmitCheatStatusCrresponse({ value: MsgSubmitCheatStatusCRResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgSubmitCheatStatusCRResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetHistoryEpochRequest({ value, fee, memo }: sendQueryGetHistoryEpochRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetHistoryEpochRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetHistoryEpochRequest({ value: QueryGetHistoryEpochRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetHistoryEpochRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetPendingNextEraResponse({ value, fee, memo }: sendQueryGetPendingNextEraResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetPendingNextEraResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetPendingNextEraResponse({ value: QueryGetPendingNextEraResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetPendingNextEraResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendNodeWorkload({ value, fee, memo }: sendNodeWorkloadParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendNodeWorkload: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.nodeWorkload({ value: NodeWorkload.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendNodeWorkload: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllManagerRPWorkloadByEraRequest({ value, fee, memo }: sendQueryGetAllManagerRPWorkloadByEraRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllManagerRPWorkloadByEraRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllManagerRpworkloadByEraRequest({ value: QueryGetAllManagerRPWorkloadByEraRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllManagerRPWorkloadByEraRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllEpochProcessDataResponse({ value, fee, memo }: sendQueryGetAllEpochProcessDataResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllEpochProcessDataResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllEpochProcessDataResponse({ value: QueryGetAllEpochProcessDataResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllEpochProcessDataResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateWorkreportProcessBatchSizeResponse({ value, fee, memo }: sendMsgUpdateWorkreportProcessBatchSizeResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateWorkreportProcessBatchSizeResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateWorkreportProcessBatchSizeResponse({ value: MsgUpdateWorkreportProcessBatchSizeResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateWorkreportProcessBatchSizeResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetReputationDeltaPointRequest({ value, fee, memo }: sendQueryGetReputationDeltaPointRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetReputationDeltaPointRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetReputationDeltaPointRequest({ value: QueryGetReputationDeltaPointRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetReputationDeltaPointRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetCurrentEraResponse({ value, fee, memo }: sendQueryGetCurrentEraResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetCurrentEraResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetCurrentEraResponse({ value: QueryGetCurrentEraResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetCurrentEraResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllHistoryEraRequest({ value, fee, memo }: sendQueryGetAllHistoryEraRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllHistoryEraRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllHistoryEraRequest({ value: QueryGetAllHistoryEraRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllHistoryEraRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetCheatStatusCRDataResponse({ value, fee, memo }: sendQueryGetCheatStatusCRDataResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetCheatStatusCRDataResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetCheatStatusCrdataResponse({ value: QueryGetCheatStatusCRDataResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetCheatStatusCRDataResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendCheatStatusCRDB({ value, fee, memo }: sendCheatStatusCRDBParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendCheatStatusCRDB: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.cheatStatusCrdb({ value: CheatStatusCRDB.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendCheatStatusCRDB: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgSubmitWorkreports({ value, fee, memo }: sendMsgSubmitWorkreportsParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgSubmitWorkreports: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgSubmitWorkreports({ value: MsgSubmitWorkreports.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgSubmitWorkreports: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetWorkreportRequest({ value, fee, memo }: sendQueryGetWorkreportRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetWorkreportRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetWorkreportRequest({ value: QueryGetWorkreportRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetWorkreportRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetWorkreportProcessBatchSizeRequest({ value, fee, memo }: sendQueryGetWorkreportProcessBatchSizeRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetWorkreportProcessBatchSizeRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetWorkreportProcessBatchSizeRequest({ value: QueryGetWorkreportProcessBatchSizeRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetWorkreportProcessBatchSizeRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendManagerRPWorkload({ value, fee, memo }: sendManagerRPWorkloadParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendManagerRPWorkload: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.managerRpworkload({ value: ManagerRPWorkload.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendManagerRPWorkload: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllHistoryEpochResponse({ value, fee, memo }: sendQueryGetAllHistoryEpochResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllHistoryEpochResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllHistoryEpochResponse({ value: QueryGetAllHistoryEpochResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllHistoryEpochResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllManagerCSWorkloadByEraResponse({ value, fee, memo }: sendQueryGetAllManagerCSWorkloadByEraResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllManagerCSWorkloadByEraResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllManagerCsworkloadByEraResponse({ value: QueryGetAllManagerCSWorkloadByEraResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllManagerCSWorkloadByEraResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllReputationPointChangeDataByEraResponse({ value, fee, memo }: sendQueryGetAllReputationPointChangeDataByEraResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllReputationPointChangeDataByEraResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllReputationPointChangeDataByEraResponse({ value: QueryGetAllReputationPointChangeDataByEraResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllReputationPointChangeDataByEraResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgSubmitWorkreportsResponse({ value, fee, memo }: sendMsgSubmitWorkreportsResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgSubmitWorkreportsResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgSubmitWorkreportsResponse({ value: MsgSubmitWorkreportsResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgSubmitWorkreportsResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgSubmitCheatStatusCR({ value, fee, memo }: sendMsgSubmitCheatStatusCRParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgSubmitCheatStatusCR: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgSubmitCheatStatusCr({ value: MsgSubmitCheatStatusCR.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgSubmitCheatStatusCR: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendEraProcessData({ value, fee, memo }: sendEraProcessDataParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendEraProcessData: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.eraProcessData({ value: EraProcessData.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendEraProcessData: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendNodeScoreDB({ value, fee, memo }: sendNodeScoreDBParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendNodeScoreDB: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.nodeScoreDb({ value: NodeScoreDB.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendNodeScoreDB: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetNodeWorkloadRequest({ value, fee, memo }: sendQueryGetNodeWorkloadRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetNodeWorkloadRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetNodeWorkloadRequest({ value: QueryGetNodeWorkloadRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetNodeWorkloadRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetCheatStatusCRDataRequest({ value, fee, memo }: sendQueryGetCheatStatusCRDataRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetCheatStatusCRDataRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetCheatStatusCrdataRequest({ value: QueryGetCheatStatusCRDataRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetCheatStatusCRDataRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllManagerRPWorkloadByEraResponse({ value, fee, memo }: sendQueryGetAllManagerRPWorkloadByEraResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllManagerRPWorkloadByEraResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllManagerRpworkloadByEraResponse({ value: QueryGetAllManagerRPWorkloadByEraResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllManagerRPWorkloadByEraResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetSuperiorRequest({ value, fee, memo }: sendQueryGetSuperiorRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetSuperiorRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetSuperiorRequest({ value: QueryGetSuperiorRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetSuperiorRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllCheatStatusCRDataByEraResponse({ value, fee, memo }: sendQueryGetAllCheatStatusCRDataByEraResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllCheatStatusCRDataByEraResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllCheatStatusCrdataByEraResponse({ value: QueryGetAllCheatStatusCRDataByEraResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllCheatStatusCRDataByEraResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendEraInfo({ value, fee, memo }: sendEraInfoParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendEraInfo: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.eraInfo({ value: EraInfo.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendEraInfo: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetWorkreportProcessBatchSizeResponse({ value, fee, memo }: sendQueryGetWorkreportProcessBatchSizeResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetWorkreportProcessBatchSizeResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetWorkreportProcessBatchSizeResponse({ value: QueryGetWorkreportProcessBatchSizeResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetWorkreportProcessBatchSizeResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetEraProcessDataResponse({ value, fee, memo }: sendQueryGetEraProcessDataResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetEraProcessDataResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetEraProcessDataResponse({ value: QueryGetEraProcessDataResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetEraProcessDataResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendManagerWRWorkload({ value, fee, memo }: sendManagerWRWorkloadParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendManagerWRWorkload: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.managerWrworkload({ value: ManagerWRWorkload.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendManagerWRWorkload: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateSuperiorResponse({ value, fee, memo }: sendMsgUpdateSuperiorResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateSuperiorResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateSuperiorResponse({ value: MsgUpdateSuperiorResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateSuperiorResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllManagerWRWorkloadByEpochRequest({ value, fee, memo }: sendQueryGetAllManagerWRWorkloadByEpochRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllManagerWRWorkloadByEpochRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllManagerWrworkloadByEpochRequest({ value: QueryGetAllManagerWRWorkloadByEpochRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllManagerWRWorkloadByEpochRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllReputationDeltaPointByEraRequest({ value, fee, memo }: sendQueryGetAllReputationDeltaPointByEraRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllReputationDeltaPointByEraRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllReputationDeltaPointByEraRequest({ value: QueryGetAllReputationDeltaPointByEraRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllReputationDeltaPointByEraRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendSuperior({ value, fee, memo }: sendSuperiorParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendSuperior: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.superior({ value: Superior.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendSuperior: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetCurrentEpochRequest({ value, fee, memo }: sendQueryGetCurrentEpochRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetCurrentEpochRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetCurrentEpochRequest({ value: QueryGetCurrentEpochRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetCurrentEpochRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetManagerRPWorkloadRequest({ value, fee, memo }: sendQueryGetManagerRPWorkloadRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetManagerRPWorkloadRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetManagerRpworkloadRequest({ value: QueryGetManagerRPWorkloadRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetManagerRPWorkloadRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendCheatStatusCRData({ value, fee, memo }: sendCheatStatusCRDataParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendCheatStatusCRData: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.cheatStatusCrdata({ value: CheatStatusCRData.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendCheatStatusCRData: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllWorkreportByEpochRequest({ value, fee, memo }: sendQueryGetAllWorkreportByEpochRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllWorkreportByEpochRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllWorkreportByEpochRequest({ value: QueryGetAllWorkreportByEpochRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllWorkreportByEpochRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllHistoryEraResponse({ value, fee, memo }: sendQueryGetAllHistoryEraResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllHistoryEraResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllHistoryEraResponse({ value: QueryGetAllHistoryEraResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllHistoryEraResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetEraCheatStatusProcessDataResponse({ value, fee, memo }: sendQueryGetEraCheatStatusProcessDataResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetEraCheatStatusProcessDataResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetEraCheatStatusProcessDataResponse({ value: QueryGetEraCheatStatusProcessDataResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetEraCheatStatusProcessDataResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetReputationDeltaPointResponse({ value, fee, memo }: sendQueryGetReputationDeltaPointResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetReputationDeltaPointResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetReputationDeltaPointResponse({ value: QueryGetReputationDeltaPointResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetReputationDeltaPointResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendNodeScore({ value, fee, memo }: sendNodeScoreParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendNodeScore: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.nodeScore({ value: NodeScore.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendNodeScore: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetCurrentEpochResponse({ value, fee, memo }: sendQueryGetCurrentEpochResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetCurrentEpochResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetCurrentEpochResponse({ value: QueryGetCurrentEpochResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetCurrentEpochResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetEraLengthResponse({ value, fee, memo }: sendQueryGetEraLengthResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetEraLengthResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetEraLengthResponse({ value: QueryGetEraLengthResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetEraLengthResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetManagerCSWorkloadResponse({ value, fee, memo }: sendQueryGetManagerCSWorkloadResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetManagerCSWorkloadResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetManagerCsworkloadResponse({ value: QueryGetManagerCSWorkloadResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetManagerCSWorkloadResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetEraProcessDataRequest({ value, fee, memo }: sendQueryGetEraProcessDataRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetEraProcessDataRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetEraProcessDataRequest({ value: QueryGetEraProcessDataRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetEraProcessDataRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendCheatStatusCRMapDB({ value, fee, memo }: sendCheatStatusCRMapDBParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendCheatStatusCRMapDB: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.cheatStatusCrmapDb({ value: CheatStatusCRMapDB.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendCheatStatusCRMapDB: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendManagerCSWorkload({ value, fee, memo }: sendManagerCSWorkloadParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendManagerCSWorkload: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.managerCsworkload({ value: ManagerCSWorkload.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendManagerCSWorkload: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendReputationPointChangeRawDataDB({ value, fee, memo }: sendReputationPointChangeRawDataDBParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendReputationPointChangeRawDataDB: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.reputationPointChangeRawDataDb({ value: ReputationPointChangeRawDataDB.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendReputationPointChangeRawDataDB: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllManagerWRWorkloadByEpochResponse({ value, fee, memo }: sendQueryGetAllManagerWRWorkloadByEpochResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllManagerWRWorkloadByEpochResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllManagerWrworkloadByEpochResponse({ value: QueryGetAllManagerWRWorkloadByEpochResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllManagerWRWorkloadByEpochResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateHistoryEpochDataDepthResponse({ value, fee, memo }: sendMsgUpdateHistoryEpochDataDepthResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateHistoryEpochDataDepthResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateHistoryEpochDataDepthResponse({ value: MsgUpdateHistoryEpochDataDepthResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateHistoryEpochDataDepthResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllManagerCSWorkloadByEraRequest({ value, fee, memo }: sendQueryGetAllManagerCSWorkloadByEraRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllManagerCSWorkloadByEraRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllManagerCsworkloadByEraRequest({ value: QueryGetAllManagerCSWorkloadByEraRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllManagerCSWorkloadByEraRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetReputationPointChangeDataRequest({ value, fee, memo }: sendQueryGetReputationPointChangeDataRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetReputationPointChangeDataRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetReputationPointChangeDataRequest({ value: QueryGetReputationPointChangeDataRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetReputationPointChangeDataRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetReputationPointChangeDataResponse({ value, fee, memo }: sendQueryGetReputationPointChangeDataResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetReputationPointChangeDataResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetReputationPointChangeDataResponse({ value: QueryGetReputationPointChangeDataResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetReputationPointChangeDataResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllEraCheatStatusProcessDataResponse({ value, fee, memo }: sendQueryGetAllEraCheatStatusProcessDataResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllEraCheatStatusProcessDataResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllEraCheatStatusProcessDataResponse({ value: QueryGetAllEraCheatStatusProcessDataResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllEraCheatStatusProcessDataResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendWorkreport({ value, fee, memo }: sendWorkreportParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendWorkreport: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.workreport({ value: Workreport.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendWorkreport: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendReputationPointChangeData({ value, fee, memo }: sendReputationPointChangeDataParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendReputationPointChangeData: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.reputationPointChangeData({ value: ReputationPointChangeData.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendReputationPointChangeData: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryParamsRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryParamsRequest({ value: QueryParamsRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryParamsRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetHistoryEraRequest({ value, fee, memo }: sendQueryGetHistoryEraRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetHistoryEraRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetHistoryEraRequest({ value: QueryGetHistoryEraRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetHistoryEraRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllNodeWorkloadByEpochRequest({ value, fee, memo }: sendQueryGetAllNodeWorkloadByEpochRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllNodeWorkloadByEpochRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllNodeWorkloadByEpochRequest({ value: QueryGetAllNodeWorkloadByEpochRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllNodeWorkloadByEpochRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllEpochProcessDataRequest({ value, fee, memo }: sendQueryGetAllEpochProcessDataRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllEpochProcessDataRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllEpochProcessDataRequest({ value: QueryGetAllEpochProcessDataRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllEpochProcessDataRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendEpochProcessData({ value, fee, memo }: sendEpochProcessDataParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendEpochProcessData: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.epochProcessData({ value: EpochProcessData.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendEpochProcessData: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendReputationPointChangeRawDataMapDB({ value, fee, memo }: sendReputationPointChangeRawDataMapDBParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendReputationPointChangeRawDataMapDB: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.reputationPointChangeRawDataMapDb({ value: ReputationPointChangeRawDataMapDB.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendReputationPointChangeRawDataMapDB: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetHistoryEpochResponse({ value, fee, memo }: sendQueryGetHistoryEpochResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetHistoryEpochResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetHistoryEpochResponse({ value: QueryGetHistoryEpochResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetHistoryEpochResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetManagerWRWorkloadRequest({ value, fee, memo }: sendQueryGetManagerWRWorkloadRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetManagerWRWorkloadRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetManagerWrworkloadRequest({ value: QueryGetManagerWRWorkloadRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetManagerWRWorkloadRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendManagerNodeScoreMap({ value, fee, memo }: sendManagerNodeScoreMapParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendManagerNodeScoreMap: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.managerNodeScoreMap({ value: ManagerNodeScoreMap.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendManagerNodeScoreMap: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgCreateSuperiorResponse({ value, fee, memo }: sendMsgCreateSuperiorResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateSuperiorResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgCreateSuperiorResponse({ value: MsgCreateSuperiorResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgCreateSuperiorResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgSubmitReputationPointChangeData({ value, fee, memo }: sendMsgSubmitReputationPointChangeDataParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgSubmitReputationPointChangeData: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgSubmitReputationPointChangeData({ value: MsgSubmitReputationPointChangeData.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgSubmitReputationPointChangeData: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllHistoryEpochRequest({ value, fee, memo }: sendQueryGetAllHistoryEpochRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllHistoryEpochRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllHistoryEpochRequest({ value: QueryGetAllHistoryEpochRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllHistoryEpochRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetEpochLengthResponse({ value, fee, memo }: sendQueryGetEpochLengthResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetEpochLengthResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetEpochLengthResponse({ value: QueryGetEpochLengthResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetEpochLengthResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllEraProcessDataResponse({ value, fee, memo }: sendQueryGetAllEraProcessDataResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllEraProcessDataResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllEraProcessDataResponse({ value: QueryGetAllEraProcessDataResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllEraProcessDataResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendCheatStatusCR({ value, fee, memo }: sendCheatStatusCRParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendCheatStatusCR: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.cheatStatusCr({ value: CheatStatusCR.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendCheatStatusCR: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateParams({ value: MsgUpdateParams.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateWorkreportProcessBatchSize({ value, fee, memo }: sendMsgUpdateWorkreportProcessBatchSizeParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateWorkreportProcessBatchSize: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateWorkreportProcessBatchSize({ value: MsgUpdateWorkreportProcessBatchSize.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateWorkreportProcessBatchSize: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetEpochLengthRequest({ value, fee, memo }: sendQueryGetEpochLengthRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetEpochLengthRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetEpochLengthRequest({ value: QueryGetEpochLengthRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetEpochLengthRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllNodeWorkloadByEpochResponse({ value, fee, memo }: sendQueryGetAllNodeWorkloadByEpochResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllNodeWorkloadByEpochResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllNodeWorkloadByEpochResponse({ value: QueryGetAllNodeWorkloadByEpochResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllNodeWorkloadByEpochResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgSubmitReputationPointChangeDataResponse({ value, fee, memo }: sendMsgSubmitReputationPointChangeDataResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgSubmitReputationPointChangeDataResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgSubmitReputationPointChangeDataResponse({ value: MsgSubmitReputationPointChangeDataResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgSubmitReputationPointChangeDataResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendEpochInfo({ value, fee, memo }: sendEpochInfoParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendEpochInfo: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.epochInfo({ value: EpochInfo.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendEpochInfo: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetPendingNextEraRequest({ value, fee, memo }: sendQueryGetPendingNextEraRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetPendingNextEraRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetPendingNextEraRequest({ value: QueryGetPendingNextEraRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetPendingNextEraRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetAllEraCheatStatusProcessDataRequest({ value, fee, memo }: sendQueryGetAllEraCheatStatusProcessDataRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetAllEraCheatStatusProcessDataRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetAllEraCheatStatusProcessDataRequest({ value: QueryGetAllEraCheatStatusProcessDataRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetAllEraCheatStatusProcessDataRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetManagerRPWorkloadResponse({ value, fee, memo }: sendQueryGetManagerRPWorkloadResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetManagerRPWorkloadResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetManagerRpworkloadResponse({ value: QueryGetManagerRPWorkloadResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetManagerRPWorkloadResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetHistoryEpochDataDepthResponse({ value, fee, memo }: sendQueryGetHistoryEpochDataDepthResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetHistoryEpochDataDepthResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetHistoryEpochDataDepthResponse({ value: QueryGetHistoryEpochDataDepthResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetHistoryEpochDataDepthResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetEpochProcessDataRequest({ value, fee, memo }: sendQueryGetEpochProcessDataRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetEpochProcessDataRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetEpochProcessDataRequest({ value: QueryGetEpochProcessDataRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetEpochProcessDataRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetWorkreportResponse({ value, fee, memo }: sendQueryGetWorkreportResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetWorkreportResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetWorkreportResponse({ value: QueryGetWorkreportResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetWorkreportResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetEpochProcessDataResponse({ value, fee, memo }: sendQueryGetEpochProcessDataResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetEpochProcessDataResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetEpochProcessDataResponse({ value: QueryGetEpochProcessDataResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetEpochProcessDataResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateParamsResponse({ value: MsgUpdateParamsResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateParamsResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetPendingNextEpochRequest({ value, fee, memo }: sendQueryGetPendingNextEpochRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetPendingNextEpochRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetPendingNextEpochRequest({ value: QueryGetPendingNextEpochRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetPendingNextEpochRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetHistoryEpochDataDepthRequest({ value, fee, memo }: sendQueryGetHistoryEpochDataDepthRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetHistoryEpochDataDepthRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetHistoryEpochDataDepthRequest({ value: QueryGetHistoryEpochDataDepthRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetHistoryEpochDataDepthRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetEraLengthRequest({ value, fee, memo }: sendQueryGetEraLengthRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetEraLengthRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetEraLengthRequest({ value: QueryGetEraLengthRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetEraLengthRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetHistoryEraResponse({ value, fee, memo }: sendQueryGetHistoryEraResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetHistoryEraResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetHistoryEraResponse({ value: QueryGetHistoryEraResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetHistoryEraResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
 		async sendQueryGetNodeWorkloadResponse({ value, fee, memo }: sendQueryGetNodeWorkloadResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendQueryGetNodeWorkloadResponse: Unable to sign Tx. Signer is not present.')
@@ -1147,258 +2852,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendQueryGetAllManagerRPWorkloadByEraResponse({ value, fee, memo }: sendQueryGetAllManagerRPWorkloadByEraResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAllManagerRPWorkloadByEraResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAllManagerRpworkloadByEraResponse({ value: QueryGetAllManagerRPWorkloadByEraResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAllManagerRPWorkloadByEraResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUpdateHistoryEpochDataDepthResponse({ value, fee, memo }: sendMsgUpdateHistoryEpochDataDepthResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateHistoryEpochDataDepthResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateHistoryEpochDataDepthResponse({ value: MsgUpdateHistoryEpochDataDepthResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateHistoryEpochDataDepthResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGetEpochLengthResponse({ value, fee, memo }: sendQueryGetEpochLengthResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetEpochLengthResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetEpochLengthResponse({ value: QueryGetEpochLengthResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetEpochLengthResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGetAllNodeWorkloadByEpochResponse({ value, fee, memo }: sendQueryGetAllNodeWorkloadByEpochResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAllNodeWorkloadByEpochResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAllNodeWorkloadByEpochResponse({ value: QueryGetAllNodeWorkloadByEpochResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAllNodeWorkloadByEpochResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateParamsResponse({ value: MsgUpdateParamsResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateParamsResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGetAllHistoryEraResponse({ value, fee, memo }: sendQueryGetAllHistoryEraResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAllHistoryEraResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAllHistoryEraResponse({ value: QueryGetAllHistoryEraResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAllHistoryEraResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGetSuperiorRequest({ value, fee, memo }: sendQueryGetSuperiorRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetSuperiorRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetSuperiorRequest({ value: QueryGetSuperiorRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetSuperiorRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendReputationPoint({ value, fee, memo }: sendReputationPointParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendReputationPoint: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.reputationPoint({ value: ReputationPoint.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendReputationPoint: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGetHistoryEpochDataDepthResponse({ value, fee, memo }: sendQueryGetHistoryEpochDataDepthResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetHistoryEpochDataDepthResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetHistoryEpochDataDepthResponse({ value: QueryGetHistoryEpochDataDepthResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetHistoryEpochDataDepthResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGetAllEpochProcessDataResponse({ value, fee, memo }: sendQueryGetAllEpochProcessDataResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAllEpochProcessDataResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAllEpochProcessDataResponse({ value: QueryGetAllEpochProcessDataResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAllEpochProcessDataResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendSuperior({ value, fee, memo }: sendSuperiorParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendSuperior: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.superior({ value: Superior.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendSuperior: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUpdateHistoryEpochDataDepth({ value, fee, memo }: sendMsgUpdateHistoryEpochDataDepthParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateHistoryEpochDataDepth: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateHistoryEpochDataDepth({ value: MsgUpdateHistoryEpochDataDepth.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateHistoryEpochDataDepth: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendWorkreport({ value, fee, memo }: sendWorkreportParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendWorkreport: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.workreport({ value: Workreport.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendWorkreport: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGetCurrentEpochRequest({ value, fee, memo }: sendQueryGetCurrentEpochRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetCurrentEpochRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetCurrentEpochRequest({ value: QueryGetCurrentEpochRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetCurrentEpochRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGetPendingNextEraResponse({ value, fee, memo }: sendQueryGetPendingNextEraResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetPendingNextEraResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetPendingNextEraResponse({ value: QueryGetPendingNextEraResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetPendingNextEraResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendReputationPointChangeRawData({ value, fee, memo }: sendReputationPointChangeRawDataParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendReputationPointChangeRawData: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.reputationPointChangeRawData({ value: ReputationPointChangeRawData.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendReputationPointChangeRawData: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGetAllReputationPointResponse({ value, fee, memo }: sendQueryGetAllReputationPointResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAllReputationPointResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAllReputationPointResponse({ value: QueryGetAllReputationPointResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAllReputationPointResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendEpochProcessData({ value, fee, memo }: sendEpochProcessDataParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendEpochProcessData: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.epochProcessData({ value: EpochProcessData.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendEpochProcessData: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
 		async sendQueryGetAllWorkreportByEpochResponse({ value, fee, memo }: sendQueryGetAllWorkreportByEpochResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendQueryGetAllWorkreportByEpochResponse: Unable to sign Tx. Signer is not present.')
@@ -1413,1084 +2866,886 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendQueryGetEpochProcessDataRequest({ value, fee, memo }: sendQueryGetEpochProcessDataRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetEpochProcessDataRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetEpochProcessDataRequest({ value: QueryGetEpochProcessDataRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		
+		reputationPointChangeRawData({ value }: reputationPointChangeRawDataParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.ReputationPointChangeRawData", value: ReputationPointChangeRawData.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetEpochProcessDataRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:ReputationPointChangeRawData: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetEraLengthResponse({ value, fee, memo }: sendQueryGetEraLengthResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetEraLengthResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetEraLengthResponse({ value: QueryGetEraLengthResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		reputationDeltaPoint({ value }: reputationDeltaPointParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.ReputationDeltaPoint", value: ReputationDeltaPoint.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetEraLengthResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:ReputationDeltaPoint: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetCurrentEraRequest({ value, fee, memo }: sendQueryGetCurrentEraRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetCurrentEraRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetCurrentEraRequest({ value: QueryGetCurrentEraRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetAllCheatStatusCrdataByEraRequest({ value }: queryGetAllCheatStatusCrdataByEraRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllCheatStatusCRDataByEraRequest", value: QueryGetAllCheatStatusCRDataByEraRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetCurrentEraRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetAllCheatStatusCRDataByEraRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendMsgSubmitReputationPointChangeData({ value, fee, memo }: sendMsgSubmitReputationPointChangeDataParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgSubmitReputationPointChangeData: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgSubmitReputationPointChangeData({ value: MsgSubmitReputationPointChangeData.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		eraCheatStatusProcessData({ value }: eraCheatStatusProcessDataParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.EraCheatStatusProcessData", value: EraCheatStatusProcessData.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgSubmitReputationPointChangeData: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:EraCheatStatusProcessData: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendReputationDeltaPoint({ value, fee, memo }: sendReputationDeltaPointParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendReputationDeltaPoint: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.reputationDeltaPoint({ value: ReputationDeltaPoint.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		msgUpdateHistoryEpochDataDepth({ value }: msgUpdateHistoryEpochDataDepthParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.MsgUpdateHistoryEpochDataDepth", value: MsgUpdateHistoryEpochDataDepth.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendReputationDeltaPoint: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:MsgUpdateHistoryEpochDataDepth: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendManagerWRWorkload({ value, fee, memo }: sendManagerWRWorkloadParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendManagerWRWorkload: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.managerWrworkload({ value: ManagerWRWorkload.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetPendingNextEpochResponse({ value }: queryGetPendingNextEpochResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetPendingNextEpochResponse", value: QueryGetPendingNextEpochResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendManagerWRWorkload: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetPendingNextEpochResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetAllManagerRPWorkloadByEraRequest({ value, fee, memo }: sendQueryGetAllManagerRPWorkloadByEraRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAllManagerRPWorkloadByEraRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAllManagerRpworkloadByEraRequest({ value: QueryGetAllManagerRPWorkloadByEraRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetAllReputationDeltaPointByEraResponse({ value }: queryGetAllReputationDeltaPointByEraResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllReputationDeltaPointByEraResponse", value: QueryGetAllReputationDeltaPointByEraResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAllManagerRPWorkloadByEraRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetAllReputationDeltaPointByEraResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetWorkreportResponse({ value, fee, memo }: sendQueryGetWorkreportResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetWorkreportResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetWorkreportResponse({ value: QueryGetWorkreportResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		msgCreateSuperior({ value }: msgCreateSuperiorParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.MsgCreateSuperior", value: MsgCreateSuperior.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetWorkreportResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:MsgCreateSuperior: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetReputationPointChangeDataRequest({ value, fee, memo }: sendQueryGetReputationPointChangeDataRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetReputationPointChangeDataRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetReputationPointChangeDataRequest({ value: QueryGetReputationPointChangeDataRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetSuperiorResponse({ value }: queryGetSuperiorResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetSuperiorResponse", value: QueryGetSuperiorResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetReputationPointChangeDataRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetSuperiorResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendMsgUpdateSuperiorResponse({ value, fee, memo }: sendMsgUpdateSuperiorResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateSuperiorResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateSuperiorResponse({ value: MsgUpdateSuperiorResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetAllReputationPointChangeDataByEraRequest({ value }: queryGetAllReputationPointChangeDataByEraRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllReputationPointChangeDataByEraRequest", value: QueryGetAllReputationPointChangeDataByEraRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateSuperiorResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetAllReputationPointChangeDataByEraRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetManagerRPWorkloadRequest({ value, fee, memo }: sendQueryGetManagerRPWorkloadRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetManagerRPWorkloadRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetManagerRpworkloadRequest({ value: QueryGetManagerRPWorkloadRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryParamsResponse", value: QueryParamsResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetManagerRPWorkloadRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryParamsResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendReputationPointChangeRawDataMapDB({ value, fee, memo }: sendReputationPointChangeRawDataMapDBParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendReputationPointChangeRawDataMapDB: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.reputationPointChangeRawDataMapDb({ value: ReputationPointChangeRawDataMapDB.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetManagerCsworkloadRequest({ value }: queryGetManagerCsworkloadRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetManagerCSWorkloadRequest", value: QueryGetManagerCSWorkloadRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendReputationPointChangeRawDataMapDB: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetManagerCSWorkloadRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetNodeWorkloadRequest({ value, fee, memo }: sendQueryGetNodeWorkloadRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetNodeWorkloadRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetNodeWorkloadRequest({ value: QueryGetNodeWorkloadRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetCurrentEraRequest({ value }: queryGetCurrentEraRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetCurrentEraRequest", value: QueryGetCurrentEraRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetNodeWorkloadRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetCurrentEraRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetPendingNextEraRequest({ value, fee, memo }: sendQueryGetPendingNextEraRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetPendingNextEraRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetPendingNextEraRequest({ value: QueryGetPendingNextEraRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		params({ value }: paramsParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.Params", value: Params.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetPendingNextEraRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:Params: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetAllReputationDeltaPointByEraRequest({ value, fee, memo }: sendQueryGetAllReputationDeltaPointByEraRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAllReputationDeltaPointByEraRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAllReputationDeltaPointByEraRequest({ value: QueryGetAllReputationDeltaPointByEraRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetAllEraProcessDataRequest({ value }: queryGetAllEraProcessDataRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllEraProcessDataRequest", value: QueryGetAllEraProcessDataRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAllReputationDeltaPointByEraRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetAllEraProcessDataRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendNodeScoreDB({ value, fee, memo }: sendNodeScoreDBParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendNodeScoreDB: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.nodeScoreDb({ value: NodeScoreDB.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetEraCheatStatusProcessDataRequest({ value }: queryGetEraCheatStatusProcessDataRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetEraCheatStatusProcessDataRequest", value: QueryGetEraCheatStatusProcessDataRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendNodeScoreDB: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetEraCheatStatusProcessDataRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendEraProcessData({ value, fee, memo }: sendEraProcessDataParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendEraProcessData: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.eraProcessData({ value: EraProcessData.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		msgUpdateSuperior({ value }: msgUpdateSuperiorParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.MsgUpdateSuperior", value: MsgUpdateSuperior.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendEraProcessData: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:MsgUpdateSuperior: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetPendingNextEpochRequest({ value, fee, memo }: sendQueryGetPendingNextEpochRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetPendingNextEpochRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetPendingNextEpochRequest({ value: QueryGetPendingNextEpochRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		msgSubmitCheatStatusCrresponse({ value }: msgSubmitCheatStatusCrresponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.MsgSubmitCheatStatusCRResponse", value: MsgSubmitCheatStatusCRResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetPendingNextEpochRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:MsgSubmitCheatStatusCRResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetAllHistoryEpochRequest({ value, fee, memo }: sendQueryGetAllHistoryEpochRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAllHistoryEpochRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAllHistoryEpochRequest({ value: QueryGetAllHistoryEpochRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetHistoryEpochRequest({ value }: queryGetHistoryEpochRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetHistoryEpochRequest", value: QueryGetHistoryEpochRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAllHistoryEpochRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetHistoryEpochRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetAllReputationPointChangeDataByEraRequest({ value, fee, memo }: sendQueryGetAllReputationPointChangeDataByEraRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAllReputationPointChangeDataByEraRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAllReputationPointChangeDataByEraRequest({ value: QueryGetAllReputationPointChangeDataByEraRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetPendingNextEraResponse({ value }: queryGetPendingNextEraResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetPendingNextEraResponse", value: QueryGetPendingNextEraResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAllReputationPointChangeDataByEraRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetPendingNextEraResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetAllReputationPointChangeDataByEraResponse({ value, fee, memo }: sendQueryGetAllReputationPointChangeDataByEraResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAllReputationPointChangeDataByEraResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAllReputationPointChangeDataByEraResponse({ value: QueryGetAllReputationPointChangeDataByEraResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		nodeWorkload({ value }: nodeWorkloadParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.NodeWorkload", value: NodeWorkload.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAllReputationPointChangeDataByEraResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:NodeWorkload: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetHistoryEpochResponse({ value, fee, memo }: sendQueryGetHistoryEpochResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetHistoryEpochResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetHistoryEpochResponse({ value: QueryGetHistoryEpochResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetAllManagerRpworkloadByEraRequest({ value }: queryGetAllManagerRpworkloadByEraRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllManagerRPWorkloadByEraRequest", value: QueryGetAllManagerRPWorkloadByEraRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetHistoryEpochResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetAllManagerRPWorkloadByEraRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendEraInfo({ value, fee, memo }: sendEraInfoParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendEraInfo: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.eraInfo({ value: EraInfo.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetAllEpochProcessDataResponse({ value }: queryGetAllEpochProcessDataResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllEpochProcessDataResponse", value: QueryGetAllEpochProcessDataResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendEraInfo: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetAllEpochProcessDataResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetAllManagerWRWorkloadByEpochRequest({ value, fee, memo }: sendQueryGetAllManagerWRWorkloadByEpochRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAllManagerWRWorkloadByEpochRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAllManagerWrworkloadByEpochRequest({ value: QueryGetAllManagerWRWorkloadByEpochRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		msgUpdateWorkreportProcessBatchSizeResponse({ value }: msgUpdateWorkreportProcessBatchSizeResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.MsgUpdateWorkreportProcessBatchSizeResponse", value: MsgUpdateWorkreportProcessBatchSizeResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAllManagerWRWorkloadByEpochRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:MsgUpdateWorkreportProcessBatchSizeResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetWorkreportProcessBatchSizeRequest({ value, fee, memo }: sendQueryGetWorkreportProcessBatchSizeRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetWorkreportProcessBatchSizeRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetWorkreportProcessBatchSizeRequest({ value: QueryGetWorkreportProcessBatchSizeRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetReputationDeltaPointRequest({ value }: queryGetReputationDeltaPointRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetReputationDeltaPointRequest", value: QueryGetReputationDeltaPointRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetWorkreportProcessBatchSizeRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetReputationDeltaPointRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetCurrentEraResponse({ value, fee, memo }: sendQueryGetCurrentEraResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetCurrentEraResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetCurrentEraResponse({ value: QueryGetCurrentEraResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetCurrentEraResponse({ value }: queryGetCurrentEraResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetCurrentEraResponse", value: QueryGetCurrentEraResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetCurrentEraResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetCurrentEraResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendMsgSubmitWorkreports({ value, fee, memo }: sendMsgSubmitWorkreportsParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgSubmitWorkreports: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgSubmitWorkreports({ value: MsgSubmitWorkreports.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetAllHistoryEraRequest({ value }: queryGetAllHistoryEraRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllHistoryEraRequest", value: QueryGetAllHistoryEraRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgSubmitWorkreports: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetAllHistoryEraRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendMsgUpdateWorkreportProcessBatchSize({ value, fee, memo }: sendMsgUpdateWorkreportProcessBatchSizeParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateWorkreportProcessBatchSize: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateWorkreportProcessBatchSize({ value: MsgUpdateWorkreportProcessBatchSize.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetCheatStatusCrdataResponse({ value }: queryGetCheatStatusCrdataResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetCheatStatusCRDataResponse", value: QueryGetCheatStatusCRDataResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateWorkreportProcessBatchSize: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetCheatStatusCRDataResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendManagerNodeScoreMap({ value, fee, memo }: sendManagerNodeScoreMapParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendManagerNodeScoreMap: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.managerNodeScoreMap({ value: ManagerNodeScoreMap.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		cheatStatusCrdb({ value }: cheatStatusCrdbParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.CheatStatusCRDB", value: CheatStatusCRDB.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendManagerNodeScoreMap: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:CheatStatusCRDB: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetManagerWRWorkloadRequest({ value, fee, memo }: sendQueryGetManagerWRWorkloadRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetManagerWRWorkloadRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetManagerWrworkloadRequest({ value: QueryGetManagerWRWorkloadRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		msgSubmitWorkreports({ value }: msgSubmitWorkreportsParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.MsgSubmitWorkreports", value: MsgSubmitWorkreports.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetManagerWRWorkloadRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:MsgSubmitWorkreports: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetAllWorkreportByEpochRequest({ value, fee, memo }: sendQueryGetAllWorkreportByEpochRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAllWorkreportByEpochRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAllWorkreportByEpochRequest({ value: QueryGetAllWorkreportByEpochRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetWorkreportRequest({ value }: queryGetWorkreportRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetWorkreportRequest", value: QueryGetWorkreportRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAllWorkreportByEpochRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetWorkreportRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetWorkreportProcessBatchSizeResponse({ value, fee, memo }: sendQueryGetWorkreportProcessBatchSizeResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetWorkreportProcessBatchSizeResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetWorkreportProcessBatchSizeResponse({ value: QueryGetWorkreportProcessBatchSizeResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetWorkreportProcessBatchSizeRequest({ value }: queryGetWorkreportProcessBatchSizeRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetWorkreportProcessBatchSizeRequest", value: QueryGetWorkreportProcessBatchSizeRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetWorkreportProcessBatchSizeResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetWorkreportProcessBatchSizeRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetAllReputationDeltaPointByEraResponse({ value, fee, memo }: sendQueryGetAllReputationDeltaPointByEraResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAllReputationDeltaPointByEraResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAllReputationDeltaPointByEraResponse({ value: QueryGetAllReputationDeltaPointByEraResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		managerRpworkload({ value }: managerRpworkloadParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.ManagerRPWorkload", value: ManagerRPWorkload.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAllReputationDeltaPointByEraResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:ManagerRPWorkload: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateParams({ value: MsgUpdateParams.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetAllHistoryEpochResponse({ value }: queryGetAllHistoryEpochResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllHistoryEpochResponse", value: QueryGetAllHistoryEpochResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetAllHistoryEpochResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetAllEpochProcessDataRequest({ value, fee, memo }: sendQueryGetAllEpochProcessDataRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAllEpochProcessDataRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAllEpochProcessDataRequest({ value: QueryGetAllEpochProcessDataRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetAllManagerCsworkloadByEraResponse({ value }: queryGetAllManagerCsworkloadByEraResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllManagerCSWorkloadByEraResponse", value: QueryGetAllManagerCSWorkloadByEraResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAllEpochProcessDataRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetAllManagerCSWorkloadByEraResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetReputationPointResponse({ value, fee, memo }: sendQueryGetReputationPointResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetReputationPointResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetReputationPointResponse({ value: QueryGetReputationPointResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetAllReputationPointChangeDataByEraResponse({ value }: queryGetAllReputationPointChangeDataByEraResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllReputationPointChangeDataByEraResponse", value: QueryGetAllReputationPointChangeDataByEraResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetReputationPointResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetAllReputationPointChangeDataByEraResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetAllNodeWorkloadByEpochRequest({ value, fee, memo }: sendQueryGetAllNodeWorkloadByEpochRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAllNodeWorkloadByEpochRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAllNodeWorkloadByEpochRequest({ value: QueryGetAllNodeWorkloadByEpochRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		msgSubmitWorkreportsResponse({ value }: msgSubmitWorkreportsResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.MsgSubmitWorkreportsResponse", value: MsgSubmitWorkreportsResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAllNodeWorkloadByEpochRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:MsgSubmitWorkreportsResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetCurrentEpochResponse({ value, fee, memo }: sendQueryGetCurrentEpochResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetCurrentEpochResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetCurrentEpochResponse({ value: QueryGetCurrentEpochResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		msgSubmitCheatStatusCr({ value }: msgSubmitCheatStatusCrParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.MsgSubmitCheatStatusCR", value: MsgSubmitCheatStatusCR.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetCurrentEpochResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:MsgSubmitCheatStatusCR: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetEpochProcessDataResponse({ value, fee, memo }: sendQueryGetEpochProcessDataResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetEpochProcessDataResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetEpochProcessDataResponse({ value: QueryGetEpochProcessDataResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		eraProcessData({ value }: eraProcessDataParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.EraProcessData", value: EraProcessData.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetEpochProcessDataResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:EraProcessData: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetEraProcessDataResponse({ value, fee, memo }: sendQueryGetEraProcessDataResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetEraProcessDataResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetEraProcessDataResponse({ value: QueryGetEraProcessDataResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		nodeScoreDb({ value }: nodeScoreDbParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.NodeScoreDB", value: NodeScoreDB.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetEraProcessDataResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:NodeScoreDB: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendReputationPointChangeData({ value, fee, memo }: sendReputationPointChangeDataParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendReputationPointChangeData: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.reputationPointChangeData({ value: ReputationPointChangeData.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetNodeWorkloadRequest({ value }: queryGetNodeWorkloadRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetNodeWorkloadRequest", value: QueryGetNodeWorkloadRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendReputationPointChangeData: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetNodeWorkloadRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendEpochInfo({ value, fee, memo }: sendEpochInfoParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendEpochInfo: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.epochInfo({ value: EpochInfo.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetCheatStatusCrdataRequest({ value }: queryGetCheatStatusCrdataRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetCheatStatusCRDataRequest", value: QueryGetCheatStatusCRDataRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendEpochInfo: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetCheatStatusCRDataRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetHistoryEraResponse({ value, fee, memo }: sendQueryGetHistoryEraResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetHistoryEraResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetHistoryEraResponse({ value: QueryGetHistoryEraResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetAllManagerRpworkloadByEraResponse({ value }: queryGetAllManagerRpworkloadByEraResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllManagerRPWorkloadByEraResponse", value: QueryGetAllManagerRPWorkloadByEraResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetHistoryEraResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetAllManagerRPWorkloadByEraResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendMsgCreateSuperior({ value, fee, memo }: sendMsgCreateSuperiorParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgCreateSuperior: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgCreateSuperior({ value: MsgCreateSuperior.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetSuperiorRequest({ value }: queryGetSuperiorRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetSuperiorRequest", value: QueryGetSuperiorRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgCreateSuperior: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetSuperiorRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendMsgSubmitReputationPointChangeDataResponse({ value, fee, memo }: sendMsgSubmitReputationPointChangeDataResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgSubmitReputationPointChangeDataResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgSubmitReputationPointChangeDataResponse({ value: MsgSubmitReputationPointChangeDataResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		queryGetAllCheatStatusCrdataByEraResponse({ value }: queryGetAllCheatStatusCrdataByEraResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllCheatStatusCRDataByEraResponse", value: QueryGetAllCheatStatusCRDataByEraResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgSubmitReputationPointChangeDataResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetAllCheatStatusCRDataByEraResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendMsgCreateSuperiorResponse({ value, fee, memo }: sendMsgCreateSuperiorResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgCreateSuperiorResponse: Unable to sign Tx. Signer is not present.')
+		eraInfo({ value }: eraInfoParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.EraInfo", value: EraInfo.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:EraInfo: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgCreateSuperiorResponse({ value: MsgCreateSuperiorResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		queryGetWorkreportProcessBatchSizeResponse({ value }: queryGetWorkreportProcessBatchSizeResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetWorkreportProcessBatchSizeResponse", value: QueryGetWorkreportProcessBatchSizeResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgCreateSuperiorResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetWorkreportProcessBatchSizeResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendManagerRPWorkload({ value, fee, memo }: sendManagerRPWorkloadParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendManagerRPWorkload: Unable to sign Tx. Signer is not present.')
+		queryGetEraProcessDataResponse({ value }: queryGetEraProcessDataResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetEraProcessDataResponse", value: QueryGetEraProcessDataResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetEraProcessDataResponse: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.managerRpworkload({ value: ManagerRPWorkload.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		managerWrworkload({ value }: managerWrworkloadParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.ManagerWRWorkload", value: ManagerWRWorkload.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendManagerRPWorkload: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:ManagerWRWorkload: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetEpochLengthRequest({ value, fee, memo }: sendQueryGetEpochLengthRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetEpochLengthRequest: Unable to sign Tx. Signer is not present.')
+		msgUpdateSuperiorResponse({ value }: msgUpdateSuperiorResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.MsgUpdateSuperiorResponse", value: MsgUpdateSuperiorResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateSuperiorResponse: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetEpochLengthRequest({ value: QueryGetEpochLengthRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		queryGetAllManagerWrworkloadByEpochRequest({ value }: queryGetAllManagerWrworkloadByEpochRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllManagerWRWorkloadByEpochRequest", value: QueryGetAllManagerWRWorkloadByEpochRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetEpochLengthRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetAllManagerWRWorkloadByEpochRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetAllHistoryEraRequest({ value, fee, memo }: sendQueryGetAllHistoryEraRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAllHistoryEraRequest: Unable to sign Tx. Signer is not present.')
+		queryGetAllReputationDeltaPointByEraRequest({ value }: queryGetAllReputationDeltaPointByEraRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllReputationDeltaPointByEraRequest", value: QueryGetAllReputationDeltaPointByEraRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetAllReputationDeltaPointByEraRequest: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAllHistoryEraRequest({ value: QueryGetAllHistoryEraRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		superior({ value }: superiorParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.Superior", value: Superior.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAllHistoryEraRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:Superior: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetReputationPointChangeDataResponse({ value, fee, memo }: sendQueryGetReputationPointChangeDataResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetReputationPointChangeDataResponse: Unable to sign Tx. Signer is not present.')
+		queryGetCurrentEpochRequest({ value }: queryGetCurrentEpochRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetCurrentEpochRequest", value: QueryGetCurrentEpochRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetCurrentEpochRequest: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetReputationPointChangeDataResponse({ value: QueryGetReputationPointChangeDataResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		queryGetManagerRpworkloadRequest({ value }: queryGetManagerRpworkloadRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetManagerRPWorkloadRequest", value: QueryGetManagerRPWorkloadRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetReputationPointChangeDataResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetManagerRPWorkloadRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetReputationDeltaPointRequest({ value, fee, memo }: sendQueryGetReputationDeltaPointRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetReputationDeltaPointRequest: Unable to sign Tx. Signer is not present.')
+		cheatStatusCrdata({ value }: cheatStatusCrdataParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.CheatStatusCRData", value: CheatStatusCRData.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:CheatStatusCRData: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetReputationDeltaPointRequest({ value: QueryGetReputationDeltaPointRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		queryGetAllWorkreportByEpochRequest({ value }: queryGetAllWorkreportByEpochRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllWorkreportByEpochRequest", value: QueryGetAllWorkreportByEpochRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetReputationDeltaPointRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetAllWorkreportByEpochRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetReputationDeltaPointResponse({ value, fee, memo }: sendQueryGetReputationDeltaPointResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetReputationDeltaPointResponse: Unable to sign Tx. Signer is not present.')
+		queryGetAllHistoryEraResponse({ value }: queryGetAllHistoryEraResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllHistoryEraResponse", value: QueryGetAllHistoryEraResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetAllHistoryEraResponse: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetReputationDeltaPointResponse({ value: QueryGetReputationDeltaPointResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		queryGetEraCheatStatusProcessDataResponse({ value }: queryGetEraCheatStatusProcessDataResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetEraCheatStatusProcessDataResponse", value: QueryGetEraCheatStatusProcessDataResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetReputationDeltaPointResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetEraCheatStatusProcessDataResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetEraProcessDataRequest({ value, fee, memo }: sendQueryGetEraProcessDataRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetEraProcessDataRequest: Unable to sign Tx. Signer is not present.')
+		queryGetReputationDeltaPointResponse({ value }: queryGetReputationDeltaPointResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetReputationDeltaPointResponse", value: QueryGetReputationDeltaPointResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetReputationDeltaPointResponse: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetEraProcessDataRequest({ value: QueryGetEraProcessDataRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		nodeScore({ value }: nodeScoreParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.NodeScore", value: NodeScore.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetEraProcessDataRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:NodeScore: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
+		queryGetCurrentEpochResponse({ value }: queryGetCurrentEpochResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetCurrentEpochResponse", value: QueryGetCurrentEpochResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetCurrentEpochResponse: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		queryGetEraLengthResponse({ value }: queryGetEraLengthResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetEraLengthResponse", value: QueryGetEraLengthResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetEraLengthResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetAllReputationPointRequest({ value, fee, memo }: sendQueryGetAllReputationPointRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAllReputationPointRequest: Unable to sign Tx. Signer is not present.')
+		queryGetManagerCsworkloadResponse({ value }: queryGetManagerCsworkloadResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetManagerCSWorkloadResponse", value: QueryGetManagerCSWorkloadResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetManagerCSWorkloadResponse: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAllReputationPointRequest({ value: QueryGetAllReputationPointRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		queryGetEraProcessDataRequest({ value }: queryGetEraProcessDataRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetEraProcessDataRequest", value: QueryGetEraProcessDataRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAllReputationPointRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetEraProcessDataRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendReputationPointChangeRawDataDB({ value, fee, memo }: sendReputationPointChangeRawDataDBParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendReputationPointChangeRawDataDB: Unable to sign Tx. Signer is not present.')
+		cheatStatusCrmapDb({ value }: cheatStatusCrmapDbParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.CheatStatusCRMapDB", value: CheatStatusCRMapDB.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:CheatStatusCRMapDB: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.reputationPointChangeRawDataDb({ value: ReputationPointChangeRawDataDB.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		managerCsworkload({ value }: managerCsworkloadParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.ManagerCSWorkload", value: ManagerCSWorkload.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendReputationPointChangeRawDataDB: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:ManagerCSWorkload: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendParams: Unable to sign Tx. Signer is not present.')
+		reputationPointChangeRawDataDb({ value }: reputationPointChangeRawDataDbParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.ReputationPointChangeRawDataDB", value: ReputationPointChangeRawDataDB.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:ReputationPointChangeRawDataDB: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.params({ value: Params.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		queryGetAllManagerWrworkloadByEpochResponse({ value }: queryGetAllManagerWrworkloadByEpochResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllManagerWRWorkloadByEpochResponse", value: QueryGetAllManagerWRWorkloadByEpochResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendParams: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetAllManagerWRWorkloadByEpochResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetManagerRPWorkloadResponse({ value, fee, memo }: sendQueryGetManagerRPWorkloadResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetManagerRPWorkloadResponse: Unable to sign Tx. Signer is not present.')
+		msgUpdateHistoryEpochDataDepthResponse({ value }: msgUpdateHistoryEpochDataDepthResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.MsgUpdateHistoryEpochDataDepthResponse", value: MsgUpdateHistoryEpochDataDepthResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateHistoryEpochDataDepthResponse: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetManagerRpworkloadResponse({ value: QueryGetManagerRPWorkloadResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		queryGetAllManagerCsworkloadByEraRequest({ value }: queryGetAllManagerCsworkloadByEraRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllManagerCSWorkloadByEraRequest", value: QueryGetAllManagerCSWorkloadByEraRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetManagerRPWorkloadResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetAllManagerCSWorkloadByEraRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetAllEraProcessDataRequest({ value, fee, memo }: sendQueryGetAllEraProcessDataRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAllEraProcessDataRequest: Unable to sign Tx. Signer is not present.')
+		queryGetReputationPointChangeDataRequest({ value }: queryGetReputationPointChangeDataRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetReputationPointChangeDataRequest", value: QueryGetReputationPointChangeDataRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetReputationPointChangeDataRequest: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAllEraProcessDataRequest({ value: QueryGetAllEraProcessDataRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		queryGetReputationPointChangeDataResponse({ value }: queryGetReputationPointChangeDataResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetReputationPointChangeDataResponse", value: QueryGetReputationPointChangeDataResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAllEraProcessDataRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetReputationPointChangeDataResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendNodeWorkload({ value, fee, memo }: sendNodeWorkloadParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendNodeWorkload: Unable to sign Tx. Signer is not present.')
+		queryGetAllEraCheatStatusProcessDataResponse({ value }: queryGetAllEraCheatStatusProcessDataResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllEraCheatStatusProcessDataResponse", value: QueryGetAllEraCheatStatusProcessDataResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetAllEraCheatStatusProcessDataResponse: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.nodeWorkload({ value: NodeWorkload.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		workreport({ value }: workreportParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.Workreport", value: Workreport.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendNodeWorkload: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:Workreport: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetPendingNextEpochResponse({ value, fee, memo }: sendQueryGetPendingNextEpochResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetPendingNextEpochResponse: Unable to sign Tx. Signer is not present.')
+		reputationPointChangeData({ value }: reputationPointChangeDataParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.ReputationPointChangeData", value: ReputationPointChangeData.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:ReputationPointChangeData: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetPendingNextEpochResponse({ value: QueryGetPendingNextEpochResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryParamsRequest", value: QueryParamsRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetPendingNextEpochResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryParamsRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetAllManagerWRWorkloadByEpochResponse({ value, fee, memo }: sendQueryGetAllManagerWRWorkloadByEpochResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAllManagerWRWorkloadByEpochResponse: Unable to sign Tx. Signer is not present.')
+		queryGetHistoryEraRequest({ value }: queryGetHistoryEraRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetHistoryEraRequest", value: QueryGetHistoryEraRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetHistoryEraRequest: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAllManagerWrworkloadByEpochResponse({ value: QueryGetAllManagerWRWorkloadByEpochResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		queryGetAllNodeWorkloadByEpochRequest({ value }: queryGetAllNodeWorkloadByEpochRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllNodeWorkloadByEpochRequest", value: QueryGetAllNodeWorkloadByEpochRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAllManagerWRWorkloadByEpochResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetAllNodeWorkloadByEpochRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendMsgUpdateWorkreportProcessBatchSizeResponse({ value, fee, memo }: sendMsgUpdateWorkreportProcessBatchSizeResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateWorkreportProcessBatchSizeResponse: Unable to sign Tx. Signer is not present.')
+		queryGetAllEpochProcessDataRequest({ value }: queryGetAllEpochProcessDataRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllEpochProcessDataRequest", value: QueryGetAllEpochProcessDataRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetAllEpochProcessDataRequest: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateWorkreportProcessBatchSizeResponse({ value: MsgUpdateWorkreportProcessBatchSizeResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		epochProcessData({ value }: epochProcessDataParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.EpochProcessData", value: EpochProcessData.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateWorkreportProcessBatchSizeResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:EpochProcessData: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetHistoryEpochDataDepthRequest({ value, fee, memo }: sendQueryGetHistoryEpochDataDepthRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetHistoryEpochDataDepthRequest: Unable to sign Tx. Signer is not present.')
+		reputationPointChangeRawDataMapDb({ value }: reputationPointChangeRawDataMapDbParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.ReputationPointChangeRawDataMapDB", value: ReputationPointChangeRawDataMapDB.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:ReputationPointChangeRawDataMapDB: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetHistoryEpochDataDepthRequest({ value: QueryGetHistoryEpochDataDepthRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		queryGetHistoryEpochResponse({ value }: queryGetHistoryEpochResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetHistoryEpochResponse", value: QueryGetHistoryEpochResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetHistoryEpochDataDepthRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetHistoryEpochResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryParamsRequest: Unable to sign Tx. Signer is not present.')
+		queryGetManagerWrworkloadRequest({ value }: queryGetManagerWrworkloadRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetManagerWRWorkloadRequest", value: QueryGetManagerWRWorkloadRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetManagerWRWorkloadRequest: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryParamsRequest({ value: QueryParamsRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		managerNodeScoreMap({ value }: managerNodeScoreMapParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.ManagerNodeScoreMap", value: ManagerNodeScoreMap.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryParamsRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:ManagerNodeScoreMap: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetWorkreportRequest({ value, fee, memo }: sendQueryGetWorkreportRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetWorkreportRequest: Unable to sign Tx. Signer is not present.')
+		msgCreateSuperiorResponse({ value }: msgCreateSuperiorResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.MsgCreateSuperiorResponse", value: MsgCreateSuperiorResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgCreateSuperiorResponse: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetWorkreportRequest({ value: QueryGetWorkreportRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		msgSubmitReputationPointChangeData({ value }: msgSubmitReputationPointChangeDataParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.MsgSubmitReputationPointChangeData", value: MsgSubmitReputationPointChangeData.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetWorkreportRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:MsgSubmitReputationPointChangeData: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetEraLengthRequest({ value, fee, memo }: sendQueryGetEraLengthRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetEraLengthRequest: Unable to sign Tx. Signer is not present.')
+		queryGetAllHistoryEpochRequest({ value }: queryGetAllHistoryEpochRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllHistoryEpochRequest", value: QueryGetAllHistoryEpochRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetAllHistoryEpochRequest: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetEraLengthRequest({ value: QueryGetEraLengthRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		queryGetEpochLengthResponse({ value }: queryGetEpochLengthResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetEpochLengthResponse", value: QueryGetEpochLengthResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetEraLengthRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetEpochLengthResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetAllEraProcessDataResponse({ value, fee, memo }: sendQueryGetAllEraProcessDataResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAllEraProcessDataResponse: Unable to sign Tx. Signer is not present.')
+		queryGetAllEraProcessDataResponse({ value }: queryGetAllEraProcessDataResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllEraProcessDataResponse", value: QueryGetAllEraProcessDataResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetAllEraProcessDataResponse: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAllEraProcessDataResponse({ value: QueryGetAllEraProcessDataResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		cheatStatusCr({ value }: cheatStatusCrParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.CheatStatusCR", value: CheatStatusCR.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAllEraProcessDataResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:CheatStatusCR: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryParamsResponse: Unable to sign Tx. Signer is not present.')
+		msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.MsgUpdateParams", value: MsgUpdateParams.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryParamsResponse({ value: QueryParamsResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		msgUpdateWorkreportProcessBatchSize({ value }: msgUpdateWorkreportProcessBatchSizeParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.MsgUpdateWorkreportProcessBatchSize", value: MsgUpdateWorkreportProcessBatchSize.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryParamsResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:MsgUpdateWorkreportProcessBatchSize: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendMsgUpdateSuperior({ value, fee, memo }: sendMsgUpdateSuperiorParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateSuperior: Unable to sign Tx. Signer is not present.')
+		queryGetEpochLengthRequest({ value }: queryGetEpochLengthRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetEpochLengthRequest", value: QueryGetEpochLengthRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetEpochLengthRequest: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateSuperior({ value: MsgUpdateSuperior.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		queryGetAllNodeWorkloadByEpochResponse({ value }: queryGetAllNodeWorkloadByEpochResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllNodeWorkloadByEpochResponse", value: QueryGetAllNodeWorkloadByEpochResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateSuperior: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetAllNodeWorkloadByEpochResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetAllHistoryEpochResponse({ value, fee, memo }: sendQueryGetAllHistoryEpochResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAllHistoryEpochResponse: Unable to sign Tx. Signer is not present.')
+		genesisState({ value }: genesisStateParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.GenesisState", value: GenesisState.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAllHistoryEpochResponse({ value: QueryGetAllHistoryEpochResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		msgSubmitReputationPointChangeDataResponse({ value }: msgSubmitReputationPointChangeDataResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.MsgSubmitReputationPointChangeDataResponse", value: MsgSubmitReputationPointChangeDataResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAllHistoryEpochResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:MsgSubmitReputationPointChangeDataResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendNodeScore({ value, fee, memo }: sendNodeScoreParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendNodeScore: Unable to sign Tx. Signer is not present.')
+		epochInfo({ value }: epochInfoParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.EpochInfo", value: EpochInfo.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:EpochInfo: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.nodeScore({ value: NodeScore.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		queryGetPendingNextEraRequest({ value }: queryGetPendingNextEraRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetPendingNextEraRequest", value: QueryGetPendingNextEraRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendNodeScore: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetPendingNextEraRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetHistoryEpochRequest({ value, fee, memo }: sendQueryGetHistoryEpochRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetHistoryEpochRequest: Unable to sign Tx. Signer is not present.')
+		queryGetAllEraCheatStatusProcessDataRequest({ value }: queryGetAllEraCheatStatusProcessDataRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetAllEraCheatStatusProcessDataRequest", value: QueryGetAllEraCheatStatusProcessDataRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetAllEraCheatStatusProcessDataRequest: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetHistoryEpochRequest({ value: QueryGetHistoryEpochRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		queryGetManagerRpworkloadResponse({ value }: queryGetManagerRpworkloadResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetManagerRPWorkloadResponse", value: QueryGetManagerRPWorkloadResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetHistoryEpochRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetManagerRPWorkloadResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetSuperiorResponse({ value, fee, memo }: sendQueryGetSuperiorResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetSuperiorResponse: Unable to sign Tx. Signer is not present.')
+		queryGetHistoryEpochDataDepthResponse({ value }: queryGetHistoryEpochDataDepthResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetHistoryEpochDataDepthResponse", value: QueryGetHistoryEpochDataDepthResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetHistoryEpochDataDepthResponse: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetSuperiorResponse({ value: QueryGetSuperiorResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		queryGetEpochProcessDataRequest({ value }: queryGetEpochProcessDataRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetEpochProcessDataRequest", value: QueryGetEpochProcessDataRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetSuperiorResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetEpochProcessDataRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetHistoryEraRequest({ value, fee, memo }: sendQueryGetHistoryEraRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetHistoryEraRequest: Unable to sign Tx. Signer is not present.')
+		queryGetWorkreportResponse({ value }: queryGetWorkreportResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetWorkreportResponse", value: QueryGetWorkreportResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetWorkreportResponse: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetHistoryEraRequest({ value: QueryGetHistoryEraRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		queryGetEpochProcessDataResponse({ value }: queryGetEpochProcessDataResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetEpochProcessDataResponse", value: QueryGetEpochProcessDataResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetHistoryEraRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetEpochProcessDataResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendQueryGetReputationPointRequest({ value, fee, memo }: sendQueryGetReputationPointRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGetReputationPointRequest: Unable to sign Tx. Signer is not present.')
+		msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetReputationPointRequest({ value: QueryGetReputationPointRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		queryGetPendingNextEpochRequest({ value }: queryGetPendingNextEpochRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetPendingNextEpochRequest", value: QueryGetPendingNextEpochRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetReputationPointRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetPendingNextEpochRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendMsgSubmitWorkreportsResponse({ value, fee, memo }: sendMsgSubmitWorkreportsResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgSubmitWorkreportsResponse: Unable to sign Tx. Signer is not present.')
+		queryGetHistoryEpochDataDepthRequest({ value }: queryGetHistoryEpochDataDepthRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetHistoryEpochDataDepthRequest", value: QueryGetHistoryEpochDataDepthRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetHistoryEpochDataDepthRequest: Could not create message: ' + e.message)
 			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgSubmitWorkreportsResponse({ value: MsgSubmitWorkreportsResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		},
+		
+		queryGetEraLengthRequest({ value }: queryGetEraLengthRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetEraLengthRequest", value: QueryGetEraLengthRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgSubmitWorkreportsResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:QueryGetEraLengthRequest: Could not create message: ' + e.message)
 			}
 		},
 		
+		queryGetHistoryEraResponse({ value }: queryGetHistoryEraResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/enreach.workload.QueryGetHistoryEraResponse", value: QueryGetHistoryEraResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetHistoryEraResponse: Could not create message: ' + e.message)
+			}
+		},
 		
 		queryGetNodeWorkloadResponse({ value }: queryGetNodeWorkloadResponseParams): EncodeObject {
 			try {
@@ -2508,771 +3763,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		queryGetAllManagerRpworkloadByEraResponse({ value }: queryGetAllManagerRpworkloadByEraResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetAllManagerRPWorkloadByEraResponse", value: QueryGetAllManagerRPWorkloadByEraResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAllManagerRPWorkloadByEraResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateHistoryEpochDataDepthResponse({ value }: msgUpdateHistoryEpochDataDepthResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.MsgUpdateHistoryEpochDataDepthResponse", value: MsgUpdateHistoryEpochDataDepthResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateHistoryEpochDataDepthResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetEpochLengthResponse({ value }: queryGetEpochLengthResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetEpochLengthResponse", value: QueryGetEpochLengthResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetEpochLengthResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetAllNodeWorkloadByEpochResponse({ value }: queryGetAllNodeWorkloadByEpochResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetAllNodeWorkloadByEpochResponse", value: QueryGetAllNodeWorkloadByEpochResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAllNodeWorkloadByEpochResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetAllHistoryEraResponse({ value }: queryGetAllHistoryEraResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetAllHistoryEraResponse", value: QueryGetAllHistoryEraResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAllHistoryEraResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetSuperiorRequest({ value }: queryGetSuperiorRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetSuperiorRequest", value: QueryGetSuperiorRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetSuperiorRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		reputationPoint({ value }: reputationPointParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.ReputationPoint", value: ReputationPoint.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:ReputationPoint: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetHistoryEpochDataDepthResponse({ value }: queryGetHistoryEpochDataDepthResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetHistoryEpochDataDepthResponse", value: QueryGetHistoryEpochDataDepthResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetHistoryEpochDataDepthResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetAllEpochProcessDataResponse({ value }: queryGetAllEpochProcessDataResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetAllEpochProcessDataResponse", value: QueryGetAllEpochProcessDataResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAllEpochProcessDataResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		superior({ value }: superiorParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.Superior", value: Superior.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:Superior: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateHistoryEpochDataDepth({ value }: msgUpdateHistoryEpochDataDepthParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.MsgUpdateHistoryEpochDataDepth", value: MsgUpdateHistoryEpochDataDepth.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateHistoryEpochDataDepth: Could not create message: ' + e.message)
-			}
-		},
-		
-		workreport({ value }: workreportParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.Workreport", value: Workreport.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:Workreport: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetCurrentEpochRequest({ value }: queryGetCurrentEpochRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetCurrentEpochRequest", value: QueryGetCurrentEpochRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetCurrentEpochRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetPendingNextEraResponse({ value }: queryGetPendingNextEraResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetPendingNextEraResponse", value: QueryGetPendingNextEraResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetPendingNextEraResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		reputationPointChangeRawData({ value }: reputationPointChangeRawDataParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.ReputationPointChangeRawData", value: ReputationPointChangeRawData.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:ReputationPointChangeRawData: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetAllReputationPointResponse({ value }: queryGetAllReputationPointResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetAllReputationPointResponse", value: QueryGetAllReputationPointResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAllReputationPointResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		epochProcessData({ value }: epochProcessDataParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.EpochProcessData", value: EpochProcessData.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:EpochProcessData: Could not create message: ' + e.message)
-			}
-		},
-		
 		queryGetAllWorkreportByEpochResponse({ value }: queryGetAllWorkreportByEpochResponseParams): EncodeObject {
 			try {
 				return { typeUrl: "/enreach.workload.QueryGetAllWorkreportByEpochResponse", value: QueryGetAllWorkreportByEpochResponse.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:QueryGetAllWorkreportByEpochResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetEpochProcessDataRequest({ value }: queryGetEpochProcessDataRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetEpochProcessDataRequest", value: QueryGetEpochProcessDataRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetEpochProcessDataRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetEraLengthResponse({ value }: queryGetEraLengthResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetEraLengthResponse", value: QueryGetEraLengthResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetEraLengthResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetCurrentEraRequest({ value }: queryGetCurrentEraRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetCurrentEraRequest", value: QueryGetCurrentEraRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetCurrentEraRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgSubmitReputationPointChangeData({ value }: msgSubmitReputationPointChangeDataParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.MsgSubmitReputationPointChangeData", value: MsgSubmitReputationPointChangeData.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgSubmitReputationPointChangeData: Could not create message: ' + e.message)
-			}
-		},
-		
-		reputationDeltaPoint({ value }: reputationDeltaPointParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.ReputationDeltaPoint", value: ReputationDeltaPoint.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:ReputationDeltaPoint: Could not create message: ' + e.message)
-			}
-		},
-		
-		managerWrworkload({ value }: managerWrworkloadParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.ManagerWRWorkload", value: ManagerWRWorkload.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:ManagerWRWorkload: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetAllManagerRpworkloadByEraRequest({ value }: queryGetAllManagerRpworkloadByEraRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetAllManagerRPWorkloadByEraRequest", value: QueryGetAllManagerRPWorkloadByEraRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAllManagerRPWorkloadByEraRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetWorkreportResponse({ value }: queryGetWorkreportResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetWorkreportResponse", value: QueryGetWorkreportResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetWorkreportResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetReputationPointChangeDataRequest({ value }: queryGetReputationPointChangeDataRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetReputationPointChangeDataRequest", value: QueryGetReputationPointChangeDataRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetReputationPointChangeDataRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateSuperiorResponse({ value }: msgUpdateSuperiorResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.MsgUpdateSuperiorResponse", value: MsgUpdateSuperiorResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateSuperiorResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetManagerRpworkloadRequest({ value }: queryGetManagerRpworkloadRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetManagerRPWorkloadRequest", value: QueryGetManagerRPWorkloadRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetManagerRPWorkloadRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		reputationPointChangeRawDataMapDb({ value }: reputationPointChangeRawDataMapDbParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.ReputationPointChangeRawDataMapDB", value: ReputationPointChangeRawDataMapDB.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:ReputationPointChangeRawDataMapDB: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetNodeWorkloadRequest({ value }: queryGetNodeWorkloadRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetNodeWorkloadRequest", value: QueryGetNodeWorkloadRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetNodeWorkloadRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetPendingNextEraRequest({ value }: queryGetPendingNextEraRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetPendingNextEraRequest", value: QueryGetPendingNextEraRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetPendingNextEraRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetAllReputationDeltaPointByEraRequest({ value }: queryGetAllReputationDeltaPointByEraRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetAllReputationDeltaPointByEraRequest", value: QueryGetAllReputationDeltaPointByEraRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAllReputationDeltaPointByEraRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		nodeScoreDb({ value }: nodeScoreDbParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.NodeScoreDB", value: NodeScoreDB.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:NodeScoreDB: Could not create message: ' + e.message)
-			}
-		},
-		
-		eraProcessData({ value }: eraProcessDataParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.EraProcessData", value: EraProcessData.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:EraProcessData: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetPendingNextEpochRequest({ value }: queryGetPendingNextEpochRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetPendingNextEpochRequest", value: QueryGetPendingNextEpochRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetPendingNextEpochRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetAllHistoryEpochRequest({ value }: queryGetAllHistoryEpochRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetAllHistoryEpochRequest", value: QueryGetAllHistoryEpochRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAllHistoryEpochRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetAllReputationPointChangeDataByEraRequest({ value }: queryGetAllReputationPointChangeDataByEraRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetAllReputationPointChangeDataByEraRequest", value: QueryGetAllReputationPointChangeDataByEraRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAllReputationPointChangeDataByEraRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetAllReputationPointChangeDataByEraResponse({ value }: queryGetAllReputationPointChangeDataByEraResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetAllReputationPointChangeDataByEraResponse", value: QueryGetAllReputationPointChangeDataByEraResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAllReputationPointChangeDataByEraResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetHistoryEpochResponse({ value }: queryGetHistoryEpochResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetHistoryEpochResponse", value: QueryGetHistoryEpochResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetHistoryEpochResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		eraInfo({ value }: eraInfoParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.EraInfo", value: EraInfo.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:EraInfo: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetAllManagerWrworkloadByEpochRequest({ value }: queryGetAllManagerWrworkloadByEpochRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetAllManagerWRWorkloadByEpochRequest", value: QueryGetAllManagerWRWorkloadByEpochRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAllManagerWRWorkloadByEpochRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetWorkreportProcessBatchSizeRequest({ value }: queryGetWorkreportProcessBatchSizeRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetWorkreportProcessBatchSizeRequest", value: QueryGetWorkreportProcessBatchSizeRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetWorkreportProcessBatchSizeRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetCurrentEraResponse({ value }: queryGetCurrentEraResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetCurrentEraResponse", value: QueryGetCurrentEraResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetCurrentEraResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgSubmitWorkreports({ value }: msgSubmitWorkreportsParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.MsgSubmitWorkreports", value: MsgSubmitWorkreports.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgSubmitWorkreports: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateWorkreportProcessBatchSize({ value }: msgUpdateWorkreportProcessBatchSizeParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.MsgUpdateWorkreportProcessBatchSize", value: MsgUpdateWorkreportProcessBatchSize.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateWorkreportProcessBatchSize: Could not create message: ' + e.message)
-			}
-		},
-		
-		managerNodeScoreMap({ value }: managerNodeScoreMapParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.ManagerNodeScoreMap", value: ManagerNodeScoreMap.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:ManagerNodeScoreMap: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetManagerWrworkloadRequest({ value }: queryGetManagerWrworkloadRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetManagerWRWorkloadRequest", value: QueryGetManagerWRWorkloadRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetManagerWRWorkloadRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetAllWorkreportByEpochRequest({ value }: queryGetAllWorkreportByEpochRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetAllWorkreportByEpochRequest", value: QueryGetAllWorkreportByEpochRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAllWorkreportByEpochRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetWorkreportProcessBatchSizeResponse({ value }: queryGetWorkreportProcessBatchSizeResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetWorkreportProcessBatchSizeResponse", value: QueryGetWorkreportProcessBatchSizeResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetWorkreportProcessBatchSizeResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetAllReputationDeltaPointByEraResponse({ value }: queryGetAllReputationDeltaPointByEraResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetAllReputationDeltaPointByEraResponse", value: QueryGetAllReputationDeltaPointByEraResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAllReputationDeltaPointByEraResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.MsgUpdateParams", value: MsgUpdateParams.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetAllEpochProcessDataRequest({ value }: queryGetAllEpochProcessDataRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetAllEpochProcessDataRequest", value: QueryGetAllEpochProcessDataRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAllEpochProcessDataRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetReputationPointResponse({ value }: queryGetReputationPointResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetReputationPointResponse", value: QueryGetReputationPointResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetReputationPointResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetAllNodeWorkloadByEpochRequest({ value }: queryGetAllNodeWorkloadByEpochRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetAllNodeWorkloadByEpochRequest", value: QueryGetAllNodeWorkloadByEpochRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAllNodeWorkloadByEpochRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetCurrentEpochResponse({ value }: queryGetCurrentEpochResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetCurrentEpochResponse", value: QueryGetCurrentEpochResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetCurrentEpochResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetEpochProcessDataResponse({ value }: queryGetEpochProcessDataResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetEpochProcessDataResponse", value: QueryGetEpochProcessDataResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetEpochProcessDataResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetEraProcessDataResponse({ value }: queryGetEraProcessDataResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetEraProcessDataResponse", value: QueryGetEraProcessDataResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetEraProcessDataResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		reputationPointChangeData({ value }: reputationPointChangeDataParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.ReputationPointChangeData", value: ReputationPointChangeData.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:ReputationPointChangeData: Could not create message: ' + e.message)
-			}
-		},
-		
-		epochInfo({ value }: epochInfoParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.EpochInfo", value: EpochInfo.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:EpochInfo: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetHistoryEraResponse({ value }: queryGetHistoryEraResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetHistoryEraResponse", value: QueryGetHistoryEraResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetHistoryEraResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgCreateSuperior({ value }: msgCreateSuperiorParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.MsgCreateSuperior", value: MsgCreateSuperior.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgCreateSuperior: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgSubmitReputationPointChangeDataResponse({ value }: msgSubmitReputationPointChangeDataResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.MsgSubmitReputationPointChangeDataResponse", value: MsgSubmitReputationPointChangeDataResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgSubmitReputationPointChangeDataResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgCreateSuperiorResponse({ value }: msgCreateSuperiorResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.MsgCreateSuperiorResponse", value: MsgCreateSuperiorResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgCreateSuperiorResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		managerRpworkload({ value }: managerRpworkloadParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.ManagerRPWorkload", value: ManagerRPWorkload.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:ManagerRPWorkload: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetEpochLengthRequest({ value }: queryGetEpochLengthRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetEpochLengthRequest", value: QueryGetEpochLengthRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetEpochLengthRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetAllHistoryEraRequest({ value }: queryGetAllHistoryEraRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetAllHistoryEraRequest", value: QueryGetAllHistoryEraRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAllHistoryEraRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetReputationPointChangeDataResponse({ value }: queryGetReputationPointChangeDataResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetReputationPointChangeDataResponse", value: QueryGetReputationPointChangeDataResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetReputationPointChangeDataResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetReputationDeltaPointRequest({ value }: queryGetReputationDeltaPointRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetReputationDeltaPointRequest", value: QueryGetReputationDeltaPointRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetReputationDeltaPointRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetReputationDeltaPointResponse({ value }: queryGetReputationDeltaPointResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetReputationDeltaPointResponse", value: QueryGetReputationDeltaPointResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetReputationDeltaPointResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetEraProcessDataRequest({ value }: queryGetEraProcessDataRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetEraProcessDataRequest", value: QueryGetEraProcessDataRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetEraProcessDataRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		genesisState({ value }: genesisStateParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.GenesisState", value: GenesisState.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetAllReputationPointRequest({ value }: queryGetAllReputationPointRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetAllReputationPointRequest", value: QueryGetAllReputationPointRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAllReputationPointRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		reputationPointChangeRawDataDb({ value }: reputationPointChangeRawDataDbParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.ReputationPointChangeRawDataDB", value: ReputationPointChangeRawDataDB.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:ReputationPointChangeRawDataDB: Could not create message: ' + e.message)
-			}
-		},
-		
-		params({ value }: paramsParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.Params", value: Params.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:Params: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetManagerRpworkloadResponse({ value }: queryGetManagerRpworkloadResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetManagerRPWorkloadResponse", value: QueryGetManagerRPWorkloadResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetManagerRPWorkloadResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetAllEraProcessDataRequest({ value }: queryGetAllEraProcessDataRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetAllEraProcessDataRequest", value: QueryGetAllEraProcessDataRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAllEraProcessDataRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		nodeWorkload({ value }: nodeWorkloadParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.NodeWorkload", value: NodeWorkload.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:NodeWorkload: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetPendingNextEpochResponse({ value }: queryGetPendingNextEpochResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetPendingNextEpochResponse", value: QueryGetPendingNextEpochResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetPendingNextEpochResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetAllManagerWrworkloadByEpochResponse({ value }: queryGetAllManagerWrworkloadByEpochResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetAllManagerWRWorkloadByEpochResponse", value: QueryGetAllManagerWRWorkloadByEpochResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAllManagerWRWorkloadByEpochResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateWorkreportProcessBatchSizeResponse({ value }: msgUpdateWorkreportProcessBatchSizeResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.MsgUpdateWorkreportProcessBatchSizeResponse", value: MsgUpdateWorkreportProcessBatchSizeResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateWorkreportProcessBatchSizeResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetHistoryEpochDataDepthRequest({ value }: queryGetHistoryEpochDataDepthRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetHistoryEpochDataDepthRequest", value: QueryGetHistoryEpochDataDepthRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetHistoryEpochDataDepthRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryParamsRequest", value: QueryParamsRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryParamsRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetWorkreportRequest({ value }: queryGetWorkreportRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetWorkreportRequest", value: QueryGetWorkreportRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetWorkreportRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetEraLengthRequest({ value }: queryGetEraLengthRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetEraLengthRequest", value: QueryGetEraLengthRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetEraLengthRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetAllEraProcessDataResponse({ value }: queryGetAllEraProcessDataResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetAllEraProcessDataResponse", value: QueryGetAllEraProcessDataResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAllEraProcessDataResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryParamsResponse", value: QueryParamsResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryParamsResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateSuperior({ value }: msgUpdateSuperiorParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.MsgUpdateSuperior", value: MsgUpdateSuperior.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateSuperior: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetAllHistoryEpochResponse({ value }: queryGetAllHistoryEpochResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetAllHistoryEpochResponse", value: QueryGetAllHistoryEpochResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAllHistoryEpochResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		nodeScore({ value }: nodeScoreParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.NodeScore", value: NodeScore.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:NodeScore: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetHistoryEpochRequest({ value }: queryGetHistoryEpochRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetHistoryEpochRequest", value: QueryGetHistoryEpochRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetHistoryEpochRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetSuperiorResponse({ value }: queryGetSuperiorResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetSuperiorResponse", value: QueryGetSuperiorResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetSuperiorResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetHistoryEraRequest({ value }: queryGetHistoryEraRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetHistoryEraRequest", value: QueryGetHistoryEraRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetHistoryEraRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGetReputationPointRequest({ value }: queryGetReputationPointRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.QueryGetReputationPointRequest", value: QueryGetReputationPointRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGetReputationPointRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgSubmitWorkreportsResponse({ value }: msgSubmitWorkreportsResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/enreach.workload.MsgSubmitWorkreportsResponse", value: MsgSubmitWorkreportsResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgSubmitWorkreportsResponse: Could not create message: ' + e.message)
 			}
 		},
 		
