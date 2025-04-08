@@ -40,6 +40,9 @@ const (
 	Query_Superior_FullMethodName                          = "/enreach.workload.Query/Superior"
 	Query_EraLength_FullMethodName                         = "/enreach.workload.Query/EraLength"
 	Query_CurrentEra_FullMethodName                        = "/enreach.workload.Query/CurrentEra"
+	Query_PendingNextEra_FullMethodName                    = "/enreach.workload.Query/PendingNextEra"
+	Query_HistoryEra_FullMethodName                        = "/enreach.workload.Query/HistoryEra"
+	Query_AllHistoryEra_FullMethodName                     = "/enreach.workload.Query/AllHistoryEra"
 	Query_ReputationPointChangeData_FullMethodName         = "/enreach.workload.Query/ReputationPointChangeData"
 	Query_AllReputationPointChangeDataByEra_FullMethodName = "/enreach.workload.Query/AllReputationPointChangeDataByEra"
 	Query_ReputationDeltaPoint_FullMethodName              = "/enreach.workload.Query/ReputationDeltaPoint"
@@ -83,6 +86,9 @@ type QueryClient interface {
 	// Queries era
 	EraLength(ctx context.Context, in *QueryGetEraLengthRequest, opts ...grpc.CallOption) (*QueryGetEraLengthResponse, error)
 	CurrentEra(ctx context.Context, in *QueryGetCurrentEraRequest, opts ...grpc.CallOption) (*QueryGetCurrentEraResponse, error)
+	PendingNextEra(ctx context.Context, in *QueryGetPendingNextEraRequest, opts ...grpc.CallOption) (*QueryGetPendingNextEraResponse, error)
+	HistoryEra(ctx context.Context, in *QueryGetHistoryEraRequest, opts ...grpc.CallOption) (*QueryGetHistoryEraResponse, error)
+	AllHistoryEra(ctx context.Context, in *QueryGetAllHistoryEraRequest, opts ...grpc.CallOption) (*QueryGetAllHistoryEraResponse, error)
 	// Queries a list of ReputationPointChangeData items.
 	ReputationPointChangeData(ctx context.Context, in *QueryGetReputationPointChangeDataRequest, opts ...grpc.CallOption) (*QueryGetReputationPointChangeDataResponse, error)
 	AllReputationPointChangeDataByEra(ctx context.Context, in *QueryGetAllReputationPointChangeDataByEraRequest, opts ...grpc.CallOption) (*QueryGetAllReputationPointChangeDataByEraResponse, error)
@@ -293,6 +299,33 @@ func (c *queryClient) CurrentEra(ctx context.Context, in *QueryGetCurrentEraRequ
 	return out, nil
 }
 
+func (c *queryClient) PendingNextEra(ctx context.Context, in *QueryGetPendingNextEraRequest, opts ...grpc.CallOption) (*QueryGetPendingNextEraResponse, error) {
+	out := new(QueryGetPendingNextEraResponse)
+	err := c.cc.Invoke(ctx, Query_PendingNextEra_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) HistoryEra(ctx context.Context, in *QueryGetHistoryEraRequest, opts ...grpc.CallOption) (*QueryGetHistoryEraResponse, error) {
+	out := new(QueryGetHistoryEraResponse)
+	err := c.cc.Invoke(ctx, Query_HistoryEra_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) AllHistoryEra(ctx context.Context, in *QueryGetAllHistoryEraRequest, opts ...grpc.CallOption) (*QueryGetAllHistoryEraResponse, error) {
+	out := new(QueryGetAllHistoryEraResponse)
+	err := c.cc.Invoke(ctx, Query_AllHistoryEra_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *queryClient) ReputationPointChangeData(ctx context.Context, in *QueryGetReputationPointChangeDataRequest, opts ...grpc.CallOption) (*QueryGetReputationPointChangeDataResponse, error) {
 	out := new(QueryGetReputationPointChangeDataResponse)
 	err := c.cc.Invoke(ctx, Query_ReputationPointChangeData_FullMethodName, in, out, opts...)
@@ -398,6 +431,9 @@ type QueryServer interface {
 	// Queries era
 	EraLength(context.Context, *QueryGetEraLengthRequest) (*QueryGetEraLengthResponse, error)
 	CurrentEra(context.Context, *QueryGetCurrentEraRequest) (*QueryGetCurrentEraResponse, error)
+	PendingNextEra(context.Context, *QueryGetPendingNextEraRequest) (*QueryGetPendingNextEraResponse, error)
+	HistoryEra(context.Context, *QueryGetHistoryEraRequest) (*QueryGetHistoryEraResponse, error)
+	AllHistoryEra(context.Context, *QueryGetAllHistoryEraRequest) (*QueryGetAllHistoryEraResponse, error)
 	// Queries a list of ReputationPointChangeData items.
 	ReputationPointChangeData(context.Context, *QueryGetReputationPointChangeDataRequest) (*QueryGetReputationPointChangeDataResponse, error)
 	AllReputationPointChangeDataByEra(context.Context, *QueryGetAllReputationPointChangeDataByEraRequest) (*QueryGetAllReputationPointChangeDataByEraResponse, error)
@@ -478,6 +514,15 @@ func (UnimplementedQueryServer) EraLength(context.Context, *QueryGetEraLengthReq
 }
 func (UnimplementedQueryServer) CurrentEra(context.Context, *QueryGetCurrentEraRequest) (*QueryGetCurrentEraResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CurrentEra not implemented")
+}
+func (UnimplementedQueryServer) PendingNextEra(context.Context, *QueryGetPendingNextEraRequest) (*QueryGetPendingNextEraResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PendingNextEra not implemented")
+}
+func (UnimplementedQueryServer) HistoryEra(context.Context, *QueryGetHistoryEraRequest) (*QueryGetHistoryEraResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HistoryEra not implemented")
+}
+func (UnimplementedQueryServer) AllHistoryEra(context.Context, *QueryGetAllHistoryEraRequest) (*QueryGetAllHistoryEraResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllHistoryEra not implemented")
 }
 func (UnimplementedQueryServer) ReputationPointChangeData(context.Context, *QueryGetReputationPointChangeDataRequest) (*QueryGetReputationPointChangeDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReputationPointChangeData not implemented")
@@ -894,6 +939,60 @@ func _Query_CurrentEra_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_PendingNextEra_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetPendingNextEraRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).PendingNextEra(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_PendingNextEra_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).PendingNextEra(ctx, req.(*QueryGetPendingNextEraRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_HistoryEra_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetHistoryEraRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).HistoryEra(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_HistoryEra_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).HistoryEra(ctx, req.(*QueryGetHistoryEraRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_AllHistoryEra_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAllHistoryEraRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).AllHistoryEra(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_AllHistoryEra_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).AllHistoryEra(ctx, req.(*QueryGetAllHistoryEraRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Query_ReputationPointChangeData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryGetReputationPointChangeDataRequest)
 	if err := dec(in); err != nil {
@@ -1128,6 +1227,18 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CurrentEra",
 			Handler:    _Query_CurrentEra_Handler,
+		},
+		{
+			MethodName: "PendingNextEra",
+			Handler:    _Query_PendingNextEra_Handler,
+		},
+		{
+			MethodName: "HistoryEra",
+			Handler:    _Query_HistoryEra_Handler,
+		},
+		{
+			MethodName: "AllHistoryEra",
+			Handler:    _Query_AllHistoryEra_Handler,
 		},
 		{
 			MethodName: "ReputationPointChangeData",

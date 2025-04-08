@@ -12,7 +12,14 @@ import (
 func (k Keeper) ProcessEraReputationPoint(goCtx context.Context) error {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	currentEra := types.GetCurrentEra(ctx)
+	_, found := k.GetPendingNextEra(ctx)
+	if found {
+		// during era change, skip this block to avoid any unknown boundary issue
+		return nil
+	}
+
+	currentEraInfo, _ := k.GetCurrentEra(ctx)
+	currentEra := currentEraInfo.Number
 	blockHeight := uint64(ctx.BlockHeight())
 
 	// Only start to process ReputationPointChangeData when the current era is >= 3

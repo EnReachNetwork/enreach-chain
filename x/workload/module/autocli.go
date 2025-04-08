@@ -54,6 +54,22 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:     "Get current era",
 				},
 				{
+					RpcMethod: "PendingNextEra",
+					Use:       "get-pending-next-era",
+					Short:     "Get pending next era",
+				},
+				{
+					RpcMethod:      "HistoryEra",
+					Use:            "get-history-era [eraNumber]",
+					Short:          "Get history era",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "eraNumber"}},
+				},
+				{
+					RpcMethod: "AllHistoryEra",
+					Use:       "get-all-history-era",
+					Short:     "Get all history era",
+				},
+				{
 					RpcMethod:      "AllNodeWorkloadByEpoch",
 					Use:            "get-all-node-workload-by-epoch [epoch]",
 					Short:          "Get all nodes' workload in a dedicated epoch",

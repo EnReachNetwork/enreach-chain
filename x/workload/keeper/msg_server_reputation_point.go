@@ -34,7 +34,8 @@ func (k msgServer) SubmitReputationPointChangeData(goCtx context.Context, msg *t
 	}
 
 	// The submitted era must be the previous era, since the current era is not yet finalized.
-	currentEra := types.GetCurrentEra(goCtx)
+	currentEraInfo, _ := k.GetCurrentEra(ctx)
+	currentEra := currentEraInfo.Number
 	previousEra := currentEra - 1
 	if currentEra == 1 {
 		return nil, errorsmod.Wrap(types.ErrInvalidEra, "Era_1 is not allowed to submit reputation point data")

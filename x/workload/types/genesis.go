@@ -11,6 +11,8 @@ func DefaultGenesis() *GenesisState {
 		Superior:         nil,
 		CurrentEpoch:     nil,
 		PendingNextEpoch: nil,
+		CurrentEra:       nil,
+		PendingNextEra:   nil,
 		// this line is used by starport scaffolding # genesis/types/default
 		Params: DefaultParams(),
 	}

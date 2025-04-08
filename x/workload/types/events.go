@@ -42,4 +42,8 @@ const (
 	AttributeKeyEpochStartBlock     = "epochStartBlock"
 	AttributeKeyEpochEndTime        = "epochEndTime"
 	AttributeKeyEpochEndBlock       = "epochEndBlock"
+	AttributeKeyEraStartTime        = "eraStartTime"
+	AttributeKeyEraStartBlock       = "eraStartBlock"
+	AttributeKeyEraEndTime          = "eraEndTime"
+	AttributeKeyEraEndBlock         = "eraEndBlock"
 )

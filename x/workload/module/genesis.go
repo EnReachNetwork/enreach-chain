@@ -23,11 +23,23 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 	if genState.PendingNextEpoch != nil {
 		k.SetPendingNextEpoch(ctx, genState.PendingNextEpoch)
 	}
+	if genState.CurrentEra != nil {
+		k.SetCurrentEra(ctx, genState.CurrentEra)
+	}
+	if genState.PendingNextEra != nil {
+		k.SetPendingNextEra(ctx, genState.PendingNextEra)
+	}
 	// this line is used by starport scaffolding # genesis/module/init
 	if err := k.SetParams(ctx, genState.Params); err != nil {
 		panic(err)
 	}
 
+	// Initialize genesis epochInfo and eraInfo
+	initGenesisEpoch(ctx, k, genState)
+	initGenesisEra(ctx, k, genState)
+}
+
+func initGenesisEpoch(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) {
 	if genState.CurrentEpoch == nil || genState.CurrentEpoch.Number == 0 {
 		//Get the genesis time and truncate it to the nearest time
 		blockHeight := uint64(ctx.BlockHeight())
@@ -61,6 +73,40 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 	}
 }
 
+func initGenesisEra(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) {
+	if genState.CurrentEra == nil || genState.CurrentEra.Number == 0 {
+		//Get the genesis time and truncate it to the nearest time
+		blockHeight := uint64(ctx.BlockHeight())
+		eraDuration := time.Duration(types.ERA_LENGTH) * time.Second
+		genesisTime := ctx.BlockTime()
+		truncatedStartTime := genesisTime.Truncate(eraDuration)
+		endTime := truncatedStartTime.Add(eraDuration)
+
+		// Initialize the first era
+		firstEra := types.EraInfo{
+			Number:     1,
+			StartTime:  genesisTime,
+			StartBlock: blockHeight,
+			EndTime:    endTime,
+		}
+		k.SetCurrentEra(ctx, &firstEra)
+		k.SetPendingNextEra(ctx, nil) // Clear the Pending State
+
+		// Emit era start event
+		ctx.EventManager().EmitEvent(
+			sdk.NewEvent(types.EventTypeEraStart,
+				sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+				sdk.NewAttribute(types.AttributeKeyEra, strconv.FormatUint(firstEra.Number, 10)),
+				sdk.NewAttribute(types.AttributeKeyEraStartTime, firstEra.StartTime.Format(time.RFC3339)),
+				sdk.NewAttribute(types.AttributeKeyEraStartBlock, strconv.FormatUint(firstEra.StartBlock, 10)),
+				sdk.NewAttribute(types.AttributeKeyEraEndTime, firstEra.EndTime.Format(time.RFC3339)),
+			),
+		)
+	} else {
+		k.SetCurrentEra(ctx, genState.CurrentEra)
+	}
+}
+
 // ExportGenesis returns the module's exported genesis.
 func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 	genesis := types.DefaultGenesis()
@@ -79,6 +125,14 @@ func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 	pendingNextEpoch, found := k.GetPendingNextEpoch(ctx)
 	if found {
 		genesis.PendingNextEpoch = &pendingNextEpoch
+	}
+	currentEra, found := k.GetCurrentEra(ctx)
+	if found {
+		genesis.CurrentEra = &currentEra
+	}
+	pendingNextEra, found := k.GetPendingNextEra(ctx)
+	if found {
+		genesis.PendingNextEra = &pendingNextEra
 	}
 	// this line is used by starport scaffolding # genesis/module/export
 

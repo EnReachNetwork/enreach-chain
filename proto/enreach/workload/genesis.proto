@@ -8,6 +8,7 @@ import "enreach/workload/params.proto";
 import "enreach/workload/workload.proto";
 import "enreach/workload/superior.proto";
 import "enreach/workload/epoch_info.proto";
+import "enreach/workload/era_info.proto";
 
 option go_package = "enreach/x/workload/types";
 
@@ -19,5 +20,7 @@ message GenesisState {
   Superior  superior  = 2;
   EpochInfo currentEpoch = 3;
   EpochInfo pendingNextEpoch = 4;
+  EraInfo currentEra = 5;
+  EraInfo pendingNextEra = 6;
 }
 

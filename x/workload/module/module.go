@@ -154,32 +154,19 @@ func (AppModule) ConsensusVersion() uint64 { return 1 }
 // BeginBlock contains the logic that is automatically triggered at the beginning of each block.
 // The begin block implementation is optional.
 func (am AppModule) BeginBlock(goCtx context.Context) error {
-	ctx := sdk.UnwrapSDKContext(goCtx)
 	k := am.keeper
 
 	// Handle epoch change
 	am.handleEpochChange(goCtx)
+
+	// Handle era change
+	am.handleEraChange(goCtx)
 
 	// Process epoch workload
 	k.ProcessEpochWorkload(goCtx)
 
 	// Process era reputation point
 	k.ProcessEraReputationPoint(goCtx)
-
-	if types.IsEraStart(goCtx) {
-		currentEra := types.GetCurrentEra(ctx)
-		blockHeight := uint64(ctx.BlockHeight())
-
-		/// TODO: Delete old era related data
-
-		ctx.EventManager().EmitEvent(
-			sdk.NewEvent(types.EventTypeEraStart,
-				sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
-				sdk.NewAttribute(types.AttributeKeyEra, strconv.FormatUint(currentEra, 10)),
-				sdk.NewAttribute(types.AttributeKeyBlockHeight, strconv.FormatUint(blockHeight, 10)),
-			),
-		)
-	}
 
 	return nil
 }
@@ -203,16 +190,8 @@ func (am AppModule) handleEpochChange(goCtx context.Context) error {
 		k.SetCurrentEpoch(ctx, &newEpoch)
 		k.SetPendingNextEpoch(ctx, nil)
 
-		// Emit epoch start event
-		ctx.EventManager().EmitEvent(
-			sdk.NewEvent(types.EventTypeEpochStart,
-				sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
-				sdk.NewAttribute(types.AttributeKeyEpoch, strconv.FormatUint(newEpoch.Number, 10)),
-				sdk.NewAttribute(types.AttributeKeyEpochStartTime, newEpoch.StartTime.Format(time.RFC3339)),
-				sdk.NewAttribute(types.AttributeKeyEpochStartBlock, strconv.FormatUint(newEpoch.StartBlock, 10)),
-				sdk.NewAttribute(types.AttributeKeyEpochEndTime, newEpoch.EndTime.Format(time.RFC3339)),
-			),
-		)
+		// Hook for onEpochStart
+		am.onEpochStart(ctx, &newEpoch)
 	}
 
 	// Handle epoch end
@@ -233,18 +212,119 @@ func (am AppModule) handleEpochChange(goCtx context.Context) error {
 		}
 		k.SetPendingNextEpoch(ctx, &nextEpoch)
 
-		// Emit epoch end event
-		ctx.EventManager().EmitEvent(
-			sdk.NewEvent(types.EventTypeEpochEnd,
-				sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
-				sdk.NewAttribute(types.AttributeKeyEpoch, strconv.FormatUint(currentEpoch.Number, 10)),
-				sdk.NewAttribute(types.AttributeKeyEpochStartTime, currentEpoch.StartTime.Format(time.RFC3339)),
-				sdk.NewAttribute(types.AttributeKeyEpochStartBlock, strconv.FormatUint(currentEpoch.StartBlock, 10)),
-				sdk.NewAttribute(types.AttributeKeyEpochEndTime, currentEpoch.EndTime.Format(time.RFC3339)),
-				sdk.NewAttribute(types.AttributeKeyEpochEndBlock, strconv.FormatUint(currentEpoch.EndBlock, 10)),
-			),
-		)
+		// Hook for onEpochEnd
+		am.onEpochEnd(ctx, &currentEpoch)
 	}
+
+	return nil
+}
+
+func (am AppModule) handleEraChange(goCtx context.Context) error {
+	ctx := sdk.UnwrapSDKContext(goCtx)
+	k := am.keeper
+	blockHeight := uint64(ctx.BlockHeight())
+	currentTime := ctx.BlockTime()
+
+	// Handle era start
+	pendingNextEra, found := k.GetPendingNextEra(ctx)
+	if found {
+		// Update current era and clear the pending next era
+		newEra := types.EraInfo{
+			Number:     pendingNextEra.Number,
+			StartTime:  pendingNextEra.StartTime,
+			StartBlock: blockHeight,
+			EndTime:    pendingNextEra.EndTime,
+		}
+		k.SetCurrentEra(ctx, &newEra)
+		k.SetPendingNextEra(ctx, nil)
+
+		// Hook for onEraStart
+		am.onEraStart(ctx, &newEra)
+	}
+
+	// Handle era end
+	currentEra, _ := k.GetCurrentEra(ctx)
+	if currentTime.After(currentEra.EndTime) || currentTime.Equal(currentEra.EndTime) {
+		// Set the end block
+		currentEra.EndBlock = blockHeight
+
+		// Add to the history era list
+		k.AppendHistoryEra(ctx, &currentEra)
+
+		// Calculate next era and store in DB to be processed by next begin_block
+		eraDuration := time.Duration(types.ERA_LENGTH) * time.Second
+		nextEra := types.EraInfo{
+			Number:    currentEra.Number + 1,
+			StartTime: currentEra.EndTime,
+			EndTime:   currentEra.EndTime.Add(eraDuration),
+		}
+		k.SetPendingNextEra(ctx, &nextEra)
+
+		// Hook for onEraEnd
+		am.onEraEnd(ctx, &currentEra)
+	}
+
+	return nil
+}
+
+func (am AppModule) onEpochStart(ctx sdk.Context, epochInfo *types.EpochInfo) error {
+	// Emit epoch start event
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeEpochStart,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyEpoch, strconv.FormatUint(epochInfo.Number, 10)),
+			sdk.NewAttribute(types.AttributeKeyEpochStartTime, epochInfo.StartTime.Format(time.RFC3339)),
+			sdk.NewAttribute(types.AttributeKeyEpochStartBlock, strconv.FormatUint(epochInfo.StartBlock, 10)),
+			sdk.NewAttribute(types.AttributeKeyEpochEndTime, epochInfo.EndTime.Format(time.RFC3339)),
+		),
+	)
+
+	return nil
+}
+
+func (am AppModule) onEpochEnd(ctx sdk.Context, epochInfo *types.EpochInfo) error {
+	// Emit epoch end event
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeEpochEnd,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyEpoch, strconv.FormatUint(epochInfo.Number, 10)),
+			sdk.NewAttribute(types.AttributeKeyEpochStartTime, epochInfo.StartTime.Format(time.RFC3339)),
+			sdk.NewAttribute(types.AttributeKeyEpochStartBlock, strconv.FormatUint(epochInfo.StartBlock, 10)),
+			sdk.NewAttribute(types.AttributeKeyEpochEndTime, epochInfo.EndTime.Format(time.RFC3339)),
+			sdk.NewAttribute(types.AttributeKeyEpochEndBlock, strconv.FormatUint(epochInfo.EndBlock, 10)),
+		),
+	)
+
+	return nil
+}
+
+func (am AppModule) onEraStart(ctx sdk.Context, eraInfo *types.EraInfo) error {
+	// Emit era start event
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeEraStart,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyEra, strconv.FormatUint(eraInfo.Number, 10)),
+			sdk.NewAttribute(types.AttributeKeyEraStartTime, eraInfo.StartTime.Format(time.RFC3339)),
+			sdk.NewAttribute(types.AttributeKeyEraStartBlock, strconv.FormatUint(eraInfo.StartBlock, 10)),
+			sdk.NewAttribute(types.AttributeKeyEraEndTime, eraInfo.EndTime.Format(time.RFC3339)),
+		),
+	)
+
+	return nil
+}
+
+func (am AppModule) onEraEnd(ctx sdk.Context, eraInfo *types.EraInfo) error {
+	// Emit era end event
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.EventTypeEraEnd,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+			sdk.NewAttribute(types.AttributeKeyEra, strconv.FormatUint(eraInfo.Number, 10)),
+			sdk.NewAttribute(types.AttributeKeyEraStartTime, eraInfo.StartTime.Format(time.RFC3339)),
+			sdk.NewAttribute(types.AttributeKeyEraStartBlock, strconv.FormatUint(eraInfo.StartBlock, 10)),
+			sdk.NewAttribute(types.AttributeKeyEraEndTime, eraInfo.EndTime.Format(time.RFC3339)),
+			sdk.NewAttribute(types.AttributeKeyEraEndBlock, strconv.FormatUint(eraInfo.EndBlock, 10)),
+		),
+	)
 
 	return nil
 }
@@ -252,22 +332,6 @@ func (am AppModule) handleEpochChange(goCtx context.Context) error {
 // EndBlock contains the logic that is automatically triggered at the end of each block.
 // The end block implementation is optional.
 func (am AppModule) EndBlock(goCtx context.Context) error {
-	ctx := sdk.UnwrapSDKContext(goCtx)
-
-	if types.IsEraEnd(goCtx) {
-		currentEra := types.GetCurrentEra(ctx)
-		blockHeight := uint64(ctx.BlockHeight())
-
-		/// TODO: Delete old era related data
-
-		ctx.EventManager().EmitEvent(
-			sdk.NewEvent(types.EventTypeEraEnd,
-				sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
-				sdk.NewAttribute(types.AttributeKeyEra, strconv.FormatUint(currentEra, 10)),
-				sdk.NewAttribute(types.AttributeKeyBlockHeight, strconv.FormatUint(blockHeight, 10)),
-			),
-		)
-	}
 	return nil
 }
 

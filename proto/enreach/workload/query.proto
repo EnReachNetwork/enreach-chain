@@ -12,6 +12,7 @@ import "enreach/workload/workreport.proto";
 import "enreach/workload/superior.proto";
 import "enreach/workload/reputationpoint.proto";
 import "enreach/workload/epoch_info.proto";
+import "enreach/workload/era_info.proto";
 
 option go_package = "enreach/x/workload/types";
 
@@ -114,7 +115,19 @@ service Query {
   
   }
   rpc CurrentEra (QueryGetCurrentEraRequest) returns (QueryGetCurrentEraResponse) {
-    option (google.api.http).get = "/enreach/workload/era/currentera";
+    option (google.api.http).get = "/enreach/workload/era/current_era";
+  
+  }
+  rpc PendingNextEra (QueryGetPendingNextEraRequest) returns (QueryGetPendingNextEraResponse) {
+    option (google.api.http).get = "/enreach/workload/era/pending_next_era";
+  
+  }
+  rpc HistoryEra (QueryGetHistoryEraRequest) returns (QueryGetHistoryEraResponse) {
+    option (google.api.http).get = "/enreach/workload/era/history_era/{eraNumber}";
+  
+  }
+  rpc AllHistoryEra (QueryGetAllHistoryEraRequest) returns (QueryGetAllHistoryEraResponse) {
+    option (google.api.http).get = "/enreach/workload/era/history_eras";
   
   }
   
@@ -319,11 +332,37 @@ message QueryGetEraLengthResponse {
   uint64 eraLength = 1;
 }
 
+//////////////////
 message QueryGetCurrentEraRequest {}
 
 message QueryGetCurrentEraResponse {
-  uint64 currentEra = 1;
+  EraInfo EraInfo = 1 [(gogoproto.nullable) = false];
 }
+
+message QueryGetPendingNextEraRequest {}
+
+message QueryGetPendingNextEraResponse {
+  EraInfo EraInfo = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetHistoryEraRequest {
+  uint64 eraNumber      = 1;
+}
+
+message QueryGetHistoryEraResponse {
+  EraInfo EraInfo = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetAllHistoryEraRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryGetAllHistoryEraResponse {
+  repeated EraInfo  EraInfos = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination        = 2;
+}
+
+////////////
 
 message QueryGetReputationPointChangeDataRequest {
   uint64 era    = 1;

@@ -61,3 +61,10 @@ const (
 	HistoryEpochCountKey = "HistoryEpoch/count"
 	HistoryEpochKey      = "HistoryEpoch/value"
 )
+
+const (
+	CurrentEraKey      = "CurrentEra/value/"
+	PendingNextEraKey  = "PendingNextEra/value/"
+	HistoryEraCountKey = "HistoryEra/count"
+	HistoryEraKey      = "HistoryEra/value"
+)

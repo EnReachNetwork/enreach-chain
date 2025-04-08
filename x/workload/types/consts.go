@@ -9,4 +9,7 @@ const (
 
 	DEFAULT_HISTORY_EPOCH_DATA_DEPTH = 28 // Keep 28 epochs of history data by default
 	MAX_HISTORY_EPOCH_DATA_DEPTH     = 500
+
+	EPOCH_LENGTH = 30               // In seconds
+	ERA_LENGTH   = 4 * EPOCH_LENGTH // Epoch is 6 hours and Era is 24 hours(1 day)
 )
