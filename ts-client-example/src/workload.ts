@@ -96,10 +96,16 @@ export default class WorkloadApi {
         return regions.data;
     }
 
-    async getCurrentEpoch(): Promise<QueryGetCurrentEpochResponse> {
+    async getCurrentEpoch(): Promise<number> {
         let qClient = queryClient({ addr: CHAIN_API_URL });
         const resp = await qClient.queryCurrentEpoch();
-        return resp.data;
+
+        let currentEpochInfo = (resp.data as QueryGetCurrentEpochResponse).EpochInfo;
+        if (currentEpochInfo === undefined) {
+            console.error("Current epoch should not be undefined!");
+            process.exit(1);
+        }
+        return currentEpochInfo.number;
     }
 
     async getCurrentEra(): Promise<QueryGetCurrentEraResponse> {

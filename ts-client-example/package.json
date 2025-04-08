@@ -15,7 +15,7 @@
     "@cosmjs/proto-signing": "0.32.1",
     "@cosmjs/stargate": "^0.33.1",
     "@cosmjs/tendermint-rpc": "^0.33.1",
-    "enreach-client-ts": "0.0.26",
+    "enreach-client-ts": "0.0.27",
     "ethers": "^5.5.1"
   },
   "devDependencies": {

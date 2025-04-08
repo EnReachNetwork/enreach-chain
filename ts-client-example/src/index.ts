@@ -168,7 +168,12 @@ async function testEdgenode(edgenodeApi: EdgenodeApi) {
 
 async function testWorkload() {
 
-  const currentEpoch = (await workload_A_Api.getCurrentEpoch()).currentEpoch;
+  let currentEpoch = await workload_A_Api.getCurrentEpoch();
+  while(currentEpoch < 2) {
+    console.log(`Waiting for epoch_2 to be started...`);
+    await sleep(3000);
+    currentEpoch = await workload_A_Api.getCurrentEpoch();
+  }
   const previsouEpoch = currentEpoch - 1;
 
   const workreports_A = {
@@ -294,16 +299,16 @@ async function listenEvents() {
         events.forEach(async (event) => {
           if (event.type === "EventEpochStart") {
             const epoch = event.attributes.find(attr => attr.key === "epoch")?.value;
-            console.log(`!!!Epoch '${epoch}' start at block '${blockHeight}'`);
+            console.log(`!!!Epoch '${epoch}' start at block '${blockHeight}': ${event.attributes.map(item => `'${item.key}':'${item.value}'`).join(', ')}`);
           } else if (event.type === "EventEpochEnd") {
             const epoch = event.attributes.find(attr => attr.key === "epoch")?.value;
-            console.log(`!!!Epoch '${epoch}' end at block '${blockHeight}'`);
+            console.log(`!!!Epoch '${epoch}' end at block '${blockHeight}': ${event.attributes.map(item => `'${item.key}':'${item.value}'`).join(', ')}`);
           } else if (event.type === "EventEraStart") {
             const era = event.attributes.find(attr => attr.key === "era")?.value;
-            console.log(`###Era '${era}' start at block '${blockHeight}'`);
+            console.log(`###Era '${era}' start at block '${blockHeight}': ${event.attributes.map(item => `'${item.key}':'${item.value}'`).join(', ')}`);
           } else if (event.type === "EventEraEnd") {
             const era = event.attributes.find(attr => attr.key === "era")?.value;
-            console.log(`###Era '${era}' end at block '${blockHeight}'`);
+            console.log(`###Era '${era}' end at block '${blockHeight}': ${event.attributes.map(item => `'${item.key}':'${item.value}'`).join(', ')}`);
           } else if (event.type === "EventEpochWorkloadProcessStarted") {
             const epoch = event.attributes.find(attr => attr.key === "epoch")?.value;
             console.log(`!!!Epoch workload process started: ${event.attributes.map(item => `'${item.key}':'${item.value}'`).join(', ')}`);
