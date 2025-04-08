@@ -4,7 +4,7 @@ info:
   name: ''
   description: ''
 paths:
-  /enreach/workload/epoch/currentepoch:
+  /enreach/workload/epoch/current_epoch:
     get:
       operationId: Query_CurrentEpoch
       responses:
@@ -13,9 +13,24 @@ paths:
           schema:
             type: object
             properties:
-              currentEpoch:
-                type: string
-                format: uint64
+              EpochInfo:
+                type: object
+                properties:
+                  number:
+                    type: string
+                    format: uint64
+                  startTime:
+                    type: string
+                    format: date-time
+                  startBlock:
+                    type: string
+                    format: uint64
+                  endTime:
+                    type: string
+                    format: date-time
+                  endBlock:
+                    type: string
+                    format: uint64
         default:
           description: An unexpected error response.
           schema:
@@ -34,6 +49,141 @@ paths:
                     '@type':
                       type: string
                   additionalProperties: {}
+      tags:
+        - Query
+  /enreach/workload/epoch/history_epoch/{epochNumber}:
+    get:
+      operationId: Query_HistoryEpoch
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              EpochInfo:
+                type: object
+                properties:
+                  number:
+                    type: string
+                    format: uint64
+                  startTime:
+                    type: string
+                    format: date-time
+                  startBlock:
+                    type: string
+                    format: uint64
+                  endTime:
+                    type: string
+                    format: date-time
+                  endBlock:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: epochNumber
+          in: path
+          required: true
+          type: string
+          format: uint64
+      tags:
+        - Query
+  /enreach/workload/epoch/history_epochs:
+    get:
+      operationId: Query_AllHistoryEpoch
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              EpochInfos:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    number:
+                      type: string
+                      format: uint64
+                    startTime:
+                      type: string
+                      format: date-time
+                    startBlock:
+                      type: string
+                      format: uint64
+                    endTime:
+                      type: string
+                      format: date-time
+                    endBlock:
+                      type: string
+                      format: uint64
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                  total:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          in: query
+          required: false
+          type: boolean
       tags:
         - Query
   /enreach/workload/epoch/length:
@@ -68,9 +218,9 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /enreach/workload/epoch_info:
+  /enreach/workload/epoch/pending_next_epoch:
     get:
-      operationId: Query_EpochInfo
+      operationId: Query_PendingNextEpoch
       responses:
         '200':
           description: A successful response.
@@ -85,13 +235,13 @@ paths:
                     format: uint64
                   startTime:
                     type: string
-                    format: uint64
+                    format: date-time
                   startBlock:
                     type: string
                     format: uint64
                   endTime:
                     type: string
-                    format: uint64
+                    format: date-time
                   endBlock:
                     type: string
                     format: uint64
@@ -1655,6 +1805,24 @@ definitions:
             '@type':
               type: string
           additionalProperties: {}
+  EpochInfo:
+    type: object
+    properties:
+      number:
+        type: string
+        format: uint64
+      startTime:
+        type: string
+        format: date-time
+      startBlock:
+        type: string
+        format: uint64
+      endTime:
+        type: string
+        format: date-time
+      endBlock:
+        type: string
+        format: uint64
   NodeScoreDB:
     type: object
     properties:
@@ -1769,6 +1937,38 @@ definitions:
                 total:
                   type: string
                   format: uint64
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+          total:
+            type: string
+            format: uint64
+  QueryGetAllHistoryEpochResponse:
+    type: object
+    properties:
+      EpochInfos:
+        type: array
+        items:
+          type: object
+          properties:
+            number:
+              type: string
+              format: uint64
+            startTime:
+              type: string
+              format: date-time
+            startBlock:
+              type: string
+              format: uint64
+            endTime:
+              type: string
+              format: date-time
+            endBlock:
+              type: string
+              format: uint64
       pagination:
         type: object
         properties:
@@ -2005,18 +2205,6 @@ definitions:
   QueryGetCurrentEpochResponse:
     type: object
     properties:
-      currentEpoch:
-        type: string
-        format: uint64
-  QueryGetCurrentEraResponse:
-    type: object
-    properties:
-      currentEra:
-        type: string
-        format: uint64
-  QueryGetEpochInfoResponse:
-    type: object
-    properties:
       EpochInfo:
         type: object
         properties:
@@ -2025,16 +2213,22 @@ definitions:
             format: uint64
           startTime:
             type: string
-            format: uint64
+            format: date-time
           startBlock:
             type: string
             format: uint64
           endTime:
             type: string
-            format: uint64
+            format: date-time
           endBlock:
             type: string
             format: uint64
+  QueryGetCurrentEraResponse:
+    type: object
+    properties:
+      currentEra:
+        type: string
+        format: uint64
   QueryGetEpochLengthResponse:
     type: object
     properties:
@@ -2117,6 +2311,27 @@ definitions:
       depth:
         type: string
         format: uint64
+  QueryGetHistoryEpochResponse:
+    type: object
+    properties:
+      EpochInfo:
+        type: object
+        properties:
+          number:
+            type: string
+            format: uint64
+          startTime:
+            type: string
+            format: date-time
+          startBlock:
+            type: string
+            format: uint64
+          endTime:
+            type: string
+            format: date-time
+          endBlock:
+            type: string
+            format: uint64
   QueryGetManagerRPWorkloadResponse:
     type: object
     properties:
@@ -2178,6 +2393,27 @@ definitions:
             type: string
             format: uint64
           createAt:
+            type: string
+            format: uint64
+  QueryGetPendingNextEpochResponse:
+    type: object
+    properties:
+      EpochInfo:
+        type: object
+        properties:
+          number:
+            type: string
+            format: uint64
+          startTime:
+            type: string
+            format: date-time
+          startBlock:
+            type: string
+            format: uint64
+          endTime:
+            type: string
+            format: date-time
+          endBlock:
             type: string
             format: uint64
   QueryGetReputationDeltaPointResponse:
@@ -2305,24 +2541,6 @@ definitions:
         type: string
         format: uint64
       updateAt:
-        type: string
-        format: uint64
-  workload.EpochInfo:
-    type: object
-    properties:
-      number:
-        type: string
-        format: uint64
-      startTime:
-        type: string
-        format: uint64
-      startBlock:
-        type: string
-        format: uint64
-      endTime:
-        type: string
-        format: uint64
-      endBlock:
         type: string
         format: uint64
   workload.EpochProcessData:

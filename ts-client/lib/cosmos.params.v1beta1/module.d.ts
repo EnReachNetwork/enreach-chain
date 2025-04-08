@@ -2,26 +2,16 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { QuerySubspacesResponse } from "./types/cosmos/params/v1beta1/query";
-import { Subspace } from "./types/cosmos/params/v1beta1/query";
-import { ParamChange } from "./types/cosmos/params/v1beta1/params";
+import { ParameterChangeProposal } from "./types/cosmos/params/v1beta1/params";
 import { QueryParamsResponse } from "./types/cosmos/params/v1beta1/query";
 import { QuerySubspacesRequest } from "./types/cosmos/params/v1beta1/query";
-import { ParameterChangeProposal } from "./types/cosmos/params/v1beta1/params";
+import { QuerySubspacesResponse } from "./types/cosmos/params/v1beta1/query";
+import { Subspace } from "./types/cosmos/params/v1beta1/query";
 import { QueryParamsRequest } from "./types/cosmos/params/v1beta1/query";
-export { QuerySubspacesResponse, Subspace, ParamChange, QueryParamsResponse, QuerySubspacesRequest, ParameterChangeProposal, QueryParamsRequest };
-type sendQuerySubspacesResponseParams = {
-    value: QuerySubspacesResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendSubspaceParams = {
-    value: Subspace;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendParamChangeParams = {
-    value: ParamChange;
+import { ParamChange } from "./types/cosmos/params/v1beta1/params";
+export { ParameterChangeProposal, QueryParamsResponse, QuerySubspacesRequest, QuerySubspacesResponse, Subspace, QueryParamsRequest, ParamChange };
+type sendParameterChangeProposalParams = {
+    value: ParameterChangeProposal;
     fee?: StdFee;
     memo?: string;
 };
@@ -35,8 +25,13 @@ type sendQuerySubspacesRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendParameterChangeProposalParams = {
-    value: ParameterChangeProposal;
+type sendQuerySubspacesResponseParams = {
+    value: QuerySubspacesResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendSubspaceParams = {
+    value: Subspace;
     fee?: StdFee;
     memo?: string;
 };
@@ -45,14 +40,13 @@ type sendQueryParamsRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
-type querySubspacesResponseParams = {
-    value: QuerySubspacesResponse;
-};
-type subspaceParams = {
-    value: Subspace;
-};
-type paramChangeParams = {
+type sendParamChangeParams = {
     value: ParamChange;
+    fee?: StdFee;
+    memo?: string;
+};
+type parameterChangeProposalParams = {
+    value: ParameterChangeProposal;
 };
 type queryParamsResponseParams = {
     value: QueryParamsResponse;
@@ -60,11 +54,17 @@ type queryParamsResponseParams = {
 type querySubspacesRequestParams = {
     value: QuerySubspacesRequest;
 };
-type parameterChangeProposalParams = {
-    value: ParameterChangeProposal;
+type querySubspacesResponseParams = {
+    value: QuerySubspacesResponse;
+};
+type subspaceParams = {
+    value: Subspace;
 };
 type queryParamsRequestParams = {
     value: QueryParamsRequest;
+};
+type paramChangeParams = {
+    value: ParamChange;
 };
 export declare const registry: any;
 interface TxClientOptions {
@@ -73,20 +73,20 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendQuerySubspacesResponse({ value, fee, memo }: sendQuerySubspacesResponseParams): Promise<DeliverTxResponse>;
-    sendSubspace({ value, fee, memo }: sendSubspaceParams): Promise<DeliverTxResponse>;
-    sendParamChange({ value, fee, memo }: sendParamChangeParams): Promise<DeliverTxResponse>;
+    sendParameterChangeProposal({ value, fee, memo }: sendParameterChangeProposalParams): Promise<DeliverTxResponse>;
     sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
     sendQuerySubspacesRequest({ value, fee, memo }: sendQuerySubspacesRequestParams): Promise<DeliverTxResponse>;
-    sendParameterChangeProposal({ value, fee, memo }: sendParameterChangeProposalParams): Promise<DeliverTxResponse>;
+    sendQuerySubspacesResponse({ value, fee, memo }: sendQuerySubspacesResponseParams): Promise<DeliverTxResponse>;
+    sendSubspace({ value, fee, memo }: sendSubspaceParams): Promise<DeliverTxResponse>;
     sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
-    querySubspacesResponse({ value }: querySubspacesResponseParams): EncodeObject;
-    subspace({ value }: subspaceParams): EncodeObject;
-    paramChange({ value }: paramChangeParams): EncodeObject;
+    sendParamChange({ value, fee, memo }: sendParamChangeParams): Promise<DeliverTxResponse>;
+    parameterChangeProposal({ value }: parameterChangeProposalParams): EncodeObject;
     queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
     querySubspacesRequest({ value }: querySubspacesRequestParams): EncodeObject;
-    parameterChangeProposal({ value }: parameterChangeProposalParams): EncodeObject;
+    querySubspacesResponse({ value }: querySubspacesResponseParams): EncodeObject;
+    subspace({ value }: subspaceParams): EncodeObject;
     queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
+    paramChange({ value }: paramChangeParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

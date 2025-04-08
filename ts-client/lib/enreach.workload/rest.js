@@ -93,11 +93,36 @@ class Api extends HttpClient {
          *
          * @tags Query
          * @name QueryCurrentEpoch
-         * @request GET:/enreach/workload/epoch/currentepoch
+         * @request GET:/enreach/workload/epoch/current_epoch
          */
         this.queryCurrentEpoch = (params = {}) => this.request({
-            path: `/enreach/workload/epoch/currentepoch`,
+            path: `/enreach/workload/epoch/current_epoch`,
             method: "GET",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryHistoryEpoch
+         * @request GET:/enreach/workload/epoch/history_epoch/{epochNumber}
+         */
+        this.queryHistoryEpoch = (epochNumber, params = {}) => this.request({
+            path: `/enreach/workload/epoch/history_epoch/${epochNumber}`,
+            method: "GET",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryAllHistoryEpoch
+         * @request GET:/enreach/workload/epoch/history_epochs
+         */
+        this.queryAllHistoryEpoch = (query, params = {}) => this.request({
+            path: `/enreach/workload/epoch/history_epochs`,
+            method: "GET",
+            query: query,
             ...params,
         });
         /**
@@ -109,6 +134,18 @@ class Api extends HttpClient {
          */
         this.queryEpochLength = (params = {}) => this.request({
             path: `/enreach/workload/epoch/length`,
+            method: "GET",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryPendingNextEpoch
+         * @request GET:/enreach/workload/epoch/pending_next_epoch
+         */
+        this.queryPendingNextEpoch = (params = {}) => this.request({
+            path: `/enreach/workload/epoch/pending_next_epoch`,
             method: "GET",
             ...params,
         });

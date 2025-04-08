@@ -3,12 +3,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.QueryGetEraProcessDataRequest = exports.QueryGetAllReputationPointResponse = exports.QueryGetAllReputationPointRequest = exports.QueryGetReputationPointResponse = exports.QueryGetReputationPointRequest = exports.QueryGetAllReputationDeltaPointByEraResponse = exports.QueryGetAllReputationDeltaPointByEraRequest = exports.QueryGetReputationDeltaPointResponse = exports.QueryGetReputationDeltaPointRequest = exports.QueryGetAllReputationPointChangeDataByEraResponse = exports.QueryGetAllReputationPointChangeDataByEraRequest = exports.QueryGetReputationPointChangeDataResponse = exports.QueryGetReputationPointChangeDataRequest = exports.QueryGetCurrentEraResponse = exports.QueryGetCurrentEraRequest = exports.QueryGetEraLengthResponse = exports.QueryGetEraLengthRequest = exports.QueryGetSuperiorResponse = exports.QueryGetSuperiorRequest = exports.QueryGetAllEpochProcessDataResponse = exports.QueryGetAllEpochProcessDataRequest = exports.QueryGetEpochProcessDataResponse = exports.QueryGetEpochProcessDataRequest = exports.QueryGetHistoryEpochDataDepthResponse = exports.QueryGetHistoryEpochDataDepthRequest = exports.QueryGetWorkreportProcessBatchSizeResponse = exports.QueryGetWorkreportProcessBatchSizeRequest = exports.QueryGetAllWorkreportByEpochResponse = exports.QueryGetAllWorkreportByEpochRequest = exports.QueryGetWorkreportResponse = exports.QueryGetWorkreportRequest = exports.QueryGetAllManagerRPWorkloadByEraResponse = exports.QueryGetAllManagerRPWorkloadByEraRequest = exports.QueryGetManagerRPWorkloadResponse = exports.QueryGetManagerRPWorkloadRequest = exports.QueryGetAllManagerWRWorkloadByEpochResponse = exports.QueryGetAllManagerWRWorkloadByEpochRequest = exports.QueryGetManagerWRWorkloadResponse = exports.QueryGetManagerWRWorkloadRequest = exports.QueryGetAllNodeWorkloadByEpochResponse = exports.QueryGetAllNodeWorkloadByEpochRequest = exports.QueryGetNodeWorkloadResponse = exports.QueryGetNodeWorkloadRequest = exports.QueryGetCurrentEpochResponse = exports.QueryGetCurrentEpochRequest = exports.QueryGetEpochLengthResponse = exports.QueryGetEpochLengthRequest = exports.QueryParamsResponse = exports.QueryParamsRequest = exports.protobufPackage = void 0;
-exports.QueryClientImpl = exports.QueryServiceName = exports.QueryGetAllEraProcessDataResponse = exports.QueryGetAllEraProcessDataRequest = exports.QueryGetEraProcessDataResponse = void 0;
+exports.QueryGetAllReputationDeltaPointByEraRequest = exports.QueryGetReputationDeltaPointResponse = exports.QueryGetReputationDeltaPointRequest = exports.QueryGetAllReputationPointChangeDataByEraResponse = exports.QueryGetAllReputationPointChangeDataByEraRequest = exports.QueryGetReputationPointChangeDataResponse = exports.QueryGetReputationPointChangeDataRequest = exports.QueryGetCurrentEraResponse = exports.QueryGetCurrentEraRequest = exports.QueryGetEraLengthResponse = exports.QueryGetEraLengthRequest = exports.QueryGetSuperiorResponse = exports.QueryGetSuperiorRequest = exports.QueryGetAllEpochProcessDataResponse = exports.QueryGetAllEpochProcessDataRequest = exports.QueryGetEpochProcessDataResponse = exports.QueryGetEpochProcessDataRequest = exports.QueryGetHistoryEpochDataDepthResponse = exports.QueryGetHistoryEpochDataDepthRequest = exports.QueryGetWorkreportProcessBatchSizeResponse = exports.QueryGetWorkreportProcessBatchSizeRequest = exports.QueryGetAllWorkreportByEpochResponse = exports.QueryGetAllWorkreportByEpochRequest = exports.QueryGetWorkreportResponse = exports.QueryGetWorkreportRequest = exports.QueryGetAllManagerRPWorkloadByEraResponse = exports.QueryGetAllManagerRPWorkloadByEraRequest = exports.QueryGetManagerRPWorkloadResponse = exports.QueryGetManagerRPWorkloadRequest = exports.QueryGetAllManagerWRWorkloadByEpochResponse = exports.QueryGetAllManagerWRWorkloadByEpochRequest = exports.QueryGetManagerWRWorkloadResponse = exports.QueryGetManagerWRWorkloadRequest = exports.QueryGetAllNodeWorkloadByEpochResponse = exports.QueryGetAllNodeWorkloadByEpochRequest = exports.QueryGetNodeWorkloadResponse = exports.QueryGetNodeWorkloadRequest = exports.QueryGetAllHistoryEpochResponse = exports.QueryGetAllHistoryEpochRequest = exports.QueryGetHistoryEpochResponse = exports.QueryGetHistoryEpochRequest = exports.QueryGetPendingNextEpochResponse = exports.QueryGetPendingNextEpochRequest = exports.QueryGetCurrentEpochResponse = exports.QueryGetCurrentEpochRequest = exports.QueryGetEpochLengthResponse = exports.QueryGetEpochLengthRequest = exports.QueryParamsResponse = exports.QueryParamsRequest = exports.protobufPackage = void 0;
+exports.QueryClientImpl = exports.QueryServiceName = exports.QueryGetAllEraProcessDataResponse = exports.QueryGetAllEraProcessDataRequest = exports.QueryGetEraProcessDataResponse = exports.QueryGetEraProcessDataRequest = exports.QueryGetAllReputationPointResponse = exports.QueryGetAllReputationPointRequest = exports.QueryGetReputationPointResponse = exports.QueryGetReputationPointRequest = exports.QueryGetAllReputationDeltaPointByEraResponse = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const pagination_1 = require("../../cosmos/base/query/v1beta1/pagination");
+const epoch_info_1 = require("./epoch_info");
 const params_1 = require("./params");
 const reputationpoint_1 = require("./reputationpoint");
 const superior_1 = require("./superior");
@@ -229,12 +230,12 @@ exports.QueryGetCurrentEpochRequest = {
     },
 };
 function createBaseQueryGetCurrentEpochResponse() {
-    return { currentEpoch: 0 };
+    return { EpochInfo: undefined };
 }
 exports.QueryGetCurrentEpochResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.currentEpoch !== 0) {
-            writer.uint32(8).uint64(message.currentEpoch);
+        if (message.EpochInfo !== undefined) {
+            epoch_info_1.EpochInfo.encode(message.EpochInfo, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
@@ -246,10 +247,10 @@ exports.QueryGetCurrentEpochResponse = {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    if (tag !== 8) {
+                    if (tag !== 10) {
                         break;
                     }
-                    message.currentEpoch = longToNumber(reader.uint64());
+                    message.EpochInfo = epoch_info_1.EpochInfo.decode(reader, reader.uint32());
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -260,12 +261,12 @@ exports.QueryGetCurrentEpochResponse = {
         return message;
     },
     fromJSON(object) {
-        return { currentEpoch: isSet(object.currentEpoch) ? Number(object.currentEpoch) : 0 };
+        return { EpochInfo: isSet(object.EpochInfo) ? epoch_info_1.EpochInfo.fromJSON(object.EpochInfo) : undefined };
     },
     toJSON(message) {
         const obj = {};
-        if (message.currentEpoch !== 0) {
-            obj.currentEpoch = Math.round(message.currentEpoch);
+        if (message.EpochInfo !== undefined) {
+            obj.EpochInfo = epoch_info_1.EpochInfo.toJSON(message.EpochInfo);
         }
         return obj;
     },
@@ -274,7 +275,320 @@ exports.QueryGetCurrentEpochResponse = {
     },
     fromPartial(object) {
         const message = createBaseQueryGetCurrentEpochResponse();
-        message.currentEpoch = object.currentEpoch ?? 0;
+        message.EpochInfo = (object.EpochInfo !== undefined && object.EpochInfo !== null)
+            ? epoch_info_1.EpochInfo.fromPartial(object.EpochInfo)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetPendingNextEpochRequest() {
+    return {};
+}
+exports.QueryGetPendingNextEpochRequest = {
+    encode(_, writer = minimal_1.default.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetPendingNextEpochRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(_) {
+        return {};
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetPendingNextEpochRequest.fromPartial(base ?? {});
+    },
+    fromPartial(_) {
+        const message = createBaseQueryGetPendingNextEpochRequest();
+        return message;
+    },
+};
+function createBaseQueryGetPendingNextEpochResponse() {
+    return { EpochInfo: undefined };
+}
+exports.QueryGetPendingNextEpochResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.EpochInfo !== undefined) {
+            epoch_info_1.EpochInfo.encode(message.EpochInfo, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetPendingNextEpochResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.EpochInfo = epoch_info_1.EpochInfo.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { EpochInfo: isSet(object.EpochInfo) ? epoch_info_1.EpochInfo.fromJSON(object.EpochInfo) : undefined };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.EpochInfo !== undefined) {
+            obj.EpochInfo = epoch_info_1.EpochInfo.toJSON(message.EpochInfo);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetPendingNextEpochResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetPendingNextEpochResponse();
+        message.EpochInfo = (object.EpochInfo !== undefined && object.EpochInfo !== null)
+            ? epoch_info_1.EpochInfo.fromPartial(object.EpochInfo)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetHistoryEpochRequest() {
+    return { epochNumber: 0 };
+}
+exports.QueryGetHistoryEpochRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.epochNumber !== 0) {
+            writer.uint32(8).uint64(message.epochNumber);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetHistoryEpochRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 8) {
+                        break;
+                    }
+                    message.epochNumber = longToNumber(reader.uint64());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { epochNumber: isSet(object.epochNumber) ? Number(object.epochNumber) : 0 };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.epochNumber !== 0) {
+            obj.epochNumber = Math.round(message.epochNumber);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetHistoryEpochRequest.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetHistoryEpochRequest();
+        message.epochNumber = object.epochNumber ?? 0;
+        return message;
+    },
+};
+function createBaseQueryGetHistoryEpochResponse() {
+    return { EpochInfo: undefined };
+}
+exports.QueryGetHistoryEpochResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.EpochInfo !== undefined) {
+            epoch_info_1.EpochInfo.encode(message.EpochInfo, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetHistoryEpochResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.EpochInfo = epoch_info_1.EpochInfo.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { EpochInfo: isSet(object.EpochInfo) ? epoch_info_1.EpochInfo.fromJSON(object.EpochInfo) : undefined };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.EpochInfo !== undefined) {
+            obj.EpochInfo = epoch_info_1.EpochInfo.toJSON(message.EpochInfo);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetHistoryEpochResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetHistoryEpochResponse();
+        message.EpochInfo = (object.EpochInfo !== undefined && object.EpochInfo !== null)
+            ? epoch_info_1.EpochInfo.fromPartial(object.EpochInfo)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetAllHistoryEpochRequest() {
+    return { pagination: undefined };
+}
+exports.QueryGetAllHistoryEpochRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.pagination !== undefined) {
+            pagination_1.PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetAllHistoryEpochRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.pagination = pagination_1.PageRequest.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { pagination: isSet(object.pagination) ? pagination_1.PageRequest.fromJSON(object.pagination) : undefined };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.pagination !== undefined) {
+            obj.pagination = pagination_1.PageRequest.toJSON(message.pagination);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetAllHistoryEpochRequest.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetAllHistoryEpochRequest();
+        message.pagination = (object.pagination !== undefined && object.pagination !== null)
+            ? pagination_1.PageRequest.fromPartial(object.pagination)
+            : undefined;
+        return message;
+    },
+};
+function createBaseQueryGetAllHistoryEpochResponse() {
+    return { EpochInfos: [], pagination: undefined };
+}
+exports.QueryGetAllHistoryEpochResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        for (const v of message.EpochInfos) {
+            epoch_info_1.EpochInfo.encode(v, writer.uint32(10).fork()).ldelim();
+        }
+        if (message.pagination !== undefined) {
+            pagination_1.PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseQueryGetAllHistoryEpochResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.EpochInfos.push(epoch_info_1.EpochInfo.decode(reader, reader.uint32()));
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.pagination = pagination_1.PageResponse.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            EpochInfos: Array.isArray(object?.EpochInfos) ? object.EpochInfos.map((e) => epoch_info_1.EpochInfo.fromJSON(e)) : [],
+            pagination: isSet(object.pagination) ? pagination_1.PageResponse.fromJSON(object.pagination) : undefined,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.EpochInfos?.length) {
+            obj.EpochInfos = message.EpochInfos.map((e) => epoch_info_1.EpochInfo.toJSON(e));
+        }
+        if (message.pagination !== undefined) {
+            obj.pagination = pagination_1.PageResponse.toJSON(message.pagination);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.QueryGetAllHistoryEpochResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseQueryGetAllHistoryEpochResponse();
+        message.EpochInfos = object.EpochInfos?.map((e) => epoch_info_1.EpochInfo.fromPartial(e)) || [];
+        message.pagination = (object.pagination !== undefined && object.pagination !== null)
+            ? pagination_1.PageResponse.fromPartial(object.pagination)
+            : undefined;
         return message;
     },
 };
@@ -2953,6 +3267,9 @@ class QueryClientImpl {
         this.Params = this.Params.bind(this);
         this.EpochLength = this.EpochLength.bind(this);
         this.CurrentEpoch = this.CurrentEpoch.bind(this);
+        this.PendingNextEpoch = this.PendingNextEpoch.bind(this);
+        this.HistoryEpoch = this.HistoryEpoch.bind(this);
+        this.AllHistoryEpoch = this.AllHistoryEpoch.bind(this);
         this.NodeWorkload = this.NodeWorkload.bind(this);
         this.AllNodeWorkloadByEpoch = this.AllNodeWorkloadByEpoch.bind(this);
         this.ManagerWRWorkload = this.ManagerWRWorkload.bind(this);
@@ -2991,6 +3308,21 @@ class QueryClientImpl {
         const data = exports.QueryGetCurrentEpochRequest.encode(request).finish();
         const promise = this.rpc.request(this.service, "CurrentEpoch", data);
         return promise.then((data) => exports.QueryGetCurrentEpochResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    PendingNextEpoch(request) {
+        const data = exports.QueryGetPendingNextEpochRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "PendingNextEpoch", data);
+        return promise.then((data) => exports.QueryGetPendingNextEpochResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    HistoryEpoch(request) {
+        const data = exports.QueryGetHistoryEpochRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "HistoryEpoch", data);
+        return promise.then((data) => exports.QueryGetHistoryEpochResponse.decode(minimal_1.default.Reader.create(data)));
+    }
+    AllHistoryEpoch(request) {
+        const data = exports.QueryGetAllHistoryEpochRequest.encode(request).finish();
+        const promise = this.rpc.request(this.service, "AllHistoryEpoch", data);
+        return promise.then((data) => exports.QueryGetAllHistoryEpochResponse.decode(minimal_1.default.Reader.create(data)));
     }
     NodeWorkload(request) {
         const data = exports.QueryGetNodeWorkloadRequest.encode(request).finish();

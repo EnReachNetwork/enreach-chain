@@ -6,138 +6,96 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
-import { EventLeaveGroup } from "./types/cosmos/group/v1/events";
-import { Member } from "./types/cosmos/group/v1/types";
-import { QueryGroupInfoRequest } from "./types/cosmos/group/v1/query";
-import { MsgUpdateGroupMembersResponse } from "./types/cosmos/group/v1/tx";
-import { MsgWithdrawProposal } from "./types/cosmos/group/v1/tx";
-import { GroupPolicyInfo } from "./types/cosmos/group/v1/types";
-import { MsgCreateGroupPolicy } from "./types/cosmos/group/v1/tx";
-import { QueryProposalsByGroupPolicyRequest } from "./types/cosmos/group/v1/query";
-import { QueryProposalsByGroupPolicyResponse } from "./types/cosmos/group/v1/query";
+import { EventUpdateGroup } from "./types/cosmos/group/v1/events";
+import { QueryProposalRequest } from "./types/cosmos/group/v1/query";
 import { QueryTallyResultRequest } from "./types/cosmos/group/v1/query";
-import { MsgCreateGroup } from "./types/cosmos/group/v1/tx";
-import { MsgCreateGroupWithPolicyResponse } from "./types/cosmos/group/v1/tx";
-import { MsgWithdrawProposalResponse } from "./types/cosmos/group/v1/tx";
-import { GenesisState } from "./types/cosmos/group/v1/genesis";
-import { TallyResult } from "./types/cosmos/group/v1/types";
-import { MsgUpdateGroupMetadata } from "./types/cosmos/group/v1/tx";
-import { QueryVoteByProposalVoterRequest } from "./types/cosmos/group/v1/query";
-import { QueryGroupPoliciesByGroupRequest } from "./types/cosmos/group/v1/query";
-import { MsgUpdateGroupPolicyDecisionPolicyResponse } from "./types/cosmos/group/v1/tx";
-import { DecisionPolicyWindows } from "./types/cosmos/group/v1/types";
-import { QueryGroupMembersResponse } from "./types/cosmos/group/v1/query";
-import { EventUpdateGroupPolicy } from "./types/cosmos/group/v1/events";
-import { ThresholdDecisionPolicy } from "./types/cosmos/group/v1/types";
-import { GroupInfo } from "./types/cosmos/group/v1/types";
-import { Proposal } from "./types/cosmos/group/v1/types";
-import { EventCreateGroupPolicy } from "./types/cosmos/group/v1/events";
-import { PercentageDecisionPolicy } from "./types/cosmos/group/v1/types";
-import { MsgUpdateGroupPolicyMetadata } from "./types/cosmos/group/v1/tx";
-import { GroupMember } from "./types/cosmos/group/v1/types";
-import { QueryVotesByProposalRequest } from "./types/cosmos/group/v1/query";
-import { MsgCreateGroupPolicyResponse } from "./types/cosmos/group/v1/tx";
-import { QueryVotesByProposalResponse } from "./types/cosmos/group/v1/query";
-import { MsgUpdateGroupPolicyAdminResponse } from "./types/cosmos/group/v1/tx";
-import { MsgVoteResponse } from "./types/cosmos/group/v1/tx";
-import { MsgExec } from "./types/cosmos/group/v1/tx";
-import { EventCreateGroup } from "./types/cosmos/group/v1/events";
-import { EventWithdrawProposal } from "./types/cosmos/group/v1/events";
-import { QueryGroupInfoResponse } from "./types/cosmos/group/v1/query";
-import { QueryGroupPoliciesByAdminRequest } from "./types/cosmos/group/v1/query";
-import { QueryGroupsByMemberRequest } from "./types/cosmos/group/v1/query";
-import { QueryGroupsByMemberResponse } from "./types/cosmos/group/v1/query";
-import { MsgUpdateGroupPolicyAdmin } from "./types/cosmos/group/v1/tx";
+import { MsgUpdateGroupPolicyMetadataResponse } from "./types/cosmos/group/v1/tx";
 import { MsgLeaveGroup } from "./types/cosmos/group/v1/tx";
+import { GenesisState } from "./types/cosmos/group/v1/genesis";
+import { Member } from "./types/cosmos/group/v1/types";
+import { EventCreateGroup } from "./types/cosmos/group/v1/events";
 import { QueryGroupPolicyInfoResponse } from "./types/cosmos/group/v1/query";
-import { QueryGroupMembersRequest } from "./types/cosmos/group/v1/query";
 import { QueryVotesByVoterRequest } from "./types/cosmos/group/v1/query";
 import { QueryVotesByVoterResponse } from "./types/cosmos/group/v1/query";
+import { MsgCreateGroupResponse } from "./types/cosmos/group/v1/tx";
+import { MsgCreateGroupWithPolicyResponse } from "./types/cosmos/group/v1/tx";
+import { MsgUpdateGroupPolicyMetadata } from "./types/cosmos/group/v1/tx";
+import { MsgUpdateGroupPolicyAdminResponse } from "./types/cosmos/group/v1/tx";
+import { MsgWithdrawProposal } from "./types/cosmos/group/v1/tx";
+import { MsgVoteResponse } from "./types/cosmos/group/v1/tx";
+import { QueryVotesByProposalResponse } from "./types/cosmos/group/v1/query";
 import { EventExec } from "./types/cosmos/group/v1/events";
-import { MsgUpdateGroupMembers } from "./types/cosmos/group/v1/tx";
-import { MsgUpdateGroupAdminResponse } from "./types/cosmos/group/v1/tx";
-import { MsgLeaveGroupResponse } from "./types/cosmos/group/v1/tx";
+import { MsgUpdateGroupMembersResponse } from "./types/cosmos/group/v1/tx";
+import { MsgCreateGroupPolicyResponse } from "./types/cosmos/group/v1/tx";
+import { Vote } from "./types/cosmos/group/v1/types";
 import { MsgCreateGroupWithPolicy } from "./types/cosmos/group/v1/tx";
-import { QueryGroupsRequest } from "./types/cosmos/group/v1/query";
-import { QueryGroupsResponse } from "./types/cosmos/group/v1/query";
-import { EventVote } from "./types/cosmos/group/v1/events";
+import { QueryGroupPolicyInfoRequest } from "./types/cosmos/group/v1/query";
+import { QueryTallyResultResponse } from "./types/cosmos/group/v1/query";
+import { MsgWithdrawProposalResponse } from "./types/cosmos/group/v1/tx";
+import { EventCreateGroupPolicy } from "./types/cosmos/group/v1/events";
+import { MemberRequest } from "./types/cosmos/group/v1/types";
 import { QueryGroupPoliciesByAdminResponse } from "./types/cosmos/group/v1/query";
-import { MsgUpdateGroupPolicyDecisionPolicy } from "./types/cosmos/group/v1/tx";
-import { MsgUpdateGroupMetadataResponse } from "./types/cosmos/group/v1/tx";
-import { MsgSubmitProposalResponse } from "./types/cosmos/group/v1/tx";
+import { QueryGroupsResponse } from "./types/cosmos/group/v1/query";
+import { MsgUpdateGroupAdmin } from "./types/cosmos/group/v1/tx";
 import { QueryGroupsByAdminRequest } from "./types/cosmos/group/v1/query";
+import { QueryProposalsByGroupPolicyRequest } from "./types/cosmos/group/v1/query";
+import { QueryGroupsByMemberRequest } from "./types/cosmos/group/v1/query";
+import { QueryGroupsRequest } from "./types/cosmos/group/v1/query";
+import { MsgSubmitProposalResponse } from "./types/cosmos/group/v1/tx";
+import { MsgExecResponse } from "./types/cosmos/group/v1/tx";
+import { EventUpdateGroupPolicy } from "./types/cosmos/group/v1/events";
+import { MsgLeaveGroupResponse } from "./types/cosmos/group/v1/tx";
+import { TallyResult } from "./types/cosmos/group/v1/types";
+import { QueryGroupPoliciesByGroupResponse } from "./types/cosmos/group/v1/query";
+import { QueryGroupInfoRequest } from "./types/cosmos/group/v1/query";
+import { QueryGroupMembersResponse } from "./types/cosmos/group/v1/query";
+import { QueryGroupsByMemberResponse } from "./types/cosmos/group/v1/query";
+import { MsgUpdateGroupAdminResponse } from "./types/cosmos/group/v1/tx";
+import { EventSubmitProposal } from "./types/cosmos/group/v1/events";
+import { EventVote } from "./types/cosmos/group/v1/events";
+import { EventLeaveGroup } from "./types/cosmos/group/v1/events";
+import { MsgUpdateGroupMembers } from "./types/cosmos/group/v1/tx";
+import { QueryProposalResponse } from "./types/cosmos/group/v1/query";
+import { GroupInfo } from "./types/cosmos/group/v1/types";
+import { EventWithdrawProposal } from "./types/cosmos/group/v1/events";
+import { MsgCreateGroupPolicy } from "./types/cosmos/group/v1/tx";
+import { MsgCreateGroup } from "./types/cosmos/group/v1/tx";
+import { MsgUpdateGroupPolicyAdmin } from "./types/cosmos/group/v1/tx";
+import { MsgUpdateGroupPolicyDecisionPolicyResponse } from "./types/cosmos/group/v1/tx";
+import { GroupMember } from "./types/cosmos/group/v1/types";
+import { Proposal } from "./types/cosmos/group/v1/types";
+import { EventProposalPruned } from "./types/cosmos/group/v1/events";
+import { QueryProposalsByGroupPolicyResponse } from "./types/cosmos/group/v1/query";
+import { QueryVoteByProposalVoterRequest } from "./types/cosmos/group/v1/query";
+import { MsgUpdateGroupMetadataResponse } from "./types/cosmos/group/v1/tx";
+import { MsgVote } from "./types/cosmos/group/v1/tx";
+import { ThresholdDecisionPolicy } from "./types/cosmos/group/v1/types";
+import { GroupPolicyInfo } from "./types/cosmos/group/v1/types";
+import { QueryGroupInfoResponse } from "./types/cosmos/group/v1/query";
 import { QueryGroupsByAdminResponse } from "./types/cosmos/group/v1/query";
 import { QueryVoteByProposalVoterResponse } from "./types/cosmos/group/v1/query";
-import { MsgCreateGroupResponse } from "./types/cosmos/group/v1/tx";
-import { EventUpdateGroup } from "./types/cosmos/group/v1/events";
-import { EventSubmitProposal } from "./types/cosmos/group/v1/events";
-import { MsgUpdateGroupAdmin } from "./types/cosmos/group/v1/tx";
-import { MsgUpdateGroupPolicyMetadataResponse } from "./types/cosmos/group/v1/tx";
-import { MsgVote } from "./types/cosmos/group/v1/tx";
-import { MsgExecResponse } from "./types/cosmos/group/v1/tx";
+import { QueryVotesByProposalRequest } from "./types/cosmos/group/v1/query";
+import { DecisionPolicyWindows } from "./types/cosmos/group/v1/types";
+import { QueryGroupPoliciesByAdminRequest } from "./types/cosmos/group/v1/query";
+import { MsgExec } from "./types/cosmos/group/v1/tx";
+import { MsgUpdateGroupPolicyDecisionPolicy } from "./types/cosmos/group/v1/tx";
+import { MsgUpdateGroupMetadata } from "./types/cosmos/group/v1/tx";
 import { MsgSubmitProposal } from "./types/cosmos/group/v1/tx";
-import { QueryGroupPolicyInfoRequest } from "./types/cosmos/group/v1/query";
-import { QueryProposalRequest } from "./types/cosmos/group/v1/query";
-import { QueryProposalResponse } from "./types/cosmos/group/v1/query";
-import { EventProposalPruned } from "./types/cosmos/group/v1/events";
-import { Vote } from "./types/cosmos/group/v1/types";
-import { QueryGroupPoliciesByGroupResponse } from "./types/cosmos/group/v1/query";
-import { MemberRequest } from "./types/cosmos/group/v1/types";
-import { QueryTallyResultResponse } from "./types/cosmos/group/v1/query";
+import { QueryGroupMembersRequest } from "./types/cosmos/group/v1/query";
+import { QueryGroupPoliciesByGroupRequest } from "./types/cosmos/group/v1/query";
+import { PercentageDecisionPolicy } from "./types/cosmos/group/v1/types";
 
 
-export { EventLeaveGroup, Member, QueryGroupInfoRequest, MsgUpdateGroupMembersResponse, MsgWithdrawProposal, GroupPolicyInfo, MsgCreateGroupPolicy, QueryProposalsByGroupPolicyRequest, QueryProposalsByGroupPolicyResponse, QueryTallyResultRequest, MsgCreateGroup, MsgCreateGroupWithPolicyResponse, MsgWithdrawProposalResponse, GenesisState, TallyResult, MsgUpdateGroupMetadata, QueryVoteByProposalVoterRequest, QueryGroupPoliciesByGroupRequest, MsgUpdateGroupPolicyDecisionPolicyResponse, DecisionPolicyWindows, QueryGroupMembersResponse, EventUpdateGroupPolicy, ThresholdDecisionPolicy, GroupInfo, Proposal, EventCreateGroupPolicy, PercentageDecisionPolicy, MsgUpdateGroupPolicyMetadata, GroupMember, QueryVotesByProposalRequest, MsgCreateGroupPolicyResponse, QueryVotesByProposalResponse, MsgUpdateGroupPolicyAdminResponse, MsgVoteResponse, MsgExec, EventCreateGroup, EventWithdrawProposal, QueryGroupInfoResponse, QueryGroupPoliciesByAdminRequest, QueryGroupsByMemberRequest, QueryGroupsByMemberResponse, MsgUpdateGroupPolicyAdmin, MsgLeaveGroup, QueryGroupPolicyInfoResponse, QueryGroupMembersRequest, QueryVotesByVoterRequest, QueryVotesByVoterResponse, EventExec, MsgUpdateGroupMembers, MsgUpdateGroupAdminResponse, MsgLeaveGroupResponse, MsgCreateGroupWithPolicy, QueryGroupsRequest, QueryGroupsResponse, EventVote, QueryGroupPoliciesByAdminResponse, MsgUpdateGroupPolicyDecisionPolicy, MsgUpdateGroupMetadataResponse, MsgSubmitProposalResponse, QueryGroupsByAdminRequest, QueryGroupsByAdminResponse, QueryVoteByProposalVoterResponse, MsgCreateGroupResponse, EventUpdateGroup, EventSubmitProposal, MsgUpdateGroupAdmin, MsgUpdateGroupPolicyMetadataResponse, MsgVote, MsgExecResponse, MsgSubmitProposal, QueryGroupPolicyInfoRequest, QueryProposalRequest, QueryProposalResponse, EventProposalPruned, Vote, QueryGroupPoliciesByGroupResponse, MemberRequest, QueryTallyResultResponse };
+export { EventUpdateGroup, QueryProposalRequest, QueryTallyResultRequest, MsgUpdateGroupPolicyMetadataResponse, MsgLeaveGroup, GenesisState, Member, EventCreateGroup, QueryGroupPolicyInfoResponse, QueryVotesByVoterRequest, QueryVotesByVoterResponse, MsgCreateGroupResponse, MsgCreateGroupWithPolicyResponse, MsgUpdateGroupPolicyMetadata, MsgUpdateGroupPolicyAdminResponse, MsgWithdrawProposal, MsgVoteResponse, QueryVotesByProposalResponse, EventExec, MsgUpdateGroupMembersResponse, MsgCreateGroupPolicyResponse, Vote, MsgCreateGroupWithPolicy, QueryGroupPolicyInfoRequest, QueryTallyResultResponse, MsgWithdrawProposalResponse, EventCreateGroupPolicy, MemberRequest, QueryGroupPoliciesByAdminResponse, QueryGroupsResponse, MsgUpdateGroupAdmin, QueryGroupsByAdminRequest, QueryProposalsByGroupPolicyRequest, QueryGroupsByMemberRequest, QueryGroupsRequest, MsgSubmitProposalResponse, MsgExecResponse, EventUpdateGroupPolicy, MsgLeaveGroupResponse, TallyResult, QueryGroupPoliciesByGroupResponse, QueryGroupInfoRequest, QueryGroupMembersResponse, QueryGroupsByMemberResponse, MsgUpdateGroupAdminResponse, EventSubmitProposal, EventVote, EventLeaveGroup, MsgUpdateGroupMembers, QueryProposalResponse, GroupInfo, EventWithdrawProposal, MsgCreateGroupPolicy, MsgCreateGroup, MsgUpdateGroupPolicyAdmin, MsgUpdateGroupPolicyDecisionPolicyResponse, GroupMember, Proposal, EventProposalPruned, QueryProposalsByGroupPolicyResponse, QueryVoteByProposalVoterRequest, MsgUpdateGroupMetadataResponse, MsgVote, ThresholdDecisionPolicy, GroupPolicyInfo, QueryGroupInfoResponse, QueryGroupsByAdminResponse, QueryVoteByProposalVoterResponse, QueryVotesByProposalRequest, DecisionPolicyWindows, QueryGroupPoliciesByAdminRequest, MsgExec, MsgUpdateGroupPolicyDecisionPolicy, MsgUpdateGroupMetadata, MsgSubmitProposal, QueryGroupMembersRequest, QueryGroupPoliciesByGroupRequest, PercentageDecisionPolicy };
 
-type sendEventLeaveGroupParams = {
-  value: EventLeaveGroup,
+type sendEventUpdateGroupParams = {
+  value: EventUpdateGroup,
   fee?: StdFee,
   memo?: string
 };
 
-type sendMemberParams = {
-  value: Member,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGroupInfoRequestParams = {
-  value: QueryGroupInfoRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateGroupMembersResponseParams = {
-  value: MsgUpdateGroupMembersResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgWithdrawProposalParams = {
-  value: MsgWithdrawProposal,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendGroupPolicyInfoParams = {
-  value: GroupPolicyInfo,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgCreateGroupPolicyParams = {
-  value: MsgCreateGroupPolicy,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryProposalsByGroupPolicyRequestParams = {
-  value: QueryProposalsByGroupPolicyRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryProposalsByGroupPolicyResponseParams = {
-  value: QueryProposalsByGroupPolicyResponse,
+type sendQueryProposalRequestParams = {
+  value: QueryProposalRequest,
   fee?: StdFee,
   memo?: string
 };
@@ -148,194 +106,8 @@ type sendQueryTallyResultRequestParams = {
   memo?: string
 };
 
-type sendMsgCreateGroupParams = {
-  value: MsgCreateGroup,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgCreateGroupWithPolicyResponseParams = {
-  value: MsgCreateGroupWithPolicyResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgWithdrawProposalResponseParams = {
-  value: MsgWithdrawProposalResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendGenesisStateParams = {
-  value: GenesisState,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendTallyResultParams = {
-  value: TallyResult,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateGroupMetadataParams = {
-  value: MsgUpdateGroupMetadata,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryVoteByProposalVoterRequestParams = {
-  value: QueryVoteByProposalVoterRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGroupPoliciesByGroupRequestParams = {
-  value: QueryGroupPoliciesByGroupRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateGroupPolicyDecisionPolicyResponseParams = {
-  value: MsgUpdateGroupPolicyDecisionPolicyResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendDecisionPolicyWindowsParams = {
-  value: DecisionPolicyWindows,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGroupMembersResponseParams = {
-  value: QueryGroupMembersResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendEventUpdateGroupPolicyParams = {
-  value: EventUpdateGroupPolicy,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendThresholdDecisionPolicyParams = {
-  value: ThresholdDecisionPolicy,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendGroupInfoParams = {
-  value: GroupInfo,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendProposalParams = {
-  value: Proposal,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendEventCreateGroupPolicyParams = {
-  value: EventCreateGroupPolicy,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendPercentageDecisionPolicyParams = {
-  value: PercentageDecisionPolicy,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateGroupPolicyMetadataParams = {
-  value: MsgUpdateGroupPolicyMetadata,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendGroupMemberParams = {
-  value: GroupMember,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryVotesByProposalRequestParams = {
-  value: QueryVotesByProposalRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgCreateGroupPolicyResponseParams = {
-  value: MsgCreateGroupPolicyResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryVotesByProposalResponseParams = {
-  value: QueryVotesByProposalResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateGroupPolicyAdminResponseParams = {
-  value: MsgUpdateGroupPolicyAdminResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgVoteResponseParams = {
-  value: MsgVoteResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgExecParams = {
-  value: MsgExec,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendEventCreateGroupParams = {
-  value: EventCreateGroup,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendEventWithdrawProposalParams = {
-  value: EventWithdrawProposal,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGroupInfoResponseParams = {
-  value: QueryGroupInfoResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGroupPoliciesByAdminRequestParams = {
-  value: QueryGroupPoliciesByAdminRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGroupsByMemberRequestParams = {
-  value: QueryGroupsByMemberRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGroupsByMemberResponseParams = {
-  value: QueryGroupsByMemberResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateGroupPolicyAdminParams = {
-  value: MsgUpdateGroupPolicyAdmin,
+type sendMsgUpdateGroupPolicyMetadataResponseParams = {
+  value: MsgUpdateGroupPolicyMetadataResponse,
   fee?: StdFee,
   memo?: string
 };
@@ -346,14 +118,26 @@ type sendMsgLeaveGroupParams = {
   memo?: string
 };
 
-type sendQueryGroupPolicyInfoResponseParams = {
-  value: QueryGroupPolicyInfoResponse,
+type sendGenesisStateParams = {
+  value: GenesisState,
   fee?: StdFee,
   memo?: string
 };
 
-type sendQueryGroupMembersRequestParams = {
-  value: QueryGroupMembersRequest,
+type sendMemberParams = {
+  value: Member,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendEventCreateGroupParams = {
+  value: EventCreateGroup,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGroupPolicyInfoResponseParams = {
+  value: QueryGroupPolicyInfoResponse,
   fee?: StdFee,
   memo?: string
 };
@@ -370,26 +154,68 @@ type sendQueryVotesByVoterResponseParams = {
   memo?: string
 };
 
+type sendMsgCreateGroupResponseParams = {
+  value: MsgCreateGroupResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgCreateGroupWithPolicyResponseParams = {
+  value: MsgCreateGroupWithPolicyResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateGroupPolicyMetadataParams = {
+  value: MsgUpdateGroupPolicyMetadata,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateGroupPolicyAdminResponseParams = {
+  value: MsgUpdateGroupPolicyAdminResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgWithdrawProposalParams = {
+  value: MsgWithdrawProposal,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgVoteResponseParams = {
+  value: MsgVoteResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryVotesByProposalResponseParams = {
+  value: QueryVotesByProposalResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
 type sendEventExecParams = {
   value: EventExec,
   fee?: StdFee,
   memo?: string
 };
 
-type sendMsgUpdateGroupMembersParams = {
-  value: MsgUpdateGroupMembers,
+type sendMsgUpdateGroupMembersResponseParams = {
+  value: MsgUpdateGroupMembersResponse,
   fee?: StdFee,
   memo?: string
 };
 
-type sendMsgUpdateGroupAdminResponseParams = {
-  value: MsgUpdateGroupAdminResponse,
+type sendMsgCreateGroupPolicyResponseParams = {
+  value: MsgCreateGroupPolicyResponse,
   fee?: StdFee,
   memo?: string
 };
 
-type sendMsgLeaveGroupResponseParams = {
-  value: MsgLeaveGroupResponse,
+type sendVoteParams = {
+  value: Vote,
   fee?: StdFee,
   memo?: string
 };
@@ -400,20 +226,32 @@ type sendMsgCreateGroupWithPolicyParams = {
   memo?: string
 };
 
-type sendQueryGroupsRequestParams = {
-  value: QueryGroupsRequest,
+type sendQueryGroupPolicyInfoRequestParams = {
+  value: QueryGroupPolicyInfoRequest,
   fee?: StdFee,
   memo?: string
 };
 
-type sendQueryGroupsResponseParams = {
-  value: QueryGroupsResponse,
+type sendQueryTallyResultResponseParams = {
+  value: QueryTallyResultResponse,
   fee?: StdFee,
   memo?: string
 };
 
-type sendEventVoteParams = {
-  value: EventVote,
+type sendMsgWithdrawProposalResponseParams = {
+  value: MsgWithdrawProposalResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendEventCreateGroupPolicyParams = {
+  value: EventCreateGroupPolicy,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMemberRequestParams = {
+  value: MemberRequest,
   fee?: StdFee,
   memo?: string
 };
@@ -424,14 +262,38 @@ type sendQueryGroupPoliciesByAdminResponseParams = {
   memo?: string
 };
 
-type sendMsgUpdateGroupPolicyDecisionPolicyParams = {
-  value: MsgUpdateGroupPolicyDecisionPolicy,
+type sendQueryGroupsResponseParams = {
+  value: QueryGroupsResponse,
   fee?: StdFee,
   memo?: string
 };
 
-type sendMsgUpdateGroupMetadataResponseParams = {
-  value: MsgUpdateGroupMetadataResponse,
+type sendMsgUpdateGroupAdminParams = {
+  value: MsgUpdateGroupAdmin,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGroupsByAdminRequestParams = {
+  value: QueryGroupsByAdminRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryProposalsByGroupPolicyRequestParams = {
+  value: QueryProposalsByGroupPolicyRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGroupsByMemberRequestParams = {
+  value: QueryGroupsByMemberRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGroupsRequestParams = {
+  value: QueryGroupsRequest,
   fee?: StdFee,
   memo?: string
 };
@@ -442,8 +304,182 @@ type sendMsgSubmitProposalResponseParams = {
   memo?: string
 };
 
-type sendQueryGroupsByAdminRequestParams = {
-  value: QueryGroupsByAdminRequest,
+type sendMsgExecResponseParams = {
+  value: MsgExecResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendEventUpdateGroupPolicyParams = {
+  value: EventUpdateGroupPolicy,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgLeaveGroupResponseParams = {
+  value: MsgLeaveGroupResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendTallyResultParams = {
+  value: TallyResult,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGroupPoliciesByGroupResponseParams = {
+  value: QueryGroupPoliciesByGroupResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGroupInfoRequestParams = {
+  value: QueryGroupInfoRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGroupMembersResponseParams = {
+  value: QueryGroupMembersResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGroupsByMemberResponseParams = {
+  value: QueryGroupsByMemberResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateGroupAdminResponseParams = {
+  value: MsgUpdateGroupAdminResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendEventSubmitProposalParams = {
+  value: EventSubmitProposal,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendEventVoteParams = {
+  value: EventVote,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendEventLeaveGroupParams = {
+  value: EventLeaveGroup,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateGroupMembersParams = {
+  value: MsgUpdateGroupMembers,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryProposalResponseParams = {
+  value: QueryProposalResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendGroupInfoParams = {
+  value: GroupInfo,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendEventWithdrawProposalParams = {
+  value: EventWithdrawProposal,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgCreateGroupPolicyParams = {
+  value: MsgCreateGroupPolicy,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgCreateGroupParams = {
+  value: MsgCreateGroup,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateGroupPolicyAdminParams = {
+  value: MsgUpdateGroupPolicyAdmin,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateGroupPolicyDecisionPolicyResponseParams = {
+  value: MsgUpdateGroupPolicyDecisionPolicyResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendGroupMemberParams = {
+  value: GroupMember,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendProposalParams = {
+  value: Proposal,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendEventProposalPrunedParams = {
+  value: EventProposalPruned,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryProposalsByGroupPolicyResponseParams = {
+  value: QueryProposalsByGroupPolicyResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryVoteByProposalVoterRequestParams = {
+  value: QueryVoteByProposalVoterRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateGroupMetadataResponseParams = {
+  value: MsgUpdateGroupMetadataResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgVoteParams = {
+  value: MsgVote,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendThresholdDecisionPolicyParams = {
+  value: ThresholdDecisionPolicy,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendGroupPolicyInfoParams = {
+  value: GroupPolicyInfo,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGroupInfoResponseParams = {
+  value: QueryGroupInfoResponse,
   fee?: StdFee,
   memo?: string
 };
@@ -460,44 +496,38 @@ type sendQueryVoteByProposalVoterResponseParams = {
   memo?: string
 };
 
-type sendMsgCreateGroupResponseParams = {
-  value: MsgCreateGroupResponse,
+type sendQueryVotesByProposalRequestParams = {
+  value: QueryVotesByProposalRequest,
   fee?: StdFee,
   memo?: string
 };
 
-type sendEventUpdateGroupParams = {
-  value: EventUpdateGroup,
+type sendDecisionPolicyWindowsParams = {
+  value: DecisionPolicyWindows,
   fee?: StdFee,
   memo?: string
 };
 
-type sendEventSubmitProposalParams = {
-  value: EventSubmitProposal,
+type sendQueryGroupPoliciesByAdminRequestParams = {
+  value: QueryGroupPoliciesByAdminRequest,
   fee?: StdFee,
   memo?: string
 };
 
-type sendMsgUpdateGroupAdminParams = {
-  value: MsgUpdateGroupAdmin,
+type sendMsgExecParams = {
+  value: MsgExec,
   fee?: StdFee,
   memo?: string
 };
 
-type sendMsgUpdateGroupPolicyMetadataResponseParams = {
-  value: MsgUpdateGroupPolicyMetadataResponse,
+type sendMsgUpdateGroupPolicyDecisionPolicyParams = {
+  value: MsgUpdateGroupPolicyDecisionPolicy,
   fee?: StdFee,
   memo?: string
 };
 
-type sendMsgVoteParams = {
-  value: MsgVote,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgExecResponseParams = {
-  value: MsgExecResponse,
+type sendMsgUpdateGroupMetadataParams = {
+  value: MsgUpdateGroupMetadata,
   fee?: StdFee,
   memo?: string
 };
@@ -508,233 +538,59 @@ type sendMsgSubmitProposalParams = {
   memo?: string
 };
 
-type sendQueryGroupPolicyInfoRequestParams = {
-  value: QueryGroupPolicyInfoRequest,
+type sendQueryGroupMembersRequestParams = {
+  value: QueryGroupMembersRequest,
   fee?: StdFee,
   memo?: string
 };
 
-type sendQueryProposalRequestParams = {
+type sendQueryGroupPoliciesByGroupRequestParams = {
+  value: QueryGroupPoliciesByGroupRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendPercentageDecisionPolicyParams = {
+  value: PercentageDecisionPolicy,
+  fee?: StdFee,
+  memo?: string
+};
+
+
+type eventUpdateGroupParams = {
+  value: EventUpdateGroup,
+};
+
+type queryProposalRequestParams = {
   value: QueryProposalRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryProposalResponseParams = {
-  value: QueryProposalResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendEventProposalPrunedParams = {
-  value: EventProposalPruned,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendVoteParams = {
-  value: Vote,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryGroupPoliciesByGroupResponseParams = {
-  value: QueryGroupPoliciesByGroupResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMemberRequestParams = {
-  value: MemberRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryTallyResultResponseParams = {
-  value: QueryTallyResultResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-
-type eventLeaveGroupParams = {
-  value: EventLeaveGroup,
-};
-
-type memberParams = {
-  value: Member,
-};
-
-type queryGroupInfoRequestParams = {
-  value: QueryGroupInfoRequest,
-};
-
-type msgUpdateGroupMembersResponseParams = {
-  value: MsgUpdateGroupMembersResponse,
-};
-
-type msgWithdrawProposalParams = {
-  value: MsgWithdrawProposal,
-};
-
-type groupPolicyInfoParams = {
-  value: GroupPolicyInfo,
-};
-
-type msgCreateGroupPolicyParams = {
-  value: MsgCreateGroupPolicy,
-};
-
-type queryProposalsByGroupPolicyRequestParams = {
-  value: QueryProposalsByGroupPolicyRequest,
-};
-
-type queryProposalsByGroupPolicyResponseParams = {
-  value: QueryProposalsByGroupPolicyResponse,
 };
 
 type queryTallyResultRequestParams = {
   value: QueryTallyResultRequest,
 };
 
-type msgCreateGroupParams = {
-  value: MsgCreateGroup,
-};
-
-type msgCreateGroupWithPolicyResponseParams = {
-  value: MsgCreateGroupWithPolicyResponse,
-};
-
-type msgWithdrawProposalResponseParams = {
-  value: MsgWithdrawProposalResponse,
-};
-
-type genesisStateParams = {
-  value: GenesisState,
-};
-
-type tallyResultParams = {
-  value: TallyResult,
-};
-
-type msgUpdateGroupMetadataParams = {
-  value: MsgUpdateGroupMetadata,
-};
-
-type queryVoteByProposalVoterRequestParams = {
-  value: QueryVoteByProposalVoterRequest,
-};
-
-type queryGroupPoliciesByGroupRequestParams = {
-  value: QueryGroupPoliciesByGroupRequest,
-};
-
-type msgUpdateGroupPolicyDecisionPolicyResponseParams = {
-  value: MsgUpdateGroupPolicyDecisionPolicyResponse,
-};
-
-type decisionPolicyWindowsParams = {
-  value: DecisionPolicyWindows,
-};
-
-type queryGroupMembersResponseParams = {
-  value: QueryGroupMembersResponse,
-};
-
-type eventUpdateGroupPolicyParams = {
-  value: EventUpdateGroupPolicy,
-};
-
-type thresholdDecisionPolicyParams = {
-  value: ThresholdDecisionPolicy,
-};
-
-type groupInfoParams = {
-  value: GroupInfo,
-};
-
-type proposalParams = {
-  value: Proposal,
-};
-
-type eventCreateGroupPolicyParams = {
-  value: EventCreateGroupPolicy,
-};
-
-type percentageDecisionPolicyParams = {
-  value: PercentageDecisionPolicy,
-};
-
-type msgUpdateGroupPolicyMetadataParams = {
-  value: MsgUpdateGroupPolicyMetadata,
-};
-
-type groupMemberParams = {
-  value: GroupMember,
-};
-
-type queryVotesByProposalRequestParams = {
-  value: QueryVotesByProposalRequest,
-};
-
-type msgCreateGroupPolicyResponseParams = {
-  value: MsgCreateGroupPolicyResponse,
-};
-
-type queryVotesByProposalResponseParams = {
-  value: QueryVotesByProposalResponse,
-};
-
-type msgUpdateGroupPolicyAdminResponseParams = {
-  value: MsgUpdateGroupPolicyAdminResponse,
-};
-
-type msgVoteResponseParams = {
-  value: MsgVoteResponse,
-};
-
-type msgExecParams = {
-  value: MsgExec,
-};
-
-type eventCreateGroupParams = {
-  value: EventCreateGroup,
-};
-
-type eventWithdrawProposalParams = {
-  value: EventWithdrawProposal,
-};
-
-type queryGroupInfoResponseParams = {
-  value: QueryGroupInfoResponse,
-};
-
-type queryGroupPoliciesByAdminRequestParams = {
-  value: QueryGroupPoliciesByAdminRequest,
-};
-
-type queryGroupsByMemberRequestParams = {
-  value: QueryGroupsByMemberRequest,
-};
-
-type queryGroupsByMemberResponseParams = {
-  value: QueryGroupsByMemberResponse,
-};
-
-type msgUpdateGroupPolicyAdminParams = {
-  value: MsgUpdateGroupPolicyAdmin,
+type msgUpdateGroupPolicyMetadataResponseParams = {
+  value: MsgUpdateGroupPolicyMetadataResponse,
 };
 
 type msgLeaveGroupParams = {
   value: MsgLeaveGroup,
 };
 
-type queryGroupPolicyInfoResponseParams = {
-  value: QueryGroupPolicyInfoResponse,
+type genesisStateParams = {
+  value: GenesisState,
 };
 
-type queryGroupMembersRequestParams = {
-  value: QueryGroupMembersRequest,
+type memberParams = {
+  value: Member,
+};
+
+type eventCreateGroupParams = {
+  value: EventCreateGroup,
+};
+
+type queryGroupPolicyInfoResponseParams = {
+  value: QueryGroupPolicyInfoResponse,
 };
 
 type queryVotesByVoterRequestParams = {
@@ -745,56 +601,224 @@ type queryVotesByVoterResponseParams = {
   value: QueryVotesByVoterResponse,
 };
 
+type msgCreateGroupResponseParams = {
+  value: MsgCreateGroupResponse,
+};
+
+type msgCreateGroupWithPolicyResponseParams = {
+  value: MsgCreateGroupWithPolicyResponse,
+};
+
+type msgUpdateGroupPolicyMetadataParams = {
+  value: MsgUpdateGroupPolicyMetadata,
+};
+
+type msgUpdateGroupPolicyAdminResponseParams = {
+  value: MsgUpdateGroupPolicyAdminResponse,
+};
+
+type msgWithdrawProposalParams = {
+  value: MsgWithdrawProposal,
+};
+
+type msgVoteResponseParams = {
+  value: MsgVoteResponse,
+};
+
+type queryVotesByProposalResponseParams = {
+  value: QueryVotesByProposalResponse,
+};
+
 type eventExecParams = {
   value: EventExec,
 };
 
-type msgUpdateGroupMembersParams = {
-  value: MsgUpdateGroupMembers,
+type msgUpdateGroupMembersResponseParams = {
+  value: MsgUpdateGroupMembersResponse,
 };
 
-type msgUpdateGroupAdminResponseParams = {
-  value: MsgUpdateGroupAdminResponse,
+type msgCreateGroupPolicyResponseParams = {
+  value: MsgCreateGroupPolicyResponse,
 };
 
-type msgLeaveGroupResponseParams = {
-  value: MsgLeaveGroupResponse,
+type voteParams = {
+  value: Vote,
 };
 
 type msgCreateGroupWithPolicyParams = {
   value: MsgCreateGroupWithPolicy,
 };
 
-type queryGroupsRequestParams = {
-  value: QueryGroupsRequest,
+type queryGroupPolicyInfoRequestParams = {
+  value: QueryGroupPolicyInfoRequest,
 };
 
-type queryGroupsResponseParams = {
-  value: QueryGroupsResponse,
+type queryTallyResultResponseParams = {
+  value: QueryTallyResultResponse,
 };
 
-type eventVoteParams = {
-  value: EventVote,
+type msgWithdrawProposalResponseParams = {
+  value: MsgWithdrawProposalResponse,
+};
+
+type eventCreateGroupPolicyParams = {
+  value: EventCreateGroupPolicy,
+};
+
+type memberRequestParams = {
+  value: MemberRequest,
 };
 
 type queryGroupPoliciesByAdminResponseParams = {
   value: QueryGroupPoliciesByAdminResponse,
 };
 
-type msgUpdateGroupPolicyDecisionPolicyParams = {
-  value: MsgUpdateGroupPolicyDecisionPolicy,
+type queryGroupsResponseParams = {
+  value: QueryGroupsResponse,
 };
 
-type msgUpdateGroupMetadataResponseParams = {
-  value: MsgUpdateGroupMetadataResponse,
+type msgUpdateGroupAdminParams = {
+  value: MsgUpdateGroupAdmin,
+};
+
+type queryGroupsByAdminRequestParams = {
+  value: QueryGroupsByAdminRequest,
+};
+
+type queryProposalsByGroupPolicyRequestParams = {
+  value: QueryProposalsByGroupPolicyRequest,
+};
+
+type queryGroupsByMemberRequestParams = {
+  value: QueryGroupsByMemberRequest,
+};
+
+type queryGroupsRequestParams = {
+  value: QueryGroupsRequest,
 };
 
 type msgSubmitProposalResponseParams = {
   value: MsgSubmitProposalResponse,
 };
 
-type queryGroupsByAdminRequestParams = {
-  value: QueryGroupsByAdminRequest,
+type msgExecResponseParams = {
+  value: MsgExecResponse,
+};
+
+type eventUpdateGroupPolicyParams = {
+  value: EventUpdateGroupPolicy,
+};
+
+type msgLeaveGroupResponseParams = {
+  value: MsgLeaveGroupResponse,
+};
+
+type tallyResultParams = {
+  value: TallyResult,
+};
+
+type queryGroupPoliciesByGroupResponseParams = {
+  value: QueryGroupPoliciesByGroupResponse,
+};
+
+type queryGroupInfoRequestParams = {
+  value: QueryGroupInfoRequest,
+};
+
+type queryGroupMembersResponseParams = {
+  value: QueryGroupMembersResponse,
+};
+
+type queryGroupsByMemberResponseParams = {
+  value: QueryGroupsByMemberResponse,
+};
+
+type msgUpdateGroupAdminResponseParams = {
+  value: MsgUpdateGroupAdminResponse,
+};
+
+type eventSubmitProposalParams = {
+  value: EventSubmitProposal,
+};
+
+type eventVoteParams = {
+  value: EventVote,
+};
+
+type eventLeaveGroupParams = {
+  value: EventLeaveGroup,
+};
+
+type msgUpdateGroupMembersParams = {
+  value: MsgUpdateGroupMembers,
+};
+
+type queryProposalResponseParams = {
+  value: QueryProposalResponse,
+};
+
+type groupInfoParams = {
+  value: GroupInfo,
+};
+
+type eventWithdrawProposalParams = {
+  value: EventWithdrawProposal,
+};
+
+type msgCreateGroupPolicyParams = {
+  value: MsgCreateGroupPolicy,
+};
+
+type msgCreateGroupParams = {
+  value: MsgCreateGroup,
+};
+
+type msgUpdateGroupPolicyAdminParams = {
+  value: MsgUpdateGroupPolicyAdmin,
+};
+
+type msgUpdateGroupPolicyDecisionPolicyResponseParams = {
+  value: MsgUpdateGroupPolicyDecisionPolicyResponse,
+};
+
+type groupMemberParams = {
+  value: GroupMember,
+};
+
+type proposalParams = {
+  value: Proposal,
+};
+
+type eventProposalPrunedParams = {
+  value: EventProposalPruned,
+};
+
+type queryProposalsByGroupPolicyResponseParams = {
+  value: QueryProposalsByGroupPolicyResponse,
+};
+
+type queryVoteByProposalVoterRequestParams = {
+  value: QueryVoteByProposalVoterRequest,
+};
+
+type msgUpdateGroupMetadataResponseParams = {
+  value: MsgUpdateGroupMetadataResponse,
+};
+
+type msgVoteParams = {
+  value: MsgVote,
+};
+
+type thresholdDecisionPolicyParams = {
+  value: ThresholdDecisionPolicy,
+};
+
+type groupPolicyInfoParams = {
+  value: GroupPolicyInfo,
+};
+
+type queryGroupInfoResponseParams = {
+  value: QueryGroupInfoResponse,
 };
 
 type queryGroupsByAdminResponseParams = {
@@ -805,68 +829,44 @@ type queryVoteByProposalVoterResponseParams = {
   value: QueryVoteByProposalVoterResponse,
 };
 
-type msgCreateGroupResponseParams = {
-  value: MsgCreateGroupResponse,
+type queryVotesByProposalRequestParams = {
+  value: QueryVotesByProposalRequest,
 };
 
-type eventUpdateGroupParams = {
-  value: EventUpdateGroup,
+type decisionPolicyWindowsParams = {
+  value: DecisionPolicyWindows,
 };
 
-type eventSubmitProposalParams = {
-  value: EventSubmitProposal,
+type queryGroupPoliciesByAdminRequestParams = {
+  value: QueryGroupPoliciesByAdminRequest,
 };
 
-type msgUpdateGroupAdminParams = {
-  value: MsgUpdateGroupAdmin,
+type msgExecParams = {
+  value: MsgExec,
 };
 
-type msgUpdateGroupPolicyMetadataResponseParams = {
-  value: MsgUpdateGroupPolicyMetadataResponse,
+type msgUpdateGroupPolicyDecisionPolicyParams = {
+  value: MsgUpdateGroupPolicyDecisionPolicy,
 };
 
-type msgVoteParams = {
-  value: MsgVote,
-};
-
-type msgExecResponseParams = {
-  value: MsgExecResponse,
+type msgUpdateGroupMetadataParams = {
+  value: MsgUpdateGroupMetadata,
 };
 
 type msgSubmitProposalParams = {
   value: MsgSubmitProposal,
 };
 
-type queryGroupPolicyInfoRequestParams = {
-  value: QueryGroupPolicyInfoRequest,
+type queryGroupMembersRequestParams = {
+  value: QueryGroupMembersRequest,
 };
 
-type queryProposalRequestParams = {
-  value: QueryProposalRequest,
+type queryGroupPoliciesByGroupRequestParams = {
+  value: QueryGroupPoliciesByGroupRequest,
 };
 
-type queryProposalResponseParams = {
-  value: QueryProposalResponse,
-};
-
-type eventProposalPrunedParams = {
-  value: EventProposalPruned,
-};
-
-type voteParams = {
-  value: Vote,
-};
-
-type queryGroupPoliciesByGroupResponseParams = {
-  value: QueryGroupPoliciesByGroupResponse,
-};
-
-type memberRequestParams = {
-  value: MemberRequest,
-};
-
-type queryTallyResultResponseParams = {
-  value: QueryTallyResultResponse,
+type percentageDecisionPolicyParams = {
+  value: PercentageDecisionPolicy,
 };
 
 
@@ -899,129 +899,31 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 
   return {
 		
-		async sendEventLeaveGroup({ value, fee, memo }: sendEventLeaveGroupParams): Promise<DeliverTxResponse> {
+		async sendEventUpdateGroup({ value, fee, memo }: sendEventUpdateGroupParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendEventLeaveGroup: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendEventUpdateGroup: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.eventLeaveGroup({ value: EventLeaveGroup.fromPartial(value) })
+				let msg = this.eventUpdateGroup({ value: EventUpdateGroup.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendEventLeaveGroup: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendEventUpdateGroup: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendMember({ value, fee, memo }: sendMemberParams): Promise<DeliverTxResponse> {
+		async sendQueryProposalRequest({ value, fee, memo }: sendQueryProposalRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMember: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryProposalRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.member({ value: Member.fromPartial(value) })
+				let msg = this.queryProposalRequest({ value: QueryProposalRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMember: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGroupInfoRequest({ value, fee, memo }: sendQueryGroupInfoRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGroupInfoRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGroupInfoRequest({ value: QueryGroupInfoRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGroupInfoRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUpdateGroupMembersResponse({ value, fee, memo }: sendMsgUpdateGroupMembersResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateGroupMembersResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateGroupMembersResponse({ value: MsgUpdateGroupMembersResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateGroupMembersResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgWithdrawProposal({ value, fee, memo }: sendMsgWithdrawProposalParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgWithdrawProposal: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgWithdrawProposal({ value: MsgWithdrawProposal.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgWithdrawProposal: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendGroupPolicyInfo({ value, fee, memo }: sendGroupPolicyInfoParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendGroupPolicyInfo: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.groupPolicyInfo({ value: GroupPolicyInfo.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendGroupPolicyInfo: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgCreateGroupPolicy({ value, fee, memo }: sendMsgCreateGroupPolicyParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgCreateGroupPolicy: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgCreateGroupPolicy({ value: MsgCreateGroupPolicy.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgCreateGroupPolicy: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryProposalsByGroupPolicyRequest({ value, fee, memo }: sendQueryProposalsByGroupPolicyRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryProposalsByGroupPolicyRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryProposalsByGroupPolicyRequest({ value: QueryProposalsByGroupPolicyRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryProposalsByGroupPolicyRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryProposalsByGroupPolicyResponse({ value, fee, memo }: sendQueryProposalsByGroupPolicyResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryProposalsByGroupPolicyResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryProposalsByGroupPolicyResponse({ value: QueryProposalsByGroupPolicyResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryProposalsByGroupPolicyResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryProposalRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -1039,451 +941,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendMsgCreateGroup({ value, fee, memo }: sendMsgCreateGroupParams): Promise<DeliverTxResponse> {
+		async sendMsgUpdateGroupPolicyMetadataResponse({ value, fee, memo }: sendMsgUpdateGroupPolicyMetadataResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgCreateGroup: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgUpdateGroupPolicyMetadataResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgCreateGroup({ value: MsgCreateGroup.fromPartial(value) })
+				let msg = this.msgUpdateGroupPolicyMetadataResponse({ value: MsgUpdateGroupPolicyMetadataResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgCreateGroup: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgCreateGroupWithPolicyResponse({ value, fee, memo }: sendMsgCreateGroupWithPolicyResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgCreateGroupWithPolicyResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgCreateGroupWithPolicyResponse({ value: MsgCreateGroupWithPolicyResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgCreateGroupWithPolicyResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgWithdrawProposalResponse({ value, fee, memo }: sendMsgWithdrawProposalResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgWithdrawProposalResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgWithdrawProposalResponse({ value: MsgWithdrawProposalResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgWithdrawProposalResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendTallyResult({ value, fee, memo }: sendTallyResultParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendTallyResult: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.tallyResult({ value: TallyResult.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendTallyResult: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUpdateGroupMetadata({ value, fee, memo }: sendMsgUpdateGroupMetadataParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateGroupMetadata: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateGroupMetadata({ value: MsgUpdateGroupMetadata.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateGroupMetadata: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryVoteByProposalVoterRequest({ value, fee, memo }: sendQueryVoteByProposalVoterRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryVoteByProposalVoterRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryVoteByProposalVoterRequest({ value: QueryVoteByProposalVoterRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryVoteByProposalVoterRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGroupPoliciesByGroupRequest({ value, fee, memo }: sendQueryGroupPoliciesByGroupRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGroupPoliciesByGroupRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGroupPoliciesByGroupRequest({ value: QueryGroupPoliciesByGroupRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGroupPoliciesByGroupRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUpdateGroupPolicyDecisionPolicyResponse({ value, fee, memo }: sendMsgUpdateGroupPolicyDecisionPolicyResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateGroupPolicyDecisionPolicyResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateGroupPolicyDecisionPolicyResponse({ value: MsgUpdateGroupPolicyDecisionPolicyResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateGroupPolicyDecisionPolicyResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendDecisionPolicyWindows({ value, fee, memo }: sendDecisionPolicyWindowsParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendDecisionPolicyWindows: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.decisionPolicyWindows({ value: DecisionPolicyWindows.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendDecisionPolicyWindows: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGroupMembersResponse({ value, fee, memo }: sendQueryGroupMembersResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGroupMembersResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGroupMembersResponse({ value: QueryGroupMembersResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGroupMembersResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendEventUpdateGroupPolicy({ value, fee, memo }: sendEventUpdateGroupPolicyParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendEventUpdateGroupPolicy: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.eventUpdateGroupPolicy({ value: EventUpdateGroupPolicy.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendEventUpdateGroupPolicy: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendThresholdDecisionPolicy({ value, fee, memo }: sendThresholdDecisionPolicyParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendThresholdDecisionPolicy: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.thresholdDecisionPolicy({ value: ThresholdDecisionPolicy.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendThresholdDecisionPolicy: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendGroupInfo({ value, fee, memo }: sendGroupInfoParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendGroupInfo: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.groupInfo({ value: GroupInfo.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendGroupInfo: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendProposal({ value, fee, memo }: sendProposalParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendProposal: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.proposal({ value: Proposal.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendProposal: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendEventCreateGroupPolicy({ value, fee, memo }: sendEventCreateGroupPolicyParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendEventCreateGroupPolicy: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.eventCreateGroupPolicy({ value: EventCreateGroupPolicy.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendEventCreateGroupPolicy: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendPercentageDecisionPolicy({ value, fee, memo }: sendPercentageDecisionPolicyParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendPercentageDecisionPolicy: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.percentageDecisionPolicy({ value: PercentageDecisionPolicy.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendPercentageDecisionPolicy: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUpdateGroupPolicyMetadata({ value, fee, memo }: sendMsgUpdateGroupPolicyMetadataParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateGroupPolicyMetadata: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateGroupPolicyMetadata({ value: MsgUpdateGroupPolicyMetadata.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateGroupPolicyMetadata: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendGroupMember({ value, fee, memo }: sendGroupMemberParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendGroupMember: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.groupMember({ value: GroupMember.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendGroupMember: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryVotesByProposalRequest({ value, fee, memo }: sendQueryVotesByProposalRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryVotesByProposalRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryVotesByProposalRequest({ value: QueryVotesByProposalRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryVotesByProposalRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgCreateGroupPolicyResponse({ value, fee, memo }: sendMsgCreateGroupPolicyResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgCreateGroupPolicyResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgCreateGroupPolicyResponse({ value: MsgCreateGroupPolicyResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgCreateGroupPolicyResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryVotesByProposalResponse({ value, fee, memo }: sendQueryVotesByProposalResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryVotesByProposalResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryVotesByProposalResponse({ value: QueryVotesByProposalResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryVotesByProposalResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUpdateGroupPolicyAdminResponse({ value, fee, memo }: sendMsgUpdateGroupPolicyAdminResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateGroupPolicyAdminResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateGroupPolicyAdminResponse({ value: MsgUpdateGroupPolicyAdminResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateGroupPolicyAdminResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgVoteResponse({ value, fee, memo }: sendMsgVoteResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgVoteResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgVoteResponse({ value: MsgVoteResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgVoteResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgExec({ value, fee, memo }: sendMsgExecParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgExec: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgExec({ value: MsgExec.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgExec: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendEventCreateGroup({ value, fee, memo }: sendEventCreateGroupParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendEventCreateGroup: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.eventCreateGroup({ value: EventCreateGroup.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendEventCreateGroup: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendEventWithdrawProposal({ value, fee, memo }: sendEventWithdrawProposalParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendEventWithdrawProposal: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.eventWithdrawProposal({ value: EventWithdrawProposal.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendEventWithdrawProposal: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGroupInfoResponse({ value, fee, memo }: sendQueryGroupInfoResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGroupInfoResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGroupInfoResponse({ value: QueryGroupInfoResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGroupInfoResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGroupPoliciesByAdminRequest({ value, fee, memo }: sendQueryGroupPoliciesByAdminRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGroupPoliciesByAdminRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGroupPoliciesByAdminRequest({ value: QueryGroupPoliciesByAdminRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGroupPoliciesByAdminRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGroupsByMemberRequest({ value, fee, memo }: sendQueryGroupsByMemberRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGroupsByMemberRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGroupsByMemberRequest({ value: QueryGroupsByMemberRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGroupsByMemberRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGroupsByMemberResponse({ value, fee, memo }: sendQueryGroupsByMemberResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGroupsByMemberResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGroupsByMemberResponse({ value: QueryGroupsByMemberResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGroupsByMemberResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUpdateGroupPolicyAdmin({ value, fee, memo }: sendMsgUpdateGroupPolicyAdminParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateGroupPolicyAdmin: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateGroupPolicyAdmin({ value: MsgUpdateGroupPolicyAdmin.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateGroupPolicyAdmin: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgUpdateGroupPolicyMetadataResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -1501,6 +969,48 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMember({ value, fee, memo }: sendMemberParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMember: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.member({ value: Member.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMember: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendEventCreateGroup({ value, fee, memo }: sendEventCreateGroupParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendEventCreateGroup: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.eventCreateGroup({ value: EventCreateGroup.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendEventCreateGroup: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
 		async sendQueryGroupPolicyInfoResponse({ value, fee, memo }: sendQueryGroupPolicyInfoResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendQueryGroupPolicyInfoResponse: Unable to sign Tx. Signer is not present.')
@@ -1512,20 +1022,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
 				throw new Error('TxClient:sendQueryGroupPolicyInfoResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGroupMembersRequest({ value, fee, memo }: sendQueryGroupMembersRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGroupMembersRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGroupMembersRequest({ value: QueryGroupMembersRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGroupMembersRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -1557,6 +1053,104 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		async sendMsgCreateGroupResponse({ value, fee, memo }: sendMsgCreateGroupResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateGroupResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgCreateGroupResponse({ value: MsgCreateGroupResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgCreateGroupResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgCreateGroupWithPolicyResponse({ value, fee, memo }: sendMsgCreateGroupWithPolicyResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateGroupWithPolicyResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgCreateGroupWithPolicyResponse({ value: MsgCreateGroupWithPolicyResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgCreateGroupWithPolicyResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateGroupPolicyMetadata({ value, fee, memo }: sendMsgUpdateGroupPolicyMetadataParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateGroupPolicyMetadata: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateGroupPolicyMetadata({ value: MsgUpdateGroupPolicyMetadata.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateGroupPolicyMetadata: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateGroupPolicyAdminResponse({ value, fee, memo }: sendMsgUpdateGroupPolicyAdminResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateGroupPolicyAdminResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateGroupPolicyAdminResponse({ value: MsgUpdateGroupPolicyAdminResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateGroupPolicyAdminResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgWithdrawProposal({ value, fee, memo }: sendMsgWithdrawProposalParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgWithdrawProposal: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgWithdrawProposal({ value: MsgWithdrawProposal.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgWithdrawProposal: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgVoteResponse({ value, fee, memo }: sendMsgVoteResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgVoteResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgVoteResponse({ value: MsgVoteResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgVoteResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryVotesByProposalResponse({ value, fee, memo }: sendQueryVotesByProposalResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryVotesByProposalResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryVotesByProposalResponse({ value: QueryVotesByProposalResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryVotesByProposalResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
 		async sendEventExec({ value, fee, memo }: sendEventExecParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendEventExec: Unable to sign Tx. Signer is not present.')
@@ -1571,45 +1165,45 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendMsgUpdateGroupMembers({ value, fee, memo }: sendMsgUpdateGroupMembersParams): Promise<DeliverTxResponse> {
+		async sendMsgUpdateGroupMembersResponse({ value, fee, memo }: sendMsgUpdateGroupMembersResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateGroupMembers: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgUpdateGroupMembersResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateGroupMembers({ value: MsgUpdateGroupMembers.fromPartial(value) })
+				let msg = this.msgUpdateGroupMembersResponse({ value: MsgUpdateGroupMembersResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateGroupMembers: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgUpdateGroupMembersResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendMsgUpdateGroupAdminResponse({ value, fee, memo }: sendMsgUpdateGroupAdminResponseParams): Promise<DeliverTxResponse> {
+		async sendMsgCreateGroupPolicyResponse({ value, fee, memo }: sendMsgCreateGroupPolicyResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateGroupAdminResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgCreateGroupPolicyResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateGroupAdminResponse({ value: MsgUpdateGroupAdminResponse.fromPartial(value) })
+				let msg = this.msgCreateGroupPolicyResponse({ value: MsgCreateGroupPolicyResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateGroupAdminResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgCreateGroupPolicyResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendMsgLeaveGroupResponse({ value, fee, memo }: sendMsgLeaveGroupResponseParams): Promise<DeliverTxResponse> {
+		async sendVote({ value, fee, memo }: sendVoteParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgLeaveGroupResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendVote: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgLeaveGroupResponse({ value: MsgLeaveGroupResponse.fromPartial(value) })
+				let msg = this.vote({ value: Vote.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgLeaveGroupResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendVote: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -1627,45 +1221,73 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendQueryGroupsRequest({ value, fee, memo }: sendQueryGroupsRequestParams): Promise<DeliverTxResponse> {
+		async sendQueryGroupPolicyInfoRequest({ value, fee, memo }: sendQueryGroupPolicyInfoRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryGroupsRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryGroupPolicyInfoRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGroupsRequest({ value: QueryGroupsRequest.fromPartial(value) })
+				let msg = this.queryGroupPolicyInfoRequest({ value: QueryGroupPolicyInfoRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGroupsRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryGroupPolicyInfoRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendQueryGroupsResponse({ value, fee, memo }: sendQueryGroupsResponseParams): Promise<DeliverTxResponse> {
+		async sendQueryTallyResultResponse({ value, fee, memo }: sendQueryTallyResultResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryGroupsResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryTallyResultResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGroupsResponse({ value: QueryGroupsResponse.fromPartial(value) })
+				let msg = this.queryTallyResultResponse({ value: QueryTallyResultResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGroupsResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryTallyResultResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendEventVote({ value, fee, memo }: sendEventVoteParams): Promise<DeliverTxResponse> {
+		async sendMsgWithdrawProposalResponse({ value, fee, memo }: sendMsgWithdrawProposalResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendEventVote: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgWithdrawProposalResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.eventVote({ value: EventVote.fromPartial(value) })
+				let msg = this.msgWithdrawProposalResponse({ value: MsgWithdrawProposalResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendEventVote: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgWithdrawProposalResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendEventCreateGroupPolicy({ value, fee, memo }: sendEventCreateGroupPolicyParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendEventCreateGroupPolicy: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.eventCreateGroupPolicy({ value: EventCreateGroupPolicy.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendEventCreateGroupPolicy: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMemberRequest({ value, fee, memo }: sendMemberRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMemberRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.memberRequest({ value: MemberRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMemberRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -1683,31 +1305,87 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendMsgUpdateGroupPolicyDecisionPolicy({ value, fee, memo }: sendMsgUpdateGroupPolicyDecisionPolicyParams): Promise<DeliverTxResponse> {
+		async sendQueryGroupsResponse({ value, fee, memo }: sendQueryGroupsResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateGroupPolicyDecisionPolicy: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryGroupsResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateGroupPolicyDecisionPolicy({ value: MsgUpdateGroupPolicyDecisionPolicy.fromPartial(value) })
+				let msg = this.queryGroupsResponse({ value: QueryGroupsResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateGroupPolicyDecisionPolicy: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryGroupsResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendMsgUpdateGroupMetadataResponse({ value, fee, memo }: sendMsgUpdateGroupMetadataResponseParams): Promise<DeliverTxResponse> {
+		async sendMsgUpdateGroupAdmin({ value, fee, memo }: sendMsgUpdateGroupAdminParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateGroupMetadataResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgUpdateGroupAdmin: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateGroupMetadataResponse({ value: MsgUpdateGroupMetadataResponse.fromPartial(value) })
+				let msg = this.msgUpdateGroupAdmin({ value: MsgUpdateGroupAdmin.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateGroupMetadataResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgUpdateGroupAdmin: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGroupsByAdminRequest({ value, fee, memo }: sendQueryGroupsByAdminRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGroupsByAdminRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGroupsByAdminRequest({ value: QueryGroupsByAdminRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGroupsByAdminRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryProposalsByGroupPolicyRequest({ value, fee, memo }: sendQueryProposalsByGroupPolicyRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryProposalsByGroupPolicyRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryProposalsByGroupPolicyRequest({ value: QueryProposalsByGroupPolicyRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryProposalsByGroupPolicyRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGroupsByMemberRequest({ value, fee, memo }: sendQueryGroupsByMemberRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGroupsByMemberRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGroupsByMemberRequest({ value: QueryGroupsByMemberRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGroupsByMemberRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGroupsRequest({ value, fee, memo }: sendQueryGroupsRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGroupsRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGroupsRequest({ value: QueryGroupsRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGroupsRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -1725,17 +1403,423 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendQueryGroupsByAdminRequest({ value, fee, memo }: sendQueryGroupsByAdminRequestParams): Promise<DeliverTxResponse> {
+		async sendMsgExecResponse({ value, fee, memo }: sendMsgExecResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryGroupsByAdminRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgExecResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGroupsByAdminRequest({ value: QueryGroupsByAdminRequest.fromPartial(value) })
+				let msg = this.msgExecResponse({ value: MsgExecResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGroupsByAdminRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgExecResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendEventUpdateGroupPolicy({ value, fee, memo }: sendEventUpdateGroupPolicyParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendEventUpdateGroupPolicy: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.eventUpdateGroupPolicy({ value: EventUpdateGroupPolicy.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendEventUpdateGroupPolicy: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgLeaveGroupResponse({ value, fee, memo }: sendMsgLeaveGroupResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgLeaveGroupResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgLeaveGroupResponse({ value: MsgLeaveGroupResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgLeaveGroupResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendTallyResult({ value, fee, memo }: sendTallyResultParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendTallyResult: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.tallyResult({ value: TallyResult.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendTallyResult: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGroupPoliciesByGroupResponse({ value, fee, memo }: sendQueryGroupPoliciesByGroupResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGroupPoliciesByGroupResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGroupPoliciesByGroupResponse({ value: QueryGroupPoliciesByGroupResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGroupPoliciesByGroupResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGroupInfoRequest({ value, fee, memo }: sendQueryGroupInfoRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGroupInfoRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGroupInfoRequest({ value: QueryGroupInfoRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGroupInfoRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGroupMembersResponse({ value, fee, memo }: sendQueryGroupMembersResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGroupMembersResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGroupMembersResponse({ value: QueryGroupMembersResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGroupMembersResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGroupsByMemberResponse({ value, fee, memo }: sendQueryGroupsByMemberResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGroupsByMemberResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGroupsByMemberResponse({ value: QueryGroupsByMemberResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGroupsByMemberResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateGroupAdminResponse({ value, fee, memo }: sendMsgUpdateGroupAdminResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateGroupAdminResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateGroupAdminResponse({ value: MsgUpdateGroupAdminResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateGroupAdminResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendEventSubmitProposal({ value, fee, memo }: sendEventSubmitProposalParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendEventSubmitProposal: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.eventSubmitProposal({ value: EventSubmitProposal.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendEventSubmitProposal: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendEventVote({ value, fee, memo }: sendEventVoteParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendEventVote: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.eventVote({ value: EventVote.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendEventVote: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendEventLeaveGroup({ value, fee, memo }: sendEventLeaveGroupParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendEventLeaveGroup: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.eventLeaveGroup({ value: EventLeaveGroup.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendEventLeaveGroup: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateGroupMembers({ value, fee, memo }: sendMsgUpdateGroupMembersParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateGroupMembers: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateGroupMembers({ value: MsgUpdateGroupMembers.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateGroupMembers: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryProposalResponse({ value, fee, memo }: sendQueryProposalResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryProposalResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryProposalResponse({ value: QueryProposalResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryProposalResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendGroupInfo({ value, fee, memo }: sendGroupInfoParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendGroupInfo: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.groupInfo({ value: GroupInfo.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendGroupInfo: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendEventWithdrawProposal({ value, fee, memo }: sendEventWithdrawProposalParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendEventWithdrawProposal: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.eventWithdrawProposal({ value: EventWithdrawProposal.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendEventWithdrawProposal: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgCreateGroupPolicy({ value, fee, memo }: sendMsgCreateGroupPolicyParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateGroupPolicy: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgCreateGroupPolicy({ value: MsgCreateGroupPolicy.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgCreateGroupPolicy: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgCreateGroup({ value, fee, memo }: sendMsgCreateGroupParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateGroup: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgCreateGroup({ value: MsgCreateGroup.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgCreateGroup: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateGroupPolicyAdmin({ value, fee, memo }: sendMsgUpdateGroupPolicyAdminParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateGroupPolicyAdmin: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateGroupPolicyAdmin({ value: MsgUpdateGroupPolicyAdmin.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateGroupPolicyAdmin: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateGroupPolicyDecisionPolicyResponse({ value, fee, memo }: sendMsgUpdateGroupPolicyDecisionPolicyResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateGroupPolicyDecisionPolicyResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateGroupPolicyDecisionPolicyResponse({ value: MsgUpdateGroupPolicyDecisionPolicyResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateGroupPolicyDecisionPolicyResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendGroupMember({ value, fee, memo }: sendGroupMemberParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendGroupMember: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.groupMember({ value: GroupMember.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendGroupMember: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendProposal({ value, fee, memo }: sendProposalParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendProposal: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.proposal({ value: Proposal.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendProposal: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendEventProposalPruned({ value, fee, memo }: sendEventProposalPrunedParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendEventProposalPruned: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.eventProposalPruned({ value: EventProposalPruned.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendEventProposalPruned: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryProposalsByGroupPolicyResponse({ value, fee, memo }: sendQueryProposalsByGroupPolicyResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryProposalsByGroupPolicyResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryProposalsByGroupPolicyResponse({ value: QueryProposalsByGroupPolicyResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryProposalsByGroupPolicyResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryVoteByProposalVoterRequest({ value, fee, memo }: sendQueryVoteByProposalVoterRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryVoteByProposalVoterRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryVoteByProposalVoterRequest({ value: QueryVoteByProposalVoterRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryVoteByProposalVoterRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateGroupMetadataResponse({ value, fee, memo }: sendMsgUpdateGroupMetadataResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateGroupMetadataResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateGroupMetadataResponse({ value: MsgUpdateGroupMetadataResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateGroupMetadataResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgVote({ value, fee, memo }: sendMsgVoteParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgVote: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgVote({ value: MsgVote.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgVote: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendThresholdDecisionPolicy({ value, fee, memo }: sendThresholdDecisionPolicyParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendThresholdDecisionPolicy: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.thresholdDecisionPolicy({ value: ThresholdDecisionPolicy.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendThresholdDecisionPolicy: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendGroupPolicyInfo({ value, fee, memo }: sendGroupPolicyInfoParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendGroupPolicyInfo: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.groupPolicyInfo({ value: GroupPolicyInfo.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendGroupPolicyInfo: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGroupInfoResponse({ value, fee, memo }: sendQueryGroupInfoResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGroupInfoResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGroupInfoResponse({ value: QueryGroupInfoResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGroupInfoResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -1767,101 +1851,87 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendMsgCreateGroupResponse({ value, fee, memo }: sendMsgCreateGroupResponseParams): Promise<DeliverTxResponse> {
+		async sendQueryVotesByProposalRequest({ value, fee, memo }: sendQueryVotesByProposalRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgCreateGroupResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryVotesByProposalRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgCreateGroupResponse({ value: MsgCreateGroupResponse.fromPartial(value) })
+				let msg = this.queryVotesByProposalRequest({ value: QueryVotesByProposalRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgCreateGroupResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryVotesByProposalRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendEventUpdateGroup({ value, fee, memo }: sendEventUpdateGroupParams): Promise<DeliverTxResponse> {
+		async sendDecisionPolicyWindows({ value, fee, memo }: sendDecisionPolicyWindowsParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendEventUpdateGroup: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendDecisionPolicyWindows: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.eventUpdateGroup({ value: EventUpdateGroup.fromPartial(value) })
+				let msg = this.decisionPolicyWindows({ value: DecisionPolicyWindows.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendEventUpdateGroup: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendDecisionPolicyWindows: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendEventSubmitProposal({ value, fee, memo }: sendEventSubmitProposalParams): Promise<DeliverTxResponse> {
+		async sendQueryGroupPoliciesByAdminRequest({ value, fee, memo }: sendQueryGroupPoliciesByAdminRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendEventSubmitProposal: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryGroupPoliciesByAdminRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.eventSubmitProposal({ value: EventSubmitProposal.fromPartial(value) })
+				let msg = this.queryGroupPoliciesByAdminRequest({ value: QueryGroupPoliciesByAdminRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendEventSubmitProposal: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryGroupPoliciesByAdminRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendMsgUpdateGroupAdmin({ value, fee, memo }: sendMsgUpdateGroupAdminParams): Promise<DeliverTxResponse> {
+		async sendMsgExec({ value, fee, memo }: sendMsgExecParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateGroupAdmin: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgExec: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateGroupAdmin({ value: MsgUpdateGroupAdmin.fromPartial(value) })
+				let msg = this.msgExec({ value: MsgExec.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateGroupAdmin: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgExec: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendMsgUpdateGroupPolicyMetadataResponse({ value, fee, memo }: sendMsgUpdateGroupPolicyMetadataResponseParams): Promise<DeliverTxResponse> {
+		async sendMsgUpdateGroupPolicyDecisionPolicy({ value, fee, memo }: sendMsgUpdateGroupPolicyDecisionPolicyParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateGroupPolicyMetadataResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgUpdateGroupPolicyDecisionPolicy: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateGroupPolicyMetadataResponse({ value: MsgUpdateGroupPolicyMetadataResponse.fromPartial(value) })
+				let msg = this.msgUpdateGroupPolicyDecisionPolicy({ value: MsgUpdateGroupPolicyDecisionPolicy.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateGroupPolicyMetadataResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgUpdateGroupPolicyDecisionPolicy: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendMsgVote({ value, fee, memo }: sendMsgVoteParams): Promise<DeliverTxResponse> {
+		async sendMsgUpdateGroupMetadata({ value, fee, memo }: sendMsgUpdateGroupMetadataParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgVote: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgUpdateGroupMetadata: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgVote({ value: MsgVote.fromPartial(value) })
+				let msg = this.msgUpdateGroupMetadata({ value: MsgUpdateGroupMetadata.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgVote: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgExecResponse({ value, fee, memo }: sendMsgExecResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgExecResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgExecResponse({ value: MsgExecResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgExecResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgUpdateGroupMetadata: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -1879,188 +1949,62 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendQueryGroupPolicyInfoRequest({ value, fee, memo }: sendQueryGroupPolicyInfoRequestParams): Promise<DeliverTxResponse> {
+		async sendQueryGroupMembersRequest({ value, fee, memo }: sendQueryGroupMembersRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryGroupPolicyInfoRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryGroupMembersRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGroupPolicyInfoRequest({ value: QueryGroupPolicyInfoRequest.fromPartial(value) })
+				let msg = this.queryGroupMembersRequest({ value: QueryGroupMembersRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGroupPolicyInfoRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryGroupMembersRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendQueryProposalRequest({ value, fee, memo }: sendQueryProposalRequestParams): Promise<DeliverTxResponse> {
+		async sendQueryGroupPoliciesByGroupRequest({ value, fee, memo }: sendQueryGroupPoliciesByGroupRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryProposalRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryGroupPoliciesByGroupRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryProposalRequest({ value: QueryProposalRequest.fromPartial(value) })
+				let msg = this.queryGroupPoliciesByGroupRequest({ value: QueryGroupPoliciesByGroupRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryProposalRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryGroupPoliciesByGroupRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendQueryProposalResponse({ value, fee, memo }: sendQueryProposalResponseParams): Promise<DeliverTxResponse> {
+		async sendPercentageDecisionPolicy({ value, fee, memo }: sendPercentageDecisionPolicyParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryProposalResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendPercentageDecisionPolicy: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryProposalResponse({ value: QueryProposalResponse.fromPartial(value) })
+				let msg = this.percentageDecisionPolicy({ value: PercentageDecisionPolicy.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryProposalResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendEventProposalPruned({ value, fee, memo }: sendEventProposalPrunedParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendEventProposalPruned: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.eventProposalPruned({ value: EventProposalPruned.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendEventProposalPruned: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendVote({ value, fee, memo }: sendVoteParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendVote: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.vote({ value: Vote.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendVote: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryGroupPoliciesByGroupResponse({ value, fee, memo }: sendQueryGroupPoliciesByGroupResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryGroupPoliciesByGroupResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGroupPoliciesByGroupResponse({ value: QueryGroupPoliciesByGroupResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGroupPoliciesByGroupResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMemberRequest({ value, fee, memo }: sendMemberRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMemberRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.memberRequest({ value: MemberRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMemberRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryTallyResultResponse({ value, fee, memo }: sendQueryTallyResultResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryTallyResultResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryTallyResultResponse({ value: QueryTallyResultResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryTallyResultResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendPercentageDecisionPolicy: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
 		
-		eventLeaveGroup({ value }: eventLeaveGroupParams): EncodeObject {
+		eventUpdateGroup({ value }: eventUpdateGroupParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.group.v1.EventLeaveGroup", value: EventLeaveGroup.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.group.v1.EventUpdateGroup", value: EventUpdateGroup.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:EventLeaveGroup: Could not create message: ' + e.message)
+				throw new Error('TxClient:EventUpdateGroup: Could not create message: ' + e.message)
 			}
 		},
 		
-		member({ value }: memberParams): EncodeObject {
+		queryProposalRequest({ value }: queryProposalRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.group.v1.Member", value: Member.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.group.v1.QueryProposalRequest", value: QueryProposalRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:Member: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGroupInfoRequest({ value }: queryGroupInfoRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.QueryGroupInfoRequest", value: QueryGroupInfoRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGroupInfoRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateGroupMembersResponse({ value }: msgUpdateGroupMembersResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupMembersResponse", value: MsgUpdateGroupMembersResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateGroupMembersResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgWithdrawProposal({ value }: msgWithdrawProposalParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.MsgWithdrawProposal", value: MsgWithdrawProposal.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgWithdrawProposal: Could not create message: ' + e.message)
-			}
-		},
-		
-		groupPolicyInfo({ value }: groupPolicyInfoParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.GroupPolicyInfo", value: GroupPolicyInfo.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:GroupPolicyInfo: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgCreateGroupPolicy({ value }: msgCreateGroupPolicyParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.MsgCreateGroupPolicy", value: MsgCreateGroupPolicy.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgCreateGroupPolicy: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryProposalsByGroupPolicyRequest({ value }: queryProposalsByGroupPolicyRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.QueryProposalsByGroupPolicyRequest", value: QueryProposalsByGroupPolicyRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryProposalsByGroupPolicyRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryProposalsByGroupPolicyResponse({ value }: queryProposalsByGroupPolicyResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.QueryProposalsByGroupPolicyResponse", value: QueryProposalsByGroupPolicyResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryProposalsByGroupPolicyResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryProposalRequest: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -2072,259 +2016,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		msgCreateGroup({ value }: msgCreateGroupParams): EncodeObject {
+		msgUpdateGroupPolicyMetadataResponse({ value }: msgUpdateGroupPolicyMetadataResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.group.v1.MsgCreateGroup", value: MsgCreateGroup.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyMetadataResponse", value: MsgUpdateGroupPolicyMetadataResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgCreateGroup: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgCreateGroupWithPolicyResponse({ value }: msgCreateGroupWithPolicyResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.MsgCreateGroupWithPolicyResponse", value: MsgCreateGroupWithPolicyResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgCreateGroupWithPolicyResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgWithdrawProposalResponse({ value }: msgWithdrawProposalResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.MsgWithdrawProposalResponse", value: MsgWithdrawProposalResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgWithdrawProposalResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		genesisState({ value }: genesisStateParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.GenesisState", value: GenesisState.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
-			}
-		},
-		
-		tallyResult({ value }: tallyResultParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.TallyResult", value: TallyResult.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:TallyResult: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateGroupMetadata({ value }: msgUpdateGroupMetadataParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupMetadata", value: MsgUpdateGroupMetadata.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateGroupMetadata: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryVoteByProposalVoterRequest({ value }: queryVoteByProposalVoterRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.QueryVoteByProposalVoterRequest", value: QueryVoteByProposalVoterRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryVoteByProposalVoterRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGroupPoliciesByGroupRequest({ value }: queryGroupPoliciesByGroupRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByGroupRequest", value: QueryGroupPoliciesByGroupRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGroupPoliciesByGroupRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateGroupPolicyDecisionPolicyResponse({ value }: msgUpdateGroupPolicyDecisionPolicyResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicyResponse", value: MsgUpdateGroupPolicyDecisionPolicyResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateGroupPolicyDecisionPolicyResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		decisionPolicyWindows({ value }: decisionPolicyWindowsParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.DecisionPolicyWindows", value: DecisionPolicyWindows.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:DecisionPolicyWindows: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGroupMembersResponse({ value }: queryGroupMembersResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.QueryGroupMembersResponse", value: QueryGroupMembersResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGroupMembersResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		eventUpdateGroupPolicy({ value }: eventUpdateGroupPolicyParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.EventUpdateGroupPolicy", value: EventUpdateGroupPolicy.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:EventUpdateGroupPolicy: Could not create message: ' + e.message)
-			}
-		},
-		
-		thresholdDecisionPolicy({ value }: thresholdDecisionPolicyParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.ThresholdDecisionPolicy", value: ThresholdDecisionPolicy.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:ThresholdDecisionPolicy: Could not create message: ' + e.message)
-			}
-		},
-		
-		groupInfo({ value }: groupInfoParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.GroupInfo", value: GroupInfo.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:GroupInfo: Could not create message: ' + e.message)
-			}
-		},
-		
-		proposal({ value }: proposalParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.Proposal", value: Proposal.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:Proposal: Could not create message: ' + e.message)
-			}
-		},
-		
-		eventCreateGroupPolicy({ value }: eventCreateGroupPolicyParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.EventCreateGroupPolicy", value: EventCreateGroupPolicy.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:EventCreateGroupPolicy: Could not create message: ' + e.message)
-			}
-		},
-		
-		percentageDecisionPolicy({ value }: percentageDecisionPolicyParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.PercentageDecisionPolicy", value: PercentageDecisionPolicy.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:PercentageDecisionPolicy: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateGroupPolicyMetadata({ value }: msgUpdateGroupPolicyMetadataParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyMetadata", value: MsgUpdateGroupPolicyMetadata.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateGroupPolicyMetadata: Could not create message: ' + e.message)
-			}
-		},
-		
-		groupMember({ value }: groupMemberParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.GroupMember", value: GroupMember.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:GroupMember: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryVotesByProposalRequest({ value }: queryVotesByProposalRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.QueryVotesByProposalRequest", value: QueryVotesByProposalRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryVotesByProposalRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgCreateGroupPolicyResponse({ value }: msgCreateGroupPolicyResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.MsgCreateGroupPolicyResponse", value: MsgCreateGroupPolicyResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgCreateGroupPolicyResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryVotesByProposalResponse({ value }: queryVotesByProposalResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.QueryVotesByProposalResponse", value: QueryVotesByProposalResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryVotesByProposalResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateGroupPolicyAdminResponse({ value }: msgUpdateGroupPolicyAdminResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyAdminResponse", value: MsgUpdateGroupPolicyAdminResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateGroupPolicyAdminResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgVoteResponse({ value }: msgVoteResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.MsgVoteResponse", value: MsgVoteResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgVoteResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgExec({ value }: msgExecParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.MsgExec", value: MsgExec.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgExec: Could not create message: ' + e.message)
-			}
-		},
-		
-		eventCreateGroup({ value }: eventCreateGroupParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.EventCreateGroup", value: EventCreateGroup.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:EventCreateGroup: Could not create message: ' + e.message)
-			}
-		},
-		
-		eventWithdrawProposal({ value }: eventWithdrawProposalParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.EventWithdrawProposal", value: EventWithdrawProposal.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:EventWithdrawProposal: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGroupInfoResponse({ value }: queryGroupInfoResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.QueryGroupInfoResponse", value: QueryGroupInfoResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGroupInfoResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGroupPoliciesByAdminRequest({ value }: queryGroupPoliciesByAdminRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByAdminRequest", value: QueryGroupPoliciesByAdminRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGroupPoliciesByAdminRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGroupsByMemberRequest({ value }: queryGroupsByMemberRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.QueryGroupsByMemberRequest", value: QueryGroupsByMemberRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGroupsByMemberRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGroupsByMemberResponse({ value }: queryGroupsByMemberResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.QueryGroupsByMemberResponse", value: QueryGroupsByMemberResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGroupsByMemberResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateGroupPolicyAdmin({ value }: msgUpdateGroupPolicyAdminParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyAdmin", value: MsgUpdateGroupPolicyAdmin.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateGroupPolicyAdmin: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgUpdateGroupPolicyMetadataResponse: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -2336,19 +2032,35 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		genesisState({ value }: genesisStateParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.GenesisState", value: GenesisState.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
+			}
+		},
+		
+		member({ value }: memberParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.Member", value: Member.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:Member: Could not create message: ' + e.message)
+			}
+		},
+		
+		eventCreateGroup({ value }: eventCreateGroupParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.EventCreateGroup", value: EventCreateGroup.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:EventCreateGroup: Could not create message: ' + e.message)
+			}
+		},
+		
 		queryGroupPolicyInfoResponse({ value }: queryGroupPolicyInfoResponseParams): EncodeObject {
 			try {
 				return { typeUrl: "/cosmos.group.v1.QueryGroupPolicyInfoResponse", value: QueryGroupPolicyInfoResponse.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:QueryGroupPolicyInfoResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGroupMembersRequest({ value }: queryGroupMembersRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.QueryGroupMembersRequest", value: QueryGroupMembersRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGroupMembersRequest: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -2368,6 +2080,62 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		msgCreateGroupResponse({ value }: msgCreateGroupResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.MsgCreateGroupResponse", value: MsgCreateGroupResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgCreateGroupResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgCreateGroupWithPolicyResponse({ value }: msgCreateGroupWithPolicyResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.MsgCreateGroupWithPolicyResponse", value: MsgCreateGroupWithPolicyResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgCreateGroupWithPolicyResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateGroupPolicyMetadata({ value }: msgUpdateGroupPolicyMetadataParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyMetadata", value: MsgUpdateGroupPolicyMetadata.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateGroupPolicyMetadata: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateGroupPolicyAdminResponse({ value }: msgUpdateGroupPolicyAdminResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyAdminResponse", value: MsgUpdateGroupPolicyAdminResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateGroupPolicyAdminResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgWithdrawProposal({ value }: msgWithdrawProposalParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.MsgWithdrawProposal", value: MsgWithdrawProposal.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgWithdrawProposal: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgVoteResponse({ value }: msgVoteResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.MsgVoteResponse", value: MsgVoteResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgVoteResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryVotesByProposalResponse({ value }: queryVotesByProposalResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.QueryVotesByProposalResponse", value: QueryVotesByProposalResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryVotesByProposalResponse: Could not create message: ' + e.message)
+			}
+		},
+		
 		eventExec({ value }: eventExecParams): EncodeObject {
 			try {
 				return { typeUrl: "/cosmos.group.v1.EventExec", value: EventExec.fromPartial( value ) }  
@@ -2376,27 +2144,27 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		msgUpdateGroupMembers({ value }: msgUpdateGroupMembersParams): EncodeObject {
+		msgUpdateGroupMembersResponse({ value }: msgUpdateGroupMembersResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupMembers", value: MsgUpdateGroupMembers.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupMembersResponse", value: MsgUpdateGroupMembersResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateGroupMembers: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgUpdateGroupMembersResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		msgUpdateGroupAdminResponse({ value }: msgUpdateGroupAdminResponseParams): EncodeObject {
+		msgCreateGroupPolicyResponse({ value }: msgCreateGroupPolicyResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupAdminResponse", value: MsgUpdateGroupAdminResponse.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.group.v1.MsgCreateGroupPolicyResponse", value: MsgCreateGroupPolicyResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateGroupAdminResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgCreateGroupPolicyResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		msgLeaveGroupResponse({ value }: msgLeaveGroupResponseParams): EncodeObject {
+		vote({ value }: voteParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.group.v1.MsgLeaveGroupResponse", value: MsgLeaveGroupResponse.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.group.v1.Vote", value: Vote.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgLeaveGroupResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:Vote: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -2408,27 +2176,43 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		queryGroupsRequest({ value }: queryGroupsRequestParams): EncodeObject {
+		queryGroupPolicyInfoRequest({ value }: queryGroupPolicyInfoRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.group.v1.QueryGroupsRequest", value: QueryGroupsRequest.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.group.v1.QueryGroupPolicyInfoRequest", value: QueryGroupPolicyInfoRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryGroupsRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryGroupPolicyInfoRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		queryGroupsResponse({ value }: queryGroupsResponseParams): EncodeObject {
+		queryTallyResultResponse({ value }: queryTallyResultResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.group.v1.QueryGroupsResponse", value: QueryGroupsResponse.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.group.v1.QueryTallyResultResponse", value: QueryTallyResultResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryGroupsResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryTallyResultResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		eventVote({ value }: eventVoteParams): EncodeObject {
+		msgWithdrawProposalResponse({ value }: msgWithdrawProposalResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.group.v1.EventVote", value: EventVote.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.group.v1.MsgWithdrawProposalResponse", value: MsgWithdrawProposalResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:EventVote: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgWithdrawProposalResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		eventCreateGroupPolicy({ value }: eventCreateGroupPolicyParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.EventCreateGroupPolicy", value: EventCreateGroupPolicy.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:EventCreateGroupPolicy: Could not create message: ' + e.message)
+			}
+		},
+		
+		memberRequest({ value }: memberRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.MemberRequest", value: MemberRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MemberRequest: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -2440,19 +2224,51 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		msgUpdateGroupPolicyDecisionPolicy({ value }: msgUpdateGroupPolicyDecisionPolicyParams): EncodeObject {
+		queryGroupsResponse({ value }: queryGroupsResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicy", value: MsgUpdateGroupPolicyDecisionPolicy.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.group.v1.QueryGroupsResponse", value: QueryGroupsResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateGroupPolicyDecisionPolicy: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryGroupsResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		msgUpdateGroupMetadataResponse({ value }: msgUpdateGroupMetadataResponseParams): EncodeObject {
+		msgUpdateGroupAdmin({ value }: msgUpdateGroupAdminParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupMetadataResponse", value: MsgUpdateGroupMetadataResponse.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupAdmin", value: MsgUpdateGroupAdmin.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateGroupMetadataResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgUpdateGroupAdmin: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryGroupsByAdminRequest({ value }: queryGroupsByAdminRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.QueryGroupsByAdminRequest", value: QueryGroupsByAdminRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGroupsByAdminRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryProposalsByGroupPolicyRequest({ value }: queryProposalsByGroupPolicyRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.QueryProposalsByGroupPolicyRequest", value: QueryProposalsByGroupPolicyRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryProposalsByGroupPolicyRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryGroupsByMemberRequest({ value }: queryGroupsByMemberRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.QueryGroupsByMemberRequest", value: QueryGroupsByMemberRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGroupsByMemberRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryGroupsRequest({ value }: queryGroupsRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.QueryGroupsRequest", value: QueryGroupsRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGroupsRequest: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -2464,11 +2280,243 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		queryGroupsByAdminRequest({ value }: queryGroupsByAdminRequestParams): EncodeObject {
+		msgExecResponse({ value }: msgExecResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.group.v1.QueryGroupsByAdminRequest", value: QueryGroupsByAdminRequest.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.group.v1.MsgExecResponse", value: MsgExecResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryGroupsByAdminRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgExecResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		eventUpdateGroupPolicy({ value }: eventUpdateGroupPolicyParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.EventUpdateGroupPolicy", value: EventUpdateGroupPolicy.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:EventUpdateGroupPolicy: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgLeaveGroupResponse({ value }: msgLeaveGroupResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.MsgLeaveGroupResponse", value: MsgLeaveGroupResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgLeaveGroupResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		tallyResult({ value }: tallyResultParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.TallyResult", value: TallyResult.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:TallyResult: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryGroupPoliciesByGroupResponse({ value }: queryGroupPoliciesByGroupResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByGroupResponse", value: QueryGroupPoliciesByGroupResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGroupPoliciesByGroupResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryGroupInfoRequest({ value }: queryGroupInfoRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.QueryGroupInfoRequest", value: QueryGroupInfoRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGroupInfoRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryGroupMembersResponse({ value }: queryGroupMembersResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.QueryGroupMembersResponse", value: QueryGroupMembersResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGroupMembersResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryGroupsByMemberResponse({ value }: queryGroupsByMemberResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.QueryGroupsByMemberResponse", value: QueryGroupsByMemberResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGroupsByMemberResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateGroupAdminResponse({ value }: msgUpdateGroupAdminResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupAdminResponse", value: MsgUpdateGroupAdminResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateGroupAdminResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		eventSubmitProposal({ value }: eventSubmitProposalParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.EventSubmitProposal", value: EventSubmitProposal.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:EventSubmitProposal: Could not create message: ' + e.message)
+			}
+		},
+		
+		eventVote({ value }: eventVoteParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.EventVote", value: EventVote.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:EventVote: Could not create message: ' + e.message)
+			}
+		},
+		
+		eventLeaveGroup({ value }: eventLeaveGroupParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.EventLeaveGroup", value: EventLeaveGroup.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:EventLeaveGroup: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateGroupMembers({ value }: msgUpdateGroupMembersParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupMembers", value: MsgUpdateGroupMembers.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateGroupMembers: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryProposalResponse({ value }: queryProposalResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.QueryProposalResponse", value: QueryProposalResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryProposalResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		groupInfo({ value }: groupInfoParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.GroupInfo", value: GroupInfo.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:GroupInfo: Could not create message: ' + e.message)
+			}
+		},
+		
+		eventWithdrawProposal({ value }: eventWithdrawProposalParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.EventWithdrawProposal", value: EventWithdrawProposal.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:EventWithdrawProposal: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgCreateGroupPolicy({ value }: msgCreateGroupPolicyParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.MsgCreateGroupPolicy", value: MsgCreateGroupPolicy.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgCreateGroupPolicy: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgCreateGroup({ value }: msgCreateGroupParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.MsgCreateGroup", value: MsgCreateGroup.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgCreateGroup: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateGroupPolicyAdmin({ value }: msgUpdateGroupPolicyAdminParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyAdmin", value: MsgUpdateGroupPolicyAdmin.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateGroupPolicyAdmin: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateGroupPolicyDecisionPolicyResponse({ value }: msgUpdateGroupPolicyDecisionPolicyResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicyResponse", value: MsgUpdateGroupPolicyDecisionPolicyResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateGroupPolicyDecisionPolicyResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		groupMember({ value }: groupMemberParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.GroupMember", value: GroupMember.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:GroupMember: Could not create message: ' + e.message)
+			}
+		},
+		
+		proposal({ value }: proposalParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.Proposal", value: Proposal.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:Proposal: Could not create message: ' + e.message)
+			}
+		},
+		
+		eventProposalPruned({ value }: eventProposalPrunedParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.EventProposalPruned", value: EventProposalPruned.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:EventProposalPruned: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryProposalsByGroupPolicyResponse({ value }: queryProposalsByGroupPolicyResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.QueryProposalsByGroupPolicyResponse", value: QueryProposalsByGroupPolicyResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryProposalsByGroupPolicyResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryVoteByProposalVoterRequest({ value }: queryVoteByProposalVoterRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.QueryVoteByProposalVoterRequest", value: QueryVoteByProposalVoterRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryVoteByProposalVoterRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateGroupMetadataResponse({ value }: msgUpdateGroupMetadataResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupMetadataResponse", value: MsgUpdateGroupMetadataResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateGroupMetadataResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgVote({ value }: msgVoteParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.MsgVote", value: MsgVote.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgVote: Could not create message: ' + e.message)
+			}
+		},
+		
+		thresholdDecisionPolicy({ value }: thresholdDecisionPolicyParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.ThresholdDecisionPolicy", value: ThresholdDecisionPolicy.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:ThresholdDecisionPolicy: Could not create message: ' + e.message)
+			}
+		},
+		
+		groupPolicyInfo({ value }: groupPolicyInfoParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.GroupPolicyInfo", value: GroupPolicyInfo.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:GroupPolicyInfo: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryGroupInfoResponse({ value }: queryGroupInfoResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.group.v1.QueryGroupInfoResponse", value: QueryGroupInfoResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGroupInfoResponse: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -2488,59 +2536,51 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		msgCreateGroupResponse({ value }: msgCreateGroupResponseParams): EncodeObject {
+		queryVotesByProposalRequest({ value }: queryVotesByProposalRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.group.v1.MsgCreateGroupResponse", value: MsgCreateGroupResponse.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.group.v1.QueryVotesByProposalRequest", value: QueryVotesByProposalRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgCreateGroupResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryVotesByProposalRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		eventUpdateGroup({ value }: eventUpdateGroupParams): EncodeObject {
+		decisionPolicyWindows({ value }: decisionPolicyWindowsParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.group.v1.EventUpdateGroup", value: EventUpdateGroup.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.group.v1.DecisionPolicyWindows", value: DecisionPolicyWindows.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:EventUpdateGroup: Could not create message: ' + e.message)
+				throw new Error('TxClient:DecisionPolicyWindows: Could not create message: ' + e.message)
 			}
 		},
 		
-		eventSubmitProposal({ value }: eventSubmitProposalParams): EncodeObject {
+		queryGroupPoliciesByAdminRequest({ value }: queryGroupPoliciesByAdminRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.group.v1.EventSubmitProposal", value: EventSubmitProposal.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByAdminRequest", value: QueryGroupPoliciesByAdminRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:EventSubmitProposal: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryGroupPoliciesByAdminRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		msgUpdateGroupAdmin({ value }: msgUpdateGroupAdminParams): EncodeObject {
+		msgExec({ value }: msgExecParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupAdmin", value: MsgUpdateGroupAdmin.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.group.v1.MsgExec", value: MsgExec.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateGroupAdmin: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgExec: Could not create message: ' + e.message)
 			}
 		},
 		
-		msgUpdateGroupPolicyMetadataResponse({ value }: msgUpdateGroupPolicyMetadataResponseParams): EncodeObject {
+		msgUpdateGroupPolicyDecisionPolicy({ value }: msgUpdateGroupPolicyDecisionPolicyParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyMetadataResponse", value: MsgUpdateGroupPolicyMetadataResponse.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicy", value: MsgUpdateGroupPolicyDecisionPolicy.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateGroupPolicyMetadataResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgUpdateGroupPolicyDecisionPolicy: Could not create message: ' + e.message)
 			}
 		},
 		
-		msgVote({ value }: msgVoteParams): EncodeObject {
+		msgUpdateGroupMetadata({ value }: msgUpdateGroupMetadataParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.group.v1.MsgVote", value: MsgVote.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.group.v1.MsgUpdateGroupMetadata", value: MsgUpdateGroupMetadata.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgVote: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgExecResponse({ value }: msgExecResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.MsgExecResponse", value: MsgExecResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgExecResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgUpdateGroupMetadata: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -2552,67 +2592,27 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		queryGroupPolicyInfoRequest({ value }: queryGroupPolicyInfoRequestParams): EncodeObject {
+		queryGroupMembersRequest({ value }: queryGroupMembersRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.group.v1.QueryGroupPolicyInfoRequest", value: QueryGroupPolicyInfoRequest.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.group.v1.QueryGroupMembersRequest", value: QueryGroupMembersRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryGroupPolicyInfoRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryGroupMembersRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		queryProposalRequest({ value }: queryProposalRequestParams): EncodeObject {
+		queryGroupPoliciesByGroupRequest({ value }: queryGroupPoliciesByGroupRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.group.v1.QueryProposalRequest", value: QueryProposalRequest.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByGroupRequest", value: QueryGroupPoliciesByGroupRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryProposalRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryGroupPoliciesByGroupRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		queryProposalResponse({ value }: queryProposalResponseParams): EncodeObject {
+		percentageDecisionPolicy({ value }: percentageDecisionPolicyParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.group.v1.QueryProposalResponse", value: QueryProposalResponse.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.group.v1.PercentageDecisionPolicy", value: PercentageDecisionPolicy.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryProposalResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		eventProposalPruned({ value }: eventProposalPrunedParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.EventProposalPruned", value: EventProposalPruned.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:EventProposalPruned: Could not create message: ' + e.message)
-			}
-		},
-		
-		vote({ value }: voteParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.Vote", value: Vote.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:Vote: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryGroupPoliciesByGroupResponse({ value }: queryGroupPoliciesByGroupResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByGroupResponse", value: QueryGroupPoliciesByGroupResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryGroupPoliciesByGroupResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		memberRequest({ value }: memberRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.MemberRequest", value: MemberRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MemberRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryTallyResultResponse({ value }: queryTallyResultResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.group.v1.QueryTallyResultResponse", value: QueryTallyResultResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryTallyResultResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:PercentageDecisionPolicy: Could not create message: ' + e.message)
 			}
 		},
 		

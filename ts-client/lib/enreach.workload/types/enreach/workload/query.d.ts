@@ -1,5 +1,6 @@
 import _m0 from "protobufjs/minimal";
 import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
+import { EpochInfo } from "./epoch_info";
 import { Params } from "./params";
 import { EraProcessData, ReputationDeltaPoint, ReputationPoint, ReputationPointChangeData } from "./reputationpoint";
 import { Superior } from "./superior";
@@ -22,7 +23,25 @@ export interface QueryGetEpochLengthResponse {
 export interface QueryGetCurrentEpochRequest {
 }
 export interface QueryGetCurrentEpochResponse {
-    currentEpoch: number;
+    EpochInfo: EpochInfo | undefined;
+}
+export interface QueryGetPendingNextEpochRequest {
+}
+export interface QueryGetPendingNextEpochResponse {
+    EpochInfo: EpochInfo | undefined;
+}
+export interface QueryGetHistoryEpochRequest {
+    epochNumber: number;
+}
+export interface QueryGetHistoryEpochResponse {
+    EpochInfo: EpochInfo | undefined;
+}
+export interface QueryGetAllHistoryEpochRequest {
+    pagination: PageRequest | undefined;
+}
+export interface QueryGetAllHistoryEpochResponse {
+    EpochInfos: EpochInfo[];
+    pagination: PageResponse | undefined;
 }
 export interface QueryGetNodeWorkloadRequest {
     epoch: number;
@@ -225,6 +244,54 @@ export declare const QueryGetCurrentEpochResponse: {
     toJSON(message: QueryGetCurrentEpochResponse): unknown;
     create<I extends Exact<DeepPartial<QueryGetCurrentEpochResponse>, I>>(base?: I): QueryGetCurrentEpochResponse;
     fromPartial<I extends Exact<DeepPartial<QueryGetCurrentEpochResponse>, I>>(object: I): QueryGetCurrentEpochResponse;
+};
+export declare const QueryGetPendingNextEpochRequest: {
+    encode(_: QueryGetPendingNextEpochRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetPendingNextEpochRequest;
+    fromJSON(_: any): QueryGetPendingNextEpochRequest;
+    toJSON(_: QueryGetPendingNextEpochRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryGetPendingNextEpochRequest>, I>>(base?: I): QueryGetPendingNextEpochRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryGetPendingNextEpochRequest>, I>>(_: I): QueryGetPendingNextEpochRequest;
+};
+export declare const QueryGetPendingNextEpochResponse: {
+    encode(message: QueryGetPendingNextEpochResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetPendingNextEpochResponse;
+    fromJSON(object: any): QueryGetPendingNextEpochResponse;
+    toJSON(message: QueryGetPendingNextEpochResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryGetPendingNextEpochResponse>, I>>(base?: I): QueryGetPendingNextEpochResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryGetPendingNextEpochResponse>, I>>(object: I): QueryGetPendingNextEpochResponse;
+};
+export declare const QueryGetHistoryEpochRequest: {
+    encode(message: QueryGetHistoryEpochRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetHistoryEpochRequest;
+    fromJSON(object: any): QueryGetHistoryEpochRequest;
+    toJSON(message: QueryGetHistoryEpochRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryGetHistoryEpochRequest>, I>>(base?: I): QueryGetHistoryEpochRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryGetHistoryEpochRequest>, I>>(object: I): QueryGetHistoryEpochRequest;
+};
+export declare const QueryGetHistoryEpochResponse: {
+    encode(message: QueryGetHistoryEpochResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetHistoryEpochResponse;
+    fromJSON(object: any): QueryGetHistoryEpochResponse;
+    toJSON(message: QueryGetHistoryEpochResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryGetHistoryEpochResponse>, I>>(base?: I): QueryGetHistoryEpochResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryGetHistoryEpochResponse>, I>>(object: I): QueryGetHistoryEpochResponse;
+};
+export declare const QueryGetAllHistoryEpochRequest: {
+    encode(message: QueryGetAllHistoryEpochRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllHistoryEpochRequest;
+    fromJSON(object: any): QueryGetAllHistoryEpochRequest;
+    toJSON(message: QueryGetAllHistoryEpochRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryGetAllHistoryEpochRequest>, I>>(base?: I): QueryGetAllHistoryEpochRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryGetAllHistoryEpochRequest>, I>>(object: I): QueryGetAllHistoryEpochRequest;
+};
+export declare const QueryGetAllHistoryEpochResponse: {
+    encode(message: QueryGetAllHistoryEpochResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllHistoryEpochResponse;
+    fromJSON(object: any): QueryGetAllHistoryEpochResponse;
+    toJSON(message: QueryGetAllHistoryEpochResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryGetAllHistoryEpochResponse>, I>>(base?: I): QueryGetAllHistoryEpochResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryGetAllHistoryEpochResponse>, I>>(object: I): QueryGetAllHistoryEpochResponse;
 };
 export declare const QueryGetNodeWorkloadRequest: {
     encode(message: QueryGetNodeWorkloadRequest, writer?: _m0.Writer): _m0.Writer;
@@ -601,6 +668,9 @@ export interface Query {
     /** Queries epoch */
     EpochLength(request: QueryGetEpochLengthRequest): Promise<QueryGetEpochLengthResponse>;
     CurrentEpoch(request: QueryGetCurrentEpochRequest): Promise<QueryGetCurrentEpochResponse>;
+    PendingNextEpoch(request: QueryGetPendingNextEpochRequest): Promise<QueryGetPendingNextEpochResponse>;
+    HistoryEpoch(request: QueryGetHistoryEpochRequest): Promise<QueryGetHistoryEpochResponse>;
+    AllHistoryEpoch(request: QueryGetAllHistoryEpochRequest): Promise<QueryGetAllHistoryEpochResponse>;
     /** Queries a list of Node Workload items. */
     NodeWorkload(request: QueryGetNodeWorkloadRequest): Promise<QueryGetNodeWorkloadResponse>;
     AllNodeWorkloadByEpoch(request: QueryGetAllNodeWorkloadByEpochRequest): Promise<QueryGetAllNodeWorkloadByEpochResponse>;
@@ -644,6 +714,9 @@ export declare class QueryClientImpl implements Query {
     Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
     EpochLength(request: QueryGetEpochLengthRequest): Promise<QueryGetEpochLengthResponse>;
     CurrentEpoch(request: QueryGetCurrentEpochRequest): Promise<QueryGetCurrentEpochResponse>;
+    PendingNextEpoch(request: QueryGetPendingNextEpochRequest): Promise<QueryGetPendingNextEpochResponse>;
+    HistoryEpoch(request: QueryGetHistoryEpochRequest): Promise<QueryGetHistoryEpochResponse>;
+    AllHistoryEpoch(request: QueryGetAllHistoryEpochRequest): Promise<QueryGetAllHistoryEpochResponse>;
     NodeWorkload(request: QueryGetNodeWorkloadRequest): Promise<QueryGetNodeWorkloadResponse>;
     AllNodeWorkloadByEpoch(request: QueryGetAllNodeWorkloadByEpochRequest): Promise<QueryGetAllNodeWorkloadByEpochResponse>;
     ManagerWRWorkload(request: QueryGetManagerWRWorkloadRequest): Promise<QueryGetManagerWRWorkloadResponse>;

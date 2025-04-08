@@ -20,6 +20,23 @@ export interface Status {
   details?: { "@type"?: string }[];
 }
 
+export interface EpochInfo {
+  /** @format uint64 */
+  number?: string;
+
+  /** @format date-time */
+  startTime?: string;
+
+  /** @format uint64 */
+  startBlock?: string;
+
+  /** @format date-time */
+  endTime?: string;
+
+  /** @format uint64 */
+  endBlock?: string;
+}
+
 export interface NodeScoreDB {
   /** @format uint64 */
   score?: string;
@@ -75,6 +92,11 @@ export interface QueryGetAllEraProcessDataResponse {
     status?: string;
     pagination?: { next_key?: string; total?: string };
   }[];
+  pagination?: { next_key?: string; total?: string };
+}
+
+export interface QueryGetAllHistoryEpochResponse {
+  EpochInfos?: { number?: string; startTime?: string; startBlock?: string; endTime?: string; endBlock?: string }[];
   pagination?: { next_key?: string; total?: string };
 }
 
@@ -136,17 +158,12 @@ export interface QueryGetAllWorkreportByEpochResponse {
 }
 
 export interface QueryGetCurrentEpochResponse {
-  /** @format uint64 */
-  currentEpoch?: string;
+  EpochInfo?: { number?: string; startTime?: string; startBlock?: string; endTime?: string; endBlock?: string };
 }
 
 export interface QueryGetCurrentEraResponse {
   /** @format uint64 */
   currentEra?: string;
-}
-
-export interface QueryGetEpochInfoResponse {
-  EpochInfo?: { number?: string; startTime?: string; startBlock?: string; endTime?: string; endBlock?: string };
 }
 
 export interface QueryGetEpochLengthResponse {
@@ -188,6 +205,10 @@ export interface QueryGetHistoryEpochDataDepthResponse {
   depth?: string;
 }
 
+export interface QueryGetHistoryEpochResponse {
+  EpochInfo?: { number?: string; startTime?: string; startBlock?: string; endTime?: string; endBlock?: string };
+}
+
 export interface QueryGetManagerRPWorkloadResponse {
   ManagerRPWorkload?: {
     era?: string;
@@ -212,6 +233,10 @@ export interface QueryGetManagerWRWorkloadResponse {
 
 export interface QueryGetNodeWorkloadResponse {
   NodeWorkload?: { epoch?: string; nodeID?: string; score?: string; createAt?: string };
+}
+
+export interface QueryGetPendingNextEpochResponse {
+  EpochInfo?: { number?: string; startTime?: string; startBlock?: string; endTime?: string; endBlock?: string };
 }
 
 export interface QueryGetReputationDeltaPointResponse {
@@ -267,23 +292,6 @@ export interface ReputationPointChangeRawDataDB {
 
   /** @format uint64 */
   updateAt?: string;
-}
-
-export interface WorkloadEpochInfo {
-  /** @format uint64 */
-  number?: string;
-
-  /** @format uint64 */
-  startTime?: string;
-
-  /** @format uint64 */
-  startBlock?: string;
-
-  /** @format uint64 */
-  endTime?: string;
-
-  /** @format uint64 */
-  endBlock?: string;
 }
 
 export interface WorkloadEpochProcessData {
@@ -585,12 +593,68 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    *
    * @tags Query
    * @name QueryCurrentEpoch
-   * @request GET:/enreach/workload/epoch/currentepoch
+   * @request GET:/enreach/workload/epoch/current_epoch
    */
   queryCurrentEpoch = (params: RequestParams = {}) =>
-    this.request<{ currentEpoch?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
-      path: `/enreach/workload/epoch/currentepoch`,
+    this.request<
+      { EpochInfo?: { number?: string; startTime?: string; startBlock?: string; endTime?: string; endBlock?: string } },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/workload/epoch/current_epoch`,
       method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryHistoryEpoch
+   * @request GET:/enreach/workload/epoch/history_epoch/{epochNumber}
+   */
+  queryHistoryEpoch = (epochNumber: string, params: RequestParams = {}) =>
+    this.request<
+      { EpochInfo?: { number?: string; startTime?: string; startBlock?: string; endTime?: string; endBlock?: string } },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/workload/epoch/history_epoch/${epochNumber}`,
+      method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryAllHistoryEpoch
+   * @request GET:/enreach/workload/epoch/history_epochs
+   */
+  queryAllHistoryEpoch = (
+    query?: {
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<
+      {
+        EpochInfos?: {
+          number?: string;
+          startTime?: string;
+          startBlock?: string;
+          endTime?: string;
+          endBlock?: string;
+        }[];
+        pagination?: { next_key?: string; total?: string };
+      },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/enreach/workload/epoch/history_epochs`,
+      method: "GET",
+      query: query,
       ...params,
     });
 
@@ -612,15 +676,15 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * No description
    *
    * @tags Query
-   * @name QueryEpochInfo
-   * @request GET:/enreach/workload/epoch_info
+   * @name QueryPendingNextEpoch
+   * @request GET:/enreach/workload/epoch/pending_next_epoch
    */
-  queryEpochInfo = (params: RequestParams = {}) =>
+  queryPendingNextEpoch = (params: RequestParams = {}) =>
     this.request<
       { EpochInfo?: { number?: string; startTime?: string; startBlock?: string; endTime?: string; endBlock?: string } },
       { code?: number; message?: string; details?: { "@type"?: string }[] }
     >({
-      path: `/enreach/workload/epoch_info`,
+      path: `/enreach/workload/epoch/pending_next_epoch`,
       method: "GET",
       ...params,
     });

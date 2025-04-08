@@ -2,112 +2,57 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { MsgBindOperatorEVMAccount } from "./types/enreach/manager/tx";
-import { Operator } from "./types/enreach/manager/operator";
-import { MsgCreateSuperior } from "./types/enreach/manager/tx";
-import { QueryGetOperatorResponse } from "./types/enreach/manager/query";
-import { MsgBindOperatorManagerAccountResponse } from "./types/enreach/manager/tx";
-import { MsgSetManagerRegionResponse } from "./types/enreach/manager/tx";
-import { QueryGetSuperiorRequest } from "./types/enreach/manager/query";
-import { MsgUpdateParamsResponse } from "./types/enreach/manager/tx";
-import { MsgActivateManager } from "./types/enreach/manager/tx";
-import { QueryAllOperatorRequest } from "./types/enreach/manager/query";
-import { QueryAllManagerResponse } from "./types/enreach/manager/query";
-import { QueryGetManagerByRegionResponse } from "./types/enreach/manager/query";
-import { MsgSetManagerRegion } from "./types/enreach/manager/tx";
+import { MsgUpdateManagerConnParamsResponse } from "./types/enreach/manager/tx";
+import { MsgUpdateSuperiorResponse } from "./types/enreach/manager/tx";
 import { Params } from "./types/enreach/manager/params";
 import { QueryParamsRequest } from "./types/enreach/manager/query";
-import { MsgActivateManagerResponse } from "./types/enreach/manager/tx";
-import { MsgBindOperatorManagerAccount } from "./types/enreach/manager/tx";
-import { MsgUpdateManagerConnParamsResponse } from "./types/enreach/manager/tx";
-import { MsgGoWorking } from "./types/enreach/manager/tx";
-import { MsgGoWorkingResponse } from "./types/enreach/manager/tx";
-import { QueryGetManagerByRegionRequest } from "./types/enreach/manager/query";
-import { QueryGetSuperiorResponse } from "./types/enreach/manager/query";
-import { GenesisState } from "./types/enreach/manager/genesis";
-import { Manager } from "./types/enreach/manager/manager";
-import { MsgCreateSuperiorResponse } from "./types/enreach/manager/tx";
-import { MsgUpdateSuperiorResponse } from "./types/enreach/manager/tx";
-import { MsgUpdateManagerConnParams } from "./types/enreach/manager/tx";
-import { MsgUpdateOperatorBasicInfoResponse } from "./types/enreach/manager/tx";
-import { QueryGetOperatorRequest } from "./types/enreach/manager/query";
-import { QueryGetManagerRequest } from "./types/enreach/manager/query";
-import { QueryAllManagerRequest } from "./types/enreach/manager/query";
-import { MsgCreateOperatorResponse } from "./types/enreach/manager/tx";
-import { MsgBindOperatorEVMAccountResponse } from "./types/enreach/manager/tx";
-import { MsgUpdateOperatorBasicInfo } from "./types/enreach/manager/tx";
-import { MsgUpdateSuperior } from "./types/enreach/manager/tx";
-import { QueryParamsResponse } from "./types/enreach/manager/query";
-import { QueryAllOperatorResponse } from "./types/enreach/manager/query";
-import { QueryGetManagerResponse } from "./types/enreach/manager/query";
-import { MsgRegisterManager } from "./types/enreach/manager/tx";
-import { MsgRegisterManagerResponse } from "./types/enreach/manager/tx";
+import { QueryAllOperatorRequest } from "./types/enreach/manager/query";
 import { Superior } from "./types/enreach/manager/superior";
+import { MsgUpdateParamsResponse } from "./types/enreach/manager/tx";
+import { MsgBindOperatorManagerAccount } from "./types/enreach/manager/tx";
+import { QueryAllOperatorResponse } from "./types/enreach/manager/query";
+import { QueryAllManagerRequest } from "./types/enreach/manager/query";
+import { QueryGetManagerByRegionResponse } from "./types/enreach/manager/query";
+import { QueryGetSuperiorRequest } from "./types/enreach/manager/query";
+import { Manager } from "./types/enreach/manager/manager";
+import { MsgUpdateManagerConnParams } from "./types/enreach/manager/tx";
+import { QueryGetManagerResponse } from "./types/enreach/manager/query";
+import { MsgBindOperatorManagerAccountResponse } from "./types/enreach/manager/tx";
+import { MsgRegisterManager } from "./types/enreach/manager/tx";
+import { QueryParamsResponse } from "./types/enreach/manager/query";
+import { Operator } from "./types/enreach/manager/operator";
+import { QueryGetOperatorRequest } from "./types/enreach/manager/query";
 import { MsgUpdateParams } from "./types/enreach/manager/tx";
 import { MsgCreateOperator } from "./types/enreach/manager/tx";
-export { MsgBindOperatorEVMAccount, Operator, MsgCreateSuperior, QueryGetOperatorResponse, MsgBindOperatorManagerAccountResponse, MsgSetManagerRegionResponse, QueryGetSuperiorRequest, MsgUpdateParamsResponse, MsgActivateManager, QueryAllOperatorRequest, QueryAllManagerResponse, QueryGetManagerByRegionResponse, MsgSetManagerRegion, Params, QueryParamsRequest, MsgActivateManagerResponse, MsgBindOperatorManagerAccount, MsgUpdateManagerConnParamsResponse, MsgGoWorking, MsgGoWorkingResponse, QueryGetManagerByRegionRequest, QueryGetSuperiorResponse, GenesisState, Manager, MsgCreateSuperiorResponse, MsgUpdateSuperiorResponse, MsgUpdateManagerConnParams, MsgUpdateOperatorBasicInfoResponse, QueryGetOperatorRequest, QueryGetManagerRequest, QueryAllManagerRequest, MsgCreateOperatorResponse, MsgBindOperatorEVMAccountResponse, MsgUpdateOperatorBasicInfo, MsgUpdateSuperior, QueryParamsResponse, QueryAllOperatorResponse, QueryGetManagerResponse, MsgRegisterManager, MsgRegisterManagerResponse, Superior, MsgUpdateParams, MsgCreateOperator };
-type sendMsgBindOperatorEVMAccountParams = {
-    value: MsgBindOperatorEVMAccount;
+import { MsgUpdateSuperior } from "./types/enreach/manager/tx";
+import { QueryGetSuperiorResponse } from "./types/enreach/manager/query";
+import { GenesisState } from "./types/enreach/manager/genesis";
+import { MsgUpdateOperatorBasicInfo } from "./types/enreach/manager/tx";
+import { MsgCreateSuperior } from "./types/enreach/manager/tx";
+import { MsgRegisterManagerResponse } from "./types/enreach/manager/tx";
+import { QueryGetManagerByRegionRequest } from "./types/enreach/manager/query";
+import { MsgCreateOperatorResponse } from "./types/enreach/manager/tx";
+import { MsgBindOperatorEVMAccount } from "./types/enreach/manager/tx";
+import { MsgBindOperatorEVMAccountResponse } from "./types/enreach/manager/tx";
+import { MsgSetManagerRegionResponse } from "./types/enreach/manager/tx";
+import { MsgActivateManagerResponse } from "./types/enreach/manager/tx";
+import { QueryGetOperatorResponse } from "./types/enreach/manager/query";
+import { MsgGoWorking } from "./types/enreach/manager/tx";
+import { MsgGoWorkingResponse } from "./types/enreach/manager/tx";
+import { MsgCreateSuperiorResponse } from "./types/enreach/manager/tx";
+import { QueryGetManagerRequest } from "./types/enreach/manager/query";
+import { MsgSetManagerRegion } from "./types/enreach/manager/tx";
+import { MsgActivateManager } from "./types/enreach/manager/tx";
+import { MsgUpdateOperatorBasicInfoResponse } from "./types/enreach/manager/tx";
+import { QueryAllManagerResponse } from "./types/enreach/manager/query";
+export { MsgUpdateManagerConnParamsResponse, MsgUpdateSuperiorResponse, Params, QueryParamsRequest, QueryAllOperatorRequest, Superior, MsgUpdateParamsResponse, MsgBindOperatorManagerAccount, QueryAllOperatorResponse, QueryAllManagerRequest, QueryGetManagerByRegionResponse, QueryGetSuperiorRequest, Manager, MsgUpdateManagerConnParams, QueryGetManagerResponse, MsgBindOperatorManagerAccountResponse, MsgRegisterManager, QueryParamsResponse, Operator, QueryGetOperatorRequest, MsgUpdateParams, MsgCreateOperator, MsgUpdateSuperior, QueryGetSuperiorResponse, GenesisState, MsgUpdateOperatorBasicInfo, MsgCreateSuperior, MsgRegisterManagerResponse, QueryGetManagerByRegionRequest, MsgCreateOperatorResponse, MsgBindOperatorEVMAccount, MsgBindOperatorEVMAccountResponse, MsgSetManagerRegionResponse, MsgActivateManagerResponse, QueryGetOperatorResponse, MsgGoWorking, MsgGoWorkingResponse, MsgCreateSuperiorResponse, QueryGetManagerRequest, MsgSetManagerRegion, MsgActivateManager, MsgUpdateOperatorBasicInfoResponse, QueryAllManagerResponse };
+type sendMsgUpdateManagerConnParamsResponseParams = {
+    value: MsgUpdateManagerConnParamsResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendOperatorParams = {
-    value: Operator;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgCreateSuperiorParams = {
-    value: MsgCreateSuperior;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGetOperatorResponseParams = {
-    value: QueryGetOperatorResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgBindOperatorManagerAccountResponseParams = {
-    value: MsgBindOperatorManagerAccountResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgSetManagerRegionResponseParams = {
-    value: MsgSetManagerRegionResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGetSuperiorRequestParams = {
-    value: QueryGetSuperiorRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUpdateParamsResponseParams = {
-    value: MsgUpdateParamsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgActivateManagerParams = {
-    value: MsgActivateManager;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryAllOperatorRequestParams = {
-    value: QueryAllOperatorRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryAllManagerResponseParams = {
-    value: QueryAllManagerResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGetManagerByRegionResponseParams = {
-    value: QueryGetManagerByRegionResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgSetManagerRegionParams = {
-    value: MsgSetManagerRegion;
+type sendMsgUpdateSuperiorResponseParams = {
+    value: MsgUpdateSuperiorResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -121,8 +66,18 @@ type sendQueryParamsRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgActivateManagerResponseParams = {
-    value: MsgActivateManagerResponse;
+type sendQueryAllOperatorRequestParams = {
+    value: QueryAllOperatorRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendSuperiorParams = {
+    value: Superior;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateParamsResponseParams = {
+    value: MsgUpdateParamsResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -131,68 +86,8 @@ type sendMsgBindOperatorManagerAccountParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgUpdateManagerConnParamsResponseParams = {
-    value: MsgUpdateManagerConnParamsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgGoWorkingParams = {
-    value: MsgGoWorking;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgGoWorkingResponseParams = {
-    value: MsgGoWorkingResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGetManagerByRegionRequestParams = {
-    value: QueryGetManagerByRegionRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGetSuperiorResponseParams = {
-    value: QueryGetSuperiorResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendGenesisStateParams = {
-    value: GenesisState;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendManagerParams = {
-    value: Manager;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgCreateSuperiorResponseParams = {
-    value: MsgCreateSuperiorResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUpdateSuperiorResponseParams = {
-    value: MsgUpdateSuperiorResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUpdateManagerConnParamsParams = {
-    value: MsgUpdateManagerConnParams;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUpdateOperatorBasicInfoResponseParams = {
-    value: MsgUpdateOperatorBasicInfoResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGetOperatorRequestParams = {
-    value: QueryGetOperatorRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGetManagerRequestParams = {
-    value: QueryGetManagerRequest;
+type sendQueryAllOperatorResponseParams = {
+    value: QueryAllOperatorResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -201,33 +96,23 @@ type sendQueryAllManagerRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgCreateOperatorResponseParams = {
-    value: MsgCreateOperatorResponse;
+type sendQueryGetManagerByRegionResponseParams = {
+    value: QueryGetManagerByRegionResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgBindOperatorEVMAccountResponseParams = {
-    value: MsgBindOperatorEVMAccountResponse;
+type sendQueryGetSuperiorRequestParams = {
+    value: QueryGetSuperiorRequest;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgUpdateOperatorBasicInfoParams = {
-    value: MsgUpdateOperatorBasicInfo;
+type sendManagerParams = {
+    value: Manager;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgUpdateSuperiorParams = {
-    value: MsgUpdateSuperior;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryParamsResponseParams = {
-    value: QueryParamsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryAllOperatorResponseParams = {
-    value: QueryAllOperatorResponse;
+type sendMsgUpdateManagerConnParamsParams = {
+    value: MsgUpdateManagerConnParams;
     fee?: StdFee;
     memo?: string;
 };
@@ -236,18 +121,28 @@ type sendQueryGetManagerResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
+type sendMsgBindOperatorManagerAccountResponseParams = {
+    value: MsgBindOperatorManagerAccountResponse;
+    fee?: StdFee;
+    memo?: string;
+};
 type sendMsgRegisterManagerParams = {
     value: MsgRegisterManager;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgRegisterManagerResponseParams = {
-    value: MsgRegisterManagerResponse;
+type sendQueryParamsResponseParams = {
+    value: QueryParamsResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendSuperiorParams = {
-    value: Superior;
+type sendOperatorParams = {
+    value: Operator;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryGetOperatorRequestParams = {
+    value: QueryGetOperatorRequest;
     fee?: StdFee;
     memo?: string;
 };
@@ -261,44 +156,116 @@ type sendMsgCreateOperatorParams = {
     fee?: StdFee;
     memo?: string;
 };
-type msgBindOperatorEvmaccountParams = {
-    value: MsgBindOperatorEVMAccount;
+type sendMsgUpdateSuperiorParams = {
+    value: MsgUpdateSuperior;
+    fee?: StdFee;
+    memo?: string;
 };
-type operatorParams = {
-    value: Operator;
+type sendQueryGetSuperiorResponseParams = {
+    value: QueryGetSuperiorResponse;
+    fee?: StdFee;
+    memo?: string;
 };
-type msgCreateSuperiorParams = {
+type sendGenesisStateParams = {
+    value: GenesisState;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateOperatorBasicInfoParams = {
+    value: MsgUpdateOperatorBasicInfo;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgCreateSuperiorParams = {
     value: MsgCreateSuperior;
+    fee?: StdFee;
+    memo?: string;
 };
-type queryGetOperatorResponseParams = {
-    value: QueryGetOperatorResponse;
+type sendMsgRegisterManagerResponseParams = {
+    value: MsgRegisterManagerResponse;
+    fee?: StdFee;
+    memo?: string;
 };
-type msgBindOperatorManagerAccountResponseParams = {
-    value: MsgBindOperatorManagerAccountResponse;
+type sendQueryGetManagerByRegionRequestParams = {
+    value: QueryGetManagerByRegionRequest;
+    fee?: StdFee;
+    memo?: string;
 };
-type msgSetManagerRegionResponseParams = {
+type sendMsgCreateOperatorResponseParams = {
+    value: MsgCreateOperatorResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgBindOperatorEVMAccountParams = {
+    value: MsgBindOperatorEVMAccount;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgBindOperatorEVMAccountResponseParams = {
+    value: MsgBindOperatorEVMAccountResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgSetManagerRegionResponseParams = {
     value: MsgSetManagerRegionResponse;
+    fee?: StdFee;
+    memo?: string;
 };
-type queryGetSuperiorRequestParams = {
-    value: QueryGetSuperiorRequest;
+type sendMsgActivateManagerResponseParams = {
+    value: MsgActivateManagerResponse;
+    fee?: StdFee;
+    memo?: string;
 };
-type msgUpdateParamsResponseParams = {
-    value: MsgUpdateParamsResponse;
+type sendQueryGetOperatorResponseParams = {
+    value: QueryGetOperatorResponse;
+    fee?: StdFee;
+    memo?: string;
 };
-type msgActivateManagerParams = {
-    value: MsgActivateManager;
+type sendMsgGoWorkingParams = {
+    value: MsgGoWorking;
+    fee?: StdFee;
+    memo?: string;
 };
-type queryAllOperatorRequestParams = {
-    value: QueryAllOperatorRequest;
+type sendMsgGoWorkingResponseParams = {
+    value: MsgGoWorkingResponse;
+    fee?: StdFee;
+    memo?: string;
 };
-type queryAllManagerResponseParams = {
-    value: QueryAllManagerResponse;
+type sendMsgCreateSuperiorResponseParams = {
+    value: MsgCreateSuperiorResponse;
+    fee?: StdFee;
+    memo?: string;
 };
-type queryGetManagerByRegionResponseParams = {
-    value: QueryGetManagerByRegionResponse;
+type sendQueryGetManagerRequestParams = {
+    value: QueryGetManagerRequest;
+    fee?: StdFee;
+    memo?: string;
 };
-type msgSetManagerRegionParams = {
+type sendMsgSetManagerRegionParams = {
     value: MsgSetManagerRegion;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgActivateManagerParams = {
+    value: MsgActivateManager;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateOperatorBasicInfoResponseParams = {
+    value: MsgUpdateOperatorBasicInfoResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryAllManagerResponseParams = {
+    value: QueryAllManagerResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type msgUpdateManagerConnParamsResponseParams = {
+    value: MsgUpdateManagerConnParamsResponse;
+};
+type msgUpdateSuperiorResponseParams = {
+    value: MsgUpdateSuperiorResponse;
 };
 type paramsParams = {
     value: Params;
@@ -306,23 +273,62 @@ type paramsParams = {
 type queryParamsRequestParams = {
     value: QueryParamsRequest;
 };
-type msgActivateManagerResponseParams = {
-    value: MsgActivateManagerResponse;
+type queryAllOperatorRequestParams = {
+    value: QueryAllOperatorRequest;
+};
+type superiorParams = {
+    value: Superior;
+};
+type msgUpdateParamsResponseParams = {
+    value: MsgUpdateParamsResponse;
 };
 type msgBindOperatorManagerAccountParams = {
     value: MsgBindOperatorManagerAccount;
 };
-type msgUpdateManagerConnParamsResponseParams = {
-    value: MsgUpdateManagerConnParamsResponse;
+type queryAllOperatorResponseParams = {
+    value: QueryAllOperatorResponse;
 };
-type msgGoWorkingParams = {
-    value: MsgGoWorking;
+type queryAllManagerRequestParams = {
+    value: QueryAllManagerRequest;
 };
-type msgGoWorkingResponseParams = {
-    value: MsgGoWorkingResponse;
+type queryGetManagerByRegionResponseParams = {
+    value: QueryGetManagerByRegionResponse;
 };
-type queryGetManagerByRegionRequestParams = {
-    value: QueryGetManagerByRegionRequest;
+type queryGetSuperiorRequestParams = {
+    value: QueryGetSuperiorRequest;
+};
+type managerParams = {
+    value: Manager;
+};
+type msgUpdateManagerConnParamsParams = {
+    value: MsgUpdateManagerConnParams;
+};
+type queryGetManagerResponseParams = {
+    value: QueryGetManagerResponse;
+};
+type msgBindOperatorManagerAccountResponseParams = {
+    value: MsgBindOperatorManagerAccountResponse;
+};
+type msgRegisterManagerParams = {
+    value: MsgRegisterManager;
+};
+type queryParamsResponseParams = {
+    value: QueryParamsResponse;
+};
+type operatorParams = {
+    value: Operator;
+};
+type queryGetOperatorRequestParams = {
+    value: QueryGetOperatorRequest;
+};
+type msgUpdateParamsParams = {
+    value: MsgUpdateParams;
+};
+type msgCreateOperatorParams = {
+    value: MsgCreateOperator;
+};
+type msgUpdateSuperiorParams = {
+    value: MsgUpdateSuperior;
 };
 type queryGetSuperiorResponseParams = {
     value: QueryGetSuperiorResponse;
@@ -330,65 +336,59 @@ type queryGetSuperiorResponseParams = {
 type genesisStateParams = {
     value: GenesisState;
 };
-type managerParams = {
-    value: Manager;
-};
-type msgCreateSuperiorResponseParams = {
-    value: MsgCreateSuperiorResponse;
-};
-type msgUpdateSuperiorResponseParams = {
-    value: MsgUpdateSuperiorResponse;
-};
-type msgUpdateManagerConnParamsParams = {
-    value: MsgUpdateManagerConnParams;
-};
-type msgUpdateOperatorBasicInfoResponseParams = {
-    value: MsgUpdateOperatorBasicInfoResponse;
-};
-type queryGetOperatorRequestParams = {
-    value: QueryGetOperatorRequest;
-};
-type queryGetManagerRequestParams = {
-    value: QueryGetManagerRequest;
-};
-type queryAllManagerRequestParams = {
-    value: QueryAllManagerRequest;
-};
-type msgCreateOperatorResponseParams = {
-    value: MsgCreateOperatorResponse;
-};
-type msgBindOperatorEvmaccountResponseParams = {
-    value: MsgBindOperatorEVMAccountResponse;
-};
 type msgUpdateOperatorBasicInfoParams = {
     value: MsgUpdateOperatorBasicInfo;
 };
-type msgUpdateSuperiorParams = {
-    value: MsgUpdateSuperior;
-};
-type queryParamsResponseParams = {
-    value: QueryParamsResponse;
-};
-type queryAllOperatorResponseParams = {
-    value: QueryAllOperatorResponse;
-};
-type queryGetManagerResponseParams = {
-    value: QueryGetManagerResponse;
-};
-type msgRegisterManagerParams = {
-    value: MsgRegisterManager;
+type msgCreateSuperiorParams = {
+    value: MsgCreateSuperior;
 };
 type msgRegisterManagerResponseParams = {
     value: MsgRegisterManagerResponse;
 };
-type superiorParams = {
-    value: Superior;
+type queryGetManagerByRegionRequestParams = {
+    value: QueryGetManagerByRegionRequest;
 };
-type msgUpdateParamsParams = {
-    value: MsgUpdateParams;
+type msgCreateOperatorResponseParams = {
+    value: MsgCreateOperatorResponse;
 };
-type msgCreateOperatorParams = {
-    value: MsgCreateOperator;
+type msgBindOperatorEvmaccountParams = {
+    value: MsgBindOperatorEVMAccount;
+};
+type msgBindOperatorEvmaccountResponseParams = {
+    value: MsgBindOperatorEVMAccountResponse;
+};
+type msgSetManagerRegionResponseParams = {
+    value: MsgSetManagerRegionResponse;
+};
+type msgActivateManagerResponseParams = {
+    value: MsgActivateManagerResponse;
+};
+type queryGetOperatorResponseParams = {
+    value: QueryGetOperatorResponse;
+};
+type msgGoWorkingParams = {
+    value: MsgGoWorking;
+};
+type msgGoWorkingResponseParams = {
+    value: MsgGoWorkingResponse;
+};
+type msgCreateSuperiorResponseParams = {
+    value: MsgCreateSuperiorResponse;
+};
+type queryGetManagerRequestParams = {
+    value: QueryGetManagerRequest;
+};
+type msgSetManagerRegionParams = {
+    value: MsgSetManagerRegion;
+};
+type msgActivateManagerParams = {
+    value: MsgActivateManager;
+};
+type msgUpdateOperatorBasicInfoResponseParams = {
+    value: MsgUpdateOperatorBasicInfoResponse;
+};
+type queryAllManagerResponseParams = {
+    value: QueryAllManagerResponse;
 };
 export declare const registry: any;
 interface TxClientOptions {
@@ -397,92 +397,92 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendMsgBindOperatorEVMAccount({ value, fee, memo }: sendMsgBindOperatorEVMAccountParams): Promise<DeliverTxResponse>;
-    sendOperator({ value, fee, memo }: sendOperatorParams): Promise<DeliverTxResponse>;
-    sendMsgCreateSuperior({ value, fee, memo }: sendMsgCreateSuperiorParams): Promise<DeliverTxResponse>;
-    sendQueryGetOperatorResponse({ value, fee, memo }: sendQueryGetOperatorResponseParams): Promise<DeliverTxResponse>;
-    sendMsgBindOperatorManagerAccountResponse({ value, fee, memo }: sendMsgBindOperatorManagerAccountResponseParams): Promise<DeliverTxResponse>;
-    sendMsgSetManagerRegionResponse({ value, fee, memo }: sendMsgSetManagerRegionResponseParams): Promise<DeliverTxResponse>;
-    sendQueryGetSuperiorRequest({ value, fee, memo }: sendQueryGetSuperiorRequestParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
-    sendMsgActivateManager({ value, fee, memo }: sendMsgActivateManagerParams): Promise<DeliverTxResponse>;
-    sendQueryAllOperatorRequest({ value, fee, memo }: sendQueryAllOperatorRequestParams): Promise<DeliverTxResponse>;
-    sendQueryAllManagerResponse({ value, fee, memo }: sendQueryAllManagerResponseParams): Promise<DeliverTxResponse>;
-    sendQueryGetManagerByRegionResponse({ value, fee, memo }: sendQueryGetManagerByRegionResponseParams): Promise<DeliverTxResponse>;
-    sendMsgSetManagerRegion({ value, fee, memo }: sendMsgSetManagerRegionParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateManagerConnParamsResponse({ value, fee, memo }: sendMsgUpdateManagerConnParamsResponseParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateSuperiorResponse({ value, fee, memo }: sendMsgUpdateSuperiorResponseParams): Promise<DeliverTxResponse>;
     sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
     sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
-    sendMsgActivateManagerResponse({ value, fee, memo }: sendMsgActivateManagerResponseParams): Promise<DeliverTxResponse>;
-    sendMsgBindOperatorManagerAccount({ value, fee, memo }: sendMsgBindOperatorManagerAccountParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateManagerConnParamsResponse({ value, fee, memo }: sendMsgUpdateManagerConnParamsResponseParams): Promise<DeliverTxResponse>;
-    sendMsgGoWorking({ value, fee, memo }: sendMsgGoWorkingParams): Promise<DeliverTxResponse>;
-    sendMsgGoWorkingResponse({ value, fee, memo }: sendMsgGoWorkingResponseParams): Promise<DeliverTxResponse>;
-    sendQueryGetManagerByRegionRequest({ value, fee, memo }: sendQueryGetManagerByRegionRequestParams): Promise<DeliverTxResponse>;
-    sendQueryGetSuperiorResponse({ value, fee, memo }: sendQueryGetSuperiorResponseParams): Promise<DeliverTxResponse>;
-    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
-    sendManager({ value, fee, memo }: sendManagerParams): Promise<DeliverTxResponse>;
-    sendMsgCreateSuperiorResponse({ value, fee, memo }: sendMsgCreateSuperiorResponseParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateSuperiorResponse({ value, fee, memo }: sendMsgUpdateSuperiorResponseParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateManagerConnParams({ value, fee, memo }: sendMsgUpdateManagerConnParamsParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateOperatorBasicInfoResponse({ value, fee, memo }: sendMsgUpdateOperatorBasicInfoResponseParams): Promise<DeliverTxResponse>;
-    sendQueryGetOperatorRequest({ value, fee, memo }: sendQueryGetOperatorRequestParams): Promise<DeliverTxResponse>;
-    sendQueryGetManagerRequest({ value, fee, memo }: sendQueryGetManagerRequestParams): Promise<DeliverTxResponse>;
-    sendQueryAllManagerRequest({ value, fee, memo }: sendQueryAllManagerRequestParams): Promise<DeliverTxResponse>;
-    sendMsgCreateOperatorResponse({ value, fee, memo }: sendMsgCreateOperatorResponseParams): Promise<DeliverTxResponse>;
-    sendMsgBindOperatorEVMAccountResponse({ value, fee, memo }: sendMsgBindOperatorEVMAccountResponseParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateOperatorBasicInfo({ value, fee, memo }: sendMsgUpdateOperatorBasicInfoParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateSuperior({ value, fee, memo }: sendMsgUpdateSuperiorParams): Promise<DeliverTxResponse>;
-    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
-    sendQueryAllOperatorResponse({ value, fee, memo }: sendQueryAllOperatorResponseParams): Promise<DeliverTxResponse>;
-    sendQueryGetManagerResponse({ value, fee, memo }: sendQueryGetManagerResponseParams): Promise<DeliverTxResponse>;
-    sendMsgRegisterManager({ value, fee, memo }: sendMsgRegisterManagerParams): Promise<DeliverTxResponse>;
-    sendMsgRegisterManagerResponse({ value, fee, memo }: sendMsgRegisterManagerResponseParams): Promise<DeliverTxResponse>;
+    sendQueryAllOperatorRequest({ value, fee, memo }: sendQueryAllOperatorRequestParams): Promise<DeliverTxResponse>;
     sendSuperior({ value, fee, memo }: sendSuperiorParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
+    sendMsgBindOperatorManagerAccount({ value, fee, memo }: sendMsgBindOperatorManagerAccountParams): Promise<DeliverTxResponse>;
+    sendQueryAllOperatorResponse({ value, fee, memo }: sendQueryAllOperatorResponseParams): Promise<DeliverTxResponse>;
+    sendQueryAllManagerRequest({ value, fee, memo }: sendQueryAllManagerRequestParams): Promise<DeliverTxResponse>;
+    sendQueryGetManagerByRegionResponse({ value, fee, memo }: sendQueryGetManagerByRegionResponseParams): Promise<DeliverTxResponse>;
+    sendQueryGetSuperiorRequest({ value, fee, memo }: sendQueryGetSuperiorRequestParams): Promise<DeliverTxResponse>;
+    sendManager({ value, fee, memo }: sendManagerParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateManagerConnParams({ value, fee, memo }: sendMsgUpdateManagerConnParamsParams): Promise<DeliverTxResponse>;
+    sendQueryGetManagerResponse({ value, fee, memo }: sendQueryGetManagerResponseParams): Promise<DeliverTxResponse>;
+    sendMsgBindOperatorManagerAccountResponse({ value, fee, memo }: sendMsgBindOperatorManagerAccountResponseParams): Promise<DeliverTxResponse>;
+    sendMsgRegisterManager({ value, fee, memo }: sendMsgRegisterManagerParams): Promise<DeliverTxResponse>;
+    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
+    sendOperator({ value, fee, memo }: sendOperatorParams): Promise<DeliverTxResponse>;
+    sendQueryGetOperatorRequest({ value, fee, memo }: sendQueryGetOperatorRequestParams): Promise<DeliverTxResponse>;
     sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
     sendMsgCreateOperator({ value, fee, memo }: sendMsgCreateOperatorParams): Promise<DeliverTxResponse>;
-    msgBindOperatorEvmaccount({ value }: msgBindOperatorEvmaccountParams): EncodeObject;
-    operator({ value }: operatorParams): EncodeObject;
-    msgCreateSuperior({ value }: msgCreateSuperiorParams): EncodeObject;
-    queryGetOperatorResponse({ value }: queryGetOperatorResponseParams): EncodeObject;
-    msgBindOperatorManagerAccountResponse({ value }: msgBindOperatorManagerAccountResponseParams): EncodeObject;
-    msgSetManagerRegionResponse({ value }: msgSetManagerRegionResponseParams): EncodeObject;
-    queryGetSuperiorRequest({ value }: queryGetSuperiorRequestParams): EncodeObject;
-    msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
-    msgActivateManager({ value }: msgActivateManagerParams): EncodeObject;
-    queryAllOperatorRequest({ value }: queryAllOperatorRequestParams): EncodeObject;
-    queryAllManagerResponse({ value }: queryAllManagerResponseParams): EncodeObject;
-    queryGetManagerByRegionResponse({ value }: queryGetManagerByRegionResponseParams): EncodeObject;
-    msgSetManagerRegion({ value }: msgSetManagerRegionParams): EncodeObject;
+    sendMsgUpdateSuperior({ value, fee, memo }: sendMsgUpdateSuperiorParams): Promise<DeliverTxResponse>;
+    sendQueryGetSuperiorResponse({ value, fee, memo }: sendQueryGetSuperiorResponseParams): Promise<DeliverTxResponse>;
+    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateOperatorBasicInfo({ value, fee, memo }: sendMsgUpdateOperatorBasicInfoParams): Promise<DeliverTxResponse>;
+    sendMsgCreateSuperior({ value, fee, memo }: sendMsgCreateSuperiorParams): Promise<DeliverTxResponse>;
+    sendMsgRegisterManagerResponse({ value, fee, memo }: sendMsgRegisterManagerResponseParams): Promise<DeliverTxResponse>;
+    sendQueryGetManagerByRegionRequest({ value, fee, memo }: sendQueryGetManagerByRegionRequestParams): Promise<DeliverTxResponse>;
+    sendMsgCreateOperatorResponse({ value, fee, memo }: sendMsgCreateOperatorResponseParams): Promise<DeliverTxResponse>;
+    sendMsgBindOperatorEVMAccount({ value, fee, memo }: sendMsgBindOperatorEVMAccountParams): Promise<DeliverTxResponse>;
+    sendMsgBindOperatorEVMAccountResponse({ value, fee, memo }: sendMsgBindOperatorEVMAccountResponseParams): Promise<DeliverTxResponse>;
+    sendMsgSetManagerRegionResponse({ value, fee, memo }: sendMsgSetManagerRegionResponseParams): Promise<DeliverTxResponse>;
+    sendMsgActivateManagerResponse({ value, fee, memo }: sendMsgActivateManagerResponseParams): Promise<DeliverTxResponse>;
+    sendQueryGetOperatorResponse({ value, fee, memo }: sendQueryGetOperatorResponseParams): Promise<DeliverTxResponse>;
+    sendMsgGoWorking({ value, fee, memo }: sendMsgGoWorkingParams): Promise<DeliverTxResponse>;
+    sendMsgGoWorkingResponse({ value, fee, memo }: sendMsgGoWorkingResponseParams): Promise<DeliverTxResponse>;
+    sendMsgCreateSuperiorResponse({ value, fee, memo }: sendMsgCreateSuperiorResponseParams): Promise<DeliverTxResponse>;
+    sendQueryGetManagerRequest({ value, fee, memo }: sendQueryGetManagerRequestParams): Promise<DeliverTxResponse>;
+    sendMsgSetManagerRegion({ value, fee, memo }: sendMsgSetManagerRegionParams): Promise<DeliverTxResponse>;
+    sendMsgActivateManager({ value, fee, memo }: sendMsgActivateManagerParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateOperatorBasicInfoResponse({ value, fee, memo }: sendMsgUpdateOperatorBasicInfoResponseParams): Promise<DeliverTxResponse>;
+    sendQueryAllManagerResponse({ value, fee, memo }: sendQueryAllManagerResponseParams): Promise<DeliverTxResponse>;
+    msgUpdateManagerConnParamsResponse({ value }: msgUpdateManagerConnParamsResponseParams): EncodeObject;
+    msgUpdateSuperiorResponse({ value }: msgUpdateSuperiorResponseParams): EncodeObject;
     params({ value }: paramsParams): EncodeObject;
     queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
-    msgActivateManagerResponse({ value }: msgActivateManagerResponseParams): EncodeObject;
-    msgBindOperatorManagerAccount({ value }: msgBindOperatorManagerAccountParams): EncodeObject;
-    msgUpdateManagerConnParamsResponse({ value }: msgUpdateManagerConnParamsResponseParams): EncodeObject;
-    msgGoWorking({ value }: msgGoWorkingParams): EncodeObject;
-    msgGoWorkingResponse({ value }: msgGoWorkingResponseParams): EncodeObject;
-    queryGetManagerByRegionRequest({ value }: queryGetManagerByRegionRequestParams): EncodeObject;
-    queryGetSuperiorResponse({ value }: queryGetSuperiorResponseParams): EncodeObject;
-    genesisState({ value }: genesisStateParams): EncodeObject;
-    manager({ value }: managerParams): EncodeObject;
-    msgCreateSuperiorResponse({ value }: msgCreateSuperiorResponseParams): EncodeObject;
-    msgUpdateSuperiorResponse({ value }: msgUpdateSuperiorResponseParams): EncodeObject;
-    msgUpdateManagerConnParams({ value }: msgUpdateManagerConnParamsParams): EncodeObject;
-    msgUpdateOperatorBasicInfoResponse({ value }: msgUpdateOperatorBasicInfoResponseParams): EncodeObject;
-    queryGetOperatorRequest({ value }: queryGetOperatorRequestParams): EncodeObject;
-    queryGetManagerRequest({ value }: queryGetManagerRequestParams): EncodeObject;
-    queryAllManagerRequest({ value }: queryAllManagerRequestParams): EncodeObject;
-    msgCreateOperatorResponse({ value }: msgCreateOperatorResponseParams): EncodeObject;
-    msgBindOperatorEvmaccountResponse({ value }: msgBindOperatorEvmaccountResponseParams): EncodeObject;
-    msgUpdateOperatorBasicInfo({ value }: msgUpdateOperatorBasicInfoParams): EncodeObject;
-    msgUpdateSuperior({ value }: msgUpdateSuperiorParams): EncodeObject;
-    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
-    queryAllOperatorResponse({ value }: queryAllOperatorResponseParams): EncodeObject;
-    queryGetManagerResponse({ value }: queryGetManagerResponseParams): EncodeObject;
-    msgRegisterManager({ value }: msgRegisterManagerParams): EncodeObject;
-    msgRegisterManagerResponse({ value }: msgRegisterManagerResponseParams): EncodeObject;
+    queryAllOperatorRequest({ value }: queryAllOperatorRequestParams): EncodeObject;
     superior({ value }: superiorParams): EncodeObject;
+    msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
+    msgBindOperatorManagerAccount({ value }: msgBindOperatorManagerAccountParams): EncodeObject;
+    queryAllOperatorResponse({ value }: queryAllOperatorResponseParams): EncodeObject;
+    queryAllManagerRequest({ value }: queryAllManagerRequestParams): EncodeObject;
+    queryGetManagerByRegionResponse({ value }: queryGetManagerByRegionResponseParams): EncodeObject;
+    queryGetSuperiorRequest({ value }: queryGetSuperiorRequestParams): EncodeObject;
+    manager({ value }: managerParams): EncodeObject;
+    msgUpdateManagerConnParams({ value }: msgUpdateManagerConnParamsParams): EncodeObject;
+    queryGetManagerResponse({ value }: queryGetManagerResponseParams): EncodeObject;
+    msgBindOperatorManagerAccountResponse({ value }: msgBindOperatorManagerAccountResponseParams): EncodeObject;
+    msgRegisterManager({ value }: msgRegisterManagerParams): EncodeObject;
+    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
+    operator({ value }: operatorParams): EncodeObject;
+    queryGetOperatorRequest({ value }: queryGetOperatorRequestParams): EncodeObject;
     msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
     msgCreateOperator({ value }: msgCreateOperatorParams): EncodeObject;
+    msgUpdateSuperior({ value }: msgUpdateSuperiorParams): EncodeObject;
+    queryGetSuperiorResponse({ value }: queryGetSuperiorResponseParams): EncodeObject;
+    genesisState({ value }: genesisStateParams): EncodeObject;
+    msgUpdateOperatorBasicInfo({ value }: msgUpdateOperatorBasicInfoParams): EncodeObject;
+    msgCreateSuperior({ value }: msgCreateSuperiorParams): EncodeObject;
+    msgRegisterManagerResponse({ value }: msgRegisterManagerResponseParams): EncodeObject;
+    queryGetManagerByRegionRequest({ value }: queryGetManagerByRegionRequestParams): EncodeObject;
+    msgCreateOperatorResponse({ value }: msgCreateOperatorResponseParams): EncodeObject;
+    msgBindOperatorEvmaccount({ value }: msgBindOperatorEvmaccountParams): EncodeObject;
+    msgBindOperatorEvmaccountResponse({ value }: msgBindOperatorEvmaccountResponseParams): EncodeObject;
+    msgSetManagerRegionResponse({ value }: msgSetManagerRegionResponseParams): EncodeObject;
+    msgActivateManagerResponse({ value }: msgActivateManagerResponseParams): EncodeObject;
+    queryGetOperatorResponse({ value }: queryGetOperatorResponseParams): EncodeObject;
+    msgGoWorking({ value }: msgGoWorkingParams): EncodeObject;
+    msgGoWorkingResponse({ value }: msgGoWorkingResponseParams): EncodeObject;
+    msgCreateSuperiorResponse({ value }: msgCreateSuperiorResponseParams): EncodeObject;
+    queryGetManagerRequest({ value }: queryGetManagerRequestParams): EncodeObject;
+    msgSetManagerRegion({ value }: msgSetManagerRegionParams): EncodeObject;
+    msgActivateManager({ value }: msgActivateManagerParams): EncodeObject;
+    msgUpdateOperatorBasicInfoResponse({ value }: msgUpdateOperatorBasicInfoResponseParams): EncodeObject;
+    queryAllManagerResponse({ value }: queryAllManagerResponseParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

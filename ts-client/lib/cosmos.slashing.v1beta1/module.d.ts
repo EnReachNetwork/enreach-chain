@@ -2,55 +2,30 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { GenesisState } from "./types/cosmos/slashing/v1beta1/genesis";
-import { QuerySigningInfoRequest } from "./types/cosmos/slashing/v1beta1/query";
-import { QuerySigningInfosRequest } from "./types/cosmos/slashing/v1beta1/query";
-import { MsgUpdateParamsResponse } from "./types/cosmos/slashing/v1beta1/tx";
-import { MissedBlock } from "./types/cosmos/slashing/v1beta1/genesis";
-import { QueryParamsRequest } from "./types/cosmos/slashing/v1beta1/query";
-import { QueryParamsResponse } from "./types/cosmos/slashing/v1beta1/query";
-import { MsgUnjailResponse } from "./types/cosmos/slashing/v1beta1/tx";
 import { ValidatorSigningInfo } from "./types/cosmos/slashing/v1beta1/slashing";
+import { QuerySigningInfosResponse } from "./types/cosmos/slashing/v1beta1/query";
+import { MsgUnjailResponse } from "./types/cosmos/slashing/v1beta1/tx";
+import { MsgUpdateParamsResponse } from "./types/cosmos/slashing/v1beta1/tx";
+import { ValidatorMissedBlocks } from "./types/cosmos/slashing/v1beta1/genesis";
+import { MissedBlock } from "./types/cosmos/slashing/v1beta1/genesis";
+import { Params } from "./types/cosmos/slashing/v1beta1/slashing";
+import { QueryParamsResponse } from "./types/cosmos/slashing/v1beta1/query";
+import { QuerySigningInfosRequest } from "./types/cosmos/slashing/v1beta1/query";
+import { SigningInfo } from "./types/cosmos/slashing/v1beta1/genesis";
+import { QueryParamsRequest } from "./types/cosmos/slashing/v1beta1/query";
+import { QuerySigningInfoRequest } from "./types/cosmos/slashing/v1beta1/query";
 import { QuerySigningInfoResponse } from "./types/cosmos/slashing/v1beta1/query";
 import { MsgUnjail } from "./types/cosmos/slashing/v1beta1/tx";
 import { MsgUpdateParams } from "./types/cosmos/slashing/v1beta1/tx";
-import { Params } from "./types/cosmos/slashing/v1beta1/slashing";
-import { SigningInfo } from "./types/cosmos/slashing/v1beta1/genesis";
-import { ValidatorMissedBlocks } from "./types/cosmos/slashing/v1beta1/genesis";
-import { QuerySigningInfosResponse } from "./types/cosmos/slashing/v1beta1/query";
-export { GenesisState, QuerySigningInfoRequest, QuerySigningInfosRequest, MsgUpdateParamsResponse, MissedBlock, QueryParamsRequest, QueryParamsResponse, MsgUnjailResponse, ValidatorSigningInfo, QuerySigningInfoResponse, MsgUnjail, MsgUpdateParams, Params, SigningInfo, ValidatorMissedBlocks, QuerySigningInfosResponse };
-type sendGenesisStateParams = {
-    value: GenesisState;
+import { GenesisState } from "./types/cosmos/slashing/v1beta1/genesis";
+export { ValidatorSigningInfo, QuerySigningInfosResponse, MsgUnjailResponse, MsgUpdateParamsResponse, ValidatorMissedBlocks, MissedBlock, Params, QueryParamsResponse, QuerySigningInfosRequest, SigningInfo, QueryParamsRequest, QuerySigningInfoRequest, QuerySigningInfoResponse, MsgUnjail, MsgUpdateParams, GenesisState };
+type sendValidatorSigningInfoParams = {
+    value: ValidatorSigningInfo;
     fee?: StdFee;
     memo?: string;
 };
-type sendQuerySigningInfoRequestParams = {
-    value: QuerySigningInfoRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQuerySigningInfosRequestParams = {
-    value: QuerySigningInfosRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUpdateParamsResponseParams = {
-    value: MsgUpdateParamsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMissedBlockParams = {
-    value: MissedBlock;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryParamsRequestParams = {
-    value: QueryParamsRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryParamsResponseParams = {
-    value: QueryParamsResponse;
+type sendQuerySigningInfosResponseParams = {
+    value: QuerySigningInfosResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -59,8 +34,48 @@ type sendMsgUnjailResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendValidatorSigningInfoParams = {
-    value: ValidatorSigningInfo;
+type sendMsgUpdateParamsResponseParams = {
+    value: MsgUpdateParamsResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendValidatorMissedBlocksParams = {
+    value: ValidatorMissedBlocks;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMissedBlockParams = {
+    value: MissedBlock;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendParamsParams = {
+    value: Params;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryParamsResponseParams = {
+    value: QueryParamsResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQuerySigningInfosRequestParams = {
+    value: QuerySigningInfosRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendSigningInfoParams = {
+    value: SigningInfo;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryParamsRequestParams = {
+    value: QueryParamsRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQuerySigningInfoRequestParams = {
+    value: QuerySigningInfoRequest;
     fee?: StdFee;
     memo?: string;
 };
@@ -79,52 +94,46 @@ type sendMsgUpdateParamsParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendParamsParams = {
-    value: Params;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendSigningInfoParams = {
-    value: SigningInfo;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendValidatorMissedBlocksParams = {
-    value: ValidatorMissedBlocks;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQuerySigningInfosResponseParams = {
-    value: QuerySigningInfosResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type genesisStateParams = {
+type sendGenesisStateParams = {
     value: GenesisState;
+    fee?: StdFee;
+    memo?: string;
 };
-type querySigningInfoRequestParams = {
-    value: QuerySigningInfoRequest;
+type validatorSigningInfoParams = {
+    value: ValidatorSigningInfo;
 };
-type querySigningInfosRequestParams = {
-    value: QuerySigningInfosRequest;
-};
-type msgUpdateParamsResponseParams = {
-    value: MsgUpdateParamsResponse;
-};
-type missedBlockParams = {
-    value: MissedBlock;
-};
-type queryParamsRequestParams = {
-    value: QueryParamsRequest;
-};
-type queryParamsResponseParams = {
-    value: QueryParamsResponse;
+type querySigningInfosResponseParams = {
+    value: QuerySigningInfosResponse;
 };
 type msgUnjailResponseParams = {
     value: MsgUnjailResponse;
 };
-type validatorSigningInfoParams = {
-    value: ValidatorSigningInfo;
+type msgUpdateParamsResponseParams = {
+    value: MsgUpdateParamsResponse;
+};
+type validatorMissedBlocksParams = {
+    value: ValidatorMissedBlocks;
+};
+type missedBlockParams = {
+    value: MissedBlock;
+};
+type paramsParams = {
+    value: Params;
+};
+type queryParamsResponseParams = {
+    value: QueryParamsResponse;
+};
+type querySigningInfosRequestParams = {
+    value: QuerySigningInfosRequest;
+};
+type signingInfoParams = {
+    value: SigningInfo;
+};
+type queryParamsRequestParams = {
+    value: QueryParamsRequest;
+};
+type querySigningInfoRequestParams = {
+    value: QuerySigningInfoRequest;
 };
 type querySigningInfoResponseParams = {
     value: QuerySigningInfoResponse;
@@ -135,17 +144,8 @@ type msgUnjailParams = {
 type msgUpdateParamsParams = {
     value: MsgUpdateParams;
 };
-type paramsParams = {
-    value: Params;
-};
-type signingInfoParams = {
-    value: SigningInfo;
-};
-type validatorMissedBlocksParams = {
-    value: ValidatorMissedBlocks;
-};
-type querySigningInfosResponseParams = {
-    value: QuerySigningInfosResponse;
+type genesisStateParams = {
+    value: GenesisState;
 };
 export declare const registry: any;
 interface TxClientOptions {
@@ -154,38 +154,38 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
-    sendQuerySigningInfoRequest({ value, fee, memo }: sendQuerySigningInfoRequestParams): Promise<DeliverTxResponse>;
-    sendQuerySigningInfosRequest({ value, fee, memo }: sendQuerySigningInfosRequestParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
-    sendMissedBlock({ value, fee, memo }: sendMissedBlockParams): Promise<DeliverTxResponse>;
-    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
-    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
-    sendMsgUnjailResponse({ value, fee, memo }: sendMsgUnjailResponseParams): Promise<DeliverTxResponse>;
     sendValidatorSigningInfo({ value, fee, memo }: sendValidatorSigningInfoParams): Promise<DeliverTxResponse>;
+    sendQuerySigningInfosResponse({ value, fee, memo }: sendQuerySigningInfosResponseParams): Promise<DeliverTxResponse>;
+    sendMsgUnjailResponse({ value, fee, memo }: sendMsgUnjailResponseParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
+    sendValidatorMissedBlocks({ value, fee, memo }: sendValidatorMissedBlocksParams): Promise<DeliverTxResponse>;
+    sendMissedBlock({ value, fee, memo }: sendMissedBlockParams): Promise<DeliverTxResponse>;
+    sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
+    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
+    sendQuerySigningInfosRequest({ value, fee, memo }: sendQuerySigningInfosRequestParams): Promise<DeliverTxResponse>;
+    sendSigningInfo({ value, fee, memo }: sendSigningInfoParams): Promise<DeliverTxResponse>;
+    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
+    sendQuerySigningInfoRequest({ value, fee, memo }: sendQuerySigningInfoRequestParams): Promise<DeliverTxResponse>;
     sendQuerySigningInfoResponse({ value, fee, memo }: sendQuerySigningInfoResponseParams): Promise<DeliverTxResponse>;
     sendMsgUnjail({ value, fee, memo }: sendMsgUnjailParams): Promise<DeliverTxResponse>;
     sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
-    sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
-    sendSigningInfo({ value, fee, memo }: sendSigningInfoParams): Promise<DeliverTxResponse>;
-    sendValidatorMissedBlocks({ value, fee, memo }: sendValidatorMissedBlocksParams): Promise<DeliverTxResponse>;
-    sendQuerySigningInfosResponse({ value, fee, memo }: sendQuerySigningInfosResponseParams): Promise<DeliverTxResponse>;
-    genesisState({ value }: genesisStateParams): EncodeObject;
-    querySigningInfoRequest({ value }: querySigningInfoRequestParams): EncodeObject;
-    querySigningInfosRequest({ value }: querySigningInfosRequestParams): EncodeObject;
-    msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
-    missedBlock({ value }: missedBlockParams): EncodeObject;
-    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
-    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
-    msgUnjailResponse({ value }: msgUnjailResponseParams): EncodeObject;
+    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
     validatorSigningInfo({ value }: validatorSigningInfoParams): EncodeObject;
+    querySigningInfosResponse({ value }: querySigningInfosResponseParams): EncodeObject;
+    msgUnjailResponse({ value }: msgUnjailResponseParams): EncodeObject;
+    msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
+    validatorMissedBlocks({ value }: validatorMissedBlocksParams): EncodeObject;
+    missedBlock({ value }: missedBlockParams): EncodeObject;
+    params({ value }: paramsParams): EncodeObject;
+    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
+    querySigningInfosRequest({ value }: querySigningInfosRequestParams): EncodeObject;
+    signingInfo({ value }: signingInfoParams): EncodeObject;
+    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
+    querySigningInfoRequest({ value }: querySigningInfoRequestParams): EncodeObject;
     querySigningInfoResponse({ value }: querySigningInfoResponseParams): EncodeObject;
     msgUnjail({ value }: msgUnjailParams): EncodeObject;
     msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
-    params({ value }: paramsParams): EncodeObject;
-    signingInfo({ value }: signingInfoParams): EncodeObject;
-    validatorMissedBlocks({ value }: validatorMissedBlocksParams): EncodeObject;
-    querySigningInfosResponse({ value }: querySigningInfosResponseParams): EncodeObject;
+    genesisState({ value }: genesisStateParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

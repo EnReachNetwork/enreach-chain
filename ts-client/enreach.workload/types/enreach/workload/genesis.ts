@@ -11,11 +11,12 @@ export interface GenesisState {
   /** params defines all the parameters of the module. */
   params: Params | undefined;
   superior: Superior | undefined;
-  epochInfo: EpochInfo | undefined;
+  currentEpoch: EpochInfo | undefined;
+  pendingNextEpoch: EpochInfo | undefined;
 }
 
 function createBaseGenesisState(): GenesisState {
-  return { params: undefined, superior: undefined, epochInfo: undefined };
+  return { params: undefined, superior: undefined, currentEpoch: undefined, pendingNextEpoch: undefined };
 }
 
 export const GenesisState = {
@@ -26,8 +27,11 @@ export const GenesisState = {
     if (message.superior !== undefined) {
       Superior.encode(message.superior, writer.uint32(18).fork()).ldelim();
     }
-    if (message.epochInfo !== undefined) {
-      EpochInfo.encode(message.epochInfo, writer.uint32(26).fork()).ldelim();
+    if (message.currentEpoch !== undefined) {
+      EpochInfo.encode(message.currentEpoch, writer.uint32(26).fork()).ldelim();
+    }
+    if (message.pendingNextEpoch !== undefined) {
+      EpochInfo.encode(message.pendingNextEpoch, writer.uint32(34).fork()).ldelim();
     }
     return writer;
   },
@@ -58,7 +62,14 @@ export const GenesisState = {
             break;
           }
 
-          message.epochInfo = EpochInfo.decode(reader, reader.uint32());
+          message.currentEpoch = EpochInfo.decode(reader, reader.uint32());
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.pendingNextEpoch = EpochInfo.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -73,7 +84,8 @@ export const GenesisState = {
     return {
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
       superior: isSet(object.superior) ? Superior.fromJSON(object.superior) : undefined,
-      epochInfo: isSet(object.epochInfo) ? EpochInfo.fromJSON(object.epochInfo) : undefined,
+      currentEpoch: isSet(object.currentEpoch) ? EpochInfo.fromJSON(object.currentEpoch) : undefined,
+      pendingNextEpoch: isSet(object.pendingNextEpoch) ? EpochInfo.fromJSON(object.pendingNextEpoch) : undefined,
     };
   },
 
@@ -85,8 +97,11 @@ export const GenesisState = {
     if (message.superior !== undefined) {
       obj.superior = Superior.toJSON(message.superior);
     }
-    if (message.epochInfo !== undefined) {
-      obj.epochInfo = EpochInfo.toJSON(message.epochInfo);
+    if (message.currentEpoch !== undefined) {
+      obj.currentEpoch = EpochInfo.toJSON(message.currentEpoch);
+    }
+    if (message.pendingNextEpoch !== undefined) {
+      obj.pendingNextEpoch = EpochInfo.toJSON(message.pendingNextEpoch);
     }
     return obj;
   },
@@ -102,8 +117,11 @@ export const GenesisState = {
     message.superior = (object.superior !== undefined && object.superior !== null)
       ? Superior.fromPartial(object.superior)
       : undefined;
-    message.epochInfo = (object.epochInfo !== undefined && object.epochInfo !== null)
-      ? EpochInfo.fromPartial(object.epochInfo)
+    message.currentEpoch = (object.currentEpoch !== undefined && object.currentEpoch !== null)
+      ? EpochInfo.fromPartial(object.currentEpoch)
+      : undefined;
+    message.pendingNextEpoch = (object.pendingNextEpoch !== undefined && object.pendingNextEpoch !== null)
+      ? EpochInfo.fromPartial(object.pendingNextEpoch)
       : undefined;
     return message;
   },

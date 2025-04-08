@@ -32,7 +32,31 @@ export interface QueryGetCurrentEpochRequest {
 }
 
 export interface QueryGetCurrentEpochResponse {
-  currentEpoch: number;
+  EpochInfo: EpochInfo | undefined;
+}
+
+export interface QueryGetPendingNextEpochRequest {
+}
+
+export interface QueryGetPendingNextEpochResponse {
+  EpochInfo: EpochInfo | undefined;
+}
+
+export interface QueryGetHistoryEpochRequest {
+  epochNumber: number;
+}
+
+export interface QueryGetHistoryEpochResponse {
+  EpochInfo: EpochInfo | undefined;
+}
+
+export interface QueryGetAllHistoryEpochRequest {
+  pagination: PageRequest | undefined;
+}
+
+export interface QueryGetAllHistoryEpochResponse {
+  EpochInfos: EpochInfo[];
+  pagination: PageResponse | undefined;
 }
 
 export interface QueryGetNodeWorkloadRequest {
@@ -233,13 +257,6 @@ export interface QueryGetAllEraProcessDataRequest {
 export interface QueryGetAllEraProcessDataResponse {
   EraProcessDatas: EraProcessData[];
   pagination: PageResponse | undefined;
-}
-
-export interface QueryGetEpochInfoRequest {
-}
-
-export interface QueryGetEpochInfoResponse {
-  EpochInfo: EpochInfo | undefined;
 }
 
 function createBaseQueryParamsRequest(): QueryParamsRequest {
@@ -488,13 +505,13 @@ export const QueryGetCurrentEpochRequest = {
 };
 
 function createBaseQueryGetCurrentEpochResponse(): QueryGetCurrentEpochResponse {
-  return { currentEpoch: 0 };
+  return { EpochInfo: undefined };
 }
 
 export const QueryGetCurrentEpochResponse = {
   encode(message: QueryGetCurrentEpochResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.currentEpoch !== 0) {
-      writer.uint32(8).uint64(message.currentEpoch);
+    if (message.EpochInfo !== undefined) {
+      EpochInfo.encode(message.EpochInfo, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -507,11 +524,11 @@ export const QueryGetCurrentEpochResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          if (tag !== 8) {
+          if (tag !== 10) {
             break;
           }
 
-          message.currentEpoch = longToNumber(reader.uint64() as Long);
+          message.EpochInfo = EpochInfo.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -523,13 +540,13 @@ export const QueryGetCurrentEpochResponse = {
   },
 
   fromJSON(object: any): QueryGetCurrentEpochResponse {
-    return { currentEpoch: isSet(object.currentEpoch) ? Number(object.currentEpoch) : 0 };
+    return { EpochInfo: isSet(object.EpochInfo) ? EpochInfo.fromJSON(object.EpochInfo) : undefined };
   },
 
   toJSON(message: QueryGetCurrentEpochResponse): unknown {
     const obj: any = {};
-    if (message.currentEpoch !== 0) {
-      obj.currentEpoch = Math.round(message.currentEpoch);
+    if (message.EpochInfo !== undefined) {
+      obj.EpochInfo = EpochInfo.toJSON(message.EpochInfo);
     }
     return obj;
   },
@@ -539,7 +556,370 @@ export const QueryGetCurrentEpochResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryGetCurrentEpochResponse>, I>>(object: I): QueryGetCurrentEpochResponse {
     const message = createBaseQueryGetCurrentEpochResponse();
-    message.currentEpoch = object.currentEpoch ?? 0;
+    message.EpochInfo = (object.EpochInfo !== undefined && object.EpochInfo !== null)
+      ? EpochInfo.fromPartial(object.EpochInfo)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetPendingNextEpochRequest(): QueryGetPendingNextEpochRequest {
+  return {};
+}
+
+export const QueryGetPendingNextEpochRequest = {
+  encode(_: QueryGetPendingNextEpochRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetPendingNextEpochRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetPendingNextEpochRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): QueryGetPendingNextEpochRequest {
+    return {};
+  },
+
+  toJSON(_: QueryGetPendingNextEpochRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetPendingNextEpochRequest>, I>>(base?: I): QueryGetPendingNextEpochRequest {
+    return QueryGetPendingNextEpochRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetPendingNextEpochRequest>, I>>(_: I): QueryGetPendingNextEpochRequest {
+    const message = createBaseQueryGetPendingNextEpochRequest();
+    return message;
+  },
+};
+
+function createBaseQueryGetPendingNextEpochResponse(): QueryGetPendingNextEpochResponse {
+  return { EpochInfo: undefined };
+}
+
+export const QueryGetPendingNextEpochResponse = {
+  encode(message: QueryGetPendingNextEpochResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.EpochInfo !== undefined) {
+      EpochInfo.encode(message.EpochInfo, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetPendingNextEpochResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetPendingNextEpochResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.EpochInfo = EpochInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetPendingNextEpochResponse {
+    return { EpochInfo: isSet(object.EpochInfo) ? EpochInfo.fromJSON(object.EpochInfo) : undefined };
+  },
+
+  toJSON(message: QueryGetPendingNextEpochResponse): unknown {
+    const obj: any = {};
+    if (message.EpochInfo !== undefined) {
+      obj.EpochInfo = EpochInfo.toJSON(message.EpochInfo);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetPendingNextEpochResponse>, I>>(
+    base?: I,
+  ): QueryGetPendingNextEpochResponse {
+    return QueryGetPendingNextEpochResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetPendingNextEpochResponse>, I>>(
+    object: I,
+  ): QueryGetPendingNextEpochResponse {
+    const message = createBaseQueryGetPendingNextEpochResponse();
+    message.EpochInfo = (object.EpochInfo !== undefined && object.EpochInfo !== null)
+      ? EpochInfo.fromPartial(object.EpochInfo)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetHistoryEpochRequest(): QueryGetHistoryEpochRequest {
+  return { epochNumber: 0 };
+}
+
+export const QueryGetHistoryEpochRequest = {
+  encode(message: QueryGetHistoryEpochRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.epochNumber !== 0) {
+      writer.uint32(8).uint64(message.epochNumber);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetHistoryEpochRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetHistoryEpochRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.epochNumber = longToNumber(reader.uint64() as Long);
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetHistoryEpochRequest {
+    return { epochNumber: isSet(object.epochNumber) ? Number(object.epochNumber) : 0 };
+  },
+
+  toJSON(message: QueryGetHistoryEpochRequest): unknown {
+    const obj: any = {};
+    if (message.epochNumber !== 0) {
+      obj.epochNumber = Math.round(message.epochNumber);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetHistoryEpochRequest>, I>>(base?: I): QueryGetHistoryEpochRequest {
+    return QueryGetHistoryEpochRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetHistoryEpochRequest>, I>>(object: I): QueryGetHistoryEpochRequest {
+    const message = createBaseQueryGetHistoryEpochRequest();
+    message.epochNumber = object.epochNumber ?? 0;
+    return message;
+  },
+};
+
+function createBaseQueryGetHistoryEpochResponse(): QueryGetHistoryEpochResponse {
+  return { EpochInfo: undefined };
+}
+
+export const QueryGetHistoryEpochResponse = {
+  encode(message: QueryGetHistoryEpochResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.EpochInfo !== undefined) {
+      EpochInfo.encode(message.EpochInfo, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetHistoryEpochResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetHistoryEpochResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.EpochInfo = EpochInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetHistoryEpochResponse {
+    return { EpochInfo: isSet(object.EpochInfo) ? EpochInfo.fromJSON(object.EpochInfo) : undefined };
+  },
+
+  toJSON(message: QueryGetHistoryEpochResponse): unknown {
+    const obj: any = {};
+    if (message.EpochInfo !== undefined) {
+      obj.EpochInfo = EpochInfo.toJSON(message.EpochInfo);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetHistoryEpochResponse>, I>>(base?: I): QueryGetHistoryEpochResponse {
+    return QueryGetHistoryEpochResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetHistoryEpochResponse>, I>>(object: I): QueryGetHistoryEpochResponse {
+    const message = createBaseQueryGetHistoryEpochResponse();
+    message.EpochInfo = (object.EpochInfo !== undefined && object.EpochInfo !== null)
+      ? EpochInfo.fromPartial(object.EpochInfo)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllHistoryEpochRequest(): QueryGetAllHistoryEpochRequest {
+  return { pagination: undefined };
+}
+
+export const QueryGetAllHistoryEpochRequest = {
+  encode(message: QueryGetAllHistoryEpochRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllHistoryEpochRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllHistoryEpochRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllHistoryEpochRequest {
+    return { pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined };
+  },
+
+  toJSON(message: QueryGetAllHistoryEpochRequest): unknown {
+    const obj: any = {};
+    if (message.pagination !== undefined) {
+      obj.pagination = PageRequest.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllHistoryEpochRequest>, I>>(base?: I): QueryGetAllHistoryEpochRequest {
+    return QueryGetAllHistoryEpochRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllHistoryEpochRequest>, I>>(
+    object: I,
+  ): QueryGetAllHistoryEpochRequest {
+    const message = createBaseQueryGetAllHistoryEpochRequest();
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageRequest.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetAllHistoryEpochResponse(): QueryGetAllHistoryEpochResponse {
+  return { EpochInfos: [], pagination: undefined };
+}
+
+export const QueryGetAllHistoryEpochResponse = {
+  encode(message: QueryGetAllHistoryEpochResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.EpochInfos) {
+      EpochInfo.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAllHistoryEpochResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetAllHistoryEpochResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.EpochInfos.push(EpochInfo.decode(reader, reader.uint32()));
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetAllHistoryEpochResponse {
+    return {
+      EpochInfos: Array.isArray(object?.EpochInfos) ? object.EpochInfos.map((e: any) => EpochInfo.fromJSON(e)) : [],
+      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetAllHistoryEpochResponse): unknown {
+    const obj: any = {};
+    if (message.EpochInfos?.length) {
+      obj.EpochInfos = message.EpochInfos.map((e) => EpochInfo.toJSON(e));
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetAllHistoryEpochResponse>, I>>(base?: I): QueryGetAllHistoryEpochResponse {
+    return QueryGetAllHistoryEpochResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetAllHistoryEpochResponse>, I>>(
+    object: I,
+  ): QueryGetAllHistoryEpochResponse {
+    const message = createBaseQueryGetAllHistoryEpochResponse();
+    message.EpochInfos = object.EpochInfos?.map((e) => EpochInfo.fromPartial(e)) || [];
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageResponse.fromPartial(object.pagination)
+      : undefined;
     return message;
   },
 };
@@ -3691,108 +4071,6 @@ export const QueryGetAllEraProcessDataResponse = {
   },
 };
 
-function createBaseQueryGetEpochInfoRequest(): QueryGetEpochInfoRequest {
-  return {};
-}
-
-export const QueryGetEpochInfoRequest = {
-  encode(_: QueryGetEpochInfoRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEpochInfoRequest {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetEpochInfoRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(_: any): QueryGetEpochInfoRequest {
-    return {};
-  },
-
-  toJSON(_: QueryGetEpochInfoRequest): unknown {
-    const obj: any = {};
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<QueryGetEpochInfoRequest>, I>>(base?: I): QueryGetEpochInfoRequest {
-    return QueryGetEpochInfoRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<QueryGetEpochInfoRequest>, I>>(_: I): QueryGetEpochInfoRequest {
-    const message = createBaseQueryGetEpochInfoRequest();
-    return message;
-  },
-};
-
-function createBaseQueryGetEpochInfoResponse(): QueryGetEpochInfoResponse {
-  return { EpochInfo: undefined };
-}
-
-export const QueryGetEpochInfoResponse = {
-  encode(message: QueryGetEpochInfoResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.EpochInfo !== undefined) {
-      EpochInfo.encode(message.EpochInfo, writer.uint32(10).fork()).ldelim();
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEpochInfoResponse {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetEpochInfoResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.EpochInfo = EpochInfo.decode(reader, reader.uint32());
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): QueryGetEpochInfoResponse {
-    return { EpochInfo: isSet(object.EpochInfo) ? EpochInfo.fromJSON(object.EpochInfo) : undefined };
-  },
-
-  toJSON(message: QueryGetEpochInfoResponse): unknown {
-    const obj: any = {};
-    if (message.EpochInfo !== undefined) {
-      obj.EpochInfo = EpochInfo.toJSON(message.EpochInfo);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<QueryGetEpochInfoResponse>, I>>(base?: I): QueryGetEpochInfoResponse {
-    return QueryGetEpochInfoResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<QueryGetEpochInfoResponse>, I>>(object: I): QueryGetEpochInfoResponse {
-    const message = createBaseQueryGetEpochInfoResponse();
-    message.EpochInfo = (object.EpochInfo !== undefined && object.EpochInfo !== null)
-      ? EpochInfo.fromPartial(object.EpochInfo)
-      : undefined;
-    return message;
-  },
-};
-
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Parameters queries the parameters of the module. */
@@ -3800,6 +4078,9 @@ export interface Query {
   /** Queries epoch */
   EpochLength(request: QueryGetEpochLengthRequest): Promise<QueryGetEpochLengthResponse>;
   CurrentEpoch(request: QueryGetCurrentEpochRequest): Promise<QueryGetCurrentEpochResponse>;
+  PendingNextEpoch(request: QueryGetPendingNextEpochRequest): Promise<QueryGetPendingNextEpochResponse>;
+  HistoryEpoch(request: QueryGetHistoryEpochRequest): Promise<QueryGetHistoryEpochResponse>;
+  AllHistoryEpoch(request: QueryGetAllHistoryEpochRequest): Promise<QueryGetAllHistoryEpochResponse>;
   /** Queries a list of Node Workload items. */
   NodeWorkload(request: QueryGetNodeWorkloadRequest): Promise<QueryGetNodeWorkloadResponse>;
   AllNodeWorkloadByEpoch(
@@ -3846,8 +4127,6 @@ export interface Query {
   /** Queries a list of EpochProcessData items. */
   EraProcessData(request: QueryGetEraProcessDataRequest): Promise<QueryGetEraProcessDataResponse>;
   AllEraProcessData(request: QueryGetAllEraProcessDataRequest): Promise<QueryGetAllEraProcessDataResponse>;
-  /** Queries a EpochInfo by index. */
-  EpochInfo(request: QueryGetEpochInfoRequest): Promise<QueryGetEpochInfoResponse>;
 }
 
 export const QueryServiceName = "enreach.workload.Query";
@@ -3860,6 +4139,9 @@ export class QueryClientImpl implements Query {
     this.Params = this.Params.bind(this);
     this.EpochLength = this.EpochLength.bind(this);
     this.CurrentEpoch = this.CurrentEpoch.bind(this);
+    this.PendingNextEpoch = this.PendingNextEpoch.bind(this);
+    this.HistoryEpoch = this.HistoryEpoch.bind(this);
+    this.AllHistoryEpoch = this.AllHistoryEpoch.bind(this);
     this.NodeWorkload = this.NodeWorkload.bind(this);
     this.AllNodeWorkloadByEpoch = this.AllNodeWorkloadByEpoch.bind(this);
     this.ManagerWRWorkload = this.ManagerWRWorkload.bind(this);
@@ -3883,7 +4165,6 @@ export class QueryClientImpl implements Query {
     this.AllReputationPoint = this.AllReputationPoint.bind(this);
     this.EraProcessData = this.EraProcessData.bind(this);
     this.AllEraProcessData = this.AllEraProcessData.bind(this);
-    this.EpochInfo = this.EpochInfo.bind(this);
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
@@ -3901,6 +4182,24 @@ export class QueryClientImpl implements Query {
     const data = QueryGetCurrentEpochRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "CurrentEpoch", data);
     return promise.then((data) => QueryGetCurrentEpochResponse.decode(_m0.Reader.create(data)));
+  }
+
+  PendingNextEpoch(request: QueryGetPendingNextEpochRequest): Promise<QueryGetPendingNextEpochResponse> {
+    const data = QueryGetPendingNextEpochRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "PendingNextEpoch", data);
+    return promise.then((data) => QueryGetPendingNextEpochResponse.decode(_m0.Reader.create(data)));
+  }
+
+  HistoryEpoch(request: QueryGetHistoryEpochRequest): Promise<QueryGetHistoryEpochResponse> {
+    const data = QueryGetHistoryEpochRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "HistoryEpoch", data);
+    return promise.then((data) => QueryGetHistoryEpochResponse.decode(_m0.Reader.create(data)));
+  }
+
+  AllHistoryEpoch(request: QueryGetAllHistoryEpochRequest): Promise<QueryGetAllHistoryEpochResponse> {
+    const data = QueryGetAllHistoryEpochRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "AllHistoryEpoch", data);
+    return promise.then((data) => QueryGetAllHistoryEpochResponse.decode(_m0.Reader.create(data)));
   }
 
   NodeWorkload(request: QueryGetNodeWorkloadRequest): Promise<QueryGetNodeWorkloadResponse> {
@@ -4053,12 +4352,6 @@ export class QueryClientImpl implements Query {
     const data = QueryGetAllEraProcessDataRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "AllEraProcessData", data);
     return promise.then((data) => QueryGetAllEraProcessDataResponse.decode(_m0.Reader.create(data)));
-  }
-
-  EpochInfo(request: QueryGetEpochInfoRequest): Promise<QueryGetEpochInfoResponse> {
-    const data = QueryGetEpochInfoRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "EpochInfo", data);
-    return promise.then((data) => QueryGetEpochInfoResponse.decode(_m0.Reader.create(data)));
   }
 }
 

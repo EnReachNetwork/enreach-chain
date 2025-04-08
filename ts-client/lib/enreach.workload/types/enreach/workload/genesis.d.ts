@@ -1,10 +1,15 @@
 import _m0 from "protobufjs/minimal";
+import { EpochInfo } from "./epoch_info";
 import { Params } from "./params";
+import { Superior } from "./superior";
 export declare const protobufPackage = "enreach.workload";
 /** GenesisState defines the workload module's genesis state. */
 export interface GenesisState {
     /** params defines all the parameters of the module. */
     params: Params | undefined;
+    superior: Superior | undefined;
+    currentEpoch: EpochInfo | undefined;
+    pendingNextEpoch: EpochInfo | undefined;
 }
 export declare const GenesisState: {
     encode(message: GenesisState, writer?: _m0.Writer): _m0.Writer;
