@@ -158,19 +158,19 @@ func processCheatStatusCRDatas(ctx sdk.Context, k Keeper, era uint64, cheatStatu
 
 	for _, cheatStatusCRData := range *cheatStatusCRDatas {
 		nodeID := cheatStatusCRData.NodeID
-		cheatStatus, managerCSWorkloadMap, err := processCheatStatusCRData(ctx, k, &cheatStatusCRData)
+		resp, err := k.edgenodeKeeper.Node(ctx, &edgenodetypes.QueryGetNodeRequest{NodeID: nodeID})
+		if err != nil {
+			continue
+		}
+		node := resp.Node
+
+		cheatStatus, managerCSWorkloadMap, err := processCheatStatusCRData(ctx, k, &node, &cheatStatusCRData)
 		if err != nil {
 			continue
 		}
 
 		if cheatStatus != "" {
 			// Set the cheat status to the node and save to the store
-			resp, err := k.edgenodeKeeper.Node(ctx, &edgenodetypes.QueryGetNodeRequest{NodeID: nodeID})
-			if err != nil {
-				continue
-			}
-			node := resp.Node
-
 			node.CheatStatus = cheatStatus
 			node.UpdateAt = blockHeight
 			k.edgenodeKeeper.SetNode(ctx, node)
@@ -214,7 +214,7 @@ func processCheatStatusCRDatas(ctx sdk.Context, k Keeper, era uint64, cheatStatu
 	return nil
 }
 
-func processCheatStatusCRData(ctx sdk.Context, k Keeper, cheatStatusCRData *types.CheatStatusCRData) (string, map[string]types.ManagerCSWorkload, error) {
+func processCheatStatusCRData(ctx sdk.Context, k Keeper, node *edgenodetypes.Node, cheatStatusCRData *types.CheatStatusCRData) (string, map[string]types.ManagerCSWorkload, error) {
 
 	/// PS: Right now we simply count the status occurrence among all managers, if one specific status
 	///		has occurred more than 1/2 of the total managers in this region, we will mark the node as this cheating status
@@ -233,7 +233,7 @@ func processCheatStatusCRData(ctx sdk.Context, k Keeper, cheatStatusCRData *type
 	}
 
 	// Get manager count of this region
-	resp, err := k.managerKeeper.GetManagerByRegion(ctx, &managertypes.QueryGetManagerByRegionRequest{})
+	resp, err := k.managerKeeper.GetManagerByRegion(ctx, &managertypes.QueryGetManagerByRegionRequest{RegionCode: node.RegionCode})
 	if err != nil {
 		return "", nil, err
 	}
