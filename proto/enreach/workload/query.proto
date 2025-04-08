@@ -159,14 +159,6 @@ service Query {
     option (google.api.http).get = "/enreach/workload/reputation_delta_points/{era}";
   
   }
-  rpc ReputationPoint              (QueryGetReputationPointRequest             ) returns (QueryGetReputationPointResponse             ) {
-    option (google.api.http).get = "/enreach/workload/reputation_point/{nodeID}";
-  
-  }
-  rpc AllReputationPoint           (QueryGetAllReputationPointRequest          ) returns (QueryGetAllReputationPointResponse          ) {
-    option (google.api.http).get = "/enreach/workload/reputation_points";
-  
-  }
   
   // Queries a list of EraProcessData items.
   rpc EraProcessData    (QueryGetEraProcessDataRequest   ) returns (QueryGetEraProcessDataResponse   ) {
@@ -456,23 +448,6 @@ message QueryGetAllReputationDeltaPointByEraRequest {
 message QueryGetAllReputationDeltaPointByEraResponse {
   repeated ReputationDeltaPoint                   ReputationDeltaPoints = 1 [(gogoproto.nullable) = false];
            cosmos.base.query.v1beta1.PageResponse pagination            = 2;
-}
-
-message QueryGetReputationPointRequest {
-  string nodeID = 1;
-}
-
-message QueryGetReputationPointResponse {
-  ReputationPoint ReputationPoint = 1 [(gogoproto.nullable) = false];
-}
-
-message QueryGetAllReputationPointRequest {
-  cosmos.base.query.v1beta1.PageRequest pagination = 1;
-}
-
-message QueryGetAllReputationPointResponse {
-  repeated ReputationPoint                        ReputationPoints = 1 [(gogoproto.nullable) = false];
-           cosmos.base.query.v1beta1.PageResponse pagination       = 2;
 }
 
 message QueryGetEraProcessDataRequest {

@@ -168,17 +168,6 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "era"}},
 				},
 				{
-					RpcMethod:      "ReputationPoint",
-					Use:            "get-reputation-point [nodeID]",
-					Short:          "Get reputation point of a node",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "nodeID"}},
-				},
-				{
-					RpcMethod: "AllReputationPoint",
-					Use:       "get-all-reputation-point",
-					Short:     "Get all reputation point",
-				},
-				{
 					RpcMethod:      "EraProcessData",
 					Use:            "get-era-process-data [era]",
 					Short:          "Get era process data",

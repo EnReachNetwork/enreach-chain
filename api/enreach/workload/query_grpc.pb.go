@@ -49,8 +49,6 @@ const (
 	Query_AllReputationPointChangeDataByEra_FullMethodName = "/enreach.workload.Query/AllReputationPointChangeDataByEra"
 	Query_ReputationDeltaPoint_FullMethodName              = "/enreach.workload.Query/ReputationDeltaPoint"
 	Query_AllReputationDeltaPointByEra_FullMethodName      = "/enreach.workload.Query/AllReputationDeltaPointByEra"
-	Query_ReputationPoint_FullMethodName                   = "/enreach.workload.Query/ReputationPoint"
-	Query_AllReputationPoint_FullMethodName                = "/enreach.workload.Query/AllReputationPoint"
 	Query_EraProcessData_FullMethodName                    = "/enreach.workload.Query/EraProcessData"
 	Query_AllEraProcessData_FullMethodName                 = "/enreach.workload.Query/AllEraProcessData"
 	Query_CheatStatusCRData_FullMethodName                 = "/enreach.workload.Query/CheatStatusCRData"
@@ -103,8 +101,6 @@ type QueryClient interface {
 	// Queries a list of ReputationPoint items.
 	ReputationDeltaPoint(ctx context.Context, in *QueryGetReputationDeltaPointRequest, opts ...grpc.CallOption) (*QueryGetReputationDeltaPointResponse, error)
 	AllReputationDeltaPointByEra(ctx context.Context, in *QueryGetAllReputationDeltaPointByEraRequest, opts ...grpc.CallOption) (*QueryGetAllReputationDeltaPointByEraResponse, error)
-	ReputationPoint(ctx context.Context, in *QueryGetReputationPointRequest, opts ...grpc.CallOption) (*QueryGetReputationPointResponse, error)
-	AllReputationPoint(ctx context.Context, in *QueryGetAllReputationPointRequest, opts ...grpc.CallOption) (*QueryGetAllReputationPointResponse, error)
 	// Queries a list of EraProcessData items.
 	EraProcessData(ctx context.Context, in *QueryGetEraProcessDataRequest, opts ...grpc.CallOption) (*QueryGetEraProcessDataResponse, error)
 	AllEraProcessData(ctx context.Context, in *QueryGetAllEraProcessDataRequest, opts ...grpc.CallOption) (*QueryGetAllEraProcessDataResponse, error)
@@ -394,24 +390,6 @@ func (c *queryClient) AllReputationDeltaPointByEra(ctx context.Context, in *Quer
 	return out, nil
 }
 
-func (c *queryClient) ReputationPoint(ctx context.Context, in *QueryGetReputationPointRequest, opts ...grpc.CallOption) (*QueryGetReputationPointResponse, error) {
-	out := new(QueryGetReputationPointResponse)
-	err := c.cc.Invoke(ctx, Query_ReputationPoint_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *queryClient) AllReputationPoint(ctx context.Context, in *QueryGetAllReputationPointRequest, opts ...grpc.CallOption) (*QueryGetAllReputationPointResponse, error) {
-	out := new(QueryGetAllReputationPointResponse)
-	err := c.cc.Invoke(ctx, Query_AllReputationPoint_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *queryClient) EraProcessData(ctx context.Context, in *QueryGetEraProcessDataRequest, opts ...grpc.CallOption) (*QueryGetEraProcessDataResponse, error) {
 	out := new(QueryGetEraProcessDataResponse)
 	err := c.cc.Invoke(ctx, Query_EraProcessData_FullMethodName, in, out, opts...)
@@ -510,8 +488,6 @@ type QueryServer interface {
 	// Queries a list of ReputationPoint items.
 	ReputationDeltaPoint(context.Context, *QueryGetReputationDeltaPointRequest) (*QueryGetReputationDeltaPointResponse, error)
 	AllReputationDeltaPointByEra(context.Context, *QueryGetAllReputationDeltaPointByEraRequest) (*QueryGetAllReputationDeltaPointByEraResponse, error)
-	ReputationPoint(context.Context, *QueryGetReputationPointRequest) (*QueryGetReputationPointResponse, error)
-	AllReputationPoint(context.Context, *QueryGetAllReputationPointRequest) (*QueryGetAllReputationPointResponse, error)
 	// Queries a list of EraProcessData items.
 	EraProcessData(context.Context, *QueryGetEraProcessDataRequest) (*QueryGetEraProcessDataResponse, error)
 	AllEraProcessData(context.Context, *QueryGetAllEraProcessDataRequest) (*QueryGetAllEraProcessDataResponse, error)
@@ -617,12 +593,6 @@ func (UnimplementedQueryServer) ReputationDeltaPoint(context.Context, *QueryGetR
 }
 func (UnimplementedQueryServer) AllReputationDeltaPointByEra(context.Context, *QueryGetAllReputationDeltaPointByEraRequest) (*QueryGetAllReputationDeltaPointByEraResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AllReputationDeltaPointByEra not implemented")
-}
-func (UnimplementedQueryServer) ReputationPoint(context.Context, *QueryGetReputationPointRequest) (*QueryGetReputationPointResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ReputationPoint not implemented")
-}
-func (UnimplementedQueryServer) AllReputationPoint(context.Context, *QueryGetAllReputationPointRequest) (*QueryGetAllReputationPointResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AllReputationPoint not implemented")
 }
 func (UnimplementedQueryServer) EraProcessData(context.Context, *QueryGetEraProcessDataRequest) (*QueryGetEraProcessDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EraProcessData not implemented")
@@ -1195,42 +1165,6 @@ func _Query_AllReputationDeltaPointByEra_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_ReputationPoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetReputationPointRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(QueryServer).ReputationPoint(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Query_ReputationPoint_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).ReputationPoint(ctx, req.(*QueryGetReputationPointRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Query_AllReputationPoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetAllReputationPointRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(QueryServer).AllReputationPoint(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Query_AllReputationPoint_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).AllReputationPoint(ctx, req.(*QueryGetAllReputationPointRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Query_EraProcessData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryGetEraProcessDataRequest)
 	if err := dec(in); err != nil {
@@ -1465,14 +1399,6 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AllReputationDeltaPointByEra",
 			Handler:    _Query_AllReputationDeltaPointByEra_Handler,
-		},
-		{
-			MethodName: "ReputationPoint",
-			Handler:    _Query_ReputationPoint_Handler,
-		},
-		{
-			MethodName: "AllReputationPoint",
-			Handler:    _Query_AllReputationPoint_Handler,
 		},
 		{
 			MethodName: "EraProcessData",

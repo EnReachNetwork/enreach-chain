@@ -2,6 +2,7 @@ package keeper
 
 import (
 	"context"
+	edgenodetypes "enreach/x/edgenode/types"
 	"enreach/x/workload/types"
 	"strconv"
 
@@ -168,23 +169,16 @@ func processReputationPointChangeDatas(ctx sdk.Context, k Keeper, era uint64, re
 		// Every ReputationDeltaPoint for a dedicated era should have unique nodeID, so just simply append here
 		k.AppendReputationDeltaPoint(ctx, &nodeDeltaPoint)
 
-		// Update the final ReputationPoint
-		reputationPoint, found := k.GetReputationPoint(ctx, nodeID)
-		if !found {
-			// The first reputationPoint for this node, create a new one
-			reputationPoint = types.ReputationPoint{
-				NodeID:   nodeID,
-				Point:    deltaPoint,
-				CreateAt: blockHeight,
-				UpdateAt: blockHeight,
-			}
-			k.AppendReputationPoint(ctx, reputationPoint)
-		} else {
-			// Add up the delta point to the current point
-			reputationPoint.Point += deltaPoint
-			reputationPoint.UpdateAt = blockHeight
-			k.SetReputationPoint(ctx, reputationPoint)
+		// Update the final ReputationPoint to the node and save to the store
+		resp, err := k.edgenodeKeeper.Node(ctx, &edgenodetypes.QueryGetNodeRequest{NodeID: nodeID})
+		if err != nil {
+			continue
 		}
+		node := resp.Node
+
+		node.ReputationPoint += deltaPoint
+		node.UpdateAt = blockHeight
+		k.edgenodeKeeper.SetNode(ctx, node)
 
 		// Aggregate the ManagerRPWorkload
 		for managerAccount, managerWorkload := range managerRPWorkloadMap {
