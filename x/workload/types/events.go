@@ -3,6 +3,7 @@ package types
 const (
 	EventTypeWorkreportsSubmitted               = "EventWorkreportsSubmitted"
 	EventTypeReputationPointChangeDataSubmitted = "EventReputationPointChangeDataSubmitted"
+	EventTypeCheatStatusCRDataSubmitted         = "EventCheatStatusCRDataSubmitted"
 
 	EventTypeEpochStart = "EventEpochStart"
 	EventTypeEpochEnd   = "EventEpochEnd"
@@ -22,6 +23,9 @@ const (
 	EventTypeEraReputationPointProcessStarted = "EventEraReputationPointProcessStarted"
 	EventTypeEraReputationPointProcessEnded   = "EventEraReputationPointProcessEnded"
 
+	EventTypeEraCheatStatusProcessStarted = "EventEraCheatStatusProcessStarted"
+	EventTypeEraCheatStatusProcessEnded   = "EventEraCheatStatusProcessEnded"
+
 	AttributeKeyTxSigner            = "signer"
 	AttributeKeyManagerAccount      = "managerAccount"
 	AttributeKeyEpoch               = "epoch"
@@ -38,6 +42,7 @@ const (
 	AttributeKeyProcessedNodesCount = "processedNodesCount"
 	AttributeKeyEra                 = "era"
 	AttributeKeyNodePointsCount     = "nodePointsCount"
+	AttributeKeyNodeDatasCount      = "nodeDatasCount"
 	AttributeKeyEpochStartTime      = "epochStartTime"
 	AttributeKeyEpochStartBlock     = "epochStartBlock"
 	AttributeKeyEpochEndTime        = "epochEndTime"

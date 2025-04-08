@@ -33,14 +33,15 @@ func (k msgServer) RegisterNode(goCtx context.Context, msg *types.MsgRegisterNod
 	// Append to the store
 	blockHeight := uint64(ctx.BlockHeight())
 	var node = types.Node{
-		NodeID:         msg.NodeID,
-		DeviceType:     msg.DeviceType,
-		TrafficType:    0, // Default is 0, stands for Enreach traffic
-		RegisterStatus: string(types.RS_PENDING_BIND),
-		Creator:        msg.Signer,
-		CreateAt:       blockHeight,
-		Updator:        msg.Signer,
-		UpdateAt:       blockHeight,
+		NodeID:          msg.NodeID,
+		DeviceType:      msg.DeviceType,
+		TrafficType:     0, // Default is 0, stands for Enreach traffic
+		RegisterStatus:  string(types.RS_PENDING_BIND),
+		ReputationPoint: 10, // Default is 10
+		Creator:         msg.Signer,
+		CreateAt:        blockHeight,
+		Updator:         msg.Signer,
+		UpdateAt:        blockHeight,
 	}
 	k.AppendNode(ctx, node)
 

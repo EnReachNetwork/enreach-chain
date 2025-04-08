@@ -168,6 +168,9 @@ func (am AppModule) BeginBlock(goCtx context.Context) error {
 	// Process era reputation point
 	k.ProcessEraReputationPoint(goCtx)
 
+	// Process era cheat status
+	k.ProcessEraCheatStatus(goCtx)
+
 	return nil
 }
 

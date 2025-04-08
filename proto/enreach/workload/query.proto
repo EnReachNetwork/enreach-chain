@@ -13,6 +13,7 @@ import "enreach/workload/superior.proto";
 import "enreach/workload/reputationpoint.proto";
 import "enreach/workload/epoch_info.proto";
 import "enreach/workload/era_info.proto";
+import "enreach/workload/cheat_status.proto";
 
 option go_package = "enreach/x/workload/types";
 
@@ -72,6 +73,14 @@ service Query {
   }
   rpc AllManagerRPWorkloadByEra   (QueryGetAllManagerRPWorkloadByEraRequest  ) returns (QueryGetAllManagerRPWorkloadByEraResponse  ) {
     option (google.api.http).get = "/enreach/workload/manager_rp_workloads/{era}";
+  
+  }
+  rpc ManagerCSWorkload           (QueryGetManagerCSWorkloadRequest          ) returns (QueryGetManagerCSWorkloadResponse          ) {
+    option (google.api.http).get = "/enreach/workload/manager_cs_workload/{era}/{managerAccount}";
+  
+  }
+  rpc AllManagerCSWorkloadByEra   (QueryGetAllManagerCSWorkloadByEraRequest  ) returns (QueryGetAllManagerCSWorkloadByEraResponse  ) {
+    option (google.api.http).get = "/enreach/workload/manager_cs_workloads/{era}";
   
   }
   
@@ -159,7 +168,7 @@ service Query {
   
   }
   
-  // Queries a list of EpochProcessData items.
+  // Queries a list of EraProcessData items.
   rpc EraProcessData    (QueryGetEraProcessDataRequest   ) returns (QueryGetEraProcessDataResponse   ) {
     option (google.api.http).get = "/enreach/workload/workreport/era_process_data/{era}";
   
@@ -169,6 +178,25 @@ service Query {
   
   }
 
+  // Queries a list of CheatStatusPRData items.
+  rpc CheatStatusCRData         (QueryGetCheatStatusCRDataRequest        ) returns (QueryGetCheatStatusCRDataResponse        ) {
+    option (google.api.http).get = "/enreach/workload/cheat_status_cr_data/{era}/{nodeID}";
+  
+  }
+  rpc AllCheatStatusCRDataByEra (QueryGetAllCheatStatusCRDataByEraRequest) returns (QueryGetAllCheatStatusCRDataByEraResponse) {
+    option (google.api.http).get = "/enreach/workload/cheat_status_cr_data/{era}";
+  
+  }
+
+  // Queries a list of EraCheatStatusProcessData items.
+  rpc EraCheatStatusProcessData    (QueryGetEraCheatStatusProcessDataRequest   ) returns (QueryGetEraCheatStatusProcessDataResponse   ) {
+    option (google.api.http).get = "/enreach/workload/workreport/era_cheat_status_process_data/{era}";
+  
+  }
+  rpc AllEraCheatStatusProcessData (QueryGetAllEraCheatStatusProcessDataRequest) returns (QueryGetAllEraCheatStatusProcessDataResponse) {
+    option (google.api.http).get = "/enreach/workload/workreport/era_cheat_status_process_datas";
+  
+  }
 }
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
@@ -180,6 +208,7 @@ message QueryParamsResponse {
   Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
 }
 
+////////////
 message QueryGetEpochLengthRequest {}
 
 message QueryGetEpochLengthResponse {
@@ -215,6 +244,7 @@ message QueryGetAllHistoryEpochResponse {
   cosmos.base.query.v1beta1.PageResponse pagination        = 2;
 }
 
+////////////
 message QueryGetNodeWorkloadRequest {
   uint64 epoch  = 1;
   string nodeID = 2;
@@ -234,6 +264,7 @@ message QueryGetAllNodeWorkloadByEpochResponse {
            cosmos.base.query.v1beta1.PageResponse pagination    = 2;
 }
 
+////////////
 message QueryGetManagerWRWorkloadRequest {
   uint64 epoch          = 1;
   string managerAccount = 2;
@@ -253,6 +284,7 @@ message QueryGetAllManagerWRWorkloadByEpochResponse {
            cosmos.base.query.v1beta1.PageResponse pagination         = 2;
 }
 
+////////////
 message QueryGetManagerRPWorkloadRequest {
   uint64 era            = 1;
   string managerAccount = 2;
@@ -272,6 +304,27 @@ message QueryGetAllManagerRPWorkloadByEraResponse {
            cosmos.base.query.v1beta1.PageResponse pagination         = 2;
 }
 
+////////////
+message QueryGetManagerCSWorkloadRequest {
+  uint64 era            = 1;
+  string managerAccount = 2;
+}
+
+message QueryGetManagerCSWorkloadResponse {
+  ManagerCSWorkload ManagerCSWorkload = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetAllManagerCSWorkloadByEraRequest {
+  uint64                                era        = 1;
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
+}
+
+message QueryGetAllManagerCSWorkloadByEraResponse {
+  repeated ManagerCSWorkload                      ManagerCSWorkloads = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination         = 2;
+}
+
+////////////
 message QueryGetWorkreportRequest {
   uint64 epoch  = 1;
   string nodeID = 2;
@@ -291,6 +344,7 @@ message QueryGetAllWorkreportByEpochResponse {
            cosmos.base.query.v1beta1.PageResponse pagination  = 2;
 }
 
+////////////
 message QueryGetWorkreportProcessBatchSizeRequest {}
 
 message QueryGetWorkreportProcessBatchSizeResponse {
@@ -303,6 +357,7 @@ message QueryGetHistoryEpochDataDepthResponse {
   uint64 depth = 1;
 }
 
+////////////
 message QueryGetEpochProcessDataRequest {
   uint64 epoch = 1;
 }
@@ -320,19 +375,20 @@ message QueryGetAllEpochProcessDataResponse {
            cosmos.base.query.v1beta1.PageResponse pagination        = 2;
 }
 
+////////////
 message QueryGetSuperiorRequest {}
 
 message QueryGetSuperiorResponse {
   Superior Superior = 1 [(gogoproto.nullable) = false];
 }
 
+////////////
 message QueryGetEraLengthRequest {}
 
 message QueryGetEraLengthResponse {
   uint64 eraLength = 1;
 }
 
-//////////////////
 message QueryGetCurrentEraRequest {}
 
 message QueryGetCurrentEraResponse {
@@ -436,3 +492,41 @@ message QueryGetAllEraProcessDataResponse {
            cosmos.base.query.v1beta1.PageResponse pagination      = 2;
 }
 
+////////////
+
+message QueryGetCheatStatusCRDataRequest {
+  uint64 era    = 1;
+  string nodeID = 2;
+}
+
+message QueryGetCheatStatusCRDataResponse {
+  CheatStatusCRData CheatStatusCRData = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetAllCheatStatusCRDataByEraRequest {
+  uint64                                era        = 1;
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
+}
+
+message QueryGetAllCheatStatusCRDataByEraResponse {
+  repeated CheatStatusCRData              CheatStatusCRDatas = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination                 = 2;
+}
+
+////////////
+message QueryGetEraCheatStatusProcessDataRequest {
+  uint64 era = 1;
+}
+
+message QueryGetEraCheatStatusProcessDataResponse {
+  EraCheatStatusProcessData EraCheatStatusProcessData = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetAllEraCheatStatusProcessDataRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryGetAllEraCheatStatusProcessDataResponse {
+  repeated EraCheatStatusProcessData                         EraCheatStatusProcessDatas = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination      = 2;
+}

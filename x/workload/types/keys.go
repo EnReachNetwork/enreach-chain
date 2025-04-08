@@ -29,6 +29,9 @@ const (
 	ManagerRPWorkloadKey      = "ManagerRPWorkload/value/"
 	ManagerRPWorkloadCountKey = "ManagerRPWorkload/count/"
 
+	ManagerCSWorkloadKey      = "ManagerCSWorkload/value/"
+	ManagerCSWorkloadCountKey = "ManagerCSWorkload/count/"
+
 	WorkreportKey      = "Workreport/value/"
 	WorkreportCountKey = "Workreport/count/"
 
@@ -53,6 +56,13 @@ const (
 	EraProcessDataKey      = "EraProcessData/value/"
 	LastEraProcessDataKey  = "EraProcessData/last/"
 	EraProcessDataCountKey = "EraProcessData/count/"
+
+	CheatStatusCRDataKey      = "CheatStatusCRData/value/"
+	CheatStatusCRDataCountKey = "CheatStatusCRData/count/"
+
+	EraCheatStatusProcessDataKey      = "EraCheatStatusProcessData/value/"
+	LastEraCheatStatusProcessDataKey  = "EraCheatStatusProcessData/last/"
+	EraCheatStatusProcessDataCountKey = "EraCheatStatusProcessData/count/"
 )
 
 const (

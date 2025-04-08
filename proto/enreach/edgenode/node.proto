@@ -12,8 +12,10 @@ message Node {
   uint32 trafficType = 6; // Default 0 - stands for Enreach traffic
   string registerStatus = 7; 
   string workingStatus = 8; 
-  string creator = 9; 
-  uint64 createAt = 10; 
-  string updator = 11; 
-  uint64 updateAt = 12;
+  string cheatStatus = 9;
+  int64  reputationPoint = 10;
+  string creator = 11; 
+  uint64 createAt = 12; 
+  string updator = 13; 
+  uint64 updateAt = 14;
 }

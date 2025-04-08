@@ -189,6 +189,29 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Use:       "get-all-era-process-data",
 					Short:     "Get all era process data",
 				},
+				{
+					RpcMethod:      "CheatStatusCRData",
+					Use:            "get-cheat-status-change-request-data [era] [nodeID]",
+					Short:          "Get cheat status change request data by era and nodeID",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "era"}, {ProtoField: "nodeID"}},
+				},
+				{
+					RpcMethod:      "AllCheatStatusCRDataByEra",
+					Use:            "get-all-cheat-status-change-request-data-by-era [era]",
+					Short:          "Get all cheat status change request data by era",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "era"}},
+				},
+				{
+					RpcMethod:      "EraCheatStatusProcessData",
+					Use:            "get-era-cheat-status-process-data [era]",
+					Short:          "Get era cheat status process data",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "era"}},
+				},
+				{
+					RpcMethod: "AllEraCheatStatusProcessData",
+					Use:       "get-all-era-cheat-status process-data",
+					Short:     "Get all era cheat status process data",
+				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},
@@ -223,6 +246,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Use:            "submit-reputation-point-change-data [managerAccount] [era] [nodePoints]",
 					Short:          "Submit reputation point change data",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "managerAccount"}, {ProtoField: "era"}, {ProtoField: "nodePoints"}},
+				},
+				{
+					RpcMethod:      "SubmitCheatStatusCR",
+					Use:            "submit-cheat-status-cr-data [managerAccount] [era] [nodeDatas]",
+					Short:          "Submit cheat status change request data",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "managerAccount"}, {ProtoField: "era"}, {ProtoField: "nodeDatas"}},
 				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},

@@ -13,19 +13,21 @@ import (
 )
 
 var (
-	md_Node                protoreflect.MessageDescriptor
-	fd_Node_nodeID         protoreflect.FieldDescriptor
-	fd_Node_userID         protoreflect.FieldDescriptor
-	fd_Node_nodeName       protoreflect.FieldDescriptor
-	fd_Node_deviceType     protoreflect.FieldDescriptor
-	fd_Node_regionCode     protoreflect.FieldDescriptor
-	fd_Node_trafficType    protoreflect.FieldDescriptor
-	fd_Node_registerStatus protoreflect.FieldDescriptor
-	fd_Node_workingStatus  protoreflect.FieldDescriptor
-	fd_Node_creator        protoreflect.FieldDescriptor
-	fd_Node_createAt       protoreflect.FieldDescriptor
-	fd_Node_updator        protoreflect.FieldDescriptor
-	fd_Node_updateAt       protoreflect.FieldDescriptor
+	md_Node                 protoreflect.MessageDescriptor
+	fd_Node_nodeID          protoreflect.FieldDescriptor
+	fd_Node_userID          protoreflect.FieldDescriptor
+	fd_Node_nodeName        protoreflect.FieldDescriptor
+	fd_Node_deviceType      protoreflect.FieldDescriptor
+	fd_Node_regionCode      protoreflect.FieldDescriptor
+	fd_Node_trafficType     protoreflect.FieldDescriptor
+	fd_Node_registerStatus  protoreflect.FieldDescriptor
+	fd_Node_workingStatus   protoreflect.FieldDescriptor
+	fd_Node_cheatStatus     protoreflect.FieldDescriptor
+	fd_Node_reputationPoint protoreflect.FieldDescriptor
+	fd_Node_creator         protoreflect.FieldDescriptor
+	fd_Node_createAt        protoreflect.FieldDescriptor
+	fd_Node_updator         protoreflect.FieldDescriptor
+	fd_Node_updateAt        protoreflect.FieldDescriptor
 )
 
 func init() {
@@ -39,6 +41,8 @@ func init() {
 	fd_Node_trafficType = md_Node.Fields().ByName("trafficType")
 	fd_Node_registerStatus = md_Node.Fields().ByName("registerStatus")
 	fd_Node_workingStatus = md_Node.Fields().ByName("workingStatus")
+	fd_Node_cheatStatus = md_Node.Fields().ByName("cheatStatus")
+	fd_Node_reputationPoint = md_Node.Fields().ByName("reputationPoint")
 	fd_Node_creator = md_Node.Fields().ByName("creator")
 	fd_Node_createAt = md_Node.Fields().ByName("createAt")
 	fd_Node_updator = md_Node.Fields().ByName("updator")
@@ -158,6 +162,18 @@ func (x *fastReflection_Node) Range(f func(protoreflect.FieldDescriptor, protore
 			return
 		}
 	}
+	if x.CheatStatus != "" {
+		value := protoreflect.ValueOfString(x.CheatStatus)
+		if !f(fd_Node_cheatStatus, value) {
+			return
+		}
+	}
+	if x.ReputationPoint != int64(0) {
+		value := protoreflect.ValueOfInt64(x.ReputationPoint)
+		if !f(fd_Node_reputationPoint, value) {
+			return
+		}
+	}
 	if x.Creator != "" {
 		value := protoreflect.ValueOfString(x.Creator)
 		if !f(fd_Node_creator, value) {
@@ -213,6 +229,10 @@ func (x *fastReflection_Node) Has(fd protoreflect.FieldDescriptor) bool {
 		return x.RegisterStatus != ""
 	case "enreach.edgenode.Node.workingStatus":
 		return x.WorkingStatus != ""
+	case "enreach.edgenode.Node.cheatStatus":
+		return x.CheatStatus != ""
+	case "enreach.edgenode.Node.reputationPoint":
+		return x.ReputationPoint != int64(0)
 	case "enreach.edgenode.Node.creator":
 		return x.Creator != ""
 	case "enreach.edgenode.Node.createAt":
@@ -253,6 +273,10 @@ func (x *fastReflection_Node) Clear(fd protoreflect.FieldDescriptor) {
 		x.RegisterStatus = ""
 	case "enreach.edgenode.Node.workingStatus":
 		x.WorkingStatus = ""
+	case "enreach.edgenode.Node.cheatStatus":
+		x.CheatStatus = ""
+	case "enreach.edgenode.Node.reputationPoint":
+		x.ReputationPoint = int64(0)
 	case "enreach.edgenode.Node.creator":
 		x.Creator = ""
 	case "enreach.edgenode.Node.createAt":
@@ -301,6 +325,12 @@ func (x *fastReflection_Node) Get(descriptor protoreflect.FieldDescriptor) proto
 	case "enreach.edgenode.Node.workingStatus":
 		value := x.WorkingStatus
 		return protoreflect.ValueOfString(value)
+	case "enreach.edgenode.Node.cheatStatus":
+		value := x.CheatStatus
+		return protoreflect.ValueOfString(value)
+	case "enreach.edgenode.Node.reputationPoint":
+		value := x.ReputationPoint
+		return protoreflect.ValueOfInt64(value)
 	case "enreach.edgenode.Node.creator":
 		value := x.Creator
 		return protoreflect.ValueOfString(value)
@@ -349,6 +379,10 @@ func (x *fastReflection_Node) Set(fd protoreflect.FieldDescriptor, value protore
 		x.RegisterStatus = value.Interface().(string)
 	case "enreach.edgenode.Node.workingStatus":
 		x.WorkingStatus = value.Interface().(string)
+	case "enreach.edgenode.Node.cheatStatus":
+		x.CheatStatus = value.Interface().(string)
+	case "enreach.edgenode.Node.reputationPoint":
+		x.ReputationPoint = value.Int()
 	case "enreach.edgenode.Node.creator":
 		x.Creator = value.Interface().(string)
 	case "enreach.edgenode.Node.createAt":
@@ -393,6 +427,10 @@ func (x *fastReflection_Node) Mutable(fd protoreflect.FieldDescriptor) protorefl
 		panic(fmt.Errorf("field registerStatus of message enreach.edgenode.Node is not mutable"))
 	case "enreach.edgenode.Node.workingStatus":
 		panic(fmt.Errorf("field workingStatus of message enreach.edgenode.Node is not mutable"))
+	case "enreach.edgenode.Node.cheatStatus":
+		panic(fmt.Errorf("field cheatStatus of message enreach.edgenode.Node is not mutable"))
+	case "enreach.edgenode.Node.reputationPoint":
+		panic(fmt.Errorf("field reputationPoint of message enreach.edgenode.Node is not mutable"))
 	case "enreach.edgenode.Node.creator":
 		panic(fmt.Errorf("field creator of message enreach.edgenode.Node is not mutable"))
 	case "enreach.edgenode.Node.createAt":
@@ -430,6 +468,10 @@ func (x *fastReflection_Node) NewField(fd protoreflect.FieldDescriptor) protoref
 		return protoreflect.ValueOfString("")
 	case "enreach.edgenode.Node.workingStatus":
 		return protoreflect.ValueOfString("")
+	case "enreach.edgenode.Node.cheatStatus":
+		return protoreflect.ValueOfString("")
+	case "enreach.edgenode.Node.reputationPoint":
+		return protoreflect.ValueOfInt64(int64(0))
 	case "enreach.edgenode.Node.creator":
 		return protoreflect.ValueOfString("")
 	case "enreach.edgenode.Node.createAt":
@@ -538,6 +580,13 @@ func (x *fastReflection_Node) ProtoMethods() *protoiface.Methods {
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
+		l = len(x.CheatStatus)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.ReputationPoint != 0 {
+			n += 1 + runtime.Sov(uint64(x.ReputationPoint))
+		}
 		l = len(x.Creator)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
@@ -584,24 +633,36 @@ func (x *fastReflection_Node) ProtoMethods() *protoiface.Methods {
 		if x.UpdateAt != 0 {
 			i = runtime.EncodeVarint(dAtA, i, uint64(x.UpdateAt))
 			i--
-			dAtA[i] = 0x60
+			dAtA[i] = 0x70
 		}
 		if len(x.Updator) > 0 {
 			i -= len(x.Updator)
 			copy(dAtA[i:], x.Updator)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Updator)))
 			i--
-			dAtA[i] = 0x5a
+			dAtA[i] = 0x6a
 		}
 		if x.CreateAt != 0 {
 			i = runtime.EncodeVarint(dAtA, i, uint64(x.CreateAt))
 			i--
-			dAtA[i] = 0x50
+			dAtA[i] = 0x60
 		}
 		if len(x.Creator) > 0 {
 			i -= len(x.Creator)
 			copy(dAtA[i:], x.Creator)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Creator)))
+			i--
+			dAtA[i] = 0x5a
+		}
+		if x.ReputationPoint != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.ReputationPoint))
+			i--
+			dAtA[i] = 0x50
+		}
+		if len(x.CheatStatus) > 0 {
+			i -= len(x.CheatStatus)
+			copy(dAtA[i:], x.CheatStatus)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.CheatStatus)))
 			i--
 			dAtA[i] = 0x4a
 		}
@@ -953,6 +1014,57 @@ func (x *fastReflection_Node) ProtoMethods() *protoiface.Methods {
 				iNdEx = postIndex
 			case 9:
 				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field CheatStatus", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.CheatStatus = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 10:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ReputationPoint", wireType)
+				}
+				x.ReputationPoint = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.ReputationPoint |= int64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 11:
+				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
 				}
 				var stringLen uint64
@@ -983,7 +1095,7 @@ func (x *fastReflection_Node) ProtoMethods() *protoiface.Methods {
 				}
 				x.Creator = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
-			case 10:
+			case 12:
 				if wireType != 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field CreateAt", wireType)
 				}
@@ -1002,7 +1114,7 @@ func (x *fastReflection_Node) ProtoMethods() *protoiface.Methods {
 						break
 					}
 				}
-			case 11:
+			case 13:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Updator", wireType)
 				}
@@ -1034,7 +1146,7 @@ func (x *fastReflection_Node) ProtoMethods() *protoiface.Methods {
 				}
 				x.Updator = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
-			case 12:
+			case 14:
 				if wireType != 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field UpdateAt", wireType)
 				}
@@ -1106,18 +1218,20 @@ type Node struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	NodeID         string `protobuf:"bytes,1,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
-	UserID         string `protobuf:"bytes,2,opt,name=userID,proto3" json:"userID,omitempty"`
-	NodeName       string `protobuf:"bytes,3,opt,name=nodeName,proto3" json:"nodeName,omitempty"`
-	DeviceType     string `protobuf:"bytes,4,opt,name=deviceType,proto3" json:"deviceType,omitempty"`
-	RegionCode     string `protobuf:"bytes,5,opt,name=regionCode,proto3" json:"regionCode,omitempty"`
-	TrafficType    uint32 `protobuf:"varint,6,opt,name=trafficType,proto3" json:"trafficType,omitempty"` // Default 0 - stands for Enreach traffic
-	RegisterStatus string `protobuf:"bytes,7,opt,name=registerStatus,proto3" json:"registerStatus,omitempty"`
-	WorkingStatus  string `protobuf:"bytes,8,opt,name=workingStatus,proto3" json:"workingStatus,omitempty"`
-	Creator        string `protobuf:"bytes,9,opt,name=creator,proto3" json:"creator,omitempty"`
-	CreateAt       uint64 `protobuf:"varint,10,opt,name=createAt,proto3" json:"createAt,omitempty"`
-	Updator        string `protobuf:"bytes,11,opt,name=updator,proto3" json:"updator,omitempty"`
-	UpdateAt       uint64 `protobuf:"varint,12,opt,name=updateAt,proto3" json:"updateAt,omitempty"`
+	NodeID          string `protobuf:"bytes,1,opt,name=nodeID,proto3" json:"nodeID,omitempty"`
+	UserID          string `protobuf:"bytes,2,opt,name=userID,proto3" json:"userID,omitempty"`
+	NodeName        string `protobuf:"bytes,3,opt,name=nodeName,proto3" json:"nodeName,omitempty"`
+	DeviceType      string `protobuf:"bytes,4,opt,name=deviceType,proto3" json:"deviceType,omitempty"`
+	RegionCode      string `protobuf:"bytes,5,opt,name=regionCode,proto3" json:"regionCode,omitempty"`
+	TrafficType     uint32 `protobuf:"varint,6,opt,name=trafficType,proto3" json:"trafficType,omitempty"` // Default 0 - stands for Enreach traffic
+	RegisterStatus  string `protobuf:"bytes,7,opt,name=registerStatus,proto3" json:"registerStatus,omitempty"`
+	WorkingStatus   string `protobuf:"bytes,8,opt,name=workingStatus,proto3" json:"workingStatus,omitempty"`
+	CheatStatus     string `protobuf:"bytes,9,opt,name=cheatStatus,proto3" json:"cheatStatus,omitempty"`
+	ReputationPoint int64  `protobuf:"varint,10,opt,name=reputationPoint,proto3" json:"reputationPoint,omitempty"`
+	Creator         string `protobuf:"bytes,11,opt,name=creator,proto3" json:"creator,omitempty"`
+	CreateAt        uint64 `protobuf:"varint,12,opt,name=createAt,proto3" json:"createAt,omitempty"`
+	Updator         string `protobuf:"bytes,13,opt,name=updator,proto3" json:"updator,omitempty"`
+	UpdateAt        uint64 `protobuf:"varint,14,opt,name=updateAt,proto3" json:"updateAt,omitempty"`
 }
 
 func (x *Node) Reset() {
@@ -1196,6 +1310,20 @@ func (x *Node) GetWorkingStatus() string {
 	return ""
 }
 
+func (x *Node) GetCheatStatus() string {
+	if x != nil {
+		return x.CheatStatus
+	}
+	return ""
+}
+
+func (x *Node) GetReputationPoint() int64 {
+	if x != nil {
+		return x.ReputationPoint
+	}
+	return 0
+}
+
 func (x *Node) GetCreator() string {
 	if x != nil {
 		return x.Creator
@@ -1230,7 +1358,7 @@ var file_enreach_edgenode_node_proto_rawDesc = []byte{
 	0x0a, 0x1b, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x65, 0x64, 0x67, 0x65, 0x6e, 0x6f,
 	0x64, 0x65, 0x2f, 0x6e, 0x6f, 0x64, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x10, 0x65,
 	0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x65, 0x64, 0x67, 0x65, 0x6e, 0x6f, 0x64, 0x65, 0x22,
-	0xee, 0x02, 0x0a, 0x04, 0x4e, 0x6f, 0x64, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x6e, 0x6f, 0x64, 0x65,
+	0xba, 0x03, 0x0a, 0x04, 0x4e, 0x6f, 0x64, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x6e, 0x6f, 0x64, 0x65,
 	0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x6e, 0x6f, 0x64, 0x65, 0x49, 0x44,
 	0x12, 0x16, 0x0a, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
 	0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x44, 0x12, 0x1a, 0x0a, 0x08, 0x6e, 0x6f, 0x64, 0x65,
@@ -1246,24 +1374,29 @@ var file_enreach_edgenode_node_proto_rawDesc = []byte{
 	0x72, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x24,
 	0x0a, 0x0d, 0x77, 0x6f, 0x72, 0x6b, 0x69, 0x6e, 0x67, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18,
 	0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x77, 0x6f, 0x72, 0x6b, 0x69, 0x6e, 0x67, 0x53, 0x74,
-	0x61, 0x74, 0x75, 0x73, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18,
-	0x09, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x1a,
-	0x0a, 0x08, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x74, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x04,
-	0x52, 0x08, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x75, 0x70,
-	0x64, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x75, 0x70, 0x64,
-	0x61, 0x74, 0x6f, 0x72, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x74,
-	0x18, 0x0c, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x74,
-	0x42, 0xa5, 0x01, 0x0a, 0x14, 0x63, 0x6f, 0x6d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68,
-	0x2e, 0x65, 0x64, 0x67, 0x65, 0x6e, 0x6f, 0x64, 0x65, 0x42, 0x09, 0x4e, 0x6f, 0x64, 0x65, 0x50,
-	0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x21, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64,
-	0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68,
-	0x2f, 0x65, 0x64, 0x67, 0x65, 0x6e, 0x6f, 0x64, 0x65, 0xa2, 0x02, 0x03, 0x45, 0x45, 0x58, 0xaa,
-	0x02, 0x10, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x45, 0x64, 0x67, 0x65, 0x6e, 0x6f,
-	0x64, 0x65, 0xca, 0x02, 0x10, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x45, 0x64, 0x67,
-	0x65, 0x6e, 0x6f, 0x64, 0x65, 0xe2, 0x02, 0x1c, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c,
-	0x45, 0x64, 0x67, 0x65, 0x6e, 0x6f, 0x64, 0x65, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61,
-	0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x11, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x3a, 0x3a,
-	0x45, 0x64, 0x67, 0x65, 0x6e, 0x6f, 0x64, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x61, 0x74, 0x75, 0x73, 0x12, 0x20, 0x0a, 0x0b, 0x63, 0x68, 0x65, 0x61, 0x74, 0x53, 0x74, 0x61,
+	0x74, 0x75, 0x73, 0x18, 0x09, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x68, 0x65, 0x61, 0x74,
+	0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x28, 0x0a, 0x0f, 0x72, 0x65, 0x70, 0x75, 0x74, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x50, 0x6f, 0x69, 0x6e, 0x74, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x0f, 0x72, 0x65, 0x70, 0x75, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x50, 0x6f, 0x69, 0x6e, 0x74,
+	0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x0b, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x1a, 0x0a, 0x08, 0x63, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x41, 0x74, 0x18, 0x0c, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x63, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x41, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x75, 0x70, 0x64, 0x61, 0x74, 0x6f,
+	0x72, 0x18, 0x0d, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x75, 0x70, 0x64, 0x61, 0x74, 0x6f, 0x72,
+	0x12, 0x1a, 0x0a, 0x08, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x74, 0x18, 0x0e, 0x20, 0x01,
+	0x28, 0x04, 0x52, 0x08, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x74, 0x42, 0xa5, 0x01, 0x0a,
+	0x14, 0x63, 0x6f, 0x6d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x65, 0x64, 0x67,
+	0x65, 0x6e, 0x6f, 0x64, 0x65, 0x42, 0x09, 0x4e, 0x6f, 0x64, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f,
+	0x50, 0x01, 0x5a, 0x21, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f,
+	0x2f, 0x61, 0x70, 0x69, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x65, 0x64, 0x67,
+	0x65, 0x6e, 0x6f, 0x64, 0x65, 0xa2, 0x02, 0x03, 0x45, 0x45, 0x58, 0xaa, 0x02, 0x10, 0x45, 0x6e,
+	0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x45, 0x64, 0x67, 0x65, 0x6e, 0x6f, 0x64, 0x65, 0xca, 0x02,
+	0x10, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x45, 0x64, 0x67, 0x65, 0x6e, 0x6f, 0x64,
+	0x65, 0xe2, 0x02, 0x1c, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x45, 0x64, 0x67, 0x65,
+	0x6e, 0x6f, 0x64, 0x65, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61,
+	0xea, 0x02, 0x11, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x3a, 0x3a, 0x45, 0x64, 0x67, 0x65,
+	0x6e, 0x6f, 0x64, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (

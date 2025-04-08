@@ -29,8 +29,10 @@ type ParamSubspace interface {
 
 type ManagerKeeper interface {
 	Manager(context.Context, *managertypes.QueryGetManagerRequest) (*managertypes.QueryGetManagerResponse, error)
+	GetManagerByRegion(context.Context, *managertypes.QueryGetManagerByRegionRequest) (*managertypes.QueryGetManagerByRegionResponse, error)
 }
 
 type EdgenodeKeeper interface {
 	Node(context.Context, *edgenodetypes.QueryGetNodeRequest) (*edgenodetypes.QueryGetNodeResponse, error)
+	SetNode(context.Context, edgenodetypes.Node)
 }

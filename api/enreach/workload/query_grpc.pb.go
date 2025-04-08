@@ -31,6 +31,8 @@ const (
 	Query_AllManagerWRWorkloadByEpoch_FullMethodName       = "/enreach.workload.Query/AllManagerWRWorkloadByEpoch"
 	Query_ManagerRPWorkload_FullMethodName                 = "/enreach.workload.Query/ManagerRPWorkload"
 	Query_AllManagerRPWorkloadByEra_FullMethodName         = "/enreach.workload.Query/AllManagerRPWorkloadByEra"
+	Query_ManagerCSWorkload_FullMethodName                 = "/enreach.workload.Query/ManagerCSWorkload"
+	Query_AllManagerCSWorkloadByEra_FullMethodName         = "/enreach.workload.Query/AllManagerCSWorkloadByEra"
 	Query_Workreport_FullMethodName                        = "/enreach.workload.Query/Workreport"
 	Query_AllWorkreportByEpoch_FullMethodName              = "/enreach.workload.Query/AllWorkreportByEpoch"
 	Query_WorkreportProcessBatchSize_FullMethodName        = "/enreach.workload.Query/WorkreportProcessBatchSize"
@@ -51,6 +53,10 @@ const (
 	Query_AllReputationPoint_FullMethodName                = "/enreach.workload.Query/AllReputationPoint"
 	Query_EraProcessData_FullMethodName                    = "/enreach.workload.Query/EraProcessData"
 	Query_AllEraProcessData_FullMethodName                 = "/enreach.workload.Query/AllEraProcessData"
+	Query_CheatStatusCRData_FullMethodName                 = "/enreach.workload.Query/CheatStatusCRData"
+	Query_AllCheatStatusCRDataByEra_FullMethodName         = "/enreach.workload.Query/AllCheatStatusCRDataByEra"
+	Query_EraCheatStatusProcessData_FullMethodName         = "/enreach.workload.Query/EraCheatStatusProcessData"
+	Query_AllEraCheatStatusProcessData_FullMethodName      = "/enreach.workload.Query/AllEraCheatStatusProcessData"
 )
 
 // QueryClient is the client API for Query service.
@@ -73,6 +79,8 @@ type QueryClient interface {
 	AllManagerWRWorkloadByEpoch(ctx context.Context, in *QueryGetAllManagerWRWorkloadByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllManagerWRWorkloadByEpochResponse, error)
 	ManagerRPWorkload(ctx context.Context, in *QueryGetManagerRPWorkloadRequest, opts ...grpc.CallOption) (*QueryGetManagerRPWorkloadResponse, error)
 	AllManagerRPWorkloadByEra(ctx context.Context, in *QueryGetAllManagerRPWorkloadByEraRequest, opts ...grpc.CallOption) (*QueryGetAllManagerRPWorkloadByEraResponse, error)
+	ManagerCSWorkload(ctx context.Context, in *QueryGetManagerCSWorkloadRequest, opts ...grpc.CallOption) (*QueryGetManagerCSWorkloadResponse, error)
+	AllManagerCSWorkloadByEra(ctx context.Context, in *QueryGetAllManagerCSWorkloadByEraRequest, opts ...grpc.CallOption) (*QueryGetAllManagerCSWorkloadByEraResponse, error)
 	// Queries a list of Workreport items.
 	Workreport(ctx context.Context, in *QueryGetWorkreportRequest, opts ...grpc.CallOption) (*QueryGetWorkreportResponse, error)
 	AllWorkreportByEpoch(ctx context.Context, in *QueryGetAllWorkreportByEpochRequest, opts ...grpc.CallOption) (*QueryGetAllWorkreportByEpochResponse, error)
@@ -97,9 +105,15 @@ type QueryClient interface {
 	AllReputationDeltaPointByEra(ctx context.Context, in *QueryGetAllReputationDeltaPointByEraRequest, opts ...grpc.CallOption) (*QueryGetAllReputationDeltaPointByEraResponse, error)
 	ReputationPoint(ctx context.Context, in *QueryGetReputationPointRequest, opts ...grpc.CallOption) (*QueryGetReputationPointResponse, error)
 	AllReputationPoint(ctx context.Context, in *QueryGetAllReputationPointRequest, opts ...grpc.CallOption) (*QueryGetAllReputationPointResponse, error)
-	// Queries a list of EpochProcessData items.
+	// Queries a list of EraProcessData items.
 	EraProcessData(ctx context.Context, in *QueryGetEraProcessDataRequest, opts ...grpc.CallOption) (*QueryGetEraProcessDataResponse, error)
 	AllEraProcessData(ctx context.Context, in *QueryGetAllEraProcessDataRequest, opts ...grpc.CallOption) (*QueryGetAllEraProcessDataResponse, error)
+	// Queries a list of CheatStatusPRData items.
+	CheatStatusCRData(ctx context.Context, in *QueryGetCheatStatusCRDataRequest, opts ...grpc.CallOption) (*QueryGetCheatStatusCRDataResponse, error)
+	AllCheatStatusCRDataByEra(ctx context.Context, in *QueryGetAllCheatStatusCRDataByEraRequest, opts ...grpc.CallOption) (*QueryGetAllCheatStatusCRDataByEraResponse, error)
+	// Queries a list of EraCheatStatusProcessData items.
+	EraCheatStatusProcessData(ctx context.Context, in *QueryGetEraCheatStatusProcessDataRequest, opts ...grpc.CallOption) (*QueryGetEraCheatStatusProcessDataResponse, error)
+	AllEraCheatStatusProcessData(ctx context.Context, in *QueryGetAllEraCheatStatusProcessDataRequest, opts ...grpc.CallOption) (*QueryGetAllEraCheatStatusProcessDataResponse, error)
 }
 
 type queryClient struct {
@@ -212,6 +226,24 @@ func (c *queryClient) ManagerRPWorkload(ctx context.Context, in *QueryGetManager
 func (c *queryClient) AllManagerRPWorkloadByEra(ctx context.Context, in *QueryGetAllManagerRPWorkloadByEraRequest, opts ...grpc.CallOption) (*QueryGetAllManagerRPWorkloadByEraResponse, error) {
 	out := new(QueryGetAllManagerRPWorkloadByEraResponse)
 	err := c.cc.Invoke(ctx, Query_AllManagerRPWorkloadByEra_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) ManagerCSWorkload(ctx context.Context, in *QueryGetManagerCSWorkloadRequest, opts ...grpc.CallOption) (*QueryGetManagerCSWorkloadResponse, error) {
+	out := new(QueryGetManagerCSWorkloadResponse)
+	err := c.cc.Invoke(ctx, Query_ManagerCSWorkload_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) AllManagerCSWorkloadByEra(ctx context.Context, in *QueryGetAllManagerCSWorkloadByEraRequest, opts ...grpc.CallOption) (*QueryGetAllManagerCSWorkloadByEraResponse, error) {
+	out := new(QueryGetAllManagerCSWorkloadByEraResponse)
+	err := c.cc.Invoke(ctx, Query_AllManagerCSWorkloadByEra_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -398,6 +430,42 @@ func (c *queryClient) AllEraProcessData(ctx context.Context, in *QueryGetAllEraP
 	return out, nil
 }
 
+func (c *queryClient) CheatStatusCRData(ctx context.Context, in *QueryGetCheatStatusCRDataRequest, opts ...grpc.CallOption) (*QueryGetCheatStatusCRDataResponse, error) {
+	out := new(QueryGetCheatStatusCRDataResponse)
+	err := c.cc.Invoke(ctx, Query_CheatStatusCRData_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) AllCheatStatusCRDataByEra(ctx context.Context, in *QueryGetAllCheatStatusCRDataByEraRequest, opts ...grpc.CallOption) (*QueryGetAllCheatStatusCRDataByEraResponse, error) {
+	out := new(QueryGetAllCheatStatusCRDataByEraResponse)
+	err := c.cc.Invoke(ctx, Query_AllCheatStatusCRDataByEra_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) EraCheatStatusProcessData(ctx context.Context, in *QueryGetEraCheatStatusProcessDataRequest, opts ...grpc.CallOption) (*QueryGetEraCheatStatusProcessDataResponse, error) {
+	out := new(QueryGetEraCheatStatusProcessDataResponse)
+	err := c.cc.Invoke(ctx, Query_EraCheatStatusProcessData_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) AllEraCheatStatusProcessData(ctx context.Context, in *QueryGetAllEraCheatStatusProcessDataRequest, opts ...grpc.CallOption) (*QueryGetAllEraCheatStatusProcessDataResponse, error) {
+	out := new(QueryGetAllEraCheatStatusProcessDataResponse)
+	err := c.cc.Invoke(ctx, Query_AllEraCheatStatusProcessData_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
@@ -418,6 +486,8 @@ type QueryServer interface {
 	AllManagerWRWorkloadByEpoch(context.Context, *QueryGetAllManagerWRWorkloadByEpochRequest) (*QueryGetAllManagerWRWorkloadByEpochResponse, error)
 	ManagerRPWorkload(context.Context, *QueryGetManagerRPWorkloadRequest) (*QueryGetManagerRPWorkloadResponse, error)
 	AllManagerRPWorkloadByEra(context.Context, *QueryGetAllManagerRPWorkloadByEraRequest) (*QueryGetAllManagerRPWorkloadByEraResponse, error)
+	ManagerCSWorkload(context.Context, *QueryGetManagerCSWorkloadRequest) (*QueryGetManagerCSWorkloadResponse, error)
+	AllManagerCSWorkloadByEra(context.Context, *QueryGetAllManagerCSWorkloadByEraRequest) (*QueryGetAllManagerCSWorkloadByEraResponse, error)
 	// Queries a list of Workreport items.
 	Workreport(context.Context, *QueryGetWorkreportRequest) (*QueryGetWorkreportResponse, error)
 	AllWorkreportByEpoch(context.Context, *QueryGetAllWorkreportByEpochRequest) (*QueryGetAllWorkreportByEpochResponse, error)
@@ -442,9 +512,15 @@ type QueryServer interface {
 	AllReputationDeltaPointByEra(context.Context, *QueryGetAllReputationDeltaPointByEraRequest) (*QueryGetAllReputationDeltaPointByEraResponse, error)
 	ReputationPoint(context.Context, *QueryGetReputationPointRequest) (*QueryGetReputationPointResponse, error)
 	AllReputationPoint(context.Context, *QueryGetAllReputationPointRequest) (*QueryGetAllReputationPointResponse, error)
-	// Queries a list of EpochProcessData items.
+	// Queries a list of EraProcessData items.
 	EraProcessData(context.Context, *QueryGetEraProcessDataRequest) (*QueryGetEraProcessDataResponse, error)
 	AllEraProcessData(context.Context, *QueryGetAllEraProcessDataRequest) (*QueryGetAllEraProcessDataResponse, error)
+	// Queries a list of CheatStatusPRData items.
+	CheatStatusCRData(context.Context, *QueryGetCheatStatusCRDataRequest) (*QueryGetCheatStatusCRDataResponse, error)
+	AllCheatStatusCRDataByEra(context.Context, *QueryGetAllCheatStatusCRDataByEraRequest) (*QueryGetAllCheatStatusCRDataByEraResponse, error)
+	// Queries a list of EraCheatStatusProcessData items.
+	EraCheatStatusProcessData(context.Context, *QueryGetEraCheatStatusProcessDataRequest) (*QueryGetEraCheatStatusProcessDataResponse, error)
+	AllEraCheatStatusProcessData(context.Context, *QueryGetAllEraCheatStatusProcessDataRequest) (*QueryGetAllEraCheatStatusProcessDataResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -487,6 +563,12 @@ func (UnimplementedQueryServer) ManagerRPWorkload(context.Context, *QueryGetMana
 }
 func (UnimplementedQueryServer) AllManagerRPWorkloadByEra(context.Context, *QueryGetAllManagerRPWorkloadByEraRequest) (*QueryGetAllManagerRPWorkloadByEraResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AllManagerRPWorkloadByEra not implemented")
+}
+func (UnimplementedQueryServer) ManagerCSWorkload(context.Context, *QueryGetManagerCSWorkloadRequest) (*QueryGetManagerCSWorkloadResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ManagerCSWorkload not implemented")
+}
+func (UnimplementedQueryServer) AllManagerCSWorkloadByEra(context.Context, *QueryGetAllManagerCSWorkloadByEraRequest) (*QueryGetAllManagerCSWorkloadByEraResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllManagerCSWorkloadByEra not implemented")
 }
 func (UnimplementedQueryServer) Workreport(context.Context, *QueryGetWorkreportRequest) (*QueryGetWorkreportResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Workreport not implemented")
@@ -547,6 +629,18 @@ func (UnimplementedQueryServer) EraProcessData(context.Context, *QueryGetEraProc
 }
 func (UnimplementedQueryServer) AllEraProcessData(context.Context, *QueryGetAllEraProcessDataRequest) (*QueryGetAllEraProcessDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AllEraProcessData not implemented")
+}
+func (UnimplementedQueryServer) CheatStatusCRData(context.Context, *QueryGetCheatStatusCRDataRequest) (*QueryGetCheatStatusCRDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheatStatusCRData not implemented")
+}
+func (UnimplementedQueryServer) AllCheatStatusCRDataByEra(context.Context, *QueryGetAllCheatStatusCRDataByEraRequest) (*QueryGetAllCheatStatusCRDataByEraResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllCheatStatusCRDataByEra not implemented")
+}
+func (UnimplementedQueryServer) EraCheatStatusProcessData(context.Context, *QueryGetEraCheatStatusProcessDataRequest) (*QueryGetEraCheatStatusProcessDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EraCheatStatusProcessData not implemented")
+}
+func (UnimplementedQueryServer) AllEraCheatStatusProcessData(context.Context, *QueryGetAllEraCheatStatusProcessDataRequest) (*QueryGetAllEraCheatStatusProcessDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllEraCheatStatusProcessData not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -773,6 +867,42 @@ func _Query_AllManagerRPWorkloadByEra_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(QueryServer).AllManagerRPWorkloadByEra(ctx, req.(*QueryGetAllManagerRPWorkloadByEraRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_ManagerCSWorkload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetManagerCSWorkloadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ManagerCSWorkload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_ManagerCSWorkload_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ManagerCSWorkload(ctx, req.(*QueryGetManagerCSWorkloadRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_AllManagerCSWorkloadByEra_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAllManagerCSWorkloadByEraRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).AllManagerCSWorkloadByEra(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_AllManagerCSWorkloadByEra_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).AllManagerCSWorkloadByEra(ctx, req.(*QueryGetAllManagerCSWorkloadByEraRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1137,6 +1267,78 @@ func _Query_AllEraProcessData_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_CheatStatusCRData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetCheatStatusCRDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).CheatStatusCRData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_CheatStatusCRData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).CheatStatusCRData(ctx, req.(*QueryGetCheatStatusCRDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_AllCheatStatusCRDataByEra_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAllCheatStatusCRDataByEraRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).AllCheatStatusCRDataByEra(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_AllCheatStatusCRDataByEra_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).AllCheatStatusCRDataByEra(ctx, req.(*QueryGetAllCheatStatusCRDataByEraRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_EraCheatStatusProcessData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetEraCheatStatusProcessDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).EraCheatStatusProcessData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_EraCheatStatusProcessData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).EraCheatStatusProcessData(ctx, req.(*QueryGetEraCheatStatusProcessDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_AllEraCheatStatusProcessData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAllEraCheatStatusProcessDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).AllEraCheatStatusProcessData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_AllEraCheatStatusProcessData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).AllEraCheatStatusProcessData(ctx, req.(*QueryGetAllEraCheatStatusProcessDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1191,6 +1393,14 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AllManagerRPWorkloadByEra",
 			Handler:    _Query_AllManagerRPWorkloadByEra_Handler,
+		},
+		{
+			MethodName: "ManagerCSWorkload",
+			Handler:    _Query_ManagerCSWorkload_Handler,
+		},
+		{
+			MethodName: "AllManagerCSWorkloadByEra",
+			Handler:    _Query_AllManagerCSWorkloadByEra_Handler,
 		},
 		{
 			MethodName: "Workreport",
@@ -1271,6 +1481,22 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AllEraProcessData",
 			Handler:    _Query_AllEraProcessData_Handler,
+		},
+		{
+			MethodName: "CheatStatusCRData",
+			Handler:    _Query_CheatStatusCRData_Handler,
+		},
+		{
+			MethodName: "AllCheatStatusCRDataByEra",
+			Handler:    _Query_AllCheatStatusCRDataByEra_Handler,
+		},
+		{
+			MethodName: "EraCheatStatusProcessData",
+			Handler:    _Query_EraCheatStatusProcessData_Handler,
+		},
+		{
+			MethodName: "AllEraCheatStatusProcessData",
+			Handler:    _Query_AllEraCheatStatusProcessData_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -11,6 +11,7 @@ import "enreach/workload/workload.proto";
 import "enreach/workload/workreport.proto";
 import "enreach/workload/superior.proto";
 import "enreach/workload/reputationpoint.proto";
+import "enreach/workload/cheat_status.proto";
 
 option go_package = "enreach/x/workload/types";
 
@@ -30,6 +31,8 @@ service Msg {
   rpc UpdateSuperior             (MsgUpdateSuperior            ) returns (MsgUpdateSuperiorResponse            );
 
   rpc SubmitReputationPointChangeData (MsgSubmitReputationPointChangeData) returns (MsgSubmitReputationPointChangeDataResponse);
+
+  rpc SubmitCheatStatusCR (MsgSubmitCheatStatusCR) returns (MsgSubmitCheatStatusCRResponse);
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -102,4 +105,14 @@ message MsgSubmitReputationPointChangeData {
 }
 
 message MsgSubmitReputationPointChangeDataResponse {
+}
+
+message MsgSubmitCheatStatusCR {
+  option (cosmos.msg.v1.signer)   = "managerAccount";
+  string managerAccount           = 1;
+  uint64 era                      = 2;
+  repeated CheatStatusCR nodeDatas   = 3;
+}
+
+message MsgSubmitCheatStatusCRResponse {
 }

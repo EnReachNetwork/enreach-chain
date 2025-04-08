@@ -24,4 +24,5 @@ var (
 	ErrInvalidEra                       = sdkerrors.Register(ModuleName, 1113, "invalid era")
 	ErrEraProcessorNotStartedYet        = sdkerrors.Register(ModuleName, 1114, "era processor not started yet")
 	ErrFirstEraProcessNotFinishedYet    = sdkerrors.Register(ModuleName, 1115, "first era process not finished yet")
+	ErrNodeDatasCountExceedPerReqLimit  = sdkerrors.Register(ModuleName, 1116, "nodedatas count exceed per request limit")
 )
