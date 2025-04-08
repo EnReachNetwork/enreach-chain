@@ -46,6 +46,13 @@ func (k msgServer) SubmitCheatStatusCR(goCtx context.Context, msg *types.MsgSubm
 
 	// Validate all nodes status
 	for _, nodeData := range msg.NodeDatas {
+		// Check whether the status field is valid
+		if nodeData.CheatStatus != string(types.CS_NORMAL) &&
+			nodeData.CheatStatus != string(types.CS_SUSPICIOUS) &&
+			nodeData.CheatStatus != string(types.CS_BLACKLIST) {
+			return nil, errorsmod.Wrapf(types.ErrInvalidCheatStatus, "CheatStatus must be either 'Normal/Suspicious/Blacklist'")
+		}
+
 		// Check whether the nodeID exist
 		nodeResp, err := k.edgenodeKeeper.Node(ctx, &edgenodetypes.QueryGetNodeRequest{NodeID: nodeData.NodeID})
 		if err != nil {

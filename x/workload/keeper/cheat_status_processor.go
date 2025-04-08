@@ -163,16 +163,18 @@ func processCheatStatusCRDatas(ctx sdk.Context, k Keeper, era uint64, cheatStatu
 			continue
 		}
 
-		// Set the cheat status to the node and save to the store
-		resp, err := k.edgenodeKeeper.Node(ctx, &edgenodetypes.QueryGetNodeRequest{NodeID: nodeID})
-		if err != nil {
-			continue
-		}
-		node := resp.Node
+		if cheatStatus != "" {
+			// Set the cheat status to the node and save to the store
+			resp, err := k.edgenodeKeeper.Node(ctx, &edgenodetypes.QueryGetNodeRequest{NodeID: nodeID})
+			if err != nil {
+				continue
+			}
+			node := resp.Node
 
-		node.CheatStatus = cheatStatus
-		node.UpdateAt = blockHeight
-		k.edgenodeKeeper.SetNode(ctx, node)
+			node.CheatStatus = cheatStatus
+			node.UpdateAt = blockHeight
+			k.edgenodeKeeper.SetNode(ctx, node)
+		}
 
 		// Aggregate the ManagerCSWorkload
 		for managerAccount, managerWorkload := range managerCSWorkloadMap {

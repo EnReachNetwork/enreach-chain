@@ -2,6 +2,7 @@ package types
 
 type EpochProcessStatus string
 type EraProcessStatus string
+type CheatStatus string
 
 const (
 	EPS_INIT       EpochProcessStatus = "Init"
@@ -11,4 +12,10 @@ const (
 	ERS_INIT       EraProcessStatus = "Init"
 	ERS_PROCESSING EraProcessStatus = "Processing"
 	ERS_DONE       EraProcessStatus = "Done"
+)
+
+const (
+	CS_NORMAL     CheatStatus = "Normal"
+	CS_SUSPICIOUS CheatStatus = "Suspicious"
+	CS_BLACKLIST  CheatStatus = "Blacklist"
 )
