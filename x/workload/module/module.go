@@ -207,7 +207,7 @@ func (am AppModule) handleEpochChange(goCtx context.Context) error {
 		k.AppendHistoryEpoch(ctx, &currentEpoch)
 
 		// Calculate next epoch and store in DB to be processed by next begin_block
-		epochDuration := time.Duration(types.EPOCH_LENGTH) * time.Second
+		epochDuration := time.Duration(k.GetEpochLength(ctx)) * time.Second
 		nextEpoch := types.EpochInfo{
 			Number:    currentEpoch.Number + 1,
 			StartTime: currentEpoch.EndTime,
@@ -255,7 +255,7 @@ func (am AppModule) handleEraChange(goCtx context.Context) error {
 		k.AppendHistoryEra(ctx, &currentEra)
 
 		// Calculate next era and store in DB to be processed by next begin_block
-		eraDuration := time.Duration(types.ERA_LENGTH) * time.Second
+		eraDuration := time.Duration(k.GetEraLength(ctx)) * time.Second
 		nextEra := types.EraInfo{
 			Number:    currentEra.Number + 1,
 			StartTime: currentEra.EndTime,

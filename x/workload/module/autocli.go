@@ -13,6 +13,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 			Service: modulev1.Query_ServiceDesc.ServiceName,
 			RpcCommandOptions: []*autocliv1.RpcCommandOptions{
 				{
+					RpcMethod:      "Param",
+					Use:            "param [paramKey]",
+					Short:          "Shows the parameter value of specific key",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "paramKey"}},
+				},
+				{
 					RpcMethod: "Params",
 					Use:       "params",
 					Short:     "Shows the parameters of the module",
@@ -118,16 +124,6 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "epoch"}},
 				},
 				{
-					RpcMethod: "WorkreportProcessBatchSize",
-					Use:       "get-workreport-process-batch-size",
-					Short:     "Get workload process batch size",
-				},
-				{
-					RpcMethod: "HistoryEpochDataDepth",
-					Use:       "get-history-epoch-data-depth",
-					Short:     "Get history epoch data depth",
-				},
-				{
 					RpcMethod:      "EpochProcessData",
 					Use:            "get-epoch-process-data [epoch]",
 					Short:          "Get epoch process data",
@@ -209,7 +205,7 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 			EnhanceCustomCommand: true, // only required if you want to use the custom command
 			RpcCommandOptions: []*autocliv1.RpcCommandOptions{
 				{
-					RpcMethod: "UpdateParams",
+					RpcMethod: "UpdateParam",
 					Skip:      true, // skipped because authority gated
 				},
 				{
@@ -217,18 +213,6 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Use:            "submit-workreports [managerAccount] [epoch] [nodeScores]",
 					Short:          "Submit workreports",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "managerAccount"}, {ProtoField: "epoch"}, {ProtoField: "nodeScores"}},
-				},
-				{
-					RpcMethod:      "UpdateWorkreportProcessBatchSize",
-					Use:            "update-workreport-process-batch-size [batchSize]",
-					Short:          "Update workload process batch size",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "batchSize"}},
-				},
-				{
-					RpcMethod:      "UpdateHistoryEpochDataDepth",
-					Use:            "update-history-epoch-data-depth [depth]",
-					Short:          "Update history epoch data depth",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "depth"}},
 				},
 				{
 					RpcMethod:      "SubmitReputationPointChangeData",

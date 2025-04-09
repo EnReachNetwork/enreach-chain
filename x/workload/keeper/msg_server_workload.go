@@ -10,7 +10,6 @@ import (
 
 	errorsmod "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
 
 func (k msgServer) SubmitWorkreports(goCtx context.Context, msg *types.MsgSubmitWorkreports) (*types.MsgSubmitWorkreportsResponse, error) {
@@ -114,64 +113,4 @@ func (k msgServer) SubmitWorkreports(goCtx context.Context, msg *types.MsgSubmit
 	)
 
 	return &types.MsgSubmitWorkreportsResponse{}, nil
-}
-
-func (k msgServer) UpdateWorkreportProcessBatchSize(goCtx context.Context, msg *types.MsgUpdateWorkreportProcessBatchSize) (*types.MsgUpdateWorkreportProcessBatchSizeResponse, error) {
-	ctx := sdk.UnwrapSDKContext(goCtx)
-
-	// tx caller must be superior
-	superior, isFound := k.GetSuperior(ctx)
-	if !isFound {
-		return nil, types.ErrSuperiorNotSet
-	}
-	if superior.Account != msg.Signer {
-		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only superior can execute this call")
-	}
-
-	// Get the existing batch size
-	oldBatchSize := k.GetWorkreportProcessBatchSize(ctx)
-
-	// Set to the store
-	k.SetWorkreportProcessBatchSize(ctx, msg.BatchSize)
-
-	// Emit the event
-	ctx.EventManager().EmitEvent(
-		sdk.NewEvent(types.EventTypeWorkreportProcessBatchSizeSet,
-			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
-			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.Signer),
-			sdk.NewAttribute(types.AttributeKeyOldBatchSize, strconv.FormatUint(oldBatchSize, 10)),
-			sdk.NewAttribute(types.AttributeKeyNewBatchSize, strconv.FormatUint(msg.BatchSize, 10)),
-		),
-	)
-	return &types.MsgUpdateWorkreportProcessBatchSizeResponse{}, nil
-}
-
-func (k msgServer) UpdateHistoryEpochDataDepth(goCtx context.Context, msg *types.MsgUpdateHistoryEpochDataDepth) (*types.MsgUpdateHistoryEpochDataDepthResponse, error) {
-	ctx := sdk.UnwrapSDKContext(goCtx)
-
-	// tx caller must be superior
-	superior, isFound := k.GetSuperior(ctx)
-	if !isFound {
-		return nil, types.ErrSuperiorNotSet
-	}
-	if superior.Account != msg.Signer {
-		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only superior can execute this call")
-	}
-
-	// Get the existing depth
-	oldDepth := k.GetHistoryEpochDataDepth(ctx)
-
-	// Set to the store
-	k.SetHistoryEpochDataDepth(ctx, msg.Depth)
-
-	// Emit the event
-	ctx.EventManager().EmitEvent(
-		sdk.NewEvent(types.EventTypeWorkreportProcessBatchSizeSet,
-			sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
-			sdk.NewAttribute(types.AttributeKeyTxSigner, msg.Signer),
-			sdk.NewAttribute(types.AttributeKeyOldDepth, strconv.FormatUint(oldDepth, 10)),
-			sdk.NewAttribute(types.AttributeKeyNewDepth, strconv.FormatUint(msg.Depth, 10)),
-		),
-	)
-	return &types.MsgUpdateHistoryEpochDataDepthResponse{}, nil
 }

@@ -109,60 +109,6 @@ func (k Keeper) GetNodeWorkreportsPaginated(ctx context.Context, epochID uint64,
 	return workreports, pageRes, nil
 }
 
-// SetWorkreportProcessBatchSize sets the workreport process batch size.
-func (k Keeper) SetWorkreportProcessBatchSize(ctx context.Context, batchSize uint64) {
-	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, []byte{})
-	byteKey := types.KeyPrefix(types.WorkreportProcessBatchSizeKey)
-	bz := make([]byte, 8)
-	binary.BigEndian.PutUint64(bz, batchSize)
-	store.Set(byteKey, bz)
-}
-
-// GetWorkreportProcessBatchSize gets the workreport process batch size.
-func (k Keeper) GetWorkreportProcessBatchSize(ctx context.Context) uint64 {
-	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, []byte{})
-	byteKey := types.KeyPrefix(types.WorkreportProcessBatchSizeKey)
-	bz := store.Get(byteKey)
-
-	// value doesn't exist, set and return the default value
-	if bz == nil {
-		k.SetWorkreportProcessBatchSize(ctx, types.DEFAULT_WORKREPORT_PROCESS_BATCH_SIZE)
-		return types.DEFAULT_WORKREPORT_PROCESS_BATCH_SIZE
-	}
-
-	// Parse bytes
-	return binary.BigEndian.Uint64(bz)
-}
-
-// SetHistoryEpochDataDepth sets the history epoch data depth
-func (k Keeper) SetHistoryEpochDataDepth(ctx context.Context, depth uint64) {
-	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, []byte{})
-	byteKey := types.KeyPrefix(types.WorkreportHistoryEpochDataDepthKey)
-	bz := make([]byte, 8)
-	binary.BigEndian.PutUint64(bz, depth)
-	store.Set(byteKey, bz)
-}
-
-// GetHistoryEpochDataDepth gets the history epoch data depth
-func (k Keeper) GetHistoryEpochDataDepth(ctx context.Context) uint64 {
-	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, []byte{})
-	byteKey := types.KeyPrefix(types.WorkreportHistoryEpochDataDepthKey)
-	bz := store.Get(byteKey)
-
-	// value doesn't exist, set and return the default value
-	if bz == nil {
-		k.SetWorkreportProcessBatchSize(ctx, types.DEFAULT_HISTORY_EPOCH_DATA_DEPTH)
-		return types.DEFAULT_HISTORY_EPOCH_DATA_DEPTH
-	}
-
-	// Parse bytes
-	return binary.BigEndian.Uint64(bz)
-}
-
 func GetWorkreportCountKey(epochID uint64) []byte {
 	bz := types.KeyPrefix(types.WorkreportCountKey)
 	bz = append(bz, []byte("/")...)

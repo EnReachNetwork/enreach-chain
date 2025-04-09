@@ -14,9 +14,6 @@ const (
 	EventTypeSuperiorCreated = "EventSuperiorCreated"
 	EventTypeSuperiorUpdated = "EventSuperiorUpdated"
 
-	EventTypeWorkreportProcessBatchSizeSet = "EventWorkreportProcessBatchSizeSet"
-	EventTypeHistoryEpochDataDepthSet      = "EventHistoryEpochDataDepthSet"
-
 	EventTypeEpochWorkloadProcessStarted = "EventEpochWorkloadProcessStarted"
 	EventTypeEpochWorkloadProcessEnded   = "EventEpochWorkloadProcessEnded"
 
@@ -26,16 +23,14 @@ const (
 	EventTypeEraCheatStatusProcessStarted = "EventEraCheatStatusProcessStarted"
 	EventTypeEraCheatStatusProcessEnded   = "EventEraCheatStatusProcessEnded"
 
+	EventTypeParamUpdated = "EventParamUpdated"
+
 	AttributeKeyTxSigner            = "signer"
 	AttributeKeyManagerAccount      = "managerAccount"
 	AttributeKeyEpoch               = "epoch"
 	AttributeKeyBlockHeight         = "blockHeight"
 	AttributeKeyNodeScoresCount     = "nodeScoresCount"
 	AttributeKeySuperior            = "superior"
-	AttributeKeyOldBatchSize        = "oldBatchSize"
-	AttributeKeyNewBatchSize        = "newBatchSize"
-	AttributeKeyOldDepth            = "oldDepth"
-	AttributeKeyNewDepth            = "newDepth"
 	AttributeKeyStartAt             = "startAt"
 	AttributeKeyEndAt               = "endAt"
 	AttributeKeyTotalNodesCount     = "totalNodesCount"
@@ -51,4 +46,7 @@ const (
 	AttributeKeyEraStartBlock       = "eraStartBlock"
 	AttributeKeyEraEndTime          = "eraEndTime"
 	AttributeKeyEraEndBlock         = "eraEndBlock"
+	AttributeKeyParamKey            = "paramKey"
+	AttributeKeyOldParamValue       = "oldParamValue"
+	AttributeKeyNewParamValue       = "newParamValue"
 )

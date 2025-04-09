@@ -21,11 +21,8 @@ service Msg {
   
   // UpdateParams defines a (governance) operation for updating the module
   // parameters. The authority defaults to the x/gov module account.
-  rpc UpdateParams   (MsgUpdateParams  ) returns (MsgUpdateParamsResponse  );
+  rpc UpdateParam        (MsgUpdateParam       ) returns (MsgUpdateParamResponse       );
   rpc SubmitWorkreports (MsgSubmitWorkreports) returns (MsgSubmitWorkreportsResponse);
-
-  rpc UpdateWorkreportProcessBatchSize (MsgUpdateWorkreportProcessBatchSize) returns (MsgUpdateWorkreportProcessBatchSizeResponse);
-  rpc UpdateHistoryEpochDataDepth (MsgUpdateHistoryEpochDataDepth) returns (MsgUpdateHistoryEpochDataDepthResponse);
 
   rpc CreateSuperior             (MsgCreateSuperior            ) returns (MsgCreateSuperiorResponse            );
   rpc UpdateSuperior             (MsgUpdateSuperior            ) returns (MsgUpdateSuperiorResponse            );
@@ -34,24 +31,18 @@ service Msg {
 
   rpc SubmitCheatStatusCR (MsgSubmitCheatStatusCR) returns (MsgSubmitCheatStatusCRResponse);
 }
-// MsgUpdateParams is the Msg/UpdateParams request type.
-message MsgUpdateParams {
-  option (cosmos.msg.v1.signer) =                          "authority";
-  option           (amino.name) = "enreach/x/workload/MsgUpdateParams";
-  
-  // authority is the address that controls the module (defaults to x/gov unless overwritten).
-  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  
-  // params defines the module parameters to update.
-  
-  // NOTE: All parameters must be supplied.
-  Params params = 2 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+
+/////////////////////////////////////////////////////////////////
+message MsgUpdateParam {
+  option (cosmos.msg.v1.signer) = "signer";
+  string signer = 1;
+  string paramKey = 2;
+  string paramValue = 3;
 }
 
-// MsgUpdateParamsResponse defines the response structure for executing a
-// MsgUpdateParams message.
-message MsgUpdateParamsResponse {}
+message MsgUpdateParamResponse {}
 
+//////////////////
 message MsgSubmitWorkreports {
   option (cosmos.msg.v1.signer)   = "managerAccount";
   string managerAccount           = 1;
@@ -62,25 +53,7 @@ message MsgSubmitWorkreports {
 message MsgSubmitWorkreportsResponse {
 }
 
-message MsgUpdateWorkreportProcessBatchSize {
-  option (cosmos.msg.v1.signer)   = "signer";
-  string signer                   = 1;
-  uint64 batchSize                = 2;
-}
-
-message MsgUpdateWorkreportProcessBatchSizeResponse {
-}
-
-message MsgUpdateHistoryEpochDataDepth {
-  option (cosmos.msg.v1.signer)   = "signer";
-  string signer                   = 1;
-  uint64 depth                    = 2;
-}
-
-message MsgUpdateHistoryEpochDataDepthResponse {
-}
-
-
+/////////////////
 message MsgCreateSuperior {
   option (cosmos.msg.v1.signer) = "signer";
   string signer   = 1;
@@ -97,6 +70,7 @@ message MsgUpdateSuperior {
 
 message MsgUpdateSuperiorResponse {}
 
+//////////////////
 message MsgSubmitReputationPointChangeData {
   option (cosmos.msg.v1.signer)   = "managerAccount";
   string managerAccount           = 1;

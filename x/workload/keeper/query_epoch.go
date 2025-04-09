@@ -13,7 +13,7 @@ import (
 
 func (k Keeper) EpochLength(goCtx context.Context, req *types.QueryGetEpochLengthRequest) (*types.QueryGetEpochLengthResponse, error) {
 
-	return &types.QueryGetEpochLengthResponse{EpochLength: types.EPOCH_LENGTH}, nil
+	return &types.QueryGetEpochLengthResponse{EpochLength: k.GetEpochLength(goCtx)}, nil
 }
 
 func (k Keeper) CurrentEpoch(goCtx context.Context, req *types.QueryGetCurrentEpochRequest) (*types.QueryGetCurrentEpochResponse, error) {

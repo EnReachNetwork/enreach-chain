@@ -13,7 +13,7 @@ import (
 
 func (k Keeper) EraLength(goCtx context.Context, req *types.QueryGetEraLengthRequest) (*types.QueryGetEraLengthResponse, error) {
 
-	return &types.QueryGetEraLengthResponse{EraLength: types.ERA_LENGTH}, nil
+	return &types.QueryGetEraLengthResponse{EraLength: k.GetEraLength(goCtx)}, nil
 }
 
 func (k Keeper) CurrentEra(goCtx context.Context, req *types.QueryGetCurrentEraRequest) (*types.QueryGetCurrentEraResponse, error) {

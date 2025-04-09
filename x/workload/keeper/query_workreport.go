@@ -41,23 +41,3 @@ func (k Keeper) AllWorkreportByEpoch(ctx context.Context, req *types.QueryGetAll
 
 	return &types.QueryGetAllWorkreportByEpochResponse{Workreports: workreports, Pagination: pageRes}, nil
 }
-
-func (k Keeper) WorkreportProcessBatchSize(ctx context.Context, req *types.QueryGetWorkreportProcessBatchSizeRequest) (*types.QueryGetWorkreportProcessBatchSizeResponse, error) {
-	if req == nil {
-		return nil, status.Error(codes.InvalidArgument, "invalid request")
-	}
-
-	batchSize := k.GetWorkreportProcessBatchSize(ctx)
-
-	return &types.QueryGetWorkreportProcessBatchSizeResponse{BatchSize: batchSize}, nil
-}
-
-func (k Keeper) HistoryEpochDataDepth(ctx context.Context, req *types.QueryGetHistoryEpochDataDepthRequest) (*types.QueryGetHistoryEpochDataDepthResponse, error) {
-	if req == nil {
-		return nil, status.Error(codes.InvalidArgument, "invalid request")
-	}
-
-	depth := k.GetHistoryEpochDataDepth(ctx)
-
-	return &types.QueryGetHistoryEpochDataDepthResponse{Depth: depth}, nil
-}

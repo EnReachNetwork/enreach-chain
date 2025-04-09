@@ -18,32 +18,35 @@ func TestMsgUpdateParams(t *testing.T) {
 	// default params
 	testCases := []struct {
 		name      string
-		input     *types.MsgUpdateParams
+		input     *types.MsgUpdateParam
 		expErr    bool
 		expErrMsg string
 	}{
 		{
 			name: "invalid authority",
-			input: &types.MsgUpdateParams{
-				Authority: "invalid",
-				Params:    params,
+			input: &types.MsgUpdateParam{
+				Signer:     "invalid",
+				ParamKey:   "key1",
+				ParamValue: "value1",
 			},
 			expErr:    true,
 			expErrMsg: "invalid authority",
 		},
 		{
 			name: "send enabled param",
-			input: &types.MsgUpdateParams{
-				Authority: k.GetAuthority(),
-				Params:    types.Params{},
+			input: &types.MsgUpdateParam{
+				Signer:     k.GetAuthority(),
+				ParamKey:   "key1",
+				ParamValue: "value1",
 			},
 			expErr: false,
 		},
 		{
 			name: "all good",
-			input: &types.MsgUpdateParams{
-				Authority: k.GetAuthority(),
-				Params:    params,
+			input: &types.MsgUpdateParam{
+				Signer:     k.GetAuthority(),
+				ParamKey:   "key1",
+				ParamValue: "value1",
 			},
 			expErr: false,
 		},
@@ -51,7 +54,7 @@ func TestMsgUpdateParams(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			_, err := ms.UpdateParams(wctx, tc.input)
+			_, err := ms.UpdateParam(wctx, tc.input)
 
 			if tc.expErr {
 				require.Error(t, err)

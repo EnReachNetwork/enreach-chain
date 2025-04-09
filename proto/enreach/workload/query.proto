@@ -21,6 +21,10 @@ option go_package = "enreach/x/workload/types";
 service Query {
   
   // Parameters queries the parameters of the module.
+  rpc Param (QueryParamRequest) returns (QueryParamResponse) {
+    option (google.api.http).get = "/enreach/edgenode/param/{paramKey}";
+  
+  }
   rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/enreach/workload/params";
   
@@ -94,15 +98,6 @@ service Query {
   
   }
   
-  // Queries some param settings
-  rpc WorkreportProcessBatchSize (QueryGetWorkreportProcessBatchSizeRequest) returns (QueryGetWorkreportProcessBatchSizeResponse) {
-    option (google.api.http).get = "/enreach/workload/workreport/process_batch_size";
-  
-  }
-  rpc HistoryEpochDataDepth      (QueryGetHistoryEpochDataDepthRequest     ) returns (QueryGetHistoryEpochDataDepthResponse     ) {
-    option (google.api.http).get = "/enreach/workload/workreport/history_epoch_data_depth";
-  
-  }
   rpc EpochProcessData           (QueryGetEpochProcessDataRequest          ) returns (QueryGetEpochProcessDataResponse          ) {
     option (google.api.http).get = "/enreach/workload/workreport/epoch_process_data/{epoch}";
   
@@ -190,6 +185,16 @@ service Query {
   
   }
 }
+
+////////////////////////////////////////////////////////
+message QueryParamRequest {
+  string paramKey = 1;
+}
+
+message QueryParamResponse {
+  string paramValue = 1;
+}
+
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
 
@@ -334,19 +339,6 @@ message QueryGetAllWorkreportByEpochRequest {
 message QueryGetAllWorkreportByEpochResponse {
   repeated Workreport                             Workreports = 1 [(gogoproto.nullable) = false];
            cosmos.base.query.v1beta1.PageResponse pagination  = 2;
-}
-
-////////////
-message QueryGetWorkreportProcessBatchSizeRequest {}
-
-message QueryGetWorkreportProcessBatchSizeResponse {
-  uint64 batchSize = 1;
-}
-
-message QueryGetHistoryEpochDataDepthRequest {}
-
-message QueryGetHistoryEpochDataDepthResponse {
-  uint64 depth = 1;
 }
 
 ////////////

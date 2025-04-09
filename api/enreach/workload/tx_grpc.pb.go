@@ -19,14 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Msg_UpdateParams_FullMethodName                     = "/enreach.workload.Msg/UpdateParams"
-	Msg_SubmitWorkreports_FullMethodName                = "/enreach.workload.Msg/SubmitWorkreports"
-	Msg_UpdateWorkreportProcessBatchSize_FullMethodName = "/enreach.workload.Msg/UpdateWorkreportProcessBatchSize"
-	Msg_UpdateHistoryEpochDataDepth_FullMethodName      = "/enreach.workload.Msg/UpdateHistoryEpochDataDepth"
-	Msg_CreateSuperior_FullMethodName                   = "/enreach.workload.Msg/CreateSuperior"
-	Msg_UpdateSuperior_FullMethodName                   = "/enreach.workload.Msg/UpdateSuperior"
-	Msg_SubmitReputationPointChangeData_FullMethodName  = "/enreach.workload.Msg/SubmitReputationPointChangeData"
-	Msg_SubmitCheatStatusCR_FullMethodName              = "/enreach.workload.Msg/SubmitCheatStatusCR"
+	Msg_UpdateParam_FullMethodName                     = "/enreach.workload.Msg/UpdateParam"
+	Msg_SubmitWorkreports_FullMethodName               = "/enreach.workload.Msg/SubmitWorkreports"
+	Msg_CreateSuperior_FullMethodName                  = "/enreach.workload.Msg/CreateSuperior"
+	Msg_UpdateSuperior_FullMethodName                  = "/enreach.workload.Msg/UpdateSuperior"
+	Msg_SubmitReputationPointChangeData_FullMethodName = "/enreach.workload.Msg/SubmitReputationPointChangeData"
+	Msg_SubmitCheatStatusCR_FullMethodName             = "/enreach.workload.Msg/SubmitCheatStatusCR"
 )
 
 // MsgClient is the client API for Msg service.
@@ -35,10 +33,8 @@ const (
 type MsgClient interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
-	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
+	UpdateParam(ctx context.Context, in *MsgUpdateParam, opts ...grpc.CallOption) (*MsgUpdateParamResponse, error)
 	SubmitWorkreports(ctx context.Context, in *MsgSubmitWorkreports, opts ...grpc.CallOption) (*MsgSubmitWorkreportsResponse, error)
-	UpdateWorkreportProcessBatchSize(ctx context.Context, in *MsgUpdateWorkreportProcessBatchSize, opts ...grpc.CallOption) (*MsgUpdateWorkreportProcessBatchSizeResponse, error)
-	UpdateHistoryEpochDataDepth(ctx context.Context, in *MsgUpdateHistoryEpochDataDepth, opts ...grpc.CallOption) (*MsgUpdateHistoryEpochDataDepthResponse, error)
 	CreateSuperior(ctx context.Context, in *MsgCreateSuperior, opts ...grpc.CallOption) (*MsgCreateSuperiorResponse, error)
 	UpdateSuperior(ctx context.Context, in *MsgUpdateSuperior, opts ...grpc.CallOption) (*MsgUpdateSuperiorResponse, error)
 	SubmitReputationPointChangeData(ctx context.Context, in *MsgSubmitReputationPointChangeData, opts ...grpc.CallOption) (*MsgSubmitReputationPointChangeDataResponse, error)
@@ -53,9 +49,9 @@ func NewMsgClient(cc grpc.ClientConnInterface) MsgClient {
 	return &msgClient{cc}
 }
 
-func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error) {
-	out := new(MsgUpdateParamsResponse)
-	err := c.cc.Invoke(ctx, Msg_UpdateParams_FullMethodName, in, out, opts...)
+func (c *msgClient) UpdateParam(ctx context.Context, in *MsgUpdateParam, opts ...grpc.CallOption) (*MsgUpdateParamResponse, error) {
+	out := new(MsgUpdateParamResponse)
+	err := c.cc.Invoke(ctx, Msg_UpdateParam_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -65,24 +61,6 @@ func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts 
 func (c *msgClient) SubmitWorkreports(ctx context.Context, in *MsgSubmitWorkreports, opts ...grpc.CallOption) (*MsgSubmitWorkreportsResponse, error) {
 	out := new(MsgSubmitWorkreportsResponse)
 	err := c.cc.Invoke(ctx, Msg_SubmitWorkreports_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *msgClient) UpdateWorkreportProcessBatchSize(ctx context.Context, in *MsgUpdateWorkreportProcessBatchSize, opts ...grpc.CallOption) (*MsgUpdateWorkreportProcessBatchSizeResponse, error) {
-	out := new(MsgUpdateWorkreportProcessBatchSizeResponse)
-	err := c.cc.Invoke(ctx, Msg_UpdateWorkreportProcessBatchSize_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *msgClient) UpdateHistoryEpochDataDepth(ctx context.Context, in *MsgUpdateHistoryEpochDataDepth, opts ...grpc.CallOption) (*MsgUpdateHistoryEpochDataDepthResponse, error) {
-	out := new(MsgUpdateHistoryEpochDataDepthResponse)
-	err := c.cc.Invoke(ctx, Msg_UpdateHistoryEpochDataDepth_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -131,10 +109,8 @@ func (c *msgClient) SubmitCheatStatusCR(ctx context.Context, in *MsgSubmitCheatS
 type MsgServer interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
-	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
+	UpdateParam(context.Context, *MsgUpdateParam) (*MsgUpdateParamResponse, error)
 	SubmitWorkreports(context.Context, *MsgSubmitWorkreports) (*MsgSubmitWorkreportsResponse, error)
-	UpdateWorkreportProcessBatchSize(context.Context, *MsgUpdateWorkreportProcessBatchSize) (*MsgUpdateWorkreportProcessBatchSizeResponse, error)
-	UpdateHistoryEpochDataDepth(context.Context, *MsgUpdateHistoryEpochDataDepth) (*MsgUpdateHistoryEpochDataDepthResponse, error)
 	CreateSuperior(context.Context, *MsgCreateSuperior) (*MsgCreateSuperiorResponse, error)
 	UpdateSuperior(context.Context, *MsgUpdateSuperior) (*MsgUpdateSuperiorResponse, error)
 	SubmitReputationPointChangeData(context.Context, *MsgSubmitReputationPointChangeData) (*MsgSubmitReputationPointChangeDataResponse, error)
@@ -146,17 +122,11 @@ type MsgServer interface {
 type UnimplementedMsgServer struct {
 }
 
-func (UnimplementedMsgServer) UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateParams not implemented")
+func (UnimplementedMsgServer) UpdateParam(context.Context, *MsgUpdateParam) (*MsgUpdateParamResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateParam not implemented")
 }
 func (UnimplementedMsgServer) SubmitWorkreports(context.Context, *MsgSubmitWorkreports) (*MsgSubmitWorkreportsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubmitWorkreports not implemented")
-}
-func (UnimplementedMsgServer) UpdateWorkreportProcessBatchSize(context.Context, *MsgUpdateWorkreportProcessBatchSize) (*MsgUpdateWorkreportProcessBatchSizeResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateWorkreportProcessBatchSize not implemented")
-}
-func (UnimplementedMsgServer) UpdateHistoryEpochDataDepth(context.Context, *MsgUpdateHistoryEpochDataDepth) (*MsgUpdateHistoryEpochDataDepthResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateHistoryEpochDataDepth not implemented")
 }
 func (UnimplementedMsgServer) CreateSuperior(context.Context, *MsgCreateSuperior) (*MsgCreateSuperiorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateSuperior not implemented")
@@ -183,20 +153,20 @@ func RegisterMsgServer(s grpc.ServiceRegistrar, srv MsgServer) {
 	s.RegisterService(&Msg_ServiceDesc, srv)
 }
 
-func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgUpdateParams)
+func _Msg_UpdateParam_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgUpdateParam)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MsgServer).UpdateParams(ctx, in)
+		return srv.(MsgServer).UpdateParam(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Msg_UpdateParams_FullMethodName,
+		FullMethod: Msg_UpdateParam_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).UpdateParams(ctx, req.(*MsgUpdateParams))
+		return srv.(MsgServer).UpdateParam(ctx, req.(*MsgUpdateParam))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -215,42 +185,6 @@ func _Msg_SubmitWorkreports_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MsgServer).SubmitWorkreports(ctx, req.(*MsgSubmitWorkreports))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Msg_UpdateWorkreportProcessBatchSize_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgUpdateWorkreportProcessBatchSize)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MsgServer).UpdateWorkreportProcessBatchSize(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Msg_UpdateWorkreportProcessBatchSize_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).UpdateWorkreportProcessBatchSize(ctx, req.(*MsgUpdateWorkreportProcessBatchSize))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Msg_UpdateHistoryEpochDataDepth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgUpdateHistoryEpochDataDepth)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MsgServer).UpdateHistoryEpochDataDepth(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Msg_UpdateHistoryEpochDataDepth_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).UpdateHistoryEpochDataDepth(ctx, req.(*MsgUpdateHistoryEpochDataDepth))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -335,20 +269,12 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*MsgServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "UpdateParams",
-			Handler:    _Msg_UpdateParams_Handler,
+			MethodName: "UpdateParam",
+			Handler:    _Msg_UpdateParam_Handler,
 		},
 		{
 			MethodName: "SubmitWorkreports",
 			Handler:    _Msg_SubmitWorkreports_Handler,
-		},
-		{
-			MethodName: "UpdateWorkreportProcessBatchSize",
-			Handler:    _Msg_UpdateWorkreportProcessBatchSize_Handler,
-		},
-		{
-			MethodName: "UpdateHistoryEpochDataDepth",
-			Handler:    _Msg_UpdateHistoryEpochDataDepth_Handler,
 		},
 		{
 			MethodName: "CreateSuperior",

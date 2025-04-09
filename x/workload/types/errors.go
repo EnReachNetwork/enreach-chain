@@ -26,4 +26,5 @@ var (
 	ErrFirstEraProcessNotFinishedYet    = sdkerrors.Register(ModuleName, 1115, "first era process not finished yet")
 	ErrNodeDatasCountExceedPerReqLimit  = sdkerrors.Register(ModuleName, 1116, "nodedatas count exceed per request limit")
 	ErrInvalidCheatStatus               = sdkerrors.Register(ModuleName, 1117, "invalid cheat status")
+	ErrInvalidParamKey                  = sdkerrors.Register(ModuleName, 1118, "invalid param key")
 )

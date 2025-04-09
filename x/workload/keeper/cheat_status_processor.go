@@ -41,8 +41,7 @@ func (k Keeper) ProcessEraCheatStatus(goCtx context.Context) error {
 
 		if lastEraCheatStatusProcessData.Status != string(types.EPS_DONE) {
 			// Get the process batch size
-			// TODO: Get it from param setting store
-			batchSize := k.GetWorkreportProcessBatchSize(ctx)
+			batchSize := k.GetCheatStatusProcessBatchSize(ctx)
 
 			// Build the PageRequest
 			var pageReq query.PageRequest

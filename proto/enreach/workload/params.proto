@@ -11,5 +11,5 @@ message Params {
   option (amino.name) = "enreach/x/workload/Params";
   option (gogoproto.equal) = true;
 
-  
+  map<string, string> data = 1;
 }

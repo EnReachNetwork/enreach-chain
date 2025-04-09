@@ -30,20 +30,51 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 		k.SetPendingNextEra(ctx, genState.PendingNextEra)
 	}
 	// this line is used by starport scaffolding # genesis/module/init
-	if err := k.SetParams(ctx, genState.Params); err != nil {
-		panic(err)
-	}
+
+	// Initialize default param settings
+	initDefaultParamSettings(ctx, k, genState)
 
 	// Initialize genesis epochInfo and eraInfo
 	initGenesisEpoch(ctx, k, genState)
 	initGenesisEra(ctx, k, genState)
 }
 
+func initDefaultParamSettings(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) {
+
+	params := genState.Params
+	if _, ok := params.Data[types.PK_EPOCH_LENGTH]; !ok {
+		params.Data[types.PK_EPOCH_LENGTH] = strconv.FormatUint(types.DEFAULT_EPOCH_LENGTH, 10)
+	}
+	if _, ok := params.Data[types.PK_ERA_LENGTH]; !ok {
+		params.Data[types.PK_ERA_LENGTH] = strconv.FormatUint(types.DEFAULT_ERA_LENGTH, 10)
+	}
+	if _, ok := params.Data[types.PK_WORKREPORT_PROCESS_BATCH_SIZE]; !ok {
+		params.Data[types.PK_WORKREPORT_PROCESS_BATCH_SIZE] = strconv.FormatUint(types.DEFAULT_WORKREPORT_PROCESS_BATCH_SIZE, 10)
+	}
+	if _, ok := params.Data[types.PK_REPUTATION_POINT_PROCESS_BATCH_SIZE]; !ok {
+		params.Data[types.PK_REPUTATION_POINT_PROCESS_BATCH_SIZE] = strconv.FormatUint(types.DEFAULT_REPUTATION_POINT_PROCESS_BATCH_SIZE, 10)
+	}
+	if _, ok := params.Data[types.PK_CHEAT_STATUS_PROCESS_BATCH_SIZE]; !ok {
+		params.Data[types.PK_CHEAT_STATUS_PROCESS_BATCH_SIZE] = strconv.FormatUint(types.DEFAULT_CHEAT_STATUS_PROCESS_BATCH_SIZE, 10)
+	}
+	if _, ok := params.Data[types.PK_HISTORY_EPOCH_DATA_DEPTH]; !ok {
+		params.Data[types.PK_HISTORY_EPOCH_DATA_DEPTH] = strconv.FormatUint(types.DEFAULT_HISTORY_EPOCH_DATA_DEPTH, 10)
+	}
+	if _, ok := params.Data[types.PK_HISTORY_ERA_DATA_DEPTH]; !ok {
+		params.Data[types.PK_HISTORY_ERA_DATA_DEPTH] = strconv.FormatUint(types.DEFAULT_HISTORY_ERA_DATA_DEPTH, 10)
+	}
+
+	// Set to the store
+	if err := k.SetParams(ctx, params); err != nil {
+		panic(err)
+	}
+}
+
 func initGenesisEpoch(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) {
 	if genState.CurrentEpoch == nil || genState.CurrentEpoch.Number == 0 {
 		//Get the genesis time and truncate it to the nearest time
 		blockHeight := uint64(ctx.BlockHeight())
-		epochDuration := time.Duration(types.EPOCH_LENGTH) * time.Second
+		epochDuration := time.Duration(k.GetEpochLength(ctx)) * time.Second
 		genesisTime := ctx.BlockTime()
 		truncatedStartTime := genesisTime.Truncate(epochDuration)
 		endTime := truncatedStartTime.Add(epochDuration)
@@ -77,7 +108,7 @@ func initGenesisEra(ctx sdk.Context, k keeper.Keeper, genState types.GenesisStat
 	if genState.CurrentEra == nil || genState.CurrentEra.Number == 0 {
 		//Get the genesis time and truncate it to the nearest time
 		blockHeight := uint64(ctx.BlockHeight())
-		eraDuration := time.Duration(types.ERA_LENGTH) * time.Second
+		eraDuration := time.Duration(k.GetEraLength(ctx)) * time.Second
 		genesisTime := ctx.BlockTime()
 		truncatedStartTime := genesisTime.Truncate(eraDuration)
 		endTime := truncatedStartTime.Add(eraDuration)

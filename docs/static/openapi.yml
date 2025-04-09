@@ -9977,6 +9977,319 @@ paths:
                 type: string
       tags:
         - Msg
+  /enreach.workload.Msg/CreateSuperior:
+    post:
+      operationId: EnreachWorkloadMsg_CreateSuperior
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              signer:
+                type: string
+              account:
+                type: string
+            title: ///////////////
+      tags:
+        - Msg
+  /enreach.workload.Msg/SubmitCheatStatusCR:
+    post:
+      operationId: EnreachWorkloadMsg_SubmitCheatStatusCR
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              managerAccount:
+                type: string
+              era:
+                type: string
+                format: uint64
+              nodeDatas:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    nodeID:
+                      type: string
+                    cheatStatus:
+                      type: string
+                  title: CR -> Change Request
+      tags:
+        - Msg
+  /enreach.workload.Msg/SubmitReputationPointChangeData:
+    post:
+      operationId: EnreachWorkloadMsg_SubmitReputationPointChangeData
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              managerAccount:
+                type: string
+              era:
+                type: string
+                format: uint64
+              nodePoints:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    nodeID:
+                      type: string
+                    deltaPoint:
+                      type: string
+                      format: int64
+            title: ////////////////
+      tags:
+        - Msg
+  /enreach.workload.Msg/SubmitWorkreports:
+    post:
+      operationId: EnreachWorkloadMsg_SubmitWorkreports
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              managerAccount:
+                type: string
+              epoch:
+                type: string
+                format: uint64
+              nodeScores:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    nodeID:
+                      type: string
+                    score:
+                      type: string
+                      format: uint64
+            title: ////////////////
+      tags:
+        - Msg
+  /enreach.workload.Msg/UpdateParam:
+    post:
+      summary: |-
+        UpdateParams defines a (governance) operation for updating the module
+        parameters. The authority defaults to the x/gov module account.
+      operationId: EnreachWorkloadMsg_UpdateParam
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              signer:
+                type: string
+              paramKey:
+                type: string
+              paramValue:
+                type: string
+            title: ///////////////////////////////////////////////////////////////
+      tags:
+        - Msg
+  /enreach.workload.Msg/UpdateSuperior:
+    post:
+      operationId: EnreachWorkloadMsg_UpdateSuperior
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              signer:
+                type: string
+              account:
+                type: string
+      tags:
+        - Msg
+  /enreach/edgenode/param/{paramKey}:
+    get:
+      summary: Parameters queries the parameters of the module.
+      operationId: EnreachWorkloadQuery_Param
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              paramValue:
+                type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: paramKey
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
   /enreach/workload/cheat_status_cr_data/{era}:
     get:
       operationId: EnreachWorkloadQuery_AllCheatStatusCRDataByEra
@@ -11606,7 +11919,6 @@ paths:
         - Query
   /enreach/workload/params:
     get:
-      summary: Parameters queries the parameters of the module.
       operationId: EnreachWorkloadQuery_Params
       responses:
         '200':
@@ -11617,6 +11929,11 @@ paths:
               params:
                 description: params holds all the parameters of this module.
                 type: object
+                properties:
+                  data:
+                    type: object
+                    additionalProperties:
+                      type: string
             description: >-
               QueryParamsResponse is response type for the Query/Params RPC
               method.
@@ -12857,71 +13174,6 @@ paths:
           type: boolean
       tags:
         - Query
-  /enreach/workload/workreport/history_epoch_data_depth:
-    get:
-      operationId: EnreachWorkloadQuery_HistoryEpochDataDepth
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              depth:
-                type: string
-                format: uint64
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      tags:
-        - Query
-  /enreach/workload/workreport/process_batch_size:
-    get:
-      summary: Queries some param settings
-      operationId: EnreachWorkloadQuery_WorkreportProcessBatchSize
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              batchSize:
-                type: string
-                format: uint64
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      tags:
-        - Query
   /enreach/workload/workreport/{epoch}/{nodeID}:
     get:
       summary: Queries a list of Workreport items.
@@ -13127,367 +13379,6 @@ paths:
           type: boolean
       tags:
         - Query
-  /enreach.workload.Msg/CreateSuperior:
-    post:
-      operationId: EnreachWorkloadMsg_CreateSuperior
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              signer:
-                type: string
-              account:
-                type: string
-      tags:
-        - Msg
-  /enreach.workload.Msg/SubmitCheatStatusCR:
-    post:
-      operationId: EnreachWorkloadMsg_SubmitCheatStatusCR
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              managerAccount:
-                type: string
-              era:
-                type: string
-                format: uint64
-              nodeDatas:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    nodeID:
-                      type: string
-                    cheatStatus:
-                      type: string
-                  title: CR -> Change Request
-      tags:
-        - Msg
-  /enreach.workload.Msg/SubmitReputationPointChangeData:
-    post:
-      operationId: EnreachWorkloadMsg_SubmitReputationPointChangeData
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              managerAccount:
-                type: string
-              era:
-                type: string
-                format: uint64
-              nodePoints:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    nodeID:
-                      type: string
-                    deltaPoint:
-                      type: string
-                      format: int64
-      tags:
-        - Msg
-  /enreach.workload.Msg/SubmitWorkreports:
-    post:
-      operationId: EnreachWorkloadMsg_SubmitWorkreports
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              managerAccount:
-                type: string
-              epoch:
-                type: string
-                format: uint64
-              nodeScores:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    nodeID:
-                      type: string
-                    score:
-                      type: string
-                      format: uint64
-      tags:
-        - Msg
-  /enreach.workload.Msg/UpdateHistoryEpochDataDepth:
-    post:
-      operationId: EnreachWorkloadMsg_UpdateHistoryEpochDataDepth
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              signer:
-                type: string
-              depth:
-                type: string
-                format: uint64
-      tags:
-        - Msg
-  /enreach.workload.Msg/UpdateParams:
-    post:
-      summary: |-
-        UpdateParams defines a (governance) operation for updating the module
-        parameters. The authority defaults to the x/gov module account.
-      operationId: EnreachWorkloadMsg_UpdateParams
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            description: >-
-              MsgUpdateParamsResponse defines the response structure for
-              executing a
-
-              MsgUpdateParams message.
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          description: MsgUpdateParams is the Msg/UpdateParams request type.
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              authority:
-                type: string
-                description: >-
-                  authority is the address that controls the module (defaults to
-                  x/gov unless overwritten).
-              params:
-                description: 'NOTE: All parameters must be supplied.'
-                type: object
-            description: MsgUpdateParams is the Msg/UpdateParams request type.
-      tags:
-        - Msg
-  /enreach.workload.Msg/UpdateSuperior:
-    post:
-      operationId: EnreachWorkloadMsg_UpdateSuperior
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              signer:
-                type: string
-              account:
-                type: string
-      tags:
-        - Msg
-  /enreach.workload.Msg/UpdateWorkreportProcessBatchSize:
-    post:
-      operationId: EnreachWorkloadMsg_UpdateWorkreportProcessBatchSize
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              signer:
-                type: string
-              batchSize:
-                type: string
-                format: uint64
-      tags:
-        - Msg
   /ibc.applications.fee.v1.Msg/PayPacketFee:
     post:
       summary: >-
@@ -24479,6 +24370,123 @@ definitions:
   enreach.registry.Params:
     type: object
     description: Params defines the parameters for the module.
+  enreach.workload.CheatStatusCR:
+    type: object
+    properties:
+      nodeID:
+        type: string
+      cheatStatus:
+        type: string
+    title: CR -> Change Request
+  enreach.workload.MsgCreateSuperior:
+    type: object
+    properties:
+      signer:
+        type: string
+      account:
+        type: string
+    title: ///////////////
+  enreach.workload.MsgCreateSuperiorResponse:
+    type: object
+  enreach.workload.MsgSubmitCheatStatusCR:
+    type: object
+    properties:
+      managerAccount:
+        type: string
+      era:
+        type: string
+        format: uint64
+      nodeDatas:
+        type: array
+        items:
+          type: object
+          properties:
+            nodeID:
+              type: string
+            cheatStatus:
+              type: string
+          title: CR -> Change Request
+  enreach.workload.MsgSubmitCheatStatusCRResponse:
+    type: object
+  enreach.workload.MsgSubmitReputationPointChangeData:
+    type: object
+    properties:
+      managerAccount:
+        type: string
+      era:
+        type: string
+        format: uint64
+      nodePoints:
+        type: array
+        items:
+          type: object
+          properties:
+            nodeID:
+              type: string
+            deltaPoint:
+              type: string
+              format: int64
+    title: ////////////////
+  enreach.workload.MsgSubmitReputationPointChangeDataResponse:
+    type: object
+  enreach.workload.MsgSubmitWorkreports:
+    type: object
+    properties:
+      managerAccount:
+        type: string
+      epoch:
+        type: string
+        format: uint64
+      nodeScores:
+        type: array
+        items:
+          type: object
+          properties:
+            nodeID:
+              type: string
+            score:
+              type: string
+              format: uint64
+    title: ////////////////
+  enreach.workload.MsgSubmitWorkreportsResponse:
+    type: object
+  enreach.workload.MsgUpdateParam:
+    type: object
+    properties:
+      signer:
+        type: string
+      paramKey:
+        type: string
+      paramValue:
+        type: string
+    title: ///////////////////////////////////////////////////////////////
+  enreach.workload.MsgUpdateParamResponse:
+    type: object
+  enreach.workload.MsgUpdateSuperior:
+    type: object
+    properties:
+      signer:
+        type: string
+      account:
+        type: string
+  enreach.workload.MsgUpdateSuperiorResponse:
+    type: object
+  enreach.workload.NodeScore:
+    type: object
+    properties:
+      nodeID:
+        type: string
+      score:
+        type: string
+        format: uint64
+  enreach.workload.ReputationPointChangeRawData:
+    type: object
+    properties:
+      nodeID:
+        type: string
+      deltaPoint:
+        type: string
+        format: int64
   cosmos.base.query.v1beta1.PageRequest:
     type: object
     properties:
@@ -24859,6 +24867,11 @@ definitions:
         format: uint64
   enreach.workload.Params:
     type: object
+    properties:
+      data:
+        type: object
+        additionalProperties:
+          type: string
     description: Params defines the parameters for the module.
   enreach.workload.QueryGetAllCheatStatusCRDataByEraResponse:
     type: object
@@ -25836,12 +25849,6 @@ definitions:
                        repeated Bar results = 1;
                        PageResponse page = 2;
                }
-  enreach.workload.QueryGetHistoryEpochDataDepthResponse:
-    type: object
-    properties:
-      depth:
-        type: string
-        format: uint64
   enreach.workload.QueryGetHistoryEpochResponse:
     type: object
     properties:
@@ -26077,12 +26084,6 @@ definitions:
             format: uint64
           signer:
             type: string
-  enreach.workload.QueryGetWorkreportProcessBatchSizeResponse:
-    type: object
-    properties:
-      batchSize:
-        type: string
-        format: uint64
   enreach.workload.QueryGetWorkreportResponse:
     type: object
     properties:
@@ -26108,12 +26109,22 @@ definitions:
                 updateAt:
                   type: string
                   format: uint64
+  enreach.workload.QueryParamResponse:
+    type: object
+    properties:
+      paramValue:
+        type: string
   enreach.workload.QueryParamsResponse:
     type: object
     properties:
       params:
         description: params holds all the parameters of this module.
         type: object
+        properties:
+          data:
+            type: object
+            additionalProperties:
+              type: string
     description: QueryParamsResponse is response type for the Query/Params RPC method.
   enreach.workload.ReputationDeltaPoint:
     type: object
@@ -26202,145 +26213,6 @@ definitions:
             updateAt:
               type: string
               format: uint64
-  enreach.workload.CheatStatusCR:
-    type: object
-    properties:
-      nodeID:
-        type: string
-      cheatStatus:
-        type: string
-    title: CR -> Change Request
-  enreach.workload.MsgCreateSuperior:
-    type: object
-    properties:
-      signer:
-        type: string
-      account:
-        type: string
-  enreach.workload.MsgCreateSuperiorResponse:
-    type: object
-  enreach.workload.MsgSubmitCheatStatusCR:
-    type: object
-    properties:
-      managerAccount:
-        type: string
-      era:
-        type: string
-        format: uint64
-      nodeDatas:
-        type: array
-        items:
-          type: object
-          properties:
-            nodeID:
-              type: string
-            cheatStatus:
-              type: string
-          title: CR -> Change Request
-  enreach.workload.MsgSubmitCheatStatusCRResponse:
-    type: object
-  enreach.workload.MsgSubmitReputationPointChangeData:
-    type: object
-    properties:
-      managerAccount:
-        type: string
-      era:
-        type: string
-        format: uint64
-      nodePoints:
-        type: array
-        items:
-          type: object
-          properties:
-            nodeID:
-              type: string
-            deltaPoint:
-              type: string
-              format: int64
-  enreach.workload.MsgSubmitReputationPointChangeDataResponse:
-    type: object
-  enreach.workload.MsgSubmitWorkreports:
-    type: object
-    properties:
-      managerAccount:
-        type: string
-      epoch:
-        type: string
-        format: uint64
-      nodeScores:
-        type: array
-        items:
-          type: object
-          properties:
-            nodeID:
-              type: string
-            score:
-              type: string
-              format: uint64
-  enreach.workload.MsgSubmitWorkreportsResponse:
-    type: object
-  enreach.workload.MsgUpdateHistoryEpochDataDepth:
-    type: object
-    properties:
-      signer:
-        type: string
-      depth:
-        type: string
-        format: uint64
-  enreach.workload.MsgUpdateHistoryEpochDataDepthResponse:
-    type: object
-  enreach.workload.MsgUpdateParams:
-    type: object
-    properties:
-      authority:
-        type: string
-        description: >-
-          authority is the address that controls the module (defaults to x/gov
-          unless overwritten).
-      params:
-        description: 'NOTE: All parameters must be supplied.'
-        type: object
-    description: MsgUpdateParams is the Msg/UpdateParams request type.
-  enreach.workload.MsgUpdateParamsResponse:
-    type: object
-    description: |-
-      MsgUpdateParamsResponse defines the response structure for executing a
-      MsgUpdateParams message.
-  enreach.workload.MsgUpdateSuperior:
-    type: object
-    properties:
-      signer:
-        type: string
-      account:
-        type: string
-  enreach.workload.MsgUpdateSuperiorResponse:
-    type: object
-  enreach.workload.MsgUpdateWorkreportProcessBatchSize:
-    type: object
-    properties:
-      signer:
-        type: string
-      batchSize:
-        type: string
-        format: uint64
-  enreach.workload.MsgUpdateWorkreportProcessBatchSizeResponse:
-    type: object
-  enreach.workload.NodeScore:
-    type: object
-    properties:
-      nodeID:
-        type: string
-      score:
-        type: string
-        format: uint64
-  enreach.workload.ReputationPointChangeRawData:
-    type: object
-    properties:
-      nodeID:
-        type: string
-      deltaPoint:
-        type: string
-        format: int64
   ibc.applications.fee.v1.Fee:
     type: object
     properties:

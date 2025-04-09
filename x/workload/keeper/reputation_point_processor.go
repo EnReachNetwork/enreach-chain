@@ -40,8 +40,7 @@ func (k Keeper) ProcessEraReputationPoint(goCtx context.Context) error {
 
 		if lastEraProcessData.Status != string(types.EPS_DONE) {
 			// Get the process batch size
-			// TODO: Get it from param setting store
-			batchSize := k.GetWorkreportProcessBatchSize(ctx)
+			batchSize := k.GetReputationPointProcessBatchSize(ctx)
 
 			// Build the PageRequest
 			var pageReq query.PageRequest
