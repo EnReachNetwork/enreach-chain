@@ -13,6 +13,15 @@ import { EpochProcessData, Workreport } from "./workreport";
 
 export const protobufPackage = "enreach.workload";
 
+/** ////////////////////////////////////////////////////// */
+export interface QueryParamRequest {
+  paramKey: string;
+}
+
+export interface QueryParamResponse {
+  paramValue: string;
+}
+
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {
 }
@@ -160,21 +169,6 @@ export interface QueryGetAllWorkreportByEpochRequest {
 export interface QueryGetAllWorkreportByEpochResponse {
   Workreports: Workreport[];
   pagination: PageResponse | undefined;
-}
-
-/** ////////// */
-export interface QueryGetWorkreportProcessBatchSizeRequest {
-}
-
-export interface QueryGetWorkreportProcessBatchSizeResponse {
-  batchSize: number;
-}
-
-export interface QueryGetHistoryEpochDataDepthRequest {
-}
-
-export interface QueryGetHistoryEpochDataDepthResponse {
-  depth: number;
 }
 
 /** ////////// */
@@ -333,6 +327,120 @@ export interface QueryGetAllEraCheatStatusProcessDataResponse {
   EraCheatStatusProcessDatas: EraCheatStatusProcessData[];
   pagination: PageResponse | undefined;
 }
+
+function createBaseQueryParamRequest(): QueryParamRequest {
+  return { paramKey: "" };
+}
+
+export const QueryParamRequest = {
+  encode(message: QueryParamRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.paramKey !== "") {
+      writer.uint32(10).string(message.paramKey);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryParamRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.paramKey = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryParamRequest {
+    return { paramKey: isSet(object.paramKey) ? String(object.paramKey) : "" };
+  },
+
+  toJSON(message: QueryParamRequest): unknown {
+    const obj: any = {};
+    if (message.paramKey !== "") {
+      obj.paramKey = message.paramKey;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryParamRequest>, I>>(base?: I): QueryParamRequest {
+    return QueryParamRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryParamRequest>, I>>(object: I): QueryParamRequest {
+    const message = createBaseQueryParamRequest();
+    message.paramKey = object.paramKey ?? "";
+    return message;
+  },
+};
+
+function createBaseQueryParamResponse(): QueryParamResponse {
+  return { paramValue: "" };
+}
+
+export const QueryParamResponse = {
+  encode(message: QueryParamResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.paramValue !== "") {
+      writer.uint32(10).string(message.paramValue);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryParamResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.paramValue = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryParamResponse {
+    return { paramValue: isSet(object.paramValue) ? String(object.paramValue) : "" };
+  },
+
+  toJSON(message: QueryParamResponse): unknown {
+    const obj: any = {};
+    if (message.paramValue !== "") {
+      obj.paramValue = message.paramValue;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryParamResponse>, I>>(base?: I): QueryParamResponse {
+    return QueryParamResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryParamResponse>, I>>(object: I): QueryParamResponse {
+    const message = createBaseQueryParamResponse();
+    message.paramValue = object.paramValue ?? "";
+    return message;
+  },
+};
 
 function createBaseQueryParamsRequest(): QueryParamsRequest {
   return {};
@@ -2504,222 +2612,6 @@ export const QueryGetAllWorkreportByEpochResponse = {
     message.pagination = (object.pagination !== undefined && object.pagination !== null)
       ? PageResponse.fromPartial(object.pagination)
       : undefined;
-    return message;
-  },
-};
-
-function createBaseQueryGetWorkreportProcessBatchSizeRequest(): QueryGetWorkreportProcessBatchSizeRequest {
-  return {};
-}
-
-export const QueryGetWorkreportProcessBatchSizeRequest = {
-  encode(_: QueryGetWorkreportProcessBatchSizeRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetWorkreportProcessBatchSizeRequest {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetWorkreportProcessBatchSizeRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(_: any): QueryGetWorkreportProcessBatchSizeRequest {
-    return {};
-  },
-
-  toJSON(_: QueryGetWorkreportProcessBatchSizeRequest): unknown {
-    const obj: any = {};
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<QueryGetWorkreportProcessBatchSizeRequest>, I>>(
-    base?: I,
-  ): QueryGetWorkreportProcessBatchSizeRequest {
-    return QueryGetWorkreportProcessBatchSizeRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<QueryGetWorkreportProcessBatchSizeRequest>, I>>(
-    _: I,
-  ): QueryGetWorkreportProcessBatchSizeRequest {
-    const message = createBaseQueryGetWorkreportProcessBatchSizeRequest();
-    return message;
-  },
-};
-
-function createBaseQueryGetWorkreportProcessBatchSizeResponse(): QueryGetWorkreportProcessBatchSizeResponse {
-  return { batchSize: 0 };
-}
-
-export const QueryGetWorkreportProcessBatchSizeResponse = {
-  encode(message: QueryGetWorkreportProcessBatchSizeResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.batchSize !== 0) {
-      writer.uint32(8).uint64(message.batchSize);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetWorkreportProcessBatchSizeResponse {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetWorkreportProcessBatchSizeResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 8) {
-            break;
-          }
-
-          message.batchSize = longToNumber(reader.uint64() as Long);
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): QueryGetWorkreportProcessBatchSizeResponse {
-    return { batchSize: isSet(object.batchSize) ? Number(object.batchSize) : 0 };
-  },
-
-  toJSON(message: QueryGetWorkreportProcessBatchSizeResponse): unknown {
-    const obj: any = {};
-    if (message.batchSize !== 0) {
-      obj.batchSize = Math.round(message.batchSize);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<QueryGetWorkreportProcessBatchSizeResponse>, I>>(
-    base?: I,
-  ): QueryGetWorkreportProcessBatchSizeResponse {
-    return QueryGetWorkreportProcessBatchSizeResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<QueryGetWorkreportProcessBatchSizeResponse>, I>>(
-    object: I,
-  ): QueryGetWorkreportProcessBatchSizeResponse {
-    const message = createBaseQueryGetWorkreportProcessBatchSizeResponse();
-    message.batchSize = object.batchSize ?? 0;
-    return message;
-  },
-};
-
-function createBaseQueryGetHistoryEpochDataDepthRequest(): QueryGetHistoryEpochDataDepthRequest {
-  return {};
-}
-
-export const QueryGetHistoryEpochDataDepthRequest = {
-  encode(_: QueryGetHistoryEpochDataDepthRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetHistoryEpochDataDepthRequest {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetHistoryEpochDataDepthRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(_: any): QueryGetHistoryEpochDataDepthRequest {
-    return {};
-  },
-
-  toJSON(_: QueryGetHistoryEpochDataDepthRequest): unknown {
-    const obj: any = {};
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<QueryGetHistoryEpochDataDepthRequest>, I>>(
-    base?: I,
-  ): QueryGetHistoryEpochDataDepthRequest {
-    return QueryGetHistoryEpochDataDepthRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<QueryGetHistoryEpochDataDepthRequest>, I>>(
-    _: I,
-  ): QueryGetHistoryEpochDataDepthRequest {
-    const message = createBaseQueryGetHistoryEpochDataDepthRequest();
-    return message;
-  },
-};
-
-function createBaseQueryGetHistoryEpochDataDepthResponse(): QueryGetHistoryEpochDataDepthResponse {
-  return { depth: 0 };
-}
-
-export const QueryGetHistoryEpochDataDepthResponse = {
-  encode(message: QueryGetHistoryEpochDataDepthResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.depth !== 0) {
-      writer.uint32(8).uint64(message.depth);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetHistoryEpochDataDepthResponse {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetHistoryEpochDataDepthResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 8) {
-            break;
-          }
-
-          message.depth = longToNumber(reader.uint64() as Long);
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): QueryGetHistoryEpochDataDepthResponse {
-    return { depth: isSet(object.depth) ? Number(object.depth) : 0 };
-  },
-
-  toJSON(message: QueryGetHistoryEpochDataDepthResponse): unknown {
-    const obj: any = {};
-    if (message.depth !== 0) {
-      obj.depth = Math.round(message.depth);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<QueryGetHistoryEpochDataDepthResponse>, I>>(
-    base?: I,
-  ): QueryGetHistoryEpochDataDepthResponse {
-    return QueryGetHistoryEpochDataDepthResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<QueryGetHistoryEpochDataDepthResponse>, I>>(
-    object: I,
-  ): QueryGetHistoryEpochDataDepthResponse {
-    const message = createBaseQueryGetHistoryEpochDataDepthResponse();
-    message.depth = object.depth ?? 0;
     return message;
   },
 };
@@ -5132,6 +5024,7 @@ export const QueryGetAllEraCheatStatusProcessDataResponse = {
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Parameters queries the parameters of the module. */
+  Param(request: QueryParamRequest): Promise<QueryParamResponse>;
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
   /** Queries epoch */
   EpochLength(request: QueryGetEpochLengthRequest): Promise<QueryGetEpochLengthResponse>;
@@ -5160,11 +5053,6 @@ export interface Query {
   /** Queries a list of Workreport items. */
   Workreport(request: QueryGetWorkreportRequest): Promise<QueryGetWorkreportResponse>;
   AllWorkreportByEpoch(request: QueryGetAllWorkreportByEpochRequest): Promise<QueryGetAllWorkreportByEpochResponse>;
-  /** Queries some param settings */
-  WorkreportProcessBatchSize(
-    request: QueryGetWorkreportProcessBatchSizeRequest,
-  ): Promise<QueryGetWorkreportProcessBatchSizeResponse>;
-  HistoryEpochDataDepth(request: QueryGetHistoryEpochDataDepthRequest): Promise<QueryGetHistoryEpochDataDepthResponse>;
   EpochProcessData(request: QueryGetEpochProcessDataRequest): Promise<QueryGetEpochProcessDataResponse>;
   AllEpochProcessData(request: QueryGetAllEpochProcessDataRequest): Promise<QueryGetAllEpochProcessDataResponse>;
   /** Queries a Superior */
@@ -5211,6 +5099,7 @@ export class QueryClientImpl implements Query {
   constructor(rpc: Rpc, opts?: { service?: string }) {
     this.service = opts?.service || QueryServiceName;
     this.rpc = rpc;
+    this.Param = this.Param.bind(this);
     this.Params = this.Params.bind(this);
     this.EpochLength = this.EpochLength.bind(this);
     this.CurrentEpoch = this.CurrentEpoch.bind(this);
@@ -5227,8 +5116,6 @@ export class QueryClientImpl implements Query {
     this.AllManagerCSWorkloadByEra = this.AllManagerCSWorkloadByEra.bind(this);
     this.Workreport = this.Workreport.bind(this);
     this.AllWorkreportByEpoch = this.AllWorkreportByEpoch.bind(this);
-    this.WorkreportProcessBatchSize = this.WorkreportProcessBatchSize.bind(this);
-    this.HistoryEpochDataDepth = this.HistoryEpochDataDepth.bind(this);
     this.EpochProcessData = this.EpochProcessData.bind(this);
     this.AllEpochProcessData = this.AllEpochProcessData.bind(this);
     this.Superior = this.Superior.bind(this);
@@ -5248,6 +5135,12 @@ export class QueryClientImpl implements Query {
     this.EraCheatStatusProcessData = this.EraCheatStatusProcessData.bind(this);
     this.AllEraCheatStatusProcessData = this.AllEraCheatStatusProcessData.bind(this);
   }
+  Param(request: QueryParamRequest): Promise<QueryParamResponse> {
+    const data = QueryParamRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "Param", data);
+    return promise.then((data) => QueryParamResponse.decode(_m0.Reader.create(data)));
+  }
+
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "Params", data);
@@ -5350,20 +5243,6 @@ export class QueryClientImpl implements Query {
     const data = QueryGetAllWorkreportByEpochRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "AllWorkreportByEpoch", data);
     return promise.then((data) => QueryGetAllWorkreportByEpochResponse.decode(_m0.Reader.create(data)));
-  }
-
-  WorkreportProcessBatchSize(
-    request: QueryGetWorkreportProcessBatchSizeRequest,
-  ): Promise<QueryGetWorkreportProcessBatchSizeResponse> {
-    const data = QueryGetWorkreportProcessBatchSizeRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "WorkreportProcessBatchSize", data);
-    return promise.then((data) => QueryGetWorkreportProcessBatchSizeResponse.decode(_m0.Reader.create(data)));
-  }
-
-  HistoryEpochDataDepth(request: QueryGetHistoryEpochDataDepthRequest): Promise<QueryGetHistoryEpochDataDepthResponse> {
-    const data = QueryGetHistoryEpochDataDepthRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "HistoryEpochDataDepth", data);
-    return promise.then((data) => QueryGetHistoryEpochDataDepthResponse.decode(_m0.Reader.create(data)));
   }
 
   EpochProcessData(request: QueryGetEpochProcessDataRequest): Promise<QueryGetEpochProcessDataResponse> {

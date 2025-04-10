@@ -2,27 +2,22 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { CheatStatusCR } from "./cheat_status";
-import { Params } from "./params";
 import { ReputationPointChangeRawData } from "./reputationpoint";
 import { NodeScore } from "./workreport";
 
 export const protobufPackage = "enreach.workload";
 
-/** MsgUpdateParams is the Msg/UpdateParams request type. */
-export interface MsgUpdateParams {
-  /** authority is the address that controls the module (defaults to x/gov unless overwritten). */
-  authority: string;
-  /** NOTE: All parameters must be supplied. */
-  params: Params | undefined;
+/** /////////////////////////////////////////////////////////////// */
+export interface MsgUpdateParam {
+  signer: string;
+  paramKey: string;
+  paramValue: string;
 }
 
-/**
- * MsgUpdateParamsResponse defines the response structure for executing a
- * MsgUpdateParams message.
- */
-export interface MsgUpdateParamsResponse {
+export interface MsgUpdateParamResponse {
 }
 
+/** //////////////// */
 export interface MsgSubmitWorkreports {
   managerAccount: string;
   epoch: number;
@@ -32,22 +27,7 @@ export interface MsgSubmitWorkreports {
 export interface MsgSubmitWorkreportsResponse {
 }
 
-export interface MsgUpdateWorkreportProcessBatchSize {
-  signer: string;
-  batchSize: number;
-}
-
-export interface MsgUpdateWorkreportProcessBatchSizeResponse {
-}
-
-export interface MsgUpdateHistoryEpochDataDepth {
-  signer: string;
-  depth: number;
-}
-
-export interface MsgUpdateHistoryEpochDataDepthResponse {
-}
-
+/** /////////////// */
 export interface MsgCreateSuperior {
   signer: string;
   account: string;
@@ -64,6 +44,7 @@ export interface MsgUpdateSuperior {
 export interface MsgUpdateSuperiorResponse {
 }
 
+/** //////////////// */
 export interface MsgSubmitReputationPointChangeData {
   managerAccount: string;
   era: number;
@@ -82,25 +63,28 @@ export interface MsgSubmitCheatStatusCR {
 export interface MsgSubmitCheatStatusCRResponse {
 }
 
-function createBaseMsgUpdateParams(): MsgUpdateParams {
-  return { authority: "", params: undefined };
+function createBaseMsgUpdateParam(): MsgUpdateParam {
+  return { signer: "", paramKey: "", paramValue: "" };
 }
 
-export const MsgUpdateParams = {
-  encode(message: MsgUpdateParams, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.authority !== "") {
-      writer.uint32(10).string(message.authority);
+export const MsgUpdateParam = {
+  encode(message: MsgUpdateParam, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.signer !== "") {
+      writer.uint32(10).string(message.signer);
     }
-    if (message.params !== undefined) {
-      Params.encode(message.params, writer.uint32(18).fork()).ldelim();
+    if (message.paramKey !== "") {
+      writer.uint32(18).string(message.paramKey);
+    }
+    if (message.paramValue !== "") {
+      writer.uint32(26).string(message.paramValue);
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateParams {
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateParam {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgUpdateParams();
+    const message = createBaseMsgUpdateParam();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -109,14 +93,21 @@ export const MsgUpdateParams = {
             break;
           }
 
-          message.authority = reader.string();
+          message.signer = reader.string();
           continue;
         case 2:
           if (tag !== 18) {
             break;
           }
 
-          message.params = Params.decode(reader, reader.uint32());
+          message.paramKey = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.paramValue = reader.string();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -127,50 +118,53 @@ export const MsgUpdateParams = {
     return message;
   },
 
-  fromJSON(object: any): MsgUpdateParams {
+  fromJSON(object: any): MsgUpdateParam {
     return {
-      authority: isSet(object.authority) ? String(object.authority) : "",
-      params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
+      signer: isSet(object.signer) ? String(object.signer) : "",
+      paramKey: isSet(object.paramKey) ? String(object.paramKey) : "",
+      paramValue: isSet(object.paramValue) ? String(object.paramValue) : "",
     };
   },
 
-  toJSON(message: MsgUpdateParams): unknown {
+  toJSON(message: MsgUpdateParam): unknown {
     const obj: any = {};
-    if (message.authority !== "") {
-      obj.authority = message.authority;
+    if (message.signer !== "") {
+      obj.signer = message.signer;
     }
-    if (message.params !== undefined) {
-      obj.params = Params.toJSON(message.params);
+    if (message.paramKey !== "") {
+      obj.paramKey = message.paramKey;
+    }
+    if (message.paramValue !== "") {
+      obj.paramValue = message.paramValue;
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgUpdateParams>, I>>(base?: I): MsgUpdateParams {
-    return MsgUpdateParams.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<MsgUpdateParam>, I>>(base?: I): MsgUpdateParam {
+    return MsgUpdateParam.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<MsgUpdateParams>, I>>(object: I): MsgUpdateParams {
-    const message = createBaseMsgUpdateParams();
-    message.authority = object.authority ?? "";
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Params.fromPartial(object.params)
-      : undefined;
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateParam>, I>>(object: I): MsgUpdateParam {
+    const message = createBaseMsgUpdateParam();
+    message.signer = object.signer ?? "";
+    message.paramKey = object.paramKey ?? "";
+    message.paramValue = object.paramValue ?? "";
     return message;
   },
 };
 
-function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
+function createBaseMsgUpdateParamResponse(): MsgUpdateParamResponse {
   return {};
 }
 
-export const MsgUpdateParamsResponse = {
-  encode(_: MsgUpdateParamsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const MsgUpdateParamResponse = {
+  encode(_: MsgUpdateParamResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateParamsResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateParamResponse {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgUpdateParamsResponse();
+    const message = createBaseMsgUpdateParamResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -183,20 +177,20 @@ export const MsgUpdateParamsResponse = {
     return message;
   },
 
-  fromJSON(_: any): MsgUpdateParamsResponse {
+  fromJSON(_: any): MsgUpdateParamResponse {
     return {};
   },
 
-  toJSON(_: MsgUpdateParamsResponse): unknown {
+  toJSON(_: MsgUpdateParamResponse): unknown {
     const obj: any = {};
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgUpdateParamsResponse>, I>>(base?: I): MsgUpdateParamsResponse {
-    return MsgUpdateParamsResponse.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<MsgUpdateParamResponse>, I>>(base?: I): MsgUpdateParamResponse {
+    return MsgUpdateParamResponse.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<MsgUpdateParamsResponse>, I>>(_: I): MsgUpdateParamsResponse {
-    const message = createBaseMsgUpdateParamsResponse();
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateParamResponse>, I>>(_: I): MsgUpdateParamResponse {
+    const message = createBaseMsgUpdateParamResponse();
     return message;
   },
 };
@@ -329,254 +323,6 @@ export const MsgSubmitWorkreportsResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgSubmitWorkreportsResponse>, I>>(_: I): MsgSubmitWorkreportsResponse {
     const message = createBaseMsgSubmitWorkreportsResponse();
-    return message;
-  },
-};
-
-function createBaseMsgUpdateWorkreportProcessBatchSize(): MsgUpdateWorkreportProcessBatchSize {
-  return { signer: "", batchSize: 0 };
-}
-
-export const MsgUpdateWorkreportProcessBatchSize = {
-  encode(message: MsgUpdateWorkreportProcessBatchSize, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.signer !== "") {
-      writer.uint32(10).string(message.signer);
-    }
-    if (message.batchSize !== 0) {
-      writer.uint32(16).uint64(message.batchSize);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateWorkreportProcessBatchSize {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgUpdateWorkreportProcessBatchSize();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.signer = reader.string();
-          continue;
-        case 2:
-          if (tag !== 16) {
-            break;
-          }
-
-          message.batchSize = longToNumber(reader.uint64() as Long);
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): MsgUpdateWorkreportProcessBatchSize {
-    return {
-      signer: isSet(object.signer) ? String(object.signer) : "",
-      batchSize: isSet(object.batchSize) ? Number(object.batchSize) : 0,
-    };
-  },
-
-  toJSON(message: MsgUpdateWorkreportProcessBatchSize): unknown {
-    const obj: any = {};
-    if (message.signer !== "") {
-      obj.signer = message.signer;
-    }
-    if (message.batchSize !== 0) {
-      obj.batchSize = Math.round(message.batchSize);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MsgUpdateWorkreportProcessBatchSize>, I>>(
-    base?: I,
-  ): MsgUpdateWorkreportProcessBatchSize {
-    return MsgUpdateWorkreportProcessBatchSize.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MsgUpdateWorkreportProcessBatchSize>, I>>(
-    object: I,
-  ): MsgUpdateWorkreportProcessBatchSize {
-    const message = createBaseMsgUpdateWorkreportProcessBatchSize();
-    message.signer = object.signer ?? "";
-    message.batchSize = object.batchSize ?? 0;
-    return message;
-  },
-};
-
-function createBaseMsgUpdateWorkreportProcessBatchSizeResponse(): MsgUpdateWorkreportProcessBatchSizeResponse {
-  return {};
-}
-
-export const MsgUpdateWorkreportProcessBatchSizeResponse = {
-  encode(_: MsgUpdateWorkreportProcessBatchSizeResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateWorkreportProcessBatchSizeResponse {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgUpdateWorkreportProcessBatchSizeResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(_: any): MsgUpdateWorkreportProcessBatchSizeResponse {
-    return {};
-  },
-
-  toJSON(_: MsgUpdateWorkreportProcessBatchSizeResponse): unknown {
-    const obj: any = {};
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MsgUpdateWorkreportProcessBatchSizeResponse>, I>>(
-    base?: I,
-  ): MsgUpdateWorkreportProcessBatchSizeResponse {
-    return MsgUpdateWorkreportProcessBatchSizeResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MsgUpdateWorkreportProcessBatchSizeResponse>, I>>(
-    _: I,
-  ): MsgUpdateWorkreportProcessBatchSizeResponse {
-    const message = createBaseMsgUpdateWorkreportProcessBatchSizeResponse();
-    return message;
-  },
-};
-
-function createBaseMsgUpdateHistoryEpochDataDepth(): MsgUpdateHistoryEpochDataDepth {
-  return { signer: "", depth: 0 };
-}
-
-export const MsgUpdateHistoryEpochDataDepth = {
-  encode(message: MsgUpdateHistoryEpochDataDepth, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.signer !== "") {
-      writer.uint32(10).string(message.signer);
-    }
-    if (message.depth !== 0) {
-      writer.uint32(16).uint64(message.depth);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateHistoryEpochDataDepth {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgUpdateHistoryEpochDataDepth();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.signer = reader.string();
-          continue;
-        case 2:
-          if (tag !== 16) {
-            break;
-          }
-
-          message.depth = longToNumber(reader.uint64() as Long);
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): MsgUpdateHistoryEpochDataDepth {
-    return {
-      signer: isSet(object.signer) ? String(object.signer) : "",
-      depth: isSet(object.depth) ? Number(object.depth) : 0,
-    };
-  },
-
-  toJSON(message: MsgUpdateHistoryEpochDataDepth): unknown {
-    const obj: any = {};
-    if (message.signer !== "") {
-      obj.signer = message.signer;
-    }
-    if (message.depth !== 0) {
-      obj.depth = Math.round(message.depth);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MsgUpdateHistoryEpochDataDepth>, I>>(base?: I): MsgUpdateHistoryEpochDataDepth {
-    return MsgUpdateHistoryEpochDataDepth.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MsgUpdateHistoryEpochDataDepth>, I>>(
-    object: I,
-  ): MsgUpdateHistoryEpochDataDepth {
-    const message = createBaseMsgUpdateHistoryEpochDataDepth();
-    message.signer = object.signer ?? "";
-    message.depth = object.depth ?? 0;
-    return message;
-  },
-};
-
-function createBaseMsgUpdateHistoryEpochDataDepthResponse(): MsgUpdateHistoryEpochDataDepthResponse {
-  return {};
-}
-
-export const MsgUpdateHistoryEpochDataDepthResponse = {
-  encode(_: MsgUpdateHistoryEpochDataDepthResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateHistoryEpochDataDepthResponse {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgUpdateHistoryEpochDataDepthResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(_: any): MsgUpdateHistoryEpochDataDepthResponse {
-    return {};
-  },
-
-  toJSON(_: MsgUpdateHistoryEpochDataDepthResponse): unknown {
-    const obj: any = {};
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MsgUpdateHistoryEpochDataDepthResponse>, I>>(
-    base?: I,
-  ): MsgUpdateHistoryEpochDataDepthResponse {
-    return MsgUpdateHistoryEpochDataDepthResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MsgUpdateHistoryEpochDataDepthResponse>, I>>(
-    _: I,
-  ): MsgUpdateHistoryEpochDataDepthResponse {
-    const message = createBaseMsgUpdateHistoryEpochDataDepthResponse();
     return message;
   },
 };
@@ -1095,12 +841,8 @@ export interface Msg {
    * UpdateParams defines a (governance) operation for updating the module
    * parameters. The authority defaults to the x/gov module account.
    */
-  UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
+  UpdateParam(request: MsgUpdateParam): Promise<MsgUpdateParamResponse>;
   SubmitWorkreports(request: MsgSubmitWorkreports): Promise<MsgSubmitWorkreportsResponse>;
-  UpdateWorkreportProcessBatchSize(
-    request: MsgUpdateWorkreportProcessBatchSize,
-  ): Promise<MsgUpdateWorkreportProcessBatchSizeResponse>;
-  UpdateHistoryEpochDataDepth(request: MsgUpdateHistoryEpochDataDepth): Promise<MsgUpdateHistoryEpochDataDepthResponse>;
   CreateSuperior(request: MsgCreateSuperior): Promise<MsgCreateSuperiorResponse>;
   UpdateSuperior(request: MsgUpdateSuperior): Promise<MsgUpdateSuperiorResponse>;
   SubmitReputationPointChangeData(
@@ -1116,41 +858,23 @@ export class MsgClientImpl implements Msg {
   constructor(rpc: Rpc, opts?: { service?: string }) {
     this.service = opts?.service || MsgServiceName;
     this.rpc = rpc;
-    this.UpdateParams = this.UpdateParams.bind(this);
+    this.UpdateParam = this.UpdateParam.bind(this);
     this.SubmitWorkreports = this.SubmitWorkreports.bind(this);
-    this.UpdateWorkreportProcessBatchSize = this.UpdateWorkreportProcessBatchSize.bind(this);
-    this.UpdateHistoryEpochDataDepth = this.UpdateHistoryEpochDataDepth.bind(this);
     this.CreateSuperior = this.CreateSuperior.bind(this);
     this.UpdateSuperior = this.UpdateSuperior.bind(this);
     this.SubmitReputationPointChangeData = this.SubmitReputationPointChangeData.bind(this);
     this.SubmitCheatStatusCR = this.SubmitCheatStatusCR.bind(this);
   }
-  UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
-    const data = MsgUpdateParams.encode(request).finish();
-    const promise = this.rpc.request(this.service, "UpdateParams", data);
-    return promise.then((data) => MsgUpdateParamsResponse.decode(_m0.Reader.create(data)));
+  UpdateParam(request: MsgUpdateParam): Promise<MsgUpdateParamResponse> {
+    const data = MsgUpdateParam.encode(request).finish();
+    const promise = this.rpc.request(this.service, "UpdateParam", data);
+    return promise.then((data) => MsgUpdateParamResponse.decode(_m0.Reader.create(data)));
   }
 
   SubmitWorkreports(request: MsgSubmitWorkreports): Promise<MsgSubmitWorkreportsResponse> {
     const data = MsgSubmitWorkreports.encode(request).finish();
     const promise = this.rpc.request(this.service, "SubmitWorkreports", data);
     return promise.then((data) => MsgSubmitWorkreportsResponse.decode(_m0.Reader.create(data)));
-  }
-
-  UpdateWorkreportProcessBatchSize(
-    request: MsgUpdateWorkreportProcessBatchSize,
-  ): Promise<MsgUpdateWorkreportProcessBatchSizeResponse> {
-    const data = MsgUpdateWorkreportProcessBatchSize.encode(request).finish();
-    const promise = this.rpc.request(this.service, "UpdateWorkreportProcessBatchSize", data);
-    return promise.then((data) => MsgUpdateWorkreportProcessBatchSizeResponse.decode(_m0.Reader.create(data)));
-  }
-
-  UpdateHistoryEpochDataDepth(
-    request: MsgUpdateHistoryEpochDataDepth,
-  ): Promise<MsgUpdateHistoryEpochDataDepthResponse> {
-    const data = MsgUpdateHistoryEpochDataDepth.encode(request).finish();
-    const promise = this.rpc.request(this.service, "UpdateHistoryEpochDataDepth", data);
-    return promise.then((data) => MsgUpdateHistoryEpochDataDepthResponse.decode(_m0.Reader.create(data)));
   }
 
   CreateSuperior(request: MsgCreateSuperior): Promise<MsgCreateSuperiorResponse> {

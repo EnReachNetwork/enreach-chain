@@ -3,32 +3,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MsgClientImpl = exports.MsgServiceName = exports.MsgSubmitCheatStatusCRResponse = exports.MsgSubmitCheatStatusCR = exports.MsgSubmitReputationPointChangeDataResponse = exports.MsgSubmitReputationPointChangeData = exports.MsgUpdateSuperiorResponse = exports.MsgUpdateSuperior = exports.MsgCreateSuperiorResponse = exports.MsgCreateSuperior = exports.MsgUpdateHistoryEpochDataDepthResponse = exports.MsgUpdateHistoryEpochDataDepth = exports.MsgUpdateWorkreportProcessBatchSizeResponse = exports.MsgUpdateWorkreportProcessBatchSize = exports.MsgSubmitWorkreportsResponse = exports.MsgSubmitWorkreports = exports.MsgUpdateParamsResponse = exports.MsgUpdateParams = exports.protobufPackage = void 0;
+exports.MsgClientImpl = exports.MsgServiceName = exports.MsgSubmitCheatStatusCRResponse = exports.MsgSubmitCheatStatusCR = exports.MsgSubmitReputationPointChangeDataResponse = exports.MsgSubmitReputationPointChangeData = exports.MsgUpdateSuperiorResponse = exports.MsgUpdateSuperior = exports.MsgCreateSuperiorResponse = exports.MsgCreateSuperior = exports.MsgSubmitWorkreportsResponse = exports.MsgSubmitWorkreports = exports.MsgUpdateParamResponse = exports.MsgUpdateParam = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const cheat_status_1 = require("./cheat_status");
-const params_1 = require("./params");
 const reputationpoint_1 = require("./reputationpoint");
 const workreport_1 = require("./workreport");
 exports.protobufPackage = "enreach.workload";
-function createBaseMsgUpdateParams() {
-    return { authority: "", params: undefined };
+function createBaseMsgUpdateParam() {
+    return { signer: "", paramKey: "", paramValue: "" };
 }
-exports.MsgUpdateParams = {
+exports.MsgUpdateParam = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.authority !== "") {
-            writer.uint32(10).string(message.authority);
+        if (message.signer !== "") {
+            writer.uint32(10).string(message.signer);
         }
-        if (message.params !== undefined) {
-            params_1.Params.encode(message.params, writer.uint32(18).fork()).ldelim();
+        if (message.paramKey !== "") {
+            writer.uint32(18).string(message.paramKey);
+        }
+        if (message.paramValue !== "") {
+            writer.uint32(26).string(message.paramValue);
         }
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseMsgUpdateParams();
+        const message = createBaseMsgUpdateParam();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -36,13 +38,19 @@ exports.MsgUpdateParams = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.authority = reader.string();
+                    message.signer = reader.string();
                     continue;
                 case 2:
                     if (tag !== 18) {
                         break;
                     }
-                    message.params = params_1.Params.decode(reader, reader.uint32());
+                    message.paramKey = reader.string();
+                    continue;
+                case 3:
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.paramValue = reader.string();
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -54,43 +62,46 @@ exports.MsgUpdateParams = {
     },
     fromJSON(object) {
         return {
-            authority: isSet(object.authority) ? String(object.authority) : "",
-            params: isSet(object.params) ? params_1.Params.fromJSON(object.params) : undefined,
+            signer: isSet(object.signer) ? String(object.signer) : "",
+            paramKey: isSet(object.paramKey) ? String(object.paramKey) : "",
+            paramValue: isSet(object.paramValue) ? String(object.paramValue) : "",
         };
     },
     toJSON(message) {
         const obj = {};
-        if (message.authority !== "") {
-            obj.authority = message.authority;
+        if (message.signer !== "") {
+            obj.signer = message.signer;
         }
-        if (message.params !== undefined) {
-            obj.params = params_1.Params.toJSON(message.params);
+        if (message.paramKey !== "") {
+            obj.paramKey = message.paramKey;
+        }
+        if (message.paramValue !== "") {
+            obj.paramValue = message.paramValue;
         }
         return obj;
     },
     create(base) {
-        return exports.MsgUpdateParams.fromPartial(base ?? {});
+        return exports.MsgUpdateParam.fromPartial(base ?? {});
     },
     fromPartial(object) {
-        const message = createBaseMsgUpdateParams();
-        message.authority = object.authority ?? "";
-        message.params = (object.params !== undefined && object.params !== null)
-            ? params_1.Params.fromPartial(object.params)
-            : undefined;
+        const message = createBaseMsgUpdateParam();
+        message.signer = object.signer ?? "";
+        message.paramKey = object.paramKey ?? "";
+        message.paramValue = object.paramValue ?? "";
         return message;
     },
 };
-function createBaseMsgUpdateParamsResponse() {
+function createBaseMsgUpdateParamResponse() {
     return {};
 }
-exports.MsgUpdateParamsResponse = {
+exports.MsgUpdateParamResponse = {
     encode(_, writer = minimal_1.default.Writer.create()) {
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseMsgUpdateParamsResponse();
+        const message = createBaseMsgUpdateParamResponse();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -110,10 +121,10 @@ exports.MsgUpdateParamsResponse = {
         return obj;
     },
     create(base) {
-        return exports.MsgUpdateParamsResponse.fromPartial(base ?? {});
+        return exports.MsgUpdateParamResponse.fromPartial(base ?? {});
     },
     fromPartial(_) {
-        const message = createBaseMsgUpdateParamsResponse();
+        const message = createBaseMsgUpdateParamResponse();
         return message;
     },
 };
@@ -231,212 +242,6 @@ exports.MsgSubmitWorkreportsResponse = {
     },
     fromPartial(_) {
         const message = createBaseMsgSubmitWorkreportsResponse();
-        return message;
-    },
-};
-function createBaseMsgUpdateWorkreportProcessBatchSize() {
-    return { signer: "", batchSize: 0 };
-}
-exports.MsgUpdateWorkreportProcessBatchSize = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.signer !== "") {
-            writer.uint32(10).string(message.signer);
-        }
-        if (message.batchSize !== 0) {
-            writer.uint32(16).uint64(message.batchSize);
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseMsgUpdateWorkreportProcessBatchSize();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.signer = reader.string();
-                    continue;
-                case 2:
-                    if (tag !== 16) {
-                        break;
-                    }
-                    message.batchSize = longToNumber(reader.uint64());
-                    continue;
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return {
-            signer: isSet(object.signer) ? String(object.signer) : "",
-            batchSize: isSet(object.batchSize) ? Number(object.batchSize) : 0,
-        };
-    },
-    toJSON(message) {
-        const obj = {};
-        if (message.signer !== "") {
-            obj.signer = message.signer;
-        }
-        if (message.batchSize !== 0) {
-            obj.batchSize = Math.round(message.batchSize);
-        }
-        return obj;
-    },
-    create(base) {
-        return exports.MsgUpdateWorkreportProcessBatchSize.fromPartial(base ?? {});
-    },
-    fromPartial(object) {
-        const message = createBaseMsgUpdateWorkreportProcessBatchSize();
-        message.signer = object.signer ?? "";
-        message.batchSize = object.batchSize ?? 0;
-        return message;
-    },
-};
-function createBaseMsgUpdateWorkreportProcessBatchSizeResponse() {
-    return {};
-}
-exports.MsgUpdateWorkreportProcessBatchSizeResponse = {
-    encode(_, writer = minimal_1.default.Writer.create()) {
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseMsgUpdateWorkreportProcessBatchSizeResponse();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(_) {
-        return {};
-    },
-    toJSON(_) {
-        const obj = {};
-        return obj;
-    },
-    create(base) {
-        return exports.MsgUpdateWorkreportProcessBatchSizeResponse.fromPartial(base ?? {});
-    },
-    fromPartial(_) {
-        const message = createBaseMsgUpdateWorkreportProcessBatchSizeResponse();
-        return message;
-    },
-};
-function createBaseMsgUpdateHistoryEpochDataDepth() {
-    return { signer: "", depth: 0 };
-}
-exports.MsgUpdateHistoryEpochDataDepth = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.signer !== "") {
-            writer.uint32(10).string(message.signer);
-        }
-        if (message.depth !== 0) {
-            writer.uint32(16).uint64(message.depth);
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseMsgUpdateHistoryEpochDataDepth();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.signer = reader.string();
-                    continue;
-                case 2:
-                    if (tag !== 16) {
-                        break;
-                    }
-                    message.depth = longToNumber(reader.uint64());
-                    continue;
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return {
-            signer: isSet(object.signer) ? String(object.signer) : "",
-            depth: isSet(object.depth) ? Number(object.depth) : 0,
-        };
-    },
-    toJSON(message) {
-        const obj = {};
-        if (message.signer !== "") {
-            obj.signer = message.signer;
-        }
-        if (message.depth !== 0) {
-            obj.depth = Math.round(message.depth);
-        }
-        return obj;
-    },
-    create(base) {
-        return exports.MsgUpdateHistoryEpochDataDepth.fromPartial(base ?? {});
-    },
-    fromPartial(object) {
-        const message = createBaseMsgUpdateHistoryEpochDataDepth();
-        message.signer = object.signer ?? "";
-        message.depth = object.depth ?? 0;
-        return message;
-    },
-};
-function createBaseMsgUpdateHistoryEpochDataDepthResponse() {
-    return {};
-}
-exports.MsgUpdateHistoryEpochDataDepthResponse = {
-    encode(_, writer = minimal_1.default.Writer.create()) {
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseMsgUpdateHistoryEpochDataDepthResponse();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(_) {
-        return {};
-    },
-    toJSON(_) {
-        const obj = {};
-        return obj;
-    },
-    create(base) {
-        return exports.MsgUpdateHistoryEpochDataDepthResponse.fromPartial(base ?? {});
-    },
-    fromPartial(_) {
-        const message = createBaseMsgUpdateHistoryEpochDataDepthResponse();
         return message;
     },
 };
@@ -887,34 +692,22 @@ class MsgClientImpl {
     constructor(rpc, opts) {
         this.service = opts?.service || exports.MsgServiceName;
         this.rpc = rpc;
-        this.UpdateParams = this.UpdateParams.bind(this);
+        this.UpdateParam = this.UpdateParam.bind(this);
         this.SubmitWorkreports = this.SubmitWorkreports.bind(this);
-        this.UpdateWorkreportProcessBatchSize = this.UpdateWorkreportProcessBatchSize.bind(this);
-        this.UpdateHistoryEpochDataDepth = this.UpdateHistoryEpochDataDepth.bind(this);
         this.CreateSuperior = this.CreateSuperior.bind(this);
         this.UpdateSuperior = this.UpdateSuperior.bind(this);
         this.SubmitReputationPointChangeData = this.SubmitReputationPointChangeData.bind(this);
         this.SubmitCheatStatusCR = this.SubmitCheatStatusCR.bind(this);
     }
-    UpdateParams(request) {
-        const data = exports.MsgUpdateParams.encode(request).finish();
-        const promise = this.rpc.request(this.service, "UpdateParams", data);
-        return promise.then((data) => exports.MsgUpdateParamsResponse.decode(minimal_1.default.Reader.create(data)));
+    UpdateParam(request) {
+        const data = exports.MsgUpdateParam.encode(request).finish();
+        const promise = this.rpc.request(this.service, "UpdateParam", data);
+        return promise.then((data) => exports.MsgUpdateParamResponse.decode(minimal_1.default.Reader.create(data)));
     }
     SubmitWorkreports(request) {
         const data = exports.MsgSubmitWorkreports.encode(request).finish();
         const promise = this.rpc.request(this.service, "SubmitWorkreports", data);
         return promise.then((data) => exports.MsgSubmitWorkreportsResponse.decode(minimal_1.default.Reader.create(data)));
-    }
-    UpdateWorkreportProcessBatchSize(request) {
-        const data = exports.MsgUpdateWorkreportProcessBatchSize.encode(request).finish();
-        const promise = this.rpc.request(this.service, "UpdateWorkreportProcessBatchSize", data);
-        return promise.then((data) => exports.MsgUpdateWorkreportProcessBatchSizeResponse.decode(minimal_1.default.Reader.create(data)));
-    }
-    UpdateHistoryEpochDataDepth(request) {
-        const data = exports.MsgUpdateHistoryEpochDataDepth.encode(request).finish();
-        const promise = this.rpc.request(this.service, "UpdateHistoryEpochDataDepth", data);
-        return promise.then((data) => exports.MsgUpdateHistoryEpochDataDepthResponse.decode(minimal_1.default.Reader.create(data)));
     }
     CreateSuperior(request) {
         const data = exports.MsgCreateSuperior.encode(request).finish();

@@ -6,32 +6,20 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
-import { MsgUpdateParams } from "./types/cosmos/mint/v1beta1/tx";
-import { Minter } from "./types/cosmos/mint/v1beta1/mint";
 import { Params } from "./types/cosmos/mint/v1beta1/mint";
 import { QueryParamsResponse } from "./types/cosmos/mint/v1beta1/query";
-import { QueryInflationResponse } from "./types/cosmos/mint/v1beta1/query";
 import { QueryAnnualProvisionsRequest } from "./types/cosmos/mint/v1beta1/query";
+import { MsgUpdateParamsResponse } from "./types/cosmos/mint/v1beta1/tx";
+import { QueryInflationResponse } from "./types/cosmos/mint/v1beta1/query";
+import { MsgUpdateParams } from "./types/cosmos/mint/v1beta1/tx";
+import { Minter } from "./types/cosmos/mint/v1beta1/mint";
+import { QueryParamsRequest } from "./types/cosmos/mint/v1beta1/query";
 import { QueryInflationRequest } from "./types/cosmos/mint/v1beta1/query";
 import { GenesisState } from "./types/cosmos/mint/v1beta1/genesis";
-import { QueryParamsRequest } from "./types/cosmos/mint/v1beta1/query";
 import { QueryAnnualProvisionsResponse } from "./types/cosmos/mint/v1beta1/query";
-import { MsgUpdateParamsResponse } from "./types/cosmos/mint/v1beta1/tx";
 
 
-export { MsgUpdateParams, Minter, Params, QueryParamsResponse, QueryInflationResponse, QueryAnnualProvisionsRequest, QueryInflationRequest, GenesisState, QueryParamsRequest, QueryAnnualProvisionsResponse, MsgUpdateParamsResponse };
-
-type sendMsgUpdateParamsParams = {
-  value: MsgUpdateParams,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMinterParams = {
-  value: Minter,
-  fee?: StdFee,
-  memo?: string
-};
+export { Params, QueryParamsResponse, QueryAnnualProvisionsRequest, MsgUpdateParamsResponse, QueryInflationResponse, MsgUpdateParams, Minter, QueryParamsRequest, QueryInflationRequest, GenesisState, QueryAnnualProvisionsResponse };
 
 type sendParamsParams = {
   value: Params,
@@ -45,14 +33,38 @@ type sendQueryParamsResponseParams = {
   memo?: string
 };
 
+type sendQueryAnnualProvisionsRequestParams = {
+  value: QueryAnnualProvisionsRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateParamsResponseParams = {
+  value: MsgUpdateParamsResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
 type sendQueryInflationResponseParams = {
   value: QueryInflationResponse,
   fee?: StdFee,
   memo?: string
 };
 
-type sendQueryAnnualProvisionsRequestParams = {
-  value: QueryAnnualProvisionsRequest,
+type sendMsgUpdateParamsParams = {
+  value: MsgUpdateParams,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMinterParams = {
+  value: Minter,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryParamsRequestParams = {
+  value: QueryParamsRequest,
   fee?: StdFee,
   memo?: string
 };
@@ -69,32 +81,12 @@ type sendGenesisStateParams = {
   memo?: string
 };
 
-type sendQueryParamsRequestParams = {
-  value: QueryParamsRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
 type sendQueryAnnualProvisionsResponseParams = {
   value: QueryAnnualProvisionsResponse,
   fee?: StdFee,
   memo?: string
 };
 
-type sendMsgUpdateParamsResponseParams = {
-  value: MsgUpdateParamsResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-
-type msgUpdateParamsParams = {
-  value: MsgUpdateParams,
-};
-
-type minterParams = {
-  value: Minter,
-};
 
 type paramsParams = {
   value: Params,
@@ -104,12 +96,28 @@ type queryParamsResponseParams = {
   value: QueryParamsResponse,
 };
 
+type queryAnnualProvisionsRequestParams = {
+  value: QueryAnnualProvisionsRequest,
+};
+
+type msgUpdateParamsResponseParams = {
+  value: MsgUpdateParamsResponse,
+};
+
 type queryInflationResponseParams = {
   value: QueryInflationResponse,
 };
 
-type queryAnnualProvisionsRequestParams = {
-  value: QueryAnnualProvisionsRequest,
+type msgUpdateParamsParams = {
+  value: MsgUpdateParams,
+};
+
+type minterParams = {
+  value: Minter,
+};
+
+type queryParamsRequestParams = {
+  value: QueryParamsRequest,
 };
 
 type queryInflationRequestParams = {
@@ -120,16 +128,8 @@ type genesisStateParams = {
   value: GenesisState,
 };
 
-type queryParamsRequestParams = {
-  value: QueryParamsRequest,
-};
-
 type queryAnnualProvisionsResponseParams = {
   value: QueryAnnualProvisionsResponse,
-};
-
-type msgUpdateParamsResponseParams = {
-  value: MsgUpdateParamsResponse,
 };
 
 
@@ -162,34 +162,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 
   return {
 		
-		async sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateParams({ value: MsgUpdateParams.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMinter({ value, fee, memo }: sendMinterParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMinter: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.minter({ value: Minter.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMinter: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
 		async sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendParams: Unable to sign Tx. Signer is not present.')
@@ -218,6 +190,34 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		async sendQueryAnnualProvisionsRequest({ value, fee, memo }: sendQueryAnnualProvisionsRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryAnnualProvisionsRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryAnnualProvisionsRequest({ value: QueryAnnualProvisionsRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryAnnualProvisionsRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateParamsResponse({ value: MsgUpdateParamsResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateParamsResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
 		async sendQueryInflationResponse({ value, fee, memo }: sendQueryInflationResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendQueryInflationResponse: Unable to sign Tx. Signer is not present.')
@@ -232,17 +232,45 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendQueryAnnualProvisionsRequest({ value, fee, memo }: sendQueryAnnualProvisionsRequestParams): Promise<DeliverTxResponse> {
+		async sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryAnnualProvisionsRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryAnnualProvisionsRequest({ value: QueryAnnualProvisionsRequest.fromPartial(value) })
+				let msg = this.msgUpdateParams({ value: MsgUpdateParams.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryAnnualProvisionsRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMinter({ value, fee, memo }: sendMinterParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMinter: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.minter({ value: Minter.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMinter: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryParamsRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryParamsRequest({ value: QueryParamsRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryParamsRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -274,20 +302,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryParamsRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryParamsRequest({ value: QueryParamsRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryParamsRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
 		async sendQueryAnnualProvisionsResponse({ value, fee, memo }: sendQueryAnnualProvisionsResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendQueryAnnualProvisionsResponse: Unable to sign Tx. Signer is not present.')
@@ -302,36 +316,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateParamsResponse({ value: MsgUpdateParamsResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateParamsResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		
-		msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.mint.v1beta1.MsgUpdateParams", value: MsgUpdateParams.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message)
-			}
-		},
-		
-		minter({ value }: minterParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.mint.v1beta1.Minter", value: Minter.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:Minter: Could not create message: ' + e.message)
-			}
-		},
 		
 		params({ value }: paramsParams): EncodeObject {
 			try {
@@ -349,6 +333,22 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		queryAnnualProvisionsRequest({ value }: queryAnnualProvisionsRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.mint.v1beta1.QueryAnnualProvisionsRequest", value: QueryAnnualProvisionsRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryAnnualProvisionsRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.mint.v1beta1.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message)
+			}
+		},
+		
 		queryInflationResponse({ value }: queryInflationResponseParams): EncodeObject {
 			try {
 				return { typeUrl: "/cosmos.mint.v1beta1.QueryInflationResponse", value: QueryInflationResponse.fromPartial( value ) }  
@@ -357,11 +357,27 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		queryAnnualProvisionsRequest({ value }: queryAnnualProvisionsRequestParams): EncodeObject {
+		msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.mint.v1beta1.QueryAnnualProvisionsRequest", value: QueryAnnualProvisionsRequest.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.mint.v1beta1.MsgUpdateParams", value: MsgUpdateParams.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryAnnualProvisionsRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message)
+			}
+		},
+		
+		minter({ value }: minterParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.mint.v1beta1.Minter", value: Minter.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:Minter: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.mint.v1beta1.QueryParamsRequest", value: QueryParamsRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryParamsRequest: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -381,27 +397,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.mint.v1beta1.QueryParamsRequest", value: QueryParamsRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryParamsRequest: Could not create message: ' + e.message)
-			}
-		},
-		
 		queryAnnualProvisionsResponse({ value }: queryAnnualProvisionsResponseParams): EncodeObject {
 			try {
 				return { typeUrl: "/cosmos.mint.v1beta1.QueryAnnualProvisionsResponse", value: QueryAnnualProvisionsResponse.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:QueryAnnualProvisionsResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.mint.v1beta1.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message)
 			}
 		},
 		

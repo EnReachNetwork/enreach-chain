@@ -27,6 +27,8 @@ const edgenodeApi = new EdgenodeApi(SUPERIOR_MENMONIC);
 const workload_A_Api = new WorkloadApi(MANAGER_A_MNEMONIC);
 const workload_B_Api = new WorkloadApi(MANAGER_B_MNEMONIC);
 const workload_C_Api = new WorkloadApi(MANAGER_C_MNEMONIC);
+const workloadAdminApi = new WorkloadApi(ADMIN_MNEMONIC);
+const workloadSuperiorApi = new WorkloadApi(SUPERIOR_MENMONIC);
 
 async function main() {
 
@@ -45,6 +47,8 @@ async function main() {
   await workload_A_Api.initApi();
   await workload_B_Api.initApi();
   await workload_C_Api.initApi();
+  await workloadAdminApi.initApi();
+  await workloadSuperiorApi.initApi();
 
   // Listen and log events
   listenEvents();
@@ -52,6 +56,7 @@ async function main() {
   // The superior we used in this example are the same, so use regionApi.account as the superior account of the manager module
   await managerAdminApi.createSuperior({signer: managerAdminApi.account, account: regionApi.account});
   await edgenodeAdminApi.createSuperior({signer: edgenodeAdminApi.account, account: edgenodeApi.account});
+  await workloadAdminApi.createSuperior({signer: workloadAdminApi.account, account: workloadSuperiorApi.account});
 
   await regionApi.createRegion({signer: regionApi.account, code: "US", name: "United State", description: "US Region"});
   const allRegions = await regionApi.queryAllRegion();
@@ -68,6 +73,8 @@ async function main() {
   await testReputationPoint();
 
   await testCheatStatus();
+
+  await testParams();
 }
 
 async function testManager(operatorApi: OperatorApi, managerApi: ManagerApi) {
@@ -354,6 +361,23 @@ async function testCheatStatus() {
   const cheatStatusCRData = await workload_A_Api.queryAllCheatStatusCRDataByEra(Number(previsouEra));
   console.log(`Cheat Status CR Data of era-${previsouEra}:`, jsonify(cheatStatusCRData));
 } 
+
+async function testParams() {
+
+  const oldParams = await workload_A_Api.queryParams();
+
+  await workloadSuperiorApi.updateParam({
+    signer: workloadSuperiorApi.account,
+    paramKey: "EpochLength",
+    paramValue: "15",
+  })
+
+  const newParams = await workload_A_Api.queryParams();
+
+  console.log("===testParams()");
+  console.log(`Old Params:`, jsonify(oldParams));
+  console.log(`New Params:`, jsonify(newParams));
+}
 
 async function listenEvents() {
 

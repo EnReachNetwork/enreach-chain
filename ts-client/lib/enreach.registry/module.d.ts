@@ -2,71 +2,31 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { MsgDeleteRegion } from "./types/enreach/registry/tx";
-import { QueryParamsResponse } from "./types/enreach/registry/query";
-import { QueryParamsRequest } from "./types/enreach/registry/query";
-import { QueryGetRegionRequest } from "./types/enreach/registry/query";
-import { MsgUpdateParamsResponse } from "./types/enreach/registry/tx";
-import { MsgUpdateSuperiorResponse } from "./types/enreach/registry/tx";
-import { MsgUpdateRegionResponse } from "./types/enreach/registry/tx";
-import { MsgDeleteRegionResponse } from "./types/enreach/registry/tx";
 import { MsgUpdateRegion } from "./types/enreach/registry/tx";
 import { QueryGetRegionResponse } from "./types/enreach/registry/query";
-import { QueryAllRegionResponse } from "./types/enreach/registry/query";
-import { Region } from "./types/enreach/registry/region";
-import { MsgCreateRegionResponse } from "./types/enreach/registry/tx";
-import { Superior } from "./types/enreach/registry/superior";
-import { MsgUpdateParams } from "./types/enreach/registry/tx";
-import { MsgCreateSuperior } from "./types/enreach/registry/tx";
 import { QueryAllRegionRequest } from "./types/enreach/registry/query";
-import { MsgCreateSuperiorResponse } from "./types/enreach/registry/tx";
-import { GenesisState } from "./types/enreach/registry/genesis";
+import { MsgUpdateRegionResponse } from "./types/enreach/registry/tx";
+import { Region } from "./types/enreach/registry/region";
+import { MsgUpdateSuperiorResponse } from "./types/enreach/registry/tx";
 import { MsgCreateRegion } from "./types/enreach/registry/tx";
+import { MsgUpdateParams } from "./types/enreach/registry/tx";
+import { MsgCreateSuperiorResponse } from "./types/enreach/registry/tx";
 import { MsgUpdateSuperior } from "./types/enreach/registry/tx";
-import { QueryGetSuperiorRequest } from "./types/enreach/registry/query";
-import { QueryGetSuperiorResponse } from "./types/enreach/registry/query";
+import { QueryAllRegionResponse } from "./types/enreach/registry/query";
+import { MsgCreateRegionResponse } from "./types/enreach/registry/tx";
+import { MsgDeleteRegionResponse } from "./types/enreach/registry/tx";
+import { GenesisState } from "./types/enreach/registry/genesis";
 import { Params } from "./types/enreach/registry/params";
-export { MsgDeleteRegion, QueryParamsResponse, QueryParamsRequest, QueryGetRegionRequest, MsgUpdateParamsResponse, MsgUpdateSuperiorResponse, MsgUpdateRegionResponse, MsgDeleteRegionResponse, MsgUpdateRegion, QueryGetRegionResponse, QueryAllRegionResponse, Region, MsgCreateRegionResponse, Superior, MsgUpdateParams, MsgCreateSuperior, QueryAllRegionRequest, MsgCreateSuperiorResponse, GenesisState, MsgCreateRegion, MsgUpdateSuperior, QueryGetSuperiorRequest, QueryGetSuperiorResponse, Params };
-type sendMsgDeleteRegionParams = {
-    value: MsgDeleteRegion;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryParamsResponseParams = {
-    value: QueryParamsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryParamsRequestParams = {
-    value: QueryParamsRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGetRegionRequestParams = {
-    value: QueryGetRegionRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUpdateParamsResponseParams = {
-    value: MsgUpdateParamsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUpdateSuperiorResponseParams = {
-    value: MsgUpdateSuperiorResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUpdateRegionResponseParams = {
-    value: MsgUpdateRegionResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgDeleteRegionResponseParams = {
-    value: MsgDeleteRegionResponse;
-    fee?: StdFee;
-    memo?: string;
-};
+import { Superior } from "./types/enreach/registry/superior";
+import { QueryParamsRequest } from "./types/enreach/registry/query";
+import { QueryGetSuperiorResponse } from "./types/enreach/registry/query";
+import { QueryGetSuperiorRequest } from "./types/enreach/registry/query";
+import { MsgUpdateParamsResponse } from "./types/enreach/registry/tx";
+import { MsgCreateSuperior } from "./types/enreach/registry/tx";
+import { MsgDeleteRegion } from "./types/enreach/registry/tx";
+import { QueryParamsResponse } from "./types/enreach/registry/query";
+import { QueryGetRegionRequest } from "./types/enreach/registry/query";
+export { MsgUpdateRegion, QueryGetRegionResponse, QueryAllRegionRequest, MsgUpdateRegionResponse, Region, MsgUpdateSuperiorResponse, MsgCreateRegion, MsgUpdateParams, MsgCreateSuperiorResponse, MsgUpdateSuperior, QueryAllRegionResponse, MsgCreateRegionResponse, MsgDeleteRegionResponse, GenesisState, Params, Superior, QueryParamsRequest, QueryGetSuperiorResponse, QueryGetSuperiorRequest, MsgUpdateParamsResponse, MsgCreateSuperior, MsgDeleteRegion, QueryParamsResponse, QueryGetRegionRequest };
 type sendMsgUpdateRegionParams = {
     value: MsgUpdateRegion;
     fee?: StdFee;
@@ -77,8 +37,13 @@ type sendQueryGetRegionResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryAllRegionResponseParams = {
-    value: QueryAllRegionResponse;
+type sendQueryAllRegionRequestParams = {
+    value: QueryAllRegionRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateRegionResponseParams = {
+    value: MsgUpdateRegionResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -87,38 +52,8 @@ type sendRegionParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgCreateRegionResponseParams = {
-    value: MsgCreateRegionResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendSuperiorParams = {
-    value: Superior;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUpdateParamsParams = {
-    value: MsgUpdateParams;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgCreateSuperiorParams = {
-    value: MsgCreateSuperior;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryAllRegionRequestParams = {
-    value: QueryAllRegionRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgCreateSuperiorResponseParams = {
-    value: MsgCreateSuperiorResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendGenesisStateParams = {
-    value: GenesisState;
+type sendMsgUpdateSuperiorResponseParams = {
+    value: MsgUpdateSuperiorResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -127,18 +62,38 @@ type sendMsgCreateRegionParams = {
     fee?: StdFee;
     memo?: string;
 };
+type sendMsgUpdateParamsParams = {
+    value: MsgUpdateParams;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgCreateSuperiorResponseParams = {
+    value: MsgCreateSuperiorResponse;
+    fee?: StdFee;
+    memo?: string;
+};
 type sendMsgUpdateSuperiorParams = {
     value: MsgUpdateSuperior;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryGetSuperiorRequestParams = {
-    value: QueryGetSuperiorRequest;
+type sendQueryAllRegionResponseParams = {
+    value: QueryAllRegionResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryGetSuperiorResponseParams = {
-    value: QueryGetSuperiorResponse;
+type sendMsgCreateRegionResponseParams = {
+    value: MsgCreateRegionResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgDeleteRegionResponseParams = {
+    value: MsgDeleteRegionResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendGenesisStateParams = {
+    value: GenesisState;
     fee?: StdFee;
     memo?: string;
 };
@@ -147,29 +102,50 @@ type sendParamsParams = {
     fee?: StdFee;
     memo?: string;
 };
-type msgDeleteRegionParams = {
-    value: MsgDeleteRegion;
+type sendSuperiorParams = {
+    value: Superior;
+    fee?: StdFee;
+    memo?: string;
 };
-type queryParamsResponseParams = {
-    value: QueryParamsResponse;
-};
-type queryParamsRequestParams = {
+type sendQueryParamsRequestParams = {
     value: QueryParamsRequest;
+    fee?: StdFee;
+    memo?: string;
 };
-type queryGetRegionRequestParams = {
-    value: QueryGetRegionRequest;
+type sendQueryGetSuperiorResponseParams = {
+    value: QueryGetSuperiorResponse;
+    fee?: StdFee;
+    memo?: string;
 };
-type msgUpdateParamsResponseParams = {
+type sendQueryGetSuperiorRequestParams = {
+    value: QueryGetSuperiorRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateParamsResponseParams = {
     value: MsgUpdateParamsResponse;
+    fee?: StdFee;
+    memo?: string;
 };
-type msgUpdateSuperiorResponseParams = {
-    value: MsgUpdateSuperiorResponse;
+type sendMsgCreateSuperiorParams = {
+    value: MsgCreateSuperior;
+    fee?: StdFee;
+    memo?: string;
 };
-type msgUpdateRegionResponseParams = {
-    value: MsgUpdateRegionResponse;
+type sendMsgDeleteRegionParams = {
+    value: MsgDeleteRegion;
+    fee?: StdFee;
+    memo?: string;
 };
-type msgDeleteRegionResponseParams = {
-    value: MsgDeleteRegionResponse;
+type sendQueryParamsResponseParams = {
+    value: QueryParamsResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryGetRegionRequestParams = {
+    value: QueryGetRegionRequest;
+    fee?: StdFee;
+    memo?: string;
 };
 type msgUpdateRegionParams = {
     value: MsgUpdateRegion;
@@ -177,47 +153,71 @@ type msgUpdateRegionParams = {
 type queryGetRegionResponseParams = {
     value: QueryGetRegionResponse;
 };
-type queryAllRegionResponseParams = {
-    value: QueryAllRegionResponse;
+type queryAllRegionRequestParams = {
+    value: QueryAllRegionRequest;
+};
+type msgUpdateRegionResponseParams = {
+    value: MsgUpdateRegionResponse;
 };
 type regionParams = {
     value: Region;
 };
-type msgCreateRegionResponseParams = {
-    value: MsgCreateRegionResponse;
-};
-type superiorParams = {
-    value: Superior;
-};
-type msgUpdateParamsParams = {
-    value: MsgUpdateParams;
-};
-type msgCreateSuperiorParams = {
-    value: MsgCreateSuperior;
-};
-type queryAllRegionRequestParams = {
-    value: QueryAllRegionRequest;
-};
-type msgCreateSuperiorResponseParams = {
-    value: MsgCreateSuperiorResponse;
-};
-type genesisStateParams = {
-    value: GenesisState;
+type msgUpdateSuperiorResponseParams = {
+    value: MsgUpdateSuperiorResponse;
 };
 type msgCreateRegionParams = {
     value: MsgCreateRegion;
 };
+type msgUpdateParamsParams = {
+    value: MsgUpdateParams;
+};
+type msgCreateSuperiorResponseParams = {
+    value: MsgCreateSuperiorResponse;
+};
 type msgUpdateSuperiorParams = {
     value: MsgUpdateSuperior;
 };
-type queryGetSuperiorRequestParams = {
-    value: QueryGetSuperiorRequest;
+type queryAllRegionResponseParams = {
+    value: QueryAllRegionResponse;
+};
+type msgCreateRegionResponseParams = {
+    value: MsgCreateRegionResponse;
+};
+type msgDeleteRegionResponseParams = {
+    value: MsgDeleteRegionResponse;
+};
+type genesisStateParams = {
+    value: GenesisState;
+};
+type paramsParams = {
+    value: Params;
+};
+type superiorParams = {
+    value: Superior;
+};
+type queryParamsRequestParams = {
+    value: QueryParamsRequest;
 };
 type queryGetSuperiorResponseParams = {
     value: QueryGetSuperiorResponse;
 };
-type paramsParams = {
-    value: Params;
+type queryGetSuperiorRequestParams = {
+    value: QueryGetSuperiorRequest;
+};
+type msgUpdateParamsResponseParams = {
+    value: MsgUpdateParamsResponse;
+};
+type msgCreateSuperiorParams = {
+    value: MsgCreateSuperior;
+};
+type msgDeleteRegionParams = {
+    value: MsgDeleteRegion;
+};
+type queryParamsResponseParams = {
+    value: QueryParamsResponse;
+};
+type queryGetRegionRequestParams = {
+    value: QueryGetRegionRequest;
 };
 export declare const registry: any;
 interface TxClientOptions {
@@ -226,54 +226,54 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendMsgDeleteRegion({ value, fee, memo }: sendMsgDeleteRegionParams): Promise<DeliverTxResponse>;
-    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
-    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
-    sendQueryGetRegionRequest({ value, fee, memo }: sendQueryGetRegionRequestParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateSuperiorResponse({ value, fee, memo }: sendMsgUpdateSuperiorResponseParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateRegionResponse({ value, fee, memo }: sendMsgUpdateRegionResponseParams): Promise<DeliverTxResponse>;
-    sendMsgDeleteRegionResponse({ value, fee, memo }: sendMsgDeleteRegionResponseParams): Promise<DeliverTxResponse>;
     sendMsgUpdateRegion({ value, fee, memo }: sendMsgUpdateRegionParams): Promise<DeliverTxResponse>;
     sendQueryGetRegionResponse({ value, fee, memo }: sendQueryGetRegionResponseParams): Promise<DeliverTxResponse>;
-    sendQueryAllRegionResponse({ value, fee, memo }: sendQueryAllRegionResponseParams): Promise<DeliverTxResponse>;
-    sendRegion({ value, fee, memo }: sendRegionParams): Promise<DeliverTxResponse>;
-    sendMsgCreateRegionResponse({ value, fee, memo }: sendMsgCreateRegionResponseParams): Promise<DeliverTxResponse>;
-    sendSuperior({ value, fee, memo }: sendSuperiorParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
-    sendMsgCreateSuperior({ value, fee, memo }: sendMsgCreateSuperiorParams): Promise<DeliverTxResponse>;
     sendQueryAllRegionRequest({ value, fee, memo }: sendQueryAllRegionRequestParams): Promise<DeliverTxResponse>;
-    sendMsgCreateSuperiorResponse({ value, fee, memo }: sendMsgCreateSuperiorResponseParams): Promise<DeliverTxResponse>;
-    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateRegionResponse({ value, fee, memo }: sendMsgUpdateRegionResponseParams): Promise<DeliverTxResponse>;
+    sendRegion({ value, fee, memo }: sendRegionParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateSuperiorResponse({ value, fee, memo }: sendMsgUpdateSuperiorResponseParams): Promise<DeliverTxResponse>;
     sendMsgCreateRegion({ value, fee, memo }: sendMsgCreateRegionParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
+    sendMsgCreateSuperiorResponse({ value, fee, memo }: sendMsgCreateSuperiorResponseParams): Promise<DeliverTxResponse>;
     sendMsgUpdateSuperior({ value, fee, memo }: sendMsgUpdateSuperiorParams): Promise<DeliverTxResponse>;
-    sendQueryGetSuperiorRequest({ value, fee, memo }: sendQueryGetSuperiorRequestParams): Promise<DeliverTxResponse>;
-    sendQueryGetSuperiorResponse({ value, fee, memo }: sendQueryGetSuperiorResponseParams): Promise<DeliverTxResponse>;
+    sendQueryAllRegionResponse({ value, fee, memo }: sendQueryAllRegionResponseParams): Promise<DeliverTxResponse>;
+    sendMsgCreateRegionResponse({ value, fee, memo }: sendMsgCreateRegionResponseParams): Promise<DeliverTxResponse>;
+    sendMsgDeleteRegionResponse({ value, fee, memo }: sendMsgDeleteRegionResponseParams): Promise<DeliverTxResponse>;
+    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
     sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
-    msgDeleteRegion({ value }: msgDeleteRegionParams): EncodeObject;
-    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
-    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
-    queryGetRegionRequest({ value }: queryGetRegionRequestParams): EncodeObject;
-    msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
-    msgUpdateSuperiorResponse({ value }: msgUpdateSuperiorResponseParams): EncodeObject;
-    msgUpdateRegionResponse({ value }: msgUpdateRegionResponseParams): EncodeObject;
-    msgDeleteRegionResponse({ value }: msgDeleteRegionResponseParams): EncodeObject;
+    sendSuperior({ value, fee, memo }: sendSuperiorParams): Promise<DeliverTxResponse>;
+    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
+    sendQueryGetSuperiorResponse({ value, fee, memo }: sendQueryGetSuperiorResponseParams): Promise<DeliverTxResponse>;
+    sendQueryGetSuperiorRequest({ value, fee, memo }: sendQueryGetSuperiorRequestParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
+    sendMsgCreateSuperior({ value, fee, memo }: sendMsgCreateSuperiorParams): Promise<DeliverTxResponse>;
+    sendMsgDeleteRegion({ value, fee, memo }: sendMsgDeleteRegionParams): Promise<DeliverTxResponse>;
+    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
+    sendQueryGetRegionRequest({ value, fee, memo }: sendQueryGetRegionRequestParams): Promise<DeliverTxResponse>;
     msgUpdateRegion({ value }: msgUpdateRegionParams): EncodeObject;
     queryGetRegionResponse({ value }: queryGetRegionResponseParams): EncodeObject;
-    queryAllRegionResponse({ value }: queryAllRegionResponseParams): EncodeObject;
-    region({ value }: regionParams): EncodeObject;
-    msgCreateRegionResponse({ value }: msgCreateRegionResponseParams): EncodeObject;
-    superior({ value }: superiorParams): EncodeObject;
-    msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
-    msgCreateSuperior({ value }: msgCreateSuperiorParams): EncodeObject;
     queryAllRegionRequest({ value }: queryAllRegionRequestParams): EncodeObject;
-    msgCreateSuperiorResponse({ value }: msgCreateSuperiorResponseParams): EncodeObject;
-    genesisState({ value }: genesisStateParams): EncodeObject;
+    msgUpdateRegionResponse({ value }: msgUpdateRegionResponseParams): EncodeObject;
+    region({ value }: regionParams): EncodeObject;
+    msgUpdateSuperiorResponse({ value }: msgUpdateSuperiorResponseParams): EncodeObject;
     msgCreateRegion({ value }: msgCreateRegionParams): EncodeObject;
+    msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
+    msgCreateSuperiorResponse({ value }: msgCreateSuperiorResponseParams): EncodeObject;
     msgUpdateSuperior({ value }: msgUpdateSuperiorParams): EncodeObject;
-    queryGetSuperiorRequest({ value }: queryGetSuperiorRequestParams): EncodeObject;
-    queryGetSuperiorResponse({ value }: queryGetSuperiorResponseParams): EncodeObject;
+    queryAllRegionResponse({ value }: queryAllRegionResponseParams): EncodeObject;
+    msgCreateRegionResponse({ value }: msgCreateRegionResponseParams): EncodeObject;
+    msgDeleteRegionResponse({ value }: msgDeleteRegionResponseParams): EncodeObject;
+    genesisState({ value }: genesisStateParams): EncodeObject;
     params({ value }: paramsParams): EncodeObject;
+    superior({ value }: superiorParams): EncodeObject;
+    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
+    queryGetSuperiorResponse({ value }: queryGetSuperiorResponseParams): EncodeObject;
+    queryGetSuperiorRequest({ value }: queryGetSuperiorRequestParams): EncodeObject;
+    msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
+    msgCreateSuperior({ value }: msgCreateSuperiorParams): EncodeObject;
+    msgDeleteRegion({ value }: msgDeleteRegionParams): EncodeObject;
+    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
+    queryGetRegionRequest({ value }: queryGetRegionRequestParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

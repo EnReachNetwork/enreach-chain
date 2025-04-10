@@ -92,6 +92,18 @@ class Api extends HttpClient {
          * No description
          *
          * @tags Query
+         * @name QueryParam
+         * @request GET:/enreach/edgenode/param/{paramKey}
+         */
+        this.queryParam = (paramKey, params = {}) => this.request({
+            path: `/enreach/edgenode/param/${paramKey}`,
+            method: "GET",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
          * @name QueryAllCheatStatusCrDataByEra
          * @request GET:/enreach/workload/cheat_status_cr_data/{era}
          */
@@ -482,30 +494,6 @@ class Api extends HttpClient {
             path: `/enreach/workload/workreport/era_process_datas`,
             method: "GET",
             query: query,
-            ...params,
-        });
-        /**
-         * No description
-         *
-         * @tags Query
-         * @name QueryHistoryEpochDataDepth
-         * @request GET:/enreach/workload/workreport/history_epoch_data_depth
-         */
-        this.queryHistoryEpochDataDepth = (params = {}) => this.request({
-            path: `/enreach/workload/workreport/history_epoch_data_depth`,
-            method: "GET",
-            ...params,
-        });
-        /**
-         * No description
-         *
-         * @tags Query
-         * @name QueryWorkreportProcessBatchSize
-         * @request GET:/enreach/workload/workreport/process_batch_size
-         */
-        this.queryWorkreportProcessBatchSize = (params = {}) => this.request({
-            path: `/enreach/workload/workreport/process_batch_size`,
-            method: "GET",
             ...params,
         });
         /**

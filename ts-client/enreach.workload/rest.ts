@@ -280,11 +280,6 @@ export interface QueryGetEraProcessDataResponse {
   };
 }
 
-export interface QueryGetHistoryEpochDataDepthResponse {
-  /** @format uint64 */
-  depth?: string;
-}
-
 export interface QueryGetHistoryEpochResponse {
   EpochInfo?: { number?: string; startTime?: string; startBlock?: string; endTime?: string; endBlock?: string };
 }
@@ -361,11 +356,6 @@ export interface QueryGetSuperiorResponse {
   };
 }
 
-export interface QueryGetWorkreportProcessBatchSizeResponse {
-  /** @format uint64 */
-  batchSize?: string;
-}
-
 export interface QueryGetWorkreportResponse {
   Workreport?: {
     epoch?: string;
@@ -374,8 +364,12 @@ export interface QueryGetWorkreportResponse {
   };
 }
 
+export interface QueryParamResponse {
+  paramValue?: string;
+}
+
 export interface QueryParamsResponse {
-  params?: object;
+  params?: { data?: Record<string, string> };
 }
 
 export interface ReputationPointChangeRawDataDB {
@@ -519,7 +513,9 @@ export interface WorkloadNodeWorkload {
   createAt?: string;
 }
 
-export type WorkloadParams = object;
+export interface WorkloadParams {
+  data?: Record<string, string>;
+}
 
 export interface WorkloadReputationDeltaPoint {
   /** @format uint64 */
@@ -573,13 +569,9 @@ export type MsgSubmitReputationPointChangeDataResponse = object;
 
 export type MsgSubmitWorkreportsResponse = object;
 
-export type MsgUpdateHistoryEpochDataDepthResponse = object;
-
-export type MsgUpdateParamsResponse = object;
+export type MsgUpdateParamResponse = object;
 
 export type MsgUpdateSuperiorResponse = object;
-
-export type MsgUpdateWorkreportProcessBatchSizeResponse = object;
 
 export interface NodeScore {
   nodeID?: string;
@@ -587,8 +579,6 @@ export interface NodeScore {
   /** @format uint64 */
   score?: string;
 }
-
-export type Params = object;
 
 export interface ReputationPointChangeRawData {
   nodeID?: string;
@@ -721,6 +711,20 @@ export class HttpClient<SecurityDataType = unknown> {
  * @title HTTP API Console enreach.workload
  */
 export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryParam
+   * @request GET:/enreach/edgenode/param/{paramKey}
+   */
+  queryParam = (paramKey: string, params: RequestParams = {}) =>
+    this.request<{ paramValue?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+      path: `/enreach/edgenode/param/${paramKey}`,
+      method: "GET",
+      ...params,
+    });
+
   /**
    * No description
    *
@@ -1223,7 +1227,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/enreach/workload/params
    */
   queryParams = (params: RequestParams = {}) =>
-    this.request<{ params?: object }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+    this.request<
+      { params?: { data?: Record<string, string> } },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
       path: `/enreach/workload/params`,
       method: "GET",
       ...params,
@@ -1553,34 +1560,6 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       path: `/enreach/workload/workreport/era_process_datas`,
       method: "GET",
       query: query,
-      ...params,
-    });
-
-  /**
-   * No description
-   *
-   * @tags Query
-   * @name QueryHistoryEpochDataDepth
-   * @request GET:/enreach/workload/workreport/history_epoch_data_depth
-   */
-  queryHistoryEpochDataDepth = (params: RequestParams = {}) =>
-    this.request<{ depth?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
-      path: `/enreach/workload/workreport/history_epoch_data_depth`,
-      method: "GET",
-      ...params,
-    });
-
-  /**
-   * No description
-   *
-   * @tags Query
-   * @name QueryWorkreportProcessBatchSize
-   * @request GET:/enreach/workload/workreport/process_batch_size
-   */
-  queryWorkreportProcessBatchSize = (params: RequestParams = {}) =>
-    this.request<{ batchSize?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
-      path: `/enreach/workload/workreport/process_batch_size`,
-      method: "GET",
       ...params,
     });
 

@@ -334,10 +334,6 @@ export interface QueryGetEraProcessDataResponse {
         };
     };
 }
-export interface QueryGetHistoryEpochDataDepthResponse {
-    /** @format uint64 */
-    depth?: string;
-}
 export interface QueryGetHistoryEpochResponse {
     EpochInfo?: {
         number?: string;
@@ -441,10 +437,6 @@ export interface QueryGetSuperiorResponse {
         signer?: string;
     };
 }
-export interface QueryGetWorkreportProcessBatchSizeResponse {
-    /** @format uint64 */
-    batchSize?: string;
-}
 export interface QueryGetWorkreportResponse {
     Workreport?: {
         epoch?: string;
@@ -456,8 +448,13 @@ export interface QueryGetWorkreportResponse {
         }>;
     };
 }
+export interface QueryParamResponse {
+    paramValue?: string;
+}
 export interface QueryParamsResponse {
-    params?: object;
+    params?: {
+        data?: Record<string, string>;
+    };
 }
 export interface ReputationPointChangeRawDataDB {
     /** @format int64 */
@@ -576,7 +573,9 @@ export interface WorkloadNodeWorkload {
     /** @format uint64 */
     createAt?: string;
 }
-export type WorkloadParams = object;
+export interface WorkloadParams {
+    data?: Record<string, string>;
+}
 export interface WorkloadReputationDeltaPoint {
     /** @format uint64 */
     era?: string;
@@ -624,16 +623,13 @@ export type MsgCreateSuperiorResponse = object;
 export type MsgSubmitCheatStatusCRResponse = object;
 export type MsgSubmitReputationPointChangeDataResponse = object;
 export type MsgSubmitWorkreportsResponse = object;
-export type MsgUpdateHistoryEpochDataDepthResponse = object;
-export type MsgUpdateParamsResponse = object;
+export type MsgUpdateParamResponse = object;
 export type MsgUpdateSuperiorResponse = object;
-export type MsgUpdateWorkreportProcessBatchSizeResponse = object;
 export interface NodeScore {
     nodeID?: string;
     /** @format uint64 */
     score?: string;
 }
-export type Params = object;
 export interface ReputationPointChangeRawData {
     nodeID?: string;
     /** @format int64 */
@@ -682,6 +678,14 @@ export declare class HttpClient<SecurityDataType = unknown> {
  * @title HTTP API Console enreach.workload
  */
 export declare class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryParam
+     * @request GET:/enreach/edgenode/param/{paramKey}
+     */
+    queryParam: (paramKey: string, params?: RequestParams) => Promise<AxiosResponse<T>>;
     /**
      * No description
      *
@@ -1010,22 +1014,6 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
         "pagination.count_total"?: boolean;
         "pagination.reverse"?: boolean;
     }, params?: RequestParams) => Promise<AxiosResponse<T>>;
-    /**
-     * No description
-     *
-     * @tags Query
-     * @name QueryHistoryEpochDataDepth
-     * @request GET:/enreach/workload/workreport/history_epoch_data_depth
-     */
-    queryHistoryEpochDataDepth: (params?: RequestParams) => Promise<AxiosResponse<T>>;
-    /**
-     * No description
-     *
-     * @tags Query
-     * @name QueryWorkreportProcessBatchSize
-     * @request GET:/enreach/workload/workreport/process_batch_size
-     */
-    queryWorkreportProcessBatchSize: (params?: RequestParams) => Promise<AxiosResponse<T>>;
     /**
      * No description
      *

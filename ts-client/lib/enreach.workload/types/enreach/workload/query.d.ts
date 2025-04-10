@@ -9,6 +9,13 @@ import { Superior } from "./superior";
 import { ManagerCSWorkload, ManagerRPWorkload, ManagerWRWorkload, NodeWorkload } from "./workload";
 import { EpochProcessData, Workreport } from "./workreport";
 export declare const protobufPackage = "enreach.workload";
+/** ////////////////////////////////////////////////////// */
+export interface QueryParamRequest {
+    paramKey: string;
+}
+export interface QueryParamResponse {
+    paramValue: string;
+}
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {
 }
@@ -125,17 +132,6 @@ export interface QueryGetAllWorkreportByEpochRequest {
 export interface QueryGetAllWorkreportByEpochResponse {
     Workreports: Workreport[];
     pagination: PageResponse | undefined;
-}
-/** ////////// */
-export interface QueryGetWorkreportProcessBatchSizeRequest {
-}
-export interface QueryGetWorkreportProcessBatchSizeResponse {
-    batchSize: number;
-}
-export interface QueryGetHistoryEpochDataDepthRequest {
-}
-export interface QueryGetHistoryEpochDataDepthResponse {
-    depth: number;
 }
 /** ////////// */
 export interface QueryGetEpochProcessDataRequest {
@@ -258,6 +254,22 @@ export interface QueryGetAllEraCheatStatusProcessDataResponse {
     EraCheatStatusProcessDatas: EraCheatStatusProcessData[];
     pagination: PageResponse | undefined;
 }
+export declare const QueryParamRequest: {
+    encode(message: QueryParamRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamRequest;
+    fromJSON(object: any): QueryParamRequest;
+    toJSON(message: QueryParamRequest): unknown;
+    create<I extends Exact<DeepPartial<QueryParamRequest>, I>>(base?: I): QueryParamRequest;
+    fromPartial<I extends Exact<DeepPartial<QueryParamRequest>, I>>(object: I): QueryParamRequest;
+};
+export declare const QueryParamResponse: {
+    encode(message: QueryParamResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamResponse;
+    fromJSON(object: any): QueryParamResponse;
+    toJSON(message: QueryParamResponse): unknown;
+    create<I extends Exact<DeepPartial<QueryParamResponse>, I>>(base?: I): QueryParamResponse;
+    fromPartial<I extends Exact<DeepPartial<QueryParamResponse>, I>>(object: I): QueryParamResponse;
+};
 export declare const QueryParamsRequest: {
     encode(_: QueryParamsRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsRequest;
@@ -513,38 +525,6 @@ export declare const QueryGetAllWorkreportByEpochResponse: {
     toJSON(message: QueryGetAllWorkreportByEpochResponse): unknown;
     create<I extends Exact<DeepPartial<QueryGetAllWorkreportByEpochResponse>, I>>(base?: I): QueryGetAllWorkreportByEpochResponse;
     fromPartial<I extends Exact<DeepPartial<QueryGetAllWorkreportByEpochResponse>, I>>(object: I): QueryGetAllWorkreportByEpochResponse;
-};
-export declare const QueryGetWorkreportProcessBatchSizeRequest: {
-    encode(_: QueryGetWorkreportProcessBatchSizeRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetWorkreportProcessBatchSizeRequest;
-    fromJSON(_: any): QueryGetWorkreportProcessBatchSizeRequest;
-    toJSON(_: QueryGetWorkreportProcessBatchSizeRequest): unknown;
-    create<I extends Exact<DeepPartial<QueryGetWorkreportProcessBatchSizeRequest>, I>>(base?: I): QueryGetWorkreportProcessBatchSizeRequest;
-    fromPartial<I extends Exact<DeepPartial<QueryGetWorkreportProcessBatchSizeRequest>, I>>(_: I): QueryGetWorkreportProcessBatchSizeRequest;
-};
-export declare const QueryGetWorkreportProcessBatchSizeResponse: {
-    encode(message: QueryGetWorkreportProcessBatchSizeResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetWorkreportProcessBatchSizeResponse;
-    fromJSON(object: any): QueryGetWorkreportProcessBatchSizeResponse;
-    toJSON(message: QueryGetWorkreportProcessBatchSizeResponse): unknown;
-    create<I extends Exact<DeepPartial<QueryGetWorkreportProcessBatchSizeResponse>, I>>(base?: I): QueryGetWorkreportProcessBatchSizeResponse;
-    fromPartial<I extends Exact<DeepPartial<QueryGetWorkreportProcessBatchSizeResponse>, I>>(object: I): QueryGetWorkreportProcessBatchSizeResponse;
-};
-export declare const QueryGetHistoryEpochDataDepthRequest: {
-    encode(_: QueryGetHistoryEpochDataDepthRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetHistoryEpochDataDepthRequest;
-    fromJSON(_: any): QueryGetHistoryEpochDataDepthRequest;
-    toJSON(_: QueryGetHistoryEpochDataDepthRequest): unknown;
-    create<I extends Exact<DeepPartial<QueryGetHistoryEpochDataDepthRequest>, I>>(base?: I): QueryGetHistoryEpochDataDepthRequest;
-    fromPartial<I extends Exact<DeepPartial<QueryGetHistoryEpochDataDepthRequest>, I>>(_: I): QueryGetHistoryEpochDataDepthRequest;
-};
-export declare const QueryGetHistoryEpochDataDepthResponse: {
-    encode(message: QueryGetHistoryEpochDataDepthResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetHistoryEpochDataDepthResponse;
-    fromJSON(object: any): QueryGetHistoryEpochDataDepthResponse;
-    toJSON(message: QueryGetHistoryEpochDataDepthResponse): unknown;
-    create<I extends Exact<DeepPartial<QueryGetHistoryEpochDataDepthResponse>, I>>(base?: I): QueryGetHistoryEpochDataDepthResponse;
-    fromPartial<I extends Exact<DeepPartial<QueryGetHistoryEpochDataDepthResponse>, I>>(object: I): QueryGetHistoryEpochDataDepthResponse;
 };
 export declare const QueryGetEpochProcessDataRequest: {
     encode(message: QueryGetEpochProcessDataRequest, writer?: _m0.Writer): _m0.Writer;
@@ -837,6 +817,7 @@ export declare const QueryGetAllEraCheatStatusProcessDataResponse: {
 /** Query defines the gRPC querier service. */
 export interface Query {
     /** Parameters queries the parameters of the module. */
+    Param(request: QueryParamRequest): Promise<QueryParamResponse>;
     Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
     /** Queries epoch */
     EpochLength(request: QueryGetEpochLengthRequest): Promise<QueryGetEpochLengthResponse>;
@@ -857,9 +838,6 @@ export interface Query {
     /** Queries a list of Workreport items. */
     Workreport(request: QueryGetWorkreportRequest): Promise<QueryGetWorkreportResponse>;
     AllWorkreportByEpoch(request: QueryGetAllWorkreportByEpochRequest): Promise<QueryGetAllWorkreportByEpochResponse>;
-    /** Queries some param settings */
-    WorkreportProcessBatchSize(request: QueryGetWorkreportProcessBatchSizeRequest): Promise<QueryGetWorkreportProcessBatchSizeResponse>;
-    HistoryEpochDataDepth(request: QueryGetHistoryEpochDataDepthRequest): Promise<QueryGetHistoryEpochDataDepthResponse>;
     EpochProcessData(request: QueryGetEpochProcessDataRequest): Promise<QueryGetEpochProcessDataResponse>;
     AllEpochProcessData(request: QueryGetAllEpochProcessDataRequest): Promise<QueryGetAllEpochProcessDataResponse>;
     /** Queries a Superior */
@@ -893,6 +871,7 @@ export declare class QueryClientImpl implements Query {
     constructor(rpc: Rpc, opts?: {
         service?: string;
     });
+    Param(request: QueryParamRequest): Promise<QueryParamResponse>;
     Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
     EpochLength(request: QueryGetEpochLengthRequest): Promise<QueryGetEpochLengthResponse>;
     CurrentEpoch(request: QueryGetCurrentEpochRequest): Promise<QueryGetCurrentEpochResponse>;
@@ -909,8 +888,6 @@ export declare class QueryClientImpl implements Query {
     AllManagerCSWorkloadByEra(request: QueryGetAllManagerCSWorkloadByEraRequest): Promise<QueryGetAllManagerCSWorkloadByEraResponse>;
     Workreport(request: QueryGetWorkreportRequest): Promise<QueryGetWorkreportResponse>;
     AllWorkreportByEpoch(request: QueryGetAllWorkreportByEpochRequest): Promise<QueryGetAllWorkreportByEpochResponse>;
-    WorkreportProcessBatchSize(request: QueryGetWorkreportProcessBatchSizeRequest): Promise<QueryGetWorkreportProcessBatchSizeResponse>;
-    HistoryEpochDataDepth(request: QueryGetHistoryEpochDataDepthRequest): Promise<QueryGetHistoryEpochDataDepthResponse>;
     EpochProcessData(request: QueryGetEpochProcessDataRequest): Promise<QueryGetEpochProcessDataResponse>;
     AllEpochProcessData(request: QueryGetAllEpochProcessDataRequest): Promise<QueryGetAllEpochProcessDataResponse>;
     Superior(request: QueryGetSuperiorRequest): Promise<QueryGetSuperiorResponse>;

@@ -2,101 +2,26 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { MsgPruneAllowances } from "./types/cosmos/feegrant/v1beta1/tx";
-import { QueryAllowanceResponse } from "./types/cosmos/feegrant/v1beta1/query";
-import { QueryAllowancesRequest } from "./types/cosmos/feegrant/v1beta1/query";
-import { QueryAllowancesResponse } from "./types/cosmos/feegrant/v1beta1/query";
-import { QueryAllowancesByGranterResponse } from "./types/cosmos/feegrant/v1beta1/query";
-import { MsgRevokeAllowance } from "./types/cosmos/feegrant/v1beta1/tx";
-import { QueryAllowanceRequest } from "./types/cosmos/feegrant/v1beta1/query";
-import { MsgGrantAllowance } from "./types/cosmos/feegrant/v1beta1/tx";
-import { MsgGrantAllowanceResponse } from "./types/cosmos/feegrant/v1beta1/tx";
-import { MsgPruneAllowancesResponse } from "./types/cosmos/feegrant/v1beta1/tx";
 import { BasicAllowance } from "./types/cosmos/feegrant/v1beta1/feegrant";
-import { PeriodicAllowance } from "./types/cosmos/feegrant/v1beta1/feegrant";
-import { AllowedMsgAllowance } from "./types/cosmos/feegrant/v1beta1/feegrant";
-import { GenesisState } from "./types/cosmos/feegrant/v1beta1/genesis";
-import { QueryAllowancesByGranterRequest } from "./types/cosmos/feegrant/v1beta1/query";
-import { MsgRevokeAllowanceResponse } from "./types/cosmos/feegrant/v1beta1/tx";
 import { Grant } from "./types/cosmos/feegrant/v1beta1/feegrant";
-export { MsgPruneAllowances, QueryAllowanceResponse, QueryAllowancesRequest, QueryAllowancesResponse, QueryAllowancesByGranterResponse, MsgRevokeAllowance, QueryAllowanceRequest, MsgGrantAllowance, MsgGrantAllowanceResponse, MsgPruneAllowancesResponse, BasicAllowance, PeriodicAllowance, AllowedMsgAllowance, GenesisState, QueryAllowancesByGranterRequest, MsgRevokeAllowanceResponse, Grant };
-type sendMsgPruneAllowancesParams = {
-    value: MsgPruneAllowances;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryAllowanceResponseParams = {
-    value: QueryAllowanceResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryAllowancesRequestParams = {
-    value: QueryAllowancesRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryAllowancesResponseParams = {
-    value: QueryAllowancesResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryAllowancesByGranterResponseParams = {
-    value: QueryAllowancesByGranterResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgRevokeAllowanceParams = {
-    value: MsgRevokeAllowance;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryAllowanceRequestParams = {
-    value: QueryAllowanceRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgGrantAllowanceParams = {
-    value: MsgGrantAllowance;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgGrantAllowanceResponseParams = {
-    value: MsgGrantAllowanceResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgPruneAllowancesResponseParams = {
-    value: MsgPruneAllowancesResponse;
-    fee?: StdFee;
-    memo?: string;
-};
+import { QueryAllowancesRequest } from "./types/cosmos/feegrant/v1beta1/query";
+import { MsgPruneAllowances } from "./types/cosmos/feegrant/v1beta1/tx";
+import { PeriodicAllowance } from "./types/cosmos/feegrant/v1beta1/feegrant";
+import { QueryAllowancesResponse } from "./types/cosmos/feegrant/v1beta1/query";
+import { MsgRevokeAllowance } from "./types/cosmos/feegrant/v1beta1/tx";
+import { GenesisState } from "./types/cosmos/feegrant/v1beta1/genesis";
+import { QueryAllowanceRequest } from "./types/cosmos/feegrant/v1beta1/query";
+import { MsgGrantAllowanceResponse } from "./types/cosmos/feegrant/v1beta1/tx";
+import { MsgRevokeAllowanceResponse } from "./types/cosmos/feegrant/v1beta1/tx";
+import { MsgPruneAllowancesResponse } from "./types/cosmos/feegrant/v1beta1/tx";
+import { AllowedMsgAllowance } from "./types/cosmos/feegrant/v1beta1/feegrant";
+import { QueryAllowanceResponse } from "./types/cosmos/feegrant/v1beta1/query";
+import { QueryAllowancesByGranterRequest } from "./types/cosmos/feegrant/v1beta1/query";
+import { QueryAllowancesByGranterResponse } from "./types/cosmos/feegrant/v1beta1/query";
+import { MsgGrantAllowance } from "./types/cosmos/feegrant/v1beta1/tx";
+export { BasicAllowance, Grant, QueryAllowancesRequest, MsgPruneAllowances, PeriodicAllowance, QueryAllowancesResponse, MsgRevokeAllowance, GenesisState, QueryAllowanceRequest, MsgGrantAllowanceResponse, MsgRevokeAllowanceResponse, MsgPruneAllowancesResponse, AllowedMsgAllowance, QueryAllowanceResponse, QueryAllowancesByGranterRequest, QueryAllowancesByGranterResponse, MsgGrantAllowance };
 type sendBasicAllowanceParams = {
     value: BasicAllowance;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendPeriodicAllowanceParams = {
-    value: PeriodicAllowance;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendAllowedMsgAllowanceParams = {
-    value: AllowedMsgAllowance;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendGenesisStateParams = {
-    value: GenesisState;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryAllowancesByGranterRequestParams = {
-    value: QueryAllowancesByGranterRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgRevokeAllowanceResponseParams = {
-    value: MsgRevokeAllowanceResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -105,56 +30,131 @@ type sendGrantParams = {
     fee?: StdFee;
     memo?: string;
 };
-type msgPruneAllowancesParams = {
-    value: MsgPruneAllowances;
-};
-type queryAllowanceResponseParams = {
-    value: QueryAllowanceResponse;
-};
-type queryAllowancesRequestParams = {
+type sendQueryAllowancesRequestParams = {
     value: QueryAllowancesRequest;
+    fee?: StdFee;
+    memo?: string;
 };
-type queryAllowancesResponseParams = {
+type sendMsgPruneAllowancesParams = {
+    value: MsgPruneAllowances;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendPeriodicAllowanceParams = {
+    value: PeriodicAllowance;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryAllowancesResponseParams = {
     value: QueryAllowancesResponse;
+    fee?: StdFee;
+    memo?: string;
 };
-type queryAllowancesByGranterResponseParams = {
-    value: QueryAllowancesByGranterResponse;
-};
-type msgRevokeAllowanceParams = {
+type sendMsgRevokeAllowanceParams = {
     value: MsgRevokeAllowance;
+    fee?: StdFee;
+    memo?: string;
 };
-type queryAllowanceRequestParams = {
+type sendGenesisStateParams = {
+    value: GenesisState;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryAllowanceRequestParams = {
     value: QueryAllowanceRequest;
+    fee?: StdFee;
+    memo?: string;
 };
-type msgGrantAllowanceParams = {
-    value: MsgGrantAllowance;
-};
-type msgGrantAllowanceResponseParams = {
+type sendMsgGrantAllowanceResponseParams = {
     value: MsgGrantAllowanceResponse;
+    fee?: StdFee;
+    memo?: string;
 };
-type msgPruneAllowancesResponseParams = {
+type sendMsgRevokeAllowanceResponseParams = {
+    value: MsgRevokeAllowanceResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgPruneAllowancesResponseParams = {
     value: MsgPruneAllowancesResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendAllowedMsgAllowanceParams = {
+    value: AllowedMsgAllowance;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryAllowanceResponseParams = {
+    value: QueryAllowanceResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryAllowancesByGranterRequestParams = {
+    value: QueryAllowancesByGranterRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryAllowancesByGranterResponseParams = {
+    value: QueryAllowancesByGranterResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgGrantAllowanceParams = {
+    value: MsgGrantAllowance;
+    fee?: StdFee;
+    memo?: string;
 };
 type basicAllowanceParams = {
     value: BasicAllowance;
 };
+type grantParams = {
+    value: Grant;
+};
+type queryAllowancesRequestParams = {
+    value: QueryAllowancesRequest;
+};
+type msgPruneAllowancesParams = {
+    value: MsgPruneAllowances;
+};
 type periodicAllowanceParams = {
     value: PeriodicAllowance;
 };
-type allowedMsgAllowanceParams = {
-    value: AllowedMsgAllowance;
+type queryAllowancesResponseParams = {
+    value: QueryAllowancesResponse;
+};
+type msgRevokeAllowanceParams = {
+    value: MsgRevokeAllowance;
 };
 type genesisStateParams = {
     value: GenesisState;
 };
-type queryAllowancesByGranterRequestParams = {
-    value: QueryAllowancesByGranterRequest;
+type queryAllowanceRequestParams = {
+    value: QueryAllowanceRequest;
+};
+type msgGrantAllowanceResponseParams = {
+    value: MsgGrantAllowanceResponse;
 };
 type msgRevokeAllowanceResponseParams = {
     value: MsgRevokeAllowanceResponse;
 };
-type grantParams = {
-    value: Grant;
+type msgPruneAllowancesResponseParams = {
+    value: MsgPruneAllowancesResponse;
+};
+type allowedMsgAllowanceParams = {
+    value: AllowedMsgAllowance;
+};
+type queryAllowanceResponseParams = {
+    value: QueryAllowanceResponse;
+};
+type queryAllowancesByGranterRequestParams = {
+    value: QueryAllowancesByGranterRequest;
+};
+type queryAllowancesByGranterResponseParams = {
+    value: QueryAllowancesByGranterResponse;
+};
+type msgGrantAllowanceParams = {
+    value: MsgGrantAllowance;
 };
 export declare const registry: any;
 interface TxClientOptions {
@@ -163,40 +163,40 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendMsgPruneAllowances({ value, fee, memo }: sendMsgPruneAllowancesParams): Promise<DeliverTxResponse>;
-    sendQueryAllowanceResponse({ value, fee, memo }: sendQueryAllowanceResponseParams): Promise<DeliverTxResponse>;
-    sendQueryAllowancesRequest({ value, fee, memo }: sendQueryAllowancesRequestParams): Promise<DeliverTxResponse>;
-    sendQueryAllowancesResponse({ value, fee, memo }: sendQueryAllowancesResponseParams): Promise<DeliverTxResponse>;
-    sendQueryAllowancesByGranterResponse({ value, fee, memo }: sendQueryAllowancesByGranterResponseParams): Promise<DeliverTxResponse>;
-    sendMsgRevokeAllowance({ value, fee, memo }: sendMsgRevokeAllowanceParams): Promise<DeliverTxResponse>;
-    sendQueryAllowanceRequest({ value, fee, memo }: sendQueryAllowanceRequestParams): Promise<DeliverTxResponse>;
-    sendMsgGrantAllowance({ value, fee, memo }: sendMsgGrantAllowanceParams): Promise<DeliverTxResponse>;
-    sendMsgGrantAllowanceResponse({ value, fee, memo }: sendMsgGrantAllowanceResponseParams): Promise<DeliverTxResponse>;
-    sendMsgPruneAllowancesResponse({ value, fee, memo }: sendMsgPruneAllowancesResponseParams): Promise<DeliverTxResponse>;
     sendBasicAllowance({ value, fee, memo }: sendBasicAllowanceParams): Promise<DeliverTxResponse>;
-    sendPeriodicAllowance({ value, fee, memo }: sendPeriodicAllowanceParams): Promise<DeliverTxResponse>;
-    sendAllowedMsgAllowance({ value, fee, memo }: sendAllowedMsgAllowanceParams): Promise<DeliverTxResponse>;
-    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
-    sendQueryAllowancesByGranterRequest({ value, fee, memo }: sendQueryAllowancesByGranterRequestParams): Promise<DeliverTxResponse>;
-    sendMsgRevokeAllowanceResponse({ value, fee, memo }: sendMsgRevokeAllowanceResponseParams): Promise<DeliverTxResponse>;
     sendGrant({ value, fee, memo }: sendGrantParams): Promise<DeliverTxResponse>;
-    msgPruneAllowances({ value }: msgPruneAllowancesParams): EncodeObject;
-    queryAllowanceResponse({ value }: queryAllowanceResponseParams): EncodeObject;
-    queryAllowancesRequest({ value }: queryAllowancesRequestParams): EncodeObject;
-    queryAllowancesResponse({ value }: queryAllowancesResponseParams): EncodeObject;
-    queryAllowancesByGranterResponse({ value }: queryAllowancesByGranterResponseParams): EncodeObject;
-    msgRevokeAllowance({ value }: msgRevokeAllowanceParams): EncodeObject;
-    queryAllowanceRequest({ value }: queryAllowanceRequestParams): EncodeObject;
-    msgGrantAllowance({ value }: msgGrantAllowanceParams): EncodeObject;
-    msgGrantAllowanceResponse({ value }: msgGrantAllowanceResponseParams): EncodeObject;
-    msgPruneAllowancesResponse({ value }: msgPruneAllowancesResponseParams): EncodeObject;
+    sendQueryAllowancesRequest({ value, fee, memo }: sendQueryAllowancesRequestParams): Promise<DeliverTxResponse>;
+    sendMsgPruneAllowances({ value, fee, memo }: sendMsgPruneAllowancesParams): Promise<DeliverTxResponse>;
+    sendPeriodicAllowance({ value, fee, memo }: sendPeriodicAllowanceParams): Promise<DeliverTxResponse>;
+    sendQueryAllowancesResponse({ value, fee, memo }: sendQueryAllowancesResponseParams): Promise<DeliverTxResponse>;
+    sendMsgRevokeAllowance({ value, fee, memo }: sendMsgRevokeAllowanceParams): Promise<DeliverTxResponse>;
+    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
+    sendQueryAllowanceRequest({ value, fee, memo }: sendQueryAllowanceRequestParams): Promise<DeliverTxResponse>;
+    sendMsgGrantAllowanceResponse({ value, fee, memo }: sendMsgGrantAllowanceResponseParams): Promise<DeliverTxResponse>;
+    sendMsgRevokeAllowanceResponse({ value, fee, memo }: sendMsgRevokeAllowanceResponseParams): Promise<DeliverTxResponse>;
+    sendMsgPruneAllowancesResponse({ value, fee, memo }: sendMsgPruneAllowancesResponseParams): Promise<DeliverTxResponse>;
+    sendAllowedMsgAllowance({ value, fee, memo }: sendAllowedMsgAllowanceParams): Promise<DeliverTxResponse>;
+    sendQueryAllowanceResponse({ value, fee, memo }: sendQueryAllowanceResponseParams): Promise<DeliverTxResponse>;
+    sendQueryAllowancesByGranterRequest({ value, fee, memo }: sendQueryAllowancesByGranterRequestParams): Promise<DeliverTxResponse>;
+    sendQueryAllowancesByGranterResponse({ value, fee, memo }: sendQueryAllowancesByGranterResponseParams): Promise<DeliverTxResponse>;
+    sendMsgGrantAllowance({ value, fee, memo }: sendMsgGrantAllowanceParams): Promise<DeliverTxResponse>;
     basicAllowance({ value }: basicAllowanceParams): EncodeObject;
-    periodicAllowance({ value }: periodicAllowanceParams): EncodeObject;
-    allowedMsgAllowance({ value }: allowedMsgAllowanceParams): EncodeObject;
-    genesisState({ value }: genesisStateParams): EncodeObject;
-    queryAllowancesByGranterRequest({ value }: queryAllowancesByGranterRequestParams): EncodeObject;
-    msgRevokeAllowanceResponse({ value }: msgRevokeAllowanceResponseParams): EncodeObject;
     grant({ value }: grantParams): EncodeObject;
+    queryAllowancesRequest({ value }: queryAllowancesRequestParams): EncodeObject;
+    msgPruneAllowances({ value }: msgPruneAllowancesParams): EncodeObject;
+    periodicAllowance({ value }: periodicAllowanceParams): EncodeObject;
+    queryAllowancesResponse({ value }: queryAllowancesResponseParams): EncodeObject;
+    msgRevokeAllowance({ value }: msgRevokeAllowanceParams): EncodeObject;
+    genesisState({ value }: genesisStateParams): EncodeObject;
+    queryAllowanceRequest({ value }: queryAllowanceRequestParams): EncodeObject;
+    msgGrantAllowanceResponse({ value }: msgGrantAllowanceResponseParams): EncodeObject;
+    msgRevokeAllowanceResponse({ value }: msgRevokeAllowanceResponseParams): EncodeObject;
+    msgPruneAllowancesResponse({ value }: msgPruneAllowancesResponseParams): EncodeObject;
+    allowedMsgAllowance({ value }: allowedMsgAllowanceParams): EncodeObject;
+    queryAllowanceResponse({ value }: queryAllowanceResponseParams): EncodeObject;
+    queryAllowancesByGranterRequest({ value }: queryAllowancesByGranterRequestParams): EncodeObject;
+    queryAllowancesByGranterResponse({ value }: queryAllowancesByGranterResponseParams): EncodeObject;
+    msgGrantAllowance({ value }: msgGrantAllowanceParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

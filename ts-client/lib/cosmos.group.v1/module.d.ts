@@ -2,132 +2,87 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { QueryGroupMembersResponse } from "./types/cosmos/group/v1/query";
-import { GroupPolicyInfo } from "./types/cosmos/group/v1/types";
-import { TallyResult } from "./types/cosmos/group/v1/types";
-import { MsgCreateGroupPolicy } from "./types/cosmos/group/v1/tx";
-import { QueryGroupMembersRequest } from "./types/cosmos/group/v1/query";
-import { QueryGroupPoliciesByGroupResponse } from "./types/cosmos/group/v1/query";
-import { QueryTallyResultResponse } from "./types/cosmos/group/v1/query";
-import { EventUpdateGroup } from "./types/cosmos/group/v1/events";
-import { Member } from "./types/cosmos/group/v1/types";
-import { MemberRequest } from "./types/cosmos/group/v1/types";
-import { Vote } from "./types/cosmos/group/v1/types";
-import { MsgCreateGroup } from "./types/cosmos/group/v1/tx";
-import { Proposal } from "./types/cosmos/group/v1/types";
-import { MsgLeaveGroup } from "./types/cosmos/group/v1/tx";
-import { MsgVoteResponse } from "./types/cosmos/group/v1/tx";
-import { EventSubmitProposal } from "./types/cosmos/group/v1/events";
-import { EventProposalPruned } from "./types/cosmos/group/v1/events";
-import { QueryProposalsByGroupPolicyRequest } from "./types/cosmos/group/v1/query";
-import { QueryVotesByProposalRequest } from "./types/cosmos/group/v1/query";
-import { QueryGroupsResponse } from "./types/cosmos/group/v1/query";
-import { MsgUpdateGroupAdminResponse } from "./types/cosmos/group/v1/tx";
-import { MsgUpdateGroupPolicyAdminResponse } from "./types/cosmos/group/v1/tx";
-import { MsgExecResponse } from "./types/cosmos/group/v1/tx";
-import { MsgLeaveGroupResponse } from "./types/cosmos/group/v1/tx";
-import { QueryGroupPoliciesByAdminRequest } from "./types/cosmos/group/v1/query";
-import { QueryGroupsByMemberRequest } from "./types/cosmos/group/v1/query";
-import { EventCreateGroup } from "./types/cosmos/group/v1/events";
-import { EventCreateGroupPolicy } from "./types/cosmos/group/v1/events";
-import { GroupInfo } from "./types/cosmos/group/v1/types";
 import { GroupMember } from "./types/cosmos/group/v1/types";
-import { MsgCreateGroupWithPolicyResponse } from "./types/cosmos/group/v1/tx";
-import { MsgUpdateGroupPolicyMetadataResponse } from "./types/cosmos/group/v1/tx";
-import { QueryProposalRequest } from "./types/cosmos/group/v1/query";
+import { Vote } from "./types/cosmos/group/v1/types";
+import { DecisionPolicyWindows } from "./types/cosmos/group/v1/types";
+import { MsgUpdateGroupAdminResponse } from "./types/cosmos/group/v1/tx";
+import { EventUpdateGroupPolicy } from "./types/cosmos/group/v1/events";
+import { MsgUpdateGroupMembers } from "./types/cosmos/group/v1/tx";
+import { GroupPolicyInfo } from "./types/cosmos/group/v1/types";
+import { GroupInfo } from "./types/cosmos/group/v1/types";
+import { TallyResult } from "./types/cosmos/group/v1/types";
+import { MsgUpdateGroupMetadataResponse } from "./types/cosmos/group/v1/tx";
+import { QueryGroupInfoResponse } from "./types/cosmos/group/v1/query";
+import { QueryGroupMembersResponse } from "./types/cosmos/group/v1/query";
+import { MsgUpdateGroupAdmin } from "./types/cosmos/group/v1/tx";
+import { Proposal } from "./types/cosmos/group/v1/types";
 import { MsgWithdrawProposalResponse } from "./types/cosmos/group/v1/tx";
-import { QueryVotesByVoterRequest } from "./types/cosmos/group/v1/query";
-import { QueryGroupsByMemberResponse } from "./types/cosmos/group/v1/query";
+import { MsgVoteResponse } from "./types/cosmos/group/v1/tx";
+import { QueryVotesByProposalResponse } from "./types/cosmos/group/v1/query";
+import { MsgSubmitProposal } from "./types/cosmos/group/v1/tx";
+import { MsgUpdateGroupMembersResponse } from "./types/cosmos/group/v1/tx";
+import { MsgSubmitProposalResponse } from "./types/cosmos/group/v1/tx";
+import { QueryTallyResultResponse } from "./types/cosmos/group/v1/query";
+import { ThresholdDecisionPolicy } from "./types/cosmos/group/v1/types";
+import { Member } from "./types/cosmos/group/v1/types";
+import { EventCreateGroup } from "./types/cosmos/group/v1/events";
+import { EventSubmitProposal } from "./types/cosmos/group/v1/events";
+import { QueryGroupPolicyInfoResponse } from "./types/cosmos/group/v1/query";
+import { QueryVoteByProposalVoterResponse } from "./types/cosmos/group/v1/query";
+import { EventLeaveGroup } from "./types/cosmos/group/v1/events";
+import { QueryGroupsByAdminResponse } from "./types/cosmos/group/v1/query";
+import { MsgCreateGroupWithPolicy } from "./types/cosmos/group/v1/tx";
+import { MsgCreateGroupPolicyResponse } from "./types/cosmos/group/v1/tx";
+import { QueryProposalResponse } from "./types/cosmos/group/v1/query";
+import { QueryVotesByVoterResponse } from "./types/cosmos/group/v1/query";
+import { QueryGroupsResponse } from "./types/cosmos/group/v1/query";
+import { QueryGroupPolicyInfoRequest } from "./types/cosmos/group/v1/query";
+import { QueryProposalsByGroupPolicyRequest } from "./types/cosmos/group/v1/query";
+import { MsgUpdateGroupPolicyAdminResponse } from "./types/cosmos/group/v1/tx";
+import { MsgCreateGroupWithPolicyResponse } from "./types/cosmos/group/v1/tx";
+import { QueryGroupPoliciesByAdminResponse } from "./types/cosmos/group/v1/query";
+import { MsgCreateGroupPolicy } from "./types/cosmos/group/v1/tx";
+import { PercentageDecisionPolicy } from "./types/cosmos/group/v1/types";
+import { MsgCreateGroupResponse } from "./types/cosmos/group/v1/tx";
+import { MsgLeaveGroup } from "./types/cosmos/group/v1/tx";
+import { EventVote } from "./types/cosmos/group/v1/events";
+import { QueryGroupPoliciesByGroupRequest } from "./types/cosmos/group/v1/query";
+import { MsgUpdateGroupPolicyDecisionPolicy } from "./types/cosmos/group/v1/tx";
+import { MsgVote } from "./types/cosmos/group/v1/tx";
+import { MemberRequest } from "./types/cosmos/group/v1/types";
+import { MsgUpdateGroupPolicyDecisionPolicyResponse } from "./types/cosmos/group/v1/tx";
+import { MsgUpdateGroupPolicyMetadata } from "./types/cosmos/group/v1/tx";
+import { MsgWithdrawProposal } from "./types/cosmos/group/v1/tx";
+import { EventExec } from "./types/cosmos/group/v1/events";
+import { QueryGroupPoliciesByGroupResponse } from "./types/cosmos/group/v1/query";
 import { QueryTallyResultRequest } from "./types/cosmos/group/v1/query";
 import { MsgExec } from "./types/cosmos/group/v1/tx";
-import { QueryGroupInfoResponse } from "./types/cosmos/group/v1/query";
-import { QueryVotesByProposalResponse } from "./types/cosmos/group/v1/query";
-import { MsgUpdateGroupMetadataResponse } from "./types/cosmos/group/v1/tx";
-import { MsgCreateGroupWithPolicy } from "./types/cosmos/group/v1/tx";
-import { QueryGroupsByAdminRequest } from "./types/cosmos/group/v1/query";
-import { MsgUpdateGroupMembers } from "./types/cosmos/group/v1/tx";
-import { EventLeaveGroup } from "./types/cosmos/group/v1/events";
-import { QueryProposalResponse } from "./types/cosmos/group/v1/query";
-import { QueryVoteByProposalVoterResponse } from "./types/cosmos/group/v1/query";
-import { EventUpdateGroupPolicy } from "./types/cosmos/group/v1/events";
-import { QueryGroupsByAdminResponse } from "./types/cosmos/group/v1/query";
-import { MsgCreateGroupResponse } from "./types/cosmos/group/v1/tx";
-import { MsgUpdateGroupMetadata } from "./types/cosmos/group/v1/tx";
-import { MsgWithdrawProposal } from "./types/cosmos/group/v1/tx";
-import { MsgVote } from "./types/cosmos/group/v1/tx";
-import { QueryVotesByVoterResponse } from "./types/cosmos/group/v1/query";
-import { EventWithdrawProposal } from "./types/cosmos/group/v1/events";
-import { EventExec } from "./types/cosmos/group/v1/events";
-import { MsgCreateGroupPolicyResponse } from "./types/cosmos/group/v1/tx";
-import { QueryProposalsByGroupPolicyResponse } from "./types/cosmos/group/v1/query";
-import { MsgUpdateGroupAdmin } from "./types/cosmos/group/v1/tx";
-import { MsgSubmitProposal } from "./types/cosmos/group/v1/tx";
-import { QueryGroupsRequest } from "./types/cosmos/group/v1/query";
-import { PercentageDecisionPolicy } from "./types/cosmos/group/v1/types";
-import { QueryVoteByProposalVoterRequest } from "./types/cosmos/group/v1/query";
-import { QueryGroupPolicyInfoResponse } from "./types/cosmos/group/v1/query";
-import { EventVote } from "./types/cosmos/group/v1/events";
+import { QueryVotesByVoterRequest } from "./types/cosmos/group/v1/query";
 import { MsgUpdateGroupPolicyAdmin } from "./types/cosmos/group/v1/tx";
-import { MsgUpdateGroupPolicyDecisionPolicy } from "./types/cosmos/group/v1/tx";
-import { MsgUpdateGroupPolicyDecisionPolicyResponse } from "./types/cosmos/group/v1/tx";
-import { MsgSubmitProposalResponse } from "./types/cosmos/group/v1/tx";
-import { QueryGroupInfoRequest } from "./types/cosmos/group/v1/query";
-import { MsgUpdateGroupMembersResponse } from "./types/cosmos/group/v1/tx";
-import { QueryGroupPoliciesByGroupRequest } from "./types/cosmos/group/v1/query";
-import { QueryGroupPoliciesByAdminResponse } from "./types/cosmos/group/v1/query";
-import { ThresholdDecisionPolicy } from "./types/cosmos/group/v1/types";
-import { DecisionPolicyWindows } from "./types/cosmos/group/v1/types";
 import { GenesisState } from "./types/cosmos/group/v1/genesis";
-import { MsgUpdateGroupPolicyMetadata } from "./types/cosmos/group/v1/tx";
-import { QueryGroupPolicyInfoRequest } from "./types/cosmos/group/v1/query";
-export { QueryGroupMembersResponse, GroupPolicyInfo, TallyResult, MsgCreateGroupPolicy, QueryGroupMembersRequest, QueryGroupPoliciesByGroupResponse, QueryTallyResultResponse, EventUpdateGroup, Member, MemberRequest, Vote, MsgCreateGroup, Proposal, MsgLeaveGroup, MsgVoteResponse, EventSubmitProposal, EventProposalPruned, QueryProposalsByGroupPolicyRequest, QueryVotesByProposalRequest, QueryGroupsResponse, MsgUpdateGroupAdminResponse, MsgUpdateGroupPolicyAdminResponse, MsgExecResponse, MsgLeaveGroupResponse, QueryGroupPoliciesByAdminRequest, QueryGroupsByMemberRequest, EventCreateGroup, EventCreateGroupPolicy, GroupInfo, GroupMember, MsgCreateGroupWithPolicyResponse, MsgUpdateGroupPolicyMetadataResponse, QueryProposalRequest, MsgWithdrawProposalResponse, QueryVotesByVoterRequest, QueryGroupsByMemberResponse, QueryTallyResultRequest, MsgExec, QueryGroupInfoResponse, QueryVotesByProposalResponse, MsgUpdateGroupMetadataResponse, MsgCreateGroupWithPolicy, QueryGroupsByAdminRequest, MsgUpdateGroupMembers, EventLeaveGroup, QueryProposalResponse, QueryVoteByProposalVoterResponse, EventUpdateGroupPolicy, QueryGroupsByAdminResponse, MsgCreateGroupResponse, MsgUpdateGroupMetadata, MsgWithdrawProposal, MsgVote, QueryVotesByVoterResponse, EventWithdrawProposal, EventExec, MsgCreateGroupPolicyResponse, QueryProposalsByGroupPolicyResponse, MsgUpdateGroupAdmin, MsgSubmitProposal, QueryGroupsRequest, PercentageDecisionPolicy, QueryVoteByProposalVoterRequest, QueryGroupPolicyInfoResponse, EventVote, MsgUpdateGroupPolicyAdmin, MsgUpdateGroupPolicyDecisionPolicy, MsgUpdateGroupPolicyDecisionPolicyResponse, MsgSubmitProposalResponse, QueryGroupInfoRequest, MsgUpdateGroupMembersResponse, QueryGroupPoliciesByGroupRequest, QueryGroupPoliciesByAdminResponse, ThresholdDecisionPolicy, DecisionPolicyWindows, GenesisState, MsgUpdateGroupPolicyMetadata, QueryGroupPolicyInfoRequest };
-type sendQueryGroupMembersResponseParams = {
-    value: QueryGroupMembersResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendGroupPolicyInfoParams = {
-    value: GroupPolicyInfo;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendTallyResultParams = {
-    value: TallyResult;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgCreateGroupPolicyParams = {
-    value: MsgCreateGroupPolicy;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGroupMembersRequestParams = {
-    value: QueryGroupMembersRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGroupPoliciesByGroupResponseParams = {
-    value: QueryGroupPoliciesByGroupResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryTallyResultResponseParams = {
-    value: QueryTallyResultResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendEventUpdateGroupParams = {
-    value: EventUpdateGroup;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMemberParams = {
-    value: Member;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMemberRequestParams = {
-    value: MemberRequest;
+import { QueryGroupInfoRequest } from "./types/cosmos/group/v1/query";
+import { QueryGroupMembersRequest } from "./types/cosmos/group/v1/query";
+import { QueryGroupsByAdminRequest } from "./types/cosmos/group/v1/query";
+import { MsgExecResponse } from "./types/cosmos/group/v1/tx";
+import { EventCreateGroupPolicy } from "./types/cosmos/group/v1/events";
+import { QueryVotesByProposalRequest } from "./types/cosmos/group/v1/query";
+import { QueryGroupsByMemberResponse } from "./types/cosmos/group/v1/query";
+import { QueryGroupsRequest } from "./types/cosmos/group/v1/query";
+import { QueryProposalRequest } from "./types/cosmos/group/v1/query";
+import { QueryVoteByProposalVoterRequest } from "./types/cosmos/group/v1/query";
+import { MsgUpdateGroupPolicyMetadataResponse } from "./types/cosmos/group/v1/tx";
+import { MsgCreateGroup } from "./types/cosmos/group/v1/tx";
+import { EventProposalPruned } from "./types/cosmos/group/v1/events";
+import { QueryProposalsByGroupPolicyResponse } from "./types/cosmos/group/v1/query";
+import { QueryGroupsByMemberRequest } from "./types/cosmos/group/v1/query";
+import { MsgUpdateGroupMetadata } from "./types/cosmos/group/v1/tx";
+import { MsgLeaveGroupResponse } from "./types/cosmos/group/v1/tx";
+import { EventUpdateGroup } from "./types/cosmos/group/v1/events";
+import { EventWithdrawProposal } from "./types/cosmos/group/v1/events";
+import { QueryGroupPoliciesByAdminRequest } from "./types/cosmos/group/v1/query";
+export { GroupMember, Vote, DecisionPolicyWindows, MsgUpdateGroupAdminResponse, EventUpdateGroupPolicy, MsgUpdateGroupMembers, GroupPolicyInfo, GroupInfo, TallyResult, MsgUpdateGroupMetadataResponse, QueryGroupInfoResponse, QueryGroupMembersResponse, MsgUpdateGroupAdmin, Proposal, MsgWithdrawProposalResponse, MsgVoteResponse, QueryVotesByProposalResponse, MsgSubmitProposal, MsgUpdateGroupMembersResponse, MsgSubmitProposalResponse, QueryTallyResultResponse, ThresholdDecisionPolicy, Member, EventCreateGroup, EventSubmitProposal, QueryGroupPolicyInfoResponse, QueryVoteByProposalVoterResponse, EventLeaveGroup, QueryGroupsByAdminResponse, MsgCreateGroupWithPolicy, MsgCreateGroupPolicyResponse, QueryProposalResponse, QueryVotesByVoterResponse, QueryGroupsResponse, QueryGroupPolicyInfoRequest, QueryProposalsByGroupPolicyRequest, MsgUpdateGroupPolicyAdminResponse, MsgCreateGroupWithPolicyResponse, QueryGroupPoliciesByAdminResponse, MsgCreateGroupPolicy, PercentageDecisionPolicy, MsgCreateGroupResponse, MsgLeaveGroup, EventVote, QueryGroupPoliciesByGroupRequest, MsgUpdateGroupPolicyDecisionPolicy, MsgVote, MemberRequest, MsgUpdateGroupPolicyDecisionPolicyResponse, MsgUpdateGroupPolicyMetadata, MsgWithdrawProposal, EventExec, QueryGroupPoliciesByGroupResponse, QueryTallyResultRequest, MsgExec, QueryVotesByVoterRequest, MsgUpdateGroupPolicyAdmin, GenesisState, QueryGroupInfoRequest, QueryGroupMembersRequest, QueryGroupsByAdminRequest, MsgExecResponse, EventCreateGroupPolicy, QueryVotesByProposalRequest, QueryGroupsByMemberResponse, QueryGroupsRequest, QueryProposalRequest, QueryVoteByProposalVoterRequest, MsgUpdateGroupPolicyMetadataResponse, MsgCreateGroup, EventProposalPruned, QueryProposalsByGroupPolicyResponse, QueryGroupsByMemberRequest, MsgUpdateGroupMetadata, MsgLeaveGroupResponse, EventUpdateGroup, EventWithdrawProposal, QueryGroupPoliciesByAdminRequest };
+type sendGroupMemberParams = {
+    value: GroupMember;
     fee?: StdFee;
     memo?: string;
 };
@@ -136,48 +91,8 @@ type sendVoteParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgCreateGroupParams = {
-    value: MsgCreateGroup;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendProposalParams = {
-    value: Proposal;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgLeaveGroupParams = {
-    value: MsgLeaveGroup;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgVoteResponseParams = {
-    value: MsgVoteResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendEventSubmitProposalParams = {
-    value: EventSubmitProposal;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendEventProposalPrunedParams = {
-    value: EventProposalPruned;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryProposalsByGroupPolicyRequestParams = {
-    value: QueryProposalsByGroupPolicyRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryVotesByProposalRequestParams = {
-    value: QueryVotesByProposalRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGroupsResponseParams = {
-    value: QueryGroupsResponse;
+type sendDecisionPolicyWindowsParams = {
+    value: DecisionPolicyWindows;
     fee?: StdFee;
     memo?: string;
 };
@@ -186,38 +101,18 @@ type sendMsgUpdateGroupAdminResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgUpdateGroupPolicyAdminResponseParams = {
-    value: MsgUpdateGroupPolicyAdminResponse;
+type sendEventUpdateGroupPolicyParams = {
+    value: EventUpdateGroupPolicy;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgExecResponseParams = {
-    value: MsgExecResponse;
+type sendMsgUpdateGroupMembersParams = {
+    value: MsgUpdateGroupMembers;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgLeaveGroupResponseParams = {
-    value: MsgLeaveGroupResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGroupPoliciesByAdminRequestParams = {
-    value: QueryGroupPoliciesByAdminRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGroupsByMemberRequestParams = {
-    value: QueryGroupsByMemberRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendEventCreateGroupParams = {
-    value: EventCreateGroup;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendEventCreateGroupPolicyParams = {
-    value: EventCreateGroupPolicy;
+type sendGroupPolicyInfoParams = {
+    value: GroupPolicyInfo;
     fee?: StdFee;
     memo?: string;
 };
@@ -226,23 +121,33 @@ type sendGroupInfoParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendGroupMemberParams = {
-    value: GroupMember;
+type sendTallyResultParams = {
+    value: TallyResult;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgCreateGroupWithPolicyResponseParams = {
-    value: MsgCreateGroupWithPolicyResponse;
+type sendMsgUpdateGroupMetadataResponseParams = {
+    value: MsgUpdateGroupMetadataResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgUpdateGroupPolicyMetadataResponseParams = {
-    value: MsgUpdateGroupPolicyMetadataResponse;
+type sendQueryGroupInfoResponseParams = {
+    value: QueryGroupInfoResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryProposalRequestParams = {
-    value: QueryProposalRequest;
+type sendQueryGroupMembersResponseParams = {
+    value: QueryGroupMembersResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateGroupAdminParams = {
+    value: MsgUpdateGroupAdmin;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendProposalParams = {
+    value: Proposal;
     fee?: StdFee;
     memo?: string;
 };
@@ -251,13 +156,193 @@ type sendMsgWithdrawProposalResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryVotesByVoterRequestParams = {
-    value: QueryVotesByVoterRequest;
+type sendMsgVoteResponseParams = {
+    value: MsgVoteResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryGroupsByMemberResponseParams = {
-    value: QueryGroupsByMemberResponse;
+type sendQueryVotesByProposalResponseParams = {
+    value: QueryVotesByProposalResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgSubmitProposalParams = {
+    value: MsgSubmitProposal;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateGroupMembersResponseParams = {
+    value: MsgUpdateGroupMembersResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgSubmitProposalResponseParams = {
+    value: MsgSubmitProposalResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryTallyResultResponseParams = {
+    value: QueryTallyResultResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendThresholdDecisionPolicyParams = {
+    value: ThresholdDecisionPolicy;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMemberParams = {
+    value: Member;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendEventCreateGroupParams = {
+    value: EventCreateGroup;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendEventSubmitProposalParams = {
+    value: EventSubmitProposal;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryGroupPolicyInfoResponseParams = {
+    value: QueryGroupPolicyInfoResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryVoteByProposalVoterResponseParams = {
+    value: QueryVoteByProposalVoterResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendEventLeaveGroupParams = {
+    value: EventLeaveGroup;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryGroupsByAdminResponseParams = {
+    value: QueryGroupsByAdminResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgCreateGroupWithPolicyParams = {
+    value: MsgCreateGroupWithPolicy;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgCreateGroupPolicyResponseParams = {
+    value: MsgCreateGroupPolicyResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryProposalResponseParams = {
+    value: QueryProposalResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryVotesByVoterResponseParams = {
+    value: QueryVotesByVoterResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryGroupsResponseParams = {
+    value: QueryGroupsResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryGroupPolicyInfoRequestParams = {
+    value: QueryGroupPolicyInfoRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryProposalsByGroupPolicyRequestParams = {
+    value: QueryProposalsByGroupPolicyRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateGroupPolicyAdminResponseParams = {
+    value: MsgUpdateGroupPolicyAdminResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgCreateGroupWithPolicyResponseParams = {
+    value: MsgCreateGroupWithPolicyResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryGroupPoliciesByAdminResponseParams = {
+    value: QueryGroupPoliciesByAdminResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgCreateGroupPolicyParams = {
+    value: MsgCreateGroupPolicy;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendPercentageDecisionPolicyParams = {
+    value: PercentageDecisionPolicy;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgCreateGroupResponseParams = {
+    value: MsgCreateGroupResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgLeaveGroupParams = {
+    value: MsgLeaveGroup;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendEventVoteParams = {
+    value: EventVote;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryGroupPoliciesByGroupRequestParams = {
+    value: QueryGroupPoliciesByGroupRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateGroupPolicyDecisionPolicyParams = {
+    value: MsgUpdateGroupPolicyDecisionPolicy;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgVoteParams = {
+    value: MsgVote;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMemberRequestParams = {
+    value: MemberRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateGroupPolicyDecisionPolicyResponseParams = {
+    value: MsgUpdateGroupPolicyDecisionPolicyResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateGroupPolicyMetadataParams = {
+    value: MsgUpdateGroupPolicyMetadata;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgWithdrawProposalParams = {
+    value: MsgWithdrawProposal;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendEventExecParams = {
+    value: EventExec;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryGroupPoliciesByGroupResponseParams = {
+    value: QueryGroupPoliciesByGroupResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -271,138 +356,8 @@ type sendMsgExecParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryGroupInfoResponseParams = {
-    value: QueryGroupInfoResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryVotesByProposalResponseParams = {
-    value: QueryVotesByProposalResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUpdateGroupMetadataResponseParams = {
-    value: MsgUpdateGroupMetadataResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgCreateGroupWithPolicyParams = {
-    value: MsgCreateGroupWithPolicy;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGroupsByAdminRequestParams = {
-    value: QueryGroupsByAdminRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUpdateGroupMembersParams = {
-    value: MsgUpdateGroupMembers;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendEventLeaveGroupParams = {
-    value: EventLeaveGroup;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryProposalResponseParams = {
-    value: QueryProposalResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryVoteByProposalVoterResponseParams = {
-    value: QueryVoteByProposalVoterResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendEventUpdateGroupPolicyParams = {
-    value: EventUpdateGroupPolicy;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGroupsByAdminResponseParams = {
-    value: QueryGroupsByAdminResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgCreateGroupResponseParams = {
-    value: MsgCreateGroupResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUpdateGroupMetadataParams = {
-    value: MsgUpdateGroupMetadata;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgWithdrawProposalParams = {
-    value: MsgWithdrawProposal;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgVoteParams = {
-    value: MsgVote;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryVotesByVoterResponseParams = {
-    value: QueryVotesByVoterResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendEventWithdrawProposalParams = {
-    value: EventWithdrawProposal;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendEventExecParams = {
-    value: EventExec;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgCreateGroupPolicyResponseParams = {
-    value: MsgCreateGroupPolicyResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryProposalsByGroupPolicyResponseParams = {
-    value: QueryProposalsByGroupPolicyResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUpdateGroupAdminParams = {
-    value: MsgUpdateGroupAdmin;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgSubmitProposalParams = {
-    value: MsgSubmitProposal;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGroupsRequestParams = {
-    value: QueryGroupsRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendPercentageDecisionPolicyParams = {
-    value: PercentageDecisionPolicy;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryVoteByProposalVoterRequestParams = {
-    value: QueryVoteByProposalVoterRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGroupPolicyInfoResponseParams = {
-    value: QueryGroupPolicyInfoResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendEventVoteParams = {
-    value: EventVote;
+type sendQueryVotesByVoterRequestParams = {
+    value: QueryVotesByVoterRequest;
     fee?: StdFee;
     memo?: string;
 };
@@ -411,18 +366,8 @@ type sendMsgUpdateGroupPolicyAdminParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgUpdateGroupPolicyDecisionPolicyParams = {
-    value: MsgUpdateGroupPolicyDecisionPolicy;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUpdateGroupPolicyDecisionPolicyResponseParams = {
-    value: MsgUpdateGroupPolicyDecisionPolicyResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgSubmitProposalResponseParams = {
-    value: MsgSubmitProposalResponse;
+type sendGenesisStateParams = {
+    value: GenesisState;
     fee?: StdFee;
     memo?: string;
 };
@@ -431,153 +376,259 @@ type sendQueryGroupInfoRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgUpdateGroupMembersResponseParams = {
-    value: MsgUpdateGroupMembersResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGroupPoliciesByGroupRequestParams = {
-    value: QueryGroupPoliciesByGroupRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGroupPoliciesByAdminResponseParams = {
-    value: QueryGroupPoliciesByAdminResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendThresholdDecisionPolicyParams = {
-    value: ThresholdDecisionPolicy;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendDecisionPolicyWindowsParams = {
-    value: DecisionPolicyWindows;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendGenesisStateParams = {
-    value: GenesisState;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUpdateGroupPolicyMetadataParams = {
-    value: MsgUpdateGroupPolicyMetadata;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryGroupPolicyInfoRequestParams = {
-    value: QueryGroupPolicyInfoRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type queryGroupMembersResponseParams = {
-    value: QueryGroupMembersResponse;
-};
-type groupPolicyInfoParams = {
-    value: GroupPolicyInfo;
-};
-type tallyResultParams = {
-    value: TallyResult;
-};
-type msgCreateGroupPolicyParams = {
-    value: MsgCreateGroupPolicy;
-};
-type queryGroupMembersRequestParams = {
+type sendQueryGroupMembersRequestParams = {
     value: QueryGroupMembersRequest;
+    fee?: StdFee;
+    memo?: string;
 };
-type queryGroupPoliciesByGroupResponseParams = {
-    value: QueryGroupPoliciesByGroupResponse;
+type sendQueryGroupsByAdminRequestParams = {
+    value: QueryGroupsByAdminRequest;
+    fee?: StdFee;
+    memo?: string;
 };
-type queryTallyResultResponseParams = {
-    value: QueryTallyResultResponse;
-};
-type eventUpdateGroupParams = {
-    value: EventUpdateGroup;
-};
-type memberParams = {
-    value: Member;
-};
-type memberRequestParams = {
-    value: MemberRequest;
-};
-type voteParams = {
-    value: Vote;
-};
-type msgCreateGroupParams = {
-    value: MsgCreateGroup;
-};
-type proposalParams = {
-    value: Proposal;
-};
-type msgLeaveGroupParams = {
-    value: MsgLeaveGroup;
-};
-type msgVoteResponseParams = {
-    value: MsgVoteResponse;
-};
-type eventSubmitProposalParams = {
-    value: EventSubmitProposal;
-};
-type eventProposalPrunedParams = {
-    value: EventProposalPruned;
-};
-type queryProposalsByGroupPolicyRequestParams = {
-    value: QueryProposalsByGroupPolicyRequest;
-};
-type queryVotesByProposalRequestParams = {
-    value: QueryVotesByProposalRequest;
-};
-type queryGroupsResponseParams = {
-    value: QueryGroupsResponse;
-};
-type msgUpdateGroupAdminResponseParams = {
-    value: MsgUpdateGroupAdminResponse;
-};
-type msgUpdateGroupPolicyAdminResponseParams = {
-    value: MsgUpdateGroupPolicyAdminResponse;
-};
-type msgExecResponseParams = {
+type sendMsgExecResponseParams = {
     value: MsgExecResponse;
+    fee?: StdFee;
+    memo?: string;
 };
-type msgLeaveGroupResponseParams = {
-    value: MsgLeaveGroupResponse;
-};
-type queryGroupPoliciesByAdminRequestParams = {
-    value: QueryGroupPoliciesByAdminRequest;
-};
-type queryGroupsByMemberRequestParams = {
-    value: QueryGroupsByMemberRequest;
-};
-type eventCreateGroupParams = {
-    value: EventCreateGroup;
-};
-type eventCreateGroupPolicyParams = {
+type sendEventCreateGroupPolicyParams = {
     value: EventCreateGroupPolicy;
+    fee?: StdFee;
+    memo?: string;
 };
-type groupInfoParams = {
-    value: GroupInfo;
+type sendQueryVotesByProposalRequestParams = {
+    value: QueryVotesByProposalRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryGroupsByMemberResponseParams = {
+    value: QueryGroupsByMemberResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryGroupsRequestParams = {
+    value: QueryGroupsRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryProposalRequestParams = {
+    value: QueryProposalRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryVoteByProposalVoterRequestParams = {
+    value: QueryVoteByProposalVoterRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateGroupPolicyMetadataResponseParams = {
+    value: MsgUpdateGroupPolicyMetadataResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgCreateGroupParams = {
+    value: MsgCreateGroup;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendEventProposalPrunedParams = {
+    value: EventProposalPruned;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryProposalsByGroupPolicyResponseParams = {
+    value: QueryProposalsByGroupPolicyResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryGroupsByMemberRequestParams = {
+    value: QueryGroupsByMemberRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateGroupMetadataParams = {
+    value: MsgUpdateGroupMetadata;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgLeaveGroupResponseParams = {
+    value: MsgLeaveGroupResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendEventUpdateGroupParams = {
+    value: EventUpdateGroup;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendEventWithdrawProposalParams = {
+    value: EventWithdrawProposal;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryGroupPoliciesByAdminRequestParams = {
+    value: QueryGroupPoliciesByAdminRequest;
+    fee?: StdFee;
+    memo?: string;
 };
 type groupMemberParams = {
     value: GroupMember;
 };
-type msgCreateGroupWithPolicyResponseParams = {
-    value: MsgCreateGroupWithPolicyResponse;
+type voteParams = {
+    value: Vote;
 };
-type msgUpdateGroupPolicyMetadataResponseParams = {
-    value: MsgUpdateGroupPolicyMetadataResponse;
+type decisionPolicyWindowsParams = {
+    value: DecisionPolicyWindows;
 };
-type queryProposalRequestParams = {
-    value: QueryProposalRequest;
+type msgUpdateGroupAdminResponseParams = {
+    value: MsgUpdateGroupAdminResponse;
+};
+type eventUpdateGroupPolicyParams = {
+    value: EventUpdateGroupPolicy;
+};
+type msgUpdateGroupMembersParams = {
+    value: MsgUpdateGroupMembers;
+};
+type groupPolicyInfoParams = {
+    value: GroupPolicyInfo;
+};
+type groupInfoParams = {
+    value: GroupInfo;
+};
+type tallyResultParams = {
+    value: TallyResult;
+};
+type msgUpdateGroupMetadataResponseParams = {
+    value: MsgUpdateGroupMetadataResponse;
+};
+type queryGroupInfoResponseParams = {
+    value: QueryGroupInfoResponse;
+};
+type queryGroupMembersResponseParams = {
+    value: QueryGroupMembersResponse;
+};
+type msgUpdateGroupAdminParams = {
+    value: MsgUpdateGroupAdmin;
+};
+type proposalParams = {
+    value: Proposal;
 };
 type msgWithdrawProposalResponseParams = {
     value: MsgWithdrawProposalResponse;
 };
-type queryVotesByVoterRequestParams = {
-    value: QueryVotesByVoterRequest;
+type msgVoteResponseParams = {
+    value: MsgVoteResponse;
 };
-type queryGroupsByMemberResponseParams = {
-    value: QueryGroupsByMemberResponse;
+type queryVotesByProposalResponseParams = {
+    value: QueryVotesByProposalResponse;
+};
+type msgSubmitProposalParams = {
+    value: MsgSubmitProposal;
+};
+type msgUpdateGroupMembersResponseParams = {
+    value: MsgUpdateGroupMembersResponse;
+};
+type msgSubmitProposalResponseParams = {
+    value: MsgSubmitProposalResponse;
+};
+type queryTallyResultResponseParams = {
+    value: QueryTallyResultResponse;
+};
+type thresholdDecisionPolicyParams = {
+    value: ThresholdDecisionPolicy;
+};
+type memberParams = {
+    value: Member;
+};
+type eventCreateGroupParams = {
+    value: EventCreateGroup;
+};
+type eventSubmitProposalParams = {
+    value: EventSubmitProposal;
+};
+type queryGroupPolicyInfoResponseParams = {
+    value: QueryGroupPolicyInfoResponse;
+};
+type queryVoteByProposalVoterResponseParams = {
+    value: QueryVoteByProposalVoterResponse;
+};
+type eventLeaveGroupParams = {
+    value: EventLeaveGroup;
+};
+type queryGroupsByAdminResponseParams = {
+    value: QueryGroupsByAdminResponse;
+};
+type msgCreateGroupWithPolicyParams = {
+    value: MsgCreateGroupWithPolicy;
+};
+type msgCreateGroupPolicyResponseParams = {
+    value: MsgCreateGroupPolicyResponse;
+};
+type queryProposalResponseParams = {
+    value: QueryProposalResponse;
+};
+type queryVotesByVoterResponseParams = {
+    value: QueryVotesByVoterResponse;
+};
+type queryGroupsResponseParams = {
+    value: QueryGroupsResponse;
+};
+type queryGroupPolicyInfoRequestParams = {
+    value: QueryGroupPolicyInfoRequest;
+};
+type queryProposalsByGroupPolicyRequestParams = {
+    value: QueryProposalsByGroupPolicyRequest;
+};
+type msgUpdateGroupPolicyAdminResponseParams = {
+    value: MsgUpdateGroupPolicyAdminResponse;
+};
+type msgCreateGroupWithPolicyResponseParams = {
+    value: MsgCreateGroupWithPolicyResponse;
+};
+type queryGroupPoliciesByAdminResponseParams = {
+    value: QueryGroupPoliciesByAdminResponse;
+};
+type msgCreateGroupPolicyParams = {
+    value: MsgCreateGroupPolicy;
+};
+type percentageDecisionPolicyParams = {
+    value: PercentageDecisionPolicy;
+};
+type msgCreateGroupResponseParams = {
+    value: MsgCreateGroupResponse;
+};
+type msgLeaveGroupParams = {
+    value: MsgLeaveGroup;
+};
+type eventVoteParams = {
+    value: EventVote;
+};
+type queryGroupPoliciesByGroupRequestParams = {
+    value: QueryGroupPoliciesByGroupRequest;
+};
+type msgUpdateGroupPolicyDecisionPolicyParams = {
+    value: MsgUpdateGroupPolicyDecisionPolicy;
+};
+type msgVoteParams = {
+    value: MsgVote;
+};
+type memberRequestParams = {
+    value: MemberRequest;
+};
+type msgUpdateGroupPolicyDecisionPolicyResponseParams = {
+    value: MsgUpdateGroupPolicyDecisionPolicyResponse;
+};
+type msgUpdateGroupPolicyMetadataParams = {
+    value: MsgUpdateGroupPolicyMetadata;
+};
+type msgWithdrawProposalParams = {
+    value: MsgWithdrawProposal;
+};
+type eventExecParams = {
+    value: EventExec;
+};
+type queryGroupPoliciesByGroupResponseParams = {
+    value: QueryGroupPoliciesByGroupResponse;
 };
 type queryTallyResultRequestParams = {
     value: QueryTallyResultRequest;
@@ -585,125 +636,74 @@ type queryTallyResultRequestParams = {
 type msgExecParams = {
     value: MsgExec;
 };
-type queryGroupInfoResponseParams = {
-    value: QueryGroupInfoResponse;
-};
-type queryVotesByProposalResponseParams = {
-    value: QueryVotesByProposalResponse;
-};
-type msgUpdateGroupMetadataResponseParams = {
-    value: MsgUpdateGroupMetadataResponse;
-};
-type msgCreateGroupWithPolicyParams = {
-    value: MsgCreateGroupWithPolicy;
-};
-type queryGroupsByAdminRequestParams = {
-    value: QueryGroupsByAdminRequest;
-};
-type msgUpdateGroupMembersParams = {
-    value: MsgUpdateGroupMembers;
-};
-type eventLeaveGroupParams = {
-    value: EventLeaveGroup;
-};
-type queryProposalResponseParams = {
-    value: QueryProposalResponse;
-};
-type queryVoteByProposalVoterResponseParams = {
-    value: QueryVoteByProposalVoterResponse;
-};
-type eventUpdateGroupPolicyParams = {
-    value: EventUpdateGroupPolicy;
-};
-type queryGroupsByAdminResponseParams = {
-    value: QueryGroupsByAdminResponse;
-};
-type msgCreateGroupResponseParams = {
-    value: MsgCreateGroupResponse;
-};
-type msgUpdateGroupMetadataParams = {
-    value: MsgUpdateGroupMetadata;
-};
-type msgWithdrawProposalParams = {
-    value: MsgWithdrawProposal;
-};
-type msgVoteParams = {
-    value: MsgVote;
-};
-type queryVotesByVoterResponseParams = {
-    value: QueryVotesByVoterResponse;
-};
-type eventWithdrawProposalParams = {
-    value: EventWithdrawProposal;
-};
-type eventExecParams = {
-    value: EventExec;
-};
-type msgCreateGroupPolicyResponseParams = {
-    value: MsgCreateGroupPolicyResponse;
-};
-type queryProposalsByGroupPolicyResponseParams = {
-    value: QueryProposalsByGroupPolicyResponse;
-};
-type msgUpdateGroupAdminParams = {
-    value: MsgUpdateGroupAdmin;
-};
-type msgSubmitProposalParams = {
-    value: MsgSubmitProposal;
-};
-type queryGroupsRequestParams = {
-    value: QueryGroupsRequest;
-};
-type percentageDecisionPolicyParams = {
-    value: PercentageDecisionPolicy;
-};
-type queryVoteByProposalVoterRequestParams = {
-    value: QueryVoteByProposalVoterRequest;
-};
-type queryGroupPolicyInfoResponseParams = {
-    value: QueryGroupPolicyInfoResponse;
-};
-type eventVoteParams = {
-    value: EventVote;
+type queryVotesByVoterRequestParams = {
+    value: QueryVotesByVoterRequest;
 };
 type msgUpdateGroupPolicyAdminParams = {
     value: MsgUpdateGroupPolicyAdmin;
 };
-type msgUpdateGroupPolicyDecisionPolicyParams = {
-    value: MsgUpdateGroupPolicyDecisionPolicy;
-};
-type msgUpdateGroupPolicyDecisionPolicyResponseParams = {
-    value: MsgUpdateGroupPolicyDecisionPolicyResponse;
-};
-type msgSubmitProposalResponseParams = {
-    value: MsgSubmitProposalResponse;
+type genesisStateParams = {
+    value: GenesisState;
 };
 type queryGroupInfoRequestParams = {
     value: QueryGroupInfoRequest;
 };
-type msgUpdateGroupMembersResponseParams = {
-    value: MsgUpdateGroupMembersResponse;
+type queryGroupMembersRequestParams = {
+    value: QueryGroupMembersRequest;
 };
-type queryGroupPoliciesByGroupRequestParams = {
-    value: QueryGroupPoliciesByGroupRequest;
+type queryGroupsByAdminRequestParams = {
+    value: QueryGroupsByAdminRequest;
 };
-type queryGroupPoliciesByAdminResponseParams = {
-    value: QueryGroupPoliciesByAdminResponse;
+type msgExecResponseParams = {
+    value: MsgExecResponse;
 };
-type thresholdDecisionPolicyParams = {
-    value: ThresholdDecisionPolicy;
+type eventCreateGroupPolicyParams = {
+    value: EventCreateGroupPolicy;
 };
-type decisionPolicyWindowsParams = {
-    value: DecisionPolicyWindows;
+type queryVotesByProposalRequestParams = {
+    value: QueryVotesByProposalRequest;
 };
-type genesisStateParams = {
-    value: GenesisState;
+type queryGroupsByMemberResponseParams = {
+    value: QueryGroupsByMemberResponse;
 };
-type msgUpdateGroupPolicyMetadataParams = {
-    value: MsgUpdateGroupPolicyMetadata;
+type queryGroupsRequestParams = {
+    value: QueryGroupsRequest;
 };
-type queryGroupPolicyInfoRequestParams = {
-    value: QueryGroupPolicyInfoRequest;
+type queryProposalRequestParams = {
+    value: QueryProposalRequest;
+};
+type queryVoteByProposalVoterRequestParams = {
+    value: QueryVoteByProposalVoterRequest;
+};
+type msgUpdateGroupPolicyMetadataResponseParams = {
+    value: MsgUpdateGroupPolicyMetadataResponse;
+};
+type msgCreateGroupParams = {
+    value: MsgCreateGroup;
+};
+type eventProposalPrunedParams = {
+    value: EventProposalPruned;
+};
+type queryProposalsByGroupPolicyResponseParams = {
+    value: QueryProposalsByGroupPolicyResponse;
+};
+type queryGroupsByMemberRequestParams = {
+    value: QueryGroupsByMemberRequest;
+};
+type msgUpdateGroupMetadataParams = {
+    value: MsgUpdateGroupMetadata;
+};
+type msgLeaveGroupResponseParams = {
+    value: MsgLeaveGroupResponse;
+};
+type eventUpdateGroupParams = {
+    value: EventUpdateGroup;
+};
+type eventWithdrawProposalParams = {
+    value: EventWithdrawProposal;
+};
+type queryGroupPoliciesByAdminRequestParams = {
+    value: QueryGroupPoliciesByAdminRequest;
 };
 export declare const registry: any;
 interface TxClientOptions {
@@ -712,162 +712,162 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendQueryGroupMembersResponse({ value, fee, memo }: sendQueryGroupMembersResponseParams): Promise<DeliverTxResponse>;
-    sendGroupPolicyInfo({ value, fee, memo }: sendGroupPolicyInfoParams): Promise<DeliverTxResponse>;
-    sendTallyResult({ value, fee, memo }: sendTallyResultParams): Promise<DeliverTxResponse>;
-    sendMsgCreateGroupPolicy({ value, fee, memo }: sendMsgCreateGroupPolicyParams): Promise<DeliverTxResponse>;
-    sendQueryGroupMembersRequest({ value, fee, memo }: sendQueryGroupMembersRequestParams): Promise<DeliverTxResponse>;
-    sendQueryGroupPoliciesByGroupResponse({ value, fee, memo }: sendQueryGroupPoliciesByGroupResponseParams): Promise<DeliverTxResponse>;
-    sendQueryTallyResultResponse({ value, fee, memo }: sendQueryTallyResultResponseParams): Promise<DeliverTxResponse>;
-    sendEventUpdateGroup({ value, fee, memo }: sendEventUpdateGroupParams): Promise<DeliverTxResponse>;
-    sendMember({ value, fee, memo }: sendMemberParams): Promise<DeliverTxResponse>;
-    sendMemberRequest({ value, fee, memo }: sendMemberRequestParams): Promise<DeliverTxResponse>;
-    sendVote({ value, fee, memo }: sendVoteParams): Promise<DeliverTxResponse>;
-    sendMsgCreateGroup({ value, fee, memo }: sendMsgCreateGroupParams): Promise<DeliverTxResponse>;
-    sendProposal({ value, fee, memo }: sendProposalParams): Promise<DeliverTxResponse>;
-    sendMsgLeaveGroup({ value, fee, memo }: sendMsgLeaveGroupParams): Promise<DeliverTxResponse>;
-    sendMsgVoteResponse({ value, fee, memo }: sendMsgVoteResponseParams): Promise<DeliverTxResponse>;
-    sendEventSubmitProposal({ value, fee, memo }: sendEventSubmitProposalParams): Promise<DeliverTxResponse>;
-    sendEventProposalPruned({ value, fee, memo }: sendEventProposalPrunedParams): Promise<DeliverTxResponse>;
-    sendQueryProposalsByGroupPolicyRequest({ value, fee, memo }: sendQueryProposalsByGroupPolicyRequestParams): Promise<DeliverTxResponse>;
-    sendQueryVotesByProposalRequest({ value, fee, memo }: sendQueryVotesByProposalRequestParams): Promise<DeliverTxResponse>;
-    sendQueryGroupsResponse({ value, fee, memo }: sendQueryGroupsResponseParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateGroupAdminResponse({ value, fee, memo }: sendMsgUpdateGroupAdminResponseParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateGroupPolicyAdminResponse({ value, fee, memo }: sendMsgUpdateGroupPolicyAdminResponseParams): Promise<DeliverTxResponse>;
-    sendMsgExecResponse({ value, fee, memo }: sendMsgExecResponseParams): Promise<DeliverTxResponse>;
-    sendMsgLeaveGroupResponse({ value, fee, memo }: sendMsgLeaveGroupResponseParams): Promise<DeliverTxResponse>;
-    sendQueryGroupPoliciesByAdminRequest({ value, fee, memo }: sendQueryGroupPoliciesByAdminRequestParams): Promise<DeliverTxResponse>;
-    sendQueryGroupsByMemberRequest({ value, fee, memo }: sendQueryGroupsByMemberRequestParams): Promise<DeliverTxResponse>;
-    sendEventCreateGroup({ value, fee, memo }: sendEventCreateGroupParams): Promise<DeliverTxResponse>;
-    sendEventCreateGroupPolicy({ value, fee, memo }: sendEventCreateGroupPolicyParams): Promise<DeliverTxResponse>;
-    sendGroupInfo({ value, fee, memo }: sendGroupInfoParams): Promise<DeliverTxResponse>;
     sendGroupMember({ value, fee, memo }: sendGroupMemberParams): Promise<DeliverTxResponse>;
-    sendMsgCreateGroupWithPolicyResponse({ value, fee, memo }: sendMsgCreateGroupWithPolicyResponseParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateGroupPolicyMetadataResponse({ value, fee, memo }: sendMsgUpdateGroupPolicyMetadataResponseParams): Promise<DeliverTxResponse>;
-    sendQueryProposalRequest({ value, fee, memo }: sendQueryProposalRequestParams): Promise<DeliverTxResponse>;
+    sendVote({ value, fee, memo }: sendVoteParams): Promise<DeliverTxResponse>;
+    sendDecisionPolicyWindows({ value, fee, memo }: sendDecisionPolicyWindowsParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateGroupAdminResponse({ value, fee, memo }: sendMsgUpdateGroupAdminResponseParams): Promise<DeliverTxResponse>;
+    sendEventUpdateGroupPolicy({ value, fee, memo }: sendEventUpdateGroupPolicyParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateGroupMembers({ value, fee, memo }: sendMsgUpdateGroupMembersParams): Promise<DeliverTxResponse>;
+    sendGroupPolicyInfo({ value, fee, memo }: sendGroupPolicyInfoParams): Promise<DeliverTxResponse>;
+    sendGroupInfo({ value, fee, memo }: sendGroupInfoParams): Promise<DeliverTxResponse>;
+    sendTallyResult({ value, fee, memo }: sendTallyResultParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateGroupMetadataResponse({ value, fee, memo }: sendMsgUpdateGroupMetadataResponseParams): Promise<DeliverTxResponse>;
+    sendQueryGroupInfoResponse({ value, fee, memo }: sendQueryGroupInfoResponseParams): Promise<DeliverTxResponse>;
+    sendQueryGroupMembersResponse({ value, fee, memo }: sendQueryGroupMembersResponseParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateGroupAdmin({ value, fee, memo }: sendMsgUpdateGroupAdminParams): Promise<DeliverTxResponse>;
+    sendProposal({ value, fee, memo }: sendProposalParams): Promise<DeliverTxResponse>;
     sendMsgWithdrawProposalResponse({ value, fee, memo }: sendMsgWithdrawProposalResponseParams): Promise<DeliverTxResponse>;
-    sendQueryVotesByVoterRequest({ value, fee, memo }: sendQueryVotesByVoterRequestParams): Promise<DeliverTxResponse>;
-    sendQueryGroupsByMemberResponse({ value, fee, memo }: sendQueryGroupsByMemberResponseParams): Promise<DeliverTxResponse>;
+    sendMsgVoteResponse({ value, fee, memo }: sendMsgVoteResponseParams): Promise<DeliverTxResponse>;
+    sendQueryVotesByProposalResponse({ value, fee, memo }: sendQueryVotesByProposalResponseParams): Promise<DeliverTxResponse>;
+    sendMsgSubmitProposal({ value, fee, memo }: sendMsgSubmitProposalParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateGroupMembersResponse({ value, fee, memo }: sendMsgUpdateGroupMembersResponseParams): Promise<DeliverTxResponse>;
+    sendMsgSubmitProposalResponse({ value, fee, memo }: sendMsgSubmitProposalResponseParams): Promise<DeliverTxResponse>;
+    sendQueryTallyResultResponse({ value, fee, memo }: sendQueryTallyResultResponseParams): Promise<DeliverTxResponse>;
+    sendThresholdDecisionPolicy({ value, fee, memo }: sendThresholdDecisionPolicyParams): Promise<DeliverTxResponse>;
+    sendMember({ value, fee, memo }: sendMemberParams): Promise<DeliverTxResponse>;
+    sendEventCreateGroup({ value, fee, memo }: sendEventCreateGroupParams): Promise<DeliverTxResponse>;
+    sendEventSubmitProposal({ value, fee, memo }: sendEventSubmitProposalParams): Promise<DeliverTxResponse>;
+    sendQueryGroupPolicyInfoResponse({ value, fee, memo }: sendQueryGroupPolicyInfoResponseParams): Promise<DeliverTxResponse>;
+    sendQueryVoteByProposalVoterResponse({ value, fee, memo }: sendQueryVoteByProposalVoterResponseParams): Promise<DeliverTxResponse>;
+    sendEventLeaveGroup({ value, fee, memo }: sendEventLeaveGroupParams): Promise<DeliverTxResponse>;
+    sendQueryGroupsByAdminResponse({ value, fee, memo }: sendQueryGroupsByAdminResponseParams): Promise<DeliverTxResponse>;
+    sendMsgCreateGroupWithPolicy({ value, fee, memo }: sendMsgCreateGroupWithPolicyParams): Promise<DeliverTxResponse>;
+    sendMsgCreateGroupPolicyResponse({ value, fee, memo }: sendMsgCreateGroupPolicyResponseParams): Promise<DeliverTxResponse>;
+    sendQueryProposalResponse({ value, fee, memo }: sendQueryProposalResponseParams): Promise<DeliverTxResponse>;
+    sendQueryVotesByVoterResponse({ value, fee, memo }: sendQueryVotesByVoterResponseParams): Promise<DeliverTxResponse>;
+    sendQueryGroupsResponse({ value, fee, memo }: sendQueryGroupsResponseParams): Promise<DeliverTxResponse>;
+    sendQueryGroupPolicyInfoRequest({ value, fee, memo }: sendQueryGroupPolicyInfoRequestParams): Promise<DeliverTxResponse>;
+    sendQueryProposalsByGroupPolicyRequest({ value, fee, memo }: sendQueryProposalsByGroupPolicyRequestParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateGroupPolicyAdminResponse({ value, fee, memo }: sendMsgUpdateGroupPolicyAdminResponseParams): Promise<DeliverTxResponse>;
+    sendMsgCreateGroupWithPolicyResponse({ value, fee, memo }: sendMsgCreateGroupWithPolicyResponseParams): Promise<DeliverTxResponse>;
+    sendQueryGroupPoliciesByAdminResponse({ value, fee, memo }: sendQueryGroupPoliciesByAdminResponseParams): Promise<DeliverTxResponse>;
+    sendMsgCreateGroupPolicy({ value, fee, memo }: sendMsgCreateGroupPolicyParams): Promise<DeliverTxResponse>;
+    sendPercentageDecisionPolicy({ value, fee, memo }: sendPercentageDecisionPolicyParams): Promise<DeliverTxResponse>;
+    sendMsgCreateGroupResponse({ value, fee, memo }: sendMsgCreateGroupResponseParams): Promise<DeliverTxResponse>;
+    sendMsgLeaveGroup({ value, fee, memo }: sendMsgLeaveGroupParams): Promise<DeliverTxResponse>;
+    sendEventVote({ value, fee, memo }: sendEventVoteParams): Promise<DeliverTxResponse>;
+    sendQueryGroupPoliciesByGroupRequest({ value, fee, memo }: sendQueryGroupPoliciesByGroupRequestParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateGroupPolicyDecisionPolicy({ value, fee, memo }: sendMsgUpdateGroupPolicyDecisionPolicyParams): Promise<DeliverTxResponse>;
+    sendMsgVote({ value, fee, memo }: sendMsgVoteParams): Promise<DeliverTxResponse>;
+    sendMemberRequest({ value, fee, memo }: sendMemberRequestParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateGroupPolicyDecisionPolicyResponse({ value, fee, memo }: sendMsgUpdateGroupPolicyDecisionPolicyResponseParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateGroupPolicyMetadata({ value, fee, memo }: sendMsgUpdateGroupPolicyMetadataParams): Promise<DeliverTxResponse>;
+    sendMsgWithdrawProposal({ value, fee, memo }: sendMsgWithdrawProposalParams): Promise<DeliverTxResponse>;
+    sendEventExec({ value, fee, memo }: sendEventExecParams): Promise<DeliverTxResponse>;
+    sendQueryGroupPoliciesByGroupResponse({ value, fee, memo }: sendQueryGroupPoliciesByGroupResponseParams): Promise<DeliverTxResponse>;
     sendQueryTallyResultRequest({ value, fee, memo }: sendQueryTallyResultRequestParams): Promise<DeliverTxResponse>;
     sendMsgExec({ value, fee, memo }: sendMsgExecParams): Promise<DeliverTxResponse>;
-    sendQueryGroupInfoResponse({ value, fee, memo }: sendQueryGroupInfoResponseParams): Promise<DeliverTxResponse>;
-    sendQueryVotesByProposalResponse({ value, fee, memo }: sendQueryVotesByProposalResponseParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateGroupMetadataResponse({ value, fee, memo }: sendMsgUpdateGroupMetadataResponseParams): Promise<DeliverTxResponse>;
-    sendMsgCreateGroupWithPolicy({ value, fee, memo }: sendMsgCreateGroupWithPolicyParams): Promise<DeliverTxResponse>;
-    sendQueryGroupsByAdminRequest({ value, fee, memo }: sendQueryGroupsByAdminRequestParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateGroupMembers({ value, fee, memo }: sendMsgUpdateGroupMembersParams): Promise<DeliverTxResponse>;
-    sendEventLeaveGroup({ value, fee, memo }: sendEventLeaveGroupParams): Promise<DeliverTxResponse>;
-    sendQueryProposalResponse({ value, fee, memo }: sendQueryProposalResponseParams): Promise<DeliverTxResponse>;
-    sendQueryVoteByProposalVoterResponse({ value, fee, memo }: sendQueryVoteByProposalVoterResponseParams): Promise<DeliverTxResponse>;
-    sendEventUpdateGroupPolicy({ value, fee, memo }: sendEventUpdateGroupPolicyParams): Promise<DeliverTxResponse>;
-    sendQueryGroupsByAdminResponse({ value, fee, memo }: sendQueryGroupsByAdminResponseParams): Promise<DeliverTxResponse>;
-    sendMsgCreateGroupResponse({ value, fee, memo }: sendMsgCreateGroupResponseParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateGroupMetadata({ value, fee, memo }: sendMsgUpdateGroupMetadataParams): Promise<DeliverTxResponse>;
-    sendMsgWithdrawProposal({ value, fee, memo }: sendMsgWithdrawProposalParams): Promise<DeliverTxResponse>;
-    sendMsgVote({ value, fee, memo }: sendMsgVoteParams): Promise<DeliverTxResponse>;
-    sendQueryVotesByVoterResponse({ value, fee, memo }: sendQueryVotesByVoterResponseParams): Promise<DeliverTxResponse>;
-    sendEventWithdrawProposal({ value, fee, memo }: sendEventWithdrawProposalParams): Promise<DeliverTxResponse>;
-    sendEventExec({ value, fee, memo }: sendEventExecParams): Promise<DeliverTxResponse>;
-    sendMsgCreateGroupPolicyResponse({ value, fee, memo }: sendMsgCreateGroupPolicyResponseParams): Promise<DeliverTxResponse>;
-    sendQueryProposalsByGroupPolicyResponse({ value, fee, memo }: sendQueryProposalsByGroupPolicyResponseParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateGroupAdmin({ value, fee, memo }: sendMsgUpdateGroupAdminParams): Promise<DeliverTxResponse>;
-    sendMsgSubmitProposal({ value, fee, memo }: sendMsgSubmitProposalParams): Promise<DeliverTxResponse>;
-    sendQueryGroupsRequest({ value, fee, memo }: sendQueryGroupsRequestParams): Promise<DeliverTxResponse>;
-    sendPercentageDecisionPolicy({ value, fee, memo }: sendPercentageDecisionPolicyParams): Promise<DeliverTxResponse>;
-    sendQueryVoteByProposalVoterRequest({ value, fee, memo }: sendQueryVoteByProposalVoterRequestParams): Promise<DeliverTxResponse>;
-    sendQueryGroupPolicyInfoResponse({ value, fee, memo }: sendQueryGroupPolicyInfoResponseParams): Promise<DeliverTxResponse>;
-    sendEventVote({ value, fee, memo }: sendEventVoteParams): Promise<DeliverTxResponse>;
+    sendQueryVotesByVoterRequest({ value, fee, memo }: sendQueryVotesByVoterRequestParams): Promise<DeliverTxResponse>;
     sendMsgUpdateGroupPolicyAdmin({ value, fee, memo }: sendMsgUpdateGroupPolicyAdminParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateGroupPolicyDecisionPolicy({ value, fee, memo }: sendMsgUpdateGroupPolicyDecisionPolicyParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateGroupPolicyDecisionPolicyResponse({ value, fee, memo }: sendMsgUpdateGroupPolicyDecisionPolicyResponseParams): Promise<DeliverTxResponse>;
-    sendMsgSubmitProposalResponse({ value, fee, memo }: sendMsgSubmitProposalResponseParams): Promise<DeliverTxResponse>;
-    sendQueryGroupInfoRequest({ value, fee, memo }: sendQueryGroupInfoRequestParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateGroupMembersResponse({ value, fee, memo }: sendMsgUpdateGroupMembersResponseParams): Promise<DeliverTxResponse>;
-    sendQueryGroupPoliciesByGroupRequest({ value, fee, memo }: sendQueryGroupPoliciesByGroupRequestParams): Promise<DeliverTxResponse>;
-    sendQueryGroupPoliciesByAdminResponse({ value, fee, memo }: sendQueryGroupPoliciesByAdminResponseParams): Promise<DeliverTxResponse>;
-    sendThresholdDecisionPolicy({ value, fee, memo }: sendThresholdDecisionPolicyParams): Promise<DeliverTxResponse>;
-    sendDecisionPolicyWindows({ value, fee, memo }: sendDecisionPolicyWindowsParams): Promise<DeliverTxResponse>;
     sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateGroupPolicyMetadata({ value, fee, memo }: sendMsgUpdateGroupPolicyMetadataParams): Promise<DeliverTxResponse>;
-    sendQueryGroupPolicyInfoRequest({ value, fee, memo }: sendQueryGroupPolicyInfoRequestParams): Promise<DeliverTxResponse>;
-    queryGroupMembersResponse({ value }: queryGroupMembersResponseParams): EncodeObject;
-    groupPolicyInfo({ value }: groupPolicyInfoParams): EncodeObject;
-    tallyResult({ value }: tallyResultParams): EncodeObject;
-    msgCreateGroupPolicy({ value }: msgCreateGroupPolicyParams): EncodeObject;
-    queryGroupMembersRequest({ value }: queryGroupMembersRequestParams): EncodeObject;
-    queryGroupPoliciesByGroupResponse({ value }: queryGroupPoliciesByGroupResponseParams): EncodeObject;
-    queryTallyResultResponse({ value }: queryTallyResultResponseParams): EncodeObject;
-    eventUpdateGroup({ value }: eventUpdateGroupParams): EncodeObject;
-    member({ value }: memberParams): EncodeObject;
-    memberRequest({ value }: memberRequestParams): EncodeObject;
-    vote({ value }: voteParams): EncodeObject;
-    msgCreateGroup({ value }: msgCreateGroupParams): EncodeObject;
-    proposal({ value }: proposalParams): EncodeObject;
-    msgLeaveGroup({ value }: msgLeaveGroupParams): EncodeObject;
-    msgVoteResponse({ value }: msgVoteResponseParams): EncodeObject;
-    eventSubmitProposal({ value }: eventSubmitProposalParams): EncodeObject;
-    eventProposalPruned({ value }: eventProposalPrunedParams): EncodeObject;
-    queryProposalsByGroupPolicyRequest({ value }: queryProposalsByGroupPolicyRequestParams): EncodeObject;
-    queryVotesByProposalRequest({ value }: queryVotesByProposalRequestParams): EncodeObject;
-    queryGroupsResponse({ value }: queryGroupsResponseParams): EncodeObject;
-    msgUpdateGroupAdminResponse({ value }: msgUpdateGroupAdminResponseParams): EncodeObject;
-    msgUpdateGroupPolicyAdminResponse({ value }: msgUpdateGroupPolicyAdminResponseParams): EncodeObject;
-    msgExecResponse({ value }: msgExecResponseParams): EncodeObject;
-    msgLeaveGroupResponse({ value }: msgLeaveGroupResponseParams): EncodeObject;
-    queryGroupPoliciesByAdminRequest({ value }: queryGroupPoliciesByAdminRequestParams): EncodeObject;
-    queryGroupsByMemberRequest({ value }: queryGroupsByMemberRequestParams): EncodeObject;
-    eventCreateGroup({ value }: eventCreateGroupParams): EncodeObject;
-    eventCreateGroupPolicy({ value }: eventCreateGroupPolicyParams): EncodeObject;
-    groupInfo({ value }: groupInfoParams): EncodeObject;
+    sendQueryGroupInfoRequest({ value, fee, memo }: sendQueryGroupInfoRequestParams): Promise<DeliverTxResponse>;
+    sendQueryGroupMembersRequest({ value, fee, memo }: sendQueryGroupMembersRequestParams): Promise<DeliverTxResponse>;
+    sendQueryGroupsByAdminRequest({ value, fee, memo }: sendQueryGroupsByAdminRequestParams): Promise<DeliverTxResponse>;
+    sendMsgExecResponse({ value, fee, memo }: sendMsgExecResponseParams): Promise<DeliverTxResponse>;
+    sendEventCreateGroupPolicy({ value, fee, memo }: sendEventCreateGroupPolicyParams): Promise<DeliverTxResponse>;
+    sendQueryVotesByProposalRequest({ value, fee, memo }: sendQueryVotesByProposalRequestParams): Promise<DeliverTxResponse>;
+    sendQueryGroupsByMemberResponse({ value, fee, memo }: sendQueryGroupsByMemberResponseParams): Promise<DeliverTxResponse>;
+    sendQueryGroupsRequest({ value, fee, memo }: sendQueryGroupsRequestParams): Promise<DeliverTxResponse>;
+    sendQueryProposalRequest({ value, fee, memo }: sendQueryProposalRequestParams): Promise<DeliverTxResponse>;
+    sendQueryVoteByProposalVoterRequest({ value, fee, memo }: sendQueryVoteByProposalVoterRequestParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateGroupPolicyMetadataResponse({ value, fee, memo }: sendMsgUpdateGroupPolicyMetadataResponseParams): Promise<DeliverTxResponse>;
+    sendMsgCreateGroup({ value, fee, memo }: sendMsgCreateGroupParams): Promise<DeliverTxResponse>;
+    sendEventProposalPruned({ value, fee, memo }: sendEventProposalPrunedParams): Promise<DeliverTxResponse>;
+    sendQueryProposalsByGroupPolicyResponse({ value, fee, memo }: sendQueryProposalsByGroupPolicyResponseParams): Promise<DeliverTxResponse>;
+    sendQueryGroupsByMemberRequest({ value, fee, memo }: sendQueryGroupsByMemberRequestParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateGroupMetadata({ value, fee, memo }: sendMsgUpdateGroupMetadataParams): Promise<DeliverTxResponse>;
+    sendMsgLeaveGroupResponse({ value, fee, memo }: sendMsgLeaveGroupResponseParams): Promise<DeliverTxResponse>;
+    sendEventUpdateGroup({ value, fee, memo }: sendEventUpdateGroupParams): Promise<DeliverTxResponse>;
+    sendEventWithdrawProposal({ value, fee, memo }: sendEventWithdrawProposalParams): Promise<DeliverTxResponse>;
+    sendQueryGroupPoliciesByAdminRequest({ value, fee, memo }: sendQueryGroupPoliciesByAdminRequestParams): Promise<DeliverTxResponse>;
     groupMember({ value }: groupMemberParams): EncodeObject;
-    msgCreateGroupWithPolicyResponse({ value }: msgCreateGroupWithPolicyResponseParams): EncodeObject;
-    msgUpdateGroupPolicyMetadataResponse({ value }: msgUpdateGroupPolicyMetadataResponseParams): EncodeObject;
-    queryProposalRequest({ value }: queryProposalRequestParams): EncodeObject;
+    vote({ value }: voteParams): EncodeObject;
+    decisionPolicyWindows({ value }: decisionPolicyWindowsParams): EncodeObject;
+    msgUpdateGroupAdminResponse({ value }: msgUpdateGroupAdminResponseParams): EncodeObject;
+    eventUpdateGroupPolicy({ value }: eventUpdateGroupPolicyParams): EncodeObject;
+    msgUpdateGroupMembers({ value }: msgUpdateGroupMembersParams): EncodeObject;
+    groupPolicyInfo({ value }: groupPolicyInfoParams): EncodeObject;
+    groupInfo({ value }: groupInfoParams): EncodeObject;
+    tallyResult({ value }: tallyResultParams): EncodeObject;
+    msgUpdateGroupMetadataResponse({ value }: msgUpdateGroupMetadataResponseParams): EncodeObject;
+    queryGroupInfoResponse({ value }: queryGroupInfoResponseParams): EncodeObject;
+    queryGroupMembersResponse({ value }: queryGroupMembersResponseParams): EncodeObject;
+    msgUpdateGroupAdmin({ value }: msgUpdateGroupAdminParams): EncodeObject;
+    proposal({ value }: proposalParams): EncodeObject;
     msgWithdrawProposalResponse({ value }: msgWithdrawProposalResponseParams): EncodeObject;
-    queryVotesByVoterRequest({ value }: queryVotesByVoterRequestParams): EncodeObject;
-    queryGroupsByMemberResponse({ value }: queryGroupsByMemberResponseParams): EncodeObject;
+    msgVoteResponse({ value }: msgVoteResponseParams): EncodeObject;
+    queryVotesByProposalResponse({ value }: queryVotesByProposalResponseParams): EncodeObject;
+    msgSubmitProposal({ value }: msgSubmitProposalParams): EncodeObject;
+    msgUpdateGroupMembersResponse({ value }: msgUpdateGroupMembersResponseParams): EncodeObject;
+    msgSubmitProposalResponse({ value }: msgSubmitProposalResponseParams): EncodeObject;
+    queryTallyResultResponse({ value }: queryTallyResultResponseParams): EncodeObject;
+    thresholdDecisionPolicy({ value }: thresholdDecisionPolicyParams): EncodeObject;
+    member({ value }: memberParams): EncodeObject;
+    eventCreateGroup({ value }: eventCreateGroupParams): EncodeObject;
+    eventSubmitProposal({ value }: eventSubmitProposalParams): EncodeObject;
+    queryGroupPolicyInfoResponse({ value }: queryGroupPolicyInfoResponseParams): EncodeObject;
+    queryVoteByProposalVoterResponse({ value }: queryVoteByProposalVoterResponseParams): EncodeObject;
+    eventLeaveGroup({ value }: eventLeaveGroupParams): EncodeObject;
+    queryGroupsByAdminResponse({ value }: queryGroupsByAdminResponseParams): EncodeObject;
+    msgCreateGroupWithPolicy({ value }: msgCreateGroupWithPolicyParams): EncodeObject;
+    msgCreateGroupPolicyResponse({ value }: msgCreateGroupPolicyResponseParams): EncodeObject;
+    queryProposalResponse({ value }: queryProposalResponseParams): EncodeObject;
+    queryVotesByVoterResponse({ value }: queryVotesByVoterResponseParams): EncodeObject;
+    queryGroupsResponse({ value }: queryGroupsResponseParams): EncodeObject;
+    queryGroupPolicyInfoRequest({ value }: queryGroupPolicyInfoRequestParams): EncodeObject;
+    queryProposalsByGroupPolicyRequest({ value }: queryProposalsByGroupPolicyRequestParams): EncodeObject;
+    msgUpdateGroupPolicyAdminResponse({ value }: msgUpdateGroupPolicyAdminResponseParams): EncodeObject;
+    msgCreateGroupWithPolicyResponse({ value }: msgCreateGroupWithPolicyResponseParams): EncodeObject;
+    queryGroupPoliciesByAdminResponse({ value }: queryGroupPoliciesByAdminResponseParams): EncodeObject;
+    msgCreateGroupPolicy({ value }: msgCreateGroupPolicyParams): EncodeObject;
+    percentageDecisionPolicy({ value }: percentageDecisionPolicyParams): EncodeObject;
+    msgCreateGroupResponse({ value }: msgCreateGroupResponseParams): EncodeObject;
+    msgLeaveGroup({ value }: msgLeaveGroupParams): EncodeObject;
+    eventVote({ value }: eventVoteParams): EncodeObject;
+    queryGroupPoliciesByGroupRequest({ value }: queryGroupPoliciesByGroupRequestParams): EncodeObject;
+    msgUpdateGroupPolicyDecisionPolicy({ value }: msgUpdateGroupPolicyDecisionPolicyParams): EncodeObject;
+    msgVote({ value }: msgVoteParams): EncodeObject;
+    memberRequest({ value }: memberRequestParams): EncodeObject;
+    msgUpdateGroupPolicyDecisionPolicyResponse({ value }: msgUpdateGroupPolicyDecisionPolicyResponseParams): EncodeObject;
+    msgUpdateGroupPolicyMetadata({ value }: msgUpdateGroupPolicyMetadataParams): EncodeObject;
+    msgWithdrawProposal({ value }: msgWithdrawProposalParams): EncodeObject;
+    eventExec({ value }: eventExecParams): EncodeObject;
+    queryGroupPoliciesByGroupResponse({ value }: queryGroupPoliciesByGroupResponseParams): EncodeObject;
     queryTallyResultRequest({ value }: queryTallyResultRequestParams): EncodeObject;
     msgExec({ value }: msgExecParams): EncodeObject;
-    queryGroupInfoResponse({ value }: queryGroupInfoResponseParams): EncodeObject;
-    queryVotesByProposalResponse({ value }: queryVotesByProposalResponseParams): EncodeObject;
-    msgUpdateGroupMetadataResponse({ value }: msgUpdateGroupMetadataResponseParams): EncodeObject;
-    msgCreateGroupWithPolicy({ value }: msgCreateGroupWithPolicyParams): EncodeObject;
-    queryGroupsByAdminRequest({ value }: queryGroupsByAdminRequestParams): EncodeObject;
-    msgUpdateGroupMembers({ value }: msgUpdateGroupMembersParams): EncodeObject;
-    eventLeaveGroup({ value }: eventLeaveGroupParams): EncodeObject;
-    queryProposalResponse({ value }: queryProposalResponseParams): EncodeObject;
-    queryVoteByProposalVoterResponse({ value }: queryVoteByProposalVoterResponseParams): EncodeObject;
-    eventUpdateGroupPolicy({ value }: eventUpdateGroupPolicyParams): EncodeObject;
-    queryGroupsByAdminResponse({ value }: queryGroupsByAdminResponseParams): EncodeObject;
-    msgCreateGroupResponse({ value }: msgCreateGroupResponseParams): EncodeObject;
-    msgUpdateGroupMetadata({ value }: msgUpdateGroupMetadataParams): EncodeObject;
-    msgWithdrawProposal({ value }: msgWithdrawProposalParams): EncodeObject;
-    msgVote({ value }: msgVoteParams): EncodeObject;
-    queryVotesByVoterResponse({ value }: queryVotesByVoterResponseParams): EncodeObject;
-    eventWithdrawProposal({ value }: eventWithdrawProposalParams): EncodeObject;
-    eventExec({ value }: eventExecParams): EncodeObject;
-    msgCreateGroupPolicyResponse({ value }: msgCreateGroupPolicyResponseParams): EncodeObject;
-    queryProposalsByGroupPolicyResponse({ value }: queryProposalsByGroupPolicyResponseParams): EncodeObject;
-    msgUpdateGroupAdmin({ value }: msgUpdateGroupAdminParams): EncodeObject;
-    msgSubmitProposal({ value }: msgSubmitProposalParams): EncodeObject;
-    queryGroupsRequest({ value }: queryGroupsRequestParams): EncodeObject;
-    percentageDecisionPolicy({ value }: percentageDecisionPolicyParams): EncodeObject;
-    queryVoteByProposalVoterRequest({ value }: queryVoteByProposalVoterRequestParams): EncodeObject;
-    queryGroupPolicyInfoResponse({ value }: queryGroupPolicyInfoResponseParams): EncodeObject;
-    eventVote({ value }: eventVoteParams): EncodeObject;
+    queryVotesByVoterRequest({ value }: queryVotesByVoterRequestParams): EncodeObject;
     msgUpdateGroupPolicyAdmin({ value }: msgUpdateGroupPolicyAdminParams): EncodeObject;
-    msgUpdateGroupPolicyDecisionPolicy({ value }: msgUpdateGroupPolicyDecisionPolicyParams): EncodeObject;
-    msgUpdateGroupPolicyDecisionPolicyResponse({ value }: msgUpdateGroupPolicyDecisionPolicyResponseParams): EncodeObject;
-    msgSubmitProposalResponse({ value }: msgSubmitProposalResponseParams): EncodeObject;
-    queryGroupInfoRequest({ value }: queryGroupInfoRequestParams): EncodeObject;
-    msgUpdateGroupMembersResponse({ value }: msgUpdateGroupMembersResponseParams): EncodeObject;
-    queryGroupPoliciesByGroupRequest({ value }: queryGroupPoliciesByGroupRequestParams): EncodeObject;
-    queryGroupPoliciesByAdminResponse({ value }: queryGroupPoliciesByAdminResponseParams): EncodeObject;
-    thresholdDecisionPolicy({ value }: thresholdDecisionPolicyParams): EncodeObject;
-    decisionPolicyWindows({ value }: decisionPolicyWindowsParams): EncodeObject;
     genesisState({ value }: genesisStateParams): EncodeObject;
-    msgUpdateGroupPolicyMetadata({ value }: msgUpdateGroupPolicyMetadataParams): EncodeObject;
-    queryGroupPolicyInfoRequest({ value }: queryGroupPolicyInfoRequestParams): EncodeObject;
+    queryGroupInfoRequest({ value }: queryGroupInfoRequestParams): EncodeObject;
+    queryGroupMembersRequest({ value }: queryGroupMembersRequestParams): EncodeObject;
+    queryGroupsByAdminRequest({ value }: queryGroupsByAdminRequestParams): EncodeObject;
+    msgExecResponse({ value }: msgExecResponseParams): EncodeObject;
+    eventCreateGroupPolicy({ value }: eventCreateGroupPolicyParams): EncodeObject;
+    queryVotesByProposalRequest({ value }: queryVotesByProposalRequestParams): EncodeObject;
+    queryGroupsByMemberResponse({ value }: queryGroupsByMemberResponseParams): EncodeObject;
+    queryGroupsRequest({ value }: queryGroupsRequestParams): EncodeObject;
+    queryProposalRequest({ value }: queryProposalRequestParams): EncodeObject;
+    queryVoteByProposalVoterRequest({ value }: queryVoteByProposalVoterRequestParams): EncodeObject;
+    msgUpdateGroupPolicyMetadataResponse({ value }: msgUpdateGroupPolicyMetadataResponseParams): EncodeObject;
+    msgCreateGroup({ value }: msgCreateGroupParams): EncodeObject;
+    eventProposalPruned({ value }: eventProposalPrunedParams): EncodeObject;
+    queryProposalsByGroupPolicyResponse({ value }: queryProposalsByGroupPolicyResponseParams): EncodeObject;
+    queryGroupsByMemberRequest({ value }: queryGroupsByMemberRequestParams): EncodeObject;
+    msgUpdateGroupMetadata({ value }: msgUpdateGroupMetadataParams): EncodeObject;
+    msgLeaveGroupResponse({ value }: msgLeaveGroupResponseParams): EncodeObject;
+    eventUpdateGroup({ value }: eventUpdateGroupParams): EncodeObject;
+    eventWithdrawProposal({ value }: eventWithdrawProposalParams): EncodeObject;
+    queryGroupPoliciesByAdminRequest({ value }: queryGroupPoliciesByAdminRequestParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

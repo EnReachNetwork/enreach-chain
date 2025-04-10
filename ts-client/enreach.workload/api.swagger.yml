@@ -4,6 +4,42 @@ info:
   name: ''
   description: ''
 paths:
+  /enreach/edgenode/param/{paramKey}:
+    get:
+      operationId: Query_Param
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              paramValue:
+                type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: paramKey
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
   /enreach/workload/cheat_status_cr_data/{era}:
     get:
       operationId: Query_AllCheatStatusCRDataByEra
@@ -1267,6 +1303,11 @@ paths:
             properties:
               params:
                 type: object
+                properties:
+                  data:
+                    type: object
+                    additionalProperties:
+                      type: string
         default:
           description: An unexpected error response.
           schema:
@@ -2090,70 +2131,6 @@ paths:
           in: query
           required: false
           type: boolean
-      tags:
-        - Query
-  /enreach/workload/workreport/history_epoch_data_depth:
-    get:
-      operationId: Query_HistoryEpochDataDepth
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              depth:
-                type: string
-                format: uint64
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      tags:
-        - Query
-  /enreach/workload/workreport/process_batch_size:
-    get:
-      operationId: Query_WorkreportProcessBatchSize
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              batchSize:
-                type: string
-                format: uint64
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
       tags:
         - Query
   /enreach/workload/workreport/{epoch}/{nodeID}:
@@ -3047,12 +3024,6 @@ definitions:
               total:
                 type: string
                 format: uint64
-  QueryGetHistoryEpochDataDepthResponse:
-    type: object
-    properties:
-      depth:
-        type: string
-        format: uint64
   QueryGetHistoryEpochResponse:
     type: object
     properties:
@@ -3285,12 +3256,6 @@ definitions:
             format: uint64
           signer:
             type: string
-  QueryGetWorkreportProcessBatchSizeResponse:
-    type: object
-    properties:
-      batchSize:
-        type: string
-        format: uint64
   QueryGetWorkreportResponse:
     type: object
     properties:
@@ -3316,11 +3281,21 @@ definitions:
                 updateAt:
                   type: string
                   format: uint64
+  QueryParamResponse:
+    type: object
+    properties:
+      paramValue:
+        type: string
   QueryParamsResponse:
     type: object
     properties:
       params:
         type: object
+        properties:
+          data:
+            type: object
+            additionalProperties:
+              type: string
   ReputationPointChangeRawDataDB:
     type: object
     properties:
@@ -3517,6 +3492,11 @@ definitions:
         format: uint64
   workload.Params:
     type: object
+    properties:
+      data:
+        type: object
+        additionalProperties:
+          type: string
   workload.ReputationDeltaPoint:
     type: object
     properties:
@@ -3607,13 +3587,9 @@ definitions:
     type: object
   MsgSubmitWorkreportsResponse:
     type: object
-  MsgUpdateHistoryEpochDataDepthResponse:
-    type: object
-  MsgUpdateParamsResponse:
+  MsgUpdateParamResponse:
     type: object
   MsgUpdateSuperiorResponse:
-    type: object
-  MsgUpdateWorkreportProcessBatchSizeResponse:
     type: object
   NodeScore:
     type: object
@@ -3623,8 +3599,6 @@ definitions:
       score:
         type: string
         format: uint64
-  Params:
-    type: object
   ReputationPointChangeRawData:
     type: object
     properties:

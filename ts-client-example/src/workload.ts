@@ -9,7 +9,8 @@ import { MsgSubmitReputationPointChangeData, MsgSubmitWorkreports, QueryGetAllEp
     QueryGetAllReputationPointChangeDataByEraResponse,
     MsgSubmitCheatStatusCR, QueryGetAllEraCheatStatusProcessDataResponse, QueryGetAllManagerRPWorkloadByEraResponse,
     QueryGetAllManagerCSWorkloadByEraResponse,
-    QueryGetAllCheatStatusCRDataByEraResponse} from 'enreach-client-ts/lib/enreach.workload/module';
+    QueryGetAllCheatStatusCRDataByEraResponse, QueryParamsResponse,
+    MsgUpdateParam, MsgCreateSuperior} from 'enreach-client-ts/lib/enreach.workload/module';
 
 export default class WorkloadApi {
     private mnemonic: string;
@@ -153,5 +154,37 @@ export default class WorkloadApi {
             process.exit(1);
         }
         return currentEraInfo.number;
+    }
+
+    async createSuperior(msg: MsgCreateSuperior) {
+        let tClient = txClient({ signer: this.wallet, prefix: CHAIN_PREFIX, addr: CHAIN_RPC_URL });
+        const result = await tClient.sendMsgCreateSuperior({
+            value: {
+                ...msg,
+                signer: this.account,
+            }
+        })
+
+        if (result.code != 0) {
+            throw new Error(`Transaction failed: ${result.rawLog}`)
+        }
+    }
+
+    async updateParam(msg: MsgUpdateParam) {
+        let tClient = txClient({ signer: this.wallet, prefix: CHAIN_PREFIX, addr: CHAIN_RPC_URL });
+        const result = await tClient.sendMsgUpdateParam({
+            value: {
+                ...msg,
+            }
+        })
+
+        if (result.code != 0) {
+            throw new Error(`Transaction failed: ${result.rawLog}`)
+        }
+    }
+    async queryParams(): Promise<QueryParamsResponse> {
+        let qClient = queryClient({ addr: CHAIN_API_URL });
+        const resp = await qClient.queryParams();
+        return resp.data;
     }
 }

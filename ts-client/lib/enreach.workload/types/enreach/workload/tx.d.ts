@@ -1,22 +1,17 @@
 import _m0 from "protobufjs/minimal";
 import { CheatStatusCR } from "./cheat_status";
-import { Params } from "./params";
 import { ReputationPointChangeRawData } from "./reputationpoint";
 import { NodeScore } from "./workreport";
 export declare const protobufPackage = "enreach.workload";
-/** MsgUpdateParams is the Msg/UpdateParams request type. */
-export interface MsgUpdateParams {
-    /** authority is the address that controls the module (defaults to x/gov unless overwritten). */
-    authority: string;
-    /** NOTE: All parameters must be supplied. */
-    params: Params | undefined;
+/** /////////////////////////////////////////////////////////////// */
+export interface MsgUpdateParam {
+    signer: string;
+    paramKey: string;
+    paramValue: string;
 }
-/**
- * MsgUpdateParamsResponse defines the response structure for executing a
- * MsgUpdateParams message.
- */
-export interface MsgUpdateParamsResponse {
+export interface MsgUpdateParamResponse {
 }
+/** //////////////// */
 export interface MsgSubmitWorkreports {
     managerAccount: string;
     epoch: number;
@@ -24,18 +19,7 @@ export interface MsgSubmitWorkreports {
 }
 export interface MsgSubmitWorkreportsResponse {
 }
-export interface MsgUpdateWorkreportProcessBatchSize {
-    signer: string;
-    batchSize: number;
-}
-export interface MsgUpdateWorkreportProcessBatchSizeResponse {
-}
-export interface MsgUpdateHistoryEpochDataDepth {
-    signer: string;
-    depth: number;
-}
-export interface MsgUpdateHistoryEpochDataDepthResponse {
-}
+/** /////////////// */
 export interface MsgCreateSuperior {
     signer: string;
     account: string;
@@ -48,6 +32,7 @@ export interface MsgUpdateSuperior {
 }
 export interface MsgUpdateSuperiorResponse {
 }
+/** //////////////// */
 export interface MsgSubmitReputationPointChangeData {
     managerAccount: string;
     era: number;
@@ -62,21 +47,21 @@ export interface MsgSubmitCheatStatusCR {
 }
 export interface MsgSubmitCheatStatusCRResponse {
 }
-export declare const MsgUpdateParams: {
-    encode(message: MsgUpdateParams, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateParams;
-    fromJSON(object: any): MsgUpdateParams;
-    toJSON(message: MsgUpdateParams): unknown;
-    create<I extends Exact<DeepPartial<MsgUpdateParams>, I>>(base?: I): MsgUpdateParams;
-    fromPartial<I extends Exact<DeepPartial<MsgUpdateParams>, I>>(object: I): MsgUpdateParams;
+export declare const MsgUpdateParam: {
+    encode(message: MsgUpdateParam, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateParam;
+    fromJSON(object: any): MsgUpdateParam;
+    toJSON(message: MsgUpdateParam): unknown;
+    create<I extends Exact<DeepPartial<MsgUpdateParam>, I>>(base?: I): MsgUpdateParam;
+    fromPartial<I extends Exact<DeepPartial<MsgUpdateParam>, I>>(object: I): MsgUpdateParam;
 };
-export declare const MsgUpdateParamsResponse: {
-    encode(_: MsgUpdateParamsResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateParamsResponse;
-    fromJSON(_: any): MsgUpdateParamsResponse;
-    toJSON(_: MsgUpdateParamsResponse): unknown;
-    create<I extends Exact<DeepPartial<MsgUpdateParamsResponse>, I>>(base?: I): MsgUpdateParamsResponse;
-    fromPartial<I extends Exact<DeepPartial<MsgUpdateParamsResponse>, I>>(_: I): MsgUpdateParamsResponse;
+export declare const MsgUpdateParamResponse: {
+    encode(_: MsgUpdateParamResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateParamResponse;
+    fromJSON(_: any): MsgUpdateParamResponse;
+    toJSON(_: MsgUpdateParamResponse): unknown;
+    create<I extends Exact<DeepPartial<MsgUpdateParamResponse>, I>>(base?: I): MsgUpdateParamResponse;
+    fromPartial<I extends Exact<DeepPartial<MsgUpdateParamResponse>, I>>(_: I): MsgUpdateParamResponse;
 };
 export declare const MsgSubmitWorkreports: {
     encode(message: MsgSubmitWorkreports, writer?: _m0.Writer): _m0.Writer;
@@ -93,38 +78,6 @@ export declare const MsgSubmitWorkreportsResponse: {
     toJSON(_: MsgSubmitWorkreportsResponse): unknown;
     create<I extends Exact<DeepPartial<MsgSubmitWorkreportsResponse>, I>>(base?: I): MsgSubmitWorkreportsResponse;
     fromPartial<I extends Exact<DeepPartial<MsgSubmitWorkreportsResponse>, I>>(_: I): MsgSubmitWorkreportsResponse;
-};
-export declare const MsgUpdateWorkreportProcessBatchSize: {
-    encode(message: MsgUpdateWorkreportProcessBatchSize, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateWorkreportProcessBatchSize;
-    fromJSON(object: any): MsgUpdateWorkreportProcessBatchSize;
-    toJSON(message: MsgUpdateWorkreportProcessBatchSize): unknown;
-    create<I extends Exact<DeepPartial<MsgUpdateWorkreportProcessBatchSize>, I>>(base?: I): MsgUpdateWorkreportProcessBatchSize;
-    fromPartial<I extends Exact<DeepPartial<MsgUpdateWorkreportProcessBatchSize>, I>>(object: I): MsgUpdateWorkreportProcessBatchSize;
-};
-export declare const MsgUpdateWorkreportProcessBatchSizeResponse: {
-    encode(_: MsgUpdateWorkreportProcessBatchSizeResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateWorkreportProcessBatchSizeResponse;
-    fromJSON(_: any): MsgUpdateWorkreportProcessBatchSizeResponse;
-    toJSON(_: MsgUpdateWorkreportProcessBatchSizeResponse): unknown;
-    create<I extends Exact<DeepPartial<MsgUpdateWorkreportProcessBatchSizeResponse>, I>>(base?: I): MsgUpdateWorkreportProcessBatchSizeResponse;
-    fromPartial<I extends Exact<DeepPartial<MsgUpdateWorkreportProcessBatchSizeResponse>, I>>(_: I): MsgUpdateWorkreportProcessBatchSizeResponse;
-};
-export declare const MsgUpdateHistoryEpochDataDepth: {
-    encode(message: MsgUpdateHistoryEpochDataDepth, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateHistoryEpochDataDepth;
-    fromJSON(object: any): MsgUpdateHistoryEpochDataDepth;
-    toJSON(message: MsgUpdateHistoryEpochDataDepth): unknown;
-    create<I extends Exact<DeepPartial<MsgUpdateHistoryEpochDataDepth>, I>>(base?: I): MsgUpdateHistoryEpochDataDepth;
-    fromPartial<I extends Exact<DeepPartial<MsgUpdateHistoryEpochDataDepth>, I>>(object: I): MsgUpdateHistoryEpochDataDepth;
-};
-export declare const MsgUpdateHistoryEpochDataDepthResponse: {
-    encode(_: MsgUpdateHistoryEpochDataDepthResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateHistoryEpochDataDepthResponse;
-    fromJSON(_: any): MsgUpdateHistoryEpochDataDepthResponse;
-    toJSON(_: MsgUpdateHistoryEpochDataDepthResponse): unknown;
-    create<I extends Exact<DeepPartial<MsgUpdateHistoryEpochDataDepthResponse>, I>>(base?: I): MsgUpdateHistoryEpochDataDepthResponse;
-    fromPartial<I extends Exact<DeepPartial<MsgUpdateHistoryEpochDataDepthResponse>, I>>(_: I): MsgUpdateHistoryEpochDataDepthResponse;
 };
 export declare const MsgCreateSuperior: {
     encode(message: MsgCreateSuperior, writer?: _m0.Writer): _m0.Writer;
@@ -196,10 +149,8 @@ export interface Msg {
      * UpdateParams defines a (governance) operation for updating the module
      * parameters. The authority defaults to the x/gov module account.
      */
-    UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
+    UpdateParam(request: MsgUpdateParam): Promise<MsgUpdateParamResponse>;
     SubmitWorkreports(request: MsgSubmitWorkreports): Promise<MsgSubmitWorkreportsResponse>;
-    UpdateWorkreportProcessBatchSize(request: MsgUpdateWorkreportProcessBatchSize): Promise<MsgUpdateWorkreportProcessBatchSizeResponse>;
-    UpdateHistoryEpochDataDepth(request: MsgUpdateHistoryEpochDataDepth): Promise<MsgUpdateHistoryEpochDataDepthResponse>;
     CreateSuperior(request: MsgCreateSuperior): Promise<MsgCreateSuperiorResponse>;
     UpdateSuperior(request: MsgUpdateSuperior): Promise<MsgUpdateSuperiorResponse>;
     SubmitReputationPointChangeData(request: MsgSubmitReputationPointChangeData): Promise<MsgSubmitReputationPointChangeDataResponse>;
@@ -212,10 +163,8 @@ export declare class MsgClientImpl implements Msg {
     constructor(rpc: Rpc, opts?: {
         service?: string;
     });
-    UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
+    UpdateParam(request: MsgUpdateParam): Promise<MsgUpdateParamResponse>;
     SubmitWorkreports(request: MsgSubmitWorkreports): Promise<MsgSubmitWorkreportsResponse>;
-    UpdateWorkreportProcessBatchSize(request: MsgUpdateWorkreportProcessBatchSize): Promise<MsgUpdateWorkreportProcessBatchSizeResponse>;
-    UpdateHistoryEpochDataDepth(request: MsgUpdateHistoryEpochDataDepth): Promise<MsgUpdateHistoryEpochDataDepthResponse>;
     CreateSuperior(request: MsgCreateSuperior): Promise<MsgCreateSuperiorResponse>;
     UpdateSuperior(request: MsgUpdateSuperior): Promise<MsgUpdateSuperiorResponse>;
     SubmitReputationPointChangeData(request: MsgSubmitReputationPointChangeData): Promise<MsgSubmitReputationPointChangeDataResponse>;
