@@ -60,4 +60,9 @@ validators:
 - name: validator
   bonded: 100000000stake
   app:
-      pruning: "nothing"
+    pruning: "nothing"
+  config:
+    consensus:
+      timeout_propose: "2s"
+      timeout_commit: "3s"
+      create_empty_blocks_interval: "3s"
