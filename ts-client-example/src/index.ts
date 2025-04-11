@@ -12,7 +12,9 @@ import { Params } from "@cosmjs/tendermint-rpc/build/tendermint37/adaptor/reques
 import { BlockResultsRequest, Method } from '@cosmjs/tendermint-rpc/build/tendermint37/requests';
 import { Event } from '@cosmjs/tendermint-rpc/build/tendermint37/responses';
 import { JsonRpcSuccessResponse } from "@cosmjs/json-rpc";
+import BankApi from './bank';
 
+const bankAdminApi = new BankApi(ADMIN_MNEMONIC);
 const regionAdminApi = new RegionApi(ADMIN_MNEMONIC);
 const regionApi = new RegionApi(SUPERIOR_MENMONIC);
 const operator_A_Api = new OperatorApi(OPERATOR_A_MNEMONIC);
@@ -33,6 +35,7 @@ const workloadSuperiorApi = new WorkloadApi(SUPERIOR_MENMONIC);
 async function main() {
 
   console.log("===Init Api Objects");
+  await bankAdminApi.initApi();
   await regionAdminApi.initApi();
   await regionApi.initApi();
   await operator_A_Api.initApi();
@@ -49,6 +52,9 @@ async function main() {
   await workload_C_Api.initApi();
   await workloadAdminApi.initApi();
   await workloadSuperiorApi.initApi();
+
+  // Transfer tokens for gas fee
+  await sendTokenForGasFee();
 
   // Listen and log events
   listenEvents();
@@ -77,6 +83,16 @@ async function main() {
   await testParams();
 }
 
+async function sendTokenForGasFee() {
+  console.log("Send Tokens from Admin account to other accounts for gas fee");
+  await bankAdminApi.sendToken({fromAddress: bankAdminApi.account, toAddress: regionApi.account, amount: [{denom:"uekc", amount:"1000000000000"}]});
+  await bankAdminApi.sendToken({fromAddress: bankAdminApi.account, toAddress: operator_A_Api.account, amount: [{denom:"uekc", amount:"1000000000000"}]});
+  await bankAdminApi.sendToken({fromAddress: bankAdminApi.account, toAddress: operator_B_Api.account, amount: [{denom:"uekc", amount:"1000000000000"}]});
+  await bankAdminApi.sendToken({fromAddress: bankAdminApi.account, toAddress: operator_C_Api.account, amount: [{denom:"uekc", amount:"1000000000000"}]});
+  await bankAdminApi.sendToken({fromAddress: bankAdminApi.account, toAddress: manager_A_Api.account, amount: [{denom:"uekc", amount:"1000000000000"}]});
+  await bankAdminApi.sendToken({fromAddress: bankAdminApi.account, toAddress: manager_B_Api.account, amount: [{denom:"uekc", amount:"1000000000000"}]});
+  await bankAdminApi.sendToken({fromAddress: bankAdminApi.account, toAddress: manager_C_Api.account, amount: [{denom:"uekc", amount:"1000000000000"}]});
+}
 async function testManager(operatorApi: OperatorApi, managerApi: ManagerApi) {
 
   await operatorApi.createOperator({operatorAccount: operatorApi.account, name:"Crust", description: "Crust Network", websiteUrl: "https://crust.network"});
