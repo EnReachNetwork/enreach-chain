@@ -1,7 +1,7 @@
 import { DirectSecp256k1HdWallet } from '@cosmjs/proto-signing'
 import { txClient } from 'enreach-client-ts/lib/enreach.workload';
 import { queryClient } from "enreach-client-ts/lib/enreach.workload";
-import { CHAIN_API_URL, CHAIN_PREFIX, CHAIN_RPC_URL } from './consts';
+import { CHAIN_API_URL, CHAIN_PREFIX, CHAIN_RPC_URL, stdFee } from './consts';
 import { MsgSubmitReputationPointChangeData, MsgSubmitWorkreports, QueryGetAllEpochProcessDataResponse, 
     QueryGetAllEraProcessDataResponse, QueryGetAllManagerWRWorkloadByEpochResponse, QueryGetAllNodeWorkloadByEpochResponse, 
     QueryGetAllWorkreportByEpochResponse, QueryGetCurrentEpochResponse,
@@ -29,11 +29,7 @@ export default class WorkloadApi {
 
     async submitWorkreports(msg: MsgSubmitWorkreports) {
         let tClient = txClient({ signer: this.wallet, prefix: CHAIN_PREFIX, addr: CHAIN_RPC_URL });
-        const result = await tClient.sendMsgSubmitWorkreports({
-            value: {
-                ...msg,
-            }
-        })
+        const result = await tClient.sendMsgSubmitWorkreports({value: msg,fee: stdFee})
 
         if (result.code != 0) {
             throw new Error(`Transaction failed: ${result.rawLog}`)
@@ -42,11 +38,7 @@ export default class WorkloadApi {
 
     async submitReputationPointChangeData(msg: MsgSubmitReputationPointChangeData) {
         let tClient = txClient({ signer: this.wallet, prefix: CHAIN_PREFIX, addr: CHAIN_RPC_URL });
-        const result = await tClient.sendMsgSubmitReputationPointChangeData({
-            value: {
-                ...msg,
-            }
-        })
+        const result = await tClient.sendMsgSubmitReputationPointChangeData({value: msg,fee: stdFee})
 
         if (result.code != 0) {
             throw new Error(`Transaction failed: ${result.rawLog}`)
@@ -55,11 +47,7 @@ export default class WorkloadApi {
 
     async submitCheatStatusCR(msg: MsgSubmitCheatStatusCR) {
         let tClient = txClient({ signer: this.wallet, prefix: CHAIN_PREFIX, addr: CHAIN_RPC_URL });
-        const result = await tClient.sendMsgSubmitCheatStatusCR({
-            value: {
-                ...msg,
-            }
-        })
+        const result = await tClient.sendMsgSubmitCheatStatusCR({value: msg,fee: stdFee})
 
         if (result.code != 0) {
             throw new Error(`Transaction failed: ${result.rawLog}`)
@@ -158,12 +146,7 @@ export default class WorkloadApi {
 
     async createSuperior(msg: MsgCreateSuperior) {
         let tClient = txClient({ signer: this.wallet, prefix: CHAIN_PREFIX, addr: CHAIN_RPC_URL });
-        const result = await tClient.sendMsgCreateSuperior({
-            value: {
-                ...msg,
-                signer: this.account,
-            }
-        })
+        const result = await tClient.sendMsgCreateSuperior({value: msg,fee: stdFee})
 
         if (result.code != 0) {
             throw new Error(`Transaction failed: ${result.rawLog}`)
@@ -172,11 +155,7 @@ export default class WorkloadApi {
 
     async updateParam(msg: MsgUpdateParam) {
         let tClient = txClient({ signer: this.wallet, prefix: CHAIN_PREFIX, addr: CHAIN_RPC_URL });
-        const result = await tClient.sendMsgUpdateParam({
-            value: {
-                ...msg,
-            }
-        })
+        const result = await tClient.sendMsgUpdateParam({value: msg,fee: stdFee})
 
         if (result.code != 0) {
             throw new Error(`Transaction failed: ${result.rawLog}`)

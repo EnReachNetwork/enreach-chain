@@ -2,7 +2,7 @@ import { DirectSecp256k1HdWallet } from '@cosmjs/proto-signing'
 import { txClient } from 'enreach-client-ts/lib/enreach.manager';
 import { queryClient } from "enreach-client-ts/lib/enreach.manager";
 import { MsgCreateSuperior, MsgGoWorking, MsgRegisterManager, QueryAllManagerResponse } from 'enreach-client-ts/lib/enreach.manager/module';
-import { CHAIN_API_URL, CHAIN_PREFIX, CHAIN_RPC_URL } from './consts';
+import { CHAIN_API_URL, CHAIN_PREFIX, CHAIN_RPC_URL, stdFee } from './consts';
 
 export default class ManagerApi {
     private mnemonic: string;
@@ -21,12 +21,7 @@ export default class ManagerApi {
 
     async registerManager(msg: MsgRegisterManager) {
         let tClient = txClient({ signer: this.wallet, prefix: CHAIN_PREFIX, addr: CHAIN_RPC_URL });
-        const result = await tClient.sendMsgRegisterManager({
-            value: {
-                ...msg,
-                managerAccount: this.account,
-            }
-        })
+        const result = await tClient.sendMsgRegisterManager({value: msg,fee: stdFee})
 
         if (result.code != 0) {
             throw new Error(`Transaction failed: ${result.rawLog}`)
@@ -35,11 +30,7 @@ export default class ManagerApi {
 
     async goWorking(msg: MsgGoWorking) {
         let tClient = txClient({ signer: this.wallet, prefix: CHAIN_PREFIX, addr: CHAIN_RPC_URL });
-        const result = await tClient.sendMsgGoWorking({
-            value: {
-                managerAccount: this.account,
-            }
-        })
+        const result = await tClient.sendMsgGoWorking({value: msg,fee: stdFee})
 
         if (result.code != 0) {
             throw new Error(`Transaction failed: ${result.rawLog}`)
@@ -48,12 +39,7 @@ export default class ManagerApi {
 
     async createSuperior(msg: MsgCreateSuperior) {
         let tClient = txClient({ signer: this.wallet, prefix: CHAIN_PREFIX, addr: CHAIN_RPC_URL });
-        const result = await tClient.sendMsgCreateSuperior({
-            value: {
-                ...msg,
-                signer: this.account,
-            }
-        })
+        const result = await tClient.sendMsgCreateSuperior({value: msg,fee: stdFee})
 
         if (result.code != 0) {
             throw new Error(`Transaction failed: ${result.rawLog}`)

@@ -85,12 +85,21 @@ async function main() {
 
 async function sendTokenForGasFee() {
   console.log("Send Tokens from Admin account to other accounts for gas fee");
+  console.log(`Admin account: ${bankAdminApi.account}`);
+
+  console.log(`Superior account: ${regionApi.account}`);
   await bankAdminApi.sendToken({fromAddress: bankAdminApi.account, toAddress: regionApi.account, amount: [{denom:"uekc", amount:"1000000000000"}]});
+  console.log(`Operator A account: ${operator_A_Api.account}`);
   await bankAdminApi.sendToken({fromAddress: bankAdminApi.account, toAddress: operator_A_Api.account, amount: [{denom:"uekc", amount:"1000000000000"}]});
+  console.log(`Operator B account: ${operator_B_Api.account}`);
   await bankAdminApi.sendToken({fromAddress: bankAdminApi.account, toAddress: operator_B_Api.account, amount: [{denom:"uekc", amount:"1000000000000"}]});
+  console.log(`Operator C account: ${operator_C_Api.account}`);
   await bankAdminApi.sendToken({fromAddress: bankAdminApi.account, toAddress: operator_C_Api.account, amount: [{denom:"uekc", amount:"1000000000000"}]});
+  console.log(`Manager A account: ${manager_A_Api.account}`);
   await bankAdminApi.sendToken({fromAddress: bankAdminApi.account, toAddress: manager_A_Api.account, amount: [{denom:"uekc", amount:"1000000000000"}]});
+  console.log(`Manager B account: ${manager_B_Api.account}`);
   await bankAdminApi.sendToken({fromAddress: bankAdminApi.account, toAddress: manager_B_Api.account, amount: [{denom:"uekc", amount:"1000000000000"}]});
+  console.log(`Manager C account: ${manager_C_Api.account}`);
   await bankAdminApi.sendToken({fromAddress: bankAdminApi.account, toAddress: manager_C_Api.account, amount: [{denom:"uekc", amount:"1000000000000"}]});
 }
 async function testManager(operatorApi: OperatorApi, managerApi: ManagerApi) {

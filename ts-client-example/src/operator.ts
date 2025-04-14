@@ -2,7 +2,7 @@ import { DirectSecp256k1HdWallet } from '@cosmjs/proto-signing'
 import { txClient } from 'enreach-client-ts/lib/enreach.manager';
 import { queryClient } from "enreach-client-ts/lib/enreach.manager";
 import { MsgActivateManager, MsgBindOperatorEVMAccount, MsgBindOperatorManagerAccount, MsgCreateOperator, MsgSetManagerRegion, QueryAllOperatorResponse } from 'enreach-client-ts/lib/enreach.manager/module';
-import { CHAIN_API_URL, CHAIN_PREFIX, CHAIN_RPC_URL } from './consts';
+import { CHAIN_API_URL, CHAIN_PREFIX, CHAIN_RPC_URL, stdFee } from './consts';
 
 export default class OperatorApi {
     private mnemonic: string;
@@ -21,12 +21,7 @@ export default class OperatorApi {
 
     async createOperator(msg: MsgCreateOperator) {
         let tClient = txClient({ signer: this.wallet, prefix: CHAIN_PREFIX, addr: CHAIN_RPC_URL });
-        const result = await tClient.sendMsgCreateOperator({
-            value: {
-                ...msg,
-                operatorAccount: this.account,
-            }
-        })
+        const result = await tClient.sendMsgCreateOperator({value: msg,fee: stdFee})
 
         if (result.code != 0) {
             throw new Error(`Transaction failed: ${result.rawLog}`)
@@ -35,12 +30,7 @@ export default class OperatorApi {
 
     async bindOperatorManagerAccount(msg: MsgBindOperatorManagerAccount) {
         let tClient = txClient({ signer: this.wallet, prefix: CHAIN_PREFIX, addr: CHAIN_RPC_URL });
-        const result = await tClient.sendMsgBindOperatorManagerAccount({
-            value: {
-                ...msg,
-                operatorAccount: this.account,
-            }
-        })
+        const result = await tClient.sendMsgBindOperatorManagerAccount({value: msg,fee: stdFee})
 
         if (result.code != 0) {
             throw new Error(`Transaction failed: ${result.rawLog}`)
@@ -49,12 +39,7 @@ export default class OperatorApi {
 
     async setManagerRegion(msg: MsgSetManagerRegion) {
         let tClient = txClient({ signer: this.wallet, prefix: CHAIN_PREFIX, addr: CHAIN_RPC_URL });
-        const result = await tClient.sendMsgSetManagerRegion({
-            value: {
-                ...msg,
-                operatorAccount: this.account,
-            }
-        })
+        const result = await tClient.sendMsgSetManagerRegion({value: msg,fee: stdFee})
 
         if (result.code != 0) {
             throw new Error(`Transaction failed: ${result.rawLog}`)
@@ -63,12 +48,7 @@ export default class OperatorApi {
 
     async activateManager(msg: MsgActivateManager) {
         let tClient = txClient({ signer: this.wallet, prefix: CHAIN_PREFIX, addr: CHAIN_RPC_URL });
-        const result = await tClient.sendMsgActivateManager({
-            value: {
-                ...msg,
-                operatorAccount: this.account,
-            }
-        })
+        const result = await tClient.sendMsgActivateManager({value: msg,fee: stdFee})
 
         if (result.code != 0) {
             throw new Error(`Transaction failed: ${result.rawLog}`)
@@ -77,12 +57,7 @@ export default class OperatorApi {
 
     async bindOperatorEVMAccount(msg: MsgBindOperatorEVMAccount) {
         let tClient = txClient({ signer: this.wallet, prefix: CHAIN_PREFIX, addr: CHAIN_RPC_URL });
-        const result = await tClient.sendMsgBindOperatorEVMAccount({
-            value: {
-                ...msg,
-                operatorAccount: this.account,
-            }
-        })
+        const result = await tClient.sendMsgBindOperatorEVMAccount({value: msg,fee: stdFee})
 
         if (result.code != 0) {
             throw new Error(`Transaction failed: ${result.rawLog}`)

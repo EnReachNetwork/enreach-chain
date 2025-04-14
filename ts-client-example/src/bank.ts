@@ -1,5 +1,5 @@
 import { DirectSecp256k1HdWallet } from '@cosmjs/proto-signing'
-import { CHAIN_API_URL, CHAIN_PREFIX, CHAIN_RPC_URL } from './consts';
+import { CHAIN_API_URL, CHAIN_PREFIX, CHAIN_RPC_URL, stdFee } from './consts';
 import { txClient } from 'enreach-client-ts/lib/cosmos.bank.v1beta1';
 import { MsgSend, queryClient } from 'enreach-client-ts/lib/cosmos.bank.v1beta1/module';
 
@@ -20,11 +20,7 @@ export default class BankApi {
 
     async sendToken(msg: MsgSend) {
         let tClient = txClient({ signer: this.wallet, prefix: CHAIN_PREFIX, addr: CHAIN_RPC_URL });
-        const result = await tClient.sendMsgSend({
-            value: {
-                ...msg,
-            }
-        })
+        const result = await tClient.sendMsgSend({value: msg,fee: stdFee})
 
         if (result.code != 0) {
             throw new Error(`Transaction failed: ${result.rawLog}`)
