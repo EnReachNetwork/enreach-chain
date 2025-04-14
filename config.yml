@@ -18,6 +18,7 @@ validators:
 - name: validator
   bonded: 10000000000uekc # 10000 EKC
   app:
+    minimum-gas-prices: "0.01uekc"
     pruning: "nothing"
   config:
     moniker: "EnreachKeeperNode"
