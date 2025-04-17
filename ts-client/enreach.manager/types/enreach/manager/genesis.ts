@@ -10,6 +10,7 @@ export const protobufPackage = "enreach.manager";
 
 /** GenesisState defines the manager module's genesis state. */
 export interface GenesisState {
+  adminAccount: string;
   /** params defines all the parameters of the module. */
   params: Params | undefined;
   managerList: Manager[];
@@ -21,6 +22,7 @@ export interface GenesisState {
 
 function createBaseGenesisState(): GenesisState {
   return {
+    adminAccount: "",
     params: undefined,
     managerList: [],
     managerCount: 0,
@@ -32,23 +34,26 @@ function createBaseGenesisState(): GenesisState {
 
 export const GenesisState = {
   encode(message: GenesisState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.adminAccount !== "") {
+      writer.uint32(10).string(message.adminAccount);
+    }
     if (message.params !== undefined) {
-      Params.encode(message.params, writer.uint32(10).fork()).ldelim();
+      Params.encode(message.params, writer.uint32(18).fork()).ldelim();
     }
     for (const v of message.managerList) {
-      Manager.encode(v!, writer.uint32(18).fork()).ldelim();
+      Manager.encode(v!, writer.uint32(26).fork()).ldelim();
     }
     if (message.managerCount !== 0) {
-      writer.uint32(24).uint64(message.managerCount);
+      writer.uint32(32).uint64(message.managerCount);
     }
     for (const v of message.operatorList) {
-      Operator.encode(v!, writer.uint32(34).fork()).ldelim();
+      Operator.encode(v!, writer.uint32(42).fork()).ldelim();
     }
     if (message.operatorCount !== 0) {
-      writer.uint32(40).uint64(message.operatorCount);
+      writer.uint32(48).uint64(message.operatorCount);
     }
     if (message.superior !== undefined) {
-      Superior.encode(message.superior, writer.uint32(50).fork()).ldelim();
+      Superior.encode(message.superior, writer.uint32(58).fork()).ldelim();
     }
     return writer;
   },
@@ -65,38 +70,45 @@ export const GenesisState = {
             break;
           }
 
-          message.params = Params.decode(reader, reader.uint32());
+          message.adminAccount = reader.string();
           continue;
         case 2:
           if (tag !== 18) {
             break;
           }
 
-          message.managerList.push(Manager.decode(reader, reader.uint32()));
+          message.params = Params.decode(reader, reader.uint32());
           continue;
         case 3:
-          if (tag !== 24) {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.managerList.push(Manager.decode(reader, reader.uint32()));
+          continue;
+        case 4:
+          if (tag !== 32) {
             break;
           }
 
           message.managerCount = longToNumber(reader.uint64() as Long);
           continue;
-        case 4:
-          if (tag !== 34) {
+        case 5:
+          if (tag !== 42) {
             break;
           }
 
           message.operatorList.push(Operator.decode(reader, reader.uint32()));
           continue;
-        case 5:
-          if (tag !== 40) {
+        case 6:
+          if (tag !== 48) {
             break;
           }
 
           message.operatorCount = longToNumber(reader.uint64() as Long);
           continue;
-        case 6:
-          if (tag !== 50) {
+        case 7:
+          if (tag !== 58) {
             break;
           }
 
@@ -113,6 +125,7 @@ export const GenesisState = {
 
   fromJSON(object: any): GenesisState {
     return {
+      adminAccount: isSet(object.adminAccount) ? String(object.adminAccount) : "",
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
       managerList: Array.isArray(object?.managerList) ? object.managerList.map((e: any) => Manager.fromJSON(e)) : [],
       managerCount: isSet(object.managerCount) ? Number(object.managerCount) : 0,
@@ -126,6 +139,9 @@ export const GenesisState = {
 
   toJSON(message: GenesisState): unknown {
     const obj: any = {};
+    if (message.adminAccount !== "") {
+      obj.adminAccount = message.adminAccount;
+    }
     if (message.params !== undefined) {
       obj.params = Params.toJSON(message.params);
     }
@@ -152,6 +168,7 @@ export const GenesisState = {
   },
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
+    message.adminAccount = object.adminAccount ?? "";
     message.params = (object.params !== undefined && object.params !== null)
       ? Params.fromPartial(object.params)
       : undefined;

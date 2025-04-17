@@ -6,6 +6,7 @@ import { User } from "./user";
 export declare const protobufPackage = "enreach.edgenode";
 /** GenesisState defines the edgenode module's genesis state. */
 export interface GenesisState {
+    adminAccount: string;
     /** params defines all the parameters of the module. */
     params: Params | undefined;
     userList: User[];

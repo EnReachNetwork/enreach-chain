@@ -2,16 +2,11 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { ConfigRequest } from "./types/cosmos/base/node/v1beta1/query";
 import { ConfigResponse } from "./types/cosmos/base/node/v1beta1/query";
 import { StatusRequest } from "./types/cosmos/base/node/v1beta1/query";
 import { StatusResponse } from "./types/cosmos/base/node/v1beta1/query";
-export { ConfigRequest, ConfigResponse, StatusRequest, StatusResponse };
-type sendConfigRequestParams = {
-    value: ConfigRequest;
-    fee?: StdFee;
-    memo?: string;
-};
+import { ConfigRequest } from "./types/cosmos/base/node/v1beta1/query";
+export { ConfigResponse, StatusRequest, StatusResponse, ConfigRequest };
 type sendConfigResponseParams = {
     value: ConfigResponse;
     fee?: StdFee;
@@ -27,8 +22,10 @@ type sendStatusResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type configRequestParams = {
+type sendConfigRequestParams = {
     value: ConfigRequest;
+    fee?: StdFee;
+    memo?: string;
 };
 type configResponseParams = {
     value: ConfigResponse;
@@ -39,6 +36,9 @@ type statusRequestParams = {
 type statusResponseParams = {
     value: StatusResponse;
 };
+type configRequestParams = {
+    value: ConfigRequest;
+};
 export declare const registry: any;
 interface TxClientOptions {
     addr: string;
@@ -46,14 +46,14 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendConfigRequest({ value, fee, memo }: sendConfigRequestParams): Promise<DeliverTxResponse>;
     sendConfigResponse({ value, fee, memo }: sendConfigResponseParams): Promise<DeliverTxResponse>;
     sendStatusRequest({ value, fee, memo }: sendStatusRequestParams): Promise<DeliverTxResponse>;
     sendStatusResponse({ value, fee, memo }: sendStatusResponseParams): Promise<DeliverTxResponse>;
-    configRequest({ value }: configRequestParams): EncodeObject;
+    sendConfigRequest({ value, fee, memo }: sendConfigRequestParams): Promise<DeliverTxResponse>;
     configResponse({ value }: configResponseParams): EncodeObject;
     statusRequest({ value }: statusRequestParams): EncodeObject;
     statusResponse({ value }: statusResponseParams): EncodeObject;
+    configRequest({ value }: configRequestParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

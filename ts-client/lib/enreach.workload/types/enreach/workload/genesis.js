@@ -13,6 +13,7 @@ const superior_1 = require("./superior");
 exports.protobufPackage = "enreach.workload";
 function createBaseGenesisState() {
     return {
+        adminAccount: "",
         params: undefined,
         superior: undefined,
         currentEpoch: undefined,
@@ -23,23 +24,26 @@ function createBaseGenesisState() {
 }
 exports.GenesisState = {
     encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.adminAccount !== "") {
+            writer.uint32(10).string(message.adminAccount);
+        }
         if (message.params !== undefined) {
-            params_1.Params.encode(message.params, writer.uint32(10).fork()).ldelim();
+            params_1.Params.encode(message.params, writer.uint32(18).fork()).ldelim();
         }
         if (message.superior !== undefined) {
-            superior_1.Superior.encode(message.superior, writer.uint32(18).fork()).ldelim();
+            superior_1.Superior.encode(message.superior, writer.uint32(26).fork()).ldelim();
         }
         if (message.currentEpoch !== undefined) {
-            epoch_info_1.EpochInfo.encode(message.currentEpoch, writer.uint32(26).fork()).ldelim();
+            epoch_info_1.EpochInfo.encode(message.currentEpoch, writer.uint32(34).fork()).ldelim();
         }
         if (message.pendingNextEpoch !== undefined) {
-            epoch_info_1.EpochInfo.encode(message.pendingNextEpoch, writer.uint32(34).fork()).ldelim();
+            epoch_info_1.EpochInfo.encode(message.pendingNextEpoch, writer.uint32(42).fork()).ldelim();
         }
         if (message.currentEra !== undefined) {
-            era_info_1.EraInfo.encode(message.currentEra, writer.uint32(42).fork()).ldelim();
+            era_info_1.EraInfo.encode(message.currentEra, writer.uint32(50).fork()).ldelim();
         }
         if (message.pendingNextEra !== undefined) {
-            era_info_1.EraInfo.encode(message.pendingNextEra, writer.uint32(50).fork()).ldelim();
+            era_info_1.EraInfo.encode(message.pendingNextEra, writer.uint32(58).fork()).ldelim();
         }
         return writer;
     },
@@ -54,34 +58,40 @@ exports.GenesisState = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.params = params_1.Params.decode(reader, reader.uint32());
+                    message.adminAccount = reader.string();
                     continue;
                 case 2:
                     if (tag !== 18) {
                         break;
                     }
-                    message.superior = superior_1.Superior.decode(reader, reader.uint32());
+                    message.params = params_1.Params.decode(reader, reader.uint32());
                     continue;
                 case 3:
                     if (tag !== 26) {
                         break;
                     }
-                    message.currentEpoch = epoch_info_1.EpochInfo.decode(reader, reader.uint32());
+                    message.superior = superior_1.Superior.decode(reader, reader.uint32());
                     continue;
                 case 4:
                     if (tag !== 34) {
                         break;
                     }
-                    message.pendingNextEpoch = epoch_info_1.EpochInfo.decode(reader, reader.uint32());
+                    message.currentEpoch = epoch_info_1.EpochInfo.decode(reader, reader.uint32());
                     continue;
                 case 5:
                     if (tag !== 42) {
                         break;
                     }
-                    message.currentEra = era_info_1.EraInfo.decode(reader, reader.uint32());
+                    message.pendingNextEpoch = epoch_info_1.EpochInfo.decode(reader, reader.uint32());
                     continue;
                 case 6:
                     if (tag !== 50) {
+                        break;
+                    }
+                    message.currentEra = era_info_1.EraInfo.decode(reader, reader.uint32());
+                    continue;
+                case 7:
+                    if (tag !== 58) {
                         break;
                     }
                     message.pendingNextEra = era_info_1.EraInfo.decode(reader, reader.uint32());
@@ -96,6 +106,7 @@ exports.GenesisState = {
     },
     fromJSON(object) {
         return {
+            adminAccount: isSet(object.adminAccount) ? String(object.adminAccount) : "",
             params: isSet(object.params) ? params_1.Params.fromJSON(object.params) : undefined,
             superior: isSet(object.superior) ? superior_1.Superior.fromJSON(object.superior) : undefined,
             currentEpoch: isSet(object.currentEpoch) ? epoch_info_1.EpochInfo.fromJSON(object.currentEpoch) : undefined,
@@ -106,6 +117,9 @@ exports.GenesisState = {
     },
     toJSON(message) {
         const obj = {};
+        if (message.adminAccount !== "") {
+            obj.adminAccount = message.adminAccount;
+        }
         if (message.params !== undefined) {
             obj.params = params_1.Params.toJSON(message.params);
         }
@@ -131,6 +145,7 @@ exports.GenesisState = {
     },
     fromPartial(object) {
         const message = createBaseGenesisState();
+        message.adminAccount = object.adminAccount ?? "";
         message.params = (object.params !== undefined && object.params !== null)
             ? params_1.Params.fromPartial(object.params)
             : undefined;

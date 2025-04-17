@@ -13,27 +13,38 @@ const superior_1 = require("./superior");
 const user_1 = require("./user");
 exports.protobufPackage = "enreach.edgenode";
 function createBaseGenesisState() {
-    return { params: undefined, userList: [], userCount: 0, nodeList: [], nodeCount: 0, superior: undefined };
+    return {
+        adminAccount: "",
+        params: undefined,
+        userList: [],
+        userCount: 0,
+        nodeList: [],
+        nodeCount: 0,
+        superior: undefined,
+    };
 }
 exports.GenesisState = {
     encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.adminAccount !== "") {
+            writer.uint32(10).string(message.adminAccount);
+        }
         if (message.params !== undefined) {
-            params_1.Params.encode(message.params, writer.uint32(10).fork()).ldelim();
+            params_1.Params.encode(message.params, writer.uint32(18).fork()).ldelim();
         }
         for (const v of message.userList) {
-            user_1.User.encode(v, writer.uint32(18).fork()).ldelim();
+            user_1.User.encode(v, writer.uint32(26).fork()).ldelim();
         }
         if (message.userCount !== 0) {
-            writer.uint32(24).uint64(message.userCount);
+            writer.uint32(32).uint64(message.userCount);
         }
         for (const v of message.nodeList) {
-            node_1.Node.encode(v, writer.uint32(34).fork()).ldelim();
+            node_1.Node.encode(v, writer.uint32(42).fork()).ldelim();
         }
         if (message.nodeCount !== 0) {
-            writer.uint32(40).uint64(message.nodeCount);
+            writer.uint32(48).uint64(message.nodeCount);
         }
         if (message.superior !== undefined) {
-            superior_1.Superior.encode(message.superior, writer.uint32(50).fork()).ldelim();
+            superior_1.Superior.encode(message.superior, writer.uint32(58).fork()).ldelim();
         }
         return writer;
     },
@@ -48,34 +59,40 @@ exports.GenesisState = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.params = params_1.Params.decode(reader, reader.uint32());
+                    message.adminAccount = reader.string();
                     continue;
                 case 2:
                     if (tag !== 18) {
                         break;
                     }
-                    message.userList.push(user_1.User.decode(reader, reader.uint32()));
+                    message.params = params_1.Params.decode(reader, reader.uint32());
                     continue;
                 case 3:
-                    if (tag !== 24) {
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.userList.push(user_1.User.decode(reader, reader.uint32()));
+                    continue;
+                case 4:
+                    if (tag !== 32) {
                         break;
                     }
                     message.userCount = longToNumber(reader.uint64());
                     continue;
-                case 4:
-                    if (tag !== 34) {
+                case 5:
+                    if (tag !== 42) {
                         break;
                     }
                     message.nodeList.push(node_1.Node.decode(reader, reader.uint32()));
                     continue;
-                case 5:
-                    if (tag !== 40) {
+                case 6:
+                    if (tag !== 48) {
                         break;
                     }
                     message.nodeCount = longToNumber(reader.uint64());
                     continue;
-                case 6:
-                    if (tag !== 50) {
+                case 7:
+                    if (tag !== 58) {
                         break;
                     }
                     message.superior = superior_1.Superior.decode(reader, reader.uint32());
@@ -90,6 +107,7 @@ exports.GenesisState = {
     },
     fromJSON(object) {
         return {
+            adminAccount: isSet(object.adminAccount) ? String(object.adminAccount) : "",
             params: isSet(object.params) ? params_1.Params.fromJSON(object.params) : undefined,
             userList: Array.isArray(object?.userList) ? object.userList.map((e) => user_1.User.fromJSON(e)) : [],
             userCount: isSet(object.userCount) ? Number(object.userCount) : 0,
@@ -100,6 +118,9 @@ exports.GenesisState = {
     },
     toJSON(message) {
         const obj = {};
+        if (message.adminAccount !== "") {
+            obj.adminAccount = message.adminAccount;
+        }
         if (message.params !== undefined) {
             obj.params = params_1.Params.toJSON(message.params);
         }
@@ -125,6 +146,7 @@ exports.GenesisState = {
     },
     fromPartial(object) {
         const message = createBaseGenesisState();
+        message.adminAccount = object.adminAccount ?? "";
         message.params = (object.params !== undefined && object.params !== null)
             ? params_1.Params.fromPartial(object.params)
             : undefined;

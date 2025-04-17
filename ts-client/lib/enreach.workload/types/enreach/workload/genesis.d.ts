@@ -6,6 +6,7 @@ import { Superior } from "./superior";
 export declare const protobufPackage = "enreach.workload";
 /** GenesisState defines the workload module's genesis state. */
 export interface GenesisState {
+    adminAccount: string;
     /** params defines all the parameters of the module. */
     params: Params | undefined;
     superior: Superior | undefined;

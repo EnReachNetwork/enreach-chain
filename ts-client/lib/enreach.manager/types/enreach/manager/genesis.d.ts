@@ -6,6 +6,7 @@ import { Superior } from "./superior";
 export declare const protobufPackage = "enreach.manager";
 /** GenesisState defines the manager module's genesis state. */
 export interface GenesisState {
+    adminAccount: string;
     /** params defines all the parameters of the module. */
     params: Params | undefined;
     managerList: Manager[];

@@ -6,6 +6,7 @@ export declare const protobufPackage = "enreach.registry";
 /** GenesisState defines the registry module's genesis state. */
 export interface GenesisState {
     /** params defines all the parameters of the module. */
+    adminAccount: string;
     params: Params | undefined;
     regionList: Region[];
     regionCount: number;

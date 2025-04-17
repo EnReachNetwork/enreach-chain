@@ -10,6 +10,7 @@ export const protobufPackage = "enreach.registry";
 /** GenesisState defines the registry module's genesis state. */
 export interface GenesisState {
   /** params defines all the parameters of the module. */
+  adminAccount: string;
   params: Params | undefined;
   regionList: Region[];
   regionCount: number;
@@ -17,22 +18,25 @@ export interface GenesisState {
 }
 
 function createBaseGenesisState(): GenesisState {
-  return { params: undefined, regionList: [], regionCount: 0, superior: undefined };
+  return { adminAccount: "", params: undefined, regionList: [], regionCount: 0, superior: undefined };
 }
 
 export const GenesisState = {
   encode(message: GenesisState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.adminAccount !== "") {
+      writer.uint32(10).string(message.adminAccount);
+    }
     if (message.params !== undefined) {
-      Params.encode(message.params, writer.uint32(10).fork()).ldelim();
+      Params.encode(message.params, writer.uint32(18).fork()).ldelim();
     }
     for (const v of message.regionList) {
-      Region.encode(v!, writer.uint32(18).fork()).ldelim();
+      Region.encode(v!, writer.uint32(26).fork()).ldelim();
     }
     if (message.regionCount !== 0) {
-      writer.uint32(24).uint64(message.regionCount);
+      writer.uint32(32).uint64(message.regionCount);
     }
     if (message.superior !== undefined) {
-      Superior.encode(message.superior, writer.uint32(34).fork()).ldelim();
+      Superior.encode(message.superior, writer.uint32(42).fork()).ldelim();
     }
     return writer;
   },
@@ -49,24 +53,31 @@ export const GenesisState = {
             break;
           }
 
-          message.params = Params.decode(reader, reader.uint32());
+          message.adminAccount = reader.string();
           continue;
         case 2:
           if (tag !== 18) {
             break;
           }
 
-          message.regionList.push(Region.decode(reader, reader.uint32()));
+          message.params = Params.decode(reader, reader.uint32());
           continue;
         case 3:
-          if (tag !== 24) {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.regionList.push(Region.decode(reader, reader.uint32()));
+          continue;
+        case 4:
+          if (tag !== 32) {
             break;
           }
 
           message.regionCount = longToNumber(reader.uint64() as Long);
           continue;
-        case 4:
-          if (tag !== 34) {
+        case 5:
+          if (tag !== 42) {
             break;
           }
 
@@ -83,6 +94,7 @@ export const GenesisState = {
 
   fromJSON(object: any): GenesisState {
     return {
+      adminAccount: isSet(object.adminAccount) ? String(object.adminAccount) : "",
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
       regionList: Array.isArray(object?.regionList) ? object.regionList.map((e: any) => Region.fromJSON(e)) : [],
       regionCount: isSet(object.regionCount) ? Number(object.regionCount) : 0,
@@ -92,6 +104,9 @@ export const GenesisState = {
 
   toJSON(message: GenesisState): unknown {
     const obj: any = {};
+    if (message.adminAccount !== "") {
+      obj.adminAccount = message.adminAccount;
+    }
     if (message.params !== undefined) {
       obj.params = Params.toJSON(message.params);
     }
@@ -112,6 +127,7 @@ export const GenesisState = {
   },
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
+    message.adminAccount = object.adminAccount ?? "";
     message.params = (object.params !== undefined && object.params !== null)
       ? Params.fromPartial(object.params)
       : undefined;

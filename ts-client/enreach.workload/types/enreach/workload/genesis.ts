@@ -9,6 +9,7 @@ export const protobufPackage = "enreach.workload";
 
 /** GenesisState defines the workload module's genesis state. */
 export interface GenesisState {
+  adminAccount: string;
   /** params defines all the parameters of the module. */
   params: Params | undefined;
   superior: Superior | undefined;
@@ -20,6 +21,7 @@ export interface GenesisState {
 
 function createBaseGenesisState(): GenesisState {
   return {
+    adminAccount: "",
     params: undefined,
     superior: undefined,
     currentEpoch: undefined,
@@ -31,23 +33,26 @@ function createBaseGenesisState(): GenesisState {
 
 export const GenesisState = {
   encode(message: GenesisState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.adminAccount !== "") {
+      writer.uint32(10).string(message.adminAccount);
+    }
     if (message.params !== undefined) {
-      Params.encode(message.params, writer.uint32(10).fork()).ldelim();
+      Params.encode(message.params, writer.uint32(18).fork()).ldelim();
     }
     if (message.superior !== undefined) {
-      Superior.encode(message.superior, writer.uint32(18).fork()).ldelim();
+      Superior.encode(message.superior, writer.uint32(26).fork()).ldelim();
     }
     if (message.currentEpoch !== undefined) {
-      EpochInfo.encode(message.currentEpoch, writer.uint32(26).fork()).ldelim();
+      EpochInfo.encode(message.currentEpoch, writer.uint32(34).fork()).ldelim();
     }
     if (message.pendingNextEpoch !== undefined) {
-      EpochInfo.encode(message.pendingNextEpoch, writer.uint32(34).fork()).ldelim();
+      EpochInfo.encode(message.pendingNextEpoch, writer.uint32(42).fork()).ldelim();
     }
     if (message.currentEra !== undefined) {
-      EraInfo.encode(message.currentEra, writer.uint32(42).fork()).ldelim();
+      EraInfo.encode(message.currentEra, writer.uint32(50).fork()).ldelim();
     }
     if (message.pendingNextEra !== undefined) {
-      EraInfo.encode(message.pendingNextEra, writer.uint32(50).fork()).ldelim();
+      EraInfo.encode(message.pendingNextEra, writer.uint32(58).fork()).ldelim();
     }
     return writer;
   },
@@ -64,38 +69,45 @@ export const GenesisState = {
             break;
           }
 
-          message.params = Params.decode(reader, reader.uint32());
+          message.adminAccount = reader.string();
           continue;
         case 2:
           if (tag !== 18) {
             break;
           }
 
-          message.superior = Superior.decode(reader, reader.uint32());
+          message.params = Params.decode(reader, reader.uint32());
           continue;
         case 3:
           if (tag !== 26) {
             break;
           }
 
-          message.currentEpoch = EpochInfo.decode(reader, reader.uint32());
+          message.superior = Superior.decode(reader, reader.uint32());
           continue;
         case 4:
           if (tag !== 34) {
             break;
           }
 
-          message.pendingNextEpoch = EpochInfo.decode(reader, reader.uint32());
+          message.currentEpoch = EpochInfo.decode(reader, reader.uint32());
           continue;
         case 5:
           if (tag !== 42) {
             break;
           }
 
-          message.currentEra = EraInfo.decode(reader, reader.uint32());
+          message.pendingNextEpoch = EpochInfo.decode(reader, reader.uint32());
           continue;
         case 6:
           if (tag !== 50) {
+            break;
+          }
+
+          message.currentEra = EraInfo.decode(reader, reader.uint32());
+          continue;
+        case 7:
+          if (tag !== 58) {
             break;
           }
 
@@ -112,6 +124,7 @@ export const GenesisState = {
 
   fromJSON(object: any): GenesisState {
     return {
+      adminAccount: isSet(object.adminAccount) ? String(object.adminAccount) : "",
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
       superior: isSet(object.superior) ? Superior.fromJSON(object.superior) : undefined,
       currentEpoch: isSet(object.currentEpoch) ? EpochInfo.fromJSON(object.currentEpoch) : undefined,
@@ -123,6 +136,9 @@ export const GenesisState = {
 
   toJSON(message: GenesisState): unknown {
     const obj: any = {};
+    if (message.adminAccount !== "") {
+      obj.adminAccount = message.adminAccount;
+    }
     if (message.params !== undefined) {
       obj.params = Params.toJSON(message.params);
     }
@@ -149,6 +165,7 @@ export const GenesisState = {
   },
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
+    message.adminAccount = object.adminAccount ?? "";
     message.params = (object.params !== undefined && object.params !== null)
       ? Params.fromPartial(object.params)
       : undefined;

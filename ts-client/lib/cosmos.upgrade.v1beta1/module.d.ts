@@ -2,32 +2,27 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { Plan } from "./types/cosmos/upgrade/v1beta1/upgrade";
-import { QueryCurrentPlanRequest } from "./types/cosmos/upgrade/v1beta1/query";
-import { QueryUpgradedConsensusStateRequest } from "./types/cosmos/upgrade/v1beta1/query";
-import { QueryUpgradedConsensusStateResponse } from "./types/cosmos/upgrade/v1beta1/query";
-import { ModuleVersion } from "./types/cosmos/upgrade/v1beta1/upgrade";
-import { QueryCurrentPlanResponse } from "./types/cosmos/upgrade/v1beta1/query";
-import { QueryAppliedPlanResponse } from "./types/cosmos/upgrade/v1beta1/query";
-import { CancelSoftwareUpgradeProposal } from "./types/cosmos/upgrade/v1beta1/upgrade";
-import { MsgSoftwareUpgrade } from "./types/cosmos/upgrade/v1beta1/tx";
-import { MsgCancelUpgrade } from "./types/cosmos/upgrade/v1beta1/tx";
-import { QueryAuthorityRequest } from "./types/cosmos/upgrade/v1beta1/query";
-import { SoftwareUpgradeProposal } from "./types/cosmos/upgrade/v1beta1/upgrade";
-import { MsgSoftwareUpgradeResponse } from "./types/cosmos/upgrade/v1beta1/tx";
-import { MsgCancelUpgradeResponse } from "./types/cosmos/upgrade/v1beta1/tx";
 import { QueryAppliedPlanRequest } from "./types/cosmos/upgrade/v1beta1/query";
+import { QueryUpgradedConsensusStateRequest } from "./types/cosmos/upgrade/v1beta1/query";
+import { QueryAuthorityResponse } from "./types/cosmos/upgrade/v1beta1/query";
+import { ModuleVersion } from "./types/cosmos/upgrade/v1beta1/upgrade";
+import { MsgCancelUpgradeResponse } from "./types/cosmos/upgrade/v1beta1/tx";
+import { Plan } from "./types/cosmos/upgrade/v1beta1/upgrade";
+import { SoftwareUpgradeProposal } from "./types/cosmos/upgrade/v1beta1/upgrade";
+import { QueryCurrentPlanRequest } from "./types/cosmos/upgrade/v1beta1/query";
+import { QueryCurrentPlanResponse } from "./types/cosmos/upgrade/v1beta1/query";
+import { QueryUpgradedConsensusStateResponse } from "./types/cosmos/upgrade/v1beta1/query";
+import { QueryAuthorityRequest } from "./types/cosmos/upgrade/v1beta1/query";
+import { MsgSoftwareUpgradeResponse } from "./types/cosmos/upgrade/v1beta1/tx";
+import { MsgCancelUpgrade } from "./types/cosmos/upgrade/v1beta1/tx";
+import { CancelSoftwareUpgradeProposal } from "./types/cosmos/upgrade/v1beta1/upgrade";
+import { QueryAppliedPlanResponse } from "./types/cosmos/upgrade/v1beta1/query";
 import { QueryModuleVersionsRequest } from "./types/cosmos/upgrade/v1beta1/query";
 import { QueryModuleVersionsResponse } from "./types/cosmos/upgrade/v1beta1/query";
-import { QueryAuthorityResponse } from "./types/cosmos/upgrade/v1beta1/query";
-export { Plan, QueryCurrentPlanRequest, QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse, ModuleVersion, QueryCurrentPlanResponse, QueryAppliedPlanResponse, CancelSoftwareUpgradeProposal, MsgSoftwareUpgrade, MsgCancelUpgrade, QueryAuthorityRequest, SoftwareUpgradeProposal, MsgSoftwareUpgradeResponse, MsgCancelUpgradeResponse, QueryAppliedPlanRequest, QueryModuleVersionsRequest, QueryModuleVersionsResponse, QueryAuthorityResponse };
-type sendPlanParams = {
-    value: Plan;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryCurrentPlanRequestParams = {
-    value: QueryCurrentPlanRequest;
+import { MsgSoftwareUpgrade } from "./types/cosmos/upgrade/v1beta1/tx";
+export { QueryAppliedPlanRequest, QueryUpgradedConsensusStateRequest, QueryAuthorityResponse, ModuleVersion, MsgCancelUpgradeResponse, Plan, SoftwareUpgradeProposal, QueryCurrentPlanRequest, QueryCurrentPlanResponse, QueryUpgradedConsensusStateResponse, QueryAuthorityRequest, MsgSoftwareUpgradeResponse, MsgCancelUpgrade, CancelSoftwareUpgradeProposal, QueryAppliedPlanResponse, QueryModuleVersionsRequest, QueryModuleVersionsResponse, MsgSoftwareUpgrade };
+type sendQueryAppliedPlanRequestParams = {
+    value: QueryAppliedPlanRequest;
     fee?: StdFee;
     memo?: string;
 };
@@ -36,8 +31,8 @@ type sendQueryUpgradedConsensusStateRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryUpgradedConsensusStateResponseParams = {
-    value: QueryUpgradedConsensusStateResponse;
+type sendQueryAuthorityResponseParams = {
+    value: QueryAuthorityResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -46,33 +41,13 @@ type sendModuleVersionParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryCurrentPlanResponseParams = {
-    value: QueryCurrentPlanResponse;
+type sendMsgCancelUpgradeResponseParams = {
+    value: MsgCancelUpgradeResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryAppliedPlanResponseParams = {
-    value: QueryAppliedPlanResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendCancelSoftwareUpgradeProposalParams = {
-    value: CancelSoftwareUpgradeProposal;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgSoftwareUpgradeParams = {
-    value: MsgSoftwareUpgrade;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgCancelUpgradeParams = {
-    value: MsgCancelUpgrade;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryAuthorityRequestParams = {
-    value: QueryAuthorityRequest;
+type sendPlanParams = {
+    value: Plan;
     fee?: StdFee;
     memo?: string;
 };
@@ -81,18 +56,43 @@ type sendSoftwareUpgradeProposalParams = {
     fee?: StdFee;
     memo?: string;
 };
+type sendQueryCurrentPlanRequestParams = {
+    value: QueryCurrentPlanRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryCurrentPlanResponseParams = {
+    value: QueryCurrentPlanResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryUpgradedConsensusStateResponseParams = {
+    value: QueryUpgradedConsensusStateResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryAuthorityRequestParams = {
+    value: QueryAuthorityRequest;
+    fee?: StdFee;
+    memo?: string;
+};
 type sendMsgSoftwareUpgradeResponseParams = {
     value: MsgSoftwareUpgradeResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgCancelUpgradeResponseParams = {
-    value: MsgCancelUpgradeResponse;
+type sendMsgCancelUpgradeParams = {
+    value: MsgCancelUpgrade;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryAppliedPlanRequestParams = {
-    value: QueryAppliedPlanRequest;
+type sendCancelSoftwareUpgradeProposalParams = {
+    value: CancelSoftwareUpgradeProposal;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryAppliedPlanResponseParams = {
+    value: QueryAppliedPlanResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -106,55 +106,55 @@ type sendQueryModuleVersionsResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryAuthorityResponseParams = {
-    value: QueryAuthorityResponse;
+type sendMsgSoftwareUpgradeParams = {
+    value: MsgSoftwareUpgrade;
     fee?: StdFee;
     memo?: string;
 };
-type planParams = {
-    value: Plan;
-};
-type queryCurrentPlanRequestParams = {
-    value: QueryCurrentPlanRequest;
+type queryAppliedPlanRequestParams = {
+    value: QueryAppliedPlanRequest;
 };
 type queryUpgradedConsensusStateRequestParams = {
     value: QueryUpgradedConsensusStateRequest;
 };
-type queryUpgradedConsensusStateResponseParams = {
-    value: QueryUpgradedConsensusStateResponse;
+type queryAuthorityResponseParams = {
+    value: QueryAuthorityResponse;
 };
 type moduleVersionParams = {
     value: ModuleVersion;
 };
-type queryCurrentPlanResponseParams = {
-    value: QueryCurrentPlanResponse;
+type msgCancelUpgradeResponseParams = {
+    value: MsgCancelUpgradeResponse;
 };
-type queryAppliedPlanResponseParams = {
-    value: QueryAppliedPlanResponse;
-};
-type cancelSoftwareUpgradeProposalParams = {
-    value: CancelSoftwareUpgradeProposal;
-};
-type msgSoftwareUpgradeParams = {
-    value: MsgSoftwareUpgrade;
-};
-type msgCancelUpgradeParams = {
-    value: MsgCancelUpgrade;
-};
-type queryAuthorityRequestParams = {
-    value: QueryAuthorityRequest;
+type planParams = {
+    value: Plan;
 };
 type softwareUpgradeProposalParams = {
     value: SoftwareUpgradeProposal;
 };
+type queryCurrentPlanRequestParams = {
+    value: QueryCurrentPlanRequest;
+};
+type queryCurrentPlanResponseParams = {
+    value: QueryCurrentPlanResponse;
+};
+type queryUpgradedConsensusStateResponseParams = {
+    value: QueryUpgradedConsensusStateResponse;
+};
+type queryAuthorityRequestParams = {
+    value: QueryAuthorityRequest;
+};
 type msgSoftwareUpgradeResponseParams = {
     value: MsgSoftwareUpgradeResponse;
 };
-type msgCancelUpgradeResponseParams = {
-    value: MsgCancelUpgradeResponse;
+type msgCancelUpgradeParams = {
+    value: MsgCancelUpgrade;
 };
-type queryAppliedPlanRequestParams = {
-    value: QueryAppliedPlanRequest;
+type cancelSoftwareUpgradeProposalParams = {
+    value: CancelSoftwareUpgradeProposal;
+};
+type queryAppliedPlanResponseParams = {
+    value: QueryAppliedPlanResponse;
 };
 type queryModuleVersionsRequestParams = {
     value: QueryModuleVersionsRequest;
@@ -162,8 +162,8 @@ type queryModuleVersionsRequestParams = {
 type queryModuleVersionsResponseParams = {
     value: QueryModuleVersionsResponse;
 };
-type queryAuthorityResponseParams = {
-    value: QueryAuthorityResponse;
+type msgSoftwareUpgradeParams = {
+    value: MsgSoftwareUpgrade;
 };
 export declare const registry: any;
 interface TxClientOptions {
@@ -172,42 +172,42 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendPlan({ value, fee, memo }: sendPlanParams): Promise<DeliverTxResponse>;
-    sendQueryCurrentPlanRequest({ value, fee, memo }: sendQueryCurrentPlanRequestParams): Promise<DeliverTxResponse>;
-    sendQueryUpgradedConsensusStateRequest({ value, fee, memo }: sendQueryUpgradedConsensusStateRequestParams): Promise<DeliverTxResponse>;
-    sendQueryUpgradedConsensusStateResponse({ value, fee, memo }: sendQueryUpgradedConsensusStateResponseParams): Promise<DeliverTxResponse>;
-    sendModuleVersion({ value, fee, memo }: sendModuleVersionParams): Promise<DeliverTxResponse>;
-    sendQueryCurrentPlanResponse({ value, fee, memo }: sendQueryCurrentPlanResponseParams): Promise<DeliverTxResponse>;
-    sendQueryAppliedPlanResponse({ value, fee, memo }: sendQueryAppliedPlanResponseParams): Promise<DeliverTxResponse>;
-    sendCancelSoftwareUpgradeProposal({ value, fee, memo }: sendCancelSoftwareUpgradeProposalParams): Promise<DeliverTxResponse>;
-    sendMsgSoftwareUpgrade({ value, fee, memo }: sendMsgSoftwareUpgradeParams): Promise<DeliverTxResponse>;
-    sendMsgCancelUpgrade({ value, fee, memo }: sendMsgCancelUpgradeParams): Promise<DeliverTxResponse>;
-    sendQueryAuthorityRequest({ value, fee, memo }: sendQueryAuthorityRequestParams): Promise<DeliverTxResponse>;
-    sendSoftwareUpgradeProposal({ value, fee, memo }: sendSoftwareUpgradeProposalParams): Promise<DeliverTxResponse>;
-    sendMsgSoftwareUpgradeResponse({ value, fee, memo }: sendMsgSoftwareUpgradeResponseParams): Promise<DeliverTxResponse>;
-    sendMsgCancelUpgradeResponse({ value, fee, memo }: sendMsgCancelUpgradeResponseParams): Promise<DeliverTxResponse>;
     sendQueryAppliedPlanRequest({ value, fee, memo }: sendQueryAppliedPlanRequestParams): Promise<DeliverTxResponse>;
+    sendQueryUpgradedConsensusStateRequest({ value, fee, memo }: sendQueryUpgradedConsensusStateRequestParams): Promise<DeliverTxResponse>;
+    sendQueryAuthorityResponse({ value, fee, memo }: sendQueryAuthorityResponseParams): Promise<DeliverTxResponse>;
+    sendModuleVersion({ value, fee, memo }: sendModuleVersionParams): Promise<DeliverTxResponse>;
+    sendMsgCancelUpgradeResponse({ value, fee, memo }: sendMsgCancelUpgradeResponseParams): Promise<DeliverTxResponse>;
+    sendPlan({ value, fee, memo }: sendPlanParams): Promise<DeliverTxResponse>;
+    sendSoftwareUpgradeProposal({ value, fee, memo }: sendSoftwareUpgradeProposalParams): Promise<DeliverTxResponse>;
+    sendQueryCurrentPlanRequest({ value, fee, memo }: sendQueryCurrentPlanRequestParams): Promise<DeliverTxResponse>;
+    sendQueryCurrentPlanResponse({ value, fee, memo }: sendQueryCurrentPlanResponseParams): Promise<DeliverTxResponse>;
+    sendQueryUpgradedConsensusStateResponse({ value, fee, memo }: sendQueryUpgradedConsensusStateResponseParams): Promise<DeliverTxResponse>;
+    sendQueryAuthorityRequest({ value, fee, memo }: sendQueryAuthorityRequestParams): Promise<DeliverTxResponse>;
+    sendMsgSoftwareUpgradeResponse({ value, fee, memo }: sendMsgSoftwareUpgradeResponseParams): Promise<DeliverTxResponse>;
+    sendMsgCancelUpgrade({ value, fee, memo }: sendMsgCancelUpgradeParams): Promise<DeliverTxResponse>;
+    sendCancelSoftwareUpgradeProposal({ value, fee, memo }: sendCancelSoftwareUpgradeProposalParams): Promise<DeliverTxResponse>;
+    sendQueryAppliedPlanResponse({ value, fee, memo }: sendQueryAppliedPlanResponseParams): Promise<DeliverTxResponse>;
     sendQueryModuleVersionsRequest({ value, fee, memo }: sendQueryModuleVersionsRequestParams): Promise<DeliverTxResponse>;
     sendQueryModuleVersionsResponse({ value, fee, memo }: sendQueryModuleVersionsResponseParams): Promise<DeliverTxResponse>;
-    sendQueryAuthorityResponse({ value, fee, memo }: sendQueryAuthorityResponseParams): Promise<DeliverTxResponse>;
-    plan({ value }: planParams): EncodeObject;
-    queryCurrentPlanRequest({ value }: queryCurrentPlanRequestParams): EncodeObject;
-    queryUpgradedConsensusStateRequest({ value }: queryUpgradedConsensusStateRequestParams): EncodeObject;
-    queryUpgradedConsensusStateResponse({ value }: queryUpgradedConsensusStateResponseParams): EncodeObject;
-    moduleVersion({ value }: moduleVersionParams): EncodeObject;
-    queryCurrentPlanResponse({ value }: queryCurrentPlanResponseParams): EncodeObject;
-    queryAppliedPlanResponse({ value }: queryAppliedPlanResponseParams): EncodeObject;
-    cancelSoftwareUpgradeProposal({ value }: cancelSoftwareUpgradeProposalParams): EncodeObject;
-    msgSoftwareUpgrade({ value }: msgSoftwareUpgradeParams): EncodeObject;
-    msgCancelUpgrade({ value }: msgCancelUpgradeParams): EncodeObject;
-    queryAuthorityRequest({ value }: queryAuthorityRequestParams): EncodeObject;
-    softwareUpgradeProposal({ value }: softwareUpgradeProposalParams): EncodeObject;
-    msgSoftwareUpgradeResponse({ value }: msgSoftwareUpgradeResponseParams): EncodeObject;
-    msgCancelUpgradeResponse({ value }: msgCancelUpgradeResponseParams): EncodeObject;
+    sendMsgSoftwareUpgrade({ value, fee, memo }: sendMsgSoftwareUpgradeParams): Promise<DeliverTxResponse>;
     queryAppliedPlanRequest({ value }: queryAppliedPlanRequestParams): EncodeObject;
+    queryUpgradedConsensusStateRequest({ value }: queryUpgradedConsensusStateRequestParams): EncodeObject;
+    queryAuthorityResponse({ value }: queryAuthorityResponseParams): EncodeObject;
+    moduleVersion({ value }: moduleVersionParams): EncodeObject;
+    msgCancelUpgradeResponse({ value }: msgCancelUpgradeResponseParams): EncodeObject;
+    plan({ value }: planParams): EncodeObject;
+    softwareUpgradeProposal({ value }: softwareUpgradeProposalParams): EncodeObject;
+    queryCurrentPlanRequest({ value }: queryCurrentPlanRequestParams): EncodeObject;
+    queryCurrentPlanResponse({ value }: queryCurrentPlanResponseParams): EncodeObject;
+    queryUpgradedConsensusStateResponse({ value }: queryUpgradedConsensusStateResponseParams): EncodeObject;
+    queryAuthorityRequest({ value }: queryAuthorityRequestParams): EncodeObject;
+    msgSoftwareUpgradeResponse({ value }: msgSoftwareUpgradeResponseParams): EncodeObject;
+    msgCancelUpgrade({ value }: msgCancelUpgradeParams): EncodeObject;
+    cancelSoftwareUpgradeProposal({ value }: cancelSoftwareUpgradeProposalParams): EncodeObject;
+    queryAppliedPlanResponse({ value }: queryAppliedPlanResponseParams): EncodeObject;
     queryModuleVersionsRequest({ value }: queryModuleVersionsRequestParams): EncodeObject;
     queryModuleVersionsResponse({ value }: queryModuleVersionsResponseParams): EncodeObject;
-    queryAuthorityResponse({ value }: queryAuthorityResponseParams): EncodeObject;
+    msgSoftwareUpgrade({ value }: msgSoftwareUpgradeParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;
