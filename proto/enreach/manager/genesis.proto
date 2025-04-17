@@ -14,12 +14,13 @@ option go_package = "enreach/x/manager/types";
 // GenesisState defines the manager module's genesis state.
 message GenesisState {
   
+           string   adminAccount   = 1;
   // params defines all the parameters of the module.
-           Params   params        = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
-  repeated Manager  managerList   = 2 [(gogoproto.nullable) = false] ;
-           uint64   managerCount  = 3;
-  repeated Operator operatorList  = 4 [(gogoproto.nullable) = false] ;
-           uint64   operatorCount = 5;
-           Superior superior      = 6;
+           Params   params        = 2 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  repeated Manager  managerList   = 3 [(gogoproto.nullable) = false] ;
+           uint64   managerCount  = 4;
+  repeated Operator operatorList  = 5 [(gogoproto.nullable) = false] ;
+           uint64   operatorCount = 6;
+           Superior superior      = 7;
 }
 

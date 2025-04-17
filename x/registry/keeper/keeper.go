@@ -1,12 +1,15 @@
 package keeper
 
 import (
+	"context"
 	"fmt"
 
 	"cosmossdk.io/core/store"
+	errorsmod "cosmossdk.io/errors"
 	"cosmossdk.io/log"
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
 	"enreach/x/registry/types"
 )
@@ -50,4 +53,14 @@ func (k Keeper) GetAuthority() string {
 // Logger returns a module-specific logger.
 func (k Keeper) Logger() log.Logger {
 	return k.logger.With("module", fmt.Sprintf("x/%s", types.ModuleName))
+}
+
+func (k Keeper) EnsureAuthorityOrAdminAccount(ctx context.Context, account string) error {
+	adminAccount, _ := k.GetAdminAccount(ctx)
+
+	if account != k.GetAuthority() && account != adminAccount {
+		return errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only authority or admin account can execute the call")
+	}
+
+	return nil
 }

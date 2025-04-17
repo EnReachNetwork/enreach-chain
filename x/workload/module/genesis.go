@@ -29,6 +29,10 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 	if genState.PendingNextEra != nil {
 		k.SetPendingNextEra(ctx, genState.PendingNextEra)
 	}
+
+	if genState.AdminAccount != "" {
+		k.SetAdminAccount(ctx, genState.AdminAccount)
+	}
 	// this line is used by starport scaffolding # genesis/module/init
 
 	// Initialize default param settings
@@ -164,6 +168,11 @@ func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 	pendingNextEra, found := k.GetPendingNextEra(ctx)
 	if found {
 		genesis.PendingNextEra = &pendingNextEra
+	}
+
+	adminAccount, found := k.GetAdminAccount(ctx)
+	if found {
+		genesis.AdminAccount = adminAccount
 	}
 	// this line is used by starport scaffolding # genesis/module/export
 

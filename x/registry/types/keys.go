@@ -25,5 +25,6 @@ const (
 )
 
 const (
-	SuperiorKey = "Superior/value/"
+	AdminAccountKey = "AdminAccount/value/"
+	SuperiorKey     = "Superior/value/"
 )

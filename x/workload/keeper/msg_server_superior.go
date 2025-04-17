@@ -11,9 +11,10 @@ import (
 )
 
 func (k msgServer) CreateSuperior(goCtx context.Context, msg *types.MsgCreateSuperior) (*types.MsgCreateSuperiorResponse, error) {
-	// tx caller must be authority
-	if k.GetAuthority() != msg.Signer {
-		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only authority can execute this call")
+	// tx caller must be authority or admin account
+	err := k.EnsureAuthorityOrAdminAccount(goCtx, msg.Signer)
+	if err != nil {
+		return nil, err
 	}
 
 	ctx := sdk.UnwrapSDKContext(goCtx)
@@ -45,9 +46,10 @@ func (k msgServer) CreateSuperior(goCtx context.Context, msg *types.MsgCreateSup
 }
 
 func (k msgServer) UpdateSuperior(goCtx context.Context, msg *types.MsgUpdateSuperior) (*types.MsgUpdateSuperiorResponse, error) {
-	// tx caller must be authority
-	if k.GetAuthority() != msg.Signer {
-		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Only authority can execute this call")
+	// tx caller must be authority or admin account
+	err := k.EnsureAuthorityOrAdminAccount(goCtx, msg.Signer)
+	if err != nil {
+		return nil, err
 	}
 
 	ctx := sdk.UnwrapSDKContext(goCtx)

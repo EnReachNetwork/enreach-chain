@@ -14,110 +14,111 @@ import (
 	sync "sync"
 )
 
-var _ protoreflect.List = (*_GenesisState_2_list)(nil)
+var _ protoreflect.List = (*_GenesisState_3_list)(nil)
 
-type _GenesisState_2_list struct {
+type _GenesisState_3_list struct {
 	list *[]*Manager
 }
 
-func (x *_GenesisState_2_list) Len() int {
+func (x *_GenesisState_3_list) Len() int {
 	if x.list == nil {
 		return 0
 	}
 	return len(*x.list)
 }
 
-func (x *_GenesisState_2_list) Get(i int) protoreflect.Value {
+func (x *_GenesisState_3_list) Get(i int) protoreflect.Value {
 	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
 }
 
-func (x *_GenesisState_2_list) Set(i int, value protoreflect.Value) {
+func (x *_GenesisState_3_list) Set(i int, value protoreflect.Value) {
 	valueUnwrapped := value.Message()
 	concreteValue := valueUnwrapped.Interface().(*Manager)
 	(*x.list)[i] = concreteValue
 }
 
-func (x *_GenesisState_2_list) Append(value protoreflect.Value) {
+func (x *_GenesisState_3_list) Append(value protoreflect.Value) {
 	valueUnwrapped := value.Message()
 	concreteValue := valueUnwrapped.Interface().(*Manager)
 	*x.list = append(*x.list, concreteValue)
 }
 
-func (x *_GenesisState_2_list) AppendMutable() protoreflect.Value {
+func (x *_GenesisState_3_list) AppendMutable() protoreflect.Value {
 	v := new(Manager)
 	*x.list = append(*x.list, v)
 	return protoreflect.ValueOfMessage(v.ProtoReflect())
 }
 
-func (x *_GenesisState_2_list) Truncate(n int) {
+func (x *_GenesisState_3_list) Truncate(n int) {
 	for i := n; i < len(*x.list); i++ {
 		(*x.list)[i] = nil
 	}
 	*x.list = (*x.list)[:n]
 }
 
-func (x *_GenesisState_2_list) NewElement() protoreflect.Value {
+func (x *_GenesisState_3_list) NewElement() protoreflect.Value {
 	v := new(Manager)
 	return protoreflect.ValueOfMessage(v.ProtoReflect())
 }
 
-func (x *_GenesisState_2_list) IsValid() bool {
+func (x *_GenesisState_3_list) IsValid() bool {
 	return x.list != nil
 }
 
-var _ protoreflect.List = (*_GenesisState_4_list)(nil)
+var _ protoreflect.List = (*_GenesisState_5_list)(nil)
 
-type _GenesisState_4_list struct {
+type _GenesisState_5_list struct {
 	list *[]*Operator
 }
 
-func (x *_GenesisState_4_list) Len() int {
+func (x *_GenesisState_5_list) Len() int {
 	if x.list == nil {
 		return 0
 	}
 	return len(*x.list)
 }
 
-func (x *_GenesisState_4_list) Get(i int) protoreflect.Value {
+func (x *_GenesisState_5_list) Get(i int) protoreflect.Value {
 	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
 }
 
-func (x *_GenesisState_4_list) Set(i int, value protoreflect.Value) {
+func (x *_GenesisState_5_list) Set(i int, value protoreflect.Value) {
 	valueUnwrapped := value.Message()
 	concreteValue := valueUnwrapped.Interface().(*Operator)
 	(*x.list)[i] = concreteValue
 }
 
-func (x *_GenesisState_4_list) Append(value protoreflect.Value) {
+func (x *_GenesisState_5_list) Append(value protoreflect.Value) {
 	valueUnwrapped := value.Message()
 	concreteValue := valueUnwrapped.Interface().(*Operator)
 	*x.list = append(*x.list, concreteValue)
 }
 
-func (x *_GenesisState_4_list) AppendMutable() protoreflect.Value {
+func (x *_GenesisState_5_list) AppendMutable() protoreflect.Value {
 	v := new(Operator)
 	*x.list = append(*x.list, v)
 	return protoreflect.ValueOfMessage(v.ProtoReflect())
 }
 
-func (x *_GenesisState_4_list) Truncate(n int) {
+func (x *_GenesisState_5_list) Truncate(n int) {
 	for i := n; i < len(*x.list); i++ {
 		(*x.list)[i] = nil
 	}
 	*x.list = (*x.list)[:n]
 }
 
-func (x *_GenesisState_4_list) NewElement() protoreflect.Value {
+func (x *_GenesisState_5_list) NewElement() protoreflect.Value {
 	v := new(Operator)
 	return protoreflect.ValueOfMessage(v.ProtoReflect())
 }
 
-func (x *_GenesisState_4_list) IsValid() bool {
+func (x *_GenesisState_5_list) IsValid() bool {
 	return x.list != nil
 }
 
 var (
 	md_GenesisState               protoreflect.MessageDescriptor
+	fd_GenesisState_adminAccount  protoreflect.FieldDescriptor
 	fd_GenesisState_params        protoreflect.FieldDescriptor
 	fd_GenesisState_managerList   protoreflect.FieldDescriptor
 	fd_GenesisState_managerCount  protoreflect.FieldDescriptor
@@ -129,6 +130,7 @@ var (
 func init() {
 	file_enreach_manager_genesis_proto_init()
 	md_GenesisState = File_enreach_manager_genesis_proto.Messages().ByName("GenesisState")
+	fd_GenesisState_adminAccount = md_GenesisState.Fields().ByName("adminAccount")
 	fd_GenesisState_params = md_GenesisState.Fields().ByName("params")
 	fd_GenesisState_managerList = md_GenesisState.Fields().ByName("managerList")
 	fd_GenesisState_managerCount = md_GenesisState.Fields().ByName("managerCount")
@@ -202,6 +204,12 @@ func (x *fastReflection_GenesisState) Interface() protoreflect.ProtoMessage {
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_GenesisState) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.AdminAccount != "" {
+		value := protoreflect.ValueOfString(x.AdminAccount)
+		if !f(fd_GenesisState_adminAccount, value) {
+			return
+		}
+	}
 	if x.Params != nil {
 		value := protoreflect.ValueOfMessage(x.Params.ProtoReflect())
 		if !f(fd_GenesisState_params, value) {
@@ -209,7 +217,7 @@ func (x *fastReflection_GenesisState) Range(f func(protoreflect.FieldDescriptor,
 		}
 	}
 	if len(x.ManagerList) != 0 {
-		value := protoreflect.ValueOfList(&_GenesisState_2_list{list: &x.ManagerList})
+		value := protoreflect.ValueOfList(&_GenesisState_3_list{list: &x.ManagerList})
 		if !f(fd_GenesisState_managerList, value) {
 			return
 		}
@@ -221,7 +229,7 @@ func (x *fastReflection_GenesisState) Range(f func(protoreflect.FieldDescriptor,
 		}
 	}
 	if len(x.OperatorList) != 0 {
-		value := protoreflect.ValueOfList(&_GenesisState_4_list{list: &x.OperatorList})
+		value := protoreflect.ValueOfList(&_GenesisState_5_list{list: &x.OperatorList})
 		if !f(fd_GenesisState_operatorList, value) {
 			return
 		}
@@ -253,6 +261,8 @@ func (x *fastReflection_GenesisState) Range(f func(protoreflect.FieldDescriptor,
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_GenesisState) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
+	case "enreach.manager.GenesisState.adminAccount":
+		return x.AdminAccount != ""
 	case "enreach.manager.GenesisState.params":
 		return x.Params != nil
 	case "enreach.manager.GenesisState.managerList":
@@ -281,6 +291,8 @@ func (x *fastReflection_GenesisState) Has(fd protoreflect.FieldDescriptor) bool 
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_GenesisState) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
+	case "enreach.manager.GenesisState.adminAccount":
+		x.AdminAccount = ""
 	case "enreach.manager.GenesisState.params":
 		x.Params = nil
 	case "enreach.manager.GenesisState.managerList":
@@ -309,23 +321,26 @@ func (x *fastReflection_GenesisState) Clear(fd protoreflect.FieldDescriptor) {
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_GenesisState) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
+	case "enreach.manager.GenesisState.adminAccount":
+		value := x.AdminAccount
+		return protoreflect.ValueOfString(value)
 	case "enreach.manager.GenesisState.params":
 		value := x.Params
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	case "enreach.manager.GenesisState.managerList":
 		if len(x.ManagerList) == 0 {
-			return protoreflect.ValueOfList(&_GenesisState_2_list{})
+			return protoreflect.ValueOfList(&_GenesisState_3_list{})
 		}
-		listValue := &_GenesisState_2_list{list: &x.ManagerList}
+		listValue := &_GenesisState_3_list{list: &x.ManagerList}
 		return protoreflect.ValueOfList(listValue)
 	case "enreach.manager.GenesisState.managerCount":
 		value := x.ManagerCount
 		return protoreflect.ValueOfUint64(value)
 	case "enreach.manager.GenesisState.operatorList":
 		if len(x.OperatorList) == 0 {
-			return protoreflect.ValueOfList(&_GenesisState_4_list{})
+			return protoreflect.ValueOfList(&_GenesisState_5_list{})
 		}
-		listValue := &_GenesisState_4_list{list: &x.OperatorList}
+		listValue := &_GenesisState_5_list{list: &x.OperatorList}
 		return protoreflect.ValueOfList(listValue)
 	case "enreach.manager.GenesisState.operatorCount":
 		value := x.OperatorCount
@@ -353,17 +368,19 @@ func (x *fastReflection_GenesisState) Get(descriptor protoreflect.FieldDescripto
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_GenesisState) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
+	case "enreach.manager.GenesisState.adminAccount":
+		x.AdminAccount = value.Interface().(string)
 	case "enreach.manager.GenesisState.params":
 		x.Params = value.Message().Interface().(*Params)
 	case "enreach.manager.GenesisState.managerList":
 		lv := value.List()
-		clv := lv.(*_GenesisState_2_list)
+		clv := lv.(*_GenesisState_3_list)
 		x.ManagerList = *clv.list
 	case "enreach.manager.GenesisState.managerCount":
 		x.ManagerCount = value.Uint()
 	case "enreach.manager.GenesisState.operatorList":
 		lv := value.List()
-		clv := lv.(*_GenesisState_4_list)
+		clv := lv.(*_GenesisState_5_list)
 		x.OperatorList = *clv.list
 	case "enreach.manager.GenesisState.operatorCount":
 		x.OperatorCount = value.Uint()
@@ -398,19 +415,21 @@ func (x *fastReflection_GenesisState) Mutable(fd protoreflect.FieldDescriptor) p
 		if x.ManagerList == nil {
 			x.ManagerList = []*Manager{}
 		}
-		value := &_GenesisState_2_list{list: &x.ManagerList}
+		value := &_GenesisState_3_list{list: &x.ManagerList}
 		return protoreflect.ValueOfList(value)
 	case "enreach.manager.GenesisState.operatorList":
 		if x.OperatorList == nil {
 			x.OperatorList = []*Operator{}
 		}
-		value := &_GenesisState_4_list{list: &x.OperatorList}
+		value := &_GenesisState_5_list{list: &x.OperatorList}
 		return protoreflect.ValueOfList(value)
 	case "enreach.manager.GenesisState.superior":
 		if x.Superior == nil {
 			x.Superior = new(Superior)
 		}
 		return protoreflect.ValueOfMessage(x.Superior.ProtoReflect())
+	case "enreach.manager.GenesisState.adminAccount":
+		panic(fmt.Errorf("field adminAccount of message enreach.manager.GenesisState is not mutable"))
 	case "enreach.manager.GenesisState.managerCount":
 		panic(fmt.Errorf("field managerCount of message enreach.manager.GenesisState is not mutable"))
 	case "enreach.manager.GenesisState.operatorCount":
@@ -428,17 +447,19 @@ func (x *fastReflection_GenesisState) Mutable(fd protoreflect.FieldDescriptor) p
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_GenesisState) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
+	case "enreach.manager.GenesisState.adminAccount":
+		return protoreflect.ValueOfString("")
 	case "enreach.manager.GenesisState.params":
 		m := new(Params)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	case "enreach.manager.GenesisState.managerList":
 		list := []*Manager{}
-		return protoreflect.ValueOfList(&_GenesisState_2_list{list: &list})
+		return protoreflect.ValueOfList(&_GenesisState_3_list{list: &list})
 	case "enreach.manager.GenesisState.managerCount":
 		return protoreflect.ValueOfUint64(uint64(0))
 	case "enreach.manager.GenesisState.operatorList":
 		list := []*Operator{}
-		return protoreflect.ValueOfList(&_GenesisState_4_list{list: &list})
+		return protoreflect.ValueOfList(&_GenesisState_5_list{list: &list})
 	case "enreach.manager.GenesisState.operatorCount":
 		return protoreflect.ValueOfUint64(uint64(0))
 	case "enreach.manager.GenesisState.superior":
@@ -513,6 +534,10 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 		var n int
 		var l int
 		_ = l
+		l = len(x.AdminAccount)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
 		if x.Params != nil {
 			l = options.Size(x.Params)
 			n += 1 + l + runtime.Sov(uint64(l))
@@ -580,12 +605,12 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 			copy(dAtA[i:], encoded)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
 			i--
-			dAtA[i] = 0x32
+			dAtA[i] = 0x3a
 		}
 		if x.OperatorCount != 0 {
 			i = runtime.EncodeVarint(dAtA, i, uint64(x.OperatorCount))
 			i--
-			dAtA[i] = 0x28
+			dAtA[i] = 0x30
 		}
 		if len(x.OperatorList) > 0 {
 			for iNdEx := len(x.OperatorList) - 1; iNdEx >= 0; iNdEx-- {
@@ -600,13 +625,13 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 				copy(dAtA[i:], encoded)
 				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
 				i--
-				dAtA[i] = 0x22
+				dAtA[i] = 0x2a
 			}
 		}
 		if x.ManagerCount != 0 {
 			i = runtime.EncodeVarint(dAtA, i, uint64(x.ManagerCount))
 			i--
-			dAtA[i] = 0x18
+			dAtA[i] = 0x20
 		}
 		if len(x.ManagerList) > 0 {
 			for iNdEx := len(x.ManagerList) - 1; iNdEx >= 0; iNdEx-- {
@@ -621,7 +646,7 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 				copy(dAtA[i:], encoded)
 				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
 				i--
-				dAtA[i] = 0x12
+				dAtA[i] = 0x1a
 			}
 		}
 		if x.Params != nil {
@@ -635,6 +660,13 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 			i -= len(encoded)
 			copy(dAtA[i:], encoded)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+			i--
+			dAtA[i] = 0x12
+		}
+		if len(x.AdminAccount) > 0 {
+			i -= len(x.AdminAccount)
+			copy(dAtA[i:], x.AdminAccount)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.AdminAccount)))
 			i--
 			dAtA[i] = 0xa
 		}
@@ -689,6 +721,38 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AdminAccount", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.AdminAccount = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 2:
+				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Params", wireType)
 				}
 				var msglen int
@@ -723,7 +787,7 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
-			case 2:
+			case 3:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ManagerList", wireType)
 				}
@@ -757,7 +821,7 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
-			case 3:
+			case 4:
 				if wireType != 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ManagerCount", wireType)
 				}
@@ -776,7 +840,7 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 						break
 					}
 				}
-			case 4:
+			case 5:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field OperatorList", wireType)
 				}
@@ -810,7 +874,7 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
-			case 5:
+			case 6:
 				if wireType != 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field OperatorCount", wireType)
 				}
@@ -829,7 +893,7 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 						break
 					}
 				}
-			case 6:
+			case 7:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Superior", wireType)
 				}
@@ -919,13 +983,14 @@ type GenesisState struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	AdminAccount string `protobuf:"bytes,1,opt,name=adminAccount,proto3" json:"adminAccount,omitempty"`
 	// params defines all the parameters of the module.
-	Params        *Params     `protobuf:"bytes,1,opt,name=params,proto3" json:"params,omitempty"`
-	ManagerList   []*Manager  `protobuf:"bytes,2,rep,name=managerList,proto3" json:"managerList,omitempty"`
-	ManagerCount  uint64      `protobuf:"varint,3,opt,name=managerCount,proto3" json:"managerCount,omitempty"`
-	OperatorList  []*Operator `protobuf:"bytes,4,rep,name=operatorList,proto3" json:"operatorList,omitempty"`
-	OperatorCount uint64      `protobuf:"varint,5,opt,name=operatorCount,proto3" json:"operatorCount,omitempty"`
-	Superior      *Superior   `protobuf:"bytes,6,opt,name=superior,proto3" json:"superior,omitempty"`
+	Params        *Params     `protobuf:"bytes,2,opt,name=params,proto3" json:"params,omitempty"`
+	ManagerList   []*Manager  `protobuf:"bytes,3,rep,name=managerList,proto3" json:"managerList,omitempty"`
+	ManagerCount  uint64      `protobuf:"varint,4,opt,name=managerCount,proto3" json:"managerCount,omitempty"`
+	OperatorList  []*Operator `protobuf:"bytes,5,rep,name=operatorList,proto3" json:"operatorList,omitempty"`
+	OperatorCount uint64      `protobuf:"varint,6,opt,name=operatorCount,proto3" json:"operatorCount,omitempty"`
+	Superior      *Superior   `protobuf:"bytes,7,opt,name=superior,proto3" json:"superior,omitempty"`
 }
 
 func (x *GenesisState) Reset() {
@@ -946,6 +1011,13 @@ func (*GenesisState) ProtoMessage() {}
 // Deprecated: Use GenesisState.ProtoReflect.Descriptor instead.
 func (*GenesisState) Descriptor() ([]byte, []int) {
 	return file_enreach_manager_genesis_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *GenesisState) GetAdminAccount() string {
+	if x != nil {
+		return x.AdminAccount
+	}
+	return ""
 }
 
 func (x *GenesisState) GetParams() *Params {
@@ -1006,39 +1078,41 @@ var file_enreach_manager_genesis_proto_rawDesc = []byte{
 	0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2f, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72,
 	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f,
 	0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2f, 0x73, 0x75, 0x70, 0x65, 0x72, 0x69, 0x6f, 0x72,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xd2, 0x02, 0x0a, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73,
-	0x69, 0x73, 0x53, 0x74, 0x61, 0x74, 0x65, 0x12, 0x3a, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d,
-	0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63,
-	0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73,
-	0x42, 0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72,
-	0x61, 0x6d, 0x73, 0x12, 0x40, 0x0a, 0x0b, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x4c, 0x69,
-	0x73, 0x74, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61,
-	0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x4d, 0x61, 0x6e, 0x61, 0x67,
-	0x65, 0x72, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0b, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65,
-	0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x22, 0x0a, 0x0c, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72,
-	0x43, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0c, 0x6d, 0x61, 0x6e,
-	0x61, 0x67, 0x65, 0x72, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x43, 0x0a, 0x0c, 0x6f, 0x70, 0x65,
-	0x72, 0x61, 0x74, 0x6f, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32,
-	0x19, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65,
-	0x72, 0x2e, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00,
-	0x52, 0x0c, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x24,
-	0x0a, 0x0d, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x18,
-	0x05, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0d, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x43,
-	0x6f, 0x75, 0x6e, 0x74, 0x12, 0x35, 0x0a, 0x08, 0x73, 0x75, 0x70, 0x65, 0x72, 0x69, 0x6f, 0x72,
-	0x18, 0x06, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68,
-	0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x53, 0x75, 0x70, 0x65, 0x72, 0x69, 0x6f,
-	0x72, 0x52, 0x08, 0x73, 0x75, 0x70, 0x65, 0x72, 0x69, 0x6f, 0x72, 0x42, 0xa2, 0x01, 0x0a, 0x13,
-	0x63, 0x6f, 0x6d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61,
-	0x67, 0x65, 0x72, 0x42, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x50, 0x72, 0x6f, 0x74,
-	0x6f, 0x50, 0x01, 0x5a, 0x20, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69,
-	0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2f, 0x6d, 0x61,
-	0x6e, 0x61, 0x67, 0x65, 0x72, 0xa2, 0x02, 0x03, 0x45, 0x4d, 0x58, 0xaa, 0x02, 0x0f, 0x45, 0x6e,
-	0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0xca, 0x02, 0x0f,
-	0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0xe2,
-	0x02, 0x1b, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65,
-	0x72, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x10,
-	0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x3a, 0x3a, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xf6, 0x02, 0x0a, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73,
+	0x69, 0x73, 0x53, 0x74, 0x61, 0x74, 0x65, 0x12, 0x22, 0x0a, 0x0c, 0x61, 0x64, 0x6d, 0x69, 0x6e,
+	0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x61,
+	0x64, 0x6d, 0x69, 0x6e, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x3a, 0x0a, 0x06, 0x70,
+	0x61, 0x72, 0x61, 0x6d, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x65, 0x6e,
+	0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x50, 0x61,
+	0x72, 0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52,
+	0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x40, 0x0a, 0x0b, 0x6d, 0x61, 0x6e, 0x61, 0x67,
+	0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x65,
+	0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x4d,
+	0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0b, 0x6d, 0x61,
+	0x6e, 0x61, 0x67, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x22, 0x0a, 0x0c, 0x6d, 0x61, 0x6e,
+	0x61, 0x67, 0x65, 0x72, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x04, 0x52,
+	0x0c, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x43, 0x0a,
+	0x0c, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x18, 0x05, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x61,
+	0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x42, 0x04,
+	0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0c, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x4c, 0x69,
+	0x73, 0x74, 0x12, 0x24, 0x0a, 0x0d, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x43, 0x6f,
+	0x75, 0x6e, 0x74, 0x18, 0x06, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0d, 0x6f, 0x70, 0x65, 0x72, 0x61,
+	0x74, 0x6f, 0x72, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x35, 0x0a, 0x08, 0x73, 0x75, 0x70, 0x65,
+	0x72, 0x69, 0x6f, 0x72, 0x18, 0x07, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x65, 0x6e, 0x72,
+	0x65, 0x61, 0x63, 0x68, 0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x53, 0x75, 0x70,
+	0x65, 0x72, 0x69, 0x6f, 0x72, 0x52, 0x08, 0x73, 0x75, 0x70, 0x65, 0x72, 0x69, 0x6f, 0x72, 0x42,
+	0xa2, 0x01, 0x0a, 0x13, 0x63, 0x6f, 0x6d, 0x2e, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e,
+	0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x42, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73,
+	0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x20, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73,
+	0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x65, 0x6e, 0x72, 0x65, 0x61, 0x63,
+	0x68, 0x2f, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0xa2, 0x02, 0x03, 0x45, 0x4d, 0x58, 0xaa,
+	0x02, 0x0f, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x2e, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65,
+	0x72, 0xca, 0x02, 0x0f, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x4d, 0x61, 0x6e, 0x61,
+	0x67, 0x65, 0x72, 0xe2, 0x02, 0x1b, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x5c, 0x4d, 0x61,
+	0x6e, 0x61, 0x67, 0x65, 0x72, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74,
+	0x61, 0xea, 0x02, 0x10, 0x45, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x3a, 0x3a, 0x4d, 0x61, 0x6e,
+	0x61, 0x67, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (

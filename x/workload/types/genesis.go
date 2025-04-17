@@ -8,6 +8,7 @@ const DefaultIndex uint64 = 1
 // DefaultGenesis returns the default genesis state
 func DefaultGenesis() *GenesisState {
 	return &GenesisState{
+		AdminAccount:     "",
 		Superior:         nil,
 		CurrentEpoch:     nil,
 		PendingNextEpoch: nil,

@@ -315,28 +315,20 @@ var (
 				Config: appconfig.WrapAny(&circuitmodulev1.Module{}),
 			},
 			{
-				Name: registrymoduletypes.ModuleName,
-				Config: appconfig.WrapAny(&registrymodulev1.Module{
-					Authority: "enreach1mwyh5y3nu300s2v2spr3mw8ypf65nzzdmf3lex",
-				}),
+				Name:   registrymoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&registrymodulev1.Module{}),
 			},
 			{
-				Name: managermoduletypes.ModuleName,
-				Config: appconfig.WrapAny(&managermodulev1.Module{
-					Authority: "enreach1mwyh5y3nu300s2v2spr3mw8ypf65nzzdmf3lex",
-				}),
+				Name:   managermoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&managermodulev1.Module{}),
 			},
 			{
-				Name: workloadmoduletypes.ModuleName,
-				Config: appconfig.WrapAny(&workloadmodulev1.Module{
-					Authority: "enreach1mwyh5y3nu300s2v2spr3mw8ypf65nzzdmf3lex",
-				}),
+				Name:   workloadmoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&workloadmodulev1.Module{}),
 			},
 			{
-				Name: edgenodemoduletypes.ModuleName,
-				Config: appconfig.WrapAny(&edgenodemodulev1.Module{
-					Authority: "enreach1mwyh5y3nu300s2v2spr3mw8ypf65nzzdmf3lex",
-				}),
+				Name:   edgenodemoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&edgenodemodulev1.Module{}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},

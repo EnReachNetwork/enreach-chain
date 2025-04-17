@@ -42,7 +42,8 @@ const (
 	LastEpochProcessDataKey  = "EpochProcessData/last/"
 	EpochProcessDataCountKey = "EpochProcessData/count/"
 
-	SuperiorKey = "Superior/value/"
+	AdminAccountKey = "AdminAccount/value/"
+	SuperiorKey     = "Superior/value/"
 
 	ReputationPointChangeDataKey      = "ReputationPointChangeData/value/"
 	ReputationPointChangeDataCountKey = "ReputationPointChangeData/count/"

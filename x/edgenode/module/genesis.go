@@ -27,6 +27,10 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 	if genState.Superior != nil {
 		k.SetSuperior(ctx, *genState.Superior)
 	}
+
+	if genState.AdminAccount != "" {
+		k.SetAdminAccount(ctx, genState.AdminAccount)
+	}
 	// this line is used by starport scaffolding # genesis/module/init
 	k.SetParams(ctx, genState.Params)
 }
@@ -44,6 +48,11 @@ func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 	superior, found := k.GetSuperior(ctx)
 	if found {
 		genesis.Superior = &superior
+	}
+
+	adminAccount, found := k.GetAdminAccount(ctx)
+	if found {
+		genesis.AdminAccount = adminAccount
 	}
 	// this line is used by starport scaffolding # genesis/module/export
 

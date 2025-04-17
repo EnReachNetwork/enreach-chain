@@ -14,12 +14,13 @@ option go_package = "enreach/x/edgenode/types";
 // GenesisState defines the edgenode module's genesis state.
 message GenesisState {
   
+           string   adminAccount   = 1;
   // params defines all the parameters of the module.
-           Params   params    = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
-  repeated User     userList  = 2 [(gogoproto.nullable) = false] ;
-           uint64   userCount = 3;
-  repeated Node     nodeList  = 4 [(gogoproto.nullable) = false] ;
-           uint64   nodeCount = 5;
-           Superior superior  = 6;
+           Params   params    = 2 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  repeated User     userList  = 3 [(gogoproto.nullable) = false] ;
+           uint64   userCount = 4;
+  repeated Node     nodeList  = 5 [(gogoproto.nullable) = false] ;
+           uint64   nodeCount = 6;
+           Superior superior  = 7;
 }
 

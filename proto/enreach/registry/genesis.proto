@@ -14,9 +14,10 @@ option go_package = "enreach/x/registry/types";
 message GenesisState {
   
   // params defines all the parameters of the module.
-           Params   params      = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
-  repeated Region   regionList  = 2 [(gogoproto.nullable) = false] ;
-           uint64   regionCount = 3;
-           Superior superior    = 4;
+           string   adminAccount   = 1;
+           Params   params      = 2 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  repeated Region   regionList  = 3 [(gogoproto.nullable) = false] ;
+           uint64   regionCount = 4;
+           Superior superior    = 5;
 }
 

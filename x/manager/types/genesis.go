@@ -13,6 +13,7 @@ func DefaultGenesis() *GenesisState {
 		ManagerList:  []Manager{},
 		OperatorList: []Operator{},
 		Superior:     nil,
+		AdminAccount: "",
 		// this line is used by starport scaffolding # genesis/types/default
 		Params: DefaultParams(),
 	}

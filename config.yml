@@ -63,3 +63,11 @@ genesis:
       constant_fee:
         denom: "uekc"
         amount: "10000000"  # 10 EKC
+    registry:
+      adminAccount: "enreach1mwyh5y3nu300s2v2spr3mw8ypf65nzzdmf3lex"
+    manager:
+      adminAccount: "enreach1mwyh5y3nu300s2v2spr3mw8ypf65nzzdmf3lex"
+    edgenode:
+      adminAccount: "enreach1mwyh5y3nu300s2v2spr3mw8ypf65nzzdmf3lex"
+    workload:
+      adminAccount: "enreach1mwyh5y3nu300s2v2spr3mw8ypf65nzzdmf3lex"

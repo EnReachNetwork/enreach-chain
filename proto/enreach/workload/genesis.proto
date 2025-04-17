@@ -15,12 +15,13 @@ option go_package = "enreach/x/workload/types";
 // GenesisState defines the workload module's genesis state.
 message GenesisState {
   
+  string   adminAccount   = 1;
   // params defines all the parameters of the module.
-  Params    params    = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
-  Superior  superior  = 2;
-  EpochInfo currentEpoch = 3;
-  EpochInfo pendingNextEpoch = 4;
-  EraInfo currentEra = 5;
-  EraInfo pendingNextEra = 6;
+  Params    params    = 2 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  Superior  superior  = 3;
+  EpochInfo currentEpoch = 4;
+  EpochInfo pendingNextEpoch = 5;
+  EraInfo currentEra = 6;
+  EraInfo pendingNextEra = 7;
 }
 

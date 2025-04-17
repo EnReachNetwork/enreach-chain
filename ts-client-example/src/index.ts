@@ -502,8 +502,11 @@ async function listenEvents() {
               if (event.type === 'message') {
                   const action = event.attributes.find((attr) => attr.key === "action")?.value;
 
-                  console.log("===", action!);
-              } else if (event.type != "tx") {
+                  if (action != undefined) {
+                    console.log("===", action!);
+                  }
+              } else if (event.type != "tx" && event.type != "coin_spent" &&
+                        event.type != "coin_received" && event.type != "transfer") {
                 const module = event.attributes.find((attr) => attr.key === "module")?.value;
                 console.log(`[Event] ${module}.${event.type} - ${event.attributes.map(item => `'${item.key}':'${item.value}'`).join(', ')}`);
               }
