@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  enreach-chain:
+    image: enreach/enreach-chain:latest
+    container_name: enreach-chain
+    restart: always
+    ports:
+      - "26656:26656"  # P2P
+      - "26657:26657"  # RPC
+      - "1317:1317"    # REST API
+      - "9090:9090"    # gRPC
+    volumes:
+      - ./config:/enreach-chain/config
+      - ./data:/enreach-chain/data
+      - ./logs:/enreach-chain/logs
+    command: 
+      - --moniker 
+      - EnreachKeeperNode-1
+      - --p2p.seeds
+      - "seed-node-id@ip:port"

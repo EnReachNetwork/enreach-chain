@@ -7,3 +7,6 @@ dist/
 *.dot
 *.log
 *.ign
+config.release.yml
+docker/build/
+docker/test/
