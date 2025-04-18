@@ -1,8 +1,6 @@
-version: '3.8'
-
 services:
   enreach-chain:
-    image: enreach/enreach-chain:latest
+    image: enreach/enreach-chain:0.1.0-arm64
     container_name: enreach-chain
     restart: always
     ports:

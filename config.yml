@@ -78,5 +78,5 @@ genesis:
       adminAccount: "enreach1mwyh5y3nu300s2v2spr3mw8ypf65nzzdmf3lex"
       params:
         data:
-          EpochLength: "30"
-          EraLength: "120"
+          EpochLength: "21600"
+          EraLength: "86400"
